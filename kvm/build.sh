@@ -10,10 +10,11 @@ done 3< <(find $FILESPATH -type f -print0)
 
 ADD_PACKAGES="r-base r-cran-car"
 REMOVE_PACKAGES="cron"
+TMPDIR=$1
 
 ubuntu-vm-builder kvm precise \
                 --verbose \
-                --tmp tmp \
+                --tmp $TMPDIR \
                 --flavour virtual \
                 --domain ichnaea.lsi.upc.edu \
                 --arch amd64 \
