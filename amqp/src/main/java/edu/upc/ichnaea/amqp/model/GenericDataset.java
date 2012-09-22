@@ -71,13 +71,24 @@ public class GenericDataset<F> {
 		String csv = join(names, delimiter)+"\n";
 		for(Map<String, F> row: getRows())
 		{
-			List<F> values = new ArrayList<F>();
+			List<String> values = new ArrayList<String>();
 			for(String name: names){
-				values.add(row.get(name));
+				values.add(valueToString(row.get(name)));
 			}
 			csv += join(values, delimiter)+"\n";
 		}
 		return csv.trim();
+	}
+	
+	public String valueToString(F value)
+	{
+		if(value == null)
+		{
+			return "";
+		}
+		StringBuilder builder = new StringBuilder();
+		builder.append(value);
+		return builder.toString();
 	}
 	
 	static String join(Collection<?> s, String delimiter) {

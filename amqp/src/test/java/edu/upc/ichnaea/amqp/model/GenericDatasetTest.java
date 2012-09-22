@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class GenericDatasetTest {
 
     @Test
-    public void testSettingValues()
+    public void testReadingRows()
     {
         GenericDataset<Integer> set = new GenericDataset<Integer>();
         List<Integer> column = new ArrayList<Integer>();
@@ -54,6 +54,7 @@ public class GenericDatasetTest {
         assertEquals(3, row.get("test").intValue());
         assertEquals(8, row.get("test3").intValue());        
         assertEquals(2, row.size());
+        
     }    
     
     @Test
@@ -80,4 +81,6 @@ public class GenericDatasetTest {
         String csv = set.toCsv(".", ";");
         assertEquals("test;test2;test3\n1;4;6\n2;5;7\n3;;8", csv);
     }
+
 }
+    
