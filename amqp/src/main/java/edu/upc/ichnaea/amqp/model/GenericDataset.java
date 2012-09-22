@@ -12,6 +12,11 @@ public class GenericDataset<F> {
 
 	protected Map<String, List<F>> mColumns;
 	
+	public GenericDataset()
+	{
+		mColumns = new HashMap<String, List<F>>();
+	}
+	
 	public void setColumn(String name, List<F> col)
 	{
 		mColumns.put(name, col);
@@ -60,7 +65,7 @@ public class GenericDataset<F> {
 		return row;		
 	}
 	
-	public String getCsv(String decimal, String delimiter)
+	public String toCsv(String decimal, String delimiter)
 	{
 		Set<String> names = getColumnNames();
 		String csv = join(names, delimiter)+"\n";
@@ -72,19 +77,22 @@ public class GenericDataset<F> {
 			}
 			csv += join(values, delimiter)+"\n";
 		}
-		return csv;
+		return csv.trim();
 	}
 	
-	 static String join(Collection<?> s, String delimiter) {
-	     StringBuilder builder = new StringBuilder();
-	     Iterator<?> iter = s.iterator();
-	     while (iter.hasNext()) {
-	         builder.append(iter.next());
-	         if (!iter.hasNext()) {
-	           break;                  
-	         }
-	         builder.append(delimiter);
-	     }
-	     return builder.toString();
-	 }	
+	static String join(Collection<?> s, String delimiter) {
+	    StringBuilder builder = new StringBuilder();
+	    Iterator<?> iter = s.iterator();
+	    while (iter.hasNext()) {
+	    	Object e = iter.next();
+	    	if(e != null) {
+	    		builder.append(e);
+	    	}
+	        if (!iter.hasNext()) {
+	        	break;                  
+	        }
+	        builder.append(delimiter);
+	    }
+	    return builder.toString();
+	}	
 }

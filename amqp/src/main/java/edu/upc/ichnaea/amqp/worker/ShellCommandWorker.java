@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.rabbitmq.client.QueueingConsumer.Delivery;
 
 import edu.upc.ichnaea.shell.Command;
-import edu.upc.ichnaea.shell.CommandResult;
 import edu.upc.ichnaea.shell.ShellInterface;
 
 abstract public class ShellCommandWorker extends Worker {
