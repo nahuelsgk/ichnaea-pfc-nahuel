@@ -1,12 +1,17 @@
 #!/bin/bash
 SCRIPTNAME=`basename $0`
 NAME="${SCRIPTNAME%.*}"
-ICHNAEADIR="./ichnaea"
+
 SEASON=""
 DATAFILE=""
 SECTION="1"
 SUMMER="Estiu"
 WINTER="Hivern"
+
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=`pwd -P`
+popd > /dev/null
+ICHNAEADIR="$SCRIPTPATH/ichnaea"
 
 function USAGE {
 	echo "Ichnaea wrapper by Miguel Ibero <miguel@ibero.me>"
