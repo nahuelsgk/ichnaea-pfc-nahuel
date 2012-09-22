@@ -67,11 +67,20 @@ echo "working in temp directory $TMPDIR"
 cp -r $ICHNAEADIR/* $TMPDIR
 cp $DATAFILE $TMPDIR/data
 
+STARTTIME=`date +%s`
+echo "starting at `date`"
 pushd $TMPDIR/r > /dev/null
 echo "building dataset..."
 RESULT=`REXEC section_dataset_building.R`
 echo "building models for season '$SEASON' and section '$SECTION'..."
-RESULT=`REXEC section_models_building.R $SECTION $SEASON`
+REXEC section_models_building.R $SECTION $SEASON
+
+ENDTIME=`date +%s`
+DURATION=$((ENDTIME - STARTTIME))
 
 popd > /dev/null
 rm -rf $TMPDIR
+
+DURATIONSTR="$(( DURATION / 60 ))m $(( DURATION % 60 ))s"
+echo "finished at `date`"
+echo "finished in $DURATIONSTR"
