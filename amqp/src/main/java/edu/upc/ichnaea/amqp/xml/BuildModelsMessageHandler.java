@@ -1,81 +1,129 @@
 package edu.upc.ichnaea.amqp.xml;
 
+import javax.management.InvalidAttributeValueException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
+import edu.upc.ichnaea.amqp.model.BuildModelsMessage;
+import edu.upc.ichnaea.amqp.model.BuildModelsMessage.Season;
+import edu.upc.ichnaea.amqp.model.ModelsDataset;
+
 public class BuildModelsMessageHandler implements ContentHandler {
 
+	final static String TYPE = "build_models";
+	final static String SEASON_WINTER = "winter";
+	final static String SEASON_SUMMER = "summer";
+	
+	final static String TAG_MESSAGE = "message";
+	final static String ATTR_SEASON = "season";
+	final static String ATTR_MESSAGE_TYPE = "type";
+	
+	BuildModelsMessage mMessage;
+	Season mSeason;
+	ModelsDatasetHandler mDatasetHandler;
+	ModelsDataset mDataset;
+	
+	public BuildModelsMessage getMessage() {
+		return mMessage;
+	}
+	
 	@Override
 	public void setDocumentLocator(Locator locator) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void startDocument() throws SAXException {
-		// TODO Auto-generated method stub
-		
+		mMessage = null;
+		mSeason = null;
+		mDatasetHandler = null;
+		mDataset = null;
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		// TODO Auto-generated method stub
-		
+		mMessage = new BuildModelsMessage(mDataset, mSeason);
 	}
 
 	@Override
 	public void startPrefixMapping(String prefix, String uri)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void endPrefixMapping(String prefix) throws SAXException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
-		// TODO Auto-generated method stub
-		
+		if(localName.equalsIgnoreCase(ModelsDatasetHandler.TAG_DATASET)) {
+			if(mDatasetHandler != null) {
+				throw new SAXException("A dataset cannot be inside another one.");
+			}
+			mDatasetHandler = new ModelsDatasetHandler();
+		}		
+		if(mDatasetHandler != null) {
+			mDatasetHandler.startElement(uri, localName, qName, atts);
+		} else if(localName.equalsIgnoreCase(TAG_MESSAGE)) {
+			if(!atts.getValue(ATTR_MESSAGE_TYPE).equalsIgnoreCase(TYPE)) {
+				throw new SAXException("Invalid message type");
+			}
+			try {
+				mSeason = getSeasonFromString(atts.getValue(ATTR_SEASON));
+			} catch (InvalidAttributeValueException e) {
+				throw new SAXException(e.getMessage());
+			}
+		}
 	}
+	
+	private Season getSeasonFromString(String value) throws InvalidAttributeValueException
+	{
+		switch(value) {
+		case SEASON_SUMMER:
+			return Season.Summer;
+		case SEASON_WINTER:
+			return Season.Winter;
+		default:
+			throw new InvalidAttributeValueException("invalid season");
+		}
+	}
+	
 
 	@Override
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		
+		if(mDatasetHandler != null) {
+			mDatasetHandler.endElement(uri, localName, qName);
+			mDataset = mDatasetHandler.getDataset();
+			if(mDataset != null) {
+				mDatasetHandler = null;
+			}
+		}		
 	}
 
 	@Override
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		
+		if(mDatasetHandler != null) {
+			mDatasetHandler.characters(ch, start, length);
+		}		
 	}
 
 	@Override
 	public void ignorableWhitespace(char[] ch, int start, int length)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void processingInstruction(String target, String data)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void skippedEntity(String name) throws SAXException {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

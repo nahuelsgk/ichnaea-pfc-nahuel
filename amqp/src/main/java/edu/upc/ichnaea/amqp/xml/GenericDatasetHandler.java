@@ -12,6 +12,7 @@ import edu.upc.ichnaea.amqp.model.GenericDataset;
 
 public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> implements ContentHandler {
 
+	final static String TAG_DATASET = "dataset";
 	final static String TAG_COLUMN = "column";
 	final static String TAG_VALUE = "value";
 	final static String ATTR_COLUMN_NAME = "name";
@@ -20,8 +21,12 @@ public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> impl
 	String mColumnName;
 	StringBuilder mCharacters;
 	D mDataset;
+	boolean mFinished;
 	
-	public GenericDataset<F> getDataset() {
+	public D getDataset() {
+		if(!mFinished) {
+			return null;
+		}
 		return mDataset;
 	}
 	
@@ -33,10 +38,11 @@ public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> impl
 
 	@Override
 	public void startDocument() throws SAXException {
-		mDataset = createDataset();
+		mDataset = null;
 		mColumn = null;
 		mColumnName = null;
 		mCharacters = null;
+		mFinished = false;
 	}
 
 	@Override
@@ -60,10 +66,14 @@ public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> impl
 				throw new SAXException("Only value tags are accepted inside a column.");
 			}
 			mCharacters = new StringBuilder();
-		}
-		else if(localName.equalsIgnoreCase(TAG_COLUMN)) {
+		} else if(mDataset != null) {
+			if(!localName.equalsIgnoreCase(TAG_COLUMN)) {
+				throw new SAXException("Only column tags are accepted inside a dataset.");
+			}
 			mColumn = new ArrayList<F>();
 			mColumnName = atts.getValue(ATTR_COLUMN_NAME);
+		} else if (localName.equalsIgnoreCase(TAG_DATASET)) {
+			mDataset = createDataset();
 		}
 	}
 
@@ -77,9 +87,14 @@ public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> impl
 			mColumn.add(stringToValue(mCharacters.toString()));
 			mCharacters = null;
 		} else if(localName.equalsIgnoreCase(TAG_COLUMN)) {
+			if(mDataset == null ) {
+				throw new SAXException("Column tags can only be inside dataset tags.");
+			}
 			mDataset.setColumn(mColumnName, mColumn);
 			mColumn = null;
 			mColumnName = null;
+		} else if(localName.equalsIgnoreCase(TAG_DATASET)) {
+			mFinished = true;
 		}
 	}
 	

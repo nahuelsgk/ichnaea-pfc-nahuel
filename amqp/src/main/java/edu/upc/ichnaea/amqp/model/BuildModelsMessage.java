@@ -7,9 +7,9 @@ public class BuildModelsMessage {
 	}
 	
 	protected Season mSeason;
-	protected Dataset mDataset;	
+	protected ModelsDataset mDataset;	
 	
-	public BuildModelsMessage(Dataset dataset, Season season)
+	public BuildModelsMessage(ModelsDataset dataset, Season season)
 	{
 		mDataset = dataset;
 		mSeason = season;
@@ -20,7 +20,7 @@ public class BuildModelsMessage {
 		return mSeason;
 	}
 	
-	public Dataset getDataset()
+	public ModelsDataset getDataset()
 	{
 		return mDataset;
 	}
