@@ -1,0 +1,2 @@
+CREATE DATABASE ichnaea;
+CREATE TABLE users
