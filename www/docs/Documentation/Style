@@ -1,0 +1,15 @@
+* Function: 
+visibility function camelCase($pamar_name)
+{
+  /* code */  
+}
+
+* Variables: name_var
+
+* Name classes: CapitalCamelCase
+
+* Conditionals
+if (conditions && conditions)
+{
+  /* code */
+}

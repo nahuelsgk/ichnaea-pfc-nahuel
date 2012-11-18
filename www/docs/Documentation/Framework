@@ -1,0 +1,6 @@
+[] PHP
+
+* includeLib($libray);
+Includes a php that is inside the app the "path/of/application/"app/"$path/of/library".php
+
+[] TEMPLATING
