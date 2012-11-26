@@ -7,20 +7,19 @@
 
 class Handler
 {
- 
+  
   private $query;
   private $controller_path;
   private $view;
-  private $document_root;
-  private $params;
   private $smarty;  
   
-  public function __construct($query){
-    $this->query=$query; 
+  public function __construct(){
+    $this->query=$_SERVER['REQUEST_URI'] ; 
+    $this->handler=$this;
     $this->resolveControllerPath();
-    $this->smarty = new Smarty;
+    $this->smarty = new Smarty();
     $this->smarty->debugging = false;
-    $smarty->caching = false;
+    $this->smarty->caching = false;
   }
   
   //Resolves the main controller and the view needed
@@ -30,20 +29,22 @@ class Handler
     
     #Go to the queried template
     if(preg_match("/(.*?)$/",$explode[1],$view)){  
-      $this->document_root = "./template/Views/";
       $this->view = $view[1];
     }
 
     # If empty, redirect to the login
-    if($explode[1] == ''){
+    else if($explode[1] == ''){
       redirectLoginRegistration();  
     }
-    #Should return a 404 page
   } 
   
   #Executes the main controller
   public function executeController(){
-    $this->smarty->display("Views/".$this->view.".tpl");
+    $output = $this->smarty->templateExists("Views/".$this->view.".tpl");
+    if ($output === FALSE){
+      $this->smarty->display("Views/notfound.tpl");
+    }
+    else $this->smarty->display("Views/".$this->view.".tpl");
   }
 
   public function getView(){

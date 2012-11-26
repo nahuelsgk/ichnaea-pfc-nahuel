@@ -1,15 +1,22 @@
 <?php
+includeLib("Domain/User");
 
 class Login
 {
   
+  /*
+  * Checks if the credentials are correct
+  * Params:
+  *  - email: system's login
+  *  - password: password without encrypting
+  * Returns: 
+  *  - TRUE if exits
+  *  - FALSE if not exists
+  */
   public function checkLogin($email, $password)
   {
-    $db = new MySQL(); 
-    $sql = "SELECT * FROM users WHERE login='".$email."' AND passwd='".$password."'";
-    $db->Query($sql); 
-    if ($db->RowCount() > 0) return true;
-    return false;
+    $user = new User();    
+    return $user->checkCredentials($email,$password);
   }
 }
 ?>

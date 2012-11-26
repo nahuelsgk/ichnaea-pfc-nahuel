@@ -33,7 +33,6 @@ body{
 
 a{
   color: #333;
-  text-decoration: none;
 }
 
 .registration{
@@ -67,3 +66,10 @@ a{
   padding: 0px 0px 5px 0px;
 }
 
+#menu{
+  float: right;
+}
+#container{
+  padding-top: 40px;
+  padding-left: 40px;
+}

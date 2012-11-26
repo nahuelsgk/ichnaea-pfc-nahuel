@@ -2,24 +2,22 @@
 
 class Project{
 
-  private string name;
+  private $name;
 
-  #CRUDS
-  public int newProject(int $id)
+  public function __create(int $id)
   {
     
   }
   
-  public int getProjectById(int $project_id)
+  public function getProjectById(int $project_id)
   {
-    $db = $DBI::getInstance();
-    $db = 
+    
   }
 
-  public int getProjectsByUser(int $user_id){
+  public function getProjectsByUser(int $user_id){
   
   }
-  public int updateProject(int $id, $params){
+  public function updateProject(int $id, $params){
 
   }
 
