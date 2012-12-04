@@ -7,11 +7,11 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsMessage;
-import edu.upc.ichnaea.amqp.model.BuildModelsMessage.Season;
-import edu.upc.ichnaea.amqp.model.ModelsDataset;
+import edu.upc.ichnaea.amqp.model.BuildModels;
+import edu.upc.ichnaea.amqp.model.BuildModels.Season;
+import edu.upc.ichnaea.amqp.model.Dataset;
 
-public class BuildModelsMessageHandler implements ContentHandler {
+public class BuildModelsHandler implements ContentHandler {
 
 	final static String TYPE = "build_models";
 	final static String SEASON_WINTER = "winter";
@@ -21,12 +21,12 @@ public class BuildModelsMessageHandler implements ContentHandler {
 	final static String ATTR_SEASON = "season";
 	final static String ATTR_MESSAGE_TYPE = "type";
 	
-	BuildModelsMessage mMessage;
+	BuildModels mMessage;
 	Season mSeason;
-	ModelsDatasetHandler mDatasetHandler;
-	ModelsDataset mDataset;
+	DatasetHandler mDatasetHandler;
+	Dataset mDataset;
 	
-	public BuildModelsMessage getMessage() {
+	public BuildModels getMessage() {
 		return mMessage;
 	}
 	
@@ -44,7 +44,7 @@ public class BuildModelsMessageHandler implements ContentHandler {
 
 	@Override
 	public void endDocument() throws SAXException {
-		mMessage = new BuildModelsMessage(mDataset, mSeason);
+		mMessage = new BuildModels(mDataset, mSeason);
 	}
 
 	@Override
@@ -59,11 +59,11 @@ public class BuildModelsMessageHandler implements ContentHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
-		if(localName.equalsIgnoreCase(ModelsDatasetHandler.TAG_DATASET)) {
+		if(localName.equalsIgnoreCase(DatasetHandler.TAG_DATASET)) {
 			if(mDatasetHandler != null) {
 				throw new SAXException("A dataset cannot be inside another one.");
 			}
-			mDatasetHandler = new ModelsDatasetHandler();
+			mDatasetHandler = new DatasetHandler();
 		}		
 		if(mDatasetHandler != null) {
 			mDatasetHandler.startElement(uri, localName, qName, atts);

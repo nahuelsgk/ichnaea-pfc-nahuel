@@ -13,10 +13,10 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsMessage;
-import edu.upc.ichnaea.amqp.model.ModelsDataset;
+import edu.upc.ichnaea.amqp.model.BuildModels;
+import edu.upc.ichnaea.amqp.model.Dataset;
 
-public class BuildModelsMessageHandlerTest {
+public class BuildModelsHandlerTest {
 
     @Test
     public void testXML() throws SAXException, IOException
@@ -27,16 +27,16 @@ public class BuildModelsMessageHandlerTest {
     	xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";    	
     	xml += "</dataset></message>";
     	
-    	BuildModelsMessageHandler handler = new BuildModelsMessageHandler();
+    	BuildModelsHandler handler = new BuildModelsHandler();
     	XMLReader parser = XMLReaderFactory.createXMLReader();
     	parser.setContentHandler(handler);
     	parser.parse(new InputSource(new StringReader(xml)));
     	
-    	BuildModelsMessage message = handler.getMessage();
+    	BuildModels message = handler.getMessage();
     	
-    	assertTrue(BuildModelsMessage.Season.Winter == message.getSeason());
+    	assertTrue(BuildModels.Season.Winter == message.getSeason());
     	
-    	ModelsDataset set = message.getDataset();
+    	Dataset set = message.getDataset();
     	
     	Set<String> names = set.getColumnNames();
     	assertTrue(names.contains("test"));

@@ -3,21 +3,21 @@ package edu.upc.ichnaea.shell;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsMessage;
-import edu.upc.ichnaea.amqp.model.BuildModelsMessage.Season;
-import edu.upc.ichnaea.amqp.model.ModelsDataset;
+import edu.upc.ichnaea.amqp.model.BuildModels;
+import edu.upc.ichnaea.amqp.model.BuildModels.Season;
+import edu.upc.ichnaea.amqp.model.Dataset;
 
 public class BuildModelsCommand extends IchnaeaCommand {
 
 	private Season mSeason;
-	private ModelsDataset mDataset;
+	private Dataset mDataset;
 	private String mDatasetPath;
 	
-	public BuildModelsCommand(BuildModelsMessage msg) {
+	public BuildModelsCommand(BuildModels msg) {
 		this(msg.getSeason(), msg.getDataset());	
 	}
 	
-	public BuildModelsCommand(Season season, ModelsDataset dataset)
+	public BuildModelsCommand(Season season, Dataset dataset)
 	{
 		mSeason = season;
 		mDataset = dataset;

@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -14,6 +15,12 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+/**
+ * Represents an XML Document.
+ * A wrapper to simplify the javax implementation.
+ * 
+ * @author mibero
+ */
 public class Document {
 	
 	protected org.w3c.dom.Document mDocument;
@@ -30,6 +37,11 @@ public class Document {
 		mDocument.appendChild(node);
 	}
 	
+	public void appendChild(Document doc)
+	{
+		mDocument.appendChild(doc.mDocument.getDocumentElement());
+	}
+	
 	public Element createElement(String name)
 	{
 		return mDocument.createElement(name);
@@ -40,16 +52,17 @@ public class Document {
 		try{
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+			
 			DOMSource source = new DOMSource(mDocument);
 	
 			StringWriter outWriter = new StringWriter();  
 			StreamResult result = new StreamResult( outWriter );
 			transformer.transform(source, result);
 			return outWriter.toString();
-		}catch(TransformerException e){
+		} catch(TransformerException e) {
 			return e.getMessage();
 		}
-		
 	}
 		
 }

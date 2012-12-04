@@ -10,15 +10,15 @@ import org.xml.sax.helpers.XMLReaderFactory;
 
 import com.rabbitmq.client.QueueingConsumer.Delivery;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsMessage;
-import edu.upc.ichnaea.amqp.xml.BuildModelsMessageHandler;
+import edu.upc.ichnaea.amqp.model.BuildModels;
+import edu.upc.ichnaea.amqp.xml.BuildModelsHandler;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
 
 public class BuildModelsWorker extends ShellCommandWorker {
 
-	protected BuildModelsMessageHandler mHandler;
+	protected BuildModelsHandler mHandler;
 	
-	private BuildModelsMessage getDeliveryMessage(Delivery delivery) throws IOException 
+	private BuildModels getDeliveryMessage(Delivery delivery) throws IOException 
 	{
 		try{
 			XMLReader parser = XMLReaderFactory.createXMLReader();
@@ -33,7 +33,7 @@ public class BuildModelsWorker extends ShellCommandWorker {
 	@Override
 	public void process(Delivery delivery) throws IOException
 	{
-		BuildModelsMessage msg = getDeliveryMessage(delivery);
+		BuildModels msg = getDeliveryMessage(delivery);
 		BuildModelsCommand cmd = new BuildModelsCommand(msg);
 		runCommand(cmd);
 	}

@@ -1,15 +1,15 @@
 package edu.upc.ichnaea.amqp.model;
 
-public class BuildModelsMessage {
+public class BuildModels {
 
 	public enum Season {
 		Summer, Winter
 	}
 	
 	protected Season mSeason;
-	protected ModelsDataset mDataset;	
+	protected Dataset mDataset;	
 	
-	public BuildModelsMessage(ModelsDataset dataset, Season season)
+	public BuildModels(Dataset dataset, Season season)
 	{
 		mDataset = dataset;
 		mSeason = season;
@@ -20,7 +20,7 @@ public class BuildModelsMessage {
 		return mSeason;
 	}
 	
-	public ModelsDataset getDataset()
+	public Dataset getDataset()
 	{
 		return mDataset;
 	}

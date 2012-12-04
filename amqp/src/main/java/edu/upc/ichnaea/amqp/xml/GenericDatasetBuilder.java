@@ -2,18 +2,25 @@ package edu.upc.ichnaea.amqp.xml;
 
 import java.util.List;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Element;
 
 import edu.upc.ichnaea.amqp.model.GenericDataset;
 
-public class GenericDatasetDocument<F> extends Document {
+public class GenericDatasetBuilder<F, D extends GenericDataset<F>> extends DocumentBuilder {
 
-	public GenericDatasetDocument(GenericDataset<F> dataset) throws ParserConfigurationException {
-		super();
-		
-		Element root = createElement("dataset");
+	GenericDatasetBuilder(Document doc)
+	{
+		super(doc, "dataset");
+	}
+	
+	GenericDatasetBuilder(DocumentBuilder parent, Element root)
+	{
+		super(parent, root);
+	}	
+	
+	public Document build(D dataset)
+	{
+		Element root = getRoot();
 		
 		for(String name : dataset.getColumnNames())
 		{
@@ -24,13 +31,15 @@ public class GenericDatasetDocument<F> extends Document {
 			{
 				Element xmlRow = createElement("value");
 				StringBuilder builder = new StringBuilder();
-				builder.append(row);			
-				xmlRow.setNodeValue(builder.toString());
+				builder.append(row);
+				xmlRow.setTextContent(builder.toString());
 				xmlCol.appendChild(xmlRow);
 			}
 			root.appendChild(xmlCol);
 		}
-
+		return getDocument();
 	}
+	
+	
 
 }
