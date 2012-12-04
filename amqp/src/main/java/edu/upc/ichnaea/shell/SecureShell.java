@@ -1,5 +1,8 @@
 package edu.upc.ichnaea.shell;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -34,7 +37,7 @@ public class SecureShell implements ShellInterface {
 	}
 	
 	@Override
-	public CommandResult run(Command command) throws IOException, InterruptedException {
+	public CommandResult run(CommandInterface command) throws IOException, InterruptedException {
 		JSch jsch = new JSch();
 		CommandResult result;
 		try {
@@ -45,6 +48,7 @@ public class SecureShell implements ShellInterface {
 			ChannelExec channel = (ChannelExec) session.openChannel("exec");
 			channel.setCommand(command.toString());
 			channel.connect();
+			command.beforeRun(this);
 			result = readChannelInput(channel);
 			channel.disconnect();
 		    session.disconnect();
@@ -72,6 +76,18 @@ public class SecureShell implements ShellInterface {
 			}catch(Exception ee){
 			}
 	    }
+	}
+
+	@Override
+	public FileInputStream readFile(String path) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FileOutputStream writeFile(String path) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

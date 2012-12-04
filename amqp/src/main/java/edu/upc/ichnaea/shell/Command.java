@@ -1,6 +1,6 @@
 package edu.upc.ichnaea.shell;
 
-public class Command {
+public class Command implements CommandInterface {
 
 	protected String mCommand;
 	
@@ -12,5 +12,10 @@ public class Command {
 	public String toString()
 	{
 		return mCommand;
+	}
+
+	@Override
+	public void beforeRun(ShellInterface shell)
+	{
 	}
 }

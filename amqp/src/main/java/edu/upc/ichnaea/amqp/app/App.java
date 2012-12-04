@@ -4,34 +4,41 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.List;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 public abstract class App
 {
+	Option mOptionUri = new Option("u", "uri", true, "Uri for the amqp server");
 	protected Connection mConnection;
 	protected String mUri;
-
-	protected String getDefaultServerUri()
-	{
-		return "amqp://localhost";
-	}
 
     public static void main(String[] args, App app)
     {
     	try {
-    		app.setArguments(Arrays.asList(args));
+    		app.parseArguments(args);
 	        app.connect();
 	        app.start();
 	        app.end();
-        } catch (Exception ex) {
-            System.err.println("Main thread caught exception: " + ex);
-            ex.printStackTrace();
+    	} catch (ParseException e) {
+    		System.err.println("Could not parse arguments: " + e);
+    		HelpFormatter formatter = new HelpFormatter();
+    		formatter.printHelp( args[0], app.getOptions() );    		
             System.exit(1);
-        }	    	
+    	} catch (Exception e) {
+            System.err.println("Main thread caught exception: " + e);
+            e.printStackTrace();
+            System.exit(1);
+        }   	
     }
     
     protected void connect()
@@ -43,14 +50,12 @@ public abstract class App
         setup();
     }
     
-    public void setArguments(List<String> args)
+    protected CommandLine parseArguments(String[] args) throws ParseException
     {
-    	String uri = getDefaultServerUri();
-    	if(args.size() > 0){
-    		uri = args.get(0);
-    		args.remove(0);
-    	}
-        setUri(uri);
+        CommandLineParser parser = new GnuParser();	
+        CommandLine line = parser.parse( getOptions(), args );
+        setUri(mOptionUri.getValue(mUri));
+        return line;
     }
     
     protected void setup() throws IOException
@@ -79,5 +84,12 @@ public abstract class App
     protected String getUri()
     {
     	return mUri;
-    }     
+    }
+    
+    protected Options getOptions()
+    {
+    	Options options = new Options();
+    	options.addOption(mOptionUri);
+    	return options;
+    }
 }

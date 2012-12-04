@@ -4,11 +4,11 @@ import edu.upc.ichnaea.amqp.worker.TestWorker;
 import edu.upc.ichnaea.amqp.worker.WorkerInterface;
 
 
-public class TestConsumer extends Consumer
+public class TestWorkApp extends WorkApp
 {
     public static void main(String[] args)
     {
-    	main(args, new TestConsumer());
+    	main(args, new TestWorkApp());
     }
 	
 	@Override

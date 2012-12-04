@@ -19,13 +19,6 @@ On Ubuntu
 
 * install eclipse
     sudo apt-get install eclipse
-    
-### Set up maven dependencies
-
-* install maven dependencies
-    mvn install
-    
-* add maven repo to class path
 
 ### Create an eclipse workspace
     
@@ -35,18 +28,22 @@ On Ubuntu
 * install m2eclipse plugin
     http://download.eclipse.org/technology/m2e/releases
     
-* add the project to the workspace
-
 * add maven repo to eclipse
-    mvn -Declipse.workspace=<path-to-eclipse-workspace> eclipse:add-maven-repo
+    mvn -Declipse.workspace=<path-to-eclipse-workspace> eclipse:configure-workspace
 
-* update eclipse
+* create eclipse project file
     mvn eclipse:eclipse
+
+* add the project to the workspace
+    Import... -> Existing projects into Workspace        
    
 ### Compile and Run
 
-* compile de project jar
+* compile the project jar
     mvn jar:jar
+    
+* run tests
+    mvn test    
 
 * run the project jar
 	mvn exec:java -Dexec.mainClass="edu.upc.ichnaea.amqp.app.TestConsumer"

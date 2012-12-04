@@ -10,7 +10,7 @@ import com.rabbitmq.client.ShutdownSignalException;
 
 import edu.upc.ichnaea.amqp.worker.WorkerInterface;
 
-public abstract class Consumer extends Queue
+public abstract class WorkApp extends QueueApp
 {
 	WorkerInterface mWorker;
 	
@@ -20,7 +20,7 @@ public abstract class Consumer extends Queue
 	protected void setup() throws IOException
 	{
 		super.setup();    	
-		System.out.println("Setting up queue consumer app...");		
+		System.out.println("Setting up queue work app...");		
         mWorker = createWorker(); 
         mWorker.setChannel(getChannel());
 	}
@@ -29,7 +29,7 @@ public abstract class Consumer extends Queue
 	protected void start() throws IOException
 	{
 		super.start();
-		System.out.println("Starting queue consumer app...");		
+		System.out.println("Starting queue work app...");		
         final Channel ch = getChannel();
 
         QueueingConsumer consumer = new QueueingConsumer(ch);

@@ -7,7 +7,7 @@ import com.rabbitmq.client.Channel;
 import edu.upc.ichnaea.amqp.requester.MessageInterface;
 import edu.upc.ichnaea.amqp.requester.RequesterInterface;
 
-public abstract class Publisher extends Queue
+public abstract class RequestApp extends QueueApp
 {
 	RequesterInterface mRequester;
 	
@@ -17,7 +17,7 @@ public abstract class Publisher extends Queue
     protected void setup() throws IOException
     {
 		super.setup();
-    	System.out.println("Setting up queue publisher app...");
+    	System.out.println("Setting up queue request app...");
     	mRequester = createRequester();
     }
 
@@ -25,7 +25,7 @@ public abstract class Publisher extends Queue
 	protected void start() throws IOException
 	{
 		super.start();
-    	System.out.println("Starting queue publisher app...");
+    	System.out.println("Starting queue request app...");
     	Channel ch = getChannel();
     	String queueName = getQueueName();
     	while(true){

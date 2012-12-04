@@ -5,4 +5,5 @@ import java.io.IOException;
 public interface RequesterInterface
 {
 	public MessageInterface request() throws IOException;
+	public boolean finished();
 }

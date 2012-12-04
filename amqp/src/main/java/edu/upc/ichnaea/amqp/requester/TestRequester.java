@@ -5,13 +5,24 @@ import java.io.IOException;
 public class TestRequester extends Requester
 {
 	int mCounter = 0;
+	int mCounterMax = 0;
+	MessageInterface mMessage;
+	
+	public TestRequester(MessageInterface msg, int max)
+	{
+		mMessage = msg;
+		mCounterMax = max;
+	}
 	
 	@Override
 	public MessageInterface request() throws IOException
 	{
-		String msg = "request "+mCounter;
-		System.out.println("Message: " + msg);
 		mCounter++;
-		return new StringMessage(msg);
+		return mMessage;
+	}
+	
+	public boolean finished()
+	{
+		return mCounter >= mCounterMax;
 	}
 }

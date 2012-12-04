@@ -2,22 +2,29 @@ package edu.upc.ichnaea.amqp.worker;
 
 import java.io.IOException;
 
-import com.rabbitmq.client.QueueingConsumer.Delivery;
-
-import edu.upc.ichnaea.shell.Command;
+import edu.upc.ichnaea.shell.CommandInterface;
 import edu.upc.ichnaea.shell.ShellInterface;
 
 abstract public class ShellCommandWorker extends Worker {
-
-	abstract protected ShellInterface getShell();
-	abstract protected Command getCommand();
 	
-	@Override
-	public void process(Delivery delivery) throws IOException {
+	private ShellInterface mShell; 
+
+	protected ShellInterface getShell()
+	{
+		return mShell;
+	}
+	
+	protected void setShell(ShellInterface shell)
+	{
+		mShell = shell;
+	}
+	
+	protected boolean runCommand(CommandInterface cmd) throws IOException {
 		try {
-			getShell().run(getCommand());
+			getShell().run(cmd);
+			return true;
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			return false;
 		}
 	}
 
