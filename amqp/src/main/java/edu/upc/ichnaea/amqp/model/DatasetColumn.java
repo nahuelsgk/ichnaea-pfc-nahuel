@@ -9,24 +9,20 @@ public class DatasetColumn implements Iterable<DatasetCell> {
 	String mName;
 	List<DatasetCell> mCells;
 
-	public DatasetColumn()
-	{
+	public DatasetColumn() {
 		this(null, new ArrayList<DatasetCell>());
 	}
 	
-	public DatasetColumn(String name)
-	{
+	public DatasetColumn(String name) {
 		this(name, new ArrayList<DatasetCell>());
 	}
 	
-	public DatasetColumn(String name, List<DatasetCell> cells)
-	{
+	public DatasetColumn(String name, List<DatasetCell> cells) {
 		mName = name;
 		mCells = cells;
 	}
 	
-	public static DatasetColumn create(String name, List<String> cells)
-	{
+	public static DatasetColumn create(String name, List<String> cells) {
 		DatasetColumn col = new DatasetColumn(name);
 		for(String cell : cells)
 		{
@@ -35,43 +31,35 @@ public class DatasetColumn implements Iterable<DatasetCell> {
 		return col;
 	}
 	
-	public String getName()
-	{
+	public String getName() {
 		return mName;
 	}
 	
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		mName = name;
 	}
 	
-	public int size()
-	{
+	public int size() {
 		return mCells.size();
 	}
 	
-	public DatasetCell get(int index)
-	{
+	public DatasetCell get(int index) {
 		return mCells.get(index);
 	}
 	
-	public void add(DatasetCell cell)
-	{
+	public void add(DatasetCell cell) {
 		mCells.add(cell);
 	}
 	
-	public void add(String cell)
-	{
+	public void add(String cell) {
 		add(new DatasetCell(cell));
 	}
 	
-	public void add(int cell)
-	{
+	public void add(int cell) {
 		add(new DatasetCell(cell));
 	}
 	
-	public void add(float cell)
-	{
+	public void add(float cell) {
 		add(new DatasetCell(cell));
 	}
 

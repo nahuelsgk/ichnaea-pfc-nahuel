@@ -38,7 +38,7 @@ public class BuildModelsHandlerTest {
     	
     	Dataset dataset = message.getDataset();
     	
-    	Set<String> names = dataset.getColumnNames();
+    	Set<String> names = dataset.columnNames();
     	assertTrue(names.contains("test"));
     	assertEquals(3, names.size());
     	

@@ -21,7 +21,7 @@ public class DatasetReaderTest {
     	reader.setSeparator(';');
     	Dataset dataset = reader.read(new InputStreamReader(in));
     	
-    	assertEquals(27, dataset.getColumnNames().size());
+    	assertEquals(27, dataset.columnNames().size());
     	
     	dataset.get("RYC2056");
     }

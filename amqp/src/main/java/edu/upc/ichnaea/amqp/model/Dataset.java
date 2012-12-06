@@ -7,25 +7,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Dataset implements Iterable<DatasetColumn>{
+public class Dataset implements Iterable<DatasetColumn> {
 
 	protected Set<DatasetColumn> mColumns;
 	
-	public Dataset()
-	{
+	public Dataset() {
 		this(new HashSet<DatasetColumn>());
 	}
 	
-	public Dataset(Set<DatasetColumn> cols)
-	{
+	public Dataset(Set<DatasetColumn> cols) {
 		mColumns = cols;
 	}
 	
-	public static Dataset create(Map<String, List<String>> cols)
-	{
+	public static Dataset create(Map<String, List<String>> cols) {
 		Dataset dataset = new Dataset();
-		for(String name: cols.keySet())
-		{
+		for(String name: cols.keySet()) {
 			dataset.add(DatasetColumn.create(name, cols.get(name)));
 		}
 		return dataset;
@@ -36,35 +32,28 @@ public class Dataset implements Iterable<DatasetColumn>{
 		mColumns.add(col);
 	}
 	
-	public DatasetColumn get(String name)
-	{
-		for(DatasetColumn col : mColumns)
-		{
-			if(name.equals(col.getName()))
-			{
+	public DatasetColumn get(String name) {
+		for(DatasetColumn col : mColumns) {
+			if(name.equals(col.getName())) {
 				return col;
 			}
 		}
 		return null;
 	}
 	
-	public Set<DatasetColumn> getColumns()
-	{
+	public Set<DatasetColumn> columns() {
 		return mColumns;
 	}
 	
-	public Set<String> getColumnNames()
-	{
+	public Set<String> columnNames() {
 		Set<String> names = new HashSet<String>();
-		for(DatasetColumn col: mColumns)
-		{
+		for(DatasetColumn col: mColumns) {
 			names.add(col.getName());
 		}
 		return names;
 	}
 	
-	public List<DatasetRow> getRows()
-	{
+	public List<DatasetRow> rows() {
 		List<DatasetRow> rows = new ArrayList<DatasetRow>();
 		int c = 0;
 		while(true){
@@ -77,11 +66,10 @@ public class Dataset implements Iterable<DatasetColumn>{
 		return rows;
 	}
 	
-	public DatasetRow getRow(int i)
-	{
+	public DatasetRow getRow(int i) {
 		DatasetRow row = new DatasetRow();
 		for(DatasetColumn col: this) {
-			if(col.size()>i){
+			if(col.size()>i) {
 				row.put(col.getName(), col.get(i));
 			}
 		}

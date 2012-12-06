@@ -9,19 +9,16 @@ public class BuildModels {
 	protected Season mSeason;
 	protected Dataset mDataset;	
 	
-	public BuildModels(Dataset dataset, Season season)
-	{
+	public BuildModels(Dataset dataset, Season season) {
 		mDataset = dataset;
 		mSeason = season;
 	}
 	
-	public Season getSeason()
-	{
+	public Season getSeason() {
 		return mSeason;
 	}
 	
-	public Dataset getDataset()
-	{
+	public Dataset getDataset() {
 		return mDataset;
 	}
 }
