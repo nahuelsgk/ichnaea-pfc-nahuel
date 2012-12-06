@@ -28,7 +28,7 @@ public class BuildModelsBuilder extends DocumentBuilder {
 		root.setAttribute("type", "build_models");
 		
 		Element datasetXml = appendChild("dataset");
-		new DatasetDocumentBuilder(this, datasetXml).build(data.getDataset());
+		new DatasetBuilder(this, datasetXml).build(data.getDataset());
 		
 		return getDocument();
 	}

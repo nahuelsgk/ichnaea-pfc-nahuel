@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Set;
-import java.util.List;
 
 import org.junit.Test;
 import org.xml.sax.InputSource;
@@ -15,6 +14,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
 
 import edu.upc.ichnaea.amqp.model.BuildModels;
 import edu.upc.ichnaea.amqp.model.Dataset;
+import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
 public class BuildModelsHandlerTest {
 
@@ -36,17 +36,17 @@ public class BuildModelsHandlerTest {
     	
     	assertTrue(BuildModels.Season.Winter == message.getSeason());
     	
-    	Dataset set = message.getDataset();
+    	Dataset dataset = message.getDataset();
     	
-    	Set<String> names = set.getColumnNames();
+    	Set<String> names = dataset.getColumnNames();
     	assertTrue(names.contains("test"));
     	assertEquals(3, names.size());
     	
-    	List<Float> column = set.getColumn("test");
+    	DatasetColumn column = dataset.get("test");
     	
     	assertTrue(1.5 == column.get(0).floatValue());
     	
-    	column = set.getColumn("test2");
+    	column = dataset.get("test2");
     	assertEquals(2, column.size());
     }
 
