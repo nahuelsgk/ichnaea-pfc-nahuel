@@ -21,7 +21,7 @@ public class TestRequestApp extends RequestApp
     	Options options = super.getOptions();
     	options.addOption(mOptionMessage);
     	return options;
-    }	
+    }
 	
     public static void main(String[] args)
     {

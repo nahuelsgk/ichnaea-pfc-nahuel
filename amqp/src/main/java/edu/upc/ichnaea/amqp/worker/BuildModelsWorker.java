@@ -14,7 +14,7 @@ import edu.upc.ichnaea.amqp.model.BuildModels;
 import edu.upc.ichnaea.amqp.xml.BuildModelsHandler;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
 
-public class BuildModelsWorker extends ShellCommandWorker {
+public class BuildModelsWorker extends ShellWorker {
 
 	protected BuildModelsHandler mHandler;
 	
@@ -35,6 +35,10 @@ public class BuildModelsWorker extends ShellCommandWorker {
 	{
 		BuildModels msg = getDeliveryMessage(delivery);
 		BuildModelsCommand cmd = new BuildModelsCommand(msg);
-		runCommand(cmd);
+		try {
+			runCommand(cmd);
+		} catch (InterruptedException e) {
+			throw new IOException(e);
+		}
 	}
 }

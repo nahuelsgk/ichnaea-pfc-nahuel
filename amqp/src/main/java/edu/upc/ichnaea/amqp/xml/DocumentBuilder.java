@@ -1,10 +1,9 @@
 package edu.upc.ichnaea.amqp.xml;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
- * Abstract class used to build a document.
+ * Abstract class used to build an xml document.
  * 
  * @author mibero
  *

@@ -1,8 +1,5 @@
 package edu.upc.ichnaea.shell;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import edu.upc.ichnaea.amqp.model.BuildModels;
 import edu.upc.ichnaea.amqp.model.BuildModels.Season;
 import edu.upc.ichnaea.amqp.model.Dataset;
@@ -21,17 +18,6 @@ public class BuildModelsCommand extends IchnaeaCommand {
 	{
 		mSeason = season;
 		mDataset = dataset;
-	}
-	
-	public void beforeRun(ShellInterface shell)
-	{
-		mDatasetPath = "/tmp/lalala";
-		FileOutputStream out = shell.writeFile(mDatasetPath);
-		try {
-			out.write(mDataset.toString().getBytes());
-			out.close();
-		} catch (IOException e) {
-		}
 	}
 	
 	public String getParameters()

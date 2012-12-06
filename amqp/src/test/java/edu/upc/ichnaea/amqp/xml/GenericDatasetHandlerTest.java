@@ -18,7 +18,7 @@ import edu.upc.ichnaea.amqp.model.GenericDataset;
 class IntegerDatasetHandler extends GenericDatasetHandler<Integer, GenericDataset<Integer>>
 {
 	@Override
-	GenericDataset<Integer> createDataset() {
+	protected GenericDataset<Integer> createDataset() {
 		return new GenericDataset<Integer>();
 	}
 

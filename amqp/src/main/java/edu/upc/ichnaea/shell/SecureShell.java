@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
@@ -13,10 +16,52 @@ import com.jcraft.jsch.Session;
 
 public class SecureShell implements ShellInterface {
 
+	final static String DefaultHost = "localhost";	
+	final static int DefaultPort = 22;
+	final static String DefaultPassword = null;
+	final static String DefaultUser = null;
+	
 	protected String mHost;
 	protected String mUser;
 	protected String mPassword;
 	protected int mPort;
+	
+	static public SecureShell create(Map<String, String> options) throws MalformedURLException
+	{
+		if(options.containsKey("url")) {
+			return new SecureShell(options.get("url"));
+		}
+		int port = DefaultPort;
+		String pass = DefaultPassword;
+		String user = DefaultUser;
+		String host = DefaultHost;
+		if(options.containsKey("port")) {
+			port = Integer.parseInt(options.get("port"));
+		}
+		if(options.containsKey("password")) {
+			pass = options.get("password");
+		}
+		if(options.containsKey("user")) {
+			user = options.get("user");
+		}
+		if(options.containsKey("host")) {
+			host = options.get("host");
+		}
+		return new SecureShell(host, user, pass, port);		
+	}
+	
+	public SecureShell(String urlString) throws MalformedURLException
+	{
+		URL url = new URL(urlString);
+		mHost = url.getHost();
+		mPort = url.getPort();
+		String[] userInfo = url.getUserInfo().split(":");
+		mUser = userInfo[0];
+		if(userInfo.length > 1)
+		{
+			mPassword = userInfo[1];
+		}
+	}	
 	
 	public SecureShell(String host, String user, String password, int port)
 	{
@@ -28,13 +73,18 @@ public class SecureShell implements ShellInterface {
 	
 	public SecureShell()
 	{
-		this("localhost", null, null, 22);
+		this(DefaultHost, DefaultUser, DefaultPassword, DefaultPort);
 	}
 	
 	public SecureShell(String host, String user)
 	{
-		this(host, user, null, 22);
+		this(host, user, DefaultPassword, DefaultPort);
 	}
+	
+	public SecureShell(String host, String user, String password)
+	{
+		this(host, user, password, DefaultPort);
+	}	
 	
 	@Override
 	public CommandResult run(CommandInterface command) throws IOException, InterruptedException {

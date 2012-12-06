@@ -16,4 +16,9 @@ abstract public class IchnaeaCommand implements CommandInterface {
 		return mScriptPath+" "+getParameters();
 	}
 	
+	@Override
+	public void beforeRun(ShellInterface shell)
+	{
+	}
+	
 }

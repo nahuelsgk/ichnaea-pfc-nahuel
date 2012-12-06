@@ -10,7 +10,7 @@ public class DatasetHandler extends GenericDatasetHandler<Float, Dataset> {
 	}
 
 	@Override
-	Dataset createDataset() {
+	protected Dataset createDataset() {
 		return new Dataset();
 	}
 

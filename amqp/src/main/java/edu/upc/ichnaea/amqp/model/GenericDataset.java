@@ -17,6 +17,11 @@ public class GenericDataset<F> {
 		mColumns = new HashMap<String, List<F>>();
 	}
 	
+	public GenericDataset(Map<String, List<F>> cols)
+	{
+		mColumns = cols;
+	}
+	
 	public void setColumn(String name, List<F> col)
 	{
 		mColumns.put(name, col);

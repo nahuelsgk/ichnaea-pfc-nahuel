@@ -22,6 +22,10 @@ public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> impl
 	StringBuilder mCharacters;
 	D mDataset;
 	boolean mFinished;
+
+	protected abstract D createDataset();
+	
+	protected abstract F stringToValue(String text);	
 	
 	public D getDataset() {
 		if(!mFinished) {
@@ -34,8 +38,6 @@ public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> impl
 	public void setDocumentLocator(Locator locator) {
 	}
 	
-	abstract D createDataset();
-
 	@Override
 	public void startDocument() throws SAXException {
 		mDataset = null;
@@ -97,8 +99,6 @@ public abstract class GenericDatasetHandler<F, D extends GenericDataset<F>> impl
 			mFinished = true;
 		}
 	}
-	
-	protected abstract F stringToValue(String text);
 
 	@Override
 	public void characters(char[] ch, int start, int length)
