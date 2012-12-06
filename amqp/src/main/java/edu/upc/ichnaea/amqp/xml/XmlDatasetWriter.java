@@ -1,24 +1,27 @@
 package edu.upc.ichnaea.amqp.xml;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetCell;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
-public class DatasetBuilder extends DocumentBuilder {
+public class XmlDatasetWriter extends XmlWriter {
 
-	DatasetBuilder(Document doc)
+	XmlDatasetWriter() throws ParserConfigurationException
 	{
-		super(doc, "dataset");
+		super("dataset");
 	}
 	
-	DatasetBuilder(DocumentBuilder parent, Element root)
+	XmlDatasetWriter(Document parent, Element root)
 	{
 		super(parent, root);
 	}	
 	
-	public Document build(Dataset dataset)
+	public XmlDatasetWriter build(Dataset dataset)
 	{
 		Element root = getRoot();
 		
@@ -34,7 +37,7 @@ public class DatasetBuilder extends DocumentBuilder {
 			}
 			root.appendChild(xmlCol);
 		}
-		return getDocument();
+		return this;
 	}
 	
 	

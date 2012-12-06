@@ -8,7 +8,7 @@ import java.util.List;
 
 import edu.upc.ichnaea.amqp.model.Dataset;
 
-public class DatasetReader extends CSVReader {
+public class CsvDatasetReader extends CsvReader {
 	
 	public Dataset read(Reader reader) throws IOException
 	{

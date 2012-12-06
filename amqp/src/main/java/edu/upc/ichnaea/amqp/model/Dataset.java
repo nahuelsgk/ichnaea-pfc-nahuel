@@ -1,21 +1,22 @@
 package edu.upc.ichnaea.amqp.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
-public class Dataset implements Iterable<DatasetColumn> {
+public class Dataset implements Iterable<DatasetColumn>, Comparable<Dataset> {
 
-	protected Set<DatasetColumn> mColumns;
+	protected Collection<DatasetColumn> mColumns;
 	
 	public Dataset() {
-		this(new HashSet<DatasetColumn>());
+		this(new TreeSet<DatasetColumn>());
 	}
 	
-	public Dataset(Set<DatasetColumn> cols) {
+	public Dataset(Collection<DatasetColumn> cols) {
 		mColumns = cols;
 	}
 	
@@ -41,12 +42,12 @@ public class Dataset implements Iterable<DatasetColumn> {
 		return null;
 	}
 	
-	public Set<DatasetColumn> columns() {
+	public Collection<DatasetColumn> columns() {
 		return mColumns;
 	}
 	
-	public Set<String> columnNames() {
-		Set<String> names = new HashSet<String>();
+	public SortedSet<String> columnNames() {
+		SortedSet<String> names = new TreeSet<String>();
 		for(DatasetColumn col: mColumns) {
 			names.add(col.getName());
 		}
@@ -79,5 +80,22 @@ public class Dataset implements Iterable<DatasetColumn> {
 	@Override
 	public Iterator<DatasetColumn> iterator() {
 		return mColumns.iterator();
+	}
+
+	@Override
+	public int compareTo(Dataset o) {
+		int diff = columns().size() - o.columns().size();
+		if(diff != 0) {
+			return diff;
+		}
+		for(String name: columnNames()) {
+			DatasetColumn col = o.get(name);
+			if(col == null) {
+				diff = 1;
+			} else {
+				diff = get(name).compareTo(col);
+			}
+		}
+		return diff;
 	}
 }

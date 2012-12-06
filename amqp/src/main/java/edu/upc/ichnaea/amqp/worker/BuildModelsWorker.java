@@ -24,7 +24,7 @@ public class BuildModelsWorker extends ShellWorker {
 			XMLReader parser = XMLReaderFactory.createXMLReader();
 		    parser.setContentHandler(mHandler);
 			parser.parse(new InputSource(new ByteArrayInputStream(delivery.getBody())));
-		    return mHandler.getMessage();
+		    return mHandler.getData();
 		}catch(SAXException e){
 			throw new IOException(e.getMessage());
 		}	

@@ -15,7 +15,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
-public class DatasetHandlerTest {
+public class XmlDatasetReaderTest {
 
     @Test
     public void testXML() throws SAXException, IOException

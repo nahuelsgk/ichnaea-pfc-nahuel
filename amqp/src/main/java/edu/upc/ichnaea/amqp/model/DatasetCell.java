@@ -1,6 +1,6 @@
 package edu.upc.ichnaea.amqp.model;
 
-public class DatasetCell {
+public class DatasetCell implements Comparable<DatasetCell>{
 	
 	protected String mValue;
 	
@@ -32,6 +32,11 @@ public class DatasetCell {
 	public float floatValue()
 	{
 		return Float.parseFloat(mValue);
+	}
+
+	@Override
+	public int compareTo(DatasetCell o) {
+		return mValue.compareTo(o.mValue);
 	}	
 	
 }

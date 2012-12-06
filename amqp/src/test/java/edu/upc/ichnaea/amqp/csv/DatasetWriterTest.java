@@ -34,7 +34,7 @@ public class DatasetWriterTest {
         dataset.add(column);
       
         StringWriter strWriter = new StringWriter();
-        DatasetWriter writer = new DatasetWriter(strWriter);
+        CsvDatasetWriter writer = new CsvDatasetWriter(strWriter);
         writer.setQuote('\'');
         writer.write(dataset).close();
         

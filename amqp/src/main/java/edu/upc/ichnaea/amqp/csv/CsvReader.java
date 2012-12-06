@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
-public class CSVReader {
+public class CsvReader {
 
 	protected char mSeparator = ';';
 	protected char mQuote = '"';

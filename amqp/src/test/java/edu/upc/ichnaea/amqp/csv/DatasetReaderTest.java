@@ -17,7 +17,7 @@ public class DatasetReaderTest {
     {
     	
     	InputStream in = getClass().getClassLoader().getResourceAsStream("test.csv");
-    	DatasetReader reader = new DatasetReader();
+    	CsvDatasetReader reader = new CsvDatasetReader();
     	reader.setSeparator(';');
     	Dataset dataset = reader.read(new InputStreamReader(in));
     	

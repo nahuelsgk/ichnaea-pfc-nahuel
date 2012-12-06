@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
-public class CSVWriter {
+public class CsvWriter {
 	
 	Writer mWriter;
 	au.com.bytecode.opencsv.CSVWriter mCsvWriter;
@@ -14,7 +14,7 @@ public class CSVWriter {
 	protected char mEscape = '\\';
 	protected String mLineEnd = "\n";
 
-	public CSVWriter(Writer writer)
+	public CsvWriter(Writer writer)
 	{
 		mWriter = writer;
 	}

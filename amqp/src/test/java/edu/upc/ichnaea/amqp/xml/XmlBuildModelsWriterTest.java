@@ -16,7 +16,7 @@ import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
 
-public class BuildModelsBuilderTest {
+public class XmlBuildModelsWriterTest {
 
     @Test
     public void testXML() throws ParserConfigurationException, SAXException, IOException
@@ -36,13 +36,13 @@ public class BuildModelsBuilderTest {
         
         BuildModels model = new BuildModels(dataset, Season.Summer);
         
-        String xml = new BuildModelsBuilder().build(model).toString();
+        String xml = new XmlBuildModelsWriter().build(model).toString();
         
         String expectedXml = "<message season=\"summer\" type=\"build_models\"><dataset><column name=\"test\">" +
         		"<value>1.0</value><value>2.0</value><value>3.0</value></column><column name=\"test2\">" +
         		"<value>4.0</value><value>5.0</value><value>6.0</value></column></dataset></message>";
         
         Diff xmlDiff = new Diff(expectedXml, xml);
-        assertTrue(xmlDiff.toString(), xmlDiff.identical());
+        assertTrue(xmlDiff.toString(), xmlDiff.similar());
     }
 }

@@ -21,13 +21,13 @@ public class BuildModelsHandler implements ContentHandler {
 	final static String ATTR_SEASON = "season";
 	final static String ATTR_MESSAGE_TYPE = "type";
 	
-	BuildModels mMessage;
+	BuildModels mData;
 	Season mSeason;
 	DatasetHandler mDatasetHandler;
 	Dataset mDataset;
 	
-	public BuildModels getMessage() {
-		return mMessage;
+	public BuildModels getData() {
+		return mData;
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class BuildModelsHandler implements ContentHandler {
 
 	@Override
 	public void startDocument() throws SAXException {
-		mMessage = null;
+		mData = null;
 		mSeason = null;
 		mDatasetHandler = null;
 		mDataset = null;
@@ -44,7 +44,7 @@ public class BuildModelsHandler implements ContentHandler {
 
 	@Override
 	public void endDocument() throws SAXException {
-		mMessage = new BuildModels(mDataset, mSeason);
+		mData = new BuildModels(mDataset, mSeason);
 	}
 
 	@Override

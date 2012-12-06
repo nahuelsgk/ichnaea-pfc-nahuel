@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DatasetColumn implements Iterable<DatasetCell> {
+public class DatasetColumn implements Iterable<DatasetCell>, Comparable<DatasetColumn> {
 
 	String mName;
 	List<DatasetCell> mCells;
@@ -66,6 +66,21 @@ public class DatasetColumn implements Iterable<DatasetCell> {
 	@Override
 	public Iterator<DatasetCell> iterator() {
 		return mCells.iterator();
+	}
+
+	@Override
+	public int compareTo(DatasetColumn o) {
+		int diff = size() - o.size();
+		if(diff != 0) {
+			return diff;
+		}
+		for(int i=0; i<size(); i++) {
+			diff = get(i).compareTo(o.get(i));
+			if(diff != 0) {
+				break;
+			}
+		}
+		return diff;
 	}
 	
 }

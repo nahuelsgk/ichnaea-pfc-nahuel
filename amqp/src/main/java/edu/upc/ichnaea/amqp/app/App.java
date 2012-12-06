@@ -22,8 +22,7 @@ public abstract class App
 	protected Connection mConnection;
 	protected String mUri;
 
-    public static void main(String[] args, App app)
-    {
+    public static void main(String[] args, App app) {
     	try {
     		app.parseArguments(args);
 	        app.connect();
@@ -42,52 +41,43 @@ public abstract class App
     }
     
     protected void connect()
-    	throws KeyManagementException, NoSuchAlgorithmException, URISyntaxException, IOException
-    {
+    	throws KeyManagementException, NoSuchAlgorithmException, URISyntaxException, IOException {
         ConnectionFactory connFactory = new ConnectionFactory();
         connFactory.setUri(mUri);
         mConnection = connFactory.newConnection();
         setup();
     }
     
-    protected CommandLine parseArguments(String[] args) throws ParseException
-    {
+    protected CommandLine parseArguments(String[] args) throws ParseException {
         CommandLineParser parser = new GnuParser();	
         CommandLine line = parser.parse( getOptions(), args );
         setUri(mOptionUri.getValue(mUri));
         return line;
     }
     
-    protected void setup() throws IOException
-    {
+    protected void setup() throws IOException {
     }
     
-    protected void start() throws IOException
-    {
+    protected void start() throws IOException {
     }
     
-    protected void end() throws IOException
-    {
+    protected void end() throws IOException {
 	    mConnection.close();
     }
     
-    public void setUri(String uri)
-    {
+    public void setUri(String uri) {
     	mUri = uri;
     }
     
-    protected Connection getConnection()
-    {
+    protected Connection getConnection() {
     	return mConnection;
     }
     
-    protected String getUri()
-    {
+    protected String getUri() {
     	return mUri;
     }
     
-    protected Options getOptions()
-    {
+    protected Options getOptions() {
     	Options options = new Options();
     	options.addOption(mOptionUri);
     	return options;

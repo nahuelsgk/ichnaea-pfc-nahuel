@@ -7,13 +7,13 @@ import java.util.List;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
-public class DatasetWriter extends CSVWriter {
+public class CsvDatasetWriter extends CsvWriter {
 
-	public DatasetWriter(Writer writer) {
+	public CsvDatasetWriter(Writer writer) {
 		super(writer);
 	}
 	
-	public DatasetWriter write(Dataset dataset) {
+	public CsvDatasetWriter write(Dataset dataset) {
 		int rowNum = dataset.rows().size();
 		int colNum = dataset.columns().size();
 		String[] row = new String[colNum];
