@@ -14,7 +14,7 @@ public abstract class WorkApp extends QueueApp
 {
 	WorkerInterface mWorker;
 	
-    abstract protected WorkerInterface createWorker();
+    abstract protected WorkerInterface createWorker() throws IOException;
     
     @Override
 	protected void setup() throws IOException

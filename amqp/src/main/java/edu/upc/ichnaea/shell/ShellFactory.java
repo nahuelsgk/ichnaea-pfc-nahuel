@@ -4,21 +4,15 @@ import java.net.MalformedURLException;
 import java.util.Map;
 
 public class ShellFactory {
-	public enum Type
-	{
-		Local,
-		Remote
+
+	public ShellInterface create(String url) throws MalformedURLException {
+		return new SecureShell(url);
 	}
 	
-	public ShellInterface create(Type type, Map<String, String> options) throws MalformedURLException
-	{
-		switch(type)
-		{
-		case Local:
-			return new Shell();
-		case Remote:
+	public ShellInterface create(Map<String, String> options) throws MalformedURLException {
+		if(options.get("url") != null || options.get("host") != null) {
 			return SecureShell.create(options); 
 		}
-		return null;
+		return new Shell();
 	}
 }

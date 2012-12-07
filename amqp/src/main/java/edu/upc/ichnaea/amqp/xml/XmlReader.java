@@ -20,13 +20,13 @@ public class XmlReader<H extends ContentHandler> {
 	
 	public H getHandler() {
 		return mHandler;
+	}	
+	
+	public XmlReader<H> parse(String xml) throws SAXException, IOException {
+		return parse(new StringReader(xml));
 	}
 	
-	public XmlReader<H> read(String xml) throws SAXException, IOException {
-		return read(new StringReader(xml));
-	}
-	
-	public XmlReader<H> read(Reader reader) throws SAXException, IOException {
+	public XmlReader<H> parse(Reader reader) throws SAXException, IOException {
     	XMLReader parser = XMLReaderFactory.createXMLReader();
     	parser.setContentHandler(mHandler);
     	parser.parse(new InputSource(reader));

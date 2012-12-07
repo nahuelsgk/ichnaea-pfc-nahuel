@@ -1,43 +1,32 @@
 package edu.upc.ichnaea.amqp.worker;
 
-import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
+import java.io.OutputStreamWriter;
 
 import com.rabbitmq.client.QueueingConsumer.Delivery;
 
 import edu.upc.ichnaea.amqp.model.BuildModels;
-import edu.upc.ichnaea.amqp.xml.BuildModelsHandler;
+import edu.upc.ichnaea.amqp.xml.XmlBuildModelsReader;
+import edu.upc.ichnaea.amqp.xml.XmlBuildModelsWriter;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
+import edu.upc.ichnaea.shell.ShellInterface;
 
 public class BuildModelsWorker extends ShellWorker {
 
-	protected BuildModelsHandler mHandler;
-	
-	private BuildModels getDeliveryMessage(Delivery delivery) throws IOException 
-	{
-		try{
-			XMLReader parser = XMLReaderFactory.createXMLReader();
-		    parser.setContentHandler(mHandler);
-			parser.parse(new InputSource(new ByteArrayInputStream(delivery.getBody())));
-		    return mHandler.getData();
-		}catch(SAXException e){
-			throw new IOException(e.getMessage());
-		}	
+	public BuildModelsWorker(ShellInterface shell) {
+		super(shell);
 	}
 
 	@Override
-	public void process(Delivery delivery) throws IOException
-	{
-		BuildModels msg = getDeliveryMessage(delivery);
-		BuildModelsCommand cmd = new BuildModelsCommand(msg);
+	public void process(Delivery delivery) throws IOException {
 		try {
-			runCommand(cmd);
-		} catch (InterruptedException e) {
+			String datasetPath = "/tmp/lala";
+			BuildModels data = new XmlBuildModelsReader().read(new String(delivery.getBody()));
+			FileOutputStream out = writeFile(datasetPath);
+			new XmlBuildModelsWriter().write(new OutputStreamWriter(out));
+			runCommand(new BuildModelsCommand(data.getSeason(), datasetPath));			
+		} catch (Exception e) {
 			throw new IOException(e);
 		}
 	}

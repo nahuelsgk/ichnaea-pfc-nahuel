@@ -11,18 +11,15 @@ import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
 public class XmlDatasetWriter extends XmlWriter {
 
-	XmlDatasetWriter() throws ParserConfigurationException
-	{
+	XmlDatasetWriter() throws ParserConfigurationException {
 		super("dataset");
 	}
 	
-	XmlDatasetWriter(Document parent, Element root)
-	{
+	XmlDatasetWriter(Document parent, Element root) {
 		super(parent, root);
 	}	
 	
-	public XmlDatasetWriter build(Dataset dataset)
-	{
+	public XmlDatasetWriter build(Dataset dataset) {
 		Element root = getRoot();
 		
 		for(DatasetColumn col : dataset)
@@ -40,6 +37,4 @@ public class XmlDatasetWriter extends XmlWriter {
 		return this;
 	}
 	
-	
-
 }

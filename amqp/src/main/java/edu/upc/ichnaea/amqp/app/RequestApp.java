@@ -11,7 +11,7 @@ public abstract class RequestApp extends QueueApp
 {
 	RequesterInterface mRequester;
 	
-    abstract protected RequesterInterface createRequester();
+    abstract protected RequesterInterface createRequester() throws IOException;
 	
 	@Override
     protected void setup() throws IOException

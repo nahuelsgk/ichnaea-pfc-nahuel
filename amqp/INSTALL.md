@@ -14,8 +14,8 @@ On Ubuntu
 * install rabbitmq-server
     sudo apt-get install rabbitmq-server
 
-* install maven2
-    sudo apt-get install maven2
+* install maven 3.0
+    sudo apt-get install maven
 
 * install eclipse
     sudo apt-get install eclipse
@@ -46,7 +46,7 @@ On Ubuntu
     mvn test    
 
 * run the project jar
-	mvn exec:java -Dexec.mainClass="edu.upc.ichnaea.amqp.app.TestConsumer"
-	mvn exec:java -Dexec.mainClass="edu.upc.ichnaea.amqp.app.TestPublisher"
+	mvn exec:java -Dexec.mainClass="edu.upc.ichnaea.amqp.app.TestWorkApp"
+	mvn exec:java -Dexec.mainClass="edu.upc.ichnaea.amqp.app.TestRequestApp"
 
 

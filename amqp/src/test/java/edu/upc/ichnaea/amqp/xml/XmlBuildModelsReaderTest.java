@@ -23,7 +23,7 @@ public class XmlBuildModelsReaderTest {
     	xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";    	
     	xml += "</dataset></message>";
     	
-    	BuildModels message = new XmlBuildModelsReader().read(xml).getHandler().getData();
+    	BuildModels message = new XmlBuildModelsReader().read(xml);
     	
     	assertTrue(BuildModels.Season.Winter == message.getSeason());
     	

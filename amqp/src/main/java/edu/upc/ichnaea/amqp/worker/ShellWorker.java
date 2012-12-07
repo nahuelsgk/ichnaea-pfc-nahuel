@@ -1,5 +1,8 @@
 package edu.upc.ichnaea.amqp.worker;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
@@ -13,26 +16,32 @@ abstract public class ShellWorker extends Worker {
 	
 	private ShellInterface mShell; 
 
-	protected ShellInterface getShell() throws IOException
-	{
-		if(mShell == null)
-		{
-			throw new IOException("No shell found");
-		}		
-		return mShell;
-	}
-	
-	public void setShell(ShellInterface shell)
-	{
+	public ShellWorker(ShellInterface shell) {
 		mShell = shell;
 	}
 	
-	public void setShell(ShellFactory.Type type, Map<String,String> options) throws MalformedURLException
-	{
-		setShell(new ShellFactory().create(type, options));
+	public ShellWorker(Map<String,String> options) throws MalformedURLException {
+		this(new ShellFactory().create(options));
 	}
 	
-	protected CommandResult runCommand(CommandInterface cmd) throws IOException, InterruptedException {
+	
+	public ShellWorker(String url) throws MalformedURLException {
+		this(new ShellFactory().create(url));
+	}	
+	
+	protected ShellInterface getShell() {	
+		return mShell;
+	}
+	
+	protected FileOutputStream writeFile(String path) {
+		return getShell().writeFile(path);
+	}
+	
+	protected FileInputStream readFile(String path) throws FileNotFoundException {
+		return getShell().readFile(path);
+	}
+	
+	protected CommandResult runCommand(CommandInterface cmd) throws InterruptedException, IOException {
 		return getShell().run(cmd);
 	}
 

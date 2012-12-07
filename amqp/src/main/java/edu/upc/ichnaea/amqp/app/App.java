@@ -5,20 +5,16 @@ import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.GnuParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
+import edu.upc.ichnaea.amqp.cli.ArgumentsParser;
+import edu.upc.ichnaea.amqp.cli.OptionException;
+import edu.upc.ichnaea.amqp.cli.Options;
+import edu.upc.ichnaea.amqp.cli.StringOption;
+
 public abstract class App
 {
-	Option mOptionUri = new Option("u", "uri", true, "Uri for the amqp server");
 	protected Connection mConnection;
 	protected String mUri;
 
@@ -28,10 +24,8 @@ public abstract class App
 	        app.connect();
 	        app.start();
 	        app.end();
-    	} catch (ParseException e) {
-    		System.err.println("Could not parse arguments: " + e);
-    		HelpFormatter formatter = new HelpFormatter();
-    		formatter.printHelp( args[0], app.getOptions() );    		
+    	} catch (OptionException e) {
+    		System.err.println("Could not parse arguments: " + e);		
             System.exit(1);
     	} catch (Exception e) {
             System.err.println("Main thread caught exception: " + e);
@@ -48,11 +42,8 @@ public abstract class App
         setup();
     }
     
-    protected CommandLine parseArguments(String[] args) throws ParseException {
-        CommandLineParser parser = new GnuParser();	
-        CommandLine line = parser.parse( getOptions(), args );
-        setUri(mOptionUri.getValue(mUri));
-        return line;
+    protected void parseArguments(String[] args) throws OptionException {
+        new ArgumentsParser().parse(args);
     }
     
     protected void setup() throws IOException {
@@ -65,7 +56,7 @@ public abstract class App
 	    mConnection.close();
     }
     
-    public void setUri(String uri) {
+    public void setUriOption(String uri) {
     	mUri = uri;
     }
     
@@ -79,7 +70,12 @@ public abstract class App
     
     protected Options getOptions() {
     	Options options = new Options();
-    	options.addOption(mOptionUri);
+    	options.add(new StringOption("uri") {
+			@Override
+			public void setValue(String value) throws OptionException {
+				mUri = value;
+			}
+		}.setRequired(true).setDescription("The uri of the amqp server."));
     	return options;
     }
 }

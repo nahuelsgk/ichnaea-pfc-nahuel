@@ -1,27 +1,18 @@
 package edu.upc.ichnaea.shell;
 
-import edu.upc.ichnaea.amqp.model.BuildModels;
 import edu.upc.ichnaea.amqp.model.BuildModels.Season;
-import edu.upc.ichnaea.amqp.model.Dataset;
 
 public class BuildModelsCommand extends IchnaeaCommand {
 
 	private Season mSeason;
-	private Dataset mDataset;
 	private String mDatasetPath;
 	
-	public BuildModelsCommand(BuildModels msg) {
-		this(msg.getSeason(), msg.getDataset());	
-	}
-	
-	public BuildModelsCommand(Season season, Dataset dataset)
-	{
+	public BuildModelsCommand(Season season, String datasetPath) {
 		mSeason = season;
-		mDataset = dataset;
+		mDatasetPath = datasetPath;
 	}
 	
-	public String getParameters()
-	{
+	public String getParameters() {
 		String params = "";
 		if(mSeason == Season.Summer){
 			params += "--summer";
