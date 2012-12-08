@@ -13,9 +13,7 @@ import edu.upc.ichnaea.amqp.model.Dataset;
 public class DatasetReaderTest {
 
     @Test
-    public void testFile() throws IOException
-    {
-    	
+    public void testFile() throws IOException {
     	InputStream in = getClass().getClassLoader().getResourceAsStream("test.csv");
     	CsvDatasetReader reader = new CsvDatasetReader();
     	reader.setSeparator(';');

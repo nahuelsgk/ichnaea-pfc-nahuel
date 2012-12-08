@@ -4,7 +4,7 @@ import org.apache.commons.cli.CommandLine;
 
 public abstract class BooleanOption extends Option {
 
-	private boolean mDefault;
+	private boolean mDefault = false;
 
 	public BooleanOption(String arg)
 	{
@@ -17,7 +17,7 @@ public abstract class BooleanOption extends Option {
 	}
 	
 	@Override
-	void load(CommandLine line) {
+	void load(CommandLine line)  throws InvalidOptionException {
 		boolean value = mDefault;
 		if(inCommandLine(line)) {
 			value = true;
@@ -25,6 +25,6 @@ public abstract class BooleanOption extends Option {
 		setValue(value);
 	}
 	
-	abstract void setValue(boolean value);
+	abstract public void setValue(boolean value) throws InvalidOptionException;
 	
 }

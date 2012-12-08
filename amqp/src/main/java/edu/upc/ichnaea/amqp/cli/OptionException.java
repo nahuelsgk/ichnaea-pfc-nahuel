@@ -9,8 +9,4 @@ public class OptionException extends IOException {
 	public OptionException(String msg) {
 		super(msg);
 	}
-	public OptionException(Exception e) {
-		super(e);
-	}
-
 }

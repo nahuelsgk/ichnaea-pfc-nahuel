@@ -8,7 +8,6 @@ import java.io.Reader;
 import org.xml.sax.SAXException;
 
 import edu.upc.ichnaea.amqp.cli.EnumOption;
-import edu.upc.ichnaea.amqp.cli.OptionException;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.ReadFileOption;
 import edu.upc.ichnaea.amqp.csv.CsvDatasetReader;
@@ -38,22 +37,22 @@ public class BuildModelsRequestApp extends RequestApp {
     	Options options = super.getOptions();
     	options.add(new EnumOption<Season>("season") {
 			@Override
-			public void setValue(Season value) throws OptionException {
+			public void setValue(Season value) {
 				mSeason = value;
 			}
 		}.setDefaultValue(mSeason).setDescription("The season for which to build the models."));
-    	options.add(new EnumOption<Format>("dataset-format") {
-			@Override
-			public void setValue(Format value) throws OptionException {
-				mDatasetFormat = value;
-			}
-		}.setDefaultValue(mDatasetFormat).setDescription("The dataset format."));
     	options.add(new ReadFileOption("dataset") {
 			@Override
-			public void setValue(FileInputStream value) throws OptionException {
+			public void setValue(FileInputStream value) {
 				mDatasetReader = new InputStreamReader(value);
 			}
-		}.setRequired(true).setDescription("The file with the dataset."));    	
+		}.setRequired(true).setDescription("The file with the dataset."));
+    	options.add(new EnumOption<Format>("dataset-format") {
+			@Override
+			public void setValue(Format value) {
+				mDatasetFormat = value;
+			}
+		}.setDefaultValue(mDatasetFormat).setDescription("The dataset format."));    	
     	return options;
     }
 	

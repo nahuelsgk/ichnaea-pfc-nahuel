@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.rabbitmq.client.Channel;
 
-import edu.upc.ichnaea.amqp.cli.OptionException;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.StringOption;
 
@@ -18,10 +17,10 @@ public abstract class QueueApp extends App
     	Options options = super.getOptions();
     	options.add(new StringOption("queue"){
 			@Override
-			public void setValue(String value) throws OptionException {
+			public void setValue(String value) {
 				mQueueName = value;
 			}
-    	}.setDefaultValue("default"));
+    	}.setDefaultValue("default").setDescription("The name of the amqp server queue to send messages to."));
     	return options;
     }	
    

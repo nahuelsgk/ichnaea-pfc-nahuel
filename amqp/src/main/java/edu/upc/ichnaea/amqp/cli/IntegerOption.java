@@ -16,7 +16,7 @@ public abstract class IntegerOption extends Option {
 	}
 
 	@Override
-	void load(CommandLine line) throws OptionException {
+	void load(CommandLine line) throws InvalidOptionException {
 		int value = mDefault;
 		if(inCommandLine(line)) {
 			value = Integer.parseInt(getCommandLineValue(line));
@@ -24,5 +24,5 @@ public abstract class IntegerOption extends Option {
 		setValue(value);
 	}
 
-	abstract public void setValue(int value) throws OptionException;
+	abstract public void setValue(int value) throws InvalidOptionException;
 }

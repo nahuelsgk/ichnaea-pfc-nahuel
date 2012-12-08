@@ -16,7 +16,7 @@ public abstract class StringOption extends Option {
 	}
 	
 	@Override
-	void load(CommandLine line) throws OptionException {
+	void load(CommandLine line) throws InvalidOptionException {
 		String value = mDefault;
 		if(inCommandLine(line)) {
 			value = getCommandLineValue(line);
@@ -24,6 +24,6 @@ public abstract class StringOption extends Option {
 		setValue(value);
 	}
 	
-	abstract public void setValue(String value) throws OptionException;
+	abstract public void setValue(String value) throws InvalidOptionException;
 
 }

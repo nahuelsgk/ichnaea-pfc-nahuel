@@ -11,13 +11,13 @@ public abstract class ReadFileOption extends StringOption {
 	}
 
 	@Override
-	public void setValue(String value) throws OptionException {
+	public void setValue(String value) throws InvalidOptionException {
 		File f = new File(value);
 		if(!f.isFile()) {
-			throw new OptionException("Could not find file");
+			throw new InvalidOptionException("Could not find file");
 		}
 		if(!f.canRead()) {
-			throw new OptionException("Could not read file");
+			throw new InvalidOptionException("Could not read file");
 		}
 		try {
 			setValue(new FileInputStream(f));
@@ -25,6 +25,6 @@ public abstract class ReadFileOption extends StringOption {
 		}
 	}
 	
-	public abstract void setValue(FileInputStream value) throws OptionException;
+	public abstract void setValue(FileInputStream value) throws InvalidOptionException;
 
 }

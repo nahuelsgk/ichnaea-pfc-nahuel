@@ -1,7 +1,6 @@
 package edu.upc.ichnaea.amqp.app;
 
 import edu.upc.ichnaea.amqp.cli.IntegerOption;
-import edu.upc.ichnaea.amqp.cli.OptionException;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.StringOption;
 import edu.upc.ichnaea.amqp.requester.RequesterInterface;
@@ -18,13 +17,13 @@ public class TestRequestApp extends RequestApp
     	Options options = super.getOptions();
     	options.add(new StringOption("msg"){
 			@Override
-			public void setValue(String value) throws OptionException {
+			public void setValue(String value) {
 				mMessage = value;
 			}
     	}.setRequired(true).setDescription("The message to send to the amqp server."));
     	options.add(new IntegerOption("num"){
 			@Override
-			public void setValue(int value) throws OptionException {
+			public void setValue(int value) {
 				mMessageNum = value;
 			}
     	}.setDefaultValue(mMessageNum).setDescription("The amount of messages to send to the amqp server."));

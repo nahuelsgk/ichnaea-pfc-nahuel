@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-import edu.upc.ichnaea.amqp.cli.ArgumentsParser;
 import edu.upc.ichnaea.amqp.cli.OptionException;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.StringOption;
@@ -25,7 +24,8 @@ public abstract class App
 	        app.start();
 	        app.end();
     	} catch (OptionException e) {
-    		System.err.println("Could not parse arguments: " + e);		
+    		System.err.println("Could not parse arguments: " + e);
+    		app.printHelp();
             System.exit(1);
     	} catch (Exception e) {
             System.err.println("Main thread caught exception: " + e);
@@ -43,7 +43,11 @@ public abstract class App
     }
     
     protected void parseArguments(String[] args) throws OptionException {
-        new ArgumentsParser().parse(args);
+       getOptions().parse(args);
+    }
+    
+    protected void printHelp() {
+    	getOptions().printHelp();
     }
     
     protected void setup() throws IOException {
@@ -69,10 +73,10 @@ public abstract class App
     }
     
     protected Options getOptions() {
-    	Options options = new Options();
+    	final Options options = new Options("ichnaea-amqp");
     	options.add(new StringOption("uri") {
 			@Override
-			public void setValue(String value) throws OptionException {
+			public void setValue(String value) {
 				mUri = value;
 			}
 		}.setRequired(true).setDescription("The uri of the amqp server."));
