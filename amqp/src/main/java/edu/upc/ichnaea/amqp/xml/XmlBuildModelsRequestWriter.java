@@ -4,15 +4,15 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Element;
 
-import edu.upc.ichnaea.amqp.model.BuildModels;
+import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 
-public class XmlBuildModelsWriter extends XmlWriter {
+public class XmlBuildModelsRequestWriter extends XmlWriter {
 	
-	public XmlBuildModelsWriter() throws ParserConfigurationException {
-		super("message");
+	public XmlBuildModelsRequestWriter() throws ParserConfigurationException {
+		super("request");
 	}
 
-	public XmlBuildModelsWriter build(BuildModels data) {
+	public XmlBuildModelsRequestWriter build(BuildModelsRequest data) {
 		Element root = getRoot();
 
 		root.setAttribute("season", data.getSeason().toString().toLowerCase());

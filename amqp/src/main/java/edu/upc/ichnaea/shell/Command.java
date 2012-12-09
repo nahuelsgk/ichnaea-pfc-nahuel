@@ -4,18 +4,15 @@ public class Command implements CommandInterface {
 
 	protected String mCommand;
 	
-	public Command(String command)
-	{
+	public Command(String command) {
 		mCommand = command;
 	}
 	
-	public String toString()
-	{
+	public String toString() {
 		return mCommand;
 	}
 
 	@Override
-	public void beforeRun(ShellInterface shell)
-	{
+	public void beforeRun(ShellInterface shell) {
 	}
 }

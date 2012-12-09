@@ -1,53 +1,38 @@
 package edu.upc.ichnaea.amqp.app;
 
-import edu.upc.ichnaea.amqp.cli.IntegerOption;
+import java.io.IOException;
+
+import com.rabbitmq.client.MessageProperties;
+
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.StringOption;
-import edu.upc.ichnaea.amqp.requester.RequesterInterface;
-import edu.upc.ichnaea.amqp.requester.StringMessage;
-import edu.upc.ichnaea.amqp.requester.TestRequester;
 
-public class TestRequestApp extends RequestApp
-{
-	String mMessage = "";
-	int mMessageNum = 0;
-	
-    protected Options getOptions()
-    {
-    	Options options = super.getOptions();
-    	options.add(new StringOption("msg"){
-			@Override
-			public void setValue(String value) {
-				mMessage = value;
-			}
-    	}.setRequired(true).setDescription("The message to send to the amqp server."));
-    	options.add(new IntegerOption("num"){
-			@Override
-			public void setValue(int value) {
-				mMessageNum = value;
-			}
-    	}.setDefaultValue(mMessageNum).setDescription("The amount of messages to send to the amqp server."));
-    	return options;
-    }
+public class TestRequestApp extends QueueApp {
+
+	protected String mMessage;
 	
     public static void main(String[] args)
     {
     	main(args, new TestRequestApp());
-    }   
-    
-    public void setMessage(String msg)
-    {
-    	mMessage = msg;
     }
     
-    public void setMessageNum(int num)
+    protected Options getOptions()
     {
-    	mMessageNum = num;
+    	Options options = super.getOptions();
+    	options.add(new StringOption("message"){
+			@Override
+			public void setValue(String value) {
+				mMessage = value;
+			}
+    	}.setRequired(true).setDescription("The message to send to the amqp server"));
+    	return options;
     }
-	
+
 	@Override
-	protected RequesterInterface createRequester()
+	protected void start() throws IOException
 	{
-		return new TestRequester(new StringMessage(mMessage), mMessageNum);
+		getChannel().basicPublish("", getQueueName(),
+				MessageProperties.PERSISTENT_TEXT_PLAIN , mMessage.getBytes());  
 	}
+
 }

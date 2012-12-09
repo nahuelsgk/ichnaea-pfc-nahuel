@@ -8,7 +8,7 @@ import java.util.Set;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.BuildModels;
+import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
@@ -23,9 +23,9 @@ public class XmlBuildModelsReaderTest {
     	xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";    	
     	xml += "</dataset></message>";
     	
-    	BuildModels message = new XmlBuildModelsReader().read(xml);
+    	BuildModelsRequest message = new XmlBuildModelsRequestReader().read(xml);
     	
-    	assertTrue(BuildModels.Season.Winter == message.getSeason());
+    	assertTrue(BuildModelsRequest.Season.Winter == message.getSeason());
     	
     	Dataset dataset = message.getDataset();
     	

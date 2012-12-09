@@ -6,19 +6,17 @@ abstract public class IchnaeaCommand implements CommandInterface {
 	
 	abstract protected String getParameters();
 	
-	public void setScriptPath(String path)
-	{
+	public IchnaeaCommand setScriptPath(String path) {
 		mScriptPath = path;
+		return this;
 	}
 	
-	public String toString()
-	{
+	public String toString() {
 		return mScriptPath+" "+getParameters();
 	}
 	
 	@Override
-	public void beforeRun(ShellInterface shell)
-	{
+	public void beforeRun(ShellInterface shell) {
 	}
 	
 }

@@ -23,7 +23,7 @@ abstract public class EnumOption<T extends Enum<T>> extends Option {
 			try {
 				value = Enum.valueOf(value.getDeclaringClass(), strValue);
 			}catch (IllegalArgumentException e) {
-				throw new InvalidOptionException("Invalid value \""+value+"\" for option \""+getName()+"\".");
+				throw new InvalidOptionException("Invalid value \""+strValue+"\" for option \""+getName()+"\".");
 			}
 		}
 		setValue(value);

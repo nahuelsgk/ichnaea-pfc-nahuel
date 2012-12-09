@@ -1,5 +1,6 @@
 package edu.upc.ichnaea.shell;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,10 +17,10 @@ import com.jcraft.jsch.Session;
 
 public class SecureShell implements ShellInterface {
 
-	final static String DefaultHost = "localhost";	
-	final static int DefaultPort = 22;
-	final static String DefaultPassword = null;
-	final static String DefaultUser = null;
+	final static String DEFAULT_HOST = "localhost";	
+	final static int DEFAULT_PORT = 22;
+	final static String DEFAULT_PASSWORD = null;
+	final static String DEFAULT_USER = null;
 	
 	protected String mHost;
 	protected String mUser;
@@ -31,10 +32,10 @@ public class SecureShell implements ShellInterface {
 		if(options.containsKey("url")) {
 			return new SecureShell(options.get("url"));
 		}
-		int port = DefaultPort;
-		String pass = DefaultPassword;
-		String user = DefaultUser;
-		String host = DefaultHost;
+		int port = DEFAULT_PORT;
+		String pass = DEFAULT_PASSWORD;
+		String user = DEFAULT_USER;
+		String host = DEFAULT_HOST;
 		if(options.containsKey("port")) {
 			port = Integer.parseInt(options.get("port"));
 		}
@@ -73,17 +74,17 @@ public class SecureShell implements ShellInterface {
 	
 	public SecureShell()
 	{
-		this(DefaultHost, DefaultUser, DefaultPassword, DefaultPort);
+		this(DEFAULT_HOST, DEFAULT_USER, DEFAULT_PASSWORD, DEFAULT_PORT);
 	}
 	
 	public SecureShell(String host, String user)
 	{
-		this(host, user, DefaultPassword, DefaultPort);
+		this(host, user, DEFAULT_PASSWORD, DEFAULT_PORT);
 	}
 	
 	public SecureShell(String host, String user, String password)
 	{
-		this(host, user, password, DefaultPort);
+		this(host, user, password, DEFAULT_PORT);
 	}	
 	
 	@Override
@@ -136,6 +137,12 @@ public class SecureShell implements ShellInterface {
 
 	@Override
 	public FileOutputStream writeFile(String path) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public File createTempFile() throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

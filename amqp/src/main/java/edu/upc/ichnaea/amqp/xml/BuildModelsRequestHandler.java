@@ -7,27 +7,27 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.BuildModels;
-import edu.upc.ichnaea.amqp.model.BuildModels.Season;
+import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
+import edu.upc.ichnaea.amqp.model.BuildModelsRequest.Season;
 import edu.upc.ichnaea.amqp.model.Dataset;
 
-public class BuildModelsHandler implements ContentHandler {
+public class BuildModelsRequestHandler implements ContentHandler {
 
 	final static String TYPE = "build_models";
 	final static String SEASON_WINTER = "winter";
 	final static String SEASON_SUMMER = "summer";
 	
-	final static String TAG_MESSAGE = "message";
+	final static String TAG_REQUEST = "request";
 	final static String ATTR_SEASON = "season";
-	final static String ATTR_MESSAGE_TYPE = "type";
+	final static String ATTR_REQUEST_TYPE = "type";
 	
-	BuildModels mData;
+	BuildModelsRequest mRequest;
 	Season mSeason;
 	DatasetHandler mDatasetHandler;
 	Dataset mDataset;
 	
-	public BuildModels getData() {
-		return mData;
+	public BuildModelsRequest getData() {
+		return mRequest;
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class BuildModelsHandler implements ContentHandler {
 
 	@Override
 	public void startDocument() throws SAXException {
-		mData = null;
+		mRequest = null;
 		mSeason = null;
 		mDatasetHandler = null;
 		mDataset = null;
@@ -44,7 +44,7 @@ public class BuildModelsHandler implements ContentHandler {
 
 	@Override
 	public void endDocument() throws SAXException {
-		mData = new BuildModels(mDataset, mSeason);
+		mRequest = new BuildModelsRequest(mDataset, mSeason);
 	}
 
 	@Override
@@ -67,8 +67,8 @@ public class BuildModelsHandler implements ContentHandler {
 		}		
 		if(mDatasetHandler != null) {
 			mDatasetHandler.startElement(uri, localName, qName, atts);
-		} else if(localName.equalsIgnoreCase(TAG_MESSAGE)) {
-			if(!atts.getValue(ATTR_MESSAGE_TYPE).equalsIgnoreCase(TYPE)) {
+		} else if(localName.equalsIgnoreCase(TAG_REQUEST)) {
+			if(!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
 				throw new SAXException("Invalid message type");
 			}
 			try {
@@ -79,8 +79,7 @@ public class BuildModelsHandler implements ContentHandler {
 		}
 	}
 	
-	private Season getSeasonFromString(String value) throws InvalidAttributeValueException
-	{
+	private Season getSeasonFromString(String value) throws InvalidAttributeValueException {
 		switch(value) {
 		case SEASON_SUMMER:
 			return Season.Summer;

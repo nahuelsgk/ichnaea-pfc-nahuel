@@ -1,17 +1,26 @@
 package edu.upc.ichnaea.shell;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 public class Shell implements ShellInterface {
+	
+	final static String TEMP_FILE_PREFIX = "ichnaea-amqp";
+	protected Logger mLogger = Logger.getLogger(Shell.class.getName());
+	
+	public Logger getLogger() {
+		return mLogger;
+	}	
 
 	@Override
 	public CommandResult run(CommandInterface command) throws IOException, InterruptedException {
-
 		Runtime run = Runtime.getRuntime();
+		getLogger().info("running command :"+command.toString());
 		Process pr= run.exec(command.toString());
 		pr.waitFor();
 		String out = readInputStream(pr.getInputStream());
@@ -19,12 +28,11 @@ public class Shell implements ShellInterface {
 		return new CommandResult(out, err, pr.exitValue());
 	}
 	
-	public static String readInputStream(InputStream in) throws IOException
-	{
+	public static String readInputStream(InputStream in) throws IOException {
 		String out = "";
 		byte[] tmp = new byte[1024];
 		
-		while(in.available()>0){
+		while(in.available()>0) {
 			int i = in.read(tmp, 0, tmp.length);
 			if(i<0){
 				break;
@@ -47,6 +55,11 @@ public class Shell implements ShellInterface {
 		} catch (FileNotFoundException e) {
 			throw new SecurityException("Path is a directory.");
 		}
+	}
+
+	@Override
+	public File createTempFile() throws IOException {
+		return File.createTempFile(TEMP_FILE_PREFIX,"");
 	}
 
 }

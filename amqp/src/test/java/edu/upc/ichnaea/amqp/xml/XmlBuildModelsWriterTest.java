@@ -10,8 +10,8 @@ import org.custommonkey.xmlunit.Diff;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.BuildModels;
-import edu.upc.ichnaea.amqp.model.BuildModels.Season;
+import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
+import edu.upc.ichnaea.amqp.model.BuildModelsRequest.Season;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
@@ -34,9 +34,9 @@ public class XmlBuildModelsWriterTest {
         column2.add(6f);
         dataset.add(column2);
         
-        BuildModels model = new BuildModels(dataset, Season.Summer);
+        BuildModelsRequest model = new BuildModelsRequest(dataset, Season.Summer);
         
-        String xml = new XmlBuildModelsWriter().build(model).toString();
+        String xml = new XmlBuildModelsRequestWriter().build(model).toString();
         
         String expectedXml = "<message season=\"summer\" type=\"build_models\"><dataset><column name=\"test\">" +
         		"<value>1.0</value><value>2.0</value><value>3.0</value></column><column name=\"test2\">" +

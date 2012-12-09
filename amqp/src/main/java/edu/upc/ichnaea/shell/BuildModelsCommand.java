@@ -1,6 +1,6 @@
 package edu.upc.ichnaea.shell;
 
-import edu.upc.ichnaea.amqp.model.BuildModels.Season;
+import edu.upc.ichnaea.amqp.model.BuildModelsRequest.Season;
 
 public class BuildModelsCommand extends IchnaeaCommand {
 

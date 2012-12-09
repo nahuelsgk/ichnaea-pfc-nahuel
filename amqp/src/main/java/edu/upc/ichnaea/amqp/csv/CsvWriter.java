@@ -57,7 +57,7 @@ public class CsvWriter {
 	{
 		getWriter().writeNext(row);
 	}
-	protected void close() throws IOException
+	public void close() throws IOException
 	{
 		if(mCsvWriter != null)
 		{
