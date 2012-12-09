@@ -3,6 +3,7 @@ package edu.upc.ichnaea.amqp.xml;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Set;
 
 import org.junit.Test;
@@ -17,11 +18,11 @@ public class XmlBuildModelsReaderTest {
     @Test
     public void testXML() throws SAXException, IOException
     {    
-    	String xml = "<message type=\"build_models\" season=\"winter\"><dataset>\n";
+    	String xml = "<request type=\"build_models\" season=\"winter\"><dataset>\n";
     	xml += "<column name=\"test\"><value>1.5</value><value>2</value><value>3</value></column>\n";
     	xml += "<column name=\"test2\"><value>3</value><value>4</value></column>\n";
     	xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";    	
-    	xml += "</dataset></message>";
+    	xml += "</dataset></request>";
     	
     	BuildModelsRequest message = new XmlBuildModelsRequestReader().read(xml);
     	
@@ -29,7 +30,7 @@ public class XmlBuildModelsReaderTest {
     	
     	Dataset dataset = message.getDataset();
     	
-    	Set<String> names = dataset.columnNames();
+    	Collection<String> names = dataset.columnNames();
     	assertTrue(names.contains("test"));
     	assertEquals(3, names.size());
     	

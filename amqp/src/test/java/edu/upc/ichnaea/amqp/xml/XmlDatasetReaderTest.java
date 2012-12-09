@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.Set;
+import java.util.Collection;
 
 import org.junit.Test;
 import org.xml.sax.InputSource;
@@ -33,7 +33,7 @@ public class XmlDatasetReaderTest {
     	
     	Dataset dataset = handler.getDataset();
     	
-    	Set<String> names = dataset.columnNames();
+    	Collection<String> names = dataset.columnNames();
     	assertTrue(names.contains("test"));
     	assertEquals(3, names.size());
     	

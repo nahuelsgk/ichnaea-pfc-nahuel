@@ -1,8 +1,7 @@
 package edu.upc.ichnaea.amqp.csv;
 
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
@@ -18,7 +17,7 @@ public class CsvDatasetWriter extends CsvWriter {
 		int colNum = dataset.columns().size();
 		String[] row = new String[colNum];
 		// store column names in a list to maintain order
-		List<String> colNames = new ArrayList<String>(dataset.columnNames());
+		Collection<String> colNames = dataset.columnNames();
 		int j=0;
 		
 		// write names

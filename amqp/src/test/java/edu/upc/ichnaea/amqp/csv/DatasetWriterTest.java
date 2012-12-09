@@ -22,7 +22,7 @@ public class DatasetWriterTest {
         column.add(3);
         dataset.add(column);
 
-        column = new DatasetColumn("test2");
+        column = new DatasetColumn("atest2");
         column.add(4);
         column.add(5);
         dataset.add(column);
@@ -38,7 +38,7 @@ public class DatasetWriterTest {
         writer.setQuote('\'');
         writer.write(dataset).close();
         
-        String expectedCsv = "'test';'test2';'test3'\n" +
+        String expectedCsv = "'test';'atest2';'test3'\n" +
         			"'1';'4';'6'\n" +
         			"'2';'5';'7'\n" +
         			"'3';;'8'\n";

@@ -38,8 +38,6 @@ public class BuildModelsProcessApp extends QueueApp {
     	return options;
     }
     
-    
-
 	@Override
 	protected void setup() throws IOException {
 		super.setup();

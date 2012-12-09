@@ -3,22 +3,23 @@ package edu.upc.ichnaea.amqp.csv;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.List;
 
 import edu.upc.ichnaea.amqp.model.Dataset;
+import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
 public class CsvDatasetReader extends CsvReader {
 	
 	public Dataset read(Reader reader) throws IOException
 	{
-		return Dataset.create(readCols(reader));
+		return new Dataset(readCols(reader));
 	}
 	
-	protected HashMap<String, List<String>> readCols(Reader reader) throws IOException
+	protected Collection<DatasetColumn> readCols(Reader reader) throws IOException
 	{
 	    List<String[]> rows = readRows(reader);
-		HashMap<String, List<String>> cols = new HashMap<String, List<String>>(); 	    
+		List<DatasetColumn> cols = new ArrayList<DatasetColumn>(); 	    
 	    
 	    if(rows.size()<=1)
 	    {
@@ -29,15 +30,16 @@ public class CsvDatasetReader extends CsvReader {
 	    
 	    for(int i=0; i<names.length; i++)
 	    {
-	    	cols.put(names[i], new ArrayList<String>());
+	    	cols.add(new DatasetColumn(names[i]));
 	    }
 		
 	    for(int j=1;j<rows.size(); j++)
 	    {
 	    	String[] row = rows.get(j);
-	    	for(int k=0;k<row.length; k++)
+	    	int len = Math.min(row.length, names.length);
+	    	for(int k=0;k<len; k++)
 	    	{
-	    		cols.get(names[k]).add(row[k]);
+	    		cols.get(k).add(row[k]);
 	    	}
 	    }
 	    

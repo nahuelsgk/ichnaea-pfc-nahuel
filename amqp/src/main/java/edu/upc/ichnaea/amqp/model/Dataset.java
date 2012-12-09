@@ -4,29 +4,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class Dataset implements Iterable<DatasetColumn>, Comparable<Dataset> {
 
 	protected Collection<DatasetColumn> mColumns;
 	
 	public Dataset() {
-		this(new TreeSet<DatasetColumn>());
+		this(new ArrayList<DatasetColumn>());
 	}
 	
 	public Dataset(Collection<DatasetColumn> cols) {
 		mColumns = cols;
 	}
-	
-	public static Dataset create(Map<String, List<String>> cols) {
-		Dataset dataset = new Dataset();
-		for(String name: cols.keySet()) {
-			dataset.add(DatasetColumn.create(name, cols.get(name)));
-		}
-		return dataset;
-	}	
 	
 	public void add(DatasetColumn col)
 	{
@@ -46,8 +35,8 @@ public class Dataset implements Iterable<DatasetColumn>, Comparable<Dataset> {
 		return mColumns;
 	}
 	
-	public SortedSet<String> columnNames() {
-		SortedSet<String> names = new TreeSet<String>();
+	public Collection<String> columnNames() {
+		List<String> names = new ArrayList<String>();	
 		for(DatasetColumn col: mColumns) {
 			names.add(col.getName());
 		}

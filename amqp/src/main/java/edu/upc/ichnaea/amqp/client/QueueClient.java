@@ -18,6 +18,14 @@ abstract public class QueueClient extends Client {
 		return mQueue;
 	}
 	
+	protected String getExchange() {
+		if(mWithExchange) {
+			return mQueue;
+		} else {
+			return "";
+		}
+	}
+	
 	@Override
 	public void setup(Channel channel) throws IOException {
 		super.setup(channel);		
@@ -30,7 +38,7 @@ abstract public class QueueClient extends Client {
 	protected String routingQueueDeclare(String routingKey) throws IOException {
 		Channel ch = getChannel();
 		String queue = ch.queueDeclare().getQueue();
-		ch.queueBind(queue, getQueue(), routingKey);
+		ch.queueBind(queue, getExchange(), routingKey);
 		return queue;
 	}
 

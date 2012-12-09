@@ -10,16 +10,16 @@ import edu.upc.ichnaea.amqp.cli.StringOption;
 public abstract class QueueApp extends App {
 	
 	private Channel mChannel;
-	private String mQueueName = "default_queue";
+	private String mQueue = "default";
 
     protected Options getOptions() {
     	Options options = super.getOptions();
     	options.add(new StringOption("queue"){
 			@Override
 			public void setValue(String value) {
-				mQueueName = value;
+				mQueue = value;
 			}
-    	}.setDefaultValue(mQueueName).setDescription("The name of the amqp server queue to send messages to."));
+    	}.setDefaultValue(mQueue).setDescription("The name of the amqp server queue to send messages to."));
     	return options;
     }
     
@@ -37,6 +37,6 @@ public abstract class QueueApp extends App {
     }
 
     protected String getQueueName() {
-    	return mQueueName;
+    	return mQueue;
     }
 }

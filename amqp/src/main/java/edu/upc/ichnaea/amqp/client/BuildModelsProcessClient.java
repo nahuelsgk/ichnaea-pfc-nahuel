@@ -49,8 +49,10 @@ public class BuildModelsProcessClient extends QueueClient {
 				AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().
 						contentType("text/xml").build();
 				String responseXml = "";
-				channel.basicPublish(getQueue(), replyTo, properties, responseXml.getBytes());
+				channel.basicPublish(getExchange(), replyTo, properties, responseXml.getBytes());
 			}
+			
+			datasetFile.delete();
 		} catch (InterruptedException e) {
 			throw new IOException(e);			
 		} catch (SAXException e) {
@@ -62,8 +64,7 @@ public class BuildModelsProcessClient extends QueueClient {
 	public void run() throws IOException {
 		boolean autoAck = true;
 		final Channel ch = getChannel();
-		String queue = getQueue();
-		ch.basicConsume(queue, autoAck, new DefaultConsumer(ch) {
+		ch.basicConsume(getQueue(), autoAck, new DefaultConsumer(ch) {
 			@Override
 			public void handleDelivery(String consumerTag,
 				Envelope envelope,
@@ -76,7 +77,7 @@ public class BuildModelsProcessClient extends QueueClient {
 			}
 		);
 		
-		getLogger().info("waiting for build models requests on queue \""+queue+"\"...");
+		getLogger().info("waiting for build models requests on queue \""+getQueue()+"\"...");
 	}
 
 }
