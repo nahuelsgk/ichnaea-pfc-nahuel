@@ -16,16 +16,21 @@ function printVar($var){
 /*
 * REDIRECTIONS
 */
+
 function redirectLoginRegistration(){
-  header('Location: http://'.ROOT_DOMAIN_ICHNAEA.'index');
+  redirectTo('index');
 }
 
 function redirectHome(){
-  header('Location: http://'.ROOT_DOMAIN_ICHNAEA.'home');
+  redirectTo('home');
 }
 
 function redirect404(){
-  header('Location: http://'.ROOT_DOMAIN_ICHNAEA.'notfound');
+  redirectTo('notfound');
+}
+
+function redirectTo($path){
+  header('Location: http://' . ROOT_DOMAIN_ICHNAEA . $path);
 }
 
 /*

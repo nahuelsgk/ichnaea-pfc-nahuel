@@ -27,6 +27,14 @@ class User
     $result = $db->QuerySingleValue($sql);
     return $result;
   }
+
+  /*
+  * Chech if the user has the privileges passed by params.
+  * By now, the only privileges are 'administrator'
+  */
+  public function hasPrivileges($privileges){
+    return $this->isAdministrator();
+  }
   /*
   * Returns true if the user is administrator
   */

@@ -10,5 +10,5 @@ $is_admin = $user->isAdministrator();
 $name = $user->getName();
 
 $smarty->assign("is_admin",$is_admin);
-$smarty->assign("name",$name);
+$smarty->assign("username",$name);
 ?>

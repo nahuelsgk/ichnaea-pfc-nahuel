@@ -1,7 +1,7 @@
-{extends file="../Tmpls/ichnaea_root.tpl"}
+{extends file="Tmpls/ichnaea_root.tpl"}
 {block name='title'}Ichnaea Home User{/block}
 {block name='page'}
-  {call_controller path="Ichnaea/Home/Dashboard" function="display_home"}
+  {init path="Controllers/Ichnaea/Home/Dashboard" function="display_home"}
 
   <header>
   <h1>Welcome to your Dashboard</h1>

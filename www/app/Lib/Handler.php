@@ -22,29 +22,32 @@ class Handler
     $this->smarty->caching = false;
   }
   
-  //Resolves the main controller and the view needed
+  /*
+  *Resolves the main controller and the view needed
+  */
   private function resolveControllerPath()
   {
-    $explode = explode(ROOT_FOLDER_ICHNAEA,$this->query);
-    
     #Go to the queried template
-    if(preg_match("/(.*?)$/",$explode[1],$view)){  
+    if(preg_match("/(.*?)$/",$this->query,$view)){  
       $this->view = $view[1];
     }
 
     # If empty, redirect to the login
-    else if($explode[1] == ''){
+    else if($this->query == ''){
       redirectLoginRegistration();  
     }
   } 
   
-  #Executes the main controller
+  /*
+  * Executes the main controller
+  */
   public function executeController(){
-    $output = $this->smarty->templateExists("Views/".$this->view.".tpl");
+    $path = RELATIVE_SMARTY_VIEWS . $this->view . ".tpl";
+    $output = $this->smarty->templateExists($path);
     if ($output === FALSE){
-      $this->smarty->display("Views/notfound.tpl");
+      $this->smarty->display(RELATIVE_SMARTY_VIEWS . "/notfound.tpl");
     }
-    else $this->smarty->display("Views/".$this->view.".tpl");
+    else $this->smarty->display($path);
   }
 
   public function getView(){
