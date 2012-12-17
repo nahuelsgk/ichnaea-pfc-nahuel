@@ -12,6 +12,7 @@
 {init path="Controllers/Admin" function="displayListUsersPage"}
 
 <form method="post">
+{$error}
 <input type="submit" value="Reset passwords" name="submit">
 {* List of users *}
 <table>
@@ -21,7 +22,7 @@
   <td>{$users[user].id}</td>
   <td>{$users[user].name}</td>
   <td>{$users[user].login}</td>
-  <td><input type="checkbox" value="Change Password" name="reset_paswd[]"></td>
+  <td><input type="checkbox" value="{$users[user].id}" name="reset_paswd[]"></td>
 <tr>
 {/section}
 </table>

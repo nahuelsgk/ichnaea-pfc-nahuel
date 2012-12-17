@@ -5,8 +5,7 @@
 
 {block name='headtitle'}Your personal information{/block}
 {block name='page'}
-
-  <header>
+{init path="Controllers/Account" function="displaySettings"}
   <form method="post" autocomplete="on">
   <input id="username" name="username" required="required" type="text" data-icon="u" placeholder="John Doe" value="{$username}"/>
   </p>
@@ -23,7 +22,7 @@
   </p>
 
   <p class="signin button">
-  <input type="submit" name="register" value="Sign up" onclick="return match_passwords();"/>
+  <input type="submit" name="register" value="Save Settings" onclick="return match_passwords();"/>
   </p>
   </form>
 {/block}

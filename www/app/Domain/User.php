@@ -114,6 +114,20 @@ class User
    return 1;
   }
 
+  /*
+  * Reset the password to "12345qwer"
+  * Return FALSE if happened any error
+  */
+  public function resetPassword($user_id){
+    $db = new MySQL();
+    $arr["passwd"] = MySQL::SQLValue(User::encryptUserPassword("12345qwer"));
+    $result = $db->UpdateRows("users",
+    		array("passwd"=>MySQL::SQLValue(User::encryptUserPassword("12345qwer"))), 
+		array("id"=>$user_id));
+    if ($result === FALSE) $db->kill();
+    return $result;
+  }
+
   public function removeUser(){}
 
   public function disableUser(){}

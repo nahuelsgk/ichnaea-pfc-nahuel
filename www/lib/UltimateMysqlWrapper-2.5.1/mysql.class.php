@@ -17,10 +17,10 @@
 class MySQL
 {
 	// SET THESE VALUES TO MATCH YOUR DATA CONNECTION
-	private $db_host    = "mysql-rdlab.lsi.upc.edu";  // server name
-	private $db_user    = "ichnaea_app";       // user name
-	private $db_pass    = "eU2SdvvDvhvmBhsU";           // password
-	private $db_dbname  = "ichnaea_app";           // database name
+	private $db_host    = "localhost";  // server name
+	private $db_user    = "root";       // user name
+	private $db_pass    = "qwerasdf";           // password
+	private $db_dbname  = "ichnaea";           // database name
 	private $db_charset = "utf8";           // optional character set (i.e. utf8)
 	private $db_pcon    = false;        // use persistent connection?
 
