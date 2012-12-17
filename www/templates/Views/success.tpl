@@ -1,5 +1,3 @@
-{init path="Controllers/Login/loginRegistration"}
-
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
@@ -15,16 +13,18 @@
 <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
 <meta name="author" content="Nahuel Velazco" />
 <link rel="shortcut icon" href="../favicon.ico"> 
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/css/style3.css" />
-<link rel="stylesheet" type="text/css" href="/css/animate-custom.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/style3.css" />
+<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
 </head>
 <body>
+<div class="registration">
 <!-- Codrops top bar -->
-<center>
 <header>
-<h1>Welcome to Ichnaea</h1>
+<h1>Your account has been created.<br>
+Now you can login <a href="index#login">login</a>.<br>
+This is developing application. All your data is protected but by now we have not email server. So we can not send email confirmation or other methods to ensure that your are the owner of the email. </h1>
 </header>
-<h2>Oops! Sorry, but this application is under construction <br> and needs lot of work to do.<br> If this page wasn't expected please report it to nahuelsgk@gmail.com<h2>
+</div>
 </body>
 </html>

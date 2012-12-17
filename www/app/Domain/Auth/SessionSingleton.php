@@ -3,7 +3,6 @@ class SessionSingleton{
 
   private $sid;
   private static $instance;
-
   public function __construct(){
     session_start();
   }

@@ -37,8 +37,7 @@ else if(!empty($_POST['register'])){
   $result = $user->createUser($user_info);
   switch($result){
     case 1:
-      $error="register";
-      $message="success_user_created";
+      redirectTo('success'); 
       break;
     case 0:
       $message="error_user_exist";
@@ -47,7 +46,6 @@ else if(!empty($_POST['register'])){
   }
   
 } 
-global $handler;
 
 $smarty->assign('error', $error);
 $smarty->assign('message',$message!="" ? $messages[$message] : "");

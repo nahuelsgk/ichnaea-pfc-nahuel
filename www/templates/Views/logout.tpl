@@ -1,1 +1,1 @@
-{call_controller path="Login/logout"}
+{init path="Controllers/Login/logout"}
