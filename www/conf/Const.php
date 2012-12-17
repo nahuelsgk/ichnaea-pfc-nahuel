@@ -1,8 +1,8 @@
 <?php 
 
 # Define if is development or production
-$developmentEnviroment = 1;
-if($developmentEnviroment){
+$developmentEnviroment = 0;
+if($developmentEnviroment == 1){
   # define the systems path
   define("ROOTPATH","/opt/lampp/htdocs/ichnaea/www");
 
@@ -17,9 +17,10 @@ if($developmentEnviroment){
 }
 
 else{
-  define("ROOTPATH","/opt/lampp/htdocs/ichnaea/www");
+  define("ROOTPATH","/home/ichnaea/www");
   define("ROOT_FOLDER_ICHNAEA","/");
-  define("DOMAIN_ICHNAEA","dev.ichnaea.lsi.upc.edu");
+  define("DOMAIN_ICHNAEA","ichnaea.lsi.upc.edu");
+  define("SMARTY_DIR","/home/ichnaea/www/lib/SmartyTemplating/");
 }
 
 define("WORKPATH",ROOTPATH.ROOT_FOLDER_ICHNAEA);
