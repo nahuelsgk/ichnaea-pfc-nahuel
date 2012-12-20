@@ -11,10 +11,25 @@ class Params{
  
   //Read from querid params and construc both associative arrays
   public function __construct(){
-    printVar($_POST);
-    printVar($_GET);
+    $this->constructPostParams();
+    $this->constructGetParams();
   }
 
+  private function constructPostParams(){
+    foreach($_POST as $k => $v){
+    }
+  }
+
+  private function constructGetParams(){
+  
+  }
+
+  /*
+  * Check if possible parameter's hacking like SQL INJECTION's
+  */
+  private function checkCleanParameter(){
+  
+  }
 }
 
 ?>

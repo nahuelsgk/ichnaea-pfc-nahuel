@@ -10,19 +10,22 @@
   <input id="username" name="username" required="required" type="text" data-icon="u" placeholder="John Doe" value="{$username}"/>
   </p>
   <p>
-  <input id="passwordsignup_confirm" name="passwordsignup_confirm" type="password" placeholder="eg. X8df!90EO"/>    
-  <label for="passwordsignup_confirm" class="youpasswd" >Change your password </label>
-  </p>
-  <p>
-  <input id="passwordsignup" name="passwordsignup" type="password" placeholder="eg. X8df!90EO"/>
+  <input id="passwordsignup" name="passwordsignup" type="password" placeholder="eg. X8df!90EO">    
   <label for="passwordsignup" class="youpasswd">Change your password </label>
   </p>
+
+  <!-- 
+  <p>
+  <input id="passwordsignup" name="passwordsignup" type="password" placeholder="eg. X8df!90EO" disabled/>
+  <label for="passwordsignup" class="youpasswd">Change your password </label>
+  </p>
+ 
   <p>
   <input id="enable_change_password" name="enable_change_password" type="checkbox"><label>Click here to change your password</label>
   </p>
-
+  -->
   <p class="signin button">
-  <input type="submit" name="register" value="Save Settings" onclick="return match_passwords();"/>
+  <input type="submit" name="save" value="Save Settings">
   </p>
   </form>
 {/block}

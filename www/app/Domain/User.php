@@ -120,7 +120,6 @@ class User
   */
   public function resetPassword($user_id){
     $db = new MySQL();
-    $arr["passwd"] = MySQL::SQLValue(User::encryptUserPassword("12345qwer"));
     $result = $db->UpdateRows("users",
     		array("passwd"=>MySQL::SQLValue(User::encryptUserPassword("12345qwer"))), 
 		array("id"=>$user_id));
@@ -128,6 +127,15 @@ class User
     return $result;
   }
 
+  public function changePassword($new_passwd){
+    $db = new MySQL();
+    $result = $db->UpdateRows("users",
+    		array("passwd"=>MySQL::SQLValue(User::encryptUserPassword($new_passwd))), 
+		array("id"=>$this->user_id));
+    if ($result === FALSE) $db->kill();
+    return $result;
+  }
+  
   public function removeUser(){}
 
   public function disableUser(){}
