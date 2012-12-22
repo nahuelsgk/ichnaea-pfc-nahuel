@@ -40,7 +40,14 @@ class User
   */
   public function isAdministrator(){
     $db = new MySQL();
-    $sql = $db->BuildSQLSelect("users",array("id"=>$this->user_id),"administrator");
+
+    $sql = $db->BuildSQLSelect(
+      "users",
+      array(
+        "id"=>$this->user_id
+      ),
+      "administrator");
+
     $result = $db->QuerySingleValue($sql);
     return $result == 'y' ? true : false;
   }
@@ -73,7 +80,7 @@ class User
   public function getProjects()
   {
     $db = new MySQL();
-    $sql = "SELECT name,status FROM projects WHERE user_owner='$this->user_id'";
+    $sql = "SELECT name FROM projects WHERE user_owner='$this->user_id'";
     $ret = $db->QueryArray($sql,MYSQL_BOTH);
     return $ret;
   }

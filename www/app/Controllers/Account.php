@@ -9,7 +9,6 @@ includeLib("Domain/Auth/SessionSingleton");
 function displaySettings($page){
  if(isset($_POST['save'])){
    $user = new User(SessionSingleton::getInstance()->getUserId());
-   printVar($user);
    if (isset($_POST["passwordsignup"]))
    {
      $user->changePassword($_POST["passwordsignup"]);
