@@ -1,8 +1,5 @@
 {extends file="Tmpls/ichnaea_root.tpl"}
 
-{block name="js_extra"} 
-
-{/block}
 {block name="title"}Administer users{/block}
 
 {block name="headtitle"}List of users{/block}
