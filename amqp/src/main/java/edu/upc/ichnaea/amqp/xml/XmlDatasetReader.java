@@ -17,10 +17,14 @@ public class XmlDatasetReader extends XmlReader<DatasetHandler> {
 		return getHandler().getDataset();
 	}
 	
-	public Dataset read(Reader reader) throws IOException, SAXException
-	{
+	public Dataset read(String xml) throws IOException, SAXException{
+		super.parse(xml);
+		return getData();
+	}
+	
+	public Dataset read(Reader reader) throws SAXException, IOException {
 		super.parse(reader);
 		return getData();
-	}	
+	}
 
 }

@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Set;
 
 import org.junit.Test;
 import org.xml.sax.SAXException;
@@ -13,12 +12,12 @@ import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 
-public class XmlBuildModelsReaderTest {
+public class XmlBuildModelsRequestReaderTest {
 
     @Test
     public void testXML() throws SAXException, IOException
     {    
-    	String xml = "<request type=\"build_models\" season=\"winter\"><dataset>\n";
+    	String xml = "<request id=\"432\" section=\"1\" type=\"build_models\" season=\"winter\"><dataset>\n";
     	xml += "<column name=\"test\"><value>1.5</value><value>2</value><value>3</value></column>\n";
     	xml += "<column name=\"test2\"><value>3</value><value>4</value></column>\n";
     	xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";    	

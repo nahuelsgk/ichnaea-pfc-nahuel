@@ -4,6 +4,7 @@ NAME="${SCRIPTNAME%.*}"
 
 SEASON=""
 DATAFILE=""
+OUTFILE=""
 SECTION="1"
 SUMMER="Estiu"
 WINTER="Hivern"
@@ -19,7 +20,7 @@ function USAGE {
 	exit 0
 }
 
-set -- `getopt -n$0 -u --longoptions="summer winter section" "h" "$@"` || USAGE
+set -- `getopt -n$0 -u --longoptions="summer winter section output" "h" "$@"` || USAGE
 [ $# -eq 0 ] && USAGE
 
 while [ $# -gt 0 ]
@@ -28,6 +29,7 @@ do
        --summer)   	SEASON=$SUMMER;shift;;
        --winter) 	SEASON=$WINTER;shift;;
 	   --section)   SECTION="$1";shift;;
+       --output)    OUTFILE="$1";shift;;
        -h)        	USAGE;;
        --)        	shift;break;;
        -*)        	USAGE;;
@@ -43,13 +45,13 @@ fi
 
 if ! [[ "$SECTION" =~ ^[0-9]+$ ]]
 then
-	echo "section has to be an integer"
+	echo "section has to be an integer" > 2
 	USAGE
 fi
 
 if [ ! -f "$DATAFILE" ]
 then
-	echo "could not read data file $DATAFILE"
+	echo "could not read data file $DATAFILE" > 2
 	USAGE
 fi
 
@@ -63,24 +65,34 @@ function REXEC {
 } 
 
 TMPDIR=`mktemp -d --suffix="-$NAME"`
-echo "working in temp directory $TMPDIR"
+echo "working in temp directory $TMPDIR" > 2
 cp -r $ICHNAEADIR/* $TMPDIR
 cp $DATAFILE $TMPDIR/data
 
 STARTTIME=`date +%s`
-echo "starting at `date`"
+echo "starting at `date`" > 2
 pushd $TMPDIR/r > /dev/null
-echo "building dataset..."
-RESULT=`REXEC section_dataset_building.R`
-echo "building models for season '$SEASON' and section '$SECTION'..."
+echo "building dataset..." > 2
+RESULT=`REXEC section_dataset_building.R` > 2
+echo "building models for season '$SEASON' and section '$SECTION'..." > 2
 REXEC section_models_building.R $SECTION $SEASON
 
 ENDTIME=`date +%s`
 DURATION=$((ENDTIME - STARTTIME))
 
+DURATIONSTR="$(( DURATION / 60 ))m $(( DURATION % 60 ))s"
+echo "finished at `date`" > 2
+echo "finished in $DURATIONSTR" > 2
+
+ZIPFILE=$TMPDIR/build_models.zip
+zip -j $ZIPFILE $TMPDIR/data_objects/section_models_*.Rdata
+
+if [ "$OUTFILE" == "" ]
+then
+	cat $ZIPFILE
+else
+	cp $ZIPFILE $OUTFILE
+fi
+
 popd > /dev/null
 rm -rf $TMPDIR
-
-DURATIONSTR="$(( DURATION / 60 ))m $(( DURATION % 60 ))s"
-echo "finished at `date`"
-echo "finished in $DURATIONSTR"

@@ -8,6 +8,7 @@ import java.io.Reader;
 import org.xml.sax.SAXException;
 
 import edu.upc.ichnaea.amqp.cli.EnumOption;
+import edu.upc.ichnaea.amqp.cli.IntegerOption;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.ReadFileOption;
 import edu.upc.ichnaea.amqp.client.BuildModelsRequestClient;
@@ -27,6 +28,7 @@ public class BuildModelsRequestApp extends QueueApp {
 	BuildModelsRequestClient mClient;
 	Format mDatasetFormat = Format.Csv;
 	Season mSeason = Season.Summer;
+	int mSection = 1;
 	Reader mDatasetReader;
 	
     public static void main(String[] args) {   	
@@ -53,7 +55,13 @@ public class BuildModelsRequestApp extends QueueApp {
 			public void setValue(Format value) {
 				mDatasetFormat = value;
 			}
-		}.setDefaultValue(mDatasetFormat).setDescription("The dataset format."));    	
+		}.setDefaultValue(mDatasetFormat).setDescription("The dataset format."));  	
+    	options.add(new IntegerOption("section") {
+			@Override
+			public void setValue(int value) {
+				mSection = value;
+			}
+		}.setDefaultValue(mSection).setDescription("The model section to build."));
     	return options;
     }
 
@@ -71,9 +79,10 @@ public class BuildModelsRequestApp extends QueueApp {
 		} catch(SAXException e) {
 			throw new IOException(e);
 		}
-		BuildModelsRequest request = new BuildModelsRequest(dataset, mSeason);
+		int id = 1;
+		BuildModelsRequest request = new BuildModelsRequest(id, dataset, mSeason, mSection);
 		mClient = new BuildModelsRequestClient(request, getQueueName());
-		mClient.setup(getChannel());		
+		mClient.setup(getChannel());
 	}
 	
 	@Override

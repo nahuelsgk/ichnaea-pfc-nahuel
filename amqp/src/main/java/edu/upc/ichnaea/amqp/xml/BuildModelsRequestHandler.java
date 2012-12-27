@@ -19,12 +19,16 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	
 	final static String TAG_REQUEST = "request";
 	final static String ATTR_SEASON = "season";
+	final static String ATTR_ID = "id";
+	final static String ATTR_SECTION = "section";
 	final static String ATTR_REQUEST_TYPE = "type";
 	
 	BuildModelsRequest mRequest;
 	Season mSeason;
 	DatasetHandler mDatasetHandler;
 	Dataset mDataset;
+	int mId;
+	int mSection;
 	
 	public BuildModelsRequest getData() {
 		return mRequest;
@@ -40,11 +44,13 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		mSeason = null;
 		mDatasetHandler = null;
 		mDataset = null;
+		mId = 0;
+		mSection = 0;
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		mRequest = new BuildModelsRequest(mDataset, mSeason);
+		mRequest = new BuildModelsRequest(mId, mDataset, mSeason, mSection);
 	}
 
 	@Override
@@ -76,18 +82,18 @@ public class BuildModelsRequestHandler implements ContentHandler {
 			} catch (InvalidAttributeValueException e) {
 				throw new SAXException(e.getMessage());
 			}
+			mId = Integer.parseInt(atts.getValue(ATTR_ID));
+			mSection = Integer.parseInt(atts.getValue(ATTR_SECTION));
 		}
 	}
 	
 	private Season getSeasonFromString(String value) throws InvalidAttributeValueException {
-		switch(value) {
-		case SEASON_SUMMER:
-			return Season.Summer;
-		case SEASON_WINTER:
-			return Season.Winter;
-		default:
-			throw new InvalidAttributeValueException("invalid season");
+		for(Season season: Season.values()) {
+			if(season.toString().equalsIgnoreCase(value)) {
+				return season;
+			}
 		}
+		throw new InvalidAttributeValueException("invalid season");
 	}
 	
 

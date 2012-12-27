@@ -34,7 +34,7 @@ public class BuildModelsProcessApp extends QueueApp {
 			public void setValue(String value) throws InvalidOptionException {
 				mScriptPath = value;
 			}
-		}.setDefaultValue("/usr/local/ichnaea.sh").setDescription("The path to the ichnaea script."));    	
+		}.setDefaultValue("./ichnaea.sh").setDescription("The path to the ichnaea script."));    	
     	return options;
     }
     

@@ -10,8 +10,9 @@ import edu.upc.ichnaea.amqp.app.App;
 
 public abstract class Client implements ClientInterface {
 
-	protected Channel mChannel;
-	protected static Logger LOGGER = Logger.getLogger(App.class.getName());
+	private Channel mChannel;
+	private boolean mFinished = false;
+	private static Logger LOGGER = Logger.getLogger(App.class.getName());
 	
     public static Logger getLogger() {
     	return LOGGER;
@@ -28,5 +29,13 @@ public abstract class Client implements ClientInterface {
 	@Override
 	public void setup(Channel channel) throws IOException {
 		mChannel = channel;
+	}
+	
+	protected void setFinished(boolean finished) {
+		mFinished = finished;
+	}
+	
+	public boolean hasFinished() {
+		return mFinished;
 	}
 }

@@ -8,5 +8,6 @@ public interface ClientInterface {
 	
 	public void setup(Channel channel) throws IOException;
 	public void run() throws IOException;
+	public boolean hasFinished();
 	
 }

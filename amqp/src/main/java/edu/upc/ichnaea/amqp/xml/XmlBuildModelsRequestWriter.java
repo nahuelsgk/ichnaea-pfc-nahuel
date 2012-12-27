@@ -15,8 +15,10 @@ public class XmlBuildModelsRequestWriter extends XmlWriter {
 	public XmlBuildModelsRequestWriter build(BuildModelsRequest data) {
 		Element root = getRoot();
 
-		root.setAttribute("season", data.getSeason().toString().toLowerCase());
+		root.setAttribute("id", String.valueOf(data.getId()));
 		root.setAttribute("type", "build_models");
+		root.setAttribute("section", String.valueOf(data.getSection()));
+		root.setAttribute("season", data.getSeason().toString().toLowerCase());
 		
 		Element datasetXml = appendChild("dataset");
 		new XmlDatasetWriter(getDocument(), datasetXml).build(data.getDataset());

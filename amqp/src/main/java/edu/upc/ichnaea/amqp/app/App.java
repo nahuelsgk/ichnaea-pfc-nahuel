@@ -93,11 +93,10 @@ public abstract class App
     protected void runClient(ClientInterface client) throws IOException {
 		try {
 			client.run();
-			while(true){
+			while(!client.hasFinished()){
 				// wait forever
 				Thread.sleep(1000);
-			}
-		} catch (IllegalMonitorStateException e) {			
+			}			
 		} catch (InterruptedException e) {
 		}    	
     }

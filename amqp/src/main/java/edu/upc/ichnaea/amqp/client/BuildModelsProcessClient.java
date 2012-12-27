@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.Calendar;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
@@ -14,8 +17,11 @@ import com.rabbitmq.client.Envelope;
 
 import edu.upc.ichnaea.amqp.csv.CsvDatasetWriter;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
+import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestReader;
+import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseWriter;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
+import edu.upc.ichnaea.shell.CommandResult;
 import edu.upc.ichnaea.shell.ShellInterface;
 
 public class BuildModelsProcessClient extends QueueClient {
@@ -29,34 +35,36 @@ public class BuildModelsProcessClient extends QueueClient {
 		mScriptPath = scriptPath;
 	}
 	
-	protected void received(Channel channel, String replyTo, byte[] body) throws IOException {
-		try {
-			getLogger().info("received a request");
-			BuildModelsRequest request = new XmlBuildModelsRequestReader().read(new String(body));
+	protected void reply(Channel channel, BuildModelsResponse response, String replyTo) throws IOException, ParserConfigurationException {
+		getLogger().info("sending reply to \""+replyTo+"\"...");
+		AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().
+				contentType("multipart").build();
+		String responseXml = new XmlBuildModelsResponseWriter().build(response).toString();
+		channel.basicPublish(getExchange(), replyTo, properties, responseXml.getBytes());
+	}
+	
+	protected void received(Channel channel, String replyTo, byte[] body)
+			throws IOException, SAXException, InterruptedException, ParserConfigurationException {
+		getLogger().info("received a request");
+		Calendar start = Calendar.getInstance();
+		BuildModelsRequest request = new XmlBuildModelsRequestReader().read(new String(body));
 
-			getLogger().info("writing dataset to a csv file");
-			File datasetFile = mShell.createTempFile();
-			FileOutputStream out = new FileOutputStream(datasetFile);
-			new CsvDatasetWriter(new OutputStreamWriter(out)).write(request.getDataset()).close();
-			
-			getLogger().info("calling build models command");
-			BuildModelsCommand cmd = new BuildModelsCommand(request.getSeason(), datasetFile.getAbsolutePath());
-			cmd.setScriptPath(mScriptPath);
-			mShell.run(cmd);
-			
-			if(replyTo != null) {
-				getLogger().info("sending response to \""+replyTo+"\"...");
-				AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().
-						contentType("text/xml").build();
-				String responseXml = "";
-				channel.basicPublish(getExchange(), replyTo, properties, responseXml.getBytes());
-			}
-			
-			datasetFile.delete();
-		} catch (InterruptedException e) {
-			throw new IOException(e);			
-		} catch (SAXException e) {
-			throw new IOException(e);
+		getLogger().info("writing dataset to a csv file");
+		File datasetFile = mShell.createTempFile();
+		FileOutputStream out = new FileOutputStream(datasetFile);
+		new CsvDatasetWriter(new OutputStreamWriter(out)).write(request.getDataset()).close();
+		
+		getLogger().info("calling build models command");
+		BuildModelsCommand cmd = new BuildModelsCommand(request.getSeason(), datasetFile.getAbsolutePath());
+		cmd.setScriptPath(mScriptPath);
+		CommandResult result = mShell.run(cmd);
+		
+		if(replyTo != null) {
+			Calendar end = Calendar.getInstance();
+			byte[] data = result.getOutput().getBytes();
+			int id = Integer.parseInt(replyTo);
+			BuildModelsResponse response = new BuildModelsResponse(id, start, end, data);			
+			reply(channel, response, replyTo);
 		}
 	}
 
@@ -72,7 +80,11 @@ public class BuildModelsProcessClient extends QueueClient {
                 byte[] body)
                 throws IOException
                 {
-					received(ch, properties.getReplyTo(), body);
+					try {
+						received(ch, properties.getReplyTo(), body);
+					} catch (Exception e) {
+						throw new IOException(e);
+					}
                 }
 			}
 		);
