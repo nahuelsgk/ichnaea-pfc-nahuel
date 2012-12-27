@@ -28,9 +28,14 @@ public class BuildModelsResponseHandler implements ContentHandler {
 	Calendar mEnd;
 	float mProgress;
 	int mId;
+	byte[] mData;
 	
 	public BuildModelsResponse getData() {
 		return mResponse;
+	}
+	
+	public void setResponseData(byte[] data) {
+		mData = data;
 	}
 	
 	@Override
@@ -40,12 +45,18 @@ public class BuildModelsResponseHandler implements ContentHandler {
 	@Override
 	public void startDocument() throws SAXException {
 		mResponse = null;
+		mStart = Calendar.getInstance();
+		mEnd = Calendar.getInstance();
 		mId = 0;
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		mResponse = new BuildModelsResponse(mId, mStart, mEnd, mProgress);
+		if(mProgress >= 1) {
+			mResponse = new BuildModelsResponse(mId, mStart, mEnd, mData);
+		} else {
+			mResponse = new BuildModelsResponse(mId, mStart, mEnd, mProgress);
+		}
 	}
 
 	@Override

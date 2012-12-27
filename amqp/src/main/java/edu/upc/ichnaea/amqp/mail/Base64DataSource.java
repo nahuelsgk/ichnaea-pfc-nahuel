@@ -47,14 +47,16 @@ public class Base64DataSource implements DataSource {
 	@Override
 	public InputStream getInputStream() throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    OutputStream b64os;
-		try {
-			b64os = MimeUtility.encode(baos, "base64");
-		} catch (MessagingException e) {
-			throw new IOException(e);
+		if(mData != null) {
+		    OutputStream b64os;
+			try {
+				b64os = MimeUtility.encode(baos, "base64");
+			} catch (MessagingException e) {
+				throw new IOException(e);
+			}
+		    b64os.write(mData);
+		    b64os.close();
 		}
-	    b64os.write(mData);
-	    b64os.close();
 	    baos.close();
 	    return new ByteArrayInputStream(baos.toByteArray());
 	}

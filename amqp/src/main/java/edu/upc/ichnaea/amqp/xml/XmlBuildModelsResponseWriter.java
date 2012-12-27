@@ -55,6 +55,7 @@ public class XmlBuildModelsResponseWriter extends XmlWriter {
 			part = new MimeBodyPart();
 			part.setDataHandler(new DataHandler(new Base64DataSource(mData)));
 			part.setHeader("Content-Type", "application/zip");
+			part.setHeader("Content-Transfer-Encoding", "base64");
 			mp.addBodyPart(part);
 		} catch (MessagingException e) {
 		}

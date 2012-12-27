@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
+
 import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -31,5 +32,5 @@ public class XmlReader<H extends ContentHandler> {
     	parser.setContentHandler(mHandler);
     	parser.parse(new InputSource(reader));
     	return this;
-	}
+	}	
 }

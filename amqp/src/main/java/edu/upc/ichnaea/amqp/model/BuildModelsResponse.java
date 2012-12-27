@@ -20,6 +20,7 @@ public class BuildModelsResponse {
 		mStart = start;
 		mEnd = end;
 		mData = data;
+		mProgress = 1;
 	}
 	
 	public int getId() {

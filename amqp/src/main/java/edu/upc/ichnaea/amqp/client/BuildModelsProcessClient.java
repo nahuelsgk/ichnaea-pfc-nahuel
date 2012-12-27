@@ -38,7 +38,7 @@ public class BuildModelsProcessClient extends QueueClient {
 	protected void reply(Channel channel, BuildModelsResponse response, String replyTo) throws IOException, ParserConfigurationException {
 		getLogger().info("sending reply to \""+replyTo+"\"...");
 		AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().
-				contentType("multipart").build();
+				contentType("multipart/mixed").build();
 		String responseXml = new XmlBuildModelsResponseWriter().build(response).toString();
 		channel.basicPublish(getExchange(), replyTo, properties, responseXml.getBytes());
 	}

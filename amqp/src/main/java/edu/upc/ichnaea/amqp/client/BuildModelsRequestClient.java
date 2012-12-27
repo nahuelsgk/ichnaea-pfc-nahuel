@@ -54,7 +54,7 @@ public class BuildModelsRequestClient extends QueueClient {
 			getLogger().info("request finished.");
 			if(mResponseOutput != null) {
 				getLogger().info("writing build models response to a file ...");
-				mResponseOutput.write(body);
+				mResponseOutput.write(resp.getData());
 				mResponseOutput.close();
 			}
 			setFinished(true);
