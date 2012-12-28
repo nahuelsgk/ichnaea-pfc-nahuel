@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 
 import org.xml.sax.SAXException;
 
 import edu.upc.ichnaea.amqp.IOUtils;
-import edu.upc.ichnaea.amqp.mail.ByteArrayDataSource;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 
 public class XmlBuildModelsResponseReader extends XmlReader<BuildModelsResponseHandler> {
@@ -23,7 +23,7 @@ public class XmlBuildModelsResponseReader extends XmlReader<BuildModelsResponseH
 	}
 	
 	public BuildModelsResponse read(String mpdata) throws SAXException, IOException, MessagingException {
-		MimeMultipart mp = new MimeMultipart(new ByteArrayDataSource(mpdata.getBytes()));
+		MimeMultipart mp = new MimeMultipart(new ByteArrayDataSource(mpdata.getBytes(), "multipart/mixed"));
 		Object content = mp.getBodyPart(1).getContent();
 		getHandler().setResponseData(IOUtils.read(content));
 		content = mp.getBodyPart(0).getContent();

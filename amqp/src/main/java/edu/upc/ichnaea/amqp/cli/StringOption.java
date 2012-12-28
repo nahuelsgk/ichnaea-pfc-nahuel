@@ -21,7 +21,9 @@ public abstract class StringOption extends Option {
 		if(inCommandLine(line)) {
 			value = getCommandLineValue(line);
 		}
-		setValue(value);
+		if(value != null) {
+			setValue(value);
+		}
 	}
 	
 	abstract public void setValue(String value) throws InvalidOptionException;

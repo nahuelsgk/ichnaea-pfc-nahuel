@@ -26,9 +26,10 @@ public class BuildModelsRequestClient extends QueueClient {
 	BuildModelsRequest mRequest;
 	OutputStream mResponseOutput;
 	
-	public BuildModelsRequestClient(BuildModelsRequest request, String queue) {
+	public BuildModelsRequestClient(BuildModelsRequest request, String queue, OutputStream output) {
 		super(queue, true);
 		mRequest = request;
+		mResponseOutput = output;
 	}
 	
 	protected void request(String routingKey) throws ParserConfigurationException, IOException {
@@ -45,13 +46,14 @@ public class BuildModelsRequestClient extends QueueClient {
 	protected void response(byte[] body) throws IOException, SAXException, MessagingException {
 		BuildModelsResponse resp = new XmlBuildModelsResponseReader().read(new String(body));
 		float progress = resp.getProgress();
+		SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 		
 		if(progress < 1) {
 			int percent = Math.round(progress*100);
-			SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 			getLogger().info(percent+"% "+f.format(resp.getEnd().getTime()));
 		} else {
-			getLogger().info("request finished.");
+			getLogger().info("request finished (start "+f.format(resp.getStart().getTime())
+					+" end "+f.format(resp.getEnd().getTime())+").");
 			if(mResponseOutput != null) {
 				getLogger().info("writing build models response to a file ...");
 				mResponseOutput.write(resp.getData());

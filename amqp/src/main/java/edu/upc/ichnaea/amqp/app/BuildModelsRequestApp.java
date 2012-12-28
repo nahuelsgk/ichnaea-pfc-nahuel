@@ -1,6 +1,7 @@
 package edu.upc.ichnaea.amqp.app;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -11,6 +12,7 @@ import edu.upc.ichnaea.amqp.cli.EnumOption;
 import edu.upc.ichnaea.amqp.cli.IntegerOption;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.ReadFileOption;
+import edu.upc.ichnaea.amqp.cli.WriteFileOption;
 import edu.upc.ichnaea.amqp.client.BuildModelsRequestClient;
 import edu.upc.ichnaea.amqp.csv.CsvDatasetReader;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
@@ -30,6 +32,7 @@ public class BuildModelsRequestApp extends QueueApp {
 	Season mSeason = Season.Summer;
 	int mSection = 1;
 	Reader mDatasetReader;
+	FileOutputStream mResponseOutput;
 	
     public static void main(String[] args) {   	
     	main(args, new BuildModelsRequestApp());
@@ -62,6 +65,12 @@ public class BuildModelsRequestApp extends QueueApp {
 				mSection = value;
 			}
 		}.setDefaultValue(mSection).setDescription("The model section to build."));
+    	options.add(new WriteFileOption("output") {
+			@Override
+			public void setValue(FileOutputStream value) {
+				mResponseOutput = value;
+			}
+		}.setDescription("The file to write with the response."));    	
     	return options;
     }
 
@@ -81,7 +90,7 @@ public class BuildModelsRequestApp extends QueueApp {
 		}
 		int id = 1;
 		BuildModelsRequest request = new BuildModelsRequest(id, dataset, mSeason, mSection);
-		mClient = new BuildModelsRequestClient(request, getQueueName());
+		mClient = new BuildModelsRequestClient(request, getQueueName(), mResponseOutput);
 		mClient.setup(getChannel());
 	}
 	

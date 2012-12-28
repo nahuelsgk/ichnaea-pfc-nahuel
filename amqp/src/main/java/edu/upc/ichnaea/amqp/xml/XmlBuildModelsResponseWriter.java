@@ -8,11 +8,11 @@ import javax.activation.DataHandler;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Element;
 
-import edu.upc.ichnaea.amqp.mail.Base64DataSource;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 
 public class XmlBuildModelsResponseWriter extends XmlWriter {
@@ -53,7 +53,7 @@ public class XmlBuildModelsResponseWriter extends XmlWriter {
 			part.setHeader("Content-Type", "text/xml");			
 			mp.addBodyPart(part);
 			part = new MimeBodyPart();
-			part.setDataHandler(new DataHandler(new Base64DataSource(mData)));
+			part.setDataHandler(new DataHandler(new ByteArrayDataSource(mData, "")));
 			part.setHeader("Content-Type", "application/zip");
 			part.setHeader("Content-Transfer-Encoding", "base64");
 			mp.addBodyPart(part);
