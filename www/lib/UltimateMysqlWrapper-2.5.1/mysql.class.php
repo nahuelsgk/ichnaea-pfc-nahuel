@@ -17,12 +17,12 @@
 class MySQL
 {
 	// SET THESE VALUES TO MATCH YOUR DATA CONNECTION
-	private $db_host    = "localhost";  // server name
-	private $db_user    = "root";       // user name
-	private $db_pass    = "qwerasdf";           // password
-	private $db_dbname  = "ichnaea";           // database name
-	private $db_charset = "utf8";           // optional character set (i.e. utf8)
-	private $db_pcon    = false;        // use persistent connection?
+	private $db_host    = "";  // server name
+	private $db_user    = "";       // user name
+	private $db_pass    = "";           // password
+	private $db_dbname  = "";           // database name
+	private $db_charset = "";           // optional character set (i.e. utf8)
+	private $db_pcon    = true;        // use persistent connection?
 
 	// constants for SQLValue function
 	const SQLVALUE_BIT      = "bit";

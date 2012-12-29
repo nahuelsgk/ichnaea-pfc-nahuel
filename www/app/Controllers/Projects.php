@@ -1,6 +1,6 @@
 <?php
 includeLib("Domain/Project");
-includeLib("Domain/Auth/SessionSingleton");
+includeLib("Lib/Auth/SessionSingleton");
 
 /*
 * Controller for the view "project/new"
@@ -15,8 +15,16 @@ function displayProjectNewForm($page){
       )
     );
     $project->saveProject();
-    printVar($project);
   }
 }
 
+/*
+* Controller for the view "project/matrix"
+*/
+function displayProjectMatrixs($page){
+  global $globalparams;
+  $pid = $globalparams->getParam('pid');
+  $matrixs = Matrix::getMatrixsFromProject($pid);
+  $page->assign("matrixs", $matrixs);
+}
 ?>

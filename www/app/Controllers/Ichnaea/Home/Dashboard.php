@@ -1,6 +1,6 @@
 <?php
 includeLib("Domain/User");
-includeLib("Domain/Auth/SessionSingleton");
+includeLib("Lib/Auth/SessionSingleton");
  
 function display_home($page){
   $user_id = SessionSingleton::getInstance()->getUserId();
@@ -15,7 +15,7 @@ function display_home($page){
   }
   else
   {
-    $page->assign("matrixs",$projects);
+    $page->assign("projects",$projects);
     $page->assign('empty', 0);
   }
 }

@@ -59,8 +59,8 @@ class Params{
   }
 
   private function constructGetParams(){
-     foreach($_POST as $k => $v){
-      $this->paramsPOST[$k] = $v;
+     foreach($_GET as $k => $v){
+      $this->paramsGET[$k] = $v;
     }
   
   }

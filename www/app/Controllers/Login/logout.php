@@ -1,6 +1,6 @@
 <?php
-includeLib("Domain/Auth/Login");
-includeLib("Domain/Auth/SessionSingleton");
+includeLib("Lib/Auth/Login");
+includeLib("Lib/Auth/SessionSingleton");
 
 SessionSingleton::getInstance()->deleteSession();
 redirectLoginRegistration();

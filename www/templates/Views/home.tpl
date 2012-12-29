@@ -11,11 +11,11 @@
   {else}
     {* List projects *}
     <table border="1">
-    <tr><th>Name</th><th>Status</th></tr>
-    {section name=matrix loop=$matrixs}
+    <tr><th>Name</th><th>Operations</th></tr>
+    {section name=p loop=$projects}
     <tr>
-      <td>{$matrixs[matrix].name}</td>
-      <td>{$matrixs[matrix].status}</td>
+      <td>{$projects[p].name}</td>
+      <td><a href="/project?id={$projects[p].id}">Edit Project</a> | <a href="/project/matrixs?pid={$projects[p].id}">View matrixs</a> | <a href="/matrix/new?pid={$projects[p].id}">Create Matrixs</a> | <a href="">View trainings</a> | <a href="">Create Trainings</a> </td>
     <tr>
     {/section}
   {/if}

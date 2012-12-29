@@ -14,7 +14,7 @@ class Handler
   private $smarty;  
   
   public function __construct(){
-    $this->query=$_SERVER['REQUEST_URI'] ; 
+    $this->query=$_SERVER['PATH_INFO'] ; 
     $this->handler=$this;
     $this->resolveControllerPath();
     $this->smarty = new Smarty();

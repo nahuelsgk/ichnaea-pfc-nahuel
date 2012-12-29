@@ -1,5 +1,5 @@
 <?php
-includeLib("Domain/Auth/SessionSingleton");
+includeLib("Lib/Auth/SessionSingleton");
 
 
 ?>

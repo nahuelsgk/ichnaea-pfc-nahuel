@@ -22,7 +22,7 @@ class User
   */
   public function getName()
   {
-    $db = new MySQL();
+    $db = new DBi();
     $sql = $db->BuildSQLSelect("users",array("id"=>$this->user_id),"name");
     $result = $db->QuerySingleValue($sql);
     return $result;
@@ -39,7 +39,7 @@ class User
   * Returns true if the user is administrator
   */
   public function isAdministrator(){
-    $db = new MySQL();
+    $db = new DBi();
 
     $sql = $db->BuildSQLSelect(
       "users",
@@ -60,9 +60,10 @@ class User
   */
   public function checkCredentials($email, $password, $assign = false)
   {
-    $db = new MySQL();
+    $db = new DBi();
     $sql = "SELECT id FROM users WHERE login='".$email."' AND passwd='".$this->encryptUserPassword($password)."'";
     $user = $db->QuerySingleRowArray($sql);
+    printVar($db->Error());
     if ( !empty($user) ) { 
       $this->user_id = $user["id"];
       return TRUE;
@@ -79,8 +80,8 @@ class User
   */
   public function getProjects()
   {
-    $db = new MySQL();
-    $sql = "SELECT name FROM projects WHERE user_owner='$this->user_id'";
+    $db = new DBi();
+    $sql = "SELECT id, name FROM projects WHERE user_owner='$this->user_id'";
     $ret = $db->QueryArray($sql,MYSQL_BOTH);
     return $ret;
   }
@@ -93,7 +94,7 @@ class User
   * - 1: user created
   */
   public function createUser($user_info){
-    $db = new MySQL();
+    $db = new DBi();
 
    # check if the user exists
    $sql = "SELECT 1 FROM users WHERE login='".$user_info['login']."'";
@@ -107,7 +108,7 @@ class User
    
    # Prepare the values as SQL expects
    foreach ($user_info as &$info){
-     $info = MySQL::SQLValue($info);
+     $info = DBi::SQLValue($info);
    }
 
    # execute the sql
@@ -126,18 +127,18 @@ class User
   * Return FALSE if happened any error
   */
   public function resetPassword($user_id){
-    $db = new MySQL();
+    $db = new DBi();
     $result = $db->UpdateRows("users",
-    		array("passwd"=>MySQL::SQLValue(User::encryptUserPassword("12345qwer"))), 
+    		array("passwd"=>DBi::SQLValue(User::encryptUserPassword("12345qwer"))), 
 		array("id"=>$user_id));
     if ($result === FALSE) $db->kill();
     return $result;
   }
 
   public function changePassword($new_passwd){
-    $db = new MySQL();
+    $db = new DBi();
     $result = $db->UpdateRows("users",
-    		array("passwd"=>MySQL::SQLValue(User::encryptUserPassword($new_passwd))), 
+    		array("passwd"=>DBi::SQLValue(User::encryptUserPassword($new_passwd))), 
 		array("id"=>$this->user_id));
     if ($result === FALSE) $db->kill();
     return $result;

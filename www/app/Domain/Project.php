@@ -1,5 +1,7 @@
 <?php 
 
+includeLib("Domain/Matrix");
+
 class Project{
 
   #Fields Containing the columns for the database
@@ -10,10 +12,8 @@ class Project{
 
   public function __construct(array $attributes)
   {
-    printHTML("Creando un proyecto");
-    printVar($attributes);
-    $this->name = MySQL::SQLValue($attributes['name']);
-    $this->user_owner = MySQL::SQLValue($attributes['user_owner'], MySQL::SQLVALUE_NUMBER);
+    $this->name = DBi::SQLValue($attributes['name']);
+    $this->user_owner = DBi::SQLValue($attributes['user_owner'], DBi::SQLVALUE_NUMBER);
   }
   
   public function getProjectById(int $project_id)
@@ -37,7 +37,7 @@ class Project{
   * Saves to the DB the object
   */
   public function saveProject(){
-    $db = new MySQL();
+    $db = new DBi();
     $values=array();
     foreach (array('name','user_owner') as $v) { $values[$v] = $this->$v; }
 
@@ -48,5 +48,11 @@ class Project{
     $db->Query($st);
   }
 
+  /*
+  * NAMESPACE FUNCTIONS
+  */
+  public function getMatrixs($project_id){
+    return Matrix::getMatrixsFromProject($project_id);
+  }
 }
 ?>

@@ -1,4 +1,4 @@
-{init path="Controllers/Login/loginRegistration"}
+{init path="Controllers/Login/loginRegistration" function="displayLoginRegistrationForm"}
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->

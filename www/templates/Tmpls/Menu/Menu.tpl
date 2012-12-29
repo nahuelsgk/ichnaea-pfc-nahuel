@@ -5,7 +5,7 @@ Welcome <a href="/account/settings">{$username}</a> |
 {if $is_admin}
 <a href="/admin/users">Users</a> |
 {/if}
-<a href="/projects/dashboard">Projects</a> |
+<a href="/home">Projects</a> |
 <a href="/matrixs/my-matrixs">Matrixs</a> |
 <a href="/trainings/my-trainings">Trainings</a> | 
 <a href="/help/help">Help</a> |
