@@ -4,7 +4,7 @@ includeLib("Domain/Vars");
 
 class Matrix{
   
-  private static $FIELDS = array('id', 'project_id', 'name', 'created');
+  private static $FIELDS = array('id', 'project_id', 'name', 'active', 'created');
   private static $TABLE = 'matrix';
 
   private $name;
@@ -48,13 +48,23 @@ class Matrix{
      $db = new DBi();
      $st = $db->BuildSQLSelect(
        self::$TABLE,
-       array("project_id"=>$project_id),
+       array("project_id"=>$project_id, "active"=>DBi::SQLValue("y",DBi::SQLVALUE_Y_N )),
        self::$FIELDS
      );
      $matrixs = $db->QueryArray($st);
      return $matrixs;
   }
-  
+
+  /*
+  * Disable a set of matrixs
+  */
+  public function disableMatrix($set_ids){
+    $db = new DBi();
+    $st = "UPDATE ".self::$TABLE." SET active='n' WHERE id IN (".implode(',', $set_ids).")";
+    printHTML($st);
+    $db->Query($st);
+    printHTML($db->Error());
+  }
 }
 
 ?>

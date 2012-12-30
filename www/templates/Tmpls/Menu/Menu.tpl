@@ -3,11 +3,11 @@
 <nav>
 Welcome <a href="/account/settings">{$username}</a> |
 {if $is_admin}
-<a href="/admin/users">Users</a> |
+<a href="/admin/users">Admin Users</a> |
 {/if}
-<a href="/home">Projects</a> |
-<a href="/matrixs/my-matrixs">Matrixs</a> |
-<a href="/trainings/my-trainings">Trainings</a> | 
+<a href="/home">My Projects</a> |
+<a href="/matrixs/my-matrixs">My Matrixs</a> |
+<a href="/trainings/my-trainings">My Trainings</a> | 
 <a href="/help/help">Help</a> |
 <a href="/logout">Logout</a>
 </nav>

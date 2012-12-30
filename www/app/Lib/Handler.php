@@ -12,7 +12,8 @@ class Handler
   private $controller_path;
   private $view;
   private $smarty;  
-  
+  private $full_path;
+
   public function __construct(){
     $this->query=$_SERVER['PATH_INFO'] ; 
     $this->handler=$this;
@@ -20,8 +21,16 @@ class Handler
     $this->smarty = new Smarty();
     $this->smarty->debugging = false;
     $this->smarty->caching = false;
+    $this->full_path = $this->resolveFullPath();
   }
   
+  private function resolveFullPath(){
+    $protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
+    $host     = $_SERVER['HTTP_HOST'];
+    $uri      = $_SERVER['REQUEST_URI'];
+    $currentUrl = $protocol . '://' . $host . $uri;
+    return $currentUrl;		    
+  }
   /*
   *Resolves the main controller and the view needed
   */
@@ -52,6 +61,10 @@ class Handler
 
   public function getView(){
     return $this->view;
+  }
+
+  public function getFullPath(){
+    return $this->full_path;
   }
 }
 

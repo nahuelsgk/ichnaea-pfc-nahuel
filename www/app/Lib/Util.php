@@ -33,6 +33,10 @@ function redirectTo($path){
   header('Location: http://' . ROOT_DOMAIN_ICHNAEA . $path);
 }
 
+function reloadSafe(){
+  global $handler;
+  header('Location: '.$handler->getFullPath());
+}
 /*
 * CALLS
 */

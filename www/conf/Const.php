@@ -1,7 +1,7 @@
 <?php 
 
 # Define if is development or production
-$developmentEnviroment = 0;
+$developmentEnviroment = 1;
 if($developmentEnviroment == 1){
   # define the systems path
   define("ROOTPATH","/opt/lampp/htdocs/ichnaea/www");

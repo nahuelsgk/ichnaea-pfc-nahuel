@@ -51,8 +51,21 @@ class Project{
   /*
   * NAMESPACE FUNCTIONS
   */
-  public function getMatrixs($project_id){
+  public function getMatrixs(int $project_id){
     return Matrix::getMatrixsFromProject($project_id);
+  }
+
+  /*
+  * Returns the attributes. Returns an associative array
+  */
+  public function getProjectAttributes($pid, $atts){
+    $db = new DBi();
+    $st = $db->BuildSQLSelect(
+      self::$TABLE,
+      array("id" => DBi::SQLValue($pid,DBi::SQLVALUE_NUMBER)),
+      $atts ? $atts : self::FIELDS
+    );
+    return $db->QueryArray($st);
   }
 }
 ?>
