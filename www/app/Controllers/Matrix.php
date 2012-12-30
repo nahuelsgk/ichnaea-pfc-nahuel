@@ -1,6 +1,9 @@
 <?php
 includeLib('Domain/Matrix');
-
+includeLib('Lib/Util');
+/*
+* Controller to display the page matrix/new
+*/
 function displayMatrixForm($page){
  global $globalparams;   
  
@@ -15,5 +18,11 @@ function displayMatrixForm($page){
    ));
    $matrix->saveMatrix();
  }
+}
+
+function displayMyMatrixs($page){
+  global $globalparams;
+  $matrixs = Matrix::getUserMatrixs(Util::getUserId());
+  $page->assign('matrixs', $matrixs);
 }
 ?>

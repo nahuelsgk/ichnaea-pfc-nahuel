@@ -15,25 +15,42 @@ class SessionSingleton{
     }
     return self::$instance;
   }
-  # Checking session
+  
+  /*
+  * Create the session
+  */
   public function createSession($email){
     $_SESSION['sid'] = $email;
   }
-
+ 
+  /*
+  * Check if the exists exists
+  */
   public function checkSession()
   {
     if(!$this->existsSession($_SESSION['sid'])) redirectLoginRegistration();
   }
   
+  
+  /*
+  * Check if the session exists
+  */
   private function existsSession()
   {
     if(isset($_SESSION['sid'])) return true;
     else false;
   }
+
+  /*
+  * Delete the current session
+  */
   public function deleteSession(){
     unset($_SESSION['sid']);
   }
 
+  /*
+  * Delete the current session
+  */
   public function getUserId(){
     $db = new DBi();
     $sql = "SELECT id  FROM users WHERE login='".$_SESSION['sid']."'";

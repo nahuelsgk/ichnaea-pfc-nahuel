@@ -44,4 +44,10 @@ function includeLib($library){
   include_once(WORKPATH."app/$library.php");
 }
 
+class Util{
+  public function getUserId(){
+    includeLib('Lib/Auth/SessionSingleton');
+    return SessionSingleton::getInstance()->getUserId();
+  }
+}
 ?>

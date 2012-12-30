@@ -8,7 +8,7 @@ class Params{
 
   private $paramsGET;
   private $paramsPOST;
- 
+  
   /*
   * Read from queried params and construc both associative arrays
   */

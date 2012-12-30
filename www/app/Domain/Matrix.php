@@ -65,6 +65,19 @@ class Matrix{
     $db->Query($st);
     printHTML($db->Error());
   }
+
+
+  /*
+  * Returns an array of associative arrays
+  */
+  public function getUserMatrixs($id){
+    $db = new Dbi();
+    
+    $sl = "SELECT m.name as name_matrix, m.id as id_matrix, p.name as name_project, p.id as id_project
+    FROM matrix m INNER JOIN projects p ON m.project_id = p.id 
+    WHERE p.user_owner = '$id'";
+    return $db->QueryArray($sl);
+  }
 }
 
 ?>
