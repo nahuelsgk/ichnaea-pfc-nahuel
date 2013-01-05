@@ -13,7 +13,7 @@ class Handler
   private $view;
   private $smarty;  
   private $full_path;
-
+  private $ajax_request = false;
   public function __construct(){
     $this->query=$_SERVER['PATH_INFO'] ; 
     $this->handler=$this;
@@ -22,8 +22,22 @@ class Handler
     $this->smarty->debugging = false;
     $this->smarty->caching = false;
     $this->full_path = $this->resolveFullPath();
+    $this->ajax_request = $this->detectTypeOfRequest();
+  }  
+
+  private function detectTypeOfRequest(){
+    if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+    !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
+      // If its an ajax request execute the code below       
+      //echo 'This is an ajax request!';   
+      return true;
+    }
+    //if it's not an ajax request echo the below.
+    //echo 'This is clearly not an ajax request!';
+    return false;
   }
-  
+ 
   private function resolveFullPath(){
     $protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
     $host     = $_SERVER['HTTP_HOST'];
@@ -56,7 +70,11 @@ class Handler
     if ($output === FALSE){
       $this->smarty->display(RELATIVE_SMARTY_VIEWS . "/notfound.tpl");
     }
-    else $this->smarty->display($path);
+    else if ($this->ajax_request == false) $this->smarty->display($path);
+    else {
+      global $globalparams;
+      $globalparams->setAjaxParams();
+    }
   }
 
   public function getView(){
@@ -65,6 +83,10 @@ class Handler
 
   public function getFullPath(){
     return $this->full_path;
+  }
+
+  public function isAjaxRequest(){
+    return $this->ajax_request;
   }
 }
 

@@ -9,6 +9,7 @@ require('./app/Lib/Params.php');
 
 #This a global variable: be careful to rename inside the code
 global $globalparams;
+global $handler;
 
 $globalparams = new Params();
 $handler      = new Handler();

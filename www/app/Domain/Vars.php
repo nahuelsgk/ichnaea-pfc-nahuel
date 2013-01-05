@@ -8,7 +8,7 @@ class Vars{
   
   }
 
-  public function saveProjectVars($pid,$vars){
+  public function saveMatrixVars($pid,$vars){
     $db = new Dbi();
 
     $st = "INSERT INTO ".self::$TABLE."(matrix_id,name) VALUES ";

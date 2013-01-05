@@ -13,17 +13,14 @@
 
         $.ajax({
           type: 'POST',
-          url: 'http://dev.ichnaea.lsi.upc.edu/response.php?action=sample2',
+          url: 'http://dev.ichnaea.lsi.upc.edu/firstajax.php?action=sample2',
           data: 'name=Andrew&nickname=Aramis',
           success: function(data){
             $('.results').html(data);
           }
         });
-
     });
-
    </script>
-
     <div class="results">awaiting for response</div>
     <div style="clear:both"></div>
 </div>

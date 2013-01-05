@@ -15,10 +15,22 @@
     {section name=p loop=$projects}
     <tr>
       <td>{$projects[p].name}</td>
-      <td><a href="/project?id={$projects[p].id}">Edit Project</a> | <a href="/project/matrixs?pid={$projects[p].id}">View matrixs</a> | <a href="/matrix/new?pid={$projects[p].id}">Create Matrixs</a> | <a href="">View trainings</a> | <a href="">Create Trainings</a> </td>
-    <tr>
+      <td>
+	 <a href="/project/matrixs?pid={$projects[p].id}">View matrixs</a> | 
+	 <a href="/matrix/new?pid={$projects[p].id}">Create Matrixs</a> | 
+	 View trainings | 
+	 Create Trainings
+      </td>
+    </tr>
     {/section}
+    </table>
   {/if}
   <a href='project/new'>Add a new project!</a>
 {/block}
-
+{block name='help_text'}
+<h4>Welcome to your dashboard!</h4>
+<p>
+Here you can see your projects currently open.
+We are under construction. Please, be pacient.
+</p>
+{/block}

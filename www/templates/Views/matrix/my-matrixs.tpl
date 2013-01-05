@@ -15,6 +15,7 @@
   <td>{$matrixs[m].name_project}</td>
   <td>{$matrixs[m].id_matrix}</td>
   <td>{$matrixs[m].name_matrix}</td>
+  <td><a href="/matrix/view?mid={$matrixs[m].id_matrix}">View matrix</a></td>
 <tr>
 {/section}
 </form>
