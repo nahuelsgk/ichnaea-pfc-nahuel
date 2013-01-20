@@ -53,7 +53,7 @@ public class SecureShell implements ShellInterface {
 	
 	public SecureShell(String urlString) throws MalformedURLException
 	{
-		URL url = new URL(urlString);
+		URL url = new URL("http://"+urlString);
 		mHost = url.getHost();
 		mPort = url.getPort();
 		String[] userInfo = url.getUserInfo().split(":");

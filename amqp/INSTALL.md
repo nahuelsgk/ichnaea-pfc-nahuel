@@ -46,7 +46,11 @@ On Ubuntu
     mvn test    
 
 * run the project jar
-	mvn exec:java -Dexec.mainClass="edu.upc.ichnaea.amqp.app.TestWorkApp"
-	mvn exec:java -Dexec.mainClass="edu.upc.ichnaea.amqp.app.TestRequestApp"
+
+    * listen to new build-models requests
+    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh"
+    
+    * issue a test build-models request
+    mvn exec:java -Dexec.args="build-models:request -d src/test/resources/test.csv"
 
 

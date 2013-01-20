@@ -18,6 +18,7 @@ public class BuildModelsResponseHandler implements ContentHandler {
 	
 	final static String TAG_RESPONSE = "response";
 	final static String ATTR_ID = "id";
+	final static String ATTR_ERROR = "error";
 	final static String ATTR_PROGRESS = "progress";
 	final static String ATTR_START = "start";
 	final static String ATTR_END = "end";
@@ -29,6 +30,7 @@ public class BuildModelsResponseHandler implements ContentHandler {
 	float mProgress;
 	int mId;
 	byte[] mData;
+	String mError;
 	
 	public BuildModelsResponse getData() {
 		return mResponse;
@@ -48,11 +50,14 @@ public class BuildModelsResponseHandler implements ContentHandler {
 		mStart = Calendar.getInstance();
 		mEnd = Calendar.getInstance();
 		mId = 0;
+		mError = null;
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		if(mProgress >= 1) {
+		if(mError == null) {
+			mResponse = new BuildModelsResponse(mId, mStart, mEnd, mError);
+		} else if(mProgress >= 1) {
 			mResponse = new BuildModelsResponse(mId, mStart, mEnd, mData);
 		} else {
 			mResponse = new BuildModelsResponse(mId, mStart, mEnd, mProgress);
@@ -80,6 +85,9 @@ public class BuildModelsResponseHandler implements ContentHandler {
 				mProgress = 1;
 			} else {
 				mProgress = Float.parseFloat(atts.getValue(ATTR_PROGRESS));
+			}
+			if(atts.getValue(ATTR_ERROR) != null) {
+				mError = atts.getValue(ATTR_ERROR);
 			}
 			SimpleDateFormat f = new SimpleDateFormat(CALENDAR_FORMAT);
 			try {

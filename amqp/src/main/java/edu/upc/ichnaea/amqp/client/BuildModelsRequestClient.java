@@ -45,6 +45,13 @@ public class BuildModelsRequestClient extends QueueClient {
 	
 	protected void response(byte[] body) throws IOException, SAXException, MessagingException {
 		BuildModelsResponse resp = new XmlBuildModelsResponseReader().read(new String(body));
+		
+		if(resp.getError() != null) {
+			getLogger().info("got error: "+resp.getError());
+			setFinished(true);
+			return;
+		}
+		
 		float progress = resp.getProgress();
 		SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 		

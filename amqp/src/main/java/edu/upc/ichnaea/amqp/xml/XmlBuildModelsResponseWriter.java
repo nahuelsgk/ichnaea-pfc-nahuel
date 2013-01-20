@@ -28,6 +28,10 @@ public class XmlBuildModelsResponseWriter extends XmlWriter {
 
 		root.setAttribute(BuildModelsResponseHandler.ATTR_ID, String.valueOf(resp.getId()));
 		root.setAttribute(BuildModelsResponseHandler.ATTR_TYPE, BuildModelsResponseHandler.TYPE);
+		
+		if(resp.getError() != null) {
+			root.setAttribute(BuildModelsResponseHandler.ATTR_ERROR, resp.getError());			
+		}
 		root.setAttribute(BuildModelsResponseHandler.ATTR_PROGRESS, String.valueOf(resp.getProgress()));
 		
 		SimpleDateFormat f = new SimpleDateFormat(BuildModelsResponseHandler.CALENDAR_FORMAT);

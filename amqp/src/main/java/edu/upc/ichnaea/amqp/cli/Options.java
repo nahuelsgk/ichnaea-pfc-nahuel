@@ -24,6 +24,7 @@ public class Options implements Iterable<Option>{
 			public void setValue(boolean value) throws InvalidOptionException {
 				if(value) {
 					printHelp();
+					System.exit(0);
 				}
 			}
 		}.setDescription("Show this help message."));		

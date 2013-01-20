@@ -9,19 +9,30 @@ public class BuildModelsResponse {
 	protected Calendar mStart;
 	protected Calendar mEnd;
 	protected byte[] mData;
+	protected String mError;
+	
+	public BuildModelsResponse(int id, Calendar start, Calendar end, String error) {
+		this(id, start, end);
+		mError = error;
+		mProgress = 1;
+	}
 	
 	public BuildModelsResponse(int id, Calendar start, Calendar end, float progress) {
-		this(id, start, end, null);
+		this(id, start, end);
 		mProgress = progress;		
 	}
 	
 	public BuildModelsResponse(int id, Calendar start, Calendar end, byte[] data) {
-		mId = id;
-		mStart = start;
-		mEnd = end;
+		this(id, start, end);
 		mData = data;
 		mProgress = 1;
 	}
+	
+	public BuildModelsResponse(int id, Calendar start, Calendar end) {
+		mId = id;
+		mStart = start;
+		mEnd = end;
+	}	
 	
 	public int getId() {
 		return mId;
@@ -42,5 +53,9 @@ public class BuildModelsResponse {
 	public byte[] getData() {
 		return mData;
 	}
+
+	public String getError() {
+		return mError;
+	}	
 	
 }
