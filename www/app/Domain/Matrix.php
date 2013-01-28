@@ -1,10 +1,13 @@
 <?php
 
-//includeLib("Domain/Vars");
-
 class Matrix{
   
-  private static $FIELDS = array('id', 'project_id', 'name', 'active', 'created');
+  private static $FIELDS = array(
+    'id'         => DBi::SQLVALUE_NUMBER, 
+    'project_id' => DBi::SQLVALUE_NUMBER, 
+    'name'       => DBi::SQLVALUE_TEXT, 
+    'active'     => DBi::SQLVALUE_Y_N, 
+    'created'	 => DBi::SQLVALUE_DATETIME);
   private static $TABLE = 'matrix';
 
   private $name;
@@ -18,10 +21,13 @@ class Matrix{
     $this->project_id = DBi::SQLValue($attributes['project_id'], DBi::SQLVALUE_NUMBER);
   }
 
+  /*
+  * Save the matrix to the DB. Object metrod
+  */
   public function saveMatrix(){
     $db = new DBi();
     
-    //Save the values of the matrix
+    //Prepare the matrix sql to insert
     $values = array();
     foreach (array('name','project_id') as $v) { $values[$v] = $this->$v; }
     $st = $db->BuildSQLInsert(
@@ -43,12 +49,62 @@ class Matrix{
     }
   }
 
-
   /*
-  * NAMESPACE FUNCTION
+  * NAMESPACE FUNCTIONS
   */
+  
+  /*
+  * Namespace function to save a new matrix
+  */
+  public function saveNewMatrix($pid, $name, $variables){
+    $db = new DBi();
+    printHTML("Namespace Matrix: $pid, $name");
+    //Prepare the matrix sql to insert
+    $values['name']       = DBi::SQLValue($name);
+    $values['project_id'] = DBi::SQLValue($pid, DBi::SQLVALUE_NUMBER);
+    $st = $db->BuildSQLInsert(
+      self::$TABLE,
+      $values
+    );
+    try{
+      $db->TransactionBegin();
+      $db->Query($st);
+      printHTML($db->Error());
+      Vars::saveMatrixVars2($db->GetLastInsertId(), $variables, $db);
+      $db->TransactionEnd(); 
+    }
+    catch(Exception $e){
+      $db->TransactionRollback();
+      printHTML($e->getMessage());
+    }
+  }
+  
+  /*
+  * Namespace function to add variables definition to a matrix
+  */
+  public function saveNewVariables($mid, $variables){
+      Vars::saveMatrixVars2($mid, $variables);
+  }
 
   /*
+  * Get all the info from a matrix
+  * - $params(optional): array with the not all the columns columns
+  */
+  public function getMatrixDefinition($mid, $params = NULL){
+    $db = new DBi();
+
+    $st = $db->BuildSQLSelect(
+      self::$TABLE,
+      array("id" => DBi::SQLValue($mid, DBi::SQLVALUE_NUMBER)),
+      isset($params) ? $params : array_keys(self::$FIELDS)
+    );
+    
+    if (($matrix = $db->QuerySingleRowArray($st, MYSQL_ASSOC))===FALSE) throw new Exception($db->Error);
+    
+    return $matrix;
+  }
+
+ /*
   * getMatrixsFromProject
   *
   * Returns the matrix from the project $project_id
@@ -60,7 +116,7 @@ class Matrix{
        array("project_id"=>$project_id, "active"=>DBi::SQLValue("y",DBi::SQLVALUE_Y_N )),
        self::$FIELDS
      );
-     $matrixs = $db->QueryArray($st);
+     $matrixs = $db->Query($st);
      return $matrixs;
   }
 
@@ -70,38 +126,44 @@ class Matrix{
   public function disableMatrix($set_ids){
     $db = new DBi();
     $st = "UPDATE ".self::$TABLE." SET active='n' WHERE id IN (".implode(',', $set_ids).")";
-    printHTML($st);
     $db->Query($st);
     printHTML($db->Error());
   }
 
 
   /*
-  * Returns all the matrixs from the user with id $user_id as an array of associative arrays.
+  * Returns matrix's basic info from a user_id.
+  * - $pid: if $pid defined will return the from a concrete project.
   */
-  public function getUserMatrixs($id){
+  public function getUserMatrixs($id, $pid = NULL){
     $db = new Dbi();
-    
     $sl = "SELECT m.name as name_matrix, m.id as id_matrix, p.name as name_project, p.id as id_project
-    FROM matrix m INNER JOIN projects p ON m.project_id = p.id 
-    WHERE p.user_owner = '$id'";
+    	FROM matrix m INNER JOIN projects p ON m.project_id = p.id 
+    	WHERE p.user_owner = '$id' AND
+	m.active = 'y'";
+    if (isset ($pid)) $sl.=" AND p.id = '$pid'";
     return $db->QueryArray($sl);
   }
 
   /*
-  * Returns the variables of the matrix with the id
+  * Returns array of the variables of the matrix
   */
   public function getMatrixVars($mid){
     $db = new DBi();
 
     $sl = "SELECT v.name, v.id
     FROM matrix m INNER JOIN var v ON v.matrix_id = m.id
-    WHERE v.matrix_id = '$mid'";
+    WHERE v.matrix_id = '$mid'
+    ORDER BY v.id";
     
     $vars = $db->QueryArray($sl, MYSQL_ASSOC);
     printHTML($db->Error());
     return $vars;
   }
+
+  /*
+  * Returns an associative array with the id of the samples
+  */
   public function getMatrixSamples($mid){
      $db = new DBi();
 
@@ -111,6 +173,10 @@ class Matrix{
     printHTML($db->Error());
     return $rows;
   }
+
+  /*
+  * Returns the values from a matrix
+  */
   public function getMatrixSamplesValues($mid){
     $db = new DBi();
 
@@ -120,14 +186,56 @@ class Matrix{
     printHTML($db->Error());
     return $values;
   }
+
+  /*
+  * Returns a complete matrix values. Even if the the MxN value doesn't exist
+  * Returns:
+  * [sample_id][var_id] = array(id=>value_id, value=> its_value)
+  */
+  public function getMatrixSamplesValuesComplete($mid){
+    $db = new DBi();
+    $sl = "SELECT complete_matrix.sample_id, variable_id, variable_name, v.id, v.value 
+          FROM (
+	      SELECT s.id sample_id, v.id variable_id, v.name variable_name 
+	      FROM sample s,var v  WHERE s.matrix_id = $mid AND v.matrix_id=$mid
+	    ) as complete_matrix 
+	    LEFT JOIN value v ON v.sample_id = complete_matrix.sample_id AND v.var_id = complete_matrix.variable_id
+	    ORDER BY complete_matrix.sample_id, variable_id ";
+    if (($values = $db->QueryArray($sl,MYSQL_ASSOC))===FALSE) throw new Exception($db->Error());
+    $matrix = array();
+    foreach($values as $v){
+      $matrix[$v["sample_id"]][$v["variable_id"]] = array("id"=>$v["id"], "value"=>$v["value"]);
+    }
+    return $matrix;
+  }
   /*
   * Values: Actually an array of StdObject with this attributes:
   * - id -> Id of the var
   * - value
   */
   public function saveNewSample($mid, $values){
-    printHTML("SAVING NEW SAMPLE"); 
-    Sample::saveSample($mid,$values);
+    return Sample::saveSample($mid,$values);
+  }
+  
+  /*
+  * Delete a sample from a matrix
+  */
+  public function deleteSample($sample_id){
+    return Sample::deleteSample($sample_id);
+  }
+
+  /*
+  * Perfoms a generic update definition.
+  * -params: array of associative array. Each key references the field and the values set the new updated values
+  */
+  public function updateDefinition($mid, $params){
+    $db = new DBi();
+    foreach($params as $k=>$v){
+          $params[$k] = DBi::SQLValue($v, self::$FIELDS[$k]);
+    }
+
+    $upd = $db->BuildSQLUpdate(self::$TABLE, $params, array('id' => $mid));
+    if ($db->Query($upd) === FALSE) throw new Exception($db->Error());
   }
 }
 
@@ -138,27 +246,59 @@ class Sample{
   public function __construct(){}
     
   public function saveSample($mid, $values){
-    printHTML('saving row');
     $db = new DBi();
     $st = $db->BuildSQLInsert(
           self::$TABLE,
 	  array('matrix_id' => DBi::SQLValue($mid))
 	  );
-    printHTML($st);
+    //Transaction: saving few values
     try{
-    $db->TransactionBegin();
-    $db->Query($st);
-    $sample_id = $db->GetLastInsertID();
-    Values::saveValues($sample_id,$values, $db);
-    $db->TransactionEnd();
+      $db->TransactionBegin();
+      
+      //First save the sample
+      $db->Query($st);
+      $sample_id = $db->GetLastInsertID();
+
+      //Save the array of values
+      Values::saveValues($sample_id, $values,$db) ;
+      $db->TransactionEnd();
     }
     catch(Exception $e){
       $db->TransactionRollback();
       printVar($e);
+      return FALSE;
     }
+  return;
   }
 
+  /*
+  * Delete a sample and its values
+  */
+  public function deleteSample($sample_id){
+    $db = new DBi();
+    $st = $db->BuildSQLDelete(
+      self::$TABLE,
+      array('id' => DBi::SQLValue($sample_id))
+    );
 
+    //Transaction: delete all values from the sample $sample_id
+    try{
+      $db->TransactionBegin();
+      
+      //First delete the sample to respect the foreign keys
+      Values::deleteValuesFromSample($sample_id,$db);
+
+      //Second delete the referenced sample
+      $db->Query($st);
+      $db->TransactionEnd();
+    }
+    catch(Exception $e){
+      $db->TransactionRollback();
+      printVar($e);
+      return FALSE;
+    }
+  }
+ 
 }
 
 class Values{
@@ -178,24 +318,112 @@ class Values{
     if ($db->Query($st) == FALSE) throw new Exception($db->Error());
 
   }
+
+  public function deleteValuesFromSample($sample_id, $db){
+    if(!isset($db)) $db = new DBi();
+    $st = $db->BuildSQLDelete(
+      self::$TABLE,
+      array('sample_id' => DBi::SQLValue($sample_id))
+    );
+    printHTML("Delete values".$st);
+    if ($db->Query($st) == FALSE) throw new Exception($db->Error());
+  }
 }
 
 class Vars{
   private static $TABLE = 'var';
-  private static $FIELDS = array ('id', 'matrix_id', 'name', 'created');
+  private static $FIELDS = array (
+  	'id'=>DBi::SQLVALUE_NUMBER, 
+	'matrix_id'=> DBi::SQLVALUE_NUMBER,
+	'name' => DBi::SQLVALUE_TEXT,
+	'threshold_limit' => DBi::SQLVALUE_NUMBER, 
+	'created' => DBi::SQLVALUE_DATETIME);
 
   public function __construct(){}
+  
+  public function saveMatrixVars($pid,$vars, $db){
+    if (!isset($db)) $db = new Dbi();
 
-  public function saveMatrixVars($pid,$vars){
-    $db = new Dbi();
-
-    $st = "INSERT INTO ".self::$TABLE."(matrix_id,name) VALUES ";
+    $st = "INSERT INTO ".self::$TABLE."(matrix_id, name, threshold_limit ) VALUES ";
     foreach ($vars as $var){
+      printVar($var);
       $values[] = '(' . DBi::SQLValue($pid, DBi::SQLVALUE_NUMBER) . ',' . DBi::SQLValue($var) . ')';
     }
     $st.=implode(',', $values);
     printHTML($st);
     $db->Query($st);
-    }
   }
+  
+  public function updateVar($update, $db = NULL){
+    if (!isset($db)) $db = new DBi();
+    
+    //Get the id and remove it 
+    $id = DBi::SQLValue($update['id'], DBi::SQLVALUE_NUMBER);
+
+    unset($update['id']);
+    unset($update['action']);
+    foreach($update as $k=>$v){
+      $values[$k] = DBi::SQLValue($v, self::$FIELDS[$k]);
+    }
+    $st = $db::BuildSQLUpdate(self::$TABLE, $values, array('id' => $id));
+    if( $db->Query($st) === FALSE ) throw new Exception($db->Error());
+  }
+  /*
+  * Returns all the fields from a var
+  */
+  public function getVarsDefinition($mid){
+    $db = new DBi();
+    $st = $db->BuildSQLSelect(self::$TABLE, 
+    	  array("matrix_id" => DBi::SQLValue($mid, DBi::SQLVALUE_NUMBER)), 
+	  array_keys(self::$FIELDS)
+	);
+    if (($vars = $db->QueryArray($st, MYSQL_ASSOC)) === FALSE ) throw new Exception($db->Error());
+    return $vars;
+  }
+
+  /*
+  * Function to save new matrixVars. $vars is an array of associatives array
+  */
+  public function saveMatrixVars2($pid, $vars, $db = NULL){
+ 
+    if ($vars == NULL) return;
+    if ($db == NULL) $db = new DBi();
+    
+    //Check if the variables is an array of array of associatives
+    if (!isset($vars[0]["name"])) throw new Exception("Variables structure bad formed");
+
+    //Build a big insert
+    $st = "INSERT INTO ".self::$TABLE."(matrix_id, name, threshold_limit ) VALUES ";
+    foreach($vars as $var){
+      printVar($var);
+      $values[] = '(' . DBi::SQLValue($pid,  DBi::SQLVALUE_TEXT). ',' .
+        DBi::SQLValue($var["name"], DBi::SQLVALUE_TEXT) . ',' . 
+      	DBi::SQLValue($var["threshold_limit"],  DBi::SQLVALUE_NUMBER) . ')';
+    }
+    $st.=implode(',', $values);
+    
+    printHTML($st);
+    if ( $db->Query($st) === FALSE ) throw new Exception($db->Error());
+  }
+  
+  /*
+  * Delete variables
+  */
+  public function deleteVariables($vars){
+    if ($vars == NULL) return;
+    
+    $db = new DBi();
+    
+    if (!isset($vars[0])) throw new Exception("Variables structure bad formed");
+
+    $variables=implode(',', $vars);
+
+    $dl = "DELETE FROM ".self::$TABLE." WHERE id IN ( $variables )";
+    
+    if ( $db->Query($dl) === FALSE ) throw new Exception($db->Error());
+  }
+
+
+}
+
 ?>

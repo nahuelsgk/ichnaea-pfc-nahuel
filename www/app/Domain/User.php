@@ -123,13 +123,13 @@ class User
   }
 
   /*
-  * Reset the password to "12345qwer"
+  * Reset the password to "fluzzy_909"
   * Return FALSE if happened any error
   */
   public function resetPassword($user_id){
     $db = new DBi();
     $result = $db->UpdateRows("users",
-    		array("passwd"=>DBi::SQLValue(User::encryptUserPassword("12345qwer"))), 
+    		array("passwd"=>DBi::SQLValue(User::encryptUserPassword("fluzzy_909"))), 
 		array("id"=>$user_id));
     if ($result === FALSE) $db->kill();
     return $result;

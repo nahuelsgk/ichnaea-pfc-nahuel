@@ -11,13 +11,13 @@
   {else}
     {* List projects *}
     <table border="1">
-    <tr><th>Name</th><th>Operations</th></tr>
+    <tr><th>Projects</th><th>Operations</th></tr>
     {section name=p loop=$projects}
     <tr>
       <td>{$projects[p].name}</td>
       <td>
 	 <a href="/project/matrixs?pid={$projects[p].id}">View matrixs</a> | 
-	 <a href="/matrix/new?pid={$projects[p].id}">Create Matrixs</a> | 
+	 <a href="/matrix/edit_new?pid={$projects[p].id}">Create Matrixs</a> | 
 	 View trainings | 
 	 Create Trainings
       </td>
@@ -31,6 +31,5 @@
 <h4>Welcome to your dashboard!</h4>
 <p>
 Here you can see your projects currently open.
-We are under construction. Please, be pacient.
 </p>
 {/block}

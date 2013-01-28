@@ -2,37 +2,39 @@
 {block name='title'}View Matrix for PROJECTNAME{/block}
 
 {block name='page'}
-{init path="Controllers/Matrix" function="displayMatrixViewForm"}
+{init path="Controllers/Matrix" function="displayMatrixViewForm2"}
+<a href="">Home</a> &gt;&gt; <a href="">Project</a> &gt;&gt; <a href="/matrix/edit_new?pid={$pid}&mid={$mid}">Matrix definition</a>
 <table border="1px" style="margin-left: 50px;">
-<th>Sample\Variable</th>
+<th><button id="add_sample">Add Sample</button></th>
 {section name=v loop=$vars}
 <th style="padding: 5px 10px 5px 10px">{$vars[v].name}</th>
 {/section}
 <th>Action</th>
 
 {foreach name="row" key=key item=row from=$samples}
-<tr>
-<td>Sample {$key}</td>
-{foreach key=var_id item=value from=$row}
-<td>{$value}</td>
+  <tr>
+    <td>Sample {$key}</td>
+    {foreach key=var_id item=value from=$row}
+      <td><input type="text" size="15" vid="{$var_id}" val="{$value.id}" value={$value.value}></td>
+    {/foreach}
+  <td><button class="delete_sample" sample_id="{$key}" name="delete_sample">Delete</button></td>
+  </tr>
 {/foreach}
-</tr>
-{/foreach}
-<tr id="sample">
+
+
+<tr id="sample" style="display: none;">
 <td>New Sample</td>
 {section name=v loop=$vars}
-<td style="padding: 5px 10px 5px 10px"><input type="text" size="5" var_id="{$vars[v].id}" name="value"></td>
+<td style="padding: 5px 10px 5px 10px"><input type="text" size="16" var_id="{$vars[v].id}" name="value"></td>
 {/section}
-
-<td><button id="save_new_sample" name="save_new_sample">Save</a></td>
+<td><button id="save_new_sample" name="save_new_sample">Save</button></td>
 </tr>
 <table>
-<input type="button" id="btnAdd" value="Add row"> </a>
+<!-- <input type="button" id="btnAdd" value="Add row"> </a> -->
 <script language="javascript" type="text/javascript">
 $(document).ready(function (){
-  $("#btnAdd").live('click', function (e){
-    var row = $("table tr:last").clone(true);
-    row.insertAfter("table tr:last");
+  $("#add_sample").live('click', function (e){
+    $("#sample").show();
   });
   
   $("#save_new_sample").click(function (){
@@ -48,20 +50,35 @@ $(document).ready(function (){
     });
     post = post.substring(0,post.length-1);
     post += ']}';
-    //alert(post);
     $.ajax({
-      type: 'POST',
+      type:     'POST',
       dataType: 'text',
-      url: 'http://dev.ichnaea.lsi.upc.edu/matrix/view?mid={$mid}',
-      data: { JSON: post },
-      success: function(data){
-        $('#results').html(data);
-      }
+      data:     { JSON: post },
+      success:  function(data){
+                  //$('#results').html(data);
+		  alert(data);
+		  location.reload();
+                }
     });
+  });
+  $(".delete_sample").click(function (){
+    var id = $(this).attr('sample_id');  
+    var post = ' { ';
+    post += '"ajaxDispatch": "Controllers/Matrix", "function": "dispatch_removeSampleFromTheMatrix","values": [ { "id": "'+id+'" } ]';
+    post += '}';
+    alert(post);
+    $.ajax({
+      type:     'POST',
+      dataType: 'text',
+      data:	{ JSON: post },
+      success:  function(data){
+                  alert(data);
+		  location.reload();
+                }
+    });  
   });
 });
 
 </script>	
-<div id="results">....</div>
 {/block}
 

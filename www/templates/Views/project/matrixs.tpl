@@ -3,19 +3,14 @@
 {block name="title"}{init path="Controllers/Projects" function="displayProjectName"}Matrixs from {$project_name}{/block}
 {block name="headtitle"}Matrixs from {$project_name}{/block}
 {block name="page"}
-{init path="Controllers/Projects" function="displayProjectMatrixs"}
-{* List projects *}
-<form method="post">
-<input type="submit" value="Perfom action" name="submit">
-<table border="1">
-<tr><th>Id</th><th>Name</th><th>Remove</th><th>Operations</th></tr>
-{section name=m loop=$matrixs}
-<tr>
-<td>{$matrixs[m].id}</td>
-<td>{$matrixs[m].name}</td>
-<td><input type="checkbox" value="{$matrixs[m].id}" name="delete_matrix[]"></td>
-<td><a href="/matrix/view?mid={$matrixs[m].id}">View Matrix</a></td>
-<tr>
-</form>
-{/section}
+{include file="Tmpls/Matrix/ListMatrixs.tpl" filter="filterByProject" }
+{/block}
+
+{block name="help_text"}
+Here you can see all the matrixs from a concrete project.
+<ul style="padding-left: 10px;" >
+<li>Delete matrix: select the matrixs you want to delete and click "Delete selected"
+<li>Edit matrix definition: you can change the definition of its variable(name, threshold, etc.)
+<li>View matrix: you can see the matrixs values</li>
+</ul>
 {/block}

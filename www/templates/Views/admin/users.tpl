@@ -10,7 +10,6 @@
 
 <form method="post">
 {$error}
-<input type="submit" value="Reset passwords" name="submit">
 {* List of users *}
 <table>
 <tr><th>id</th><th>Name</th><th>Login</th><th>Reset password</th></tr>
@@ -23,5 +22,9 @@
 <tr>
 {/section}
 </table>
+<input type="submit" value="Reset passwords" name="submit">
 </form>
+{/block}
+{block name="help_text"}
+<lu><li>Reset password: Select the checkbox and click "Reset Passwords". Will put a temporaly password to the user. The temp password by now is: fluzzy_909</li></ul>
 {/block}

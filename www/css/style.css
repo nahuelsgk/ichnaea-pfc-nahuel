@@ -119,7 +119,6 @@ input:not([type="checkbox"]):focus{
 }
 /* Generic table styling*/
 table{
-  border: 1px solid #888;
   border-spacing:0px;
 }
 
@@ -128,7 +127,6 @@ th{
 }
 
 td{
-  border: 1px solid #888;
   padding: 10px 20px 10px 20px;
 }
 

@@ -20,9 +20,11 @@
 </div>
 
 <div id="help_content" class="widget">
-<center><h3>This is a draggable help online.</h3><br></center>
-<p>Please be pacient! We are underconstruction.<br>
-{block name="help_text"}{/block}</div>
+<center><h3>Draggable help online.</h3><br></center>
+<div style="text-align : justify; padding: 5px;" >
+{block name="help_text"}{/block}
+</div>
+</div>
 <div id="container">
 <h1>{block name="headtitle"}{/block}</h1>
 {block name="page"}{/block}
