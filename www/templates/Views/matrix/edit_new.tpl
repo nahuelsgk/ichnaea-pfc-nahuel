@@ -3,7 +3,11 @@
 {block name='title'}Matrix Definition{/block}
 {block name='page'}
 {init path="Controllers/Matrix" function="displayMatrixForm2"}
-<h1>{if $is_edit eq 'n'}New matrix{else}Editing matrix "{$name_matrix}"{/if}</h1>
+<h1>{if $is_edit eq 'n'}New matrix for the project "{$project_name}" {else}Editing matrix "{$name_matrix}"{/if}</h1>
+<div id="msgid"></div>
+<div class="breadcrumbs">
+<a href="/home">Home</a> &gt;&gt; <a href="">Project(Edit)</a> &gt;&gt; {if $is_edit eq 'n'}New matrix{else}Editing matrix{/if}
+</div>
 <table>
 <tr><td>Name of the matrix</td><td><input type="text" id="name_matrix" name="name" placeholder="Name of the matrix" value="{$name_matrix}" required></td></tr>
 <tr>
@@ -11,8 +15,16 @@
 <td>
   <table id="variables">
   <tbody>
+  <tr>
+    <th>Name</th>
+    <th>Threshold</th>
+    <th>Selection</th>
+  </tr>
   {section name=v loop=$vars}
-  <tr><td><input name="name" tof="variable" vid="{$vars[v].id}" value="{$vars[v].name}" size="10"></td><td><input tof="variable" name="threshold_limit" vid="{$vars[v].id}" value="{$vars[v].threshold_limit}"></td><td><input type="checkbox" class="delete" name="select_var" vid="{$vars[v].id}"></td></tr>
+  <tr>
+    <td><input name="name" tof="variable" vid="{$vars[v].id}" value="{$vars[v].name}" size="10"></td>
+    <td><input tof="variable" name="threshold_limit" vid="{$vars[v].id}" value="{$vars[v].threshold_limit}"></td>
+    <td><input type="checkbox" class="delete" name="select_var" vid="{$vars[v].id}"></td></tr>
   {/section}
   </tbody>
   </table>
@@ -24,8 +36,8 @@
 <button id="save_matrix">Save matrix definition</button>
 {else}
 <button id="update_matrix">Update matrix definition</button>
+<button onclick='window.location.href="/matrix/view?mid={$mid}"'>Go and view the matrix!</button>
 {/if}
-<a href="/matrix/view?mid={$mid}">Go and view the matrix!</a>
 <script language="javascript" type="text/javascript">
 $(document).ready(function(){
   $('#add_variable').live('click',function(e){
@@ -33,31 +45,51 @@ $(document).ready(function(){
   });
 {if $is_edit eq 'n'}
   $('#save_matrix').click(function(){
-    var post = ' { ';
-    post += '"ajaxDispatch": "Controllers/Matrix", "function": "dispatch_addNewMatrix", "values": { ';
     var name_matrix = $('#name_matrix');
-    post += ' "name_matrix": "'+ name_matrix.attr('value')+'"  , "variables": [ ';
-
-    //New variables
+    
+    var data = {
+      "ajaxDispatch": "Controllers/Matrix",
+      "function": "dispatch_addNewMatrix",
+      "values" : {
+        "name_matrix": name_matrix.attr('value'),
+	"variables" : [],
+      }
+    };
+    
     var valueinputElements = $('table#variables tr.variable_form_template');
-    $.each(valueinputElements, function(index, el) {
+    $.each(valueinputElements, function(index, el){
       var name_var = $(el).find('input[name=name_var]');
       var threshold_var = $(el).find('input[name=threshold_var]');
-      post += '{ "name": "'+name_var.val()+'", "threshold": "'+threshold_var.val()+'"},';
+      var new_value = {
+        "name": name_var.val(), 
+	"threshold": threshold_var.val() 
+      };
+      data.values.variables.push(new_value);
     });
-    
-    post = post.substring(0,post.length-1);
-    post += '] } } ';
-    alert(post);
     
     $.ajax({
       type:     'POST',
-      dataType: 'text',
-      data:     { JSON: post },
+      dataType: 'json',
+      processData: false,
+      data:     JSON.stringify(data),
       success:  function(data){
-                  alert(data);
-                }
-    ;);
+	          if (data["mid"]){
+		    window.location.href = "/matrix/edit_new?pid={$pid}&mid="+data["mid"];
+		  }
+		  else{
+		    alert("Error");
+		  }
+
+                },
+      error: function(data){
+               alert("KO");
+               alert(data);
+	       for(var key in data) {
+	            $('#msgid').append(key);
+	            $('#msgid').append('=' + data[key] + '<br />');
+	       }
+             }
+    });
 
   });
 {else}
@@ -66,17 +98,26 @@ $(document).ready(function(){
     alert(database_field);
     var vid = $(this).attr('vid');
     var new_value = $(this).attr('value');
-    var post = ' { ';
-    post += '"ajaxDispatch": "Controllers/Matrix", "function": "dispatch_updateMatrixVariables", "values": { "id": "' + vid + '", "'+database_field+'": "' + new_value +'", "action": "update"  }';
-    post += '} ';
+    var post = ' { "ajaxDispatch": "Controllers/Matrix", "function": "dispatch_updateMatrixVariables", "values": { "id": "' + vid + '", "'+database_field+'": "' + new_value +'", "action": "update"  } } ';
     alert(post);
     $.ajax({
       type:     'POST',
-      dataType: 'text',
-      data:     { JSON: post },
+      dataType: 'json',
+      data:     post,
+      processData: false,
       success:  function(data){
                  alert(data);
-                }
+		 location.reload();
+                },
+      error: function(data){
+ 	         alert("KO");
+                 alert(data);
+                 for(var key in data) {
+                   $('#msgid').append(key);
+                   $('#msgid').append('=' + data[key] + '<br />');
+                 }
+             }
+
       });
 
   });
@@ -107,11 +148,21 @@ $(document).ready(function(){
     
     $.ajax({
       type:     'POST',
-      dataType: 'text',
-      data:     { JSON: post },
+      dataType: 'json',
+      data:     post ,
       success:  function(data){
                   alert(data);
-                }
+		  location.reload();
+                },
+      error: function(data){
+               alert("KO");
+               alert(data);
+               for(var key in data) {
+                 $('#msgid').append(key);
+                 $('#msgid').append('=' + data[key] + '<br />');
+               }
+	     }
+
     });
 
   });

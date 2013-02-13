@@ -69,8 +69,7 @@ TODO: Specific error message
 </span>
 </center>
 <p>
-<label for="email" class="youmail" data-icon="e">Write your email</label>
-<input id="email" name="email" required="required" type="email" placeholder="mysupermail@mail.com"/>
+Actually we don't have a email server because it is currently under development. Please, send me an email to nahuelsgk@gmail.com to ask a reset password. As soon as possible, I will fordward you a temporaly password. Once got it, inside the app you can set you new password.
 </p>
 <p class="change_link">
 Are you a member ?

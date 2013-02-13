@@ -70,7 +70,9 @@ class Handler
     if ($output === FALSE){
       $this->smarty->display(RELATIVE_SMARTY_VIEWS . "/notfound.tpl");
     }
-    else if ($this->ajax_request == false) $this->smarty->display($path);
+    else if ($this->ajax_request == false) {
+      $this->smarty->display($path);
+    }
     else {
       global $globalparams;
       $globalparams->setAjaxParams();

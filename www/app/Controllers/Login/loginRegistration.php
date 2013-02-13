@@ -3,8 +3,7 @@
 includeLib("Lib/Auth/Login");
 includeLib("Lib/Auth/SessionSingleton");
 
-function displayLoginRegistrationForm($page){
-  global $globalparams;
+function displayLoginRegistrationForm($page, $params){
   $session = SessionSingleton::getInstance();
   $message="";
   $error = "";
@@ -17,8 +16,8 @@ function displayLoginRegistrationForm($page){
   );
 
   # Submit on the login form
-  if($globalparams->getParam('login')){
-    if(Login::checkLogin($globalparams->getParam("username"),$globalparams->getParam("password"))==true){
+  if($params->getParam('login')){
+    if(Login::checkLogin($params->getParam("username"),$params->getParam("password"))==true){
       $session->createSession($_POST["username"]);
       redirectHome();
     }
@@ -28,7 +27,7 @@ function displayLoginRegistrationForm($page){
     }
   }
 
-  else if($globalparams->getParam('register')){
+  else if($params->getParam('register')){
     includeLib("Domain/User");
     $user_info['name'] = $_POST['username'];
     $user_info['login'] = $_POST['email'];

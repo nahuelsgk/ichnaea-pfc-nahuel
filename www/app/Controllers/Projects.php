@@ -5,39 +5,43 @@ includeLib("Lib/Auth/SessionSingleton");
 /*
 * Controller for the view "project/new"
 */
-function displayProjectNewForm($page){
-  global $globalparams;
-  if ($globalparams->getParam("saveproject")) {
+function displayProjectNewForm($page, $params){
+  if ($params->getParam("saveproject")) {
     $project = new Project( 
       array(
-        'name' => $globalparams->getParam('name_project'),
+        'name' => $params->getParam('name_project'),
 	'user_owner' => SessionSingleton::getInstance()->getUserId()
       )
     );
-    $project->saveProject();
+
+    try{
+      $pid = Project::saveProject2(SessionSingleton::getInstance()->getUserId(), $params->getParam('name_project'));
+      Util::redirectTo("/matrix/edit_new?pid=".$pid);
+    }
+    catch(Exception $e){
+      printHTML($e->getMessage());
+    }
   }
 }
 
 /*
 * Controller for the view "project/matrix"
 */
-function displayProjectMatrixs($page){
-  global $globalparams;
+function displayProjectMatrixs($page, $params){
 
-  if($globalparams->getParam('submit')){
+  if($params->getParam('submit')){
     //TODO: check_privileges: only project manager
-    if ($globalparams->getParam('delete_matrix')) Matrix::disableMatrix($globalparams->getParam('delete_matrix'));
+    if ($params->getParam('delete_matrix')) Matrix::disableMatrix($params->getParam('delete_matrix'));
     reloadSafe();
   }
-  $pid = $globalparams->getParam('pid');
+  $pid = $params->getParam('pid');
   $matrixs = Matrix::getMatrixsFromProject($pid);
   $page->assign("matrixs", $matrixs);
 }
 
-function displayProjectName($page){
-  global $globalparams;
-  $pid = $globalparams->getParam('pid');
-  $rows = Project::getProjectAttributes($pid,array('name'));
-  $page->assign('project_name', $rows[0]['name']);
+function displayProjectName($page, $params){
+  $pid = $params->getParam('pid');
+  $attrs = Project::getProjectAttributes($pid,array('name'));
+  $page->assign('project_name', $attrs);
 }
 ?>

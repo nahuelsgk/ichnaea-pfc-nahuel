@@ -3,14 +3,13 @@
 /*
 * PRINTERS
 */
-function printHTML($string){
-  echo "$string <br>";
-}
-function printVar($var){
-  echo "<pre>";
-  echo var_dump($var);
-  echo "</pre>";
 
+function printHTML($string){
+  error_log($string);
+}
+
+function printVar($var){
+  error_log(var_dump($var));
 }
 
 /*
@@ -48,6 +47,10 @@ class Util{
   public function getUserId(){
     includeLib('Lib/Auth/SessionSingleton');
     return SessionSingleton::getInstance()->getUserId();
+  }
+  
+  function redirectTo($path){
+    header('Location: http://' . ROOT_DOMAIN_ICHNAEA . $path);
   }
 }
 ?>

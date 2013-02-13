@@ -16,4 +16,5 @@ function requirePrivileges($page, $privileges){
   if ($user->hasPrivileges($privileges)) return '';
   else redirectHome(); 
 }
+
 ?>

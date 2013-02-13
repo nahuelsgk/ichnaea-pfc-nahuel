@@ -1,4 +1,5 @@
 {init path="Controllers/Matrix" function="displayMatrixsBasicInfoList" params="{$filter}"}
+{if $matrixs}
 <form method="post">
 <table>
 <tr><th>Id Project</th><th>Name Project</th><th>Id matrix</th><th>Name Matrix</th><th>Select</th><th>Operations</th> </tr>
@@ -18,3 +19,12 @@
 </table>
 <input type="submit" value="Delete selected" name="submit">
 </form>
+{else}
+Still you haven't create any matrixs. 
+{if $pid}
+You can create a matrix into this project clicking <a href="/matrix/edit_new?pid={$pid}">here</a>. 
+{else}
+You can create a matrix into a project <a href="/home">going home</a>! 
+{/if}
+{/if}
+

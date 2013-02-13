@@ -6,8 +6,8 @@ includeLib("Lib/Auth/SessionSingleton");
 /*
 * Page controller for the user settings
 */
-function displaySettings($page){
- if(isset($_POST['save'])){
+function displaySettings($page, $params){
+ if($params->getParam('save')){
    $user = new User(SessionSingleton::getInstance()->getUserId());
    if (isset($_POST["passwordsignup"]))
    {

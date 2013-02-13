@@ -8,11 +8,12 @@ class Params{
 
   private $paramsGET;
   private $paramsPOST;
-  
+  private $json_queried;
   /*
   * Read from queried params and construc both associative arrays
   */
   public function __construct(){
+    $this->json_queried = file_get_contents('php://input');
     $this->constructPostParams();
     $this->constructGetParams();
   }
@@ -66,11 +67,11 @@ class Params{
   }
 
   public function setAjaxParams(){
-    $json_string = $this->getPOSTParam('JSON');
+    $json_string = $this->json_queried;
     $json = json_decode($json_string);
     switch(json_last_error()) {
       case JSON_ERROR_NONE:
-	echo ' - Sin errores';
+	//echo ' - Sin errores';
 	break;
       case JSON_ERROR_DEPTH:
 	echo ' - Excedido tamaño máximo de la pila';
@@ -93,9 +94,7 @@ class Params{
     }
     $this->paramsPOST["values"] = $json->values;
     includeLib($json->ajaxDispatch);
-    call_user_func($json->function);
-       
-
+    call_user_func($json->function, $this);
   }
 }
 

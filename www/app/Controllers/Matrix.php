@@ -1,17 +1,16 @@
 <?php
+includeLib('Domain/Project');
 includeLib('Domain/Matrix');
 includeLib('Lib/Util');
 
 /*
 * Controller to display the page matrix/new
 */
-function displayMatrixForm($page){
- global $globalparams;   
- 
- if($globalparams->getParam("submit_matrix")){
-   $vars       = $globalparams->getParam("variable_name");
-   $name       = $globalparams->getParam("name");
-   $id_project = $globalparams->getParam("pid");
+function displayMatrixForm($page, $params){
+ if($params->getParam("submit_matrix")){
+   $vars       = $params->getParam("variable_name");
+   $name       = $params->getParam("name");
+   $id_project = $params->getParam("pid");
    $matrix = new Matrix(array(
      "name"       => $name,
      "vars"       => $vars,
@@ -22,15 +21,15 @@ function displayMatrixForm($page){
 }
 
 /*
-* Controller to display the page matrix/edit_new.
-* Displays the info of a matrix
+* Controller to display the page matrix/edit_new. Is the same controller for adding a new matrix and editing it
 */
-function displayMatrixForm2($page){
-  global $globalparams;
+function displayMatrixForm2($page, $params){
   $edit='n';
   $matrix = array();
   $vars = array();
-  if($mid = $globalparams->getParam('mid')){
+ 
+  //If passed a matrix_id as param, we are editing it
+  if($mid = $params->getParam('mid')){
     
     //TODO: privileges checking
     try{
@@ -43,78 +42,51 @@ function displayMatrixForm2($page){
     }
     $edit='y';
   }
-
+  $page->assign("project_name", Project::getProjectAttributes($params->getParam("pid"), array("name")));
   $page->assign("name_matrix", isset($matrix['name']) ?  $matrix['name'] : '');
   $page->assign("vars",        isset($vars) ? $vars : '');
   $page->assign("name_matrix", isset($matrix['name']) ? $matrix['name'] : '');
   $page->assign("is_edit", $edit);
-  $page->assign("pid", $globalparams->getParam("pid"));
-  $page->assign("mid", $globalparams->getParam("mid"));
+  $page->assign("pid", $params->getParam("pid"));
+  $page->assign("mid", $params->getParam("mid"));
 }
 
 /*
 * Controller for a template to display the basic list of a matrix
-* - filters: if is set the param, will display the the matrixs of a concrete project
+* - filters(optional): will display the the matrixs of a concrete project
 */
-function displayMatrixsBasicInfoList($page, $filters = NULL){
- global $globalparams;
- if($globalparams->getParam('submit')){
+function displayMatrixsBasicInfoList($page, $params, $filters = NULL){
+ if($params->getParam('submit')){
    //TODO: check_privileges: only project manager
-   if ($globalparams->getParam('delete_matrix')) Matrix::disableMatrix($globalparams->getParam('delete_matrix'));
+   if ($params->getParam('delete_matrix')) Matrix::disableMatrix($params->getParam('delete_matrix'));
    reloadSafe();
  }
 
  $pid = NULL;
  if (isset($filters)){
-   $pid = $globalparams->getParam('pid');
+   $pid = $params->getParam('pid');
  }
  
  $matrixs = Matrix::getUserMatrixs(Util::getUserId(),$pid);
  $page->assign('matrixs', $matrixs);
-
+ $page->assign('pid', $pid );
 }
 
-function displayMatrixViewForm($page){
-  global $globalparams;
+/*
+* Controller for the view matrix/view.
+*/
+function displayMatrixViewForm2($page, $params){
   //TODO: needs to check if i have permissions
  
-  $matrix_id = $globalparams->getParam("mid");
-
-  //Get variables of a matrixs
-  $vars = Matrix::getMatrixVars($matrix_id);
-  
-  $samples = Matrix::getMatrixSamples($matrix_id);
-  
-  $values = Matrix::getMatrixSamplesValues($matrix_id);
-  $matrix = array();
-  //Init the matrix
-  foreach($samples as $sample){
-    foreach($vars as $var){
-      $matrix[$sample["id"]][$var["id"]] = '';
-    }
-  }
-  //Full fill values
-  foreach($values as $value){$matrix[$value["sample_id"]][$value["var_id"]] = $value["value"];}
-  
-  $page->assign('vars',$vars);
-  $page->assign('samples',$matrix);
-  $page->assign('mid',$globalparams->getParam("mid"));
-}
-
-function displayMatrixViewForm2($page){
-  global $globalparams;
-  //TODO: needs to check if i have permissions
- 
-  $matrix_id = $globalparams->getParam("mid");
+  $matrix_id = $params->getParam("mid");
   try{ 
     //Get variables of a matrixs
     $vars = Matrix::getMatrixVars($matrix_id);
   
-    $samples = Matrix::getMatrixSamples($matrix_id);
-  
+    //...a complete matrix, even if the values aren't set
     $values = Matrix::getMatrixSamplesValuesComplete($matrix_id);
-  
-    //Init the matrix
+    
+    //..get the matrix project_id
     $pid = Matrix::getMatrixDefinition($matrix_id, array("project_id"));
   }
   catch(Exception $e){
@@ -123,7 +95,7 @@ function displayMatrixViewForm2($page){
   $page->assign('pid',$pid["project_id"]);
   $page->assign('vars',$vars);
   $page->assign('samples',$values);
-  $page->assign('mid',$globalparams->getParam("mid"));
+  $page->assign('mid',$params->getParam("mid"));
 }
 /*
 * AJAX RESPONSES 
@@ -132,11 +104,9 @@ function displayMatrixViewForm2($page){
 /*
 * Ajax response for saving a sample
 */
-function dispatch_displayMatrixViewForm(){ 
-  global $globalparams;
-
-  $mid    = $globalparams->getParam("mid");
-  $values = $globalparams->getParam("values");
+function dispatch_displayMatrixViewForm($params){ 
+  $mid    = $params->getParam("mid");
+  $values = $params->getParam("values");
   //Fix the values as array of associate array
   $vals_array = array();
   foreach ($values as $val){
@@ -149,11 +119,9 @@ function dispatch_displayMatrixViewForm(){
 /*
 * Ajax response for deleting a sample
 */
-function dispatch_removeSampleFromTheMatrix(){
-  global $globalparams;
-  $mid = $globalparams->getParam("mid");
-  $values = $globalparams->getParam("values");
-  printVar($values[0]->id); 
+function dispatch_removeSampleFromTheMatrix($params){
+  $mid = $params->getParam("mid");
+  $values = $params->getParam("values");
   Matrix::deleteSample($values[0]->id);
 }
 
@@ -161,27 +129,26 @@ function dispatch_removeSampleFromTheMatrix(){
 * Ajax response for adding a matrix
 */
 
-function dispatch_addNewMatrix(){
-  global $globalparams;
-  $pid = $globalparams->getParam("pid");
-  $values = $globalparams->getParam("values");
-  printVar($values);
+function dispatch_addNewMatrix($params){
+  $pid = $params->getParam("pid");
+  $values = $params->getParam("values");
+
   //Fix values as an array of associatived array 
-  $variables;
+  $variables = array();
   foreach($values->variables as $value){
     $variables[] = array("name" => $value->name, "threshold_limit" => $value->threshold);
   }
-  Matrix::saveNewMatrix($pid, $values->name_matrix, $variables);
+  $mid = Matrix::saveNewMatrix($pid, $values->name_matrix, $variables);
+  header('Content-Type: application/json');
+  echo json_encode(array('mid' => $mid));
 }
 
 /*
 * Dispatch for massive changes. Actually deprecated. Look for dispatch_updateMatrix2.
 */
-function dispatch_updateMatrix(){
-  global $globalparams;
-  $mid = $globalparams->getParam("mid");
-  $values = $globalparams->getParam("values");
-  printVar($values);
+function dispatch_updateMatrix($params){
+  $mid = $params->getParam("mid");
+  $values = $params->getParam("values");
  
   $new_vars = array();
   $delete_vars = array();
@@ -211,12 +178,33 @@ function dispatch_updateMatrix(){
 
 }
 
-function dispatch_updateMatrixVariables(){
-  global $globalparams;
-  $mid = $globalparams->getParam("mid");
-  $values = $globalparams->getParam("values");
+function dispatch_updateMatrixVariables($params){
+  $mid = $params->getParam("mid");
+  $values = $params->getParam("values");
   $update = get_object_vars($values);
   Vars::updateVar($update);
 
+}
+
+/*
+* Ajax response: update or adds the values of matrix
+*/
+function dispatch_updateMatrixValues($params){
+  $values = $params->getParam("values");
+  try{
+    if (!empty($values->valid)){Values::updateValue($values->valid, $values->value);}
+    elseif (empty($values->valid)){Values::saveValues($values->sample_id,array(array("id"=>$values->vid, "value"=>$values->value)));}
+  }
+  catch (Exception $e){
+    printHTML($e->getMessage());
+  }
+}
+
+/*
+* Ajax response: add a sample to the matrix
+*/
+function dispatch_addSample($params){
+  $values = $params->getParam("values");
+  Matrix::saveNewSample($values->mid, NULL);
 }
 ?>

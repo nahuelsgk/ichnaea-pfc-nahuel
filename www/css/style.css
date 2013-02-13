@@ -139,3 +139,7 @@ display: none;
 border: 1px solid gray;
 width: 250px;
 }
+
+#help_content ul{
+ padding-left: 10px;
+}

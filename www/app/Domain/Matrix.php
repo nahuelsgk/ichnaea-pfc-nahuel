@@ -56,9 +56,8 @@ class Matrix{
   /*
   * Namespace function to save a new matrix
   */
-  public function saveNewMatrix($pid, $name, $variables){
+  public function saveNewMatrix($pid, $name, $variables = NULL){
     $db = new DBi();
-    printHTML("Namespace Matrix: $pid, $name");
     //Prepare the matrix sql to insert
     $values['name']       = DBi::SQLValue($name);
     $values['project_id'] = DBi::SQLValue($pid, DBi::SQLVALUE_NUMBER);
@@ -69,9 +68,10 @@ class Matrix{
     try{
       $db->TransactionBegin();
       $db->Query($st);
-      printHTML($db->Error());
-      Vars::saveMatrixVars2($db->GetLastInsertId(), $variables, $db);
-      $db->TransactionEnd(); 
+      $mid = $db->GetLastInsertId();
+      Vars::saveMatrixVars2($mid, $variables, $db);
+      $db->TransactionEnd();
+      return $mid;
     }
     catch(Exception $e){
       $db->TransactionRollback();
@@ -151,7 +151,7 @@ class Matrix{
   public function getMatrixVars($mid){
     $db = new DBi();
 
-    $sl = "SELECT v.name, v.id
+    $sl = "SELECT v.name, v.id, v.threshold_limit
     FROM matrix m INNER JOIN var v ON v.matrix_id = m.id
     WHERE v.matrix_id = '$mid'
     ORDER BY v.id";
@@ -209,9 +209,7 @@ class Matrix{
     return $matrix;
   }
   /*
-  * Values: Actually an array of StdObject with this attributes:
-  * - id -> Id of the var
-  * - value
+  * Calls a function to save a sample.
   */
   public function saveNewSample($mid, $values){
     return Sample::saveSample($mid,$values);
@@ -303,18 +301,31 @@ class Sample{
 
 class Values{
   private static $TABLE = "value";
-  private static $FIELDS = array('id', 'sample_id', 'var_id', 'value', 'created');
+  private static $FIELDS = array(
+  	'id' => DBi::SQLVALUE_NUMBER, 
+	'sample_id' => DBi::SQLVALUE_NUMBER, 
+	'var_id' => DBi::SQLVALUE_NUMBER,
+	'value' => DBi::SQLVALUE_NUMBER,
+	'created' => DBi::SQLVALUE_DATETIME);
 
   public function __construct(){}
 
-  public function saveValues($sample_id, $values, $db){
+  /*
+  * Save the values to sample.
+  * - values: associative id:
+       [id] => variable_id
+       [value] => value
+  */
+  public function saveValues($sample_id, $values, $db = NULL){
+    if(empty($values)) return;
+  
     if(!isset($db)) $db = new DBi();
+    
     $st = "INSERT INTO ".self::$TABLE."(sample_id, var_id, value ) VALUES ";
     foreach ($values as $value){
       $st_val[] = '(' . DBi::SQLValue($sample_id, DBi::SQLVALUE_NUMBER) . ',' . DBi::SQLValue($value['id'], DBi::SQLVALUE_NUMBER) .','. DBi::SQLValue($value['value'], DBi::SQLVALUE_NUMBER) .')';
     }
     $st.=implode(',',$st_val);
-    printHTML($st);
     if ($db->Query($st) == FALSE) throw new Exception($db->Error());
 
   }
@@ -325,8 +336,19 @@ class Values{
       self::$TABLE,
       array('sample_id' => DBi::SQLValue($sample_id))
     );
-    printHTML("Delete values".$st);
+    printHTML("Deleting values with the query ".$st);
     if ($db->Query($st) == FALSE) throw new Exception($db->Error());
+  }
+
+  public function updateValue($value_id, $value){
+    $db = new DBi();
+    $upd = $db->BuildSQLUpdate(
+      self::$TABLE, 
+      array("value" => DBi::SQLValue($value, self::$FIELDS["value"])),
+      array('id' => $value_id)
+    );
+    if ($db->Query($upd) == FALSE) throw new Exception($db->Error());
+
   }
 }
 
@@ -395,14 +417,12 @@ class Vars{
     //Build a big insert
     $st = "INSERT INTO ".self::$TABLE."(matrix_id, name, threshold_limit ) VALUES ";
     foreach($vars as $var){
-      printVar($var);
       $values[] = '(' . DBi::SQLValue($pid,  DBi::SQLVALUE_TEXT). ',' .
         DBi::SQLValue($var["name"], DBi::SQLVALUE_TEXT) . ',' . 
       	DBi::SQLValue($var["threshold_limit"],  DBi::SQLVALUE_NUMBER) . ')';
     }
     $st.=implode(',', $values);
     
-    printHTML($st);
     if ( $db->Query($st) === FALSE ) throw new Exception($db->Error());
   }
   
