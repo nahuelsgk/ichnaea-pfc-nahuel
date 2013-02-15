@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 public class Shell implements ShellInterface {
 	
-	final static String TEMP_FILE_PREFIX = "ichnaea-amqp";
 	protected Logger mLogger = Logger.getLogger(Shell.class.getName());
 	
 	public Logger getLogger() {
@@ -44,22 +43,39 @@ public class Shell implements ShellInterface {
 	}
 
 	@Override
-	public FileInputStream readFile(String path) throws FileNotFoundException{
+	public FileInputStream readFile(String path) throws FileNotFoundException {
 		return new FileInputStream(path);
 	}
 
 	@Override
-	public FileOutputStream writeFile(String path) {
+	public FileOutputStream writeFile(String path) throws IOException {
 		try {
 			return new FileOutputStream(path);
 		} catch (FileNotFoundException e) {
-			throw new SecurityException("Path is a directory.");
+			throw new IOException("Path is a directory.");
+		}
+	}
+	
+	public void removeFile(String path) throws IOException {
+		if(!new File(path).delete())
+		{
+			throw new IOException("could not delete path");
 		}
 	}
 
 	@Override
-	public File createTempFile() throws IOException {
-		return File.createTempFile(TEMP_FILE_PREFIX,"");
+	public String getTempPath() throws IOException {
+		return System.getProperty("java.io.tmpdir"); 
+	}
+
+	@Override
+	public void open() throws IOException {
+
+	}
+
+	@Override
+	public void close() throws IOException {
+		
 	}
 
 }

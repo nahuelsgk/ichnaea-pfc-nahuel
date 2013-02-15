@@ -1,11 +1,11 @@
 package edu.upc.ichnaea.amqp.client;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Calendar;
-
+import java.util.UUID;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
@@ -49,15 +49,27 @@ public class BuildModelsProcessClient extends QueueClient {
 		Calendar start = Calendar.getInstance();
 		BuildModelsRequest request = new XmlBuildModelsRequestReader().read(new String(body));
 
-		getLogger().info("writing dataset to a csv file");
-		File datasetFile = mShell.createTempFile();
-		FileOutputStream out = new FileOutputStream(datasetFile);
+		getLogger().info("opening shell");
+		mShell.open();
+		
+		String datasetPath = new File(mShell.getTempPath(), UUID.randomUUID().toString()).getAbsolutePath();
+		
+		getLogger().info("writing dataset to "+datasetPath);
+		
+		OutputStream out = mShell.writeFile(datasetPath);
+		
 		new CsvDatasetWriter(new OutputStreamWriter(out)).write(request.getDataset()).close();
 		
 		getLogger().info("calling build models command");
-		BuildModelsCommand cmd = new BuildModelsCommand(request.getSeason(), datasetFile.getAbsolutePath());
+		BuildModelsCommand cmd = new BuildModelsCommand(request.getSeason(), datasetPath);
 		cmd.setScriptPath(mScriptPath);
 		CommandResult result = mShell.run(cmd);
+		
+		getLogger().info("deleting temporary dataset file");
+		mShell.removeFile(datasetPath);
+		
+		getLogger().info("closing shell");
+		mShell.close();
 		
 		if(replyTo != null) {
 			Calendar end = Calendar.getInstance();
