@@ -132,7 +132,8 @@ public class SecureShell implements ShellInterface {
 	@Override
 	public CommandResult run(CommandInterface command) throws IOException {
 		try{
-			ChannelExec channel = (ChannelExec) mSession.openChannel("exec");		
+			ChannelExec channel = (ChannelExec) mSession.openChannel("exec");
+			channel.connect();
 			channel.setCommand(command.toString());
 			command.beforeRun(this);
 			CommandResult result = readChannelInput(channel);
@@ -167,7 +168,8 @@ public class SecureShell implements ShellInterface {
 	public InputStream readFile(String path) throws IOException, FileNotFoundException {
 		try{
 			ChannelSftp channel = (ChannelSftp) mSession.openChannel("sftp");
-		    return channel.get(path);
+			channel.connect();
+			return channel.get(path);
 		}catch(SftpException e){
 			throw new IOException(e);
 		}catch(JSchException e){
@@ -179,20 +181,21 @@ public class SecureShell implements ShellInterface {
 	public OutputStream writeFile(String path) throws IOException {
 		try{
 			ChannelSftp channel = (ChannelSftp) mSession.openChannel("sftp");
+			channel.connect();
 		    return channel.put(path);
-		}catch(SftpException e){
+		}catch(SftpException e){			
 			throw new IOException(e);
 		}catch(JSchException e){
 			throw new IOException(e);
 		}		    
 	}
-	
 
 	@Override
 	public void removeFile(String path) throws IOException {
 		try{
 			ChannelSftp channel = (ChannelSftp) mSession.openChannel("sftp");
-		    channel.rm(path);
+			channel.connect();
+			channel.rm(path);
 		}catch(SftpException e){
 			throw new IOException(e);
 		}catch(JSchException e){
