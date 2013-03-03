@@ -1,5 +1,5 @@
 {extends file="Tmpls/ichnaea_root.tpl"}
-{block name='title'}View Matrix for PROJECTNAME{/block}
+{block name='title'}View Matrix{/block}
 
 {block name='page'}
 {init path="Controllers/Matrix" function="displayMatrixViewForm2"}
@@ -51,7 +51,7 @@ $(document).ready(function (){
      dataType: 'json',
      data:  JSON.stringify(data),
      success: function(data){
-		location.reload();
+       window.location.reload()
               },
      error: function(data){
        alert("KO");
@@ -86,7 +86,7 @@ $(document).ready(function (){
       dataType: 'json',
       data:     JSON.stringify(data) ,
       success:  function(data){
-		 location.reload();
+        window.location.reload();
                 },
       error: function(data){
         alert("KO");
@@ -97,27 +97,8 @@ $(document).ready(function (){
 
   $(".delete_sample").click(function (){
     var id = $(this).attr('sample_id');  
-    var data = { 
-      "ajaxDispatch": "Controllers/Matrix", 
-      "function": "dispatch_removeSampleFromTheMatrix",
-      "values": [ { "id": id } ]
-    };
-    $.ajax({
-      type:     'POST',
-      dataType: 'json',
-      data:	JSON.stringify(data) ,
-      success:  function(data){
-		  location.reload();
-                },
-      error: function(data){
-        alert("KO");
-        alert(data);
-        for(var key in data) {
-          $('#msgid').append(key);
-          $('#msgid').append('=' + data[key] + '<br />');
-        }
-      }
-    });  
+    var values = [{ "id": id }];
+    send_event("Controllers/Matrix","removeSampleFromTheMatrix", values);  
   });
 });
   

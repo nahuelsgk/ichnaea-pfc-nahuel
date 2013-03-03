@@ -4,46 +4,29 @@ includeLib('Domain/Matrix');
 includeLib('Lib/Util');
 
 /*
-* Controller to display the page matrix/new
+* Controller for page matrix/edit_new. Adds and edit in the same page
 */
-function displayMatrixForm($page, $params){
- if($params->getParam("submit_matrix")){
-   $vars       = $params->getParam("variable_name");
-   $name       = $params->getParam("name");
-   $id_project = $params->getParam("pid");
-   $matrix = new Matrix(array(
-     "name"       => $name,
-     "vars"       => $vars,
-     "project_id" => $id_project
-   ));
-   $matrix->saveMatrix();
- }
-}
-
-/*
-* Controller to display the page matrix/edit_new. Is the same controller for adding a new matrix and editing it
-*/
-function displayMatrixForm2($page, $params){
+function pageMatrixDefinition($page, $params){
+  $values = array();
   $edit='n';
   $matrix = array();
   $vars = array();
  
+  //default values for new matrixs
+  $values["public_matrix"] = 'n';
+
   //If passed a matrix_id as param, we are editing it
   if($mid = $params->getParam('mid')){
     
-    //TODO: privileges checking
-    try{
-      $matrix = Matrix::getMatrixDefinition($mid);
-      $vars = Vars::getVarsDefinition($mid);
-    }
-    catch(Exception $e){
-      printHTML($e->getMessage());
-      return;
-    }
+    $matrix = Matrix::getMatrixDefinition($mid);
+      
+    $values["public_matrix"] = $matrix["public"];
+    $values["matrix_name"] = $matrix['name'];
+    $vars = Vars::getVarsDefinition($mid);
     $edit='y';
   }
-  $page->assign("project_name", Project::getProjectAttributes($params->getParam("pid"), array("name")));
-  $page->assign("name_matrix", isset($matrix['name']) ?  $matrix['name'] : '');
+
+  $page->assign($values);
   $page->assign("vars",        isset($vars) ? $vars : '');
   $page->assign("name_matrix", isset($matrix['name']) ? $matrix['name'] : '');
   $page->assign("is_edit", $edit);
@@ -55,21 +38,9 @@ function displayMatrixForm2($page, $params){
 * Controller for a template to display the basic list of a matrix
 * - filters(optional): will display the the matrixs of a concrete project
 */
-function displayMatrixsBasicInfoList($page, $params, $filters = NULL){
- if($params->getParam('submit')){
-   //TODO: check_privileges: only project manager
-   if ($params->getParam('delete_matrix')) Matrix::disableMatrix($params->getParam('delete_matrix'));
-   reloadSafe();
- }
-
- $pid = NULL;
- if (isset($filters)){
-   $pid = $params->getParam('pid');
- }
- 
- $matrixs = Matrix::getUserMatrixs(Util::getUserId(),$pid);
+function displayMatrixsList($page, $params, $filters = NULL){
+ $matrixs = Matrix::getMatrixs();
  $page->assign('matrixs', $matrixs);
- $page->assign('pid', $pid );
 }
 
 /*
@@ -97,9 +68,6 @@ function displayMatrixViewForm2($page, $params){
   $page->assign('samples',$values);
   $page->assign('mid',$params->getParam("mid"));
 }
-/*
-* AJAX RESPONSES 
-*/
 
 /*
 * Ajax response for saving a sample
@@ -150,12 +118,12 @@ function dispatch_updateMatrix($params){
   $mid = $params->getParam("mid");
   $values = $params->getParam("values");
  
-  $new_vars = array();
-  $delete_vars = array();
-  $update_vars = array();
+  //$new_vars = array();
+  //$delete_vars = array();
+  //$update_vars = array();
 
   //Build structures from AJAX to the Domain Functions Requeriments by action
-  foreach($values->variables as $value){
+  /*foreach($values->variables as $value){
     switch($value->action){
       case "new":
         $new_vars[] = array ("name" => $value->name, "threshold_limit" => $value->threshold);
@@ -165,11 +133,15 @@ function dispatch_updateMatrix($params){
 	break;
     }
   }
-
+  */
   try{
-    Matrix::updateDefinition($mid,array('name'=>$values->name_matrix));
-    Matrix::saveNewVariables($mid, $new_vars);
-    Vars::deleteVariables($delete_vars);
+    Matrix::updateDefinition($mid,array(
+      'name'=>$values->name_matrix, 
+      'public'=>$values->visibility == 'public' ? 'y' : 'n'
+      )
+    );
+    //Matrix::saveNewVariables($mid, $new_vars);
+    //Vars::deleteVariables($delete_vars);
   }
   catch(Exception $e){
     printHTML($e->getMessage());
@@ -186,6 +158,13 @@ function dispatch_updateMatrixVariables($params){
 
 }
 
+/*
+* Ajax response: disables a matrix
+*/
+function dispatch_disableMatrix($params){
+  $values = $params->getParam("values");
+  Matrix::disableMatrix(array($values->mid));
+}
 /*
 * Ajax response: update or adds the values of matrix
 */

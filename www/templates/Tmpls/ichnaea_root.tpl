@@ -26,9 +26,9 @@
 </div>
 </div>
 <div id="container">
+<div id="msgid"></div>
 <h1>{block name="headtitle"}{/block}</h1>
 {block name="page"}{/block}
 </div>
-</script>
 </body>
 </html>

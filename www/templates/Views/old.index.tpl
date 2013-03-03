@@ -69,7 +69,8 @@ TODO: Specific error message
 </span>
 </center>
 <p>
-Actually we don't have a email server because it is currently under development. Please, send me an email to nahuelsgk@gmail.com to ask a reset password. As soon as possible, I will fordward you a temporaly password. Once got it, inside the app you can set you new password.
+<label for="email" class="youmail" data-icon="e">Write your email</label>
+<input id="email" name="email" required="required" type="email" placeholder="mysupermail@mail.com"/>
 </p>
 <p class="change_link">
 Are you a member ?
@@ -82,10 +83,7 @@ Are you a member ?
 
 <div id="register" class="animate form">
 <form method="post" autocomplete="on">
-<h1> Request an invitation </h1>
-<span style="text-align: justify;">Dear user,<br>
-This is a close application. Here you have a form to ask a invitation. As soon as possible, the system administrator will contact you to accept or decline your invitation.<br><br>
-</span>
+<h1> Sign up </h1>
 <center>
 <span id="message" class="message" style="color: red;">
 {if $error eq "register"}

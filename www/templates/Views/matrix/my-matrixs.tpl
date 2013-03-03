@@ -8,3 +8,8 @@
 </div>
 {include file="Tmpls/Matrix/ListMatrixs.tpl" filter=""}
 {/block}
+
+{block name="help_text""}
+<p>Here you can see your selectable and viewable matrixs.<br></p>
+<p>Ichnaea have some public default matrixs to start works with application.</p>
+{/block}

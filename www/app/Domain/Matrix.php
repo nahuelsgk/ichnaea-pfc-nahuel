@@ -4,9 +4,9 @@ class Matrix{
   
   private static $FIELDS = array(
     'id'         => DBi::SQLVALUE_NUMBER, 
-    'project_id' => DBi::SQLVALUE_NUMBER, 
     'name'       => DBi::SQLVALUE_TEXT, 
     'active'     => DBi::SQLVALUE_Y_N, 
+    'public' 	 => DBi::SQLVALUE_Y_N,
     'created'	 => DBi::SQLVALUE_DATETIME);
   private static $TABLE = 'matrix';
 
@@ -16,9 +16,6 @@ class Matrix{
   private $matrix_id;
 
   public function __construct(array $attributes){
-    $this->name       = DBi::SQLValue($attributes['name']);
-    $this->vars       = $attributes['vars'];
-    $this->project_id = DBi::SQLValue($attributes['project_id'], DBi::SQLVALUE_NUMBER);
   }
 
   /*
@@ -29,7 +26,7 @@ class Matrix{
     
     //Prepare the matrix sql to insert
     $values = array();
-    foreach (array('name','project_id') as $v) { $values[$v] = $this->$v; }
+    foreach (array('name') as $v) { $values[$v] = $this->$v; }
     $st = $db->BuildSQLInsert(
       self::$TABLE,
       $values
@@ -49,10 +46,7 @@ class Matrix{
     }
   }
 
-  /*
-  * NAMESPACE FUNCTIONS
-  */
-  
+ 
   /*
   * Namespace function to save a new matrix
   */
@@ -60,7 +54,6 @@ class Matrix{
     $db = new DBi();
     //Prepare the matrix sql to insert
     $values['name']       = DBi::SQLValue($name);
-    $values['project_id'] = DBi::SQLValue($pid, DBi::SQLVALUE_NUMBER);
     $st = $db->BuildSQLInsert(
       self::$TABLE,
       $values
@@ -98,7 +91,6 @@ class Matrix{
       array("id" => DBi::SQLValue($mid, DBi::SQLVALUE_NUMBER)),
       isset($params) ? $params : array_keys(self::$FIELDS)
     );
-    
     if (($matrix = $db->QuerySingleRowArray($st, MYSQL_ASSOC))===FALSE) throw new Exception($db->Error);
     
     return $matrix;
@@ -110,14 +102,33 @@ class Matrix{
   * Returns the matrix from the project $project_id
   */
   public function  getMatrixsFromProject($project_id){
-     $db = new DBi();
+    /* $db = new DBi();
      $st = $db->BuildSQLSelect(
        self::$TABLE,
        array("project_id"=>$project_id, "active"=>DBi::SQLValue("y",DBi::SQLVALUE_Y_N )),
        self::$FIELDS
      );
      $matrixs = $db->Query($st);
-     return $matrixs;
+     return $matrixs;*/
+  }
+
+  /*
+  *  Namespace function: Returns a list of matrixs
+  *  - $fields(opt): select some columns, if NULL select alls
+  *  - $params:
+  *    - "only_public"
+  *  Last update: 3 march 2013
+  */
+  public function getMatrixs($fields = NULL, $params = NULL){
+    $db = new DBi();
+    
+    $query = "SELECT * FROM ".self::$TABLE;
+    if (isset($params["only_public"]) && $params["only_public"]){
+      $query .= " WHERE public='y'";
+    }
+
+    if (($matrixs = $db->QueryArray($query, MYSQL_ASSOC )) === FALSE ) throw new Exception($db->Error());
+    return $matrixs;  
   }
 
   /*
@@ -209,7 +220,7 @@ class Matrix{
     return $matrix;
   }
   /*
-  * Calls a function to save a sample.
+  /* Calls a function to save a sample.
   */
   public function saveNewSample($mid, $values){
     return Sample::saveSample($mid,$values);
@@ -229,7 +240,7 @@ class Matrix{
   public function updateDefinition($mid, $params){
     $db = new DBi();
     foreach($params as $k=>$v){
-          $params[$k] = DBi::SQLValue($v, self::$FIELDS[$k]);
+      $params[$k] = DBi::SQLValue($v, self::$FIELDS[$k]);
     }
 
     $upd = $db->BuildSQLUpdate(self::$TABLE, $params, array('id' => $mid));
@@ -315,6 +326,7 @@ class Values{
   * - values: associative id:
        [id] => variable_id
        [value] => value
+  * Last update: X february 2013
   */
   public function saveValues($sample_id, $values, $db = NULL){
     if(empty($values)) return;

@@ -25,7 +25,7 @@
     {/section}
     </table>
   {/if}
-  <a href='project/new'>Add a new project!</a>
+  <a href='project/edit_new'>Add a new project!</a>
 {/block}
 {block name='help_text'}
 <h4>Welcome to your dashboard!</h4>

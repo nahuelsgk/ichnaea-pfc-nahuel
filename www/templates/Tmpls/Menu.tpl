@@ -1,13 +1,30 @@
-<div id="menu" style="float: left">
-<nav>
-Welcome <a href="/account/settings">{$username}</a> |
-{if $is_admin}
-<a href="/admin/users">Admin Users</a> |
-{/if}
-<a href="/home">My Projects</a> |
-<a href="/matrix/my-matrixs">My Matrixs</a> |
-<a href="/training/my-trainings">My Trainings</a> | 
-<a id="help_trigger" style="text-decoration: underline;">Draggable Help</a> |
-<a href="/logout">Logout</a>
-</nav>
-</div>
+<ul class="myMenu"> 
+  {if $is_admin}<li><a href="/account/settings">Admin Users</a></li>{/if}
+  <li><a href="/home">Projects</a>
+    <ul>
+      <li><a href="/project/edit_new">New project</a><li>
+    </ul>
+  </li> 
+  <li><a href="#">Matrixs</a> 
+    <ul> 
+      <li><a href="/matrix/my-matrixs">My matrixs</a></li> 
+      <li><a href="/matrix/edit_new">New matrix</a></li> 
+    </ul> 
+  </li> 
+  <li><a href="/training/my-trainings">My Trainings</a></li> 
+  <li><a id="help_trigger"> Help </a></li>
+  <li><a href="/logout">Logout</a></li> 
+</ul>
+
+<script type="text/javascript"> 
+  $(document).ready(function() { 
+    $('.myMenu > li').bind('mouseover', openSubMenu); 
+    $('.myMenu > li').bind('mouseout', closeSubMenu); 
+    function openSubMenu() { 
+      $(this).find('ul').css('visibility', 'visible'); 
+    }; 
+    function closeSubMenu() { 
+      $(this).find('ul').css('visibility', 'hidden'); 
+    }; 
+  }); 
+</script>

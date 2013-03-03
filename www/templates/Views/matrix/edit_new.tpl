@@ -2,23 +2,31 @@
 
 {block name='title'}Matrix Definition{/block}
 {block name='page'}
-{init path="Controllers/Matrix" function="displayMatrixForm2"}
-<h1>{if $is_edit eq 'n'}New matrix for the project "{$project_name}" {else}Editing matrix "{$name_matrix}"{/if}</h1>
+{init path="Controllers/Matrix" function="pageMatrixDefinition"}
+<h1>{if $is_edit eq 'n'}New matrix {else}Editing matrix "{$name_matrix}"{/if}</h1>
 <div id="msgid"></div>
 <div class="breadcrumbs">
 <a href="/home">Home</a> &gt;&gt; <a href="">Project(Edit)</a> &gt;&gt; {if $is_edit eq 'n'}New matrix{else}Editing matrix{/if}
 </div>
 <table>
 <tr><td>Name of the matrix</td><td><input type="text" id="name_matrix" name="name" placeholder="Name of the matrix" value="{$name_matrix}" required></td></tr>
-<tr>
-<td>Definition of the variables</td>
+<tr><td>Visibility</td><td>
+  <input type="radio" name="visibility" {if $public_matrix eq 'y'} checked {/if} value='public'>Public</input>
+  <input type="radio" name="visibility" {if $public_matrix eq 'n'} checked {/if} value='private'>Private</input>
+  </td>
+</tr>
+<tr><td></td><td><button id="add_variable">Add variable</button>  </td></tr>
+</tr>
+<td>
+Definition of the variables<br>
+</td>
 <td>
   <table id="variables">
   <tbody>
   <tr>
-    <th>Name</th>
-    <th>Threshold</th>
-    <th>Selection</th>
+    <th style="padding: 0 20px;">Name</th>
+    <th style="padding: 0 10px;">Threshold</th>
+    <th style="padding: 0 10px;"></th>
   </tr>
   {section name=v loop=$vars}
   <tr>
@@ -28,7 +36,6 @@
   {/section}
   </tbody>
   </table>
-<button id="add_variable">Add variable</button>  
 
 </td>
 </table>
@@ -43,6 +50,7 @@ $(document).ready(function(){
   $('#add_variable').live('click',function(e){
     $('#variables > tbody:last').append('<tr class="variable_form_template"><td><input name="name_var" placeholder="Name of the variable"></td><td><input name="threshold_var" placeholder="Threshold treatment"></td></tr>');
   });
+
 {if $is_edit eq 'n'}
   $('#save_matrix').click(function(){
     var name_matrix = $('#name_matrix');
@@ -74,7 +82,7 @@ $(document).ready(function(){
       data:     JSON.stringify(data),
       success:  function(data){
 	          if (data["mid"]){
-		    window.location.href = "/matrix/edit_new?pid={$pid}&mid="+data["mid"];
+		    window.location.href = "/matrix/edit_new?mid="+data["mid"];
 		  }
 		  else{
 		    alert("Error");
@@ -92,6 +100,7 @@ $(document).ready(function(){
     });
 
   });
+
 {else}
   $('input[tof=variable]').change(function (){
     var database_field = $(this).attr('name');
@@ -123,33 +132,20 @@ $(document).ready(function(){
   });
 
   $('#update_matrix').click(function(){
-    var post = ' { ';
-    post += '"ajaxDispatch": "Controllers/Matrix", "function": "dispatch_updateMatrix", "values": { ';
+    var data = { 
+      "ajaxDispatch": "Controllers/Matrix", 
+      "function": "dispatch_updateMatrix", 
+      "values": { 
+        "name_matrix": $('#name_matrix').val(),
+	"visibility": $('input:radio[name=visibility]:checked').val()
+      }  
+    } 
+    alert( JSON.stringify(data) );
 
-    var name_matrix = $('#name_matrix');
-    post += ' "name_matrix": "'+ name_matrix.attr('value')+'"  , "variables": [ ';
-
-    var valueinputElements = $('table#variables tr.variable_form_template');
-    $.each(valueinputElements, function(index, el) {
-      var name_var = $(el).find('input[name=name_var]');
-      var threshold_var = $(el).find('input[name=threshold_var]');
-      post += '{ "name": "'+name_var.val()+'", "threshold": "'+threshold_var.val()+'", "action": "new" },';
-    });
-    
-    //selected variables
-    var valueCheckboxElements = $('input[name=select_var]:checked');
-    $.each(valueCheckboxElements , function(index, el){
-     post += '{ "action": "delete", "id": "'+$(el).attr('vid')+'" },';
-    });
-    
-    post = post.substring(0,post.length-1);
-    post += '] } } ';
-    alert(post);
-    
     $.ajax({
       type:     'POST',
       dataType: 'json',
-      data:     post ,
+      data:     JSON.stringify(data) ,
       success:  function(data){
                   alert(data);
 		  location.reload();

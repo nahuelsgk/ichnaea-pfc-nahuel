@@ -1,30 +1,33 @@
-{init path="Controllers/Matrix" function="displayMatrixsBasicInfoList" params="{$filter}"}
+{init path="Controllers/Matrix" function="displayMatrixsList" params="{$filter}"}
 {if $matrixs}
-<form method="post">
-<table>
-<tr><th>Id Project</th><th>Name Project</th><th>Id matrix</th><th>Name Matrix</th><th>Select</th><th>Operations</th> </tr>
+<table class="matrixs_list">
+<tr><th>Id matrix</th>
+ <th>Name Matrix</th>
+ <th>Public</th>
+ <th>Operations</th>
+</tr>
 {section name=m loop=$matrixs}
 <tr>
-<td>{$matrixs[m].id_project}</td>
-<td>{$matrixs[m].name_project}</td>
-<td>{$matrixs[m].id_matrix}</td>
-<td>{$matrixs[m].name_matrix}</td>
-<td><input type="checkbox" value="{$matrixs[m].id_matrix}" name="delete_matrix[]"></td>
-<td>
-  <a href="/matrix/edit_new?pid={$matrixs[m].id_project}&mid={$matrixs[m].id_matrix}">Edit matrix definition</a> | 
-  <a href="/matrix/view?mid={$matrixs[m].id_matrix}">View matrix</a>
-</td>
+ <td>{$matrixs[m].id}</td>
+ <td>{$matrixs[m].name}</td>
+ <td>{$matrixs[m].public}
+ <td><a href="/matrix/view?mid={$matrixs[m].id}">View</a> | <a href="/matrix/edit_new?mid={$matrixs[m].id}">Edit</a> |  <a id="delete_matrix" mid="{$matrixs[m].id}">Delete</a> </td>
 </tr>
 {/section}
 </table>
-<input type="submit" value="Delete selected" name="submit">
-</form>
+<a href="/matrix/edit_new"></a>
 {else}
-Still you haven't create any matrixs. 
-{if $pid}
-You can create a matrix into this project clicking <a href="/matrix/edit_new?pid={$pid}">here</a>. 
-{else}
-You can create a matrix into a project <a href="/home">going home</a>! 
+There are not any selectable matrixs. 
+You can create a matrix clicking <a href="/matrix/edit_new">here</a>. 
 {/if}
-{/if}
-
+<script language="javascript" type="text/javascript">
+$("#delete_matrix").click(function (){
+  var cont =  confirm('You are about to disable a matrix. Confirm?');
+  if (!cont) return;
+  var values = {
+    "operation" : "disable_matrix",
+    "mid": $(this).attr("mid")
+  };
+  send_event("Controllers/Matrix","disableMatrix", values);
+});
+</script>
