@@ -4,6 +4,9 @@
 {block name="page"}
 {init path="Controllers/Projects" function="displayProjectForm"}
 <h1>{if $is_edit eq 'n'}New Project {else}Editing project <i>{$project_name}</i>{/if}</h1>
+<div id="breadcrumbs">
+<a href="/home">Home</a> &gt;&gt; Edit project
+</div>
 <table>
 <tr>
   <td>Name of the project:</td>
@@ -61,7 +64,6 @@
       }
     };
     $.each(selectedOpts, function (index, el){
-         alert("I");
          values.params.matrixs_selected.push( { "mid": el.value } );
     });
     send_event("Controllers/Projects", "updateProject", values);
@@ -84,13 +86,24 @@
       }
     };
     $.each(selectedOpts, function (index, el){
-      alert("I");
       values.params.matrixs_removed.push( { "mid": el.value } );
     });
     send_event("Controllers/Projects", "updateProject", values);
-								      
   });
 
+  $('#name_project').change(function(){
+    alert("I");
+    var values = {
+      "op"     : "updateName",
+      "id"     : "{$pid}",
+      "params" : {
+        "name" : $(this).attr("value"),
+      }
+    };
+    send_event("Controllers/Projects", "updateProject", values);
+  });
+  
+  
 
 {/if}
 

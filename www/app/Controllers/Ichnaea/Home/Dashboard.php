@@ -1,11 +1,15 @@
 <?php
 includeLib("Domain/User");
 includeLib("Lib/Auth/SessionSingleton");
- 
-function display_home($page){
-  $user_id = SessionSingleton::getInstance()->getUserId();
 
-  $user = new User($user_id);
+/*
+* Controller for /home
+* 
+* Last update: 4 march 2013
+*/
+function display_home($page){
+
+  $user = new User(Util::getUserId());
   $projects = $user->getProjects();
 
   if(!$projects)

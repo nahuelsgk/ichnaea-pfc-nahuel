@@ -15,17 +15,14 @@
     {section name=p loop=$projects}
     <tr>
       <td>{$projects[p].name}</td>
-      <td>
-	 <a href="/project/matrixs?pid={$projects[p].id}">View matrixs</a> | 
-	 <a href="/matrix/edit_new?pid={$projects[p].id}">Create Matrixs</a> | 
-	 View trainings | 
-	 Create Trainings
-      </td>
+      <td><a href="/project/edit_new?pid={$projects[p].id}">Edit</a> | <a href="/project/matrixs?pid={$projects[p].id}">View matrixs</a> | <a href="/matrix/edit_new?pid={$projects[p].id}">Create Matrixs</a> |View trainings | Create Trainings | <button class="delete" operation=' { "op": "deleteProject", "params": { "pid" : {$projects[p].id} } } ' onclick='send_event2(this);' >Delete project</button></td>
     </tr>
     {/section}
     </table>
   {/if}
   <a href='project/edit_new'>Add a new project!</a>
+</script>
+
 {/block}
 {block name='help_text'}
 <h4>Welcome to your dashboard!</h4>
@@ -33,3 +30,4 @@
 Here you can see your projects currently open.
 </p>
 {/block}
+

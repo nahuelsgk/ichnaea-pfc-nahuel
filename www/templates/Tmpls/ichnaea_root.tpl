@@ -11,14 +11,16 @@
 {block name="css_extra"}{/block}
 {block name="js_extra"}{/block}
 </head>
-
+<div id="header">
 <div id="logo">
 <a href="/home">Logo</a>
 </div>
 <div id="menu">
 {include file="Tmpls/Menu.tpl"}
 </div>
+<div class="clearfix"></div>
 
+</div>
 <div id="help_content" class="widget">
 <center><h3>Draggable help online.</h3><br></center>
 <div style="text-align : justify; padding: 5px;" >

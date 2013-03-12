@@ -4,7 +4,7 @@
 {block name='page'}
 {init path="Controllers/Matrix" function="displayMatrixViewForm2"}
 <div id="breadcrumbs">
-<a href="/home">Home</a> &gt;&gt; <a href="">Project</a> &gt;&gt; <a href="/matrix/edit_new?pid={$pid}&mid={$mid}">Matrix definition</a> &gt;&gt; Matrix
+<a href="/home">Home</a> &gt;&gt; <a href="">Project</a> &gt;&gt; <a href="/matrix/edit_new?&mid={$mid}">Matrix definition</a> &gt;&gt; Matrix
 </div>
 <div id="msgid"></div>
 <table border="1px" style="margin-left: 50px;">

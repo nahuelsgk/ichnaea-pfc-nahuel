@@ -1,29 +1,43 @@
 <?php
+includeLib("Domain/Project");
 
 class User
 {
-  private $user_id;
-
+  private $id;
+  private $name = NULL; 
+  private $is_administrator = false;
+  
   public function __construct($user_id = NULL){
-    $this->user_id = $user_id;
+    $this->id = $user_id;
+    if (isset($user_id)) $this->initUser($this->id);
   }   
 
-  //Getters
   /*
-  * Get the id in the database
+  * Init the object from the database. Needs to grown
+  *
+  * Last update: 4 march 2013
+  */
+  public function initUser($id){
+    $this->id = $id;
+    $this->name = $this->getName();
+    $this->is_administrator = $this->isAdministrator();
+  }
+  
+  /*
+  * Old code: waiting to renew it in a more generic way
   */
   public function getId()
   {
-    return $this->user_id;
+    return $this->id;
   }
 
   /*
-  * Get the name
+  * Old code: waiting to renew it in a more generic way
   */
   public function getName()
   {
     $db = new DBi();
-    $sql = $db->BuildSQLSelect("users",array("id"=>$this->user_id),"name");
+    $sql = $db->BuildSQLSelect("users",array("id"=>$this->id),"name");
     $result = $db->QuerySingleValue($sql);
     return $result;
   }
@@ -44,10 +58,9 @@ class User
     $sql = $db->BuildSQLSelect(
       "users",
       array(
-        "id"=>$this->user_id
+        "id"=>$this->id
       ),
       "administrator");
-
     $result = $db->QuerySingleValue($sql);
     return $result == 'y' ? true : false;
   }
@@ -65,7 +78,7 @@ class User
     $user = $db->QuerySingleRowArray($sql);
     printVar($db->Error());
     if ( !empty($user) ) { 
-      $this->user_id = $user["id"];
+      $this->id = $user["id"];
       return TRUE;
     }
     return FALSE;
@@ -80,10 +93,7 @@ class User
   */
   public function getProjects()
   {
-    $db = new DBi();
-    $sql = "SELECT id, name FROM projects WHERE user_owner='$this->user_id'";
-    $ret = $db->QueryArray($sql,MYSQL_BOTH);
-    return $ret;
+    return Project::listProjects($this->id, array("only_active" => 'y'));
   }
 
   /*
@@ -139,7 +149,7 @@ class User
     $db = new DBi();
     $result = $db->UpdateRows("users",
     		array("passwd"=>DBi::SQLValue(User::encryptUserPassword($new_passwd))), 
-		array("id"=>$this->user_id));
+		array("id"=>$this->id));
     if ($result === FALSE) $db->kill();
     return $result;
   }

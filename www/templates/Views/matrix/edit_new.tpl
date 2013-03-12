@@ -2,7 +2,7 @@
 
 {block name='title'}Matrix Definition{/block}
 {block name='page'}
-{init path="Controllers/Matrix" function="pageMatrixDefinition"}
+{init path="Controllers/Matrix" function="pageMatrixEditNew"}
 <h1>{if $is_edit eq 'n'}New matrix {else}Editing matrix "{$name_matrix}"{/if}</h1>
 <div id="msgid"></div>
 <div class="breadcrumbs">

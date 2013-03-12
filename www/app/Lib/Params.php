@@ -17,7 +17,7 @@ class Params{
     $this->constructPostParams();
     $this->constructGetParams();
   }
-
+  
   /*
   * Get the params
   */
@@ -92,10 +92,23 @@ class Params{
 	echo ' - Error desconocido';
 	break;
     }
-    $this->paramsPOST["values"] = $json->values;
-    includeLib($json->ajaxDispatch);
-    call_user_func($json->function, $this);
-  }
+
+    //old method: just to not broke all the eventes systems
+    if(isset($json->values)){
+      $this->paramsPOST["values"] = $json->values;
+      includeLib($json->ajaxDispatch);
+      call_user_func($json->function, $this);
+    }
+    
+    //new method: API resolving
+    if(isset($json->query)){
+      $this->paramsPOST["query"] = $json->query;
+      if ($json->ajaxDispatch == 'ASYNC_API'){
+        includeLib("Lib/Async_api");
+        call_user_func("resolve", $this);
+      }
+    }
+}
 }
 
 ?>

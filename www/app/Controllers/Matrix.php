@@ -3,8 +3,40 @@ includeLib('Domain/Project');
 includeLib('Domain/Matrix');
 includeLib('Lib/Util');
 
+
 /*
-* Controller for page matrix/edit_new. Adds and edit in the same page
+* Controller for the page matrix/edit_new
+*
+* If no params called, will create an empty one just to fulfill matrixs
+*/
+function pageMatrixEditNew($page, $params){
+  $matrix = new Matrix();
+
+  $mid = $params->getParam('mid');
+
+  $assigns = array();
+  if (!isset($mid)){
+    printHTML("Will create a new matrix.");
+    $assigns["is_edit"]='n';
+    $matrix->saveEmptyMatrix();
+  }
+  else{
+    printHTML("We are editing");
+    $assigns["is_edit"]='y';
+  }
+
+  $assigns["vars"] = '';
+  $assigns["name_matrix"] = '';
+  $assigns["public_matrix"] = 'y';
+  $page->assign($assigns);
+}
+
+/*
+* Controller for page matrix/edit_new. Adds and edit in the same page. 
+* NOT USED BY NO ONE. Just historic reasons
+* Will be destroyed
+
+* Last update: January 2013
 */
 function pageMatrixDefinition($page, $params){
   $values = array();
@@ -58,12 +90,11 @@ function displayMatrixViewForm2($page, $params){
     $values = Matrix::getMatrixSamplesValuesComplete($matrix_id);
     
     //..get the matrix project_id
-    $pid = Matrix::getMatrixDefinition($matrix_id, array("project_id"));
+    $pid = Matrix::getMatrixDefinition($matrix_id);
   }
   catch(Exception $e){
     printHTML($e->getMessage());
   }
-  $page->assign('pid',$pid["project_id"]);
   $page->assign('vars',$vars);
   $page->assign('samples',$values);
   $page->assign('mid',$params->getParam("mid"));

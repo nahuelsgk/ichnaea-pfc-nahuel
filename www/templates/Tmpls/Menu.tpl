@@ -1,7 +1,10 @@
+
 <ul class="myMenu"> 
-  {if $is_admin}<li><a href="/account/settings">Admin Users</a></li>{/if}
+  <li class="message"><a href="/account/settings">Welcome {$username}</a></li>
+  {if $is_admin}<li><a href="/admin/users">Admin Users</a></li>{/if}
   <li><a href="/home">Projects</a>
     <ul>
+      <li><a href="/home">My projects</a></li>
       <li><a href="/project/edit_new">New project</a><li>
     </ul>
   </li> 

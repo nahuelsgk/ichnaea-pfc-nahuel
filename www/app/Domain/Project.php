@@ -6,14 +6,16 @@ class Project{
 
   #Fields Containing the columns for the database
   private static $FIELDS = array (
-    'name' => DBi::SQLVALUE_TEXT,
-    'creator' => DBi::SQLVALUE_NUMBER, 
-    'created' => DBi::SQLVALUE_DATETIME);
+    'id'	=> DBi::SQLVALUE_NUMBER,
+    'name' 	=> DBi::SQLVALUE_TEXT,
+    'creator' 	=> DBi::SQLVALUE_NUMBER, 
+    'active' 	=> DBi::SQLVALUE_Y_N,
+    'created' 	=> DBi::SQLVALUE_DATETIME);
   private static $TABLE = 'projects';
 
-  private $name;
-  private $id;
-  private $creator;
+  private $name = '';
+  private $id = '';
+  private $creator = '';
 
   public function __construct()
   {
@@ -40,7 +42,7 @@ class Project{
         $this->$var= $args[0];
         return;
       }
-      trigger_error ("Fatal error: Call to undefined method test::$function()");
+      trigger_error ("Fatal error from the generic: Call to undefined method Domain::Project::$function()");
     }
   }
 
@@ -51,14 +53,14 @@ class Project{
   */
   public function initProject($id, $creator = NULL){
 
-    if (isset($id))	$this->id = $id;
+    if (isset($id))		$this->id = $id;
     if (isset($creator)) 	$this->creator = $creator;
     
     if (!isset($creator)){
-       $project = $this->getProject($id, array("name","creator"));
-       $this->name       = $project["name"];
-       $this->id         = $id;
-       $this->creator = $project["creator"];
+       $project 	= $this->getProject($id, array("name","creator"));
+       $this->name      = $project["name"];
+       $this->id        = $id;
+       $this->creator  	= $project["creator"];
     }
   }
 
@@ -115,27 +117,34 @@ class Project{
   /*
   * Get the matrixs from a project
   * - Type: type of selected matrixs
-  *   - available: returns an array with the available matrixs that are not included in the project
+  *   - available: returns an array with the available matrixs for this project(if not project initiated, return all public available)
   *   - included: return an array with the included matrixs that are included in the project
   *   - both: returns both cases in a array of two arrays
-  * Last update: 3 march 2013
+  * Last update: 4 march 2013
   */
   public function getMatrixs($type = "both"){
     $ret;
     $db = new DBi();
-    if ($type == "both" || $type =="available"){ 
-      //$available_matrixs = Matrix::getMatrixs(NULL, array("only_public" => 1));
-      // public not included in my projects
-      $query = "SELECT * FROM matrix WHERE id NOT IN (SELECT matrix_id FROM project_matrix WHERE project_id = ".$this->id." )";
-      if (($available_matrixs = $db->QueryArray($query, MYSQL_ASSOC)) === FALSE) throw new Exception($db->getMessage());
-      $ret = $available_matrixs;
+    if ($type == "both" || $type =="available"){
+      //Select public not included in my projects
+      if (!empty($this->id)){
+        // public not included in my projects
+        $query = "SELECT * FROM matrix WHERE id NOT IN (SELECT matrix_id FROM project_matrix WHERE project_id = ".$this->id." )";
+        if (($available_matrixs = $db->QueryArray($query, MYSQL_ASSOC)) === FALSE) throw new Exception($db->Error());
+        $ret = $available_matrixs;
+      }
+      //Select public
+      else{
+        $available_matrixs = Matrix::listMatrixs(NULL, array("only_public" => 1));
+	$ret = $available_matrixs;
+      }
     }
 
     if ($type == "both" || $type == "included"){
       // NAHUEL: MUST OVERRIDE the DBi function equivalent with this accepting an array
       $query = "SELECT * FROM matrix WHERE id IN (SELECT matrix_id FROM project_matrix WHERE project_id = %u)";
       $query = vsprintf($query, array($this->id));
-      if (($included_matrixs = $db->QueryArray($query, MYSQL_ASSOC)) === FALSE) throw new Exception($db->getMessage());
+      if (($included_matrixs = $db->QueryArray($query, MYSQL_ASSOC)) === FALSE) throw new Exception($db->Error());
       $ret = $included_matrixs;
     }
 
@@ -152,6 +161,8 @@ class Project{
   *  Adds a bunch of matrixs into a project.
   * - pid: project id
   * - set_of_mids: array with matrixs ids
+  *
+  * Last update: 3 march 2013
   */
   public function addSetMatrixs($pid, $set_of_mids = NULL){
     if ($set_of_mids == NULL) return;
@@ -180,19 +191,59 @@ class Project{
   }
 
   /*
-  * Returns the attributes. Returns an associative array
-  * - params(optional): array of a concrete fields
-  
-  public function getProjectAttributes($pid, $params = NULL){
-    $db = new DBi();
-    $st = $db->BuildSQLSelect(
-      self::$TABLE,
-      array("id" => DBi::SQLValue($pid,DBi::SQLVALUE_NUMBER)),
-      isset($params) ? $params : array_keys(self::$FIELDS)
-    );
-    if (($project = $db->QuerySingleRowArray($st, MYSQL_ASSOC)) === FALSE) throw new Exception($db->Error());
-    return sizeof($project) == 1 ? current($project) : $project;
-  }
+  *  Removes a bunch of matrixs from a project.
+  * - pid: project id
+  * - set_of_mids: array with matrixs ids
+  *
+  * Last update: 5 march 2013
   */
+  public function remSetMatrixs($pid, $set_of_mids = NULL){
+    if ($set_of_mids == NULL) return;
+    $db = new DBi();
+    
+    $sql = $db->QuerySimple( "DELETE FROM project_matrix WHERE project_id = %u AND matrix_id IN %s",array($pid, $set_of_mids),"execute");
+    if($db->Query($sql) === FALSE) throw new Exception($db->Error());
+  }
+
+  /*
+  * Updates a projects into the database
+  * - values: an associative array which [column] = new Value
+  *
+  * Last update: 5 march 2013
+  */
+  public function updateProject($values){
+    $db = new DBi();
+    $sql = $db->BuildSQLUpdateGeneric('execute', self::$TABLE, self::$FIELDS, $values, array('id' => $this->id));
+  }
+
+  /*
+  * Namespaces functions: functions related to the generic projects
+  */
+
+  /*
+  * Return a list of projects
+  * - $user_id: projects from a user
+  * - $conditions(optional): associative array. 
+  *   [only_active]: will select only enabled projects
+  *  
+  * Last update: 12 march 2013
+  */
+  public function listProjects($user_id = NULL, $conditions = NULL){
+    $db = new DBi();
+
+    $params = array("creator" => $user_id);
+
+    if(isset($conditions["only_active"])){
+      $params["active"] = 'y';
+    }
+    try{
+      $result = $db->BuildSQLSelectGeneric("execute", self::$TABLE, self::$FIELDS, $params );
+      return $result;
+    }
+    catch(Exception $e){
+      printHTML($e->getMessage());
+    }
+    return;
+  }
 }
 ?>
