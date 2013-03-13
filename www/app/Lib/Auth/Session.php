@@ -1,35 +1,61 @@
 <?php
 
-session_start();
+namespace Auth; 
+
+
 class Session{
 
   private $sid;
-
+ 
   public function __construct(){
+    if(!isset($_SESSION)) {
+      session_start();
+    }
   }
   
-  # Checking session
+  /*
+  * Creates a sessions and prepares the cookie
+  */
   public function createSession($email){
-    $_SESSION['sid'] = $email;
+    $value = $this->generateCookieValue($email);
+    $_SESSION[$value] = $email;
+    setcookie("auth_key", $value, time()+60*60, '/','ichnaea.lsi.upc.edu', false, false); 
   }
 
+  private function generateCookieValue($value){
+    return md5($value."fluzzy");
+  }
+  
+  /*
+  * Reads the cookie
+  */
   public function checkSession()
   {
-    if(!$this->existsSession($_SESSION['sid'])) redirectLoginRegistration();
+    if(isset($_COOKIE['auth_key'])){
+      $cookie_value = $_COOKIE["auth_key"];
+      if(!$this->existsSession($cookie_value)) redirectLoginRegistration();
+    }
+    else{
+      printHTML("Problemas leyendo la cookie");
+      redirectLoginRegistration();
+    }
   }
   
-  private function existsSession()
-  {
-    if(isset($_SESSION['sid'])) return true;
+  private function existsSession($cookie_value){
+    
+    if(isset($_SESSION[$cookie_value])) return true;
     else false;
   }
+
   public function deleteSession(){
-    unset($_SESSION['sid']);
+    $cookie_value = $_COOKIE["auth_key"];
+    unset($_SESSION[$cookie_value]);
   }
 
   public function getUserId(){
-    $db = new DBi();
-    $sql = "SELECT id  FROM users WHERE login='".$_SESSION['sid']."'";
+    $cookie_value = $_COOKIE["auth_key"];
+    $db = new \DBi();
+    $sql = "SELECT id  FROM users WHERE login='".$_SESSION[$cookie_value]."'";
     $user_id = $db->QuerySingleRowArray($sql);
     return $user_id[0];     
   }

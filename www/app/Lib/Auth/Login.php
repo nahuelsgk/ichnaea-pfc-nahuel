@@ -1,4 +1,6 @@
 <?php
+namespace Auth;
+
 includeLib("Domain/User");
 
 class Login{
@@ -12,7 +14,7 @@ class Login{
   *  - FALSE if not exists
   */
   function checkLogin($email, $password){
-    $user = new User();
+    $user = new \Domain\User();
     return $user->checkCredentials($email,$password);
   }
 }

@@ -1,7 +1,6 @@
 <?php
-includeLib("Lib/Auth/SessionSingleton");
 includeLib("Domain/User");
-
+includeLib("Lib/Auth/Session");
 
 /*
 Check if the current user logged has the privileges
@@ -11,8 +10,9 @@ Params:
 
 */
 function requirePrivileges($page, $privileges){
-  $user_id = SessionSingleton::getInstance()->getUserId();
-  $user = new User($user_id);
+  $session = new Auth\Session();
+  $user_id = $session->getUserId();
+  $user = new Domain\User($user_id);
   if ($user->hasPrivileges($privileges)) return '';
   else redirectHome(); 
 }

@@ -1,11 +1,12 @@
 <?php
-includeLib("Lib/Auth/SessionSingleton");
 includeLib("Domain/User");
+includeLib("Lib/Auth/Session");
 
-SessionSingleton::getInstance()->checkSession();
-$user_id = SessionSingleton::getInstance()->getUserId();
+$session = new Auth\Session();
+$session->checkSession();
+$user_id = $session->getUserId();
 
-$user = new User($user_id);
+$user = new Domain\User($user_id);
 $is_admin = $user->isAdministrator();
 $name = $user->getName();
 

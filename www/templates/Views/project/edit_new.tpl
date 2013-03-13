@@ -9,40 +9,40 @@
 </div>
 <table>
 <tr>
-  <td>Name of the project:</td>
+  <td>Project's name</td>
   <td><input size="30" type="text" name="name_project" id="name_project" value="{$project_name}" placeholder="Write the name of your project" >
   </td>
 </tr>
-</table>
-<table>
 <tr>
-<th>Available matrixs</th><th></th><th>Project's matrixs</th>
-<tr>
-<tr>
-<td>
-  <select multiple="multiple" id="matrixs_available" name="matrixs_available" style="width: 200px; height: 200px;">
-    {section name=matrix loop=$matrixs_available}
-    <option value="{$matrixs_available[matrix].id}">{$matrixs_available[matrix].name}</option>
-    {/section}
+  <td>Project's matrixs</td>
+  <td>
+  <table>
+  <tr>
+  <th>Available matrixs</th><th></th><th>Project's matrixs</th>
+  <tr>
+  <tr>
+  <td>
+    <select multiple="multiple" id="matrixs_available" name="matrixs_available" style="width: 200px; height: 200px;">
+      {section name=matrix loop=$matrixs_available}
+      <option value="{$matrixs_available[matrix].id}">{$matrixs_available[matrix].name}</option>
+      {/section}
+    </select>
+  </td>
+  <td>
+  <button name="del" id="del_matrix">&lt;&lt;</button>
+  <button name="add" id="add_matrix">&gt;&gt;</button>
+  </td>
+  <td>
+  <select multiple="multiple" id="matrixs_selected" name="matrixs_selected" style="width: 200px; height: 200px;">
+      {section name=matrix loop=$matrixs_included}
+      <option value="{$matrixs_included[matrix].id}">{$matrixs_included[matrix].name}</option>
+      {/section}
   </select>
-</td>
-<td>
-<button name="del" id="del_matrix">&lt;&lt;</button>
-<button name="add" id="add_matrix">&gt;&gt;</button>
-</td>
-<td>
-<select multiple="multiple" id="matrixs_selected" name="matrixs_selected" style="width: 200px; height: 200px;">
-    {section name=matrix loop=$matrixs_included}
-    <option value="{$matrixs_included[matrix].id}">{$matrixs_included[matrix].name}</option>
-    {/section}
-</select>
-</td>
+  </td>
 </tr>
 </table>
 {if $is_edit eq 'n'}
 <button id="save_project">Save changes</button>
-{else}
-<button id="update_project">Update project definition</button>
 {/if}
 
 <script language="javascript" type="text/javascript">
@@ -92,7 +92,6 @@
   });
 
   $('#name_project').change(function(){
-    alert("I");
     var values = {
       "op"     : "updateName",
       "id"     : "{$pid}",

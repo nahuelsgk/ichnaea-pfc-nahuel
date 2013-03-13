@@ -1,8 +1,9 @@
 <?php
 includeLib("Lib/Auth/Login");
-includeLib("Lib/Auth/SessionSingleton");
+includeLib("Lib/Auth/Session");
 
-SessionSingleton::getInstance()->deleteSession();
+$session = new Auth\Session();
+$session->deleteSession();
 redirectLoginRegistration();
 
 ?>

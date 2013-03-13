@@ -6,6 +6,7 @@ require("./lib/UltimateMysql/mysql.class.php");
 require("./app/Lib/DBi.php");
 require('./lib/SmartyTemplating/Smarty.class.php');
 require('./app/Lib/Params.php');
+require('./app/Lib/ichnaea.inc.php');
 
 #This a global variable: be careful to rename inside the code
 global $globalparams;

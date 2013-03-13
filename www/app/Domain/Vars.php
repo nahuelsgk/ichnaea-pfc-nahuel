@@ -1,5 +1,6 @@
 <?php 
 
+namespace Domain;
 class Vars{
   private static $TABLE = 'var';
   private static $FIELDS = array ('id', 'matrix_id', 'name', 'created');

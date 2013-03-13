@@ -3,20 +3,18 @@ includeLib('Domain/Project');
 includeLib('Domain/Matrix');
 includeLib('Lib/Util');
 
-
 /*
 * Controller for the page matrix/edit_new
 *
 * If no params called, will create an empty one just to fulfill matrixs
 */
 function pageMatrixEditNew($page, $params){
-  $matrix = new Matrix();
+  $matrix = new Domain\Matrix();
 
   $mid = $params->getParam('mid');
 
   $assigns = array();
   if (!isset($mid)){
-    printHTML("Will create a new matrix.");
     $assigns["is_edit"]='n';
     $matrix->saveEmptyMatrix();
   }
@@ -69,9 +67,18 @@ function pageMatrixDefinition($page, $params){
 /*
 * Controller for a template to display the basic list of a matrix
 * - filters(optional): will display the the matrixs of a concrete project
+*   - filterByProject
 */
 function displayMatrixsList($page, $params, $filters = NULL){
- $matrixs = Matrix::getMatrixs();
+ $matrixs;
+ if($filters == 'filterByProject'){
+   $project = new Domain\Project();
+   $project->initProject($params->getParam("pid"));
+   $matrixs = $project->getMatrixs("included");
+ }
+ else{
+   $matrixs = Domain\Matrix::listMatrixs();
+ }
  $page->assign('matrixs', $matrixs);
 }
 

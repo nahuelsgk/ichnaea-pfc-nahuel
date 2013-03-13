@@ -1,6 +1,6 @@
 <?php
-includeLib("Domain/User");
-includeLib("Lib/Auth/SessionSingleton");
+
+use Domain\User;
 
 /*
 * Controller for /home

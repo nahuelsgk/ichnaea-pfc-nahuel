@@ -1,30 +1,6 @@
 <?php
 includeLib("Domain/Project");
-includeLib("Lib/Auth/SessionSingleton");
 includeLib("Lib/JS");
-
-/*
-* Controller for the view "project/new"
-
-function displayProjectNewForm($page, $params){
-  if ($params->getParam("saveproject")) {
-    $project = new Project( 
-      array(
-        'name' => $params->getParam('name_project'),
-	'user_owner' => SessionSingleton::getInstance()->getUserId()
-      )
-    );
-
-    try{
-      $pid = Project::saveProject2(SessionSingleton::getInstance()->getUserId(), $params->getParam('name_project'));
-      Util::redirectTo("/matrix/edit_new?pid=".$pid);
-    }
-    catch(Exception $e){
-      printHTML($e->getMessage());
-    }
-  }
-}
-*/
 
 /*
 * Controller for the view "project/new"
@@ -37,7 +13,7 @@ function displayProjectForm($page, $params){
   $is_edit = $pid ? true : false;
 
   // get the matrixs available and used in the project
-  $project = new Project();
+  $project = new Domain\Project();
   if ($is_edit){ 
     $project->initProject($pid); 
   }
@@ -75,13 +51,14 @@ function displayProjectMatrixs($page, $params){
 * 
 * Last update: 11 march 2013
 */
-function displayProjectName($page, $params){
+function displayProjectInfo($page, $params){
   $pid = $params->getParam('pid');
 
-  $project = new Project();
+  $project = new Domain\Project();
   $project->initProject($pid);
 
   $page->assign('project_name', $project->get_name());
+  $page->assign('pid', $project->get_id());
 }
 
 /*
@@ -90,7 +67,7 @@ function displayProjectName($page, $params){
 function dispatch_newProject($params){
   $values = $params->getParam("values");
   if($values->op == "newProject"){
-    $project = new Project();
+    $project = new Domain\Project();
     $pid = $project->newProject($values->name, Util::getUserId(),$values->matrixs_selected);
     JS::returnRedirection("/project/edit_new?pid=$pid");
   }
@@ -103,7 +80,7 @@ function dispatch_newProject($params){
 * Last udpate: 11 march 2013
 */
 function dispatch_deleteProject($pid){
-  $project = new Project();
+  $project = new Domain\Project();
   $project->initProject($pid);
 
   //a bit ensambled between layers but if the disable and enable is more complex, will be done on the project class
@@ -121,7 +98,7 @@ function dispatch_deleteProject($pid){
 */
 function dispatch_updateProject($params){
   $values = $params->getParam("values");
-  $project = new Project();
+  $project = new Domain\Project();
   $project->initProject($values->id);
   
   switch($values->op){

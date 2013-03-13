@@ -1,6 +1,10 @@
 <?php 
+namespace Domain;
 
 includeLib("Domain/Matrix");
+
+use DBi;
+use Domain\Matrix;
 
 class Project{
 
@@ -201,8 +205,7 @@ class Project{
     if ($set_of_mids == NULL) return;
     $db = new DBi();
     
-    $sql = $db->QuerySimple( "DELETE FROM project_matrix WHERE project_id = %u AND matrix_id IN %s",array($pid, $set_of_mids),"execute");
-    if($db->Query($sql) === FALSE) throw new Exception($db->Error());
+    $sql = $db->QuerySimple( "DELETE FROM project_matrix WHERE project_id = %u AND matrix_id IN %s",array($pid, $set_of_mids),"execute_local_catch");
   }
 
   /*
@@ -228,8 +231,8 @@ class Project{
   *  
   * Last update: 12 march 2013
   */
-  public function listProjects($user_id = NULL, $conditions = NULL){
-    $db = new DBi();
+  public static function listProjects($user_id = NULL, $conditions = NULL){
+    $db = new \DBi();
 
     $params = array("creator" => $user_id);
 
@@ -237,7 +240,7 @@ class Project{
       $params["active"] = 'y';
     }
     try{
-      $result = $db->BuildSQLSelectGeneric("execute", self::$TABLE, self::$FIELDS, $params );
+      $result = $db->BuildSQLSelectGeneric("execute_local_catch", self::$TABLE, self::$FIELDS, $params );
       return $result;
     }
     catch(Exception $e){

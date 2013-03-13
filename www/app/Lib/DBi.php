@@ -1,6 +1,6 @@
 <?php
 
-class DBi extends MySQL{
+class DBi extends \MySQL{
   public function __construct(){
     parent::__construct(true, 'ichnaea', 'localhost', 'root', 'qwerasdf', 'utf8');
   }
@@ -99,8 +99,10 @@ class DBi extends MySQL{
   public function BuildSQLSelectGeneric($mode = "query", $table_name, $fields, $whereArray = null, $columns = null, $sortColumns = null, $sortAscending = true, $limit = null){
     
     $generic_where = array();
-    foreach ($whereArray as $k => $v){
-      $generic_where[$k] =  DBi::SQLValue($v, $fields[$k]);
+    if(!empty($whereArray)){
+      foreach ($whereArray as $k => $v){
+        $generic_where[$k] =  DBi::SQLValue($v, $fields[$k]);
+      }
     }
 
     $sql = $this->BuildSQLSelect(
@@ -113,7 +115,6 @@ class DBi extends MySQL{
     ); 
     switch ($mode){
       case "execute":
-        printHTML($sql);
         if ( ($result = $this->QueryArray($sql, MYSQL_ASSOC)) == FALSE ) throw new Exception($this->Error());
 	return $result;
 	break;
@@ -125,7 +126,7 @@ class DBi extends MySQL{
 	   break;
 	 }
 	 catch(Exception $e){
-	   printHTML($e->Error());
+	   printHTML($e->getMessage());
 	 }
 
       case "query":
@@ -153,7 +154,7 @@ class DBi extends MySQL{
   *   - "execute": executes the query
   *   - "query" : returns the string
   *
-  * Last update: 4 march 2013
+  * Last update: 13 march 2013
   */
   public function QuerySimple($sql, $format_array, $type = "execute"){
     $values = array();
@@ -167,11 +168,20 @@ class DBi extends MySQL{
       }
     }
     $query = vsprintf($sql, $values);
+    printHTML($query);
     if ($type == "execute"){
-      if($db->Query($query) === FALSE) throw new Exception($db->Error());
+      if($this->Query($query) === FALSE) throw new Exception($this->Error());
     }
     if ($type == "query"){ 
       return $query;
+    }
+    if ($type == "execute_local_catch"){
+      try{
+        if($this->Query($query) === FALSE) throw new Exception($this->Error());
+      }
+      catch(Exception $e){
+        printHTML($e->getMessage());
+      }
     }
     return;
   }

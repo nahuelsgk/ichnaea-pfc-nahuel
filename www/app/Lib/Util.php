@@ -45,8 +45,9 @@ function includeLib($library){
 
 class Util{
   public function getUserId(){
-    includeLib('Lib/Auth/SessionSingleton');
-    return SessionSingleton::getInstance()->getUserId();
+    includeLib('Lib/Auth/Session');
+    $session = new Auth\Session();
+    return $session->getUserId();
   }
   
   function redirectTo($path){

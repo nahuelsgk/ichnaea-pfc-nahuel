@@ -1,5 +1,9 @@
 <?php
 
+namespace Domain;
+
+use DBi;
+
 class Matrix{
   
   private static $FIELDS = array(
@@ -51,14 +55,14 @@ class Matrix{
   *    - "only_public"
   *  Last update: 12 march 2013
   */
-  public function listMatrixs($fields = NULL, $params = NULL){
+  public static function listMatrixs($fields = NULL, $params = NULL){
    $db = new DBi();
  
    if (isset($params["only_public"]) && $params["only_public"]){
      $where["public"] = 'y';
    }
    
-   $matrixs = $db->BuildSQLSelectGeneric("execute_local_catch", self::$TABLE, self::$FIELDS, $where );
+   $matrixs = $db->BuildSQLSelectGeneric("execute_local_catch", self::$TABLE, self::$FIELDS, empty($where) ? '' : $where );
    return $matrixs;
    }
 }

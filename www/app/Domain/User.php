@@ -1,6 +1,10 @@
 <?php
-includeLib("Domain/Project");
+ 
+namespace Domain;
 
+includeLib("Domain/Project");
+includeLib("Lib/DBi");
+ 
 class User
 {
   private $id;
@@ -36,7 +40,7 @@ class User
   */
   public function getName()
   {
-    $db = new DBi();
+    $db = new \DBi();
     $sql = $db->BuildSQLSelect("users",array("id"=>$this->id),"name");
     $result = $db->QuerySingleValue($sql);
     return $result;
@@ -53,7 +57,7 @@ class User
   * Returns true if the user is administrator
   */
   public function isAdministrator(){
-    $db = new DBi();
+    $db = new \DBi();
 
     $sql = $db->BuildSQLSelect(
       "users",
@@ -73,7 +77,7 @@ class User
   */
   public function checkCredentials($email, $password, $assign = false)
   {
-    $db = new DBi();
+    $db = new \DBi();
     $sql = "SELECT id FROM users WHERE login='".$email."' AND passwd='".$this->encryptUserPassword($password)."'";
     $user = $db->QuerySingleRowArray($sql);
     printVar($db->Error());
