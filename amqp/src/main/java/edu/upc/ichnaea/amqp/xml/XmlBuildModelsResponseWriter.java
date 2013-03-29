@@ -29,19 +29,18 @@ public class XmlBuildModelsResponseWriter extends XmlWriter {
 		root.setAttribute(BuildModelsResponseHandler.ATTR_ID, String.valueOf(resp.getId()));
 		root.setAttribute(BuildModelsResponseHandler.ATTR_TYPE, BuildModelsResponseHandler.TYPE);
 		
-		if(resp.getError() != null) {
+		if(resp.hasError()) {
 			root.setAttribute(BuildModelsResponseHandler.ATTR_ERROR, resp.getError());			
 		}
 		root.setAttribute(BuildModelsResponseHandler.ATTR_PROGRESS, String.valueOf(resp.getProgress()));
 		
 		SimpleDateFormat f = new SimpleDateFormat(BuildModelsResponseHandler.CALENDAR_FORMAT);
-		if(resp.getStart() != null) {
+		if(resp.hasStart()) {
 			root.setAttribute(BuildModelsResponseHandler.ATTR_START, f.format(resp.getStart().getTime()));
 		}
-		if(resp.getEnd() != null) {
+		if(resp.hasEnd()) {
 			root.setAttribute(BuildModelsResponseHandler.ATTR_END, f.format(resp.getEnd().getTime()));
 		}
-		
 		mData = resp.getData();
 		return this;
 	}
@@ -56,11 +55,14 @@ public class XmlBuildModelsResponseWriter extends XmlWriter {
 			part.setText(xml);
 			part.setHeader("Content-Type", "text/xml");			
 			mp.addBodyPart(part);
-			part = new MimeBodyPart();
-			part.setDataHandler(new DataHandler(new ByteArrayDataSource(mData, "")));
-			part.setHeader("Content-Type", "application/zip");
-			part.setHeader("Content-Transfer-Encoding", "base64");
-			mp.addBodyPart(part);
+			if(mData != null && mData.length > 0)
+			{
+				part = new MimeBodyPart();
+				part.setDataHandler(new DataHandler(new ByteArrayDataSource(mData, "")));
+				part.setHeader("Content-Type", "application/zip");
+				part.setHeader("Content-Transfer-Encoding", "base64");
+				mp.addBodyPart(part);
+			}
 		} catch (MessagingException e) {
 		}
 		

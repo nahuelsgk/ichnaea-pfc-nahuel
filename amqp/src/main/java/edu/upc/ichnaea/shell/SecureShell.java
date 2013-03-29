@@ -16,6 +16,35 @@ import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 
 public class SecureShell implements ShellInterface {
+	
+	public static class CommandResult implements CommandResultInterface
+	{
+		private ChannelExec mChannel;
+		
+		public CommandResult(ChannelExec chan) {
+			mChannel = chan;
+		}
+
+		@Override
+		public InputStream getInputStream() throws IOException {
+			return mChannel.getInputStream();
+		}
+
+		@Override
+		public InputStream getErrorStream() throws IOException {
+			return mChannel.getErrStream();
+		}
+
+		@Override
+		public int getExitStatus() {
+			return mChannel.getExitStatus();
+		}
+
+		@Override
+		public void close() {
+			mChannel.disconnect();
+		}
+	};	
 
 	final static String DEFAULT_HOST = "localhost";	
 	final static int DEFAULT_PORT = 22;
@@ -132,36 +161,15 @@ public class SecureShell implements ShellInterface {
 	@Override
 	public CommandResult run(CommandInterface command) throws IOException {
 		try{
-			ChannelExec channel = (ChannelExec) mSession.openChannel("exec");
-			channel.connect();
-			channel.setCommand(command.toString());
+			ChannelExec channel = (ChannelExec) mSession.openChannel("exec");			
 			command.beforeRun(this);
-			CommandResult result = readChannelInput(channel);
-			channel.disconnect();
-			return result;
+			channel.setInputStream(null);
+			channel.setCommand(command.toString());
+			channel.connect();
+			return new CommandResult(channel);
 		}catch(JSchException e){
 			throw new IOException(e);
 		}
-	}
-	
-	protected CommandResult readChannelInput(ChannelExec channel) throws IOException
-	{
-		InputStream in = channel.getInputStream();
-		InputStream inerr = channel.getErrStream();
-	    String out = "";
-	    String outerr = "";
-
-	    while(true){
-	    	out += Shell.readInputStream(in);
-	    	outerr += Shell.readInputStream(inerr);
-			if(channel.isClosed()){
-			    return new CommandResult(out, outerr, channel.getExitStatus());
-			}
-			try{
-				Thread.sleep(1000);
-			}catch(Exception ee){
-			}
-	    }
 	}
 
 	@Override
@@ -208,5 +216,4 @@ public class SecureShell implements ShellInterface {
 		return "/tmp";
 	}
 	
-
 }

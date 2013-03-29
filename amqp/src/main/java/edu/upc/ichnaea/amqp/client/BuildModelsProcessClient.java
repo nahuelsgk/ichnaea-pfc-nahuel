@@ -1,11 +1,16 @@
 package edu.upc.ichnaea.amqp.client;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
@@ -15,19 +20,71 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
+import edu.upc.ichnaea.amqp.FileUtils;
+import edu.upc.ichnaea.amqp.IOUtils;
 import edu.upc.ichnaea.amqp.csv.CsvDatasetWriter;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestReader;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseWriter;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
-import edu.upc.ichnaea.shell.CommandResult;
+import edu.upc.ichnaea.shell.CommandResultInterface;
 import edu.upc.ichnaea.shell.ShellInterface;
 
 public class BuildModelsProcessClient extends QueueClient {
 
 	ShellInterface mShell;
 	String mScriptPath;
+	String mTimeFormat = "EEE MMM dd HH:mm:ss z yyyy";
+	String mRegexPercentage = "(\\d*)%";
+	String mRegexEndTime = "^ *finish: *(.*) *$";
+	
+	public abstract class CommandReader {
+		
+		public CommandReader(CommandResultInterface result) throws IOException {
+			BufferedReader in = new BufferedReader(new InputStreamReader(result.getInputStream()));
+			Pattern regexPercent = Pattern.compile(mRegexPercentage);
+			Pattern regexEndTime = Pattern.compile(mRegexEndTime);
+			SimpleDateFormat dateFormat = new SimpleDateFormat(mTimeFormat);
+			float percent = 0;
+			Calendar end = null;
+			String line;
+			boolean updated = false;
+
+			while((line = in.readLine()) != null) {
+				updated = false;
+				Matcher m = regexPercent.matcher(line);
+				if(m.find()) {
+					try{
+						percent = Float.parseFloat(m.group(1));
+					}catch(NumberFormatException e) {
+						percent = 0;
+					}
+					if(percent > 1) {
+						percent /= 100;
+					}
+					updated = true;
+				}
+				m = regexEndTime.matcher(line);
+				if(m.find()) {
+					end = Calendar.getInstance();
+					try {
+						end.setTime(dateFormat.parse(m.group(1)));
+					} catch (ParseException e) {
+						end = null;
+					}
+					updated = true;
+				}
+				if(updated) {
+					onUpdate(percent, end);
+				}
+			}
+
+			result.close();
+		}
+		
+		protected abstract void onUpdate(float percent, Calendar end);
+	};
 	
 	public BuildModelsProcessClient(ShellInterface shell, String scriptPath, String queue) {
 		super(queue, true);
@@ -35,51 +92,66 @@ public class BuildModelsProcessClient extends QueueClient {
 		mScriptPath = scriptPath;
 	}
 	
-	protected void reply(Channel channel, BuildModelsResponse response, String replyTo) throws IOException, ParserConfigurationException {
-		getLogger().info("sending reply to \""+replyTo+"\"...");
+	protected void sendResponse(BuildModelsResponse response, String replyTo)
+			throws IOException, ParserConfigurationException {
 		AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().
 				contentType("multipart/mixed").build();
 		String responseXml = new XmlBuildModelsResponseWriter().build(response).toString();
-		channel.basicPublish(getExchange(), replyTo, properties, responseXml.getBytes());
+		getChannel().basicPublish(getExchange(), replyTo, properties, responseXml.getBytes());
 	}
 	
-	protected void received(Channel channel, String replyTo, byte[] body)
+	protected void processRequest(final String replyTo, byte[] body)
 			throws IOException, SAXException, InterruptedException, ParserConfigurationException {
 		getLogger().info("received a request");
-		Calendar start = Calendar.getInstance();
+		final Calendar start = Calendar.getInstance();
 		BuildModelsRequest request = new XmlBuildModelsRequestReader().read(new String(body));
 
 		getLogger().info("opening shell");
 		mShell.open();
 		
-		String datasetPath = new File(mShell.getTempPath(), UUID.randomUUID().toString()).getAbsolutePath();
-		
+		String datasetPath = FileUtils.tempPath(mShell.getTempPath());
 		getLogger().info("writing dataset to "+datasetPath);
-		
 		OutputStream out = mShell.writeFile(datasetPath);
-		
 		new CsvDatasetWriter(new OutputStreamWriter(out)).write(request.getDataset()).close();
 		
 		getLogger().info("calling build models command");
 		BuildModelsCommand cmd = new BuildModelsCommand(request.getSeason(), datasetPath);
 		cmd.setScriptPath(mScriptPath);
-		CommandResult result = mShell.run(cmd);
+		getLogger().info(cmd.toString());
+		CommandResultInterface result = mShell.run(cmd);
+			
+		getLogger().info("reading command result");
+		new CommandReader(result){
+			@Override
+			protected void onUpdate(float percent, Calendar end) {
+				getLogger().info("sending status update");
+				try {
+					sendResponse(new BuildModelsResponse(replyTo, start, end, percent), replyTo);
+				} catch (IOException | ParserConfigurationException e) {
+				}
+			}
+		};
 		
 		getLogger().info("deleting temporary dataset file");
 		mShell.removeFile(datasetPath);
 		
+		getLogger().info("reading output file in "+cmd.getOutputPath());
+		Calendar end = Calendar.getInstance();
+		BuildModelsResponse resp = null;
+		try{
+			byte[] data = IOUtils.read(mShell.readFile(cmd.getOutputPath()));
+			resp = new BuildModelsResponse(replyTo, start, end, data);
+		}catch(IOException e){
+			String err = "failed to read output file: "+e.getMessage();
+			getLogger().warning(err);
+			resp = new BuildModelsResponse(replyTo, start, end, err);
+		}
+		getLogger().info("sending result");		
+		sendResponse(resp, replyTo);
 		getLogger().info("closing shell");
 		mShell.close();
-		
-		if(replyTo != null) {
-			Calendar end = Calendar.getInstance();
-			byte[] data = result.getOutput().getBytes();
-			int id = Integer.parseInt(replyTo);
-			BuildModelsResponse response = new BuildModelsResponse(id, start, end, data);			
-			reply(channel, response, replyTo);
-		}
 	}
-
+	
 	@Override
 	public void run() throws IOException {
 		boolean autoAck = true;
@@ -93,14 +165,13 @@ public class BuildModelsProcessClient extends QueueClient {
                 throws IOException
                 {
 					try {
-						received(ch, properties.getReplyTo(), body);
+						processRequest(properties.getReplyTo(), body);
 					} catch (Exception e) {
 						throw new IOException(e);
 					}
                 }
 			}
 		);
-		
 		getLogger().info("waiting for build models requests on queue \""+getQueue()+"\"...");
 	}
 

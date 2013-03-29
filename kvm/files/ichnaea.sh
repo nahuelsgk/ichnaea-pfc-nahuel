@@ -21,7 +21,7 @@ function USAGE {
 }
 
 function PRINT_LOG {
-	echo "$1">&2
+	echo "$1" 
 }
 
 OPTS=`getopt -o scfo -l "season:,section:,output:,fake:" -- "$@"`
@@ -37,7 +37,7 @@ do
     case "$1" in
         -s|--season) SEASON="$2"; shift 2;;
         -c|--section) SECTION="$2"; shift 2;;
-        -o|--putput) OUTFILE="$2"; shift 2;;
+        -o|--output) OUTFILE="$2"; shift 2;;
         -f|--fake) FAKE="$2"; shift 2;;
         --) shift; break;;
 		-*) PRINT_LOG "invalid option $1"; USAGE; shift; break;;
@@ -53,16 +53,23 @@ DATAFILE="$1"
 
 function TIME_START {
 	STARTTIME=`date +%s`
-	PRINT_LOG "starting at `date`"
+	PRINT_LOG "started: `date`"
+}
+
+function TIME_CURRENT {
+	CURRTIME=`date +%s`
+	CURRDURATION=$((CURRTIME - STARTTIME))
+
+	CURRDURATIONSTR="$(( CURRDURATION / 60 ))m $(( CURRDURATION % 60 ))s"
+	PRINT_LOG "current: `date` ($CURRDURATIONSTR)"
 }
 
 function TIME_END {
 	ENDTIME=`date +%s`
-	DURATION=$((ENDTIME - STARTTIME))
+	ENDDURATION=$((ENDTIME - STARTTIME))
 
-	DURATIONSTR="$(( DURATION / 60 ))m $(( DURATION % 60 ))s"
-	PRINT_LOG "finished at `date`"
-	PRINT_LOG "finished in $DURATIONSTR"
+	ENDDURATIONSTR="$(( ENDDURATION / 60 ))m $(( ENDDURATION % 60 ))s"
+	PRINT_LOG "finished: `date` ($ENDDURATIONSTR)"
 }
 
 function REXEC {
@@ -142,22 +149,27 @@ then
 	popd > /dev/null
 	rm -rf $TMPDIR
 else
-	DURATION=$( echo $FAKE | sed -e "s/\(.*\):.*/\1/g")
-	INTERVAL=$( echo $FAKE | sed -e "s/.*:\(.*\)/\1/g")
+	FAKE_DURATION=`echo $FAKE | sed -e "s/\(.*\):.*/\1/g"`
+	FAKE_INTERVAL=`echo $FAKE | sed -e "s/.*:\(.*\)/\1/g"`
 	
-	if ! [[ "$DURATION" =~ ^[0-9]+$ || "$INTERVAL" =~ ^[0-9]+$ ]]
+	if ! [[ "$FAKE_DURATION" =~ ^[0-9.]+$ || "$FAKE_INTERVAL" =~ ^[0-9.]+$ ]]
 	then
 		PRINT_LOG "invalid fake duration and interval"
 		USAGE
 	fi
-	CURRENT="0"
-	PRINT_LOG "starting fake run of $DURATION seconds in $INTERVAL intervals"
-	while [[ $(CALC "$CURRENT<$DURATION") == "1" ]]
+	FAKE_CURRENT="0"
+	PRINT_LOG "starting fake run of $FAKE_DURATION seconds in $FAKE_INTERVAL intervals"
+	FAKE_ENDTIME=`date -d "$FAKE_DURATION seconds"`
+	while [[ $(CALC "$FAKE_CURRENT<$FAKE_DURATION") == "1" ]]
 	do
-		sleep $INTERVAL
-		CURRENT=$(CALC "$CURRENT+$INTERVAL")
-		PERCENT=$(CALC "100*$CURRENT/$DURATION")
-		PRINT_LOG "$PERCENT%"
+		sleep $FAKE_INTERVAL
+		FAKE_CURRENT=`CALC "$FAKE_CURRENT + $FAKE_INTERVAL"`
+		FAKE_PERCENT=`CALC "100 * $FAKE_CURRENT / $FAKE_DURATION"`
+		PRINT_LOG "----"
+		TIME_CURRENT
+		PRINT_LOG "percent: $FAKE_PERCENT%"
+		PRINT_LOG "finish: $FAKE_ENDTIME"
+		PRINT_LOG "----"
 	done
 fi
 

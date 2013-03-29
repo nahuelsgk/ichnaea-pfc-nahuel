@@ -43,25 +43,34 @@ public class BuildModelsRequestClient extends QueueClient {
 		ch.basicPublish("", getQueue(), props, xml.getBytes());
 	}
 	
-	protected void response(byte[] body) throws IOException, SAXException, MessagingException {
+	protected void processResponse(byte[] body) throws IOException, SAXException, MessagingException {
 		BuildModelsResponse resp = new XmlBuildModelsResponseReader().read(new String(body));
 		
-		if(resp.getError() != null) {
-			getLogger().info("got error: "+resp.getError());
+		if(resp.hasError()) {
+			getLogger().warning("got error: "+resp.getError());
 			setFinished(true);
 			return;
 		}
 		
 		float progress = resp.getProgress();
-		SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+		SimpleDateFormat f = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
 		
 		if(progress < 1) {
+			getLogger().info("request update");
 			int percent = Math.round(progress*100);
-			getLogger().info(percent+"% "+f.format(resp.getEnd().getTime()));
+			getLogger().info("progress: "+percent+"%");
+			if(resp.hasEnd()) {
+				getLogger().info("estimated end time: "+f.format(resp.getEnd().getTime()));
+			}
 		} else {
-			getLogger().info("request finished (start "+f.format(resp.getStart().getTime())
-					+" end "+f.format(resp.getEnd().getTime())+").");
-			if(mResponseOutput != null) {
+			getLogger().info("request finished");
+			if(resp.hasStart()) {
+				getLogger().info("start time: "+f.format(resp.getStart().getTime()));
+			}
+			if(resp.hasEnd()) {
+				getLogger().info("end time: "+f.format(resp.getEnd().getTime()));
+			}
+			if(mResponseOutput != null && resp.hasData()) {
 				getLogger().info("writing build models response to a file ...");
 				mResponseOutput.write(resp.getData());
 				mResponseOutput.close();
@@ -85,7 +94,7 @@ public class BuildModelsRequestClient extends QueueClient {
                 throws IOException
                 {
 					try {
-						response(body);
+						processResponse(body);
 					} catch (Exception e) {
 						throw new IOException(e);
 					}

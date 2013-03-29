@@ -10,6 +10,38 @@ import java.util.logging.Logger;
 
 public class Shell implements ShellInterface {
 	
+	public static class CommandResult implements CommandResultInterface
+	{
+		private Process mProcess;
+		
+		public CommandResult(Process pr) {
+			mProcess = pr;
+		}
+
+		@Override
+		public InputStream getInputStream() {
+			return mProcess.getInputStream();
+		}
+
+		@Override
+		public InputStream getErrorStream() {
+			return mProcess.getErrorStream();
+		}
+
+		@Override
+		public int getExitStatus() {
+			return mProcess.exitValue();
+		}
+
+		@Override
+		public void close() {
+			try {
+				mProcess.waitFor();
+			} catch (InterruptedException e) {
+			}	
+		}
+	};
+	
 	protected Logger mLogger = Logger.getLogger(Shell.class.getName());
 	
 	public Logger getLogger() {
@@ -19,27 +51,9 @@ public class Shell implements ShellInterface {
 	@Override
 	public CommandResult run(CommandInterface command) throws IOException, InterruptedException {
 		Runtime run = Runtime.getRuntime();
-		getLogger().info("running command :"+command.toString());
-		Process pr= run.exec(command.toString());
-		pr.waitFor();
-		String out = readInputStream(pr.getInputStream());
-		String err = readInputStream(pr.getErrorStream());
-		return new CommandResult(out, err, pr.exitValue());
-	}
-	
-	public static String readInputStream(InputStream in) throws IOException {
-		String out = "";
-		byte[] tmp = new byte[1024];
-		
-		while(in.available()>0) {
-			int i = in.read(tmp, 0, tmp.length);
-			if(i<0){
-				break;
-			}
-			out += new String(tmp, 0, i);
-		}
-		
-		return out;
+		command.beforeRun(this);
+		Process pr = run.exec(command.toString());
+		return new CommandResult(pr);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public class XmlBuildModelsResponseWriterTest {
     @Test
     public void testXML() throws ParserConfigurationException, SAXException, IOException, MessagingException, ParseException
     {
-    	int id = 455;
+    	String id = "455";
     	Calendar start = Calendar.getInstance();
     	Calendar end = Calendar.getInstance();
     	

@@ -48,10 +48,10 @@ On Ubuntu
 * run the project jar
 
     * listen to new build-models requests
-    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh"
-    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh -s ssh://user:password@localhost"
+    mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh"
+    mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh -s ssh://user:password@localhost"
     
     * issue a test build-models request
-    mvn exec:java -Dexec.args="build-models:request -d src/test/resources/test.csv"
+    mvn exec:java -Dexec.args="build-models:request -d test.csv"
 
 

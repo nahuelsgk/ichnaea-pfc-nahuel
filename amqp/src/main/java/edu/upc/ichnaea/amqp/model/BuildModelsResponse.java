@@ -4,37 +4,37 @@ import java.util.Calendar;
 
 public class BuildModelsResponse {
 
-	protected int mId;
+	protected String mId;
 	protected float mProgress;
 	protected Calendar mStart;
 	protected Calendar mEnd;
 	protected byte[] mData;
 	protected String mError;
 	
-	public BuildModelsResponse(int id, Calendar start, Calendar end, String error) {
+	public BuildModelsResponse(String id, Calendar start, Calendar end, String error) {
 		this(id, start, end);
 		mError = error;
 		mProgress = 1;
 	}
 	
-	public BuildModelsResponse(int id, Calendar start, Calendar end, float progress) {
+	public BuildModelsResponse(String id, Calendar start, Calendar end, float progress) {
 		this(id, start, end);
 		mProgress = progress;		
 	}
 	
-	public BuildModelsResponse(int id, Calendar start, Calendar end, byte[] data) {
+	public BuildModelsResponse(String id, Calendar start, Calendar end, byte[] data) {
 		this(id, start, end);
 		mData = data;
 		mProgress = 1;
 	}
 	
-	public BuildModelsResponse(int id, Calendar start, Calendar end) {
+	public BuildModelsResponse(String id, Calendar start, Calendar end) {
 		mId = id;
 		mStart = start;
 		mEnd = end;
 	}	
 	
-	public int getId() {
+	public String getId() {
 		return mId;
 	}
 	
@@ -56,6 +56,22 @@ public class BuildModelsResponse {
 
 	public String getError() {
 		return mError;
-	}	
+	}
+	
+	public boolean hasData() {
+		return mData != null && mData.length > 0;
+	}
+	
+	public boolean hasStart() {
+		return mStart != null;
+	}
+	
+	public boolean hasEnd() {
+		return mEnd != null;
+	}
+	
+	public boolean hasError() {
+		return mError != null && !mError.isEmpty();
+	}
 	
 }

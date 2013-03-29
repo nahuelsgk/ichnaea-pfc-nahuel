@@ -28,9 +28,11 @@ public class BuildModelsResponseHandler implements ContentHandler {
 	Calendar mStart;
 	Calendar mEnd;
 	float mProgress;
-	int mId;
+	String mId;
 	byte[] mData;
 	String mError;
+	SimpleDateFormat mDateFormat = new SimpleDateFormat(CALENDAR_FORMAT);	
+
 	
 	public BuildModelsResponse getData() {
 		return mResponse;
@@ -47,15 +49,15 @@ public class BuildModelsResponseHandler implements ContentHandler {
 	@Override
 	public void startDocument() throws SAXException {
 		mResponse = null;
-		mStart = Calendar.getInstance();
-		mEnd = Calendar.getInstance();
-		mId = 0;
+		mId = null;
 		mError = null;
+		mStart = null;
+		mEnd = null;
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		if(mError == null) {
+		if(mError != null) {
 			mResponse = new BuildModelsResponse(mId, mStart, mEnd, mError);
 		} else if(mProgress >= 1) {
 			mResponse = new BuildModelsResponse(mId, mStart, mEnd, mData);
@@ -80,7 +82,7 @@ public class BuildModelsResponseHandler implements ContentHandler {
 			if(!atts.getValue(ATTR_TYPE).equalsIgnoreCase(TYPE)) {
 				throw new SAXException("Invalid response type");
 			}
-			mId = Integer.parseInt(atts.getValue(ATTR_ID));
+			mId = atts.getValue(ATTR_ID);
 			if(atts.getValue(ATTR_PROGRESS) == null) {
 				mProgress = 1;
 			} else {
@@ -89,10 +91,15 @@ public class BuildModelsResponseHandler implements ContentHandler {
 			if(atts.getValue(ATTR_ERROR) != null) {
 				mError = atts.getValue(ATTR_ERROR);
 			}
-			SimpleDateFormat f = new SimpleDateFormat(CALENDAR_FORMAT);
 			try {
-				mStart.setTime(f.parse(atts.getValue(ATTR_START)));
-				mEnd.setTime(f.parse(atts.getValue(ATTR_END)));
+				if(atts.getValue(ATTR_START) != null) {
+					mStart = Calendar.getInstance();
+					mStart.setTime(mDateFormat.parse(atts.getValue(ATTR_START)));
+				}
+				if(atts.getValue(ATTR_END) != null) {
+					mEnd = Calendar.getInstance();
+					mEnd.setTime(mDateFormat.parse(atts.getValue(ATTR_END)));
+				}
 			} catch (ParseException e) {
 				throw new SAXException(e);
 			}
