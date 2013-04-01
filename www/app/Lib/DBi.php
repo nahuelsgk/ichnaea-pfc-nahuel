@@ -146,14 +146,14 @@ class DBi extends \MySQL{
   
   /*
   * A generic builder for queries.
-  * - the sql needs to follow the sprintf format for give format to query
+  * - $sql: string that must be in a sprintf format
   * - $format_array: collection of values. Accepts an array for build multiple select. Exemple:
-  *   [2, [a,b,c]] => the second element will transform it into '('a','b','c')' for queries type NOT IN ('a','b','c'). 
-  *   In that cases, needs a format as string will be formated as string
+  *     [2, [a,b,c]] => the second element will transform it into '('a','b','c')' for queries type NOT IN ('a','b','c'). 
+  *     In that cases, needs a format as string will be formated as string
   * - $type:
   *   - "execute": executes the query
   *   - "query" : returns the string
-  *
+  *   - "execute_local_catch": don't throws exception
   * Last update: 13 march 2013
   */
   public function QuerySimple($sql, $format_array, $type = "execute"){
@@ -168,9 +168,12 @@ class DBi extends \MySQL{
       }
     }
     $query = vsprintf($sql, $values);
-    printHTML($query);
     if ($type == "execute"){
       if($this->Query($query) === FALSE) throw new Exception($this->Error());
+    }
+    if ($type == "execute_return"){
+      if(($return = $this->QueryArray($query, MYSQL_ASSOC)) === FALSE) throw new Exception($this->Error());
+      return $return;
     }
     if ($type == "query"){ 
       return $query;

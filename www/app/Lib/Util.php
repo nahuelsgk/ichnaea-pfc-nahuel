@@ -46,7 +46,7 @@ function includeLib($library){
 class Util{
   public function getUserId(){
     includeLib('Lib/Auth/Session');
-    $session = new Auth\Session();
+    $session = new Lib\Auth\Session();
     return $session->getUserId();
   }
   

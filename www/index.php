@@ -14,6 +14,5 @@ global $handler;
 
 $globalparams = new Params();
 $handler      = new Handler();
-
 $handler->executeController();
 ?>

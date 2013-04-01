@@ -1,10 +1,11 @@
 <?php
 #Try to abstract the include in a format
 includeLib("Lib/Auth/Login");
-includeLib("Lib/Auth/Session");
+
+use Lib\Auth;
 
 function displayLoginRegistrationForm($page, $params){
-  $session = new Auth\Session();
+  $session = new Lib\Auth\Session();
   $message="";
   $error = "";
   $messages = array (
@@ -17,7 +18,7 @@ function displayLoginRegistrationForm($page, $params){
 
   # Submit on the login form
   if($params->getParam('login')){
-    if(Auth\Login::checkLogin($params->getParam("username"),$params->getParam("password"))==true){
+    if(Lib\Auth\Login::checkLogin($params->getParam("username"),$params->getParam("password"))==true){
       $session->createSession($_POST["username"]);
       redirectHome();
     }

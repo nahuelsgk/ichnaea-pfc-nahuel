@@ -87,17 +87,9 @@ class Project{
 	'creator' => DBi::SQLValue($creator, self::$FIELDS["name"] ),
       )
     );
-    try{
-      $db->TransactionBegin();
-      $db->Query($insert);
-      $ret = $db->GetLastInsertId();
-      $db->TransactionEnd();
-    }
-    catch(Exception $e){
-      $db->TransactionRollback();
-      printHTML("Saving project went wrong: ".$e->getMessage());
-    }
-    $this->initProject($ret, $creator);
+    $db->Query($insert);
+    if($db->Error()) throw new \Exception("Domain:Project:newProject: Error en la insercion");
+    $ret = $db->GetLastInsertId();
     return $ret;
   }
 

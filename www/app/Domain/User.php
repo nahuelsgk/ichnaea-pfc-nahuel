@@ -141,18 +141,18 @@ class User
   * Return FALSE if happened any error
   */
   public function resetPassword($user_id){
-    $db = new DBi();
+    $db = new \DBi();
     $result = $db->UpdateRows("users",
-    		array("passwd"=>DBi::SQLValue(User::encryptUserPassword("fluzzy_909"))), 
+    		array("passwd"=>\DBi::SQLValue(User::encryptUserPassword("fluzzy_909"))), 
 		array("id"=>$user_id));
     if ($result === FALSE) $db->kill();
     return $result;
   }
 
   public function changePassword($new_passwd){
-    $db = new DBi();
+    $db = new \DBi();
     $result = $db->UpdateRows("users",
-    		array("passwd"=>DBi::SQLValue(User::encryptUserPassword($new_passwd))), 
+    		array("passwd"=>\DBi::SQLValue(User::encryptUserPassword($new_passwd))), 
 		array("id"=>$this->id));
     if ($result === FALSE) $db->kill();
     return $result;

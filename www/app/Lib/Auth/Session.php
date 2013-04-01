@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth; 
+namespace Lib\Auth; 
 
 
 class Session{
@@ -29,20 +29,29 @@ class Session{
   /*
   * Reads the cookie
   */
-  public function checkSession()
-  {
+  public function checkSession(){
+    if(!$this->isValid()) redirectLoginRegistration();
+  }
+ 
+  /*
+  * Is a valid session
+  */
+  public function isValid(){
     if(isset($_COOKIE['auth_key'])){
       $cookie_value = $_COOKIE["auth_key"];
-      if(!$this->existsSession($cookie_value)) redirectLoginRegistration();
+      if(!$this->existsSession($cookie_value)) return false;
     }
     else{
       printHTML("Problemas leyendo la cookie");
-      redirectLoginRegistration();
+      return false;
     }
+    return true;
   }
   
-  private function existsSession($cookie_value){
-    
+  /*
+  *
+  */
+  private function existsSession($cookie_value){    
     if(isset($_SESSION[$cookie_value])) return true;
     else false;
   }
@@ -58,10 +67,6 @@ class Session{
     $sql = "SELECT id  FROM users WHERE login='".$_SESSION[$cookie_value]."'";
     $user_id = $db->QuerySingleRowArray($sql);
     return $user_id[0];     
-  }
-
-  public function printSessions(){
-    var_dump($_SESSION);
   }
 }
 ?>

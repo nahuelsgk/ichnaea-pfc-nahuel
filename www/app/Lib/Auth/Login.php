@@ -1,5 +1,5 @@
 <?php
-namespace Auth;
+namespace Lib\Auth;
 
 includeLib("Domain/User");
 

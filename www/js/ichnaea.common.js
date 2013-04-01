@@ -66,11 +66,44 @@ function send_event2(obj, path){
 
 }
 
+function send_event3(request_obj, callback){
+  console.log("Sent event v3.0");
+  var request = $(request_obj);
+  var uri = request.attr("uri");
+  var op = request.attr("op");
+  
+  console.log(JSON.stringify(request_obj));
+  $.ajax({
+    type:     'POST',
+    dataType: 'json',
+    url:	'/api/project', 
+    data:     JSON.stringify(request_obj),
+    processData: false,
+    success:  function(data){
+      if (typeof callback != 'undefined') callback(data);
+      if(data.status == "OK"){
+        showMessage('success', 1500, null);
+      }
+      else if (data.status == "KO"){
+	var message_string = data.default_message;
+        showMessage('warning', 5000, message_string);
+      }
+    },
+    error: function(data){
+      for(var key in data) {
+        $('#msgid').append(key);
+        $('#msgid').append('=' + data[key] + '<br />');
+      }
+      showMessage('error');
+    }
+  });
+}
+
 function decode_result_event(data){
-  alert(JSON.stringify(data));
   if(data["result"] == '1'){
     if(data["operation"] == 'redirect'){
       window.location.href = data["redirectTo"];
     }
   }
+
 }

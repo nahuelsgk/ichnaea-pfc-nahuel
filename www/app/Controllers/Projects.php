@@ -64,7 +64,7 @@ function displayProjectInfo($page, $params){
 /*
 * Ajax reponse to create a new project
 */
-function dispatch_newProject($params){
+/*function dispatch_newProject($params){
   $values = $params->getParam("values");
   if($values->op == "newProject"){
     $project = new Domain\Project();
@@ -73,12 +73,12 @@ function dispatch_newProject($params){
   }
   return;
 
-}
+}*/
 /*
 * Ajax response for the version 2. All is a prototype
 *
 * Last udpate: 11 march 2013
-*/
+
 function dispatch_deleteProject($pid){
   $project = new Domain\Project();
   $project->initProject($pid);
@@ -86,6 +86,7 @@ function dispatch_deleteProject($pid){
   //a bit ensambled between layers but if the disable and enable is more complex, will be done on the project class
   $project->updateProject(array('active'=> 'n'));
 }
+*/
 
 /*
 * Ajax reponse to update a project

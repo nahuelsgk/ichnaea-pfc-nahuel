@@ -10,7 +10,7 @@ Params:
 
 */
 function requirePrivileges($page, $privileges){
-  $session = new Auth\Session();
+  $session = new \Lib\Auth\Session();
   $user_id = $session->getUserId();
   $user = new Domain\User($user_id);
   if ($user->hasPrivileges($privileges)) return '';

@@ -1,8 +1,9 @@
 <?php
 includeLib('Domain/Project');
-includeLib('Domain/Matrix');
 includeLib('Lib/Util');
 
+use \Lib\Auth;
+use \Domain\Matrix;
 /*
 * Controller for the page matrix/edit_new
 *
@@ -10,22 +11,16 @@ includeLib('Lib/Util');
 */
 function pageMatrixEditNew($page, $params){
   $matrix = new Domain\Matrix();
-
   $mid = $params->getParam('mid');
-
   $assigns = array();
-  if (!isset($mid)){
-    $assigns["is_edit"]='n';
-    $matrix->saveEmptyMatrix();
-  }
-  else{
-    printHTML("We are editing");
-    $assigns["is_edit"]='y';
-  }
-
-  $assigns["vars"] = '';
-  $assigns["name_matrix"] = '';
-  $assigns["public_matrix"] = 'y';
+  $matrix = new \Domain\Matrix();
+  $matrix->initMatrix($mid);
+  
+  $assigns["is_edit"]       = 'y';
+  $assigns["mid"]           = $mid;
+  $assigns["vars"]          = $matrix->get_vars();
+  $assigns["name_matrix"]   = $matrix->get_name();
+  $assigns["public_matrix"] = $matrix->get_public();
   $page->assign($assigns);
 }
 
@@ -69,12 +64,17 @@ function pageMatrixDefinition($page, $params){
 * - filters(optional): will display the the matrixs of a concrete project
 *   - filterByProject
 */
-function displayMatrixsList($page, $params, $filters = NULL){
+function displayMatrixsList($page, $params, $filter = NULL){
  $matrixs;
- if($filters == 'filterByProject'){
+ if($filter == 'filterByProject'){
    $project = new Domain\Project();
    $project->initProject($params->getParam("pid"));
    $matrixs = $project->getMatrixs("included");
+ }
+ else if($filter == 'filterByUser'){
+   $session = new \Lib\Auth\Session();
+   $user_id = $session->getUserId();
+   $matrixs = Domain\Matrix::listMatrixsVisibleByUser($user_id); 
  }
  else{
    $matrixs = Domain\Matrix::listMatrixs();

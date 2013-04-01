@@ -1,5 +1,7 @@
 <?
 includeLib('Domain/User');
+
+use \Domain;
 /*
 * Controller for the page admin/users
 */
@@ -9,7 +11,7 @@ function displayListUsersPage($page){
   if (isset($_POST["submit"])) {
     if(isset($_POST["reset_paswd"])){
       foreach($_POST["reset_paswd"] as $user_id){
-        $ret = User::resetPassword($user_id);
+        $ret = \Domain\User::resetPassword($user_id);
         if ($ret === FALSE) $error = "An error has happened";
       }
     }

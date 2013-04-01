@@ -4,6 +4,7 @@
   This class resolves the queried path inside the framework.
   Has all the necessary info to display the view.
 */
+use \Api;
 
 class Handler
 {
@@ -14,6 +15,8 @@ class Handler
   private $smarty;  
   private $full_path;
   private $ajax_request = false;
+  private $api = false;
+
   public function __construct(){
     $this->query=$_SERVER['PATH_INFO'] ; 
     $this->handler=$this;
@@ -22,19 +25,17 @@ class Handler
     $this->smarty->debugging = false;
     $this->smarty->caching = false;
     $this->full_path = $this->resolveFullPath();
-    $this->ajax_request = $this->detectTypeOfRequest();
+    
+    //If it wasn't resolve as ajax before, try for the bad code ajax first version
+    if ($this->ajax_request == false) $this->ajax_request = $this->detectTypeOfRequest();
   }  
 
   private function detectTypeOfRequest(){
     if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-    !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-      // If its an ajax request execute the code below       
-      //echo 'This is an ajax request!';   
-      return true;
+       !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+       strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
+         return true;
     }
-    //if it's not an ajax request echo the below.
-    //echo 'This is clearly not an ajax request!';
     return false;
   }
  
@@ -46,12 +47,18 @@ class Handler
     return $currentUrl;		    
   }
   /*
-  *Resolves the main controller and the view needed
+  *Resolves the library to use: the app controllers or the reponse event
   */
   private function resolveControllerPath()
   {
-    #Go to the queried template
-    if(preg_match("/(.*?)$/",$this->query,$view)){  
+    //This wil resolve as an pseudo api
+    if(preg_match("/api\/(.*?)$/", $this->query, $view)){
+      $this->ajax_request = true;
+      $this->api = true;
+    }
+
+    #Resolve the queried 
+    else if(preg_match("/(.*?)$/", $this->query, $view)){
       $this->view = $view[1];
     }
 
@@ -62,20 +69,31 @@ class Handler
   } 
   
   /*
-  * Executes the main controller
+  * Resolves and Executes the two  main controller: MVC or Api
   */
   public function executeController(){
     $path = RELATIVE_SMARTY_VIEWS . $this->view . ".tpl";
     $output = $this->smarty->templateExists($path);
-    if ($output === FALSE){
-      $this->smarty->display(RELATIVE_SMARTY_VIEWS . "/notfound.tpl");
+    
+    //MVC controller
+    if ($this->ajax_request == false){
+      if ($output === FALSE){
+        $this->smarty->display(RELATIVE_SMARTY_VIEWS . "/notfound.tpl");
+      }
+      else if ($this->ajax_request == false) {
+        $this->smarty->display($path);
+      }
     }
-    else if ($this->ajax_request == false) {
-      $this->smarty->display($path);
-    }
+
+    //Api: Event response controller. Two versions. We must have just one and single controller
     else {
-      global $globalparams;
-      $globalparams->setAjaxParams();
+      if($this->api==false){
+        global $globalparams;
+        $globalparams->setAjaxParams();
+      }
+      else{
+        $api = new Api\Api();
+      }
     }
   }
 

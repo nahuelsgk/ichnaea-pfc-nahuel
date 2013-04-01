@@ -6,7 +6,7 @@
 <div id="breadcrumbs">
 <a href="/home">Home</a> &gt;&gt; My matrixs
 </div>
-{include file="Tmpls/Matrix/ListMatrixs.tpl" filter=""}
+{include file="Tmpls/Matrix/ListMatrixs.tpl" filter="filterByUser"}
 {/block}
 
 {block name="help_text""}

@@ -1,6 +1,7 @@
 <?php
 includeLib("Lib/Auth/Login");
-includeLib("Lib/Auth/Session");
+
+use Lib\Auth;
 
 $session = new Auth\Session();
 $session->deleteSession();

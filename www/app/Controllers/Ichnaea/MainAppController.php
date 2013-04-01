@@ -1,8 +1,9 @@
 <?php
 includeLib("Domain/User");
-includeLib("Lib/Auth/Session");
 
-$session = new Auth\Session();
+use Lib\Auth;
+
+$session = new Lib\Auth\Session();
 $session->checkSession();
 $user_id = $session->getUserId();
 

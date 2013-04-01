@@ -13,7 +13,6 @@
   <input id="passwordsignup" name="passwordsignup" type="password" placeholder="eg. X8df!90EO">    
   <label for="passwordsignup" class="youpasswd">Change your password </label>
   </p>
-
   <p class="signin button">
   <input type="submit" name="save" value="Save Settings">
   </p>
