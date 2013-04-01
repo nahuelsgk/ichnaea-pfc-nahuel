@@ -11,7 +11,7 @@ public class BuildModelsRequest {
 	protected Season mSeason;
 	protected Dataset mDataset;
 	protected int mSection;
-	protected int mId;
+	protected String mId;
 	
 	/**
 	 * list of the attributes in which log10 function must be applied before modelling
@@ -33,14 +33,14 @@ public class BuildModelsRequest {
 	 */
 	protected Set<String> mDirectDilutedColumns;
 	
-	public BuildModelsRequest(int id, Dataset dataset, Season season, int section) {
+	public BuildModelsRequest(String id, Dataset dataset, Season season, int section) {
 		mDataset = dataset;
 		mSeason = season;
 		mSection = section;
 		mId = id;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return mId;
 	}
 	

@@ -34,7 +34,7 @@ public class BuildModelsCommand extends IchnaeaCommand {
 		}else if(mSeason == Season.Winter){
 			params += " --season=winter";
 		}
-		params += " --fake=5:1";
+		params += " --fake=10:1";
 		if(mOutputPath != null) {
 			params += " --output=\""+mOutputPath+"\"";
 		}

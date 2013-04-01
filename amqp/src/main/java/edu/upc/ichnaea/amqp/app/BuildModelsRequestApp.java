@@ -12,6 +12,7 @@ import edu.upc.ichnaea.amqp.cli.EnumOption;
 import edu.upc.ichnaea.amqp.cli.IntegerOption;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.ReadFileOption;
+import edu.upc.ichnaea.amqp.cli.StringOption;
 import edu.upc.ichnaea.amqp.cli.WriteFileOption;
 import edu.upc.ichnaea.amqp.client.BuildModelsRequestClient;
 import edu.upc.ichnaea.amqp.csv.CsvDatasetReader;
@@ -20,7 +21,7 @@ import edu.upc.ichnaea.amqp.model.BuildModelsRequest.Season;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.xml.XmlDatasetReader;
 
-public class BuildModelsRequestApp extends QueueApp {
+public class BuildModelsRequestApp extends App {
 
 	enum Format {
 		Csv,
@@ -33,6 +34,10 @@ public class BuildModelsRequestApp extends QueueApp {
 	int mSection = 1;
 	Reader mDatasetReader;
 	FileOutputStream mResponseOutput;
+	
+	String mResponseQueue = "ichnaea.build-models.response.java";
+	String mRequestQueue = "ichnaea.build-models.request";
+	String mRequestExchange = "ichnaea.build-models.request";
 	
     public static void main(String[] args) {   	
     	main(args, new BuildModelsRequestApp());
@@ -70,7 +75,25 @@ public class BuildModelsRequestApp extends QueueApp {
 			public void setValue(FileOutputStream value) {
 				mResponseOutput = value;
 			}
-		}.setDescription("The file to write with the response."));    	
+		}.setDescription("The file to write with the response."));
+    	options.add(new StringOption("request-queue"){
+			@Override
+			public void setValue(String value) {
+				mRequestQueue = value;
+			}
+    	}.setDefaultValue(mRequestQueue).setDescription("The queue to send the request."));    	
+    	options.add(new StringOption("request-exchange"){
+			@Override
+			public void setValue(String value) {
+				mRequestExchange = value;
+			}
+    	}.setDefaultValue(mRequestExchange).setDescription("The exchange to send the request."));    	
+    	options.add(new StringOption("response-queue"){
+			@Override
+			public void setValue(String value) {
+				mResponseQueue = value;
+			}
+    	}.setDefaultValue(mResponseQueue).setDescription("The queue to listen for responses."));    	
     	return options;
     }
 
@@ -88,10 +111,10 @@ public class BuildModelsRequestApp extends QueueApp {
 		} catch(SAXException e) {
 			throw new IOException(e);
 		}
-		int id = 1;
+		String id = "java.BuildModelsRequestClient";
 		BuildModelsRequest request = new BuildModelsRequest(id, dataset, mSeason, mSection);
-		mClient = new BuildModelsRequestClient(request, getQueueName(), mResponseOutput);
-		mClient.setup(getChannel());
+		mClient = new BuildModelsRequestClient(request, mRequestQueue, mRequestExchange, mResponseQueue, mResponseOutput);
+		mClient.setup(mConnection.createChannel());
 	}
 	
 	@Override

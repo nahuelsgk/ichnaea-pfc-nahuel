@@ -31,13 +31,16 @@ import edu.upc.ichnaea.shell.BuildModelsCommand;
 import edu.upc.ichnaea.shell.CommandResultInterface;
 import edu.upc.ichnaea.shell.ShellInterface;
 
-public class BuildModelsProcessClient extends QueueClient {
+public class BuildModelsProcessClient extends Client {
 
 	ShellInterface mShell;
 	String mScriptPath;
 	String mTimeFormat = "EEE MMM dd HH:mm:ss z yyyy";
 	String mRegexPercentage = "(\\d*)%";
 	String mRegexEndTime = "^ *finish: *(.*) *$";
+	String mRequestQueue;
+	String[] mResponseQueues;
+	String mResponseExchange;
 	
 	public abstract class CommandReader {
 		
@@ -86,18 +89,23 @@ public class BuildModelsProcessClient extends QueueClient {
 		protected abstract void onUpdate(float percent, Calendar end);
 	};
 	
-	public BuildModelsProcessClient(ShellInterface shell, String scriptPath, String queue) {
-		super(queue, true);
+	public BuildModelsProcessClient(ShellInterface shell, String scriptPath, String requestQueue, String[] responseQueues, String responseExchange) {
 		mShell = shell;
 		mScriptPath = scriptPath;
+		mRequestQueue = requestQueue;
+		mResponseQueues = responseQueues;
+		mResponseExchange = responseExchange;
 	}
 	
 	protected void sendResponse(BuildModelsResponse response, String replyTo)
 			throws IOException, ParserConfigurationException {
+		if(replyTo == null || replyTo.isEmpty()) {
+			return;
+		}
 		AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().
 				contentType("multipart/mixed").build();
 		String responseXml = new XmlBuildModelsResponseWriter().build(response).toString();
-		getChannel().basicPublish(getExchange(), replyTo, properties, responseXml.getBytes());
+		getChannel().basicPublish(mResponseExchange, replyTo, properties, responseXml.getBytes());
 	}
 	
 	protected void processRequest(final String replyTo, byte[] body)
@@ -153,10 +161,22 @@ public class BuildModelsProcessClient extends QueueClient {
 	}
 	
 	@Override
+	public void setup(Channel channel) throws IOException {
+		super.setup(channel);
+		channel.exchangeDeclare(mResponseExchange, "fanout", true);
+		for(String responseQueue : mResponseQueues) {
+			channel.queueDeclare(responseQueue, false, false, false, null);
+			channel.queueBind(responseQueue, mResponseExchange, "");
+		}
+		channel.queueDeclare(mRequestQueue, false, false, false, null);
+	}	
+	
+	@Override
 	public void run() throws IOException {
 		boolean autoAck = true;
 		final Channel ch = getChannel();
-		ch.basicConsume(getQueue(), autoAck, new DefaultConsumer(ch) {
+		
+		ch.basicConsume(mRequestQueue, autoAck, new DefaultConsumer(ch) {
 			@Override
 			public void handleDelivery(String consumerTag,
 				Envelope envelope,
@@ -172,7 +192,7 @@ public class BuildModelsProcessClient extends QueueClient {
                 }
 			}
 		);
-		getLogger().info("waiting for build models requests on queue \""+getQueue()+"\"...");
+		getLogger().info("waiting for build models requests on queue \""+mRequestQueue+"\"...");
 	}
 
 }

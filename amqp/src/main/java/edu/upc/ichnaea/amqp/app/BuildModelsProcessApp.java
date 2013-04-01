@@ -10,11 +10,14 @@ import edu.upc.ichnaea.amqp.client.BuildModelsProcessClient;
 import edu.upc.ichnaea.shell.ShellFactory;
 import edu.upc.ichnaea.shell.ShellInterface;
 
-public class BuildModelsProcessApp extends QueueApp {
+public class BuildModelsProcessApp extends App {
 
 	BuildModelsProcessClient mClient;
 	String mShell;
-	String mScriptPath;
+	String mScriptPath = "./ichnaea.sh";
+	String mRequestQueue = "ichnaea.build-models.request";
+	String mResponseQueues = "ichnaea.build-models.response.java";
+	String mResponseExchange = "ichnaea.build-models.response";	
 	
     public static void main(String[] args) {   	
     	main(args, new BuildModelsProcessApp());
@@ -28,13 +31,30 @@ public class BuildModelsProcessApp extends QueueApp {
 				mShell = value;
 			}
 		}.setDescription("The url to the remote shell."));
-    	
     	options.add(new StringOption("ichnaea-script") {
 			@Override
 			public void setValue(String value) throws InvalidOptionException {
 				mScriptPath = value;
 			}
-		}.setDefaultValue("./ichnaea.sh").setDescription("The path to the ichnaea script."));    	
+		}.setDefaultValue(mScriptPath).setDescription("The path to the ichnaea script."));
+    	options.add(new StringOption("request-queue"){
+			@Override
+			public void setValue(String value) {
+				mRequestQueue = value;
+			}
+    	}.setDefaultValue(mRequestQueue).setDescription("The queue to listen for requests.")); 	
+    	options.add(new StringOption("response-queue"){
+			@Override
+			public void setValue(String value) {
+				mResponseQueues = value;
+			}
+    	}.setDefaultValue(mResponseQueues).setDescription("A comma-separated list of queues to send the responses."));
+    	options.add(new StringOption("response-exchange"){
+			@Override
+			public void setValue(String value) {
+				mResponseExchange = value;
+			}
+    	}.setDefaultValue(mResponseExchange).setDescription("The exchange to send responses."));        	
     	return options;
     }
     
@@ -47,8 +67,8 @@ public class BuildModelsProcessApp extends QueueApp {
 		} catch (MalformedURLException e) {
 			throw new InvalidOptionException(e.getMessage());
 		}
-		mClient = new BuildModelsProcessClient(shell, mScriptPath, getQueueName());
-		mClient.setup(getChannel());
+		mClient = new BuildModelsProcessClient(shell, mScriptPath, mRequestQueue, mResponseQueues.split(","), mResponseExchange);
+		mClient.setup(mConnection.createChannel());
 	}
 	
 	@Override

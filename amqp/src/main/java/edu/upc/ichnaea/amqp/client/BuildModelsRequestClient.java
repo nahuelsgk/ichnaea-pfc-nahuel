@@ -21,26 +21,31 @@ import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestWriter;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseReader;
 
 
-public class BuildModelsRequestClient extends QueueClient {
+public class BuildModelsRequestClient extends Client {
 	
 	BuildModelsRequest mRequest;
 	OutputStream mResponseOutput;
+	String mRequestExchange;
+	String mRequestQueue;
+	String mResponseQueue;
 	
-	public BuildModelsRequestClient(BuildModelsRequest request, String queue, OutputStream output) {
-		super(queue, true);
+	public BuildModelsRequestClient(BuildModelsRequest request, String requestQueue, String requestExchange, String responseQueue, OutputStream output) {
 		mRequest = request;
 		mResponseOutput = output;
+		mRequestQueue = requestQueue;		
+		mRequestExchange = requestExchange;
+		mResponseQueue = responseQueue;
 	}
 	
-	protected void request(String routingKey) throws ParserConfigurationException, IOException {
-		getLogger().info("sending build models request...");
+	protected void sendRequest(String routingKey) throws ParserConfigurationException, IOException {
+		getLogger().info("sending build models request to exchange \""+mRequestExchange+"\"...");
 		
 		Channel ch = getChannel();
 		BasicProperties props = new AMQP.BasicProperties.Builder()
     	.contentType("text/xml").replyTo(routingKey).build();
 
 		String xml = new XmlBuildModelsRequestWriter().build(mRequest).toString();
-		ch.basicPublish("", getQueue(), props, xml.getBytes());
+		ch.basicPublish(mRequestExchange, "", props, xml.getBytes());
 	}
 	
 	protected void processResponse(byte[] body) throws IOException, SAXException, MessagingException {
@@ -78,14 +83,23 @@ public class BuildModelsRequestClient extends QueueClient {
 			setFinished(true);
 		}
 	}
+	
+	@Override
+	public void setup(Channel channel) throws IOException {
+		super.setup(channel);
+		channel.queueDeclare(mRequestQueue, false, false, false, null);
+		channel.exchangeDeclare(mRequestExchange, "direct", true);
+		channel.queueBind(mRequestQueue, mRequestExchange, "");
+		channel.queueDeclare(mResponseQueue, false, false, false, null);
+	}
 
 	@Override
 	public void run() throws IOException {
 		Channel ch = getChannel();
-		String routingKey = String.valueOf(mRequest.getId());
-		String routingQueue = routingQueueDeclare(routingKey);	
-		
-		ch.basicConsume(routingQueue, new DefaultConsumer(ch){
+		String routingKey = mRequest.getId();	
+		boolean autoAck = true;
+
+		ch.basicConsume(mResponseQueue, autoAck, new DefaultConsumer(ch){
 			@Override
 			public void handleDelivery(String consumerTag,
 				Envelope envelope,
@@ -102,12 +116,12 @@ public class BuildModelsRequestClient extends QueueClient {
 		});
 		
 		try {
-			request(routingKey);
+			sendRequest(routingKey);
 		}catch(Exception e) {
 			throw new IOException(e);
 		}
 		
-		getLogger().info("waiting for build models response...");
+		getLogger().info("waiting for build models response on queue \""+mResponseQueue+"\"...");
 	}
 
 }

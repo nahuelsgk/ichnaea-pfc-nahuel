@@ -34,7 +34,7 @@ public class XmlBuildModelsRequestWriterTest {
         column2.add(6f);
         dataset.add(column2);
         
-        int id = 455;
+        String id = "455";
         int section = 2;
         BuildModelsRequest model = new BuildModelsRequest(id, dataset, Season.Summer, section);
         

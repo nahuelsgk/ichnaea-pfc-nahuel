@@ -27,7 +27,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	Season mSeason;
 	DatasetHandler mDatasetHandler;
 	Dataset mDataset;
-	int mId;
+	String mId;
 	int mSection;
 	
 	public BuildModelsRequest getData() {
@@ -44,7 +44,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		mSeason = null;
 		mDatasetHandler = null;
 		mDataset = null;
-		mId = 0;
+		mId = null;
 		mSection = 0;
 	}
 
@@ -82,8 +82,11 @@ public class BuildModelsRequestHandler implements ContentHandler {
 			} catch (InvalidAttributeValueException e) {
 				throw new SAXException(e.getMessage());
 			}
-			mId = Integer.parseInt(atts.getValue(ATTR_ID));
-			mSection = Integer.parseInt(atts.getValue(ATTR_SECTION));
+			mId = atts.getValue(ATTR_ID);
+			try {
+				mSection = Integer.parseInt(atts.getValue(ATTR_SECTION));
+			} catch (NumberFormatException e) {
+			}
 		}
 	}
 	
@@ -96,7 +99,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		throw new InvalidAttributeValueException("invalid season");
 	}
 	
-
 	@Override
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
