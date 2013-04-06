@@ -23,19 +23,20 @@
 		<script type="text/x-handlebars" data-template-name="build-models">
 			{{view App.BuildModelsFormView}}
 			<table class="table table-striped">
-			<tr><th>Start</th><th>End</th><th>Progress</th><th></th></tr>
-			{{#each controller}}
-				{{view App.BuildModelsTaskView taskBinding="this"}}
-  			{{/each}}
+			<thead>
+				<tr><th>Id</th><th>Start</th><th>End</th><th>Progress</th><th></th></tr>
+			</thead>
+			{{view App.BuildModelsTasksView contentBinding="controller.tasks"}}
   			</table>
 		</script>
 
 		<script type="text/x-handlebars" data-template-name="build-models-task">
-	    	<tr {{ bindAttr class="state" }}>
-			<td>{{start}}</td>
-			<td>{{end}}</td>
-			<td><div class="progress progress-striped">
-			<div class="bar" {{ bindAttr style="progressBarStyle" }}></div>
+			<td>{{view.taskId}}</td>
+			<td>{{view.startTime}}</td>
+			<td>{{view.endTime}}</td>
+			<td>
+			<div class="progress progress-striped">
+			<div class="bar" {{bindAttr style="view.barStyle"}}>{{view.percent}}%</div>
 			</div></td>
 			<td>
 			<div class="btn-group">
@@ -47,7 +48,6 @@
 			    </ul>
 			</div>
 			</td>
-			</tr>
 		</script>
 
 		<script type="text/x-handlebars" data-template-name="build-models-form">

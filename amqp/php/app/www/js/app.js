@@ -47,19 +47,56 @@ App.BuildModelsFormView = Ember.View.extend({
   }
 });
 
+App.BuildModelsTasksView = Ember.CollectionView.extend({
+  tagName: 'tbody',
+  itemViewClass: 'App.BuildModelsTaskView',  
+  createChildView: function(viewClass, attrs) {
+    attrs.task = attrs.content;
+    return this._super(viewClass, attrs);
+  }
+});
+
 App.BuildModelsTaskView = Ember.View.extend({
   templateName: 'build-models-task',
+  classNameBindings: ['rowClass'],
   task: null,
+  taskId: function() {
+    return this.get('task.id');
+  }.property('task.id'),  
+  startTime: function() {
+    return this.get('task.start');
+  }.property('task.start'),
+  endTime: function() {
+    return this.get('task.end');
+  }.property('task.end'),
+  percent: function() {
+    return this.get('task.progress')*100;
+  }.property('task.progress'),  
+  barStyle: function() {
+    return "width: "+this.get('percent')+"%;";
+  }.property('percent'),
+  rowClass: function() {
+    if(this.get('task.error')) {
+      return 'error';
+    } else if(this.get('task.progress')>=1) {
+      return 'success';
+    } else {
+      return '';
+    }
+  }.property('task.error', 'task.progress'),  
   removeItem: function(evt) {
     var task = this.get('task');
     this.get('controller').send('deleteTask', task);
   }
 });
 
-App.BuildModelsController = Ember.ArrayController.extend({
+App.BuildModelsController = Ember.Controller.extend({
+  tasks: function() {
+    return App.BuildModelsTask.find();
+  }.property().volatile(),
   deleteTask: function(task) {
     task.deleteRecord();
-    task.store.commit();
+    App.store.commit();
   },
   addTask: function(data){
     var self = this;
@@ -68,37 +105,16 @@ App.BuildModelsController = Ember.ArrayController.extend({
     task.on("isError", function(msg){
       this.set("error", msg);
     });
-    task.store.commit();
-  }
-});
-
-App.BuildModelsRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set("content", App.BuildModelsTask.find());
+    App.store.commit();
   }
 });
 
 App.BuildModelsTask = DS.Model.extend({
-  start: DS.attr('date', { defaultValue: new Date() }),
+  start: DS.attr('date'),
   end: DS.attr('date'),
   progress: DS.attr('number', { defaultValue: 0 }),
   error: DS.attr('string'),
-  season: DS.attr('string'),
-  percent: function() {
-    return this.get('progress')*100;
-  }.property('progress'),
-  progressBarStyle: function() {
-    return "width: "+this.get('percent')+"%;"
-  }.property('percent'),
-  state: function() {
-    if(this.get('error')) {
-      return 'error';
-    } else if(this.get('progress')>=1) {
-      return 'success';
-    } else {
-      return '';
-    }
-  }.property('error', 'percent'),
+  season: DS.attr('string')
 });
 App.BuildModelsTask.toString = function() {
   return "/build-models-task";

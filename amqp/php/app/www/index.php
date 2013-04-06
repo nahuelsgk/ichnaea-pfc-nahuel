@@ -46,6 +46,9 @@ $app->get('/', function () use ($app) {
 $app->get('/build-models-tasks', function (Request $req) use ($app) {
 	$sql = "SELECT * FROM build_models_tasks";
     $data = $app['db']->fetchAll($sql);
+    foreach ($data as $k=>$v) {
+    	$data[$k] = BuildModelsResponse::fromArray($v)->toArray();
+    }
 	return json_encode(array('build-models-tasks'=>$data));
 });
 
@@ -61,12 +64,12 @@ $app->post('/build-models-tasks', function (Request $req) use ($app) {
 	return json_encode(array('build-models-task'=>$model->toArray()));
 });
 
-$app->get('/build-models-task/{id}', function ($id) use ($app) {
+$app->get('/build-models-tasks/{id}', function ($id) use ($app) {
 	$sql = "SELECT * FROM build_models_tasks WHERE id = ?";
     $data = $app['db']->fetchAssoc($sql, array($id));
+    $data = BuildModelsResponse::fromArray($data)->toArray();
 	return json_encode(array('build-models-task'=>$data));
 });
-
 
 $app->delete('/build-models-tasks/{id}', function ($id) use ($app) {
 	$app['db']->delete('build_models_tasks', array('id' => $id));
