@@ -1,0 +1,25 @@
+{
+    "name": "ichnaea/amqp",
+    "type": "library",
+    "description": "A test php client to show off ichnaea amqp",
+    "keywords": ["ichnaea", "amqp", "queue"],
+    "authors": [
+        {
+            "name" : "Miguel Ibero"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "videlalvaro/php-amqplib": "2.0.*@dev"
+    },
+    "require-dev": {
+        "silex/silex": "1.0.*@dev",
+        "doctrine/dbal": "2.3.*"
+    },
+    "autoload": {
+        "psr-0": { "Ichnaea\\Amqp\\": "src/" }
+    },
+    "scripts": {
+        
+    }
+}

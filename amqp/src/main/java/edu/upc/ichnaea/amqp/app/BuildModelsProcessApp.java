@@ -16,7 +16,7 @@ public class BuildModelsProcessApp extends App {
 	String mShell;
 	String mScriptPath = "./ichnaea.sh";
 	String mRequestQueue = "ichnaea.build-models.request";
-	String mResponseQueues = "ichnaea.build-models.response.java";
+	String mResponseQueues = "ichnaea.build-models.response";
 	String mResponseExchange = "ichnaea.build-models.response";	
 	
     public static void main(String[] args) {   	

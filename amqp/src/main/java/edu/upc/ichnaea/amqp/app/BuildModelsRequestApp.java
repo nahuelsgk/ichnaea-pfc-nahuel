@@ -35,7 +35,7 @@ public class BuildModelsRequestApp extends App {
 	Reader mDatasetReader;
 	FileOutputStream mResponseOutput;
 	
-	String mResponseQueue = "ichnaea.build-models.response.java";
+	String mResponseQueue = "ichnaea.build-models.response";
 	String mRequestQueue = "ichnaea.build-models.request";
 	String mRequestExchange = "ichnaea.build-models.request";
 	

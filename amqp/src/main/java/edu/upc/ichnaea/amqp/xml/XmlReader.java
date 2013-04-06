@@ -32,5 +32,5 @@ public class XmlReader<H extends ContentHandler> {
     	parser.setContentHandler(mHandler);
     	parser.parse(new InputSource(reader));
     	return this;
-	}	
+	}
 }

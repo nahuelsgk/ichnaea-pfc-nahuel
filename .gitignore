@@ -1,3 +1,4 @@
 kvm/tmp/*
 amqp/bin
 amqp/target
+amqp/php/vendor
