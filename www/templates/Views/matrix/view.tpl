@@ -2,9 +2,9 @@
 {block name='title'}View Matrix{/block}
 
 {block name='page'}
-{init path="Controllers/Matrix" function="displayMatrixViewForm2"}
+{init path="Controllers/Matrix" function="displayMatrixViewForm3"}
 <div id="breadcrumbs">
-<a href="/home">Home</a> &gt;&gt; <a href="">Project</a> &gt;&gt; <a href="/matrix/edit_new?&mid={$mid}">Matrix definition</a> &gt;&gt; Matrix
+<a href="/home">Home</a> &gt;&gt; <a href="/matrix/edit_new?&mid={$mid}">Matrix definition</a> &gt;&gt; Matrix
 </div>
 <div id="msgid"></div>
 <table border="1px" style="margin-left: 50px;">
@@ -12,7 +12,7 @@
 {section name=v loop=$vars}
 <th style="padding: 5px 10px 5px 10px">
   {$vars[v].name}<br>
-  <i style="font-size: 10px; color: #888">{$vars[v].threshold_limit}</i>
+  <i style="font-size: 10px; color: #888">{$vars[v].threshold}</i>
 </th>
 {/section}
 <th>Action</th>
@@ -36,10 +36,107 @@
 <td><button id="save_new_sample" name="save_new_sample">Save</button></td>
 </tr>
 <table>
+<table id="__view_matrix_table" border=1px></table>
+
+
+<div id='__template_matrix_table'>
+<table id='__matrix' border=1px>
+ <tr id="__template_tr_header">
+   <th id="__template_header_cell"><span id='__template_header_title'>Name of the var</span></th>
+ </tr>
+ <tbody>
+ <tr id="__template_sample">
+   <td id="__template_sample_header" style="text-align: center;"></td>
+   <td id="__template_sample_value" style="text-align: center;"></td>
+ </tr>
+ </tbody>
+</div>
+<input id="__template_sample_input" type="text" size="30" data-sid="" placeholder="Name of the sample"></input>
+<input id="__template_value_input" type="text" size="15" placeholder="Write a sample "></input>
+<table id="__table_form"/>
+
 <!-- <input type="button" id="btnAdd" value="Add row"> </a> -->
 <script language="javascript" type="text/javascript">
+var matrixBuilt = {};
+var template_row = {};
+var buildMatrix =  function (matrixJson){
+  alert(JSON.stringify(matrixJson));
+  //Build firs row empty for headers
+  $('#__table_form').append('<tr/>');
+  //Build an empty cell for the values
+  $('#__table_form tr:last').append('<td><button id="__add_sample">Add a sample!</td>');
+  //Build each th
+  $.each(matrixJson.data.headers, function(i, variable){
+    var header = $('#__template_header_cell').clone();
+    header.find('#__template_header_title').text(variable.name);
+    $('#__table_form tr:first').append(header);
+  });
+
+  //Build each sample
+  $.each(matrixJson.data.samples, function(i, sample){
+    var body = $('#__table_form > tbody');
+    body.append('<tr/>');
+    var current_row = $('#__table_form tr:last');
+    var header_sample = $('#__template_sample_header').clone();
+    header_sample.html(sample.name);
+    header_sample.attr('id', i);
+    current_row.append(header_sample);
+
+    $.each(sample.values, function(j, jvalue){
+      var cell_value = $('#__template_sample_value').clone();
+      cell_value.html(jvalue.value);
+      cell_value.attr('id',j);
+      current_row.append(cell_value);
+    });
+  });
+  $('#__add_sample').click(new_sample);
+};
+
+function render_new_sample(sid){
+  var sid = sid.data.sid;
+  var template_row_scheme = $('#__table_form > tbody > tr:last').clone();
+  
+  var new_sample_form = $('<tr/>');
+  template_row_scheme.find('td').each(function(index, element){
+    var cell = $(element);
+    if(index == 0){
+      var cell = $('<td/>')
+      var sample_input = $('#__template_sample_input').clone();
+      sample_input.attr('id',sid);
+      cell.append(sample_input);
+      new_sample_form.append(cell);
+   }
+   else{
+      var cell = $('<td/>')
+      var sample_input = $('#__template_value_input').clone();
+      cell.append(sample_input);
+      new_sample_form.append(cell);
+   }
+   
+  });
+  $('#__table_form > tbody ').append(new_sample_form);
+}
+
+function new_sample(){
+  var request = { uri : "/api/matrix", op : "newSample", params: { mid: {$mid} } };
+  send_event3(request, render_new_sample);
+
+}
+
+
+function render_view_matrix(){
+  var request = {
+    uri : "/api/matrix",
+    op : "buildMatrix",
+    params: { mid: {$mid} }
+  };
+  
+  send_event3(request, buildMatrix);
+}
+
 
 $(document).ready(function (){
+  render_view_matrix();
   $("#add_sample").live('click', function (e){
    var data = { 
      "ajaxDispatch": "Controllers/Matrix", 

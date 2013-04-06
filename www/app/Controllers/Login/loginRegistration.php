@@ -3,6 +3,7 @@
 includeLib("Lib/Auth/Login");
 
 use Lib\Auth;
+use \Domain;
 
 function displayLoginRegistrationForm($page, $params){
   $session = new Lib\Auth\Session();
@@ -33,7 +34,7 @@ function displayLoginRegistrationForm($page, $params){
     $user_info['name'] = $_POST['username'];
     $user_info['login'] = $_POST['email'];
     $user_info['passwd'] = $_POST['passwordsignup'];
-    $user = new User();
+    $user = new \Domain\User();
     $result = $user->createUser($user_info);
     switch($result){
       case 1:

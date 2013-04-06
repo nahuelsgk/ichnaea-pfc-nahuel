@@ -108,7 +108,7 @@ class User
   * - 1: user created
   */
   public function createUser($user_info){
-    $db = new DBi();
+    $db = new \DBi();
 
    # check if the user exists
    $sql = "SELECT 1 FROM users WHERE login='".$user_info['login']."'";
@@ -122,7 +122,7 @@ class User
    
    # Prepare the values as SQL expects
    foreach ($user_info as &$info){
-     $info = DBi::SQLValue($info);
+     $info = \DBi::SQLValue($info);
    }
 
    # execute the sql

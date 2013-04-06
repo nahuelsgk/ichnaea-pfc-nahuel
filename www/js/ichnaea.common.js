@@ -35,7 +35,7 @@ function send_event(path, func, vals){
 /*More generic than first. Will attemp to call an api
  - obj: has all info necessary for send the event. "operation"
 * Last update: 11 march 2013
-*/
+
 function send_event2(obj, path){
   alert("Sent event v2.0");
   var values = $(obj);
@@ -65,7 +65,7 @@ function send_event2(obj, path){
   });
 
 }
-
+*/
 function send_event3(request_obj, callback){
   console.log("Sent event v3.0");
   var request = $(request_obj);

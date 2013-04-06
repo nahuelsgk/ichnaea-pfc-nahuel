@@ -188,5 +188,11 @@ class DBi extends \MySQL{
     }
     return;
   }
+  
+  /*OVERRIDE FUNCTION*/
+  public function Query($sql){
+    if (parent::Query($sql) === FALSE) throw new Exception($this->Error());
+  }
+
 }
 ?>

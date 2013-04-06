@@ -1,6 +1,5 @@
 
 <ul class="myMenu"> 
-  <li class="account"><a href="/account/settings">Welcome {$username}</a></li>
   {if $is_admin}<li><a href="/admin/users">Admin Users</a></li>{/if}
   <li><a href="/home">Projects</a>
     <ul>
@@ -11,7 +10,10 @@
     <ul> 
       <li><a href="/matrix/my-matrixs">My matrixs</a></li> 
     </ul> 
-  </li> 
+  </li>
+  <li><a href="/vars/list_vars">Variables</a>
+    <ul><li><a href="/vars/list_vars">My vars</a></li></ul>
+  </li>
   <li><a href="/training/my-trainings">My Trainings</a></li> 
   <li><a id="help_trigger"> Help </a></li>
   <li><a href="/logout">Logout</a></li> 

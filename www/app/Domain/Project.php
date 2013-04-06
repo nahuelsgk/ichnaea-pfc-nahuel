@@ -164,15 +164,6 @@ class Project{
     if ($set_of_mids == NULL) return;
     $db = new DBi();
 
-    /*Code to delete
-    $store = "INSERT INTO project_matrix (project_id, matrix_id) VALUES ";
-    foreach($set_of_mids as $mid){
-      $store_values [] = '('. DBi::SQLValue($pid, DBi::SQLVALUE_NUMBER) . ','. DBi::SQLValue($mid, DBi::SQLVALUE_NUMBER). ')';
-    }
-    $store .= implode(',', $store_values);
-    printHTML($store);
-    */
-
     foreach ($set_of_mids as $mid){$store_values[] = array($pid, $mid); }
     $store = $db->BuildSQLInsertMassive(
       "project_matrix",
@@ -182,8 +173,7 @@ class Project{
       ),
       $store_values
     );
-    //printHTML("<".$store2.">");
-    if($db->Query($store) === FALSE) throw new Exception($db->getMessage());
+    if($db->Query($store) === FALSE) throw new \Exception($db->Error());
   }
 
   /*

@@ -86,7 +86,40 @@ class Matrix{
     $db = new DBi();
     $sql = $db->BuildSQLUpdateGeneric("execute", self::$TABLE, self::$FIELDS, $new_values, array("id" => $mid));
   }
-
+ 
+  /*
+  * Returns an associative multidimesional array:
+  * [
+      "variables" => array( 
+        [
+          "vid" => "variable_id", "mid_vid" => "id of the usage of this var in the matrix", "v_name" => name_of_the_variable  
+        ],...
+      ),
+      
+    ]
+    
+  */
+  public function buildMatrix($mid){
+    /*TESTS*/
+    $db = new \DBi();
+    $query = "SELECT v.id as vid, v.name as vname, v.threshold as vthreshold FROM matrix_vars mv INNER JOIN var v ON mv.var_id = v.id WHERE matrix_id = %d";
+    $samples = $db->QuerySimple($query, array($mid),'execute_return');
+    $matrix = array();
+    $headers = array();
+    foreach($samples as $sample){
+      $headers[$sample['vid']] = array("name" => $sample["vname"], "threshold" => $sample["vthreshold"]);
+    }
+    return $headers;
+  }
+ 
+  /*
+  * Add a sample to a matrix. Returns the created id.
+  */
+  public function addEmptySample($mid){
+    $db = new DBi();
+    $db->QuerySimple("INSERT INTO sample(matrix_id) VALUES (%d)", array($mid), 'execute');
+    return $db->GetLastInsertId();
+  }
   /*
   * NAMESPACES functions
   */

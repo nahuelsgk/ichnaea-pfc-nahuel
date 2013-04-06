@@ -105,8 +105,8 @@ class Api{
           $return = $matrix_api->execute($opt, $params);
 	  break;
       
-      case "var":
-          $var_api = new \Api\Vars();
+      case "singlevar":
+          $var_api = new \Api\SingleVars();
 	  $return = $var_api->execute($opt, $params);
 	  break;
       
@@ -120,6 +120,9 @@ class Api{
     }
     catch(ApiException $e){
       $e->sendResponseError();
+    }
+    catch(Exception $e){
+      printHTML($e->getMessage());
     }
   }
 }

@@ -6,6 +6,7 @@ class ApiException extends \Exception {
   //Api concretes error 
   const ERROR_URI_NOT_VALID       = 99900000;
   const ERROR_IN_FORMAT_NOT_VALID = 99900001;
+  const ERROR_FUNCTION_NOT_FOUND  = 99900002;
 
   //Database errors
   const ERROR_DB_SOMEERROR  = 99800000;

@@ -58,8 +58,8 @@ $(document).ready(function(){
 </div>
 </div>
 <div id="header">
-<div id="logo">
-<a href="/home">Logo</a>
+<div id="logo" style="padding-top: 10px; padding-left: 10px;">
+<a href="/account/settings">Welcome {$username}</a>
 </div>
 <div id="menu">
 {include file="Tmpls/Menu.tpl"}

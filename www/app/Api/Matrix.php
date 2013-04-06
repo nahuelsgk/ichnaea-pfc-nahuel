@@ -4,15 +4,8 @@ namespace Api;
 use Domain\Matrix as DomainMatrix;
 use \Lib\Auth\Session;
 
-class Matrix{
+class Matrix extends \Api\Service{
   
-  public function __construct(){
-  }
-
-  public function execute($operation, $parameters){
-    return call_user_func_array(array($this,$operation), array($parameters));    
-  }
-
   /*
   * Matrix service operation: creates a matrix
   * $params:
@@ -52,6 +45,57 @@ class Matrix{
 	break;
     }
     $matrix->updateMatrix($params["mid"], $field);
+  }
+  
+  public function buildMatrix($params){
+    $matrix = new DomainMatrix();
+    $matrix_array = array();
+    $matrix_array =  $matrix->buildMatrix($params["mid"]);
+
+    $headers = array(
+        "vid1" => array(
+	  "name"      => "Var static 1",
+	  "threshold" => 1500
+	),
+	"vid2" => array(
+	  "name"      => "Var static 2",
+	  "threshold" => 2000
+	),
+	"vid3" => array(
+	  "name"      => "Var static 3",
+	  "threshold" => 2000
+	)
+
+     );
+    $headers = $matrix_array;
+    $samples = array(
+      "sid1" => array(
+        "name"   => "Nombre sample 1",
+	"values" => array(
+	  "m_vid1" => array(
+	    "value" => 1000
+	  ),
+	  array(),
+	  "m_vid2" => array(
+	    "value" => 2000
+	  )
+	)
+      )   
+    );
+    $matrixs = array(
+      "headers" => $headers,
+      "samples" => $samples
+    ); 
+    return $matrixs;
+  }
+  
+  /*
+  * Adds a new sample to matrix
+  */
+  public function newSample($params){
+    $matrix = new DomainMatrix();
+    $id = $matrix->addEmptySample($params["mid"]);
+    return array("sid" => $id);
   }
 }
 ?>

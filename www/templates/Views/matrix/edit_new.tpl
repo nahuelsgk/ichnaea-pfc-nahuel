@@ -6,7 +6,7 @@
 <h1>{if $is_edit eq 'n'}New matrix {else}Editing matrix <div class="name_matrix" style="display: inline;">"{$name_matrix}"{/if}</h1>
 <div id="msgid"></div>
 <div class="breadcrumbs">
-<a href="/home">Home</a> &gt;&gt; Editing matrix
+<a href="/home">Home</a> &gt;&gt; Editing matrix &gt;&gt; <a href="/matrix/view?mid={$mid}">View matrix</a>
 </div>
 <table>
 <tr><td valign="top">
@@ -37,10 +37,10 @@
     <td><input tof="variable" name="threshold_limit" vid="{$vars[v].id}" value="{$vars[v].threshold}"></td>
   </tr>
   {/section}
-  <tr><td><button id="__add_var" mid="{$mid}">Add a new var</button></td></tr>
   </tbody>
   </table>
-
+  <button id="__add_var" mid="{$mid}">Add a new var</button><button id="__add_existing" mid="{$mid}">Add existing var</button>
+  <button id="__add_origin_var">Add origin</button><button id="__add_derived">Add derived</button>
 </td>
 </table>
 {if $is_edit eq 'n'}
@@ -50,7 +50,7 @@
 $('#__add_var').click(function(){
   var mid = $(this).attr("mid");
   $(this).remove();
-  $('#__variables tr:last').after('<tr id="__new_var"><td><input type="text" id="__name_new_var" name="name_new_var"></td><td><input type="text" id="__threshold_new_var" name="threshold_new_var"></td><td><button id="__save_new_var" onclick="save_var('+mid+')">Save</button></td></tr>');
+  $('#__variables tr:last').after('<tr id="__new_var"><td><input type="text" id="__name_new_var" name="name_new_var"></td><td><input type="text" id="__threshold_new_var" name="threshold_new_var"></td><td><button id="__save_new_var" onclick="save_var('+mid+')">Save</button><button id="__cancel" onclick="cancel_last_action()">Cancel</td></tr>');
 });
 
 function save_var(mid){

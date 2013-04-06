@@ -25,41 +25,6 @@ function pageMatrixEditNew($page, $params){
 }
 
 /*
-* Controller for page matrix/edit_new. Adds and edit in the same page. 
-* NOT USED BY NO ONE. Just historic reasons
-* Will be destroyed
-
-* Last update: January 2013
-*/
-function pageMatrixDefinition($page, $params){
-  $values = array();
-  $edit='n';
-  $matrix = array();
-  $vars = array();
- 
-  //default values for new matrixs
-  $values["public_matrix"] = 'n';
-
-  //If passed a matrix_id as param, we are editing it
-  if($mid = $params->getParam('mid')){
-    
-    $matrix = Matrix::getMatrixDefinition($mid);
-      
-    $values["public_matrix"] = $matrix["public"];
-    $values["matrix_name"] = $matrix['name'];
-    $vars = Vars::getVarsDefinition($mid);
-    $edit='y';
-  }
-
-  $page->assign($values);
-  $page->assign("vars",        isset($vars) ? $vars : '');
-  $page->assign("name_matrix", isset($matrix['name']) ? $matrix['name'] : '');
-  $page->assign("is_edit", $edit);
-  $page->assign("pid", $params->getParam("pid"));
-  $page->assign("mid", $params->getParam("mid"));
-}
-
-/*
 * Controller for a template to display the basic list of a matrix
 * - filters(optional): will display the the matrixs of a concrete project
 *   - filterByProject
@@ -86,7 +51,6 @@ function displayMatrixsList($page, $params, $filter = NULL){
 * Controller for the view matrix/view.
 */
 function displayMatrixViewForm2($page, $params){
-  //TODO: needs to check if i have permissions
  
   $matrix_id = $params->getParam("mid");
   try{ 
@@ -106,6 +70,17 @@ function displayMatrixViewForm2($page, $params){
   $page->assign('samples',$values);
   $page->assign('mid',$params->getParam("mid"));
 }
+
+function displayMatrixViewForm3($page, $params){
+  $matrix_id = $params->getParam("mid");
+  $matrix = new \Domain\Matrix();
+  $matrix->initMatrix($matrix_id);
+  $page->assign('vars',$matrix->get_vars());
+  $page->assign('samples',array());
+  $page->assign('mid',$matrix->get_mid());
+
+}
+
 
 /*
 * Ajax response for saving a sample

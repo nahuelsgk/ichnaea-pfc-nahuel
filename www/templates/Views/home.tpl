@@ -7,9 +7,6 @@
   <h1>Welcome to your Dashboard</h1>
   <div id="msgid"></div>
   </header>
-  {if $empty}
-    There aren't any project.
-  {else}
     {* List projects *}
     <table id="__list_projects">
     <tr><th>Project name</th><th>Options</th></tr>
@@ -24,15 +21,18 @@
     </tr>
     {/section}
     </table>
-  {/if}
   <button id ="__add_project" >Add a new project!</a>
 <script type="text/javascript">
   $('#__add_project').click(function(){
-    $(this).remove();
-    $('#__list_projects > tbody:last').append('<tr id="__last_row_inserted"><td><input id="__new_project_name" type="text" placeholder="Name of the project"></td><td><button id="__save_project" onclick="save_project();">Save project</button></td></tr>');
+    $(this).hide();
+   $('#__list_projects > tbody:last').append('<tr id="__last_row_inserted"><td><input id="__new_project_name" type="text" placeholder="Name of the project"></td><td><button id="__save_project" onclick="save_project();">Save project</button><button id="__cancel_new_project" onclick="cancel_new_project()">Cancel</button></td></tr>');
   });
 
-
+  function cancel_new_project(){
+      $('#__last_row_inserted').remove();
+      $('#__add_project').show();
+  };
+ 
   function delete_project(sender){
     var cont =  confirm('You are about to disable a matrix. Confirm?');
     if (!cont) return;
@@ -54,7 +54,8 @@
     var name_project = $("#__new_project_name").attr('value');
     $('#__last_row_inserted').remove();
     var pid = returned.data.pid;
-    $('#__list_projects > tbody:last').append("<tr><td>"+name_project+"</td><td><a href='/project/edit_new?pid="+pid+"'>Edit</a> | <a href='/project/matrixs?pid="+pid+"'>View matrixs</a> | <a href='/matrix/edit_new?pid="+pid+"'>Create Matrixs</a> |View trainings | Create Trainings | <button onclick='delete_project(this)' pid='"+pid+"'>Delete 2</button> ");
+    $('#__list_projects > tbody:last').append("<tr><td>"+name_project+"</td><td><a href='/project/edit_new?pid="+pid+"'>Edit Project</a> | <a href='/project/matrixs?pid="+pid+"'>View matrixs</a> | View trainings | <button onclick='delete_project(this)' pid='"+pid+"'>Delete</button> ");
+    $('#__add_project').show();
   }
 
   function save_project(){
