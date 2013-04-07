@@ -14,14 +14,14 @@
     <tr>
       <td>{$projects[p].name}</td>
       <td>
-        <a href="/project/edit_new?pid={$projects[p].id}">Edit Project</a> | 
-	<a href="/project/matrixs?pid={$projects[p].id}">View matrixs</a> | 
+        <a href="/project/edit_new?pid={$projects[p].id}">Configuration</a> | 
+	<a href="/project/matrixs?pid={$projects[p].id}">Matrixs</a> | 
 	View trainings | 
 	<button onclick='delete_project(this)' pid="{$projects[p].id}">Delete</button></td>
     </tr>
     {/section}
     </table>
-  <button id ="__add_project" >Add a new project!</a>
+  <button id ="__add_project" >New project!</a>
 <script type="text/javascript">
   $('#__add_project').click(function(){
     $(this).hide();
@@ -72,19 +72,5 @@
     send_event3(values, render_new_project);
   }
 </script>
-
-{/block}
-{block name='help_text'}
-<h4>Welcome to your dashboard!</h4>
-<p>
-Here you can see your projects currently open.
-<ul>
-<li>Edit project: You can add matrixs that exists on ichnaea to this project.</li>
-<li>View matrixs: You can see the matrixs of this project
-<li>View trainings: Currently developing</li>
-<li>Delete: You can disable this project</li>
-<li>Add a new project:You can add a new project on Ichnaea</li>
-</ul>
-</p>
 {/block}
 

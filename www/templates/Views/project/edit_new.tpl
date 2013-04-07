@@ -10,7 +10,7 @@
 <table>
 <tr>
   <td>Project's name</td>
-  <td><input size="30" type="text" name="project_name" id="__name_project" value="{$project_name}" placeholder="Write the name of your project" >
+  <td><input size="30" data-pid="{$pid}" type="text" name="project_name" id="__name_project" value="{$project_name}" placeholder="Write the name of your project" >
   </td>
 </tr>
 <tr>
@@ -48,7 +48,6 @@
 
 <script language="javascript" type="text/javascript">
 
-{if $is_edit eq 'y' }
   $('#__add_matrix').click(function(){
     var selectedOpts = $('#__matrixs_available option:selected');
     if (selectedOpts.length == 0) {
@@ -108,61 +107,20 @@
 
   $('#__name_project').change(function(){
     var new_name_project = $(this).val();
+    var pid = $(this).data('pid');
     var request = {
       uri: "/api/project",
       op : "updateName",
       params:{
-        new_name: new_name_project
+        new_name: new_name_project,
+	pid : pid
       }
     };
     var render_new_name_project = function(data){
       $("div.project_name").html(new_name_project);
     };
-    var values = {
-      "op"     : "updateName",
-      "id"     : "{$pid}",
-      "params" : {
-        "name" : $(this).attr("value"),
-      }
-    };
     send_event3(request, render_new_name_project);
   });
-{/if}
-
-{if $is_edit eq 'n' }
-$('#add_matrix').click(function(){
-  var selectedOpts = $('#matrixs_available option:selected');
-  if (selectedOpts.length == 0) {
-    alert("Nothing to move.");
-    event.preventDefault();
-  }
-  $('#matrixs_selected').append($(selectedOpts).clone());
-  $(selectedOpts).remove();
-
-});
-$('#del_matrix').click(function(){
-  var selectedOpts = $('#matrixs_selected option:selected');
-  if (selectedOpts.length == 0) {
-    alert("Nothing to move.");
-    event.preventDefault();
-  }
-  $('#matrixs_available').append($(selectedOpts).clone());
-  $(selectedOpts).remove();
-});
-
-$('#save_project').click(function (){
-  var values = {
-    "op": "newProject",
-    "name": $('#name_project').val(),
-    "matrixs_selected": [],
-  }
-  var selection = $('#matrixs_selected option');
-  $.each(selection, function (index, el){
-    values.matrixs_selected.push( { "mid": el.value } );
-  });
-  send_event("Controllers/Projects","newProject",values);
-});
-{/if}
 </script>
 {/block}
 

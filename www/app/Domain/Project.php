@@ -21,8 +21,9 @@ class Project{
   private $id = '';
   private $creator = '';
 
-  public function __construct()
+  public function __construct($id = NULL)
   {
+    if(isset($id)) $this->initProject($id);
   }
   
   /*
@@ -196,9 +197,12 @@ class Project{
   *
   * Last update: 5 march 2013
   */
-  public function updateProject($values){
+  public function update($values){
     $db = new DBi();
-    $sql = $db->BuildSQLUpdateGeneric('execute', self::$TABLE, self::$FIELDS, $values, array('id' => $this->id));
+    try{
+      $sql = $db->BuildSQLUpdateGeneric('execute', self::$TABLE, self::$FIELDS, $values, array('id' => $this->id));
+    }
+    catch(Exception $e){printHTML($e->getMessage());}
   }
 
   /*

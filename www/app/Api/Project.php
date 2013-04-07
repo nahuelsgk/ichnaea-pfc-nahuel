@@ -30,15 +30,15 @@ class Project extends \Api\Service{
   public function delete($params){
     $project = new DomainProject();
     $project->initProject($params["pid"]);
-    $project->updateProject(array('active'=> 'n'));
+    $project->update(array('active'=> 'n'));
   }
  
   /*
   * Change the name of a project
   */
   public function updateName($params){
-    $project = new DomainProject();
-    $project->updateProject(array('name'=>$params['new_name']));
+    $project = new DomainProject($params['pid']);
+    $project->update(array('name'=>$params['new_name']));
   }
   /*
   * Aggregates a bunch of matrixs to a project

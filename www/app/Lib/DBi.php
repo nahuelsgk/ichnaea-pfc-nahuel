@@ -69,10 +69,9 @@ class DBi extends \MySQL{
     }
 
     $update = $this->BuildSQLUpdate($tableName, $values_generic, $where_generic);
-
     switch ($mode){
       case "execute":
-        if ( ($result = $this->Query($update)) == FALSE ) throw new Exception($db->Error);
+        $result = $this->Query($update);
         return $result;
         break;
       case "query":

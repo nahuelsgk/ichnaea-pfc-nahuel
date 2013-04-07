@@ -56,7 +56,7 @@ function displayProjectInfo($page, $params){
 
   $project = new Domain\Project();
   $project->initProject($pid);
-
+  printHTML("------------------");
   $page->assign('project_name', $project->get_name());
   $page->assign('pid', $project->get_id());
 }

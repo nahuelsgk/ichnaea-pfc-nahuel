@@ -10,7 +10,7 @@
  <td>{$matrixs[m].id}</td>
  <td>{$matrixs[m].name}</td>
  <td>{$matrixs[m].public}
- <td><a href="/matrix/view?mid={$matrixs[m].id}">View</a> | <a href="/matrix/edit_new?mid={$matrixs[m].id}">Edit</a> </td>
+ <td> <a href="/matrix/edit_new?mid={$matrixs[m].id}">Configuration</a> | <a href="/matrix/view?mid={$matrixs[m].id}">View</a> </td>
 </tr>
 {/section}
 </table>
