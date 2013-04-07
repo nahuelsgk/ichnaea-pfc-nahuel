@@ -33,9 +33,11 @@ class BuildModelsRequest
 
 	public function setSeason($season)
 	{
-		$seasons = array(self::Summer, self::Winter);
-		if (!in_array($season, $seasons)) {
-			throw new \InvalidArgumentException("Invalid season");
+		if ($season) {
+			$seasons = array(self::Summer, self::Winter);
+			if (!in_array($season, $seasons)) {
+				throw new \InvalidArgumentException("Invalid season");
+			}
 		}
 		$this->season = $season;
 	}
@@ -111,8 +113,7 @@ class BuildModelsRequest
 		if (array_key_exists('fake', $data)) {
 			$this->setFake($data['fake']);
 		}
-		if (array_key_exists('fake_duration', $data)
-			|| array_key_exists('fake_interval', $data)) {
+		if (isset($data['fake_duration']) || isset($data['fake_interval'])) {
 			$this->setFake($data['fake_duration'].":".$data['fake_interval']);	
 		}
 	}

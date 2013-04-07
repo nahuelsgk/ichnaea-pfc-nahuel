@@ -112,7 +112,7 @@ public class BuildModelsProcessClient extends Client {
 	protected void processRealRequest(BuildModelsRequest req, final String replyTo)
 			throws IOException, InterruptedException, ParserConfigurationException {
 		
-		final Calendar start = Calendar.getInstance();
+		Calendar start = Calendar.getInstance();
 		String datasetPath = FileUtils.tempPath(mShell.getTempPath());
 		getLogger().info("writing dataset to "+datasetPath);
 		OutputStream out = mShell.writeFile(datasetPath);
@@ -126,16 +126,7 @@ public class BuildModelsProcessClient extends Client {
 		CommandResultInterface result = mShell.run(cmd);
 		
 		getLogger().info("reading command result");
-		new CommandReader(result){
-			@Override
-			protected void onUpdate(float percent, Calendar end) {
-				getLogger().info("sending status update");
-				try {
-					sendResponse(new BuildModelsResponse(replyTo, start, end, percent), replyTo);
-				} catch (IOException | ParserConfigurationException e) {
-				}
-			}
-		};
+		sendRequestUpdates(result, start, replyTo);
 		
 		getLogger().info("deleting temporary dataset file");
 		mShell.removeFile(datasetPath);
@@ -159,7 +150,7 @@ public class BuildModelsProcessClient extends Client {
 	protected void processFakeRequest(BuildModelsRequest req, final String replyTo)
 			throws IOException, InterruptedException, ParserConfigurationException {
 		
-		final Calendar start = Calendar.getInstance();
+		Calendar start = Calendar.getInstance();
 		getLogger().info("calling fake build models command");
 		FakeBuildModelsCommand cmd = new FakeBuildModelsCommand(req.getFake());
 		
@@ -168,6 +159,11 @@ public class BuildModelsProcessClient extends Client {
 		CommandResultInterface result = mShell.run(cmd);
 		
 		getLogger().info("reading command result");
+		sendRequestUpdates(result, start, replyTo);
+	}
+	
+	protected void sendRequestUpdates(CommandResultInterface result, final Calendar start, final String replyTo)
+			throws IOException {
 		new CommandReader(result){
 			@Override
 			protected void onUpdate(float percent, Calendar end) {
@@ -186,6 +182,7 @@ public class BuildModelsProcessClient extends Client {
 		
 		BuildModelsRequest req = new XmlBuildModelsRequestReader().read(new String(body));
 
+		getLogger().info(new String(body));
 		getLogger().info("opening shell");
 		mShell.open();
 		

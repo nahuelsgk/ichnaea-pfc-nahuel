@@ -10,6 +10,7 @@ public class Main {
 	
 	interface Action {
 		public void run(String[] args);
+		public String description();
 	}
 	
 	static Map<String,Action> getActions() {
@@ -19,34 +20,48 @@ public class Main {
 			public void run(String[] args) {
 				BuildModelsProcessApp.main(args);
 			}
+			
+			public String description() {
+				return "Process incoming build-models requests";
+			}
     	});
     	actions.put("build-models:request", new Action(){
 			@Override
 			public void run(String[] args) {
 				BuildModelsRequestApp.main(args);
 			}
+			
+			public String description() {
+				return "Sends a build-models request and waits for the response";
+			}
     	});
     	return actions;
 	}
 	
-	private static void exitError(String msg) {
+	private static void exitError(String msg, Map<String,Action> actions) {
 		System.out.println(msg);
+		System.out.println("Available actions are:");
+		for(String key : actions.keySet()) {
+			Action action = actions.get(key);
+			System.out.println(key+" "+action.description());
+		}
         System.exit(1);
 	}
 
     public static void main(String[] args) {
+    	Map<String,Action> actions = getActions();
+    	
     	if(args.length == 0) {
-            exitError("Please specify an action as argument.");
+            exitError("Please specify an action as argument.", actions);
             return;
     	}
     	
     	String actionKey = args[0];
     	String[] actionArgs = Arrays.copyOfRange(args, 1, args.length);
-    	Map<String,Action> actions = getActions();
+
 
     	if(!actions.containsKey(actionKey)) {
-    		String appKeys = StringUtils.join(actions.keySet(), ", ");
-    		exitError("Unknown action "+actionKey+". Available actions are: "+appKeys);
+    		exitError("Unknown action "+actionKey+".", actions);
             return;
     	}
     	actions.get(actionKey).run(actionArgs);

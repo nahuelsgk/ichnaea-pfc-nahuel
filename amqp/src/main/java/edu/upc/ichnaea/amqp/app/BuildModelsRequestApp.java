@@ -38,6 +38,7 @@ public class BuildModelsRequestApp extends App {
 	String mResponseQueue = "ichnaea.build-models.response";
 	String mRequestQueue = "ichnaea.build-models.request";
 	String mRequestExchange = "ichnaea.build-models.request";
+	String mFake = null;
 	
     public static void main(String[] args) {   	
     	main(args, new BuildModelsRequestApp());
@@ -57,7 +58,7 @@ public class BuildModelsRequestApp extends App {
 			public void setValue(FileInputStream value) {
 				mDatasetReader = new InputStreamReader(value);
 			}
-		}.setRequired(true).setDescription("The file with the dataset."));
+		}.setDescription("The file with the dataset."));
     	options.add(new EnumOption<Format>("dataset-format") {
 			@Override
 			public void setValue(Format value) {
@@ -93,7 +94,13 @@ public class BuildModelsRequestApp extends App {
 			public void setValue(String value) {
 				mResponseQueue = value;
 			}
-    	}.setDefaultValue(mResponseQueue).setDescription("The queue to listen for responses."));    	
+    	}.setDefaultValue(mResponseQueue).setDescription("The queue to listen for responses."));
+    	options.add(new StringOption("fake"){
+			@Override
+			public void setValue(String value) {
+				mFake = value;
+			}
+    	}.setDefaultValue(mFake).setDescription("Do a fake request. Format should be T:I where T are the total seconds and I are the update seconds."));
     	return options;
     }
 
@@ -101,18 +108,23 @@ public class BuildModelsRequestApp extends App {
     protected void setup() throws IOException
     {
 		super.setup();
-		Dataset dataset = null;
-		try {
-			if(mDatasetFormat == Format.Csv) {
-				dataset = new CsvDatasetReader().read(mDatasetReader);
-			} else if(mDatasetFormat == Format.Xml) {
-				dataset = new XmlDatasetReader().read(mDatasetReader);
-			}
-		} catch(SAXException e) {
-			throw new IOException(e);
-		}
 		String id = "java.BuildModelsRequestClient";
-		BuildModelsRequest request = new BuildModelsRequest(id, dataset, mSeason, mSection);
+		BuildModelsRequest request;
+		if(mFake != null) {
+			request = new BuildModelsRequest(id, mFake);
+		} else {
+			Dataset dataset = null;
+			try {
+				if(mDatasetFormat == Format.Csv) {
+					dataset = new CsvDatasetReader().read(mDatasetReader);
+				} else if(mDatasetFormat == Format.Xml) {
+					dataset = new XmlDatasetReader().read(mDatasetReader);
+				}
+			} catch(SAXException e) {
+				throw new IOException(e);
+			}			
+			request = new BuildModelsRequest(id, dataset, mSeason, mSection);
+		}
 		mClient = new BuildModelsRequestClient(request, mRequestQueue, mRequestExchange, mResponseQueue, mResponseOutput);
 		mClient.setup(mConnection.createChannel());
 	}

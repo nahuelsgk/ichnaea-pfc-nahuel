@@ -37,12 +37,20 @@ App.UploadFileView = Ember.TextField.extend({
 App.BuildModelsFormView = Ember.View.extend({
   templateName: 'build-models-form',
   title: 'Build Models',
-  submit: function(evt) {
-    evt.preventDefault();
-    var data = {};
-    $.each($(evt.target).serializeArray(), function(_, kv) {
-      data[kv.name] = kv.value;
-    });
+  submitReal: function(evt) {
+    var elm = $(this.get('element'));
+    var data = {
+      season: elm.find('#build-models-form-season').val(),
+      section: elm.find('#build-models-form-section').val(),
+    };
+    this.get('controller').send('addTask', data);
+  },
+  submitFake: function() {
+    var elm = $(this.get('element'));
+    var data = {
+      fake_duration: elm.find('#build-models-form-fake-duration').val(),
+      fake_interval: elm.find('#build-models-form-fake-interval').val(),
+    };
     this.get('controller').send('addTask', data);
   }
 });
@@ -62,7 +70,10 @@ App.BuildModelsTaskView = Ember.View.extend({
   task: null,
   taskId: function() {
     return this.get('task.id');
-  }.property('task.id'),  
+  }.property('task.id'),
+  taskError: function() {
+    return this.get('task.error');
+  }.property('task.error'),    
   startTime: function() {
     return this.get('task.start');
   }.property('task.start'),
@@ -83,7 +94,11 @@ App.BuildModelsTaskView = Ember.View.extend({
     } else {
       return '';
     }
-  }.property('task.error', 'task.progress'),  
+  }.property('task.error', 'task.progress'),
+  didInsertElement: function() {
+    var elm = $(this.get('element'));
+    elm.find('.has-tooltip').tooltip();
+  },
   removeItem: function(evt) {
     var task = this.get('task');
     this.get('controller').send('deleteTask', task);

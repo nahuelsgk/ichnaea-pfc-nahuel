@@ -31,7 +31,8 @@
 		</script>
 
 		<script type="text/x-handlebars" data-template-name="build-models-task">
-			<td>{{view.taskId}}</td>
+			<td><a href="#" class="has-tooltip" data-toggle="tooltip" {{bindAttr title="view.taskError"}}>
+			{{view.taskId}}</a></td>
 			<td>{{view.startTime}}</td>
 			<td>{{view.endTime}}</td>
 			<td>
@@ -80,7 +81,7 @@
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<button type="submit" class="btn">Submit</button>
+									<button type="submit" class="btn" {{action "submitReal" target="view"}}>Submit</button>
 								</div>
 							</div>
 						</div>
@@ -105,7 +106,7 @@
 								</div>
 							<div class="control-group">
 								<div class="controls">
-									<button type="submit" class="btn">Submit</button>
+									<button type="submit" class="btn" {{action "submitFake" target="view"}}>Submit</button>
 								</div>
 							</div>
 						</div>
