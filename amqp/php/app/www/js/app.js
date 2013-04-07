@@ -114,7 +114,9 @@ App.BuildModelsTask = DS.Model.extend({
   end: DS.attr('date'),
   progress: DS.attr('number', { defaultValue: 0 }),
   error: DS.attr('string'),
-  season: DS.attr('string')
+  season: DS.attr('string'),
+  fake_duration: DS.attr('number'),
+  fake_interval: DS.attr('number')
 });
 App.BuildModelsTask.toString = function() {
   return "/build-models-task";

@@ -16,11 +16,16 @@ class BuildModelsRequestWriter extends Writer
 		$xmlRoot = $this->getRoot();
 		$xmlRoot->setAttribute("id", $req->getId());
 		$xmlRoot->setAttribute("type", "build_models");
-		$xmlRoot->setAttribute("section", $req->getSection());
-		$xmlRoot->setAttribute("season", $req->getSeason());
-		$xmlDataset = $this->createElement("dataset");
-		$xmlRoot->appendChild($xmlDataset);
-		$writer = new DatasetWriter($this->getDocument(), $xmlDataset);
-		$writer->build($req->getDataset());
+
+		if (!$req->isFake()) {
+			$xmlRoot->setAttribute("section", $req->getSection());
+			$xmlRoot->setAttribute("season", $req->getSeason());
+			$xmlDataset = $this->createElement("dataset");
+			$xmlRoot->appendChild($xmlDataset);
+			$writer = new DatasetWriter($this->getDocument(), $xmlDataset);
+			$writer->build($req->getDataset());
+		} else {
+			$xmlRoot->setAttribute("fake", $req->getFake());
+		}
 	}
 }

@@ -12,6 +12,7 @@ class BuildModelsRequest
     private $section;
     private $season;
     private $dataset;
+    private $fake;
 
 	public function __construct($id=null)
 	{
@@ -44,6 +45,17 @@ class BuildModelsRequest
 		$this->section = intval($section);
 	}
 
+	/**
+	 * Fake sets a fake request. The format should be
+	 * a string of type "T:I", where T is the total time
+	 * the fake request should take and I is the interval
+	 * in which the response will be updated
+	 */
+	public function setFake($fake)
+	{
+		$this->fake = $fake;
+	}
+
 	public function getId()
 	{
 		return $this->id;
@@ -64,12 +76,23 @@ class BuildModelsRequest
 		return $this->dataset;
 	}
 
+	public function getFake()
+	{
+		return $this->fake;
+	}
+
+	public function isFake()
+	{
+		return $this->fake != null;
+	}
+
 	public function toArray()
 	{
 		return array(
 			"id"		=> $this->id,
 			"season"	=> $this->season,
 			"section"	=> $this->section,
+			"fake"		=> $this->fake,
 			"dataset"	=> $this->dataset->toArray()
 		);
 	}
@@ -84,6 +107,13 @@ class BuildModelsRequest
 		}
 		if (array_key_exists('section', $data)) {
 			$this->setSection($data['section']);
+		}
+		if (array_key_exists('fake', $data)) {
+			$this->setFake($data['fake']);
+		}
+		if (array_key_exists('fake_duration', $data)
+			|| array_key_exists('fake_interval', $data)) {
+			$this->setFake($data['fake_duration'].":".$data['fake_interval']);	
 		}
 	}
 

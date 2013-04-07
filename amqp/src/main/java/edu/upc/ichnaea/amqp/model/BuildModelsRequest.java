@@ -12,6 +12,7 @@ public class BuildModelsRequest {
 	protected Dataset mDataset;
 	protected int mSection;
 	protected String mId;
+	protected String mFake;
 	
 	/**
 	 * list of the attributes in which log10 function must be applied before modelling
@@ -38,6 +39,12 @@ public class BuildModelsRequest {
 		mSeason = season;
 		mSection = section;
 		mId = id;
+		mFake = null;
+	}
+	
+	public BuildModelsRequest(String id, String fake) {
+		mId = id;
+		mFake = fake;
 	}
 	
 	public String getId() {
@@ -52,7 +59,15 @@ public class BuildModelsRequest {
 		return mSeason;
 	}
 	
+	public String getFake() {
+		return mFake;
+	}
+	
 	public Dataset getDataset() {
 		return mDataset;
+	}
+	
+	public boolean isFake() {
+		return mFake != null;
 	}
 }

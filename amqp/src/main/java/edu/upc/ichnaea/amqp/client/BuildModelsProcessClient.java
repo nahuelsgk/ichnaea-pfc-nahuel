@@ -29,6 +29,7 @@ import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestReader;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseWriter;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
 import edu.upc.ichnaea.shell.CommandResultInterface;
+import edu.upc.ichnaea.shell.FakeBuildModelsCommand;
 import edu.upc.ichnaea.shell.ShellInterface;
 
 public class BuildModelsProcessClient extends Client {
@@ -108,26 +109,22 @@ public class BuildModelsProcessClient extends Client {
 		getChannel().basicPublish(mResponseExchange, replyTo, properties, responseXml.getBytes());
 	}
 	
-	protected void processRequest(final String replyTo, byte[] body)
-			throws IOException, SAXException, InterruptedException, ParserConfigurationException {
-		getLogger().info("received a request");
-		final Calendar start = Calendar.getInstance();
-		BuildModelsRequest request = new XmlBuildModelsRequestReader().read(new String(body));
-
-		getLogger().info("opening shell");
-		mShell.open();
+	protected void processRealRequest(BuildModelsRequest req, final String replyTo)
+			throws IOException, InterruptedException, ParserConfigurationException {
 		
+		final Calendar start = Calendar.getInstance();
 		String datasetPath = FileUtils.tempPath(mShell.getTempPath());
 		getLogger().info("writing dataset to "+datasetPath);
 		OutputStream out = mShell.writeFile(datasetPath);
-		new CsvDatasetWriter(new OutputStreamWriter(out)).write(request.getDataset()).close();
+		new CsvDatasetWriter(new OutputStreamWriter(out)).write(req.getDataset()).close();
 		
 		getLogger().info("calling build models command");
-		BuildModelsCommand cmd = new BuildModelsCommand(request.getSeason(), datasetPath);
+		BuildModelsCommand cmd = new BuildModelsCommand(req.getSeason(), datasetPath);
+		
 		cmd.setScriptPath(mScriptPath);
 		getLogger().info(cmd.toString());
 		CommandResultInterface result = mShell.run(cmd);
-			
+		
 		getLogger().info("reading command result");
 		new CommandReader(result){
 			@Override
@@ -145,7 +142,8 @@ public class BuildModelsProcessClient extends Client {
 		
 		getLogger().info("reading output file in "+cmd.getOutputPath());
 		Calendar end = Calendar.getInstance();
-		BuildModelsResponse resp = null;
+		
+		BuildModelsResponse resp;
 		try{
 			byte[] data = IOUtils.read(mShell.readFile(cmd.getOutputPath()));
 			resp = new BuildModelsResponse(replyTo, start, end, data);
@@ -156,6 +154,48 @@ public class BuildModelsProcessClient extends Client {
 		}
 		getLogger().info("sending result");		
 		sendResponse(resp, replyTo);
+	}
+	
+	protected void processFakeRequest(BuildModelsRequest req, final String replyTo)
+			throws IOException, InterruptedException, ParserConfigurationException {
+		
+		final Calendar start = Calendar.getInstance();
+		getLogger().info("calling fake build models command");
+		FakeBuildModelsCommand cmd = new FakeBuildModelsCommand(req.getFake());
+		
+		cmd.setScriptPath(mScriptPath);
+		getLogger().info(cmd.toString());
+		CommandResultInterface result = mShell.run(cmd);
+		
+		getLogger().info("reading command result");
+		new CommandReader(result){
+			@Override
+			protected void onUpdate(float percent, Calendar end) {
+				getLogger().info("sending status update");
+				try {
+					sendResponse(new BuildModelsResponse(replyTo, start, end, percent), replyTo);
+				} catch (IOException | ParserConfigurationException e) {
+				}
+			}
+		};
+	}
+	
+	protected void processRequest(final String replyTo, byte[] body)
+			throws IOException, SAXException, InterruptedException, ParserConfigurationException {
+		getLogger().info("received a request");
+		
+		BuildModelsRequest req = new XmlBuildModelsRequestReader().read(new String(body));
+
+		getLogger().info("opening shell");
+		mShell.open();
+		
+		if(req.isFake()) {
+			getLogger().info("calling fake build models command");
+			processFakeRequest(req, replyTo);
+		} else {
+			processRealRequest(req, replyTo);
+		}
+	
 		getLogger().info("closing shell");
 		mShell.close();
 	}

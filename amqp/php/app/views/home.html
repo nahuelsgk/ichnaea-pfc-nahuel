@@ -53,28 +53,63 @@
 		<script type="text/x-handlebars" data-template-name="build-models-form">
 			<form class="form-horizontal" method="POST" action="build-models" enctype="multipart/form-data">
 				<fieldset>
-				<legend>{{view.title}}</legend>
-				<div class="control-group">
-				    <label class="control-label" for="season">Season</label>
-				    <div class="controls">
-					    <select name="season">
-					    	<option value="winter">Winter</option>
-					    	<option value="summer">Summer</option>
-					    </select>
+					<legend>{{view.title}}</legend>
+
+					<ul class="nav nav-tabs">
+					  <li class="active"><a href="#build-models-form-real" data-toggle="tab" class="disable-fake">Real</a></li>
+					  <li><a href="#build-models-form-fake" data-toggle="tab" class="enable-fake">Fake</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div class="tab-pane active" id="build-models-form-real">
+							<div class="control-group">
+							    <label class="control-label" for="build-models-form-season">Season</label>
+							    <div class="controls">
+								    <select name="season" id="build-models-form-season">
+								    	<option value="winter">Winter</option>
+								    	<option value="summer">Summer</option>
+								    </select>
+								</div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="build-models-form-dataset">Data</label>
+							    <div class="controls">
+							    	{{#view App.UploadFileView name="dataset" id="build-models-form-dataset"}}
+							    	{{/view}}
+							    </div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn">Submit</button>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="build-models-form-fake">
+							<div class="control-group">
+							    <label class="control-label" for="build-models-form-fake-duration">Duration</label>
+							    <div class="controls">
+								    <div class="input-append">
+									    <input type="text" value="10" class="input-mini" name="fake_duration" id="build-models-form-fake-duration" />
+									    <span class="add-on">seconds</span>
+									</div>
+								</div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="build-models-form-fake-interval">Interval</label>
+							    <div class="controls">
+									<div class="input-append">
+									    <input type="text" value="1" class="input-mini" name="fake_interval" id="build-models-form-fake-interval" />
+									    <span class="add-on">seconds</span>
+									</div>
+							    </div>
+								</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn">Submit</button>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="control-group">
-				    <label class="control-label" for="data">Data</label>
-				    <div class="controls">
-				    	{{#view App.UploadFileView name=dataset}}
-				    	{{/view}}
-				    </div>
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn">Submit</button>
-					</div>
-				</div>
 				</fieldset>
 			</form>
 		</script>

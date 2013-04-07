@@ -22,12 +22,14 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	final static String ATTR_ID = "id";
 	final static String ATTR_SECTION = "section";
 	final static String ATTR_REQUEST_TYPE = "type";
+	final static String ATTR_FAKE = "fake";
 	
 	BuildModelsRequest mRequest;
 	Season mSeason;
 	DatasetHandler mDatasetHandler;
 	Dataset mDataset;
 	String mId;
+	String mFake;
 	int mSection;
 	
 	public BuildModelsRequest getData() {
@@ -45,12 +47,17 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		mDatasetHandler = null;
 		mDataset = null;
 		mId = null;
+		mFake = null;
 		mSection = 0;
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		mRequest = new BuildModelsRequest(mId, mDataset, mSeason, mSection);
+		if(mFake != null) {
+			mRequest = new BuildModelsRequest(mId, mFake);
+		} else {
+			mRequest = new BuildModelsRequest(mId, mDataset, mSeason, mSection);
+		}
 	}
 
 	@Override
@@ -74,18 +81,22 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		if(mDatasetHandler != null) {
 			mDatasetHandler.startElement(uri, localName, qName, atts);
 		} else if(localName.equalsIgnoreCase(TAG_REQUEST)) {
-			if(!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
-				throw new SAXException("Invalid message type");
-			}
-			try {
-				mSeason = getSeasonFromString(atts.getValue(ATTR_SEASON));
-			} catch (InvalidAttributeValueException e) {
-				throw new SAXException(e.getMessage());
-			}
 			mId = atts.getValue(ATTR_ID);
 			try {
 				mSection = Integer.parseInt(atts.getValue(ATTR_SECTION));
 			} catch (NumberFormatException e) {
+			}
+			if(atts.getValue(ATTR_FAKE) != null) {
+				mFake = atts.getValue(ATTR_FAKE);
+			} else {
+				if(!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
+					throw new SAXException("Invalid message type");
+				}
+				try {
+					mSeason = getSeasonFromString(atts.getValue(ATTR_SEASON));
+				} catch (InvalidAttributeValueException e) {
+					throw new SAXException(e.getMessage());
+				}
 			}
 		}
 	}

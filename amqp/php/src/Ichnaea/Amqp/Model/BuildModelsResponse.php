@@ -28,20 +28,24 @@ class BuildModelsResponse
 
 	public function setStart($start)
 	{
-		if(is_string($start)) {
-			$start = strtotime($start);
+		if ($start) {
+			if(is_string($start)) {
+				$start = strtotime($start);
+			}
+			$this->start = new \DateTime();
+			$this->start->setTimestamp($start);
 		}
-		$this->start = new \DateTime();
-		$this->start->setTimestamp($start);
 	}
 
 	public function setEnd($end)
 	{
-		if(is_string($end)) {
-			$end = strtotime($end);
+		if ($end) {
+			if(is_string($end)) {
+				$end = strtotime($end);
+			}
+			$this->end = new \DateTime();
+			$this->end->setTimestamp($end);
 		}
-		$this->end = new \DateTime();
-		$this->end->setTimestamp($end);
 	}
 
 	public function setError($err)

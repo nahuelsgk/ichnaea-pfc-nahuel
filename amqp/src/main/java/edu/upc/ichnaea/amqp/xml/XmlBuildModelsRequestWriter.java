@@ -17,11 +17,15 @@ public class XmlBuildModelsRequestWriter extends XmlWriter {
 
 		root.setAttribute("id", String.valueOf(data.getId()));
 		root.setAttribute("type", "build_models");
-		root.setAttribute("section", String.valueOf(data.getSection()));
-		root.setAttribute("season", data.getSeason().toString().toLowerCase());
-		
-		Element datasetXml = appendChild("dataset");
-		new XmlDatasetWriter(getDocument(), datasetXml).build(data.getDataset());
+		if(data.getFake() == null) {
+			root.setAttribute("section", String.valueOf(data.getSection()));
+			root.setAttribute("season", data.getSeason().toString().toLowerCase());
+			
+			Element datasetXml = appendChild("dataset");
+			new XmlDatasetWriter(getDocument(), datasetXml).build(data.getDataset());	
+		} else {
+			root.setAttribute("fake", data.getFake());
+		}
 		
 		return this;
 	}
