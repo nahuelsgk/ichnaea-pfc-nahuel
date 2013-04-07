@@ -118,21 +118,21 @@ class DBi extends \MySQL{
 	return $result;
 	break;
 
-      case "execute_local_catch":
-         try{
-           if ( ($result = $this->QueryArray($sql, MYSQL_ASSOC)) == FALSE ) throw new Exception($this->Error());
-	   return $result;
-	   break;
-	 }
-	 catch(Exception $e){
-	   printHTML($e->getMessage());
-	 }
-
-      case "query":
-        return $sql;
-        break;
+    case "execute_local_catch":
+      try{
+        if ( ($result = $this->QueryArray($sql, MYSQL_ASSOC)) == FALSE ) throw new Exception($this->Error());
+	      return $result;
+	      break;
+	   }
+	   catch(Exception $e){
+	     printHTML($e->getMessage());
+	   }
+       break;
+    case "query":
+      return $sql;
+       break;
  
-      case "query_debug":
+    case "query_debug":
         printHTML($sql);
 	return $sql;
 	break;

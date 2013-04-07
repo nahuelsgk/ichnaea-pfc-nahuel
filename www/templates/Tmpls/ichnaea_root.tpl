@@ -18,6 +18,7 @@
     }
     </style>
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/ichnaea.css" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->

@@ -2,55 +2,41 @@
 {block name='title'}Ichnaea Home User{/block}
 {block name='page'}
 {init path="Controllers/Vars" function="display_var_list"}
-<table id="__list_single_vars" cellspacing=0 border=1>
-<tr>
-<th>Name of the var</th>
-<th>Seasons</th>
-<th>&nbsp;</th></tr>
-<tbody>
-{foreach name="sv" key=svid item=single_var from=$single_vars}
-<tr class="single_var" data-svid={$svid}>
-<td><span class="single_var_name" data-svid="{$svid}">{$svid} - {$single_var.name}</span></td>
+<table id="__list_single_vars" class="table-striped">
+<th>Id</th><th>Seasons</th>
+<tr id="__template_single_var" class="template_hidden">
+<td class="single_var_name"><span class="single_var_name">Sample name</span></td>
 <td>
-  <button id="__add_season_to_a_single_var" disabled>Add season!</button>
-  <table id="__list_single_var_season" data-svid="1">
-    {if isset($single_var.seasons)}
-    <tr class="season_single_var" data-seasonid="1" data-svid="1">
-      <td><span>{$single_var.seasons[0].name}</span></td>
-      <td><span>{$single_var.seasons[0].notes}</span></td>
-      <td>&nbsp;</td></button>
-      </td>
-    </tr>
-    {/if}
+  <table class="__template_single_var_season_list table-striped"">
+    <tr id="__template_single_var_season_item"><td><span class="single_var_season_name"></span></td><td><span class="single_var_season_notes"></span></td></tr>
   </table>
-<td>&nbsp;</td>
+</td>
 </tr>
-{/foreach}
-<tr class="single_var" data-svid="1" >
-<form id="__new_var_form">
 
-<td><input type="text" id="single_var_name" class="single_var_name" name="single_var_name" placeholder="Name of the variable" data-svid="1" required></td>
-<td>
-  <button id="__add_season_to_a_single_var" disabled>Add season!</button>
-  <table id="__list_single_var_season" data-svid="1">
-    <tr class="season_single_var" data-seasonid="1" data-svid="1">
-      <td><input type="text" id="season_single_var_name" class="season_single_var_name" placeholder="Name of the season" data-seasonid></td>
-      <td><input type="text" id="season_single_var_description" class="season_single_var_description" placeholder="Notes" data-seasonid></td>
-      <td><input type="file" class="season_single_var_file" placeholder="File of the season" data-seasonid> <button type="submit" class="red-button" id="uploadButton">Upload</button>
-      </td>
-    </tr>
-  </table>
-<td><button type="submit" name="save_single_var" class="save_single_var" id="__save_single_var">Save single var!</button></td>
-</form>
-
-</tr>
 </tbody>
 </table>
-<script type="text/javascript">
 
-var Season = function(name, notes){
-  this.name  = name;
-  this.notes = notes;
+<script type="text/javascript">
+function renderListSingleVariables(list){
+    $.each(list.data, function(i, variable){
+      var singleVariableView = $('#__template_single_var').clone();
+      var id = variable.svid;
+      singleVariableView.attr('class','single_var_item');
+      singleVariableView.attr('id', id);
+      singleVariableView.find('span.single_var_name').html(variable.name);
+     
+      if(variable.seasons){
+      $.each(variable.seasons, function (j, season){
+      	var seasonView = $('#__template_single_var_season_item').clone();
+      	seasonView.attr('id', season.ssid);
+      	seasonView.attr('class', 'single_var_season_item');
+      	seasonView.find('.single_var_season_name').html(season.name);
+      	seasonView.find('.single_var_season_notes').html(season.notes);
+      	singleVariableView.find('.__template_single_var_season_list').append(seasonView);
+        });
+      }
+      $('#__list_single_vars').append(singleVariableView);
+    });
 }
 
 function save_single_variable(e){
@@ -73,8 +59,12 @@ function save_single_variable(e){
   return false;
 };
 
+
 $(document).ready(function(){
+  
   $('#__new_var_form').on('submit', save_single_variable);
+  var request = new Request('/api/singlevar','listComplete', {}).send(renderListSingleVariables);
+
 });
 
 </script>

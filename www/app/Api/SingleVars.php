@@ -32,5 +32,20 @@ class SingleVars extends \Api\Service{
 
     return $array_of_vars_created;
   }
+  
+  function listComplete(){
+    $vars = DomainVars\SingleVar::getCompleteList();
+    return $vars;
+  }
+ 
+  function listSimple(){
+    $vars = DomainVars\SingleVar::getList();
+    return $vars;
+  }
+  
+  function listSeasons($id){
+  	$var = new DomainVars\SingleVar($id["svid"]);
+  	return $var->getSeasonsList();
+  }
 }
 ?>

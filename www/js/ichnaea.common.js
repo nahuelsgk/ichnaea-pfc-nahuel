@@ -1,3 +1,18 @@
+var Season = function(name, notes){
+  this.name  = name;
+  this.notes = notes;
+}
+var Request = function(uri, operation, params){
+	this.request = {
+		uri    : uri,
+		op     : operation,
+	    params : params
+    };
+    this.send = function(successFunction){
+		send_event3(this.request, successFunction);
+    } 
+}
+
 function send_event3(request_obj, callback){
   console.log("Sent event v3.0");
   var request = $(request_obj);
@@ -22,7 +37,7 @@ function send_event3(request_obj, callback){
       }
     },
     error: function(data){
-      showMessage('Error',JSON.stringify(data));
+      showMessage('Error', 10000, JSON.stringify(data));
     }
   });
 }

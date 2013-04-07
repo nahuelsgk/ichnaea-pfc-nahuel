@@ -72,5 +72,11 @@ class Vars{
     $vars =  $db->QuerySimple("SELECT v.* FROM var v INNER JOIN matrix_vars mv ON v.id = mv.var_id WHERE mv.matrix_id = '%d'",array($mid), "execute_return");
     return $vars;
   }
+  
+  public function getCompleteList(){
+  	$db = new DBi();
+    $vars =  $db->QuerySimple("SELECT v.* FROM var v INNER JOIN matrix_vars mv ON v.id = mv.var_id WHERE mv.matrix_id = '%d'",array($mid), "execute");
+    return $vars;
+  }
 }
 ?>

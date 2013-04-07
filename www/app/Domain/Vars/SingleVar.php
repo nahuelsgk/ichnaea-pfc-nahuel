@@ -67,6 +67,10 @@ class SingleVar{
     $season = new Season();
     $season->save($this->id, $name, $notes);
   }
+  
+  public function getSeasonsList(){
+  	return Season::getSeasonsList($this->id);
+  }
 }
 
 class Season{
@@ -87,6 +91,13 @@ class Season{
     $db->Query($sql);
     $this->id = $db->GetLastInsertId();
     return $this->id;
+  }
+  
+  public static function getSeasonsList($svid){
+  	$db = new \DBi(); 	
+    $list_single_var = $db->BuildSQLSelectGeneric('execute_local_catch', self::$TABLE, self::$FIELDS, array("single_var_id"=>$svid), null);
+    printVar($list_single_var);
+    return $list_single_var;
   }
 }
 ?>

@@ -3,7 +3,7 @@
 {block name='title'}Matrix Definition{/block}
 {block name='page'}
 {init path="Controllers/Matrix" function="pageMatrixEditNew"}
-<h1>{if $is_edit eq 'n'}New matrix {else}Editing matrix <div class="name_matrix" style="display: inline;">"{$name_matrix}"{/if}</h1>
+<h1>Editing matrix <div class="name_matrix" style="display: inline;">{$name_matrix}</h1>
 <div id="msgid"></div>
 <div class="breadcrumbs">
 <a href="/home">Home</a> &gt;&gt; Editing matrix &gt;&gt; <a href="/matrix/view?mid={$mid}">View matrix</a>
@@ -21,31 +21,24 @@
     </tr>
   </table>
 </td><td valign="top">
-  <center><b>List of variables</b></center>
-  <table>
-  </tr>
-<td>
-  <table id="__variables">
-  <tbody>
-  <tr>
-    <th style="padding: 0 20px;">Name</th>
-    <th style="padding: 0 10px;">Threshold</th>
-  </tr>
-  {section name=v loop=$vars}
-  <tr>
-    <td><input name="name" tof="variable" vid="{$vars[v].id}" value="{$vars[v].name}" size="10"></td>
-    <td><input tof="variable" name="threshold_limit" vid="{$vars[v].id}" value="{$vars[v].threshold}"></td>
-  </tr>
-  {/section}
-  </tbody>
-  </table>
-  <button id="__add_var" mid="{$mid}">Add a new var</button><button id="__add_existing" mid="{$mid}">Add existing var</button>
-  <button id="__add_origin_var">Add origin</button><button id="__add_derived">Add derived</button>
-</td>
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a>Add a single var</a></li>
+  <li><a>Origin</a></li>
+</ul>
+
+<div data-template="add_single_variable_form">
+<table>
+<th>System's variable</th><th>Seasons</th>
+<tr>
+ <td>
+  <select size="100" id="__single_vars_available" name="matrixs_available" style="width: 200px; height: 200px;">
+ </td>
+ <td>
+  <select  size="100" id="__seasons_available" name="matrixs_available" style="width: 200px; height: 200px;">
+ </td>
+</tr>
 </table>
-{if $is_edit eq 'n'}
-{else}
-{/if}
+</div>
 <script language="javascript" type="text/javascript">
 $('#__add_var').click(function(){
   var mid = $(this).attr("mid");
@@ -99,8 +92,33 @@ $("input[name='visibility']").change(function(){
   };
   send_event3(request);
 });
-</script>
-{/block}
+function renderListSeasons(list){
+	  $('#__seasons_available').empty();
+	  $.each(list.data, function(i, season){
+		  $('#__seasons_available')
+		   .append($('<option class="season_var_item"></option>')
+				   .attr("value",season.svid)
+				   .text(season.name));	
+	  });
+}
+function loadSeasons(){
+	var svid = $(this).val();
+	var data = { id : svid } ;
+	var request = new Request('/api/singlevar','listSeasons', { svid: svid } ).send(renderListSeasons);
+}
 
-{block name="help_text"}
+function renderListSimpleSingleVariables(list){
+  var arrayList = { data : [ { svid: "29" ,  name : "ICHXX" } , { svid: "30" , name: "ICHYY"} ] };
+  $.each(list.data, function(i, single_variable){
+	  $('#__single_vars_available')
+	   .append($('<option class="single_var_item"></option>')
+			   .attr("value",single_variable.svid)
+			   .text(single_variable.name));	
+  });
+  $('#__single_vars_available').change(loadSeasons);
+}
+$(document).ready(function(){ 
+	var request = new Request('/api/singlevar','listSimple', {}).send(renderListSimpleSingleVariables);
+});
+</script>
 {/block}

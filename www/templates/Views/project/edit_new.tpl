@@ -23,7 +23,6 @@
   <tr>
   <td>
     <select multiple="multiple" id="__matrixs_available" name="matrixs_available" style="width: 200px; height: 200px;">
-    u
       {section name=matrix loop=$matrixs_available}
       <option value="{$matrixs_available[matrix].id}">{$matrixs_available[matrix].name}</option>
       {/section}
@@ -113,7 +112,7 @@
       op : "updateName",
       params:{
         new_name: new_name_project,
-	pid : pid
+	    pid : pid
       }
     };
     var render_new_name_project = function(data){
