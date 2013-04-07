@@ -39,7 +39,6 @@
 <body>
 {include file="Tmpls/Menu.tpl"}
 <div class="container">
-<h1>{block name="title"}{/block}</h1>
 {block name="page"}{/block}
 </div>
 </body>

@@ -1,15 +1,12 @@
 {extends file="Tmpls/ichnaea_root.tpl"}
 {block name='title'}Ichnaea Home User{/block}
 {block name='page'}
-  {init path="Controllers/Ichnaea/Home/Dashboard" function="display_home"}
+    {init path="Controllers/Ichnaea/Home/Dashboard" function="display_home"}
 
-  <header>
-  <h1>Welcome to your Dashboard</h1>
-  <div id="msgid"></div>
-  </header>
     {* List projects *}
-    <table id="__list_projects">
-    <tr><th>Project name</th><th>Options</th></tr>
+    <table id="__list_projects" class="table-striped">
+    <th>Project name</th><th>Options</th>
+    <tbody>
     {section name=p loop=$projects}
     <tr>
       <td>{$projects[p].name}</td>
@@ -20,6 +17,7 @@
 	<button onclick='delete_project(this)' pid="{$projects[p].id}">Delete</button></td>
     </tr>
     {/section}
+    </tbody>
     </table>
   <button id ="__add_project" >New project!</a>
 <script type="text/javascript">
