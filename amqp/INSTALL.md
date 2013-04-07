@@ -36,15 +36,6 @@ On Ubuntu
 
 * add the project to the workspace
     Import... -> Existing projects into Workspace
-
-### Create a RabbitMQ user
-
-The Java library does not need a rabbitmq user, but the php does.
-TO create a test user with all the permissions do the following
-
-    rabbitmqctl add_user test test
-    rabbitmqctl add_vhost /
-    rabbitmqctl set_permissions -p / test ".*" ".*" ".*" 
    
 ### Compile and Run
 
@@ -62,5 +53,9 @@ TO create a test user with all the permissions do the following
     
     * issue a test build-models request
     mvn exec:java -Dexec.args="build-models:request -d test.csv"
+
+### PHP setup
+
+See `php/README.md`.
 
 

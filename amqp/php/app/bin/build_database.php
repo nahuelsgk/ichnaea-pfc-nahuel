@@ -25,9 +25,9 @@ $table->setPrimaryKey(array("id"));
 $sm->dropAndCreateTable($table);
 
 $conn->insert('build_models_tasks', array(
-	'id' 		=> 'test',
-	'start'		=> '01/04/2013 22:00',
-	'end'		=> '02/04/2013 16:00',
-	'progress'	=> 0.5,
-	'error'		=> 'Test request'
+    'id' 		=> 'test',
+    'start'		=> '01/04/2013 22:00',
+    'end'		=> '02/04/2013 16:00',
+    'progress'	=> 0.5,
+    'error'		=> 'Test request'
 ));

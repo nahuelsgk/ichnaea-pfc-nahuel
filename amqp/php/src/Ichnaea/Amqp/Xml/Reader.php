@@ -4,5 +4,5 @@ namespace Ichnaea\Amqp\Xml;
 
 abstract class Reader
 {
-	abstract public function read($data);
+    abstract public function read($data);
 }
