@@ -2,24 +2,23 @@
 {block name='title'}Ichnaea Home User{/block}
 {block name='page'}
     {init path="Controllers/Ichnaea/Home/Dashboard" function="display_home"}
-
+<h1>Your dashboard</h1>
     {* List projects *}
     <table id="__list_projects" class="table-striped">
-    <th>Project name</th><th>Options</th>
+    <th>Project name</th><th>&nbsp;</th>
     <tbody>
     {section name=p loop=$projects}
     <tr>
       <td>{$projects[p].name}</td>
       <td>
-        <a href="/project/edit_new?pid={$projects[p].id}">Configuration</a> | 
-	<a href="/project/matrixs?pid={$projects[p].id}">Matrixs</a> | 
-	View trainings | 
-	<button onclick='delete_project(this)' pid="{$projects[p].id}">Delete</button></td>
+      <a title="Project's configuration" href="/project/edit_new?pid={$projects[p].id}" class="btn btn-mini"><i class="icon-pencil"></i></a> | 
+	  <a title="View matrixs" class="btn btn-mini" href="/project/matrixs?pid={$projects[p].id}"><i class="icon-th-large"></i></a> |
+	  <a title="Delete project" id="__add_new_season_item" pid="{$projects[p].id}" class="btn btn-mini" onclick='delete_project(this)'><i class="icon-trash"></i></a></td>
     </tr>
     {/section}
     </tbody>
     </table>
-  <button id ="__add_project" >New project!</a>
+    <a title="Add new project" id="__add_project" class="btn btn-mini"><i class="icon-plus"></i></a>
 <script type="text/javascript">
   $('#__add_project').click(function(){
     $(this).hide();
@@ -52,7 +51,7 @@
     var name_project = $("#__new_project_name").attr('value');
     $('#__last_row_inserted').remove();
     var pid = returned.data.pid;
-    $('#__list_projects > tbody:last').append("<tr><td>"+name_project+"</td><td><a href='/project/edit_new?pid="+pid+"'>Edit Project</a> | <a href='/project/matrixs?pid="+pid+"'>View matrixs</a> | View trainings | <button onclick='delete_project(this)' pid='"+pid+"'>Delete</button> ");
+    $('#__list_projects > tbody:last').append('"<tr><td>'+name_project+'</td><td><a title="Project configuration" href="/project/edit_new?pid='+pid+'" class="btn btn-mini"><i class="icon-pencil"></i></a> | <a title="View matrixs" class="btn btn-mini" href="/project/matrixs?pid='+pid+'"><i class="icon-th-large"></i></a> | <a title="Delete project" id="__add_new_season_item" pid="'+pid+'" class="btn btn-mini" onclick="delete_project(this)"><i class="icon-trash"></i></a></td>');
     $('#__add_project').show();
   }
 

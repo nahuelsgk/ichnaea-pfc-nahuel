@@ -20,12 +20,13 @@
       </td>
     </tr>
   </table>
-</td><td valign="top">
+</td>
+
+<td valign="top">
 <ul class="nav nav-tabs" id="myTab">
   <li class="active"><a>Add a single var</a></li>
   <li><a>Origin</a></li>
 </ul>
-
 <div data-template="add_single_variable_form">
 <table>
 <th>System's variable</th><th>Seasons</th>
