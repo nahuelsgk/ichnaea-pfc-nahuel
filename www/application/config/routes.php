@@ -55,6 +55,7 @@ $route['project/logout']				= 'project/logout';
 //Logins
 $route['verifylogin']					= 'login/verifylogin';
 $route['signin']						= 'login/signin';
+$route['signin/created']				= 'login/created';
 $route['default_controller'] 			= 'login';
 $route['404_override'] = '';
 
