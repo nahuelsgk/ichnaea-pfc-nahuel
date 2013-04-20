@@ -42,8 +42,8 @@
 $route['api/project/(:num)/(:any)'] 			= 'api/projectapi/project/id/$1/$2';
 $route['api/single_variable_api/format/json']	= 'api/single_variable_api/single_variable/format/json';
 $route['api/seasons_api/(:num)/format/json']	= 'api/seasons_api/season/svid/$1/format/json';
-
-
+$route['api/seasons']							= 'api/seasons_api/season/format/json';
+$route['api/seasons/(:num)']					= 'api/seasons_api/season/id/$1/format/json';
 
 //Application Routes
 $route['matrix/(:num)']					= 'matrix/configuration/$1';
