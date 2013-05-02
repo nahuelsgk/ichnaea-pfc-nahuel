@@ -40,15 +40,27 @@
 
 //API Routes
 $route['api/project/(:num)/(:any)'] 			= 'api/projectapi/project/id/$1/$2';
+
 $route['api/single_variable_api/format/json']	= 'api/single_variable_api/single_variable/format/json';
+
 $route['api/seasons_api/(:num)/format/json']	= 'api/seasons_api/season/svid/$1/format/json';
 $route['api/seasons']							= 'api/seasons_api/season/format/json';
 $route['api/seasons/(:num)']					= 'api/seasons_api/season/id/$1/format/json';
+
+$route['api/variable/(:num)']					= 'api/variable_api/variable/id/$1/format/json';
+$route['api/variable']							= 'api/variable_api/variable/format/json';
+
+$route['api/matrix/(:num)/variable']			= 'api/matrixs_api/variable/id/$1/format/json';
+$route['api/matrix/(:num)/content']				= 'api/matrixs_api/content/id/$1/format/json';
+$route['api/matrix/(:num)/sample']				= 'api/matrixs_api/sample/id/$1/format/json';
+
 
 //Application Routes
 $route['matrix/(:num)']					= 'matrix/configuration/$1';
 $route['matrix/(:num)/view']			= 'matrix/view/$1';
 $route['matrix/(:num)/view2']			= 'matrix/view2/$1';
+$route['matrix/(:num)/jqgrid']			= 'matrix/view3/$1';
+$route['matrix/(:num)/own']			= 'matrix/view4/$1';
 $route['project/(:num)'] 				= 'project/view/$1';
 $route['project/logout']				= 'project/logout';
 

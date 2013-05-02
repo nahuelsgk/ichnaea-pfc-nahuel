@@ -14,7 +14,7 @@ class Matrixs_api extends REST_Controller{
 		$id = $this->matrix_model->create($name);
 		$this->response(array('msg'=>'Matrix created', 'id'=>$id), 200);
 	}
-	
+
 	function matrixs_post(){
 		$matrix_id = $id = $this->get('id');
 		if(empty($matrix_id)) $this->response(array('msg' => 'Need a matrix id to perform operation'), 400);
@@ -26,5 +26,33 @@ class Matrixs_api extends REST_Controller{
 		$configuration_id = $this->single_variables_configuration_model->add($matrix_id, $season_id, $single_var_id);
 		$this->response(array('configuration_id' => $configuration_id, 'msg' => 'Single variable added with season'), 200);
 	}
+	
+	function variable_put(){
+		 if($this->get('id')){
+		 	$id = $this->get('id');
+		 	$this->load->model('matrix_model');
+		 	$this->matrix_model->createColumn($id);
+		 }
+		 //Must return the id
+		 $this->response(array('msg'=> "Column created"), 200);
+	}
+	
+	function content_get(){
+		if($this->get("id")){
+			$id = $this->get("id");
+			$this->load->model('matrix_model');
+			$document = $this->matrix_model->getDocument($id);
+			$this->response(array('data'=>$document[0]));
+		}
+	}
+	
+	function sample_put(){
+		if($this->get("id")){
+			$id = $this->get("id");
+			$this->load->model('matrix_model');
+			$this->matrix_model->createSample($id);
+		}
+	}
+	
 }
 ?>

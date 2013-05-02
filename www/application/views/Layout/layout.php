@@ -75,7 +75,7 @@
              <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Variables <b class="caret"></b></a>
               <ul class="dropdown-menu">
-               <li><a href="/single_variables">System's variables</a></li>
+               <li><a href="/variables">System's variables</a></li>
               </ul>
              </li>
              <li class="dropdown">

@@ -1,0 +1,25 @@
+{
+    n_headers: 2,
+    "headers":[
+    {
+        "type": "single",
+        "season_id": 10,
+        "variable_id": 12,
+        "name": "alias variable 1"
+    },
+    {
+        "type": "derived",
+        "header_a": 0,
+        "header_b": 2,
+        "operation": "+/-/*//"
+    }
+    ],
+    "samples":[   
+        {
+            "origin" : "cow",
+            "name": "sample 1",
+            "date": "31-12-2013",
+            "values":[0.34212, 12.67]
+        }
+    ]
+}

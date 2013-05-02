@@ -7,8 +7,8 @@ class Single_variable_api extends REST_Controller{
 	function single_variable_get(){
 		$this->load->model('single_variable_model');
 		
-		$id=$this->get('id');
-		if(!empty($id)){
+		if(!$this->get('id'))
+		{
 			$single_variable_array = $this->single_variable_model->get_complete($id);
 			$this->response(array('msg' => "Loading single variable", 'list' => $single_variable_array), 200);	
 		}

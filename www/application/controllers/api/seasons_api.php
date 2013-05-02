@@ -6,7 +6,8 @@ require APPPATH.'/libraries/REST_Controller.php';
 class Seasons_api extends REST_Controller{
 	
 	function season_get(){	
-		if($this->get('id')){
+		$id = $this->get('id'); 
+		if(!empty($id)){
 		 $this->load->model('season_model');
 		 $id = $this->get('id');
 		 $season = $this->season_model->get($id);
