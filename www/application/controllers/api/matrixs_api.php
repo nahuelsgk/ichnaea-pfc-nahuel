@@ -34,7 +34,7 @@ class Matrixs_api extends REST_Controller{
 		 	$this->matrix_model->createColumn($id);
 		 }
 		 //Must return the id
-		 $this->response(array('msg'=> "Column created"), 200);
+		 $this->response(array('msg'=> "Succesful column created"), 200);
 	}
 	
 	function content_get(){
@@ -42,7 +42,20 @@ class Matrixs_api extends REST_Controller{
 			$id = $this->get("id");
 			$this->load->model('matrix_model');
 			$document = $this->matrix_model->getDocument($id);
-			$this->response(array('data'=>$document[0]));
+			$this->response(array('data'=>$document[0], 'msg'=>'Matrix loaded successfully'), 200);
+		}
+	}
+	
+	function values_put(){
+		if($this->get("id")){
+			$id     = $this->get("id");
+			$row    = $this->get("row");
+			$column = $this->get("column");
+			$value  = $this->put("value");
+
+			$this->load->model('matrix_model');
+			$this->matrix_model->updateValue($id, $row, $column, $value);
+			$this->response(array('msg' => 'Value updated successfully'), 200);
 		}
 	}
 	

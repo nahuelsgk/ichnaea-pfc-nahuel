@@ -50,9 +50,10 @@ $route['api/seasons/(:num)']					= 'api/seasons_api/season/id/$1/format/json';
 $route['api/variable/(:num)']					= 'api/variable_api/variable/id/$1/format/json';
 $route['api/variable']							= 'api/variable_api/variable/format/json';
 
-$route['api/matrix/(:num)/variable']			= 'api/matrixs_api/variable/id/$1/format/json';
-$route['api/matrix/(:num)/content']				= 'api/matrixs_api/content/id/$1/format/json';
-$route['api/matrix/(:num)/sample']				= 'api/matrixs_api/sample/id/$1/format/json';
+$route['api/matrix/(:num)/variable']			  = 'api/matrixs_api/variable/id/$1/format/json';
+$route['api/matrix/(:num)/values/(:num)/(:num)']  = 'api/matrixs_api/values/id/$1/row/$2/column/$3/format/json';
+$route['api/matrix/(:num)/content']				  = 'api/matrixs_api/content/id/$1/format/json';
+$route['api/matrix/(:num)/sample']				  = 'api/matrixs_api/sample/id/$1/format/json';
 
 
 //Application Routes

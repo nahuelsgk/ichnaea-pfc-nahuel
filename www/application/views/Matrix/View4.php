@@ -22,12 +22,14 @@
 </script>
 </script>
 <script language="text/x-jsrender" id="templateHeaderColumn">
-<th data-column='{{>i_column}}' class="header">
- <div class="variable_name">
-  {{>name}}
- </div>
- <div class="form_header">
+<th data-column='{{>i_column}}' class="header" onClick="renderForm(this)">
+ <div class="content_header">
+  <div class="variable_name">
+   {{>name}}
+  </div>
+  <div class="form_header">
   
+  </div>
  </div>
 </th>
 </script>
@@ -48,9 +50,9 @@
 </script>
 
 <script language="text/x-jsrender" id="templateSampleHeader">
-<td class="sample_header" onclick="renderSampleForm">
-  <input type="text" id="" data-sample_id="" name="sample_name" placeholder="Sample's name"><br>
-  <input type="date" id="" data-sample_id="" name="sample_data" placeholder="Sample's date"><br>
+<td class="sample_header" align="center">
+  <input style="width: 100px;" type="text" id="" data-sample_id="" name="sample_name" placeholder="Sample's name"><br>
+  <input style="width: 100px;" type="date" id="" data-sample_id="" name="sample_data" placeholder="Sample's date"><br>
 </td>
 </script>
 
@@ -64,8 +66,8 @@
 {{for #data tmpl="#templateSampleHeader"/}}
 
 {{for headers}}
-<td class="sample_header" data-sample-id="" data-row="" onclick="renderSampleForm">
-<input type="text" data-row="" data-column="" onchange="updateValue();">
+<td align="center" class="sample_header" data-sample-id="" data-row="" >
+<input style="width: 100px;" type="text" data-row="" data-column="" onchange="updateValue();">
 </td>
 {{/for}}
 
@@ -74,13 +76,13 @@
 </script>
 
 <script language="text/x-jsrender" id="templateSampleFulfill">
-<tr class="sample">
+<tr class="sample" data-row={{>i_sample}}>
 
 {{for #data tmpl="#templateSampleHeader"/}}
 
-{{for values}}
-<td class="sample_header" data-sample-id="" data-row="" onclick="renderSampleForm">
-<input type="text" data-row="" data-column="" onchange="updateValue();" value="">
+{{for values ~i_sample=i_sample}}
+<td align="center" class="sample_header" data-row="{{>~i_sample}}" data-column="{{:#index}}" >
+<input style="width: 100px;" type="text" data-row="{{>~i_sample}}" data-column="{{:#index}}" onchange="updateValue(this);" value="{{>#data}}">
 </td>
 {{/for}}
 
@@ -102,11 +104,12 @@ function getHeaders(){
 	
 } 
 
-function renderSample(sample, n_headers){
+function renderSample(sample, row ,n_headers){
 	//For consistency in the GUI on incomplete samples
 	for (var i=0; n_headers - sample.values.length; i++){
 	  sample.values.push('');
 	}
+	console.log(sample);
 	var content = $('#templateSampleFulfill').render(sample);
 	$('#list_of_samples').append(content);
 }
@@ -147,7 +150,12 @@ function update_name_header(){}
 
 function update_sample_value(){}
 
-
+function updateValue(input){
+    var column = $(input).attr('data-column');
+    var row    = $(input).attr('data-row');
+    var value  = $(input).val();
+    sendEvent('/api/matrix/<?php echo $matrix["id"];?>/values/'+row+'/'+column, 'PUT', {value: value}, {});
+}
 function renderMatrix(data){
 	var number_of_headers = 0;
 	$.each(data.data.headers, function(i, element){
@@ -157,9 +165,10 @@ function renderMatrix(data){
 	});
 
 	$.each(data.data.samples, function(i, element){
-		renderSample(element, number_of_headers);
+		element.i_sample = i;
+		renderSample(element, i, number_of_headers);
 	});
-	
+	$("#matrix").colResizable();
 }
 
 function requestAddVariable(){

@@ -22,14 +22,19 @@ function sendEvent(uri, method, params, success_callback){
 		url: 		uri,
 		dataType: 	'json',
 		data: 		params,
+		timeout: 	150000,
 		success:	function(data){
-			console.log(data);
 			if(typeof success_callback != 'undefined') success_callback(data);
 			showMessage('success', 1500, data.msg);
 		},
-		error: function(data){
-			  console.log();
-		      showMessage('error', 10000, console.log(data.msg));
+		error: function(data, type){
+			  if(type==='timeout') {
+				  showMessage('error', 10000, "Connection problems. Can't send request")
+			  }
+			  else{
+				  showMessage('error', 10000, console.log(data.msg));
+		      }
+			  
 		}
 	});
 };

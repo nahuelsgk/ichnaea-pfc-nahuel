@@ -46,6 +46,7 @@
 	<script src="/js/bootstrap/assets/js/bootstrap-typeahead.js"></script>
 	<script src="/js/ichnaea.common.js"></script>
 	<script src="/js/notification.js"></script>
+	<script src="/js/colResizable-1.3.min.js"></script>
 	<script type="text/javascript" src="/js/pnotify/jquery.pnotify.min.js"></script>
 </head>
 <body>

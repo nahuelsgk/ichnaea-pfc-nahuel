@@ -54,6 +54,7 @@ class matrix_model extends CI_Model{
 						
 	}
 	
+	
 	/* 
 	 * Returns a complete document of a matrix by the SQL id
 	 */
@@ -87,16 +88,15 @@ class matrix_model extends CI_Model{
 	/*
 	 * Updates a value of the matrixs
 	 */
-	function updateValue($id, $row, $column){
+	function updateValue($id, $row, $column, $value){
 		$this->load->library('Mongo_db');
 		$query = $this->db->get_where('matrix', array("id"=>$id));
 		$matrix = $query->row_array();
 		$matrix_id = $matrix['matrix_id'];
 		
 		$this->mongo_db->where(array('_id' => new MongoId($matrix_id)))
-						->set('samples'.$row.'values'.$column);
-		print_r($this->mongo_db->updates);
-						
+						->set(array('samples.'.$row.'.values.'.$column => $value));
+		$this->mongo_db->update('matrixsCollection');						
 	}
 	
 }
