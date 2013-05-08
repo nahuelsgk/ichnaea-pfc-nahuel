@@ -19,7 +19,7 @@
             "origin" : "cow",
             "name": "sample 1",
             "date": "31-12-2013",
-            "values":[0.34212, 12.67]
+            "values":[{id:, value: 0.34212, type: "single/derived"}, 12.67]
         }
     ]
 }

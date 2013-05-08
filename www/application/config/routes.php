@@ -54,6 +54,7 @@ $route['api/matrix/(:num)/variable']			  = 'api/matrixs_api/variable/id/$1/forma
 $route['api/matrix/(:num)/values/(:num)/(:num)']  = 'api/matrixs_api/values/id/$1/row/$2/column/$3/format/json';
 $route['api/matrix/(:num)/content']				  = 'api/matrixs_api/content/id/$1/format/json';
 $route['api/matrix/(:num)/sample']				  = 'api/matrixs_api/sample/id/$1/format/json';
+$route['api/matrix/(:num)/header/(:num)']		  = 'api/matrixs_api/header/id/$1/header/$2/format/json';
 
 
 //Application Routes
@@ -61,7 +62,7 @@ $route['matrix/(:num)']					= 'matrix/configuration/$1';
 $route['matrix/(:num)/view']			= 'matrix/view/$1';
 $route['matrix/(:num)/view2']			= 'matrix/view2/$1';
 $route['matrix/(:num)/jqgrid']			= 'matrix/view3/$1';
-$route['matrix/(:num)/own']			= 'matrix/view4/$1';
+$route['matrix/(:num)/own']			 	= 'matrix/view4/$1';
 $route['project/(:num)'] 				= 'project/view/$1';
 $route['project/logout']				= 'project/logout';
 

@@ -67,5 +67,16 @@ class Matrixs_api extends REST_Controller{
 		}
 	}
 	
+	function header_get(){
+		if($this->get("id")){
+			$id        = $this->get("id");
+			$header_id = $this->get("header");
+			$this->load->model('matrix_model');
+			$header = $this->matrix_model->getHeader($id, $header_id);
+			$this->response(array("data"=>$header,"msg"=>"Header definition loaded"), 200);
+		}
+		else $this->response(array("msg"=>"Needs at least a header id"), 400);
+	} 
+	
 }
 ?>

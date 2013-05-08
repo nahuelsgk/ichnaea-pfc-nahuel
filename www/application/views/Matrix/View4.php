@@ -22,7 +22,7 @@
 </script>
 </script>
 <script language="text/x-jsrender" id="templateHeaderColumn">
-<th data-column='{{>i_column}}' class="header" onClick="renderForm(this)">
+<th data-column='{{>i_column}}' data-variable_id='{{}}'  class="header" onClick="changeHeaderToForm(this)">
  <div class="content_header">
   <div class="variable_name">
    {{>name}}
@@ -47,6 +47,15 @@
  </div>
 </a>
 </th>
+</script>
+
+<script language="text/x-jsrender" id="templateHeaderForm">
+<select>
+   <option id="single_variable">Single variable</option>
+   <option id="single_variable">Derived</option>
+</select>
+<div class="header_form_content">
+</div>
 </script>
 
 <script language="text/x-jsrender" id="templateSampleHeader">
@@ -171,8 +180,20 @@ function renderMatrix(data){
 	$("#matrix").colResizable();
 }
 
+function renderHeaderForm(data, header_element){
+	console.log(data);
+	$(header_element).html("render_form");
+}
+
+function changeHeaderToForm(header){
+	console.log("Render Header Form");
+	console.log(header);
+	var header_id = $(header).attr('data-column');
+	sendEvent('/api/matrix/<?php echo $matrix["id"];?>/header/'+header_id, 'GET', {}, function(data){renderHeaderForm(data, header)});
+}
+
 function requestAddVariable(){
-	sendEvent('/api/matrix/<?php echo $matrix["id"];?>/variable', 'PUT', {}, add_variable());
+	sendEvent('/api/matrix/<?php echo $matrix["id"];?>/variable', 'PUT', {}, add_variable);
 }
 
 function requestAddSample(){
@@ -181,6 +202,7 @@ function requestAddSample(){
 function requestMatrix(){
 	sendEvent('/api/matrix/<?php echo $matrix["id"];?>/content', 'GET', {}, renderMatrix);
 }
+
 $(document).ready(function(){
  requestMatrix();	
 });

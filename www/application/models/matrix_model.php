@@ -59,12 +59,17 @@ class matrix_model extends CI_Model{
 	 * Returns a complete document of a matrix by the SQL id
 	 */
 	function getDocument($id){
-		$this->load->library('Mongo_db');
-		$query = $this->db->get_where('matrix', array("id"=>$id));
-		$matrix = $query->row_array();
-		$matrix_id = $matrix['matrix_id'];
-		$document = $this->mongo_db->where(array('_id' => new MongoId($matrix_id)))->get('matrixsCollection');
-		return $document;	
+		try{
+		  $this->load->library('Mongo_db');
+		  $query = $this->db->get_where('matrix', array("id"=>$id));
+		  $matrix = $query->row_array();
+		  $matrix_id = $matrix['matrix_id'];
+		  $document = $this->mongo_db->where(array('_id' => new MongoId($matrix_id)))->get('matrixsCollection');
+		  return $document;
+		}
+		catch (Exception $e){
+		  print_r($e);
+		}	
 	}
 	
 	/* 
@@ -97,6 +102,27 @@ class matrix_model extends CI_Model{
 		$this->mongo_db->where(array('_id' => new MongoId($matrix_id)))
 						->set(array('samples.'.$row.'.values.'.$column => $value));
 		$this->mongo_db->update('matrixsCollection');						
+	}
+	
+	/*
+	 * Returns the header definition if exists. Otherwise returns a empty array
+	 */
+	function getHeader($id, $header_id){
+	    $document_id = $this->_getDocumentId($id);
+	    $this->load->library('Mongo_db');
+	    $document = $this->mongo_db->where(array('_id' => new MongoId($document_id)))->get('matrixsCollection');
+	    //print_r($document[0]["headers"][$header_id]);
+	    if (!empty($document[0]["headers"][$header_id])) return $document[0]["headers"][$header_id];
+	    else return array();
+	}
+	
+	/*
+	 * Private function to get the document id. In the future, for a better performance
+	 */
+	function _getDocumentId($id){
+		$query = $this->db->get_where('matrix', array("id"=>$id));
+		$matrix = $query->row_array();
+		return $matrix['matrix_id'];
 	}
 	
 }
