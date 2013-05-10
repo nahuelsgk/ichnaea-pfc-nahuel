@@ -1,6 +1,7 @@
 package edu.upc.ichnaea.amqp.app;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -32,9 +33,7 @@ public abstract class App
     		app.printHelp();
             System.exit(1);
     	} catch (Exception e) {
-    		getLogger().severe("Main thread caught exception: " + e);
-            getLogger().severe(e.getStackTrace().toString());
-            System.exit(1);
+    		throw new RuntimeException(e);
         }	
     }
     

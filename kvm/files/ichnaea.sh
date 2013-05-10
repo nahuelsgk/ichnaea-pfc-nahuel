@@ -125,7 +125,7 @@ then
 		ICHNAEADIR="$SCRIPTPATH/ichnaea"
 	fi
 
-	TMPDIR=`mktemp -d --suffix="-$NAME"`
+	TMPDIR=`mktemp -d`
 	PRINT_LOG "working in temp directory $TMPDIR"
 	pushd $TMPDIR/r > /dev/null
 	PRINT_LOG "building dataset..."
