@@ -1,0 +1,81 @@
+matrix_homepage:
+    pattern:  /matrix/list
+    defaults: { _controller: MatrixBundle:Default:index }
+
+matrix_creation:
+    pattern:  /matrix/create
+    defaults: { _controller: MatrixBundle:Default:create }
+    
+season_list:
+    pattern: /season/list
+    defaults: { _controller: MatrixBundle:Season:index }
+
+season_form:
+    pattern: /season/new
+    defaults: { _controller: MatrixBundle:Season:form }
+
+season_edit:
+    pattern: /season/{season_id}
+    defaults: { _controller: MatrixBundle:Season:form }
+
+variable_list:
+    pattern: /variable/list
+    defaults: { _controller: MatrixBundle:Variable:getVariablesList }
+    requirements:
+        _method: GET
+
+variable_new:
+    pattern: /variable/new
+    defaults: { _controller: MatrixBundle:Variable:getFormVariable }
+    requirements:
+        _method: GET
+    
+variable_edit:
+    pattern: /variable/{variable_id}
+    defaults: { _controller: MatrixBundle:Variable:getFormVariable }
+    requirements:
+        _method: GET
+        
+variable_create:
+    pattern: /variable/create
+    defaults: { _controller: MatrixBundle:Variable:createVariable }
+    requirements:
+        _method: POST
+
+variable_update:
+    pattern: /variable/{variable_id}/update
+    defaults: { _controller: MatrixBundle:Variable:updateVariable }
+    requirements:
+        _method: POST
+        variable_id: "\d+"
+   
+season_set_form:
+    pattern: /variable/{variable_id}/season_set
+    defaults: { _controller: MatrixBundle:Variable:seasonSetForm }
+    requirements:
+        _method: GET
+        variable_id: "\d+"
+
+season_set_create:
+    pattern: /variable/{variable_id}/season_set/create
+    defaults: { _controller: MatrixBundle:Variable:createSeasonSet }    
+    requirements:
+         _method: POST
+         variable_id: "\d+"
+         
+season_set_edit:
+    pattern: /variable/{variable_id}/season_set/{season_set_id}
+    defaults: { _controller: MatrixBundle:Variable:seasonSetForm }
+    requirements:
+        _method: GET
+        variable_id: "\d+"
+        season_set_id: "\d+"
+        
+season_set_update:
+     pattern: /variable/{variable_id}/season_set/{season_set_id}/update
+     defaults: { _controller: MatrixBundle:Variable:updateSeasonSet }
+     requirements:
+          _method: POST
+          variable_id: "\d+"
+          season_set_id: "\d+"
+        

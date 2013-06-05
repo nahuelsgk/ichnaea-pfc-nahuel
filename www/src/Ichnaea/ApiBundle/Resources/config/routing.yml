@@ -1,0 +1,28 @@
+ichnaea_api_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: IchnaeaApiBundle:Default:index }
+    
+season_content:
+    pattern: /api/season/{id}
+    defaults: { _controller: IchnaeaApiBundle:Api:get,  _format: json }
+    requirements:
+        _method: GET
+        id: "\d+"
+
+season_search_by_name:
+    pattern: /api/season/searchByName
+    defaults: { _controller: IchnaeaApiBundle:Api:post, _format: json }
+    requirements:
+        _method: POST
+
+season_set_delete:
+    pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}
+    defaults: { _controller: IchnaeaApiBundle:Api:deleteSeasonSet, _format: json }
+    requirements:
+        _method: DELETE
+
+season_set_component_delete:
+    pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}/component/{component_id}
+    defaults: { _controller: IchnaeaApiBundle:Api:deleteSeasonSetComponent, format: json }
+    requirements:
+        _method: DELETE

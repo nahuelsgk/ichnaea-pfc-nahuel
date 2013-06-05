@@ -1,0 +1,62 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+{% block page_title %}System's seasons list{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>System's seasons</h1>
+ <div id="seasons_list" style="float: left; width: 50%; margin: 10px;">
+  <h2>Seasons</h2>
+   <table>
+    <tr>
+     <th style="padding-left: 5px; padding-right: 5px;">&nbsp;</th>
+     <th style="padding-left: 5px; padding-right: 5px;">Name</th>
+     <th style="padding-left: 5px; padding-right: 5px;">Notes</th>
+     <th style="padding-left: 5px; padding-right: 5px;">Start</th>
+     <th style="padding-left: 5px; padding-right: 5px;">Finish</th>
+    </tr>
+    <tbody id="seasons_table">
+    {% for season in seasons %}
+    <tr id="season-{{season.id}}" data-id={{season.id}} class="" onclick="loadSeasonContentForm(this);">
+     <td class="actions_link">
+       <a class="btn btn-mini" href="/app_dev.php/season/{{season.id}}" name="edit_season" title="Edit season">
+     	<i class="icon-edit"></i></a>
+     </td>
+     <td class="name">{{season.name}}</td>
+     <td class="notes">{{season.notes}}</td> 
+     <td class="star_date">{{season.startDate|date("d-m-Y")}}</td>
+     <td class="end_date">{{season.endDate|date("d-m-Y")}}</td>
+    </tr>
+    {% endfor%}
+    </tbody>
+    </table>
+ </div>
+ <div id="season_content" style="float: right; width: 40%; margin: 10px;">
+  <h2>Season content</h2>
+  <textarea id="season_content_text" cols="40" rows="20" readonly></textarea>
+ </div>
+</div>
+</div>
+{% endblock %}
+
+{% block extra_javascript %}
+function renderSeasonContent(data){
+    console.log(data[0].content);
+    $(season_content_text).html(data[0].content);
+}
+
+function cleanActivesTable(){
+	$('#seasons_table > tr').each(function(element, index){
+			$(index).attr('class', '');
+		}
+	);
+}
+
+function loadSeasonContentForm(button){
+	cleanActivesTable(loadSeasonContentForm);
+	var id = $(button).attr('data-id');
+	$(button).attr('class', 'active');
+	sendEvent('/app_dev.php/api/season/'+id, 'GET', {}, renderSeasonContent);
+}
+
+{% endblock %}

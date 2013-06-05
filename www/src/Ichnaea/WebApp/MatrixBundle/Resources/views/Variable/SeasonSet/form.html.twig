@@ -1,0 +1,130 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+{% block page_title %}Variable's season set{% endblock %}
+
+{% block body %}
+<div class="container">
+<form id="seasonSet_form" method="POST" 
+	action="{% if action == 'create' %}
+				{{path ('season_set_create', {'variable_id' : variable_id}) }}
+			{% else %}
+				{{path ('season_set_update', {'variable_id': variable_id, 'season_set_id': season_set.id}) }}
+			{% endif %}" 
+	class="form-horizontal">
+	
+    <legend>{% if action == 'create' %}New season set{% else %}Edit season set <i>{{season_set.name}}</i>{% endif %}</legend>
+	<div class="control-group">
+        <label class="control-label" for="seasonName">Name</label>
+        <div class="controls">
+          <input type="text" id="name_season_set" name="season_set_name" placeholder="Season set's name" {% if action == 'update' %}value="{{season_set.name}}"{% endif %}>
+        </div>
+    </div>
+	
+	{% if action == 'update' %}
+	<legend>List of seasons</legend>
+	<ul>
+	{% for season in season_set_components %}
+		<li id="season_set_component-{{season.id}}">
+		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set" onclick='deleteSeasonSetComponent( {{season.id}}, "season_set_component-{{season.id}}")' >
+  		  <i class="icon-trash"></i></a>{{season.name}}
+  		</li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+	
+	
+    <legend>Add seasons
+    	<a class="btn btn-mini" name="add_season" title="Add season from the system" onclick="addSeasonComponent();">
+     	<i class="icon-plus"></i></a>
+    </legend>
+    <div class="control-group">
+        <label class="control-label" for="list_of_season_components">Seasons components</label>
+        <div class="controls" id="list_of_season_components">
+           <!--  <div class="season_component_form" id="component_form">
+             <input type="text" placeholder="Search season name or type new name" data-season_id="" data-already_in_system="" id="component0">
+             <input type="text" placeholder="Season id" data-season_id="" data-already_in_system="" id="id0">
+           </div>
+           -->
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</form>
+</div>
+
+
+<div class="template_hidden" id="template_component_item" name="component[]">
+             <input type="text" class="season_component_name" name="season_name" placeholder="Search season name or type new name">
+             <input type="text" class="season_component_id" name="season_id[]" placeholder="Season id" id="">
+</div>
+
+{% endblock %}
+
+{% block extra_javascript %}
+
+function notify(message){
+     alert(message);
+     return false;
+}
+function checkErrors(){
+    if ($('#name_season_set').val() == '') return notify('Season set needs a name');
+    return true; 
+}
+
+var indexSeasonComponents = 0;
+{% if action == 'update' %}
+function deleteItem(li){
+    console.log(li);
+    $('#'+li).remove();
+}
+function deleteSeasonSetComponent(seasonComponent_id, li){
+    sendEvent('{{path('season_set_delete',{'variable_id': variable_id, 'seasonSet_id': season_set.id })}}/component/'+seasonComponent_id,
+    	'DELETE',
+    	{},
+    	function (data){deleteItem(li)}); 
+}
+{% endif %}
+function addSeasonComponent(){
+    var season_component = $('#template_component_item').clone();
+    season_component.attr('id', 'component'+indexSeasonComponents);
+    season_component.attr('class', 'component_season_set');
+    
+    //Names id
+    var id_input_season_component_name = 'component_name-'+indexSeasonComponents;
+    var id_input_season_id = 'component_season_id-'+indexSeasonComponents;
+    
+    season_component.find('input.season_component_name').attr('id', id_input_season_component_name);
+    season_component.find('input.season_component_id').attr('id', id_input_season_id);
+    
+    season_component.find('input#'+id_input_season_component_name).autocomplete({
+	    minLength: 2,
+	    source: function sourceAutocomplete(request, response){
+	      sendEvent(
+	        '/app_dev.php/api/season/searchByName', 
+	        'POST', 
+	        { pattern: season_component.find('input#'+id_input_season_component_name).val() }, 
+	        function(data){
+	        response(
+	          $.map(
+	            data, 
+	            function(obj){return {label: obj.name, value: obj.name, id: obj.id, target_input_form: id_input_season_id} } 
+	        )
+	     )
+	     }
+	    )
+	    },
+	    select: function(event, ui){
+	      season_component.find('input#'+ui.item.target_input_form).val(ui.item.id);
+	    }
+	}).data("autocomplete");
+    $('#list_of_season_components').append(season_component);
+    indexSeasonComponents++;
+}
+
+$(document).ready(function(){
+    $('#seasonSet_form').submit(checkErrors);
+	addSeasonComponent();
+});
+{% endblock %}

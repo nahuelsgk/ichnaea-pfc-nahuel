@@ -1,0 +1,103 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+{% block page_title %}{% if season is null %}System's seasons list{% else %}Edit season{% endif %}{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>{% if season is null %}System's seasons list{% else %}Edit season <i>{{season.0.name}}</i>{% endif %}</h1>
+    <form method="post" id="seasonForm" class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="seasonName">Name</label>
+        <div class="controls">
+          <input type="text" id="name" name="name" placeholder="Season's name" value="{% if season is not null %}{{season.0.name}}{% endif %}">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="notes">Notes</label>
+        <div class="controls">
+          <input type="text" id="notes" name="notes" placeholder="Season's notes" value="{% if season is not null %}{{season.0.notes}}{% endif %}">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="start-date">Start date</label>
+        <div class="controls">
+          <input type="date" id="start_date" name="start_date" placeholder="Season's start date" value="{% if season is not null %}{{season.0.startDate|date("d-m-Y")}}{% endif %}">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="end-date">End date</label>
+        <div class="controls">
+          <input type="date" id="end_date" name="end_date" placeholder="Season's end date" value="{% if season is not null %}{{season.0.endDate|date("Y-m-d")}}{% endif %}">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="end-date">Content season</label>
+        <div class="controls">
+           <input type="file" id="files" name="files[]" multiple />
+        </div>
+        <div class="controls">
+           <textarea id="content" name="content">{% if season is not null %}{{season.0.content}}{% endif %}</textarea>
+        </div>
+      </div>
+ 
+      <div class="control-group">
+        <div class="controls">
+          <button class="btn" id="submit_add_season" name="action" value="add">Save</button>
+        </div>
+      </div>
+      </form>
+    </div>
+ </div>
+ </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block extra_javascript %}
+
+function init_datepicker(){
+    $('#start_date').datepicker({dateFormat: "yy-mm-dd"});
+    $('#end_date').datepicker({dateFormat: "yy-mm-dd"});
+}
+
+function notify(message){
+  alert(message);
+  return false;  
+}
+
+function checkErrors(){
+  //Check dates
+  //Check an file imported
+  if ($('#name').val() == '') return notify('Please write a name');
+  if ($('#start_date').val() == '') return notify('Please write a start date');
+  if ($('#end_date').val() == '') return notify('Please write a end date');
+  if ($('#content').val() == '') return notify('Please insert the content of a file or type');
+  else return true;
+}
+$(document).ready(function(){
+    init_datepicker();
+    $('#seasonForm').submit(checkErrors);
+    
+	// Check for the various File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      // Great success! All the File APIs are supported.
+    } else {
+    alert('The File APIs are not fully supported in this browser. You must copy the content of the season file for each one season.');
+    }
+    
+    $('#files').change(function (e){
+      e = e || window.event;
+      e.preventDefault(); 
+ 	  e = e.originalEvent || e;
+ 	  console.log(e);
+      var file = e.target.files[0];  
+      var reader = new FileReader();  
+      reader.onload = function (evt) {  
+               console.log(evt.target.result);
+               $('#content').val(evt.target.result);  
+      }
+      reader.readAsText(file);   
+    });
+});
+{% endblock %}

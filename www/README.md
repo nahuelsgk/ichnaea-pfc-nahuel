@@ -1,223 +1,174 @@
-# CodeIgniter Rest Server
+Symfony Standard Edition
+========================
 
-A fully RESTful server implementation for CodeIgniter using one library, one
-config file and one controller.
+Welcome to the Symfony Standard Edition - a fully-functional Symfony2
+application that you can use as the skeleton for your new applications.
 
-## Requirements
+This document contains information on how to download, install, and start
+using Symfony. For a more detailed explanation, see the [Installation][1]
+chapter of the Symfony Documentation.
 
-1. PHP 5.2 or greater
-2. CodeIgniter 2.1.0 to 3.0-dev
+1) Installing the Standard Edition
+----------------------------------
 
-_Note: for 1.7.x support download v2.2 from Downloads tab_
+When it comes to installing the Symfony Standard Edition, you have the
+following options.
 
-## Installation
+### Use Composer (*recommended*)
 
-Drag and drop the **application/libraries/Format.php** and **application/libraries/REST_Controller.php** files into your application's directories. Either autoload the `REST_Controller` class or `require_once` it at the top of your controllers to load it into the scope. Additionally, copy the **rest.php** file from **application/config** in your application's configuration directory.
+As Symfony uses [Composer][2] to manage its dependencies, the recommended way
+to create a new project is to use it.
 
-## Handling Requests
+If you don't have Composer yet, download it following the instructions on
+http://getcomposer.org/ or just run the following command:
 
-When your controller extends from `REST_Controller`, the method names will be appended with the HTTP method used to access the request. If you're  making an HTTP `GET` call to `/books`, for instance, it would call a `Books#index_get()` method.
+    curl -s http://getcomposer.org/installer | php
 
-This allows you to implement a RESTful interface easily:
+Then, use the `create-project` command to generate a new Symfony application:
 
-	class Books extends REST_Controller
-	{
-		public function index_get()
-		{
-			// Display all books
-		}
+    php composer.phar create-project symfony/framework-standard-edition path/to/install
 
-		public function index_post()
-		{
-			// Create a new book
-		}
-	}
+Composer will install Symfony and all its dependencies under the
+`path/to/install` directory.
 
-`REST_Controller` also supports `PUT` and `DELETE` methods, allowing you to support a truly RESTful interface.
+### Download an Archive File
 
-Accessing parameters is also easy. Simply use the name of the HTTP verb as a method:
+To quickly test Symfony, you can also download an [archive][3] of the Standard
+Edition and unpack it somewhere under your web server root directory.
 
-	$this->get('blah'); // GET param
-	$this->post('blah'); // POST param
-	$this->put('blah'); // PUT param
-	$this->delete('blah'); // DELETE param
+If you downloaded an archive "without vendors", you also need to install all
+the necessary dependencies. Download composer (see above) and run the
+following command:
 
-## Content Types
+    php composer.phar install
 
-`REST_Controller` supports a bunch of different request/response formats, including XML, JSON and serialised PHP. By default, the class will check the URL and look for a format either as an extension or as a separate segment.
+2) Checking your System Configuration
+-------------------------------------
 
-This means your URLs can look like this:
+Before starting coding, make sure that your local system is properly
+configured for Symfony.
 
-	http://example.com/books.json
-	http://example.com/books?format=json
+Execute the `check.php` script from the command line:
 
-This can be flaky with URI segments, so the recommend approach is using the HTTP `Accept` header:
+    php app/check.php
 
-	$ curl -H "Accept: application/json" http://example.com
+Access the `config.php` script from a browser:
 
-Any responses you make from the class (see [responses](#responses) for more on this) will be serialised in the designated format.
+    http://localhost/path/to/symfony/app/web/config.php
 
-## Responses
+If you get any warnings or recommendations, fix them before moving on.
 
-The class provides a `response()` method that allows you to return data in the user's requested response format.
+3) Browsing the Demo Application
+--------------------------------
 
-Returning any object / array / string / whatever is easy:
+Congratulations! You're now ready to use Symfony.
 
-	public function index_get()
-	{
-		$this->response($this->db->get('books')->result());
-	}
+From the `config.php` page, click the "Bypass configuration and go to the
+Welcome page" link to load up your first Symfony page.
 
-This will automatically return an `HTTP 200 OK` response. You can specify the status code in the second parameter:
+You can also use a web-based configurator by clicking on the "Configure your
+Symfony Application online" link of the `config.php` page.
 
-	public function index_post()
-	{
-		// ...create new book
+To see a real-live Symfony page in action, access the following page:
 
-		$this->response($book, 201); // Send an HTTP 201 Created
-	}
+    web/app_dev.php/demo/hello/Fabien
 
-If you don't specify a response code, and the data you respond with `== FALSE` (an empty array or string, for instance), the response code will automatically be set to `404 Not Found`:
+4) Getting started with Symfony
+-------------------------------
 
-	$this->response(array()); // HTTP 404 Not Found
+This distribution is meant to be the starting point for your Symfony
+applications, but it also contains some sample code that you can learn from
+and play with.
 
-## Multilingual Support
+A great way to start learning Symfony is via the [Quick Tour][4], which will
+take you through all the basic features of Symfony2.
 
-If your application uses language files to support multiple locales, `REST_Controller` will automatically parse the HTTP `Accept-Language` header and provide the language(s) in your actions. This information can be found in the `$this->response->lang` object:
+Once you're feeling good, you can move onto reading the official
+[Symfony2 book][5].
 
-	public function __construct()
-	{
-		parent::__construct();
+A default bundle, `AcmeDemoBundle`, shows you Symfony2 in action. After
+playing with it, you can remove it by following these steps:
 
-		if (is_array($this->response->lang))
-		{
-			$this->load->language('application', $this->response->lang[0]);
-		}
-		else
-		{
-			$this->load->language('application', $this->response->lang);
-		}
-	}
+  * delete the `src/Acme` directory;
 
-## Authentication
+  * remove the routing entries referencing AcmeBundle in
+    `app/config/routing_dev.yml`;
 
-This class also provides rudimentary support for HTTP basic authentication and/or the securer HTTP digest access authentication.
+  * remove the AcmeBundle from the registered bundles in `app/AppKernel.php`;
 
-You can enable basic authentication by setting the `$config['rest_auth']` to `'basic'`. The `$config['rest_valid_logins']` directive can then be used to set the usernames and passwords able to log in to your system. The class will automatically send all the correct headers to trigger the authentication dialogue:
+  * remove the `web/bundles/acmedemo` directory;
 
-	$config['rest_valid_logins'] = array( 'username' => 'password', 'other_person' => 'secure123' );
+  * remove the `security.providers`, `security.firewalls.login` and
+    `security.firewalls.secured_area` entries in the `security.yml` file or
+    tweak the security configuration to fit your needs.
 
-Enabling digest auth is similarly easy. Configure your desired logins in the config file like above, and set `$config['rest_auth']` to `'digest'`. The class will automatically send out the headers to enable digest auth.
+What's inside?
+---------------
 
-Both methods of authentication can be secured further by using an IP whitelist. If you enable `$config['rest_ip_whitelist_enabled']` in your config file, you can then set a list of allowed IPs.
+The Symfony Standard Edition is configured with the following defaults:
 
-Any client connecting to your API will be checked against the whitelisted IP array. If they're on the list, they'll be allowed access. If not, sorry, no can do hombre. The whitelist is a comma-separated string:
+  * Twig is the only configured template engine;
 
-	$config['rest_ip_whitelist'] = '123.456.789.0, 987.654.32.1';
+  * Doctrine ORM/DBAL is configured;
 
-Your localhost IPs (`127.0.0.1` and `0.0.0.0`) are allowed by default.
+  * Swiftmailer is configured;
 
-## API Keys
+  * Annotations for everything are enabled.
 
-In addition to the authentication methods above, the `REST_Controller` class also supports the use of API keys. Enabling API keys is easy. Turn it on in your **config/rest.php** file:
+It comes pre-configured with the following bundles:
 
-	$config['rest_enable_keys'] = TRUE;
+  * **FrameworkBundle** - The core Symfony framework bundle
 
-You'll need to create a new database table to store and access the keys. `REST_Controller` will automatically assume you have a table that looks like this:
+  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
+    template and routing annotation capability
 
-	CREATE TABLE `keys` (
-	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  `key` varchar(40) NOT NULL,
-	  `level` int(2) NOT NULL,
-	  `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
-	  `date_created` int(11) NOT NULL,
-	  PRIMARY KEY (`id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
 
-The class will look for an HTTP header with the API key on each request. An invalid or missing API key will result in an `HTTP 403 Forbidden`.
+  * [**TwigBundle**][8] - Adds support for the Twig templating engine
 
-By default, the HTTP will be `X-API-KEY`. This can be configured in **config/rest.php**.
+  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
+    component
 
-	$ curl -X POST -H "X-API-KEY: some_key_here" http://example.com/books
+  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
+    sending emails
 
-## Other Documentation / Tutorials
+  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
 
-* [NetTuts: Working with RESTful Services in CodeIgniter](http://net.tutsplus.com/tutorials/php/working-with-restful-services-in-codeigniter-2/)
+  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
+    library
 
-## Change Log
+  * [**JMSSecurityExtraBundle**][13] - Allows security to be added via
+    annotations
 
-### 2.6.2
+  * [**JMSDiExtraBundle**][14] - Adds more powerful dependency injection
+    features
 
-* Update CodeIgniter files to 2.1.3
-* Fixed issue #165
+  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
+    the web debug toolbar
 
-### 2.6.1
+  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
+    configuring and working with Symfony distributions
 
-* Update CodeIgniter files to 2.1.2
-* Log Table support for IPv6 & NULL parameters
-* Abstract out the processes of firing a controller method within _remap() to an separate method
-* Moved GET, POST, PUT, and DELETE parsing to separate methods, allowing them to be overridden as needed
-* Small bugfix for a PHP 5.3 strlen error
-* Fixed some PHP 5.4 warnings
-* Fix for bug in Format.php's to_html() which failed to detect if $data was really a multidimensional array.
-* Fix for empty node on XML output format, for false = 0, true = 1.
+  * [**SensioGeneratorBundle**][15] (in dev/test env) - Adds code generation
+    capabilities
 
-### 2.6.0
+  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
+    code
 
-* Added loads of PHPDoc comments.
-* Response where method doesn't exist is now "HTTP 405 Method Not Allowed", not "HTTP 404 Not Found".
-* Compatible with PHP 5.4.
-* Added support for gzip compression.
-* Fix the apache\_request\_header function with CGI.
-* Fixed up correctly .foo extensions to work when get arguments provided.
-* Allows method emulation via X-HTTP-Method-Override
-* Support for Backbone.emulateHTTP improved.
-* Combine both URI segment and GET params instead of using one or the other
-* Separate each piece of the WWW-Authenticate header for digest requests with a comma.
-* Added IP whitelist option.
+Enjoy!
 
-### 2.5
-
-* Instead of just seeing item, item, item, the singular version of the basenode will be used if possible. [Example](http://d.pr/RS46).
-* Re-factored to use the Format library, which will soon be merged with CodeIgniter.
-* Fixed Limit bug (limit of 5 would allow 6 requests).
-* Added logging for invalid API key requests.
-* Changed serialize to serialized.
-* Changed all visibility 'private' to 'protected'.
-* MIME's with character encodings on the end will now work.
-* Fixed PUT arguments. Once again just sending a body query string works. [Example](http://d.pr/cY0b)
-* Fixed up all .foo extensions to work when no get arguments provided, and moved .html to Format library.
-* Updated key.php example to use config_item('rest_keys_table') instead of hardcoded 'keys' table name.
-* Updated REST_Controller to use config_item('rest_limits_table') instead of hardcoded 'limits'.
-
-### 2.4
-
-* Added support for UTF-8 characters in XML.
-* Added JSONP as a return type.
-* Loaded the Security lib before use in case it is not loaded in the application.
-* Emulate the Request method for MooTools support.
-* Upgraded everything to use CodeIgniter Reactor 2.0.0.
-* Added the ability to set or override the Auth type per controller / method.
-* Adding ability to only accept AJAX requests.
-
-### 2.3
-
-* Upgraded to CodeIgniter 2.0 and stopped supporting CodeIgniter 1.7.2.
-* After $this->response() is called the controller will stop processing.
-
-### 2.2
-
-* Added config options to set table names for keys, limits and logs.
-* FALSE values were coming out as empty strings in xml or rawxml mode, now they will be 0/1.
-* key => FALSE can now be used to override the keys_enabled option for a specific method, and level is now optional. If no level is set it will assume the method has a level of 0.
-* Fixed issue where calls to ->get('foo') would error is foo was not set. Reported by  Paul Barto.
-
-## Contributions
-
-This project has been funded and made possible through my clients kindly allowing me to 
-open-source the functionality as I build it into their projects. I am no longer actively developing 
-features for this as I no longer require it, but I will continue to maintain pull requests and try to 
-fix issues as and when they are reported (within a week or two). 
-
-Pull Requests are the best way to fix bugs or add features. I know loads of you use this, so please 
-contribute if you have improvements to be made and I'll keep releasing versions over time.
+[1]:  http://symfony.com/doc/2.1/book/installation.html
+[2]:  http://getcomposer.org/
+[3]:  http://symfony.com/download
+[4]:  http://symfony.com/doc/2.1/quick_tour/the_big_picture.html
+[5]:  http://symfony.com/doc/2.1/index.html
+[6]:  http://symfony.com/doc/2.1/bundles/SensioFrameworkExtraBundle/index.html
+[7]:  http://symfony.com/doc/2.1/book/doctrine.html
+[8]:  http://symfony.com/doc/2.1/book/templating.html
+[9]:  http://symfony.com/doc/2.1/book/security.html
+[10]: http://symfony.com/doc/2.1/cookbook/email.html
+[11]: http://symfony.com/doc/2.1/cookbook/logging/monolog.html
+[12]: http://symfony.com/doc/2.1/cookbook/assetic/asset_management.html
+[13]: http://jmsyst.com/bundles/JMSSecurityExtraBundle/master
+[14]: http://jmsyst.com/bundles/JMSDiExtraBundle/master
+[15]: http://symfony.com/doc/2.1/bundles/SensioGeneratorBundle/index.html

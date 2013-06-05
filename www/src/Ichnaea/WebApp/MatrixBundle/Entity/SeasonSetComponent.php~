@@ -1,0 +1,106 @@
+<?php
+
+namespace Ichnaea\WebApp\MatrixBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SeasonSetComponent
+ *
+ * @ORM\Table(name="season_set_comp")
+ * @ORM\Entity
+ */
+class SeasonSetComponent
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="season_set_id", type="integer")
+     * @ORM\OneToOne(targetEntity="SeasonSet")
+     * @ORM\JoinColumn(name="season_set_id", referencedColumnName="id")
+     */
+    private $seasonSetId;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="MatrixBundle:Season")
+     * @ORM\JoinColumn(name="season_id", referencedColumnName="id")
+     * 
+     */
+    protected $seasonId;
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set seasonSetId
+     *
+     * @param integer $seasonSetId
+     * @return SeasonSetComponent
+     */
+    public function setSeasonSetId($seasonSetId)
+    {
+        $this->seasonSetId = $seasonSetId;
+
+        return $this;
+    }
+
+    /**
+     * Get seasonSetId
+     *
+     * @return integer 
+     */
+    public function getSeasonSetId()
+    {
+        return $this->seasonSetId;
+    }
+
+    /**
+     * Set seasonId
+     *
+     * @param integer $seasonId
+     * @return SeasonSetComponent
+     */
+    public function setSeasonId($seasonId)
+    {
+        $this->seasonId = $seasonId;
+
+        return $this;
+    }
+
+    /**
+     * Get seasonId
+     *
+     */
+    public function getSeasonId()
+    {
+        return $this->seasonId;
+    }
+    
+    public function getSeason()
+    {
+        return $this->season;
+    }
+    
+    public function setSeason($season)
+    {
+        $this->season = $season;
+        return $this;
+    }
+}

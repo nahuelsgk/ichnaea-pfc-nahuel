@@ -1,0 +1,13 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+{% block body %}
+<div class="container">
+<table id="__list_matrixs" class="matrixs_list">
+<tr>
+ <th>&nbsp;</th>
+ <th>Name of the matrixs</th>
+</tr>
+{% for matrix in matrixs %}
+<tr><td><a class="btn btn-mini" href="/matrix/{{matrix.id}}/view" title="Matrix configuration" name="matrix_view"><i class="icon-zoom-in"></i><td>{{matrix.name}}</td></tr>
+{% endfor %}
+{% endblock %}
