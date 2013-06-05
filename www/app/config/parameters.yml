@@ -7,9 +7,10 @@ parameters:
     database_password: qwerasdf
 
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
+    mailer_host:       mail.lsi.upc.edu
     mailer_user:       ~
     mailer_password:   ~
+    mailer_port:      25
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
