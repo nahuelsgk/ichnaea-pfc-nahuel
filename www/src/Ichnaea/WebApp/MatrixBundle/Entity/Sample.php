@@ -5,14 +5,14 @@ namespace Ichnaea\WebApp\MatrixBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Matrix
+ * Matrix's sample. It's a row of the matrix
  *
- * @ORM\Table(name="matrix")
+ * @ORM\Table(name="sample")
  * @ORM\Entity
  */
-class Matrix
+class Sample
 {
-    /**
+	/**
      * @var integer
      * 
      * @ORM\Column(name="id", type="integer")
@@ -20,13 +20,5 @@ class Matrix
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-  
 }
+?>

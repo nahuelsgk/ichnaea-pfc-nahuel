@@ -2,11 +2,13 @@
 
 {% block page_title %}{% if variable is null %}System's variables list{% else %}Edit variable{% endif %}{% endblock %}
 
+{% block header_page_title %}{% if variable is null %}System's variables list{% else %}Editing <i>{{ variable.name }}</i>{% endif %}{% endblock %}
+
 {% block body %}
 <div class="container">
 <form id="variableForm" method="post" action="{{ variable is null ? path('variable_create') : path('variable_update', {'variable_id': variable.id}) }}">
 	<fieldset>
-	<legend>{% if variable is null %}System's variables list{% else %}Editing <i>{{ variable.name }}</i>{% endif %}</legend>
+	<legend>Basic info</legend>
 	<label>Name of the variable</label>
 	<input type="text" placeholder="Variable's name" name="var_name" id="var_name" value="{% if variable is not null %}{{ variable.name }}{% endif %}">
 	<label>Description of the variable</label>

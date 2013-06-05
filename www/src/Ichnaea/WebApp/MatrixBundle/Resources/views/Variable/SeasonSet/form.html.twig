@@ -1,7 +1,8 @@
 {% extends '::IchnaeaBase.html.twig' %}
 
-{% block page_title %}Variable's season set{% endblock %}
+{% block page_title %}Editing a season set{% endblock %}
 
+{% block header_page_title %}{% if action == 'create' %}New season set{% else %}Edit season set <i>{{season_set.name}}</i> of <i>{{season_set.variable.name}}</i>{% endif %}{% endblock %}
 {% block body %}
 <div class="container">
 <form id="seasonSet_form" method="POST" 
@@ -12,7 +13,7 @@
 			{% endif %}" 
 	class="form-horizontal">
 	
-    <legend>{% if action == 'create' %}New season set{% else %}Edit season set <i>{{season_set.name}}</i>{% endif %}</legend>
+    <legend>{% if action == 'create' %}New season set{% else %}Edit season set attributes {% endif %}</legend>
 	<div class="control-group">
         <label class="control-label" for="seasonName">Name</label>
         <div class="controls">

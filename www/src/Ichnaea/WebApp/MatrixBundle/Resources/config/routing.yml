@@ -1,10 +1,6 @@
 matrix_homepage:
     pattern:  /matrix/list
     defaults: { _controller: MatrixBundle:Default:index }
-
-matrix_creation:
-    pattern:  /matrix/create
-    defaults: { _controller: MatrixBundle:Default:create }
     
 season_list:
     pattern: /season/list

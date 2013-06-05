@@ -54,7 +54,7 @@ class VariableController extends Controller{
 		//@TODO Check error name 
 		$notes = $request->request->get('var_description');
 		$variable[0] = $ichnaeaService->updateVariable($variable_id, $name, $notes);
-		return $this->redirect($this->generateUrl('variable_list'));	
+		return $this->redirect($this->generateUrl('variable_edit', array('variable_id'=>$variable_id)));	
 	}
 	
 	public function seasonSetFormAction($variable_id, $season_set_id = NULL)
