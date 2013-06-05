@@ -1,7 +1,6 @@
-ichnaea_api_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: IchnaeaApiBundle:Default:index }
-    
+season_api:
+    pattern: /api/season/
+      
 season_content:
     pattern: /api/season/{id}
     defaults: { _controller: IchnaeaApiBundle:Api:getSeason,  _format: json }
@@ -9,11 +8,17 @@ season_content:
         _method: GET
         id: "\d+"
 
+#@TODO Change method to GET
 season_search_by_name:
     pattern: /api/season/searchByName
     defaults: { _controller: IchnaeaApiBundle:Api:getSeasonByPatternName, _format: json }
     requirements:
         _method: POST
+
+season_set_api:
+     pattern: /api/variable/{{variable_id}}/seasonSet/
+     requirements:
+         variable_id: "\d+"
 
 season_set_delete:
     pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}

@@ -103,7 +103,7 @@ function addSeasonComponent(){
 	    minLength: 2,
 	    source: function sourceAutocomplete(request, response){
 	      sendEvent(
-	        '/app_dev.php/api/season/searchByName', 
+	        '{{path('season_search_by_name')}}', 
 	        'POST', 
 	        { pattern: season_component.find('input#'+id_input_season_component_name).val() }, 
 	        function(data){

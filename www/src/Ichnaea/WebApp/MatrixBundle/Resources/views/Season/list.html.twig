@@ -19,7 +19,7 @@
     {% for season in seasons %}
     <tr id="season-{{season.id}}" data-id={{season.id}} class="" onclick="loadSeasonContentForm(this);">
      <td class="actions_link">
-       <a class="btn btn-mini" href="/app_dev.php/season/{{season.id}}" name="edit_season" title="Edit season">
+       <a class="btn btn-mini" href="{{path('season_edit', {'season_id' : season.id})}}" name="edit_season" title="Edit season">
      	<i class="icon-edit"></i></a>
      </td>
      <td class="name">{{season.name}}</td>
@@ -55,7 +55,7 @@ function loadSeasonContentForm(button){
 	cleanActivesTable(loadSeasonContentForm);
 	var id = $(button).attr('data-id');
 	$(button).attr('class', 'active');
-	sendEvent('/app_dev.php/api/season/'+id, 'GET', {}, renderSeasonContent);
+	sendEvent('{{path('season_api')}}'+id, 'GET', {}, renderSeasonContent);
 }
 
 {% endblock %}

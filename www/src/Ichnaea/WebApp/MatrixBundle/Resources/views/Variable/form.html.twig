@@ -60,7 +60,7 @@ function deleteLi(li){
     alert("Season set removed");
 }
 function deleteSeasonSet(li, seasonSet_id){
-    sendEvent('/app_dev.php/api/variable/{{variable.id}}/seasonSet/'+seasonSet_id, 'DELETE', {}, function (data) {deleteLi(li)})
+    sendEvent('{{path('season_set_api', {'variable_id': variable.id})}}'+seasonSet_id, 'DELETE', {}, function (data) {deleteLi(li)})
 }
 {% endif %}
 $('#variableForm').submit(checkErrors);
