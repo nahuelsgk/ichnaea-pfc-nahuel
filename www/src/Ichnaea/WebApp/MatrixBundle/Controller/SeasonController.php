@@ -13,37 +13,40 @@ class SeasonController extends Controller{
 		return $this->render('MatrixBundle:Season:list.html.twig', array("seasons" => $seasons));	
 	}
 	
-	//@TODO: Separate GET from POST controller in season form
-	public function formAction($season_id = NULL){
-		//Create a season
+	//@TODO: check errors
+	public function createSeasonAction()
+	{
+		$request = $this->getRequest();
+		$ichnaeaService = $this->get('ichnaea.service');
+		$name       = $request->request->get("name");
+		$notes      = $request->request->get("notes");
+		$start_date = $request->request->get("start_date");
+		$end_date   = $request->request->get("end_date");
+		$content    = $request->request->get("content");
+		$season_id  = $ichnaeaService->createSeason($name, $notes, $start_date, $end_date, $content);
+		return $this->redirect($this->generateUrl('season_edit', array('season_id' => $season_id)));
+	}
+	
+	public function updateSeasonAction($season_id)
+	{
+		$request = $this->getRequest();
+		$ichnaeaService = $this->get('ichnaea.service');
+		$name       = $request->request->get("name");
+		$notes      = $request->request->get("notes");
+		$start_date = $request->request->get("start_date");
+		$end_date   = $request->request->get("end_date");
+		$content    = $request->request->get("content");
+		$season_id  = $ichnaeaService->updateSeason($season_id, $name, $notes, $start_date, $end_date, $content);
+		return $this->redirect($this->generateUrl('season_edit', array('season_id' => $season_id)));
+	}
+	
+	public function seasonFormAction($season_id = NULL){
 		$request = $this->getRequest();
 		$season = NULL;
-		if($request->getMethod() == 'POST' && is_null($season_id)){
-		    $ichnaeaService = $this->get('ichnaea.service');
-		    $name       = $request->request->get("name");
-		    $notes      = $request->request->get("notes");
-		    $start_date = $request->request->get("start_date");
-		    $end_date   = $request->request->get("end_date");
-		    $content    = $request->request->get("content");
-		    $ichnaeaService->createSeason($name, $notes, $start_date, $end_date, $content);
-		    //@TODO Redirect to matrix/list with a notification succeded
-		}
-		//Update the season
-		elseif($request->getMethod() == 'POST' && $season_id){
-			$ichnaeaService = $this->get('ichnaea.service');
-		    $name       = $request->request->get("name");
-		    $notes      = $request->request->get("notes");
-		    $start_date = $request->request->get("start_date");
-		    $end_date   = $request->request->get("end_date");
-		    $content    = $request->request->get("content");
-		    //@TODO Fix this bad encoding
-		    $season[0] = $ichnaeaService->updateSeason($season_id, $name, $notes, $start_date, $end_date, $content);
-		}
-		elseif($request->getMethod() == 'GET' && $season_id){
+		if($season_id){
 			$ichnaeaService = $this->get('ichnaea.service');
 			$season = $ichnaeaService->getSeasonById($season_id);
 		}
-		//Render the view
 		return $this->render('MatrixBundle:Season:form.html.twig', array("season" => $season));
 	}
 }

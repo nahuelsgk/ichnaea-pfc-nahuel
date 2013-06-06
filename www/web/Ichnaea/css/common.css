@@ -9,6 +9,7 @@ div.error{
 div.success{
   color: green;
 }
+.ui-autocomplete-loading { background:url('img/ajax-loader.gif') no-repeat right center }
 
 li.active, tr.active{
   color: #555555;

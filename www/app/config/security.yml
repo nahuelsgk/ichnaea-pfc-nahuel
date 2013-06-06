@@ -50,7 +50,7 @@ security:
                 check_path: /login_check
                 login_path: /login
                 provider: fos_userbundle
-                default_target_path: /matrix/list
+                default_target_path: /variable/list
                 #csrf_provider: form.csrf_provider
             logout: true
             anonymous: true

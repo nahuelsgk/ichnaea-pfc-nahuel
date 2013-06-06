@@ -1,8 +1,9 @@
 {% extends '::IchnaeaBase.html.twig' %}
 
-{% block page_title %}Editing a season set{% endblock %}
+{% block page_title %}{% if action == 'create' %}New season set for '{{variable_name}}'{% else %}Edit season set '{{season_set.name}}' of '{{season_set.variable.name}}'{% endif %}{% endblock %}
 
-{% block header_page_title %}{% if action == 'create' %}New season set{% else %}Edit season set <i>{{season_set.name}}</i> of <i>{{season_set.variable.name}}</i>{% endif %}{% endblock %}
+{% block header_page_title %}{% if action == 'create' %}New season set for {{variable_name}}{% else %}Edit season set <i>{{season_set.name}}</i> of <i><a href="{{path('variable_edit', {variable_id: season_set.variable.id})}}"> {{season_set.variable.name}}</a></i>{% endif %}{% endblock %}
+
 {% block body %}
 <div class="container">
 <form id="seasonSet_form" method="POST" 
@@ -58,7 +59,7 @@
 
 <div class="template_hidden" id="template_component_item" name="component[]">
              <input type="text" class="season_component_name" name="season_name" placeholder="Search season name or type new name">
-             <input type="text" class="season_component_id" name="season_id[]" placeholder="Season id" id="">
+             <input type="text" class="season_component_id" name="season_id[]" placeholder="Season id" id="" readonly>
 </div>
 
 {% endblock %}
@@ -75,18 +76,23 @@ function checkErrors(){
 }
 
 var indexSeasonComponents = 0;
+
 {% if action == 'update' %}
 function deleteItem(li){
-    console.log(li);
     $('#'+li).remove();
 }
-function deleteSeasonSetComponent(seasonComponent_id, li){
-    sendEvent('{{path('season_set_delete',{'variable_id': variable_id, 'seasonSet_id': season_set.id })}}/component/'+seasonComponent_id,
-    	'DELETE',
+
+function deleteSeasonSetComponentAction(seasonComponent_id, li){
+	sendEvent('{{path('season_set_delete',{'variable_id': variable_id, 'seasonSet_id': season_set.id })}}/component/'+seasonComponent_id,
+      	'DELETE',
     	{},
-    	function (data){deleteItem(li)}); 
+    	function (data){deleteItem(li)});
+}
+function deleteSeasonSetComponent(seasonComponent_id, li){
+	confirmMessage('You are about to delete a season from a season set', function (){deleteSeasonSetComponentAction(seasonComponent_id, li)});
 }
 {% endif %}
+
 function addSeasonComponent(){
     var season_component = $('#template_component_item').clone();
     season_component.attr('id', 'component'+indexSeasonComponents);
@@ -100,7 +106,9 @@ function addSeasonComponent(){
     season_component.find('input.season_component_id').attr('id', id_input_season_id);
     
     season_component.find('input#'+id_input_season_component_name).autocomplete({
-	    minLength: 2,
+	    minLength: 1,
+	    autoFocus: true,
+	    delay: 500,
 	    source: function sourceAutocomplete(request, response){
 	      sendEvent(
 	        '{{path('season_search_by_name')}}', 

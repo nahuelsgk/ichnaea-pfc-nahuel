@@ -43,15 +43,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/home">Ichnaea</a>
+          <a class="brand" href="{{path('home')}}">Ichnaea</a>
           <div class="nav-collapse collapse">
+            
             <ul class="nav">
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matrix <b class="caret"></b></a>
-               <ul class="dropdown-menu">
-                <li><a href="{{path('matrix_homepage')}}">System's matrix</a></li>
-               </ul>
-             </li>
+             {% if app.user %}
              <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Variables <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -65,11 +61,12 @@
                <li><a href="{{path('season_list')}}">System's seasons</a></li>
                <li><a href="{{path('season_form')}}">New season</a></li>
               </ul>
-             </li>
+              </li>
+             {% endif %}
              <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">User corner<b class="caret"></b></a>
               <ul class="dropdown-menu">
-               <li><a href="{{path('fos_user_change_password')}}">Change password</a></li>
+               {% if app.user %}<li><a href="{{path('fos_user_change_password')}}">Change password</a></li>{% endif %}
                <li><a href="{{path('fos_user_resetting_request')}}">Request a new password</a></li>
               </ul>
              </li>

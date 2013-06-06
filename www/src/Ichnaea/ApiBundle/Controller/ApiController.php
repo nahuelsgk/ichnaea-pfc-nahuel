@@ -13,14 +13,9 @@ class ApiController extends FosRestController{
     public function getSeasonAction($id)
     {   
     	$ichnaeaService = $this->get('ichnaea.service');
-    	//$view = $this->view($ichnaeaService->getSeasonById($id), 200);
-    	//return $this->handleView($view);
     	return $this->view($ichnaeaService->getSeasonById($id), 200);
     }
     
-    /**
-     * @TODO Documentation and fix controller name
-     */
     public function getSeasonByPatternNameAction()
     {
     	$request = $this->getRequest();
@@ -28,18 +23,18 @@ class ApiController extends FosRestController{
     	$ichnaeaService = $this->get('ichnaea.service');
     	return $this->view($ichnaeaService->getSeasonByPatterName($pattern), 200);
     }
-
-    
+ 
     public function deleteSeasonSetAction($variable_id, $seasonSet_id){
        $ichnaeaService = $this->get('ichnaea.service');
        $ichnaeaService->deleteSeasonSet($seasonSet_id);
+       return $this->view(null, 204);
     }
     
     public function deleteSeasonSetComponentAction($variable_id, $seasonSet_id, $component_id)
     {
     	$ichnaeaService = $this->get('ichnaea.service');
-    	$ichnaeaService->deleteSeasonSetComponent($component_id);
-    	return $this->view(null, Codes::HTTP_NO_CONTENT);
+    	$ret = $ichnaeaService->deleteSeasonSetComponent($variable_id, $seasonSet_id, $component_id);
+    	return $this->view($ret, 200);
     }
 }
 ?>

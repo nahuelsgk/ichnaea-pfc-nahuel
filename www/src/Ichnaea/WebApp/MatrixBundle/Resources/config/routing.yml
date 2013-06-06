@@ -8,12 +8,30 @@ season_list:
 
 season_form:
     pattern: /season/new
-    defaults: { _controller: MatrixBundle:Season:form }
+    defaults: { _controller: MatrixBundle:Season:seasonForm }
+    requirements:
+        _method: GET
 
 season_edit:
     pattern: /season/{season_id}
-    defaults: { _controller: MatrixBundle:Season:form }
-
+    defaults: { _controller: MatrixBundle:Season:seasonForm }
+    requirements: 
+        _method: GET
+        season_id: "\d+"
+        
+season_create:
+    pattern: /season/create
+    defaults: { _controller: MatrixBundle:Season:createSeason }
+    requirements:
+        _method: POST
+        
+season_update:
+    pattern: /season/{season_id}/update
+    defaults: { _controller: MatrixBundle:Season:updateSeason }
+    requirements:
+        _method: POST
+        season_id: "\d+"
+    
 variable_list:
     pattern: /variable/list
     defaults: { _controller: MatrixBundle:Variable:getVariablesList }

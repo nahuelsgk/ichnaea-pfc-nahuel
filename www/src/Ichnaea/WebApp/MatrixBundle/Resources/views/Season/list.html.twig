@@ -40,8 +40,7 @@
 
 {% block extra_javascript %}
 function renderSeasonContent(data){
-    console.log(data[0].content);
-    $(season_content_text).html(data[0].content);
+    $(season_content_text).html(data.content);
 }
 
 function cleanActivesTable(){

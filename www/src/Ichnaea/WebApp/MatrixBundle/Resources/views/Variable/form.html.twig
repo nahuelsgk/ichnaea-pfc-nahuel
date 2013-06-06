@@ -1,8 +1,8 @@
 {% extends '::IchnaeaBase.html.twig' %}
 
-{% block page_title %}{% if variable is null %}System's variables list{% else %}Edit variable{% endif %}{% endblock %}
+{% block page_title %}{% if variable is null %}New variable{% else %}Edit {{variable.name}}{% endif %}{% endblock %}
 
-{% block header_page_title %}{% if variable is null %}System's variables list{% else %}Editing <i>{{ variable.name }}</i>{% endif %}{% endblock %}
+{% block header_page_title %}{% if variable is null %}New variable{% else %}Editing <i>{{ variable.name }}</i>{% endif %}{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -43,25 +43,31 @@
 {% endblock %}
 
 {% block extra_javascript %}
-
 function notify(message){
     alert(message);
     return false;
 }
-
 function checkErrors(){
     if ($('#var_name').val() == '') return notify('Needs a name');
     return true;
 }
-
 {% if action == 'update' %}
-function deleteLi(li){
+
+function deleteLi(li)
+{
     $('#'+li).remove();
-    alert("Season set removed");
 }
-function deleteSeasonSet(li, seasonSet_id){
+
+function deleteSeasonSetAction(li, seasonSet_id)
+{
     sendEvent('{{path('season_set_api', {'variable_id': variable.id})}}'+seasonSet_id, 'DELETE', {}, function (data) {deleteLi(li)})
 }
+
+function deleteSeasonSet(li, seasonSet_id)
+{
+    confirmMessage('You are about to delete a season set', function(){deleteSeasonSetAction(li, seasonSet_id)})
+}
+
 {% endif %}
 $('#variableForm').submit(checkErrors);
 {% endblock %}

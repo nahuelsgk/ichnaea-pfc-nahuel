@@ -62,9 +62,11 @@ class VariableController extends Controller{
 		$action = 'create';
 		$season_set = NULL;
 		$season_set_components = NULL;
+		$ichnaeaService = $this->get('ichnaea.service');
+		$season = $ichnaeaService->getVariableById($variable_id);
 		if (!is_null($season_set_id)) {	
 			$action = 'update';
-			$ichnaeaService = $this->get('ichnaea.service');
+			
 			$season_set = $ichnaeaService->getSeasonSet($season_set_id);
 			$season_set_components = $season_set->getSeason();
 		}
@@ -73,6 +75,7 @@ class VariableController extends Controller{
 			array(
 				'variable_id' 			=> $variable_id,
 				'action'      			=> $action,
+				'variable_name'			=> $season->getName(),
 				'season_set'  			=> $season_set,
 				'season_set_components' => $season_set_components
 			)
@@ -86,9 +89,8 @@ class VariableController extends Controller{
 		$name = $request->get("season_set_name");
 			
 		$already_seasons = $request->get("season_id");
-		$ichnaeaService->createSeasonSet($variable_id, $name, array_filter($already_seasons));
-		//@TODO: redirect to the edit with parameter
-		return $this->redirect($this->generateUrl('variable_list'));
+		$season_id = $ichnaeaService->createSeasonSet($variable_id, $name, array_filter($already_seasons));
+		return $this->redirect($this->generateUrl('season_set_edit', array('variable_id'=>$variable_id, 'season_set_id' => $season_id )));
 	}
 	
 	public function updateSeasonSetAction($variable_id, $season_set_id = NULL)

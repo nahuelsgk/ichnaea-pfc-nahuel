@@ -26,6 +26,7 @@ class IchnaeaService{
 		$season->setContent($content);
 		$this->em->persist($season);
 		$this->em->flush();
+		return $season->getId();
 	}
 	
 	public function updateSeason($id, $name, $notes, $start_date, $end_date, $content)
@@ -37,7 +38,7 @@ class IchnaeaService{
 		$season->setEndDate(new \DateTime($end_date));
 		$season->setContent($content);
 		$this->em->flush();
-		return $season;
+		return $season->getId();
 	}
 	
 	public function getAllSeasons()
@@ -47,7 +48,7 @@ class IchnaeaService{
 	
 	public function getSeasonById($id)
 	{
-    	$season = $this->em->getRepository('MatrixBundle:Season')->findById($id);
+    	$season = $this->em->getRepository('MatrixBundle:Season')->find($id);
         return $season;
 	}
 	
@@ -88,18 +89,38 @@ class IchnaeaService{
 		return $this->em->getRepository('MatrixBundle:Variable')->find($variable_id);	
 	}
 	
-	public function createSeasonSet($variable_id, $name, $array_already_seasons = NULL){
+	public function createSeasonSet($variable_id, $name, $seasonIds = NULL){
 		
 		$seasonSet = new SeasonSet();
 		$seasonSet->setName($name);
 		
 		$variable = $this->em->getRepository('MatrixBundle:Variable')->find($variable_id);
 		$seasonSet->setVariable($variable);
-		
-		//@TODO: Must add all seasons components
-		
+
+		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
+		foreach($seasonIds as $seasonId){
+			$season = $seasonRepository->find($seasonId);
+			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
+		}
 		$this->em->persist($seasonSet);
 		$this->em->flush();
+		
+		return $seasonSet->getId();
+	}
+	
+    public function updateSeasonSet($seasonSet_id, $name, $seasonIds = NULL){
+		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
+		$seasonSet->setName($name);
+		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
+		
+		foreach($seasonIds as $seasonId){
+			$season = $seasonRepository->find($seasonId);
+			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
+		}
+		$this->em->flush();
+		
+		//$seasonSet_id = $seasonSet->getId();
+		//$this->addComponentsToSeasonSet($seasonSet_id, $newComponents, $this->em);
 	}
 	/*
 	public function createSeasonSet($variable_id, $name, $array_already_seasons = NULL){
@@ -163,20 +184,7 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
-	public function updateSeasonSet($seasonSet_id, $name, $seasonIds = NULL){
-		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
-		$seasonSet->setName($name);
-		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
-		
-		foreach($seasonIds as $seasonId){
-			$season = $seasonRepository->find($seasonId);
-			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
-		}
-		$this->em->flush();
-		
-		//$seasonSet_id = $seasonSet->getId();
-		//$this->addComponentsToSeasonSet($seasonSet_id, $newComponents, $this->em);
-	}
+	
 	
 	protected function addComponentsToSeasonSet($seasonSet_id, $components, $em)
 	{
@@ -195,10 +203,12 @@ class IchnaeaService{
 	
 	}
 	
-	public function deleteSeasonSetComponent($id)
+	public function deleteSeasonSetComponent($variable_id, $season_set_id, $season_id)
 	{
-		$seasonSetComponent = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->find($id);
-		$this->em->remove($seasonSetComponent);
+		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($season_set_id);
+		$season    = $this->em->getRepository('MatrixBundle:Season')->find($season_id);
+		$seasonSet->removeSeason($season);
+		$this->em->persist($seasonSet);
 		$this->em->flush();
 	}
 	

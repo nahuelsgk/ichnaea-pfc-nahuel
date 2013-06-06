@@ -95,7 +95,6 @@ class SeasonSet
     public function addSeason(\Ichnaea\WebApp\MatrixBundle\Entity\Season $season)
     {
         $this->season[] = $season;
-
         return $this;
     }
 
