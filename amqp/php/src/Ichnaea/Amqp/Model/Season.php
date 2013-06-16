@@ -5,7 +5,7 @@ namespace Ichnaea\Amqp\Model;
 class Season implements \IteratorAggregate
 {
     private $trials = array();
-    const LineDelimiter = PHP_EOL;
+    const EndOfLine = PHP_EOL;
 
     public function __construct($data=null)
     {
@@ -16,7 +16,7 @@ class Season implements \IteratorAggregate
             $contents = "";
             while (!$file->eof()) { 
                 $file->next(); 
-                $contents = $file->current().self::LineDelimiter; 
+                $contents = $file->current().self::EndOfLine; 
             } 
             $data = $contents;
         }
@@ -24,11 +24,12 @@ class Season implements \IteratorAggregate
             // remove comments
             $data = preg_replace("/^\s*#.*$\n?/m", "", $data);
             // split by trials
-            $data = preg_split("/".self::LineDelimiter."{2,}/", $data);
+            $data = preg_split("/".self::EndOfLine."{2,}/", $data);
             foreach($data as &$trial) {
-                $lines = explode(self::LineDelimiter, trim($trial));
+                $lines = explode(self::EndOfLine, trim($trial));
                 $trial = array();
                 foreach($lines as &$line) {
+                    // split each key value line
                     $parts = preg_split("/\s+/", trim($line));
                     if(count($parts) != 2) {
                         throw new \InvalidArgumentException("Strange line '".$line."'.");
