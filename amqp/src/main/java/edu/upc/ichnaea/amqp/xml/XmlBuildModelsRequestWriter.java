@@ -5,6 +5,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Element;
 
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
+import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 
 public class XmlBuildModelsRequestWriter extends XmlWriter {
 	
@@ -17,14 +18,12 @@ public class XmlBuildModelsRequestWriter extends XmlWriter {
 
 		root.setAttribute("id", String.valueOf(data.getId()));
 		root.setAttribute("type", "build_models");
-		if(data.getFake() == null) {
-			root.setAttribute("section", String.valueOf(data.getSection()));
-			root.setAttribute("season", data.getSeason().toString().toLowerCase());
-			
-			Element datasetXml = appendChild("dataset");
-			new XmlDatasetWriter(getDocument(), datasetXml).build(data.getDataset());	
+		if(data instanceof BuildModelsFakeRequest) {
+			BuildModelsFakeRequest fakeData = (BuildModelsFakeRequest) data;
+			root.setAttribute("fake", fakeData.toString());
 		} else {
-			root.setAttribute("fake", data.getFake());
+			Element datasetXml = appendChild("dataset");
+			new XmlDatasetWriter(getDocument(), datasetXml).build(data.getDataset());			
 		}
 		
 		return this;

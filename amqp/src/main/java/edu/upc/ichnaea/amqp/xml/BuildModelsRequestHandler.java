@@ -1,15 +1,14 @@
 package edu.upc.ichnaea.amqp.xml;
 
-import javax.management.InvalidAttributeValueException;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
+import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
-import edu.upc.ichnaea.amqp.model.BuildModelsRequest.Season;
 import edu.upc.ichnaea.amqp.model.Dataset;
+import edu.upc.ichnaea.amqp.model.DatasetSeasons;
 
 public class BuildModelsRequestHandler implements ContentHandler {
 
@@ -25,8 +24,8 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	final static String ATTR_FAKE = "fake";
 	
 	BuildModelsRequest mRequest;
-	Season mSeason;
 	DatasetHandler mDatasetHandler;
+	DatasetSeasons mSeasons;
 	Dataset mDataset;
 	String mId;
 	String mFake;
@@ -43,7 +42,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	@Override
 	public void startDocument() throws SAXException {
 		mRequest = null;
-		mSeason = null;
 		mDatasetHandler = null;
 		mDataset = null;
 		mId = null;
@@ -54,9 +52,9 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	@Override
 	public void endDocument() throws SAXException {
 		if(mFake != null) {
-			mRequest = new BuildModelsRequest(mId, mFake);
+			mRequest = new BuildModelsFakeRequest(mId, mFake);
 		} else {
-			mRequest = new BuildModelsRequest(mId, mDataset, mSeason, mSection);
+			mRequest = new BuildModelsRequest(mId, mDataset, mSeasons);
 		}
 	}
 
@@ -92,22 +90,8 @@ public class BuildModelsRequestHandler implements ContentHandler {
 				if(!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
 					throw new SAXException("Invalid message type");
 				}
-				try {
-					mSeason = getSeasonFromString(atts.getValue(ATTR_SEASON));
-				} catch (InvalidAttributeValueException e) {
-					throw new SAXException(e.getMessage());
-				}
 			}
 		}
-	}
-	
-	private Season getSeasonFromString(String value) throws InvalidAttributeValueException {
-		for(Season season: Season.values()) {
-			if(season.toString().equalsIgnoreCase(value)) {
-				return season;
-			}
-		}
-		throw new InvalidAttributeValueException("invalid season");
 	}
 	
 	@Override

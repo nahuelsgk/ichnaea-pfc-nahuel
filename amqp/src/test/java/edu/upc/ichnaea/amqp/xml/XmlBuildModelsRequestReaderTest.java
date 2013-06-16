@@ -25,8 +25,6 @@ public class XmlBuildModelsRequestReaderTest {
     	
     	BuildModelsRequest message = new XmlBuildModelsRequestReader().read(xml);
     	
-    	assertTrue(BuildModelsRequest.Season.Winter == message.getSeason());
-    	
     	Dataset dataset = message.getDataset();
     	
     	Collection<String> names = dataset.columnNames();

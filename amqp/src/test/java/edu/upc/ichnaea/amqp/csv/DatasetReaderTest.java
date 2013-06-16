@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 import org.junit.Test;
 
+import edu.upc.ichnaea.amqp.data.CsvDatasetReader;
 import edu.upc.ichnaea.amqp.model.Dataset;
 
 public class DatasetReaderTest {

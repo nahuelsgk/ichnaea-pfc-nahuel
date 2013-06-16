@@ -22,7 +22,8 @@ import com.rabbitmq.client.Envelope;
 
 import edu.upc.ichnaea.amqp.FileUtils;
 import edu.upc.ichnaea.amqp.IOUtils;
-import edu.upc.ichnaea.amqp.csv.CsvDatasetWriter;
+import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
+import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestReader;
@@ -119,7 +120,7 @@ public class BuildModelsProcessClient extends Client {
 		new CsvDatasetWriter(new OutputStreamWriter(out)).write(req.getDataset()).close();
 		
 		getLogger().info("calling build models command");
-		BuildModelsCommand cmd = new BuildModelsCommand(req.getSeason(), datasetPath);
+		BuildModelsCommand cmd = new BuildModelsCommand(datasetPath);
 		
 		cmd.setScriptPath(mScriptPath);
 		getLogger().info(cmd.toString());
@@ -147,12 +148,12 @@ public class BuildModelsProcessClient extends Client {
 		sendResponse(resp, replyTo);
 	}
 	
-	protected void processFakeRequest(BuildModelsRequest req, final String replyTo)
+	protected void processFakeRequest(BuildModelsFakeRequest req, final String replyTo)
 			throws IOException, InterruptedException, ParserConfigurationException {
 		
 		Calendar start = Calendar.getInstance();
 		getLogger().info("calling fake build models command");
-		FakeBuildModelsCommand cmd = new FakeBuildModelsCommand(req.getFake());
+		FakeBuildModelsCommand cmd = new FakeBuildModelsCommand(req.toString());
 		
 		cmd.setScriptPath(mScriptPath);
 		getLogger().info(cmd.toString());
@@ -186,9 +187,9 @@ public class BuildModelsProcessClient extends Client {
 		getLogger().info("opening shell");
 		mShell.open();
 		
-		if(req.isFake()) {
+		if(req instanceof BuildModelsFakeRequest) {
 			getLogger().info("calling fake build models command");
-			processFakeRequest(req, replyTo);
+			processFakeRequest((BuildModelsFakeRequest)req, replyTo);
 		} else {
 			processRealRequest(req, replyTo);
 		}

@@ -1,4 +1,4 @@
-package edu.upc.ichnaea.amqp.csv;
+package edu.upc.ichnaea.amqp.data;
 
 import java.io.Writer;
 import java.util.Collection;

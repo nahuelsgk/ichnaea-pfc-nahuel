@@ -40,14 +40,13 @@ App.BuildModelsFormView = Ember.View.extend({
   submitReal: function(evt) {
     var elm = $(this.get('element'));
     var data = {
-      season: elm.find('#build-models-form-season').val(),
-      section: elm.find('#build-models-form-section').val(),
     };
     this.get('controller').send('addTask', data);
   },
   submitFake: function() {
     var elm = $(this.get('element'));
     var data = {
+      fake: true,
       fake_duration: elm.find('#build-models-form-fake-duration').val(),
       fake_interval: elm.find('#build-models-form-fake-interval').val(),
     };

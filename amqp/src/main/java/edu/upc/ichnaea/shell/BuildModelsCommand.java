@@ -3,16 +3,13 @@ package edu.upc.ichnaea.shell;
 import java.io.IOException;
 
 import edu.upc.ichnaea.amqp.FileUtils;
-import edu.upc.ichnaea.amqp.model.BuildModelsRequest.Season;
 
 public class BuildModelsCommand extends IchnaeaCommand {
 
-	private Season mSeason;
 	private String mDatasetPath;
 	private String mOutputPath;
 	
-	public BuildModelsCommand(Season season, String datasetPath) {
-		mSeason = season;
+	public BuildModelsCommand(String datasetPath) {
 		mDatasetPath = datasetPath;
 	}
 	
@@ -29,11 +26,7 @@ public class BuildModelsCommand extends IchnaeaCommand {
 	
 	public String getParameters() {
 		String params = "";
-		if(mSeason == Season.Summer){
-			params += " --season=summer";
-		}else if(mSeason == Season.Winter){
-			params += " --season=winter";
-		}
+
 		if(mOutputPath != null) {
 			params += " --output=\""+mOutputPath+"\"";
 		}

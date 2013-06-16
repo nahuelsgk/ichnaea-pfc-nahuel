@@ -7,6 +7,7 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 
+import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
 

@@ -1,6 +1,6 @@
 package edu.upc.ichnaea.amqp.model;
 
-public class DatasetCell implements Comparable<DatasetCell>{
+public class DatasetCell implements Comparable<DatasetCell> {
 	
 	protected String mValue;
 	

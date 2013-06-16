@@ -35,7 +35,6 @@ Usage
 	$conn->open();
 	$req = BuildModelsRequest::fromArray(array(
 		'id'		=> 'test'
-		'section'	=> 5,
 		'dataset'	=> "csv_data"
 	));
 	$conn->send($req);

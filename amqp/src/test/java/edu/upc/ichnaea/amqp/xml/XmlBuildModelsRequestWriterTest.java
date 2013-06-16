@@ -11,9 +11,9 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
-import edu.upc.ichnaea.amqp.model.BuildModelsRequest.Season;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
+import edu.upc.ichnaea.amqp.model.DatasetSeasons;
 
 
 public class XmlBuildModelsRequestWriterTest {
@@ -34,9 +34,10 @@ public class XmlBuildModelsRequestWriterTest {
         column2.add(6f);
         dataset.add(column2);
         
+        DatasetSeasons seasons = new DatasetSeasons();
+        
         String id = "455";
-        int section = 2;
-        BuildModelsRequest model = new BuildModelsRequest(id, dataset, Season.Summer, section);
+        BuildModelsRequest model = new BuildModelsRequest(id, dataset, seasons);
         
         String xml = new XmlBuildModelsRequestWriter().build(model).toString();
         
