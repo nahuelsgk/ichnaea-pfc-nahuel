@@ -19,7 +19,7 @@ class SeasonWriterTest extends \PHPUnit_Framework_TestCase
             array(
                 0   => 5.4,
                 10  => 43,
-                50  => 123.6                
+                50  => 123.6
             )
         ));
 
