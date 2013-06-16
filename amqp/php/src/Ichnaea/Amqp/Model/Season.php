@@ -2,11 +2,59 @@
 
 namespace Ichnaea\Amqp\Model;
 
+/**
+ * This class represents a season data. The season
+ * has a list of trials. Each trial has an array
+ * of float key value pairs
+ *
+ * A season can be loaded from and to a string in the form:
+ * ```
+ * # this is a trial
+ * 0    4.00 
+ * 48   3.85
+ * 144  3.54
+ * 288  3.08
+ * 360  2.85
+ * 
+ * 
+ * # this is another trial
+ * 0    3.80
+ * 48   3.66
+ * 144  3.37
+ * 288  2.94
+ * 360  2.72
+ * ```
+ *
+ * @author Miguel Ibero <miguel@ibero.me>
+ */
 class Season implements \IteratorAggregate
 {
+    /**
+     * The trials data. Each element is a trial and
+     * contains an array of float key value pairs
+     *
+     * @var array
+     */    
     private $trials = array();
+
+    /**
+     * End of line string used to split lines
+     *
+     * @var string
+     */
     const EndOfLine = PHP_EOL;
 
+    /**
+     * Constructor. The data parameter can be of multiple
+     * types:
+     *
+     * * \SplFileInfo: loads from a season file
+     * * \SplFileObject: loads from a season file
+     * * string: loads from a season string
+     * * array loads from a trials array
+     *
+     * @param mixed the season data
+     */
     public function __construct($data=null)
     {
         if ($data instanceof \SplFileInfo) {
@@ -43,6 +91,12 @@ class Season implements \IteratorAggregate
         }
     }
 
+    /**
+     * Set the trials data. Each array element is
+     * an array of float key value pairs.
+     *
+     * @param array $trials the trials data
+     */
     public function setTrials(array $trials)
     {
         foreach($trials as &$trial) {
@@ -53,16 +107,34 @@ class Season implements \IteratorAggregate
         $this->trials = $trials;
     }
 
+    /**
+     * Get the trials data. Each array element is
+     * an array of float key value pairs.
+     *
+     * @return array the trials data
+     */
     public function getTrials()
     {
         return $this->trials;
     }
 
+    /**
+     * Return an array iterator to the parts
+     * so that the season can be used in fereach
+     *
+     * @see \IteratorAggregate
+     * @return \ArrayIterator the iterator
+     */
     public function getIterator()
     {
         return new \ArrayIterator($this->trials);
     }
 
+    /**
+     * Return the season data as array
+     *
+     * @return array the data
+     */
     public function toArray()
     {
         return $this->trials;

@@ -6,8 +6,20 @@ use Ichnaea\Amqp\Model\BuildModelsResponse;
 use Ichnaea\Amqp\Mime\MimeMultipart;
 use Ichnaea\Amqp\Mime\MimePart;
 
+/**
+ * Xml reader that reads BuildModelsResponse objects
+ *
+ * @author Miguel Ibero <miguel@ibero.me>
+ */
 class BuildModelsResponseReader extends Reader
 {
+
+    /**
+     * Read a response object
+     *
+     * @param string $data the response data
+     * @return BuildModelsResponse a response object
+     */
     public function read($data)
     {
         $resp = null;

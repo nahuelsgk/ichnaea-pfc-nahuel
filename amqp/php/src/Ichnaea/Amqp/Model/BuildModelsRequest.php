@@ -2,16 +2,37 @@
 
 namespace Ichnaea\Amqp\Model;
 
+/**
+ * This class represents a build models request
+ *
+ * This request contains:
+ * * an unique identifier
+ * * a dataset
+ * * a list of seasons for each column
+ *
+ * @author Miguel Ibero <miguel@ibero.me>
+ */
 class BuildModelsRequest
 {
+    /**
+     * @var string
+     */
     private $id;
+
+    /**
+     * @var array
+     */
     private $seasons = array();
+
+    /**
+     * @var Dataset
+     */
     private $dataset;
-    private $fake;
 
     /**
      * Constructor for the build_models request
-     * @param mixed $id itentifier for the request
+     *
+     * @param string $id identifier for the request
      */
     public function __construct($id=null)
     {
@@ -64,6 +85,8 @@ class BuildModelsRequest
     /**
      * Load all the seasons at once. The array should be indexed
      * by column name and then by season position
+     *
+     * @param array $seasons an array of Season objects
      */
     public function setSeasons(array $seasons)
     {
@@ -78,52 +101,55 @@ class BuildModelsRequest
     }
 
     /**
-     * Fake sets a fake request. The format should be
-     * a string of type "T:I", where T is the total time
-     * the fake request should take and I is the interval
-     * in which the response will be updated
+     * Get the request id
+     *
+     * @return string the request id
      */
-    public function setFake($fake)
-    {
-        $this->fake = $fake;
-    }
-
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Get the entire seasons array
+     *
+     * @return array seasons
+     */
     public function getSeasons()
     {
         return $this->seasons;
     }
 
+    /**
+     * Get the dataset
+     * 
+     * @return Dataset the dataset
+     */
     public function getDataset()
     {
         return $this->dataset;
     }
 
-    public function getFake()
-    {
-        return $this->fake;
-    }
-
-    public function isFake()
-    {
-        return $this->fake != null;
-    }
-
+    /**
+     * Export the request to an array
+     *
+     * @return array the request data
+     */
     public function toArray()
     {
         return array(
             "id"		=> $this->id,
             "seasons"	=> $this->seasons,
             "section"	=> $this->section,
-            "fake"		=> $this->fake,
             "dataset"	=> $this->dataset->toArray()
         );
     }
 
+    /**
+     * Update the request from an array
+     *
+     * @param array the request data
+     */
     public function update(array $data)
     {
         if (array_key_exists('dataset', $data)) {
@@ -132,18 +158,25 @@ class BuildModelsRequest
         if (array_key_exists('seasons', $data)) {
             $this->setSeasons($data['seasons']);
         }
-        if (array_key_exists('fake', $data)) {
-            $this->setFake($data['fake']);
-        }
         if (isset($data['fake_duration']) || isset($data['fake_interval'])) {
             $this->setFake($data['fake_duration'].":".$data['fake_interval']);
         }
     }
 
+    /**
+     * Create the request from an array
+     *
+     * @param array the request data
+     * @return BuildModelsRequest the request
+     */
     public static function fromArray(array $data)
     {
         $data = array_merge(array('id'=>null), $data);
-        $req = new self($data['id']);
+        if(array_key_exists('fake', $data) && $data['fake']) {
+            $req = new BuildModelsFakeRequest($data['id']);
+        } else {
+            $req = new self($data['id']);
+        }
         $req->update($data);
 
         return $req;

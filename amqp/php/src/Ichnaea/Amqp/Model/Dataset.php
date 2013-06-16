@@ -2,11 +2,41 @@
 
 namespace Ichnaea\Amqp\Model;
 
+/**
+ * This class represents a dataset. A dataset
+ * contains a number of colums, each with a name
+ * and a set of rows of values for each one
+ *
+ * @author Miguel Ibero <miguel@ibero.me>
+ */
 class Dataset implements \IteratorAggregate
 {
+    /**
+     * Column delimiter for reading and writing csv
+     *
+     * @var string
+     */
     const CsvDelimiter = ";";
+
+    /**
+     * The columns data. Each element is a column and
+     * Contains an array of values.
+     *
+     * @var array
+     */
     private $columns = array();
 
+    /**
+     * Constructor. The data parameter can be of multiple
+     * types:
+     *
+     * * \SplFileInfo: loads from a csv file
+     * * \SplFileObject: loads from a csv file
+     * * string: loads from a csv string
+     * * array loads from a columns array
+     *
+     * @param mixed the dataset data
+     */
     public function __construct($data=null)
     {
         if ($data instanceof \SplFileInfo) {
@@ -35,6 +65,11 @@ class Dataset implements \IteratorAggregate
         }
     }
 
+    /**
+     * Sets the columns
+     * 
+     * @param array $cols columns
+     */
     public function setColumns(array $cols)
     {
         foreach ($cols as &$col) {
@@ -45,6 +80,11 @@ class Dataset implements \IteratorAggregate
         $this->columns = $cols;
     }
 
+    /**
+     * Change the column names
+     *
+     * @param array $names the names of the columns
+     */
     public function setColumnNames(array $names)
     {
         $oldNames = array_keys($this->columns);
@@ -58,6 +98,13 @@ class Dataset implements \IteratorAggregate
         }
     }
 
+    /**
+     * Sets the data by rows. Each element of the array
+     * is considered a row.
+     * 
+     * @param array $rows the row data
+     * @param bool $withNames if the first row contains the column names
+     */
     public function setRows(array $rows, $withNames=false)
     {
         $rows = array_values($rows);
@@ -80,21 +127,44 @@ class Dataset implements \IteratorAggregate
         }
     }
 
+    /**
+     * Return the data of a column by name
+     *
+     * @param string $name the name of the column
+     * @return array the column data
+     */
     public function getColumn($name)
     {
         return $this->columns[$name];
     }
 
+    /**
+     * Return the column names
+     *
+     * @return array the column names
+     */
     public function getColumnNames()
     {
         return array_keys($this->columns);
     }
 
+    /**
+     * Return an array iterator to the parts
+     * so that the dataset can be used in fereach
+     *
+     * @see \IteratorAggregate
+     * @return \ArrayIterator the iterator
+     */
     public function getIterator()
     {
         return new \ArrayIterator($this->columns);
     }
 
+    /**
+     * Return the dataset data as array
+     *
+     * @return array the data
+     */
     public function toArray()
     {
         return $this->columns;

@@ -4,21 +4,38 @@ namespace Ichnaea\Amqp\Xml;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
 
+/**
+ * An XML writer that writes BuildModelsRequest objects to xml
+ *
+ * @see Ichnaea\Amqp\Model\BuildModelsRequest
+ * @author Miguel Ibero <miguel@ibero.me>
+ */
 class BuildModelsRequestWriter extends Writer
 {
+    /**
+     * Constructor
+     *
+     * @param \DOMDocument the document to use
+     * @param \DOMElement the element to use as root
+     */
     public function __construct($document=null, $root="request")
     {
         parent::__construct($document, $root);
     }
 
+    /**
+     * Write the request data into the xml
+     *
+     * @param BuildModelsRequest the request object
+     */
     public function build(BuildModelsRequest $req)
     {
         $xmlRoot = $this->getRoot();
         $xmlRoot->setAttribute("id", $req->getId());
         $xmlRoot->setAttribute("type", "build_models");
 
-        if ($req->isFake()) {
-            $xmlRoot->setAttribute("fake", $req->getFake());
+        if ($req instanceof BuildModelsFakeRequest) {
+            $xmlRoot->setAttribute("fake", $req->getDuration().":".$req->getInterval());
             return;
         }
         
