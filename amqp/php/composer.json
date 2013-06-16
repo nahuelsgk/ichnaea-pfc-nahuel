@@ -14,12 +14,12 @@
     },
     "require-dev": {
         "silex/silex": "1.0.*@dev",
-        "doctrine/dbal": "2.3.*"
+        "doctrine/dbal": "2.3.*",
+        "phpunit/phpunit": "3.7.*"        
     },
     "autoload": {
         "psr-0": { "Ichnaea\\Amqp\\": "src/" }
     },
     "scripts": {
-        
     }
 }

@@ -19,7 +19,13 @@ class Dataset implements \IteratorAggregate
             }
         }
         if (is_string($data)) {
-            $rows = str_getcsv($data, self::CsvDelimiter);
+            $rows = explode("\n", $data);
+            foreach($rows as &$row) {
+                $row = str_getcsv($row, self::CsvDelimiter);
+                array_walk($row, function(&$value){
+                    $value = trim($value);
+                });
+            }
         }
         if (isset($rows)) {
             $this->setRows($rows, true);
@@ -31,6 +37,11 @@ class Dataset implements \IteratorAggregate
 
     public function setColumns(array $cols)
     {
+        foreach ($cols as &$col) {
+            if(!is_array($col)) {
+                throw new \InvalidArgumentException("Each column needs to be an array");
+            }
+        }
         $this->columns = $cols;
     }
 
@@ -51,6 +62,9 @@ class Dataset implements \IteratorAggregate
     {
         $rows = array_values($rows);
         if ($withNames) {
+            if(!is_array($rows[0])) {
+                throw new \InvalidArgumentException("Row names need to be an array.");
+            }
             $this->setColumnNames($rows[0]);
             $rows = array_slice($rows, 1);
         }
@@ -58,7 +72,7 @@ class Dataset implements \IteratorAggregate
 
         foreach ($rows as $r=>$row) {
             if (!is_array($row)) {
-                continue;
+                throw new \InvalidArgumentException("Row needs to be an array.");
             }
             foreach ($row as $c=>$value) {
                 $this->columns[$names[$c]][] = $value;
