@@ -28,5 +28,120 @@ class Matrix
      */
     private $name;
 
-  
+    /**
+     * @ORM\OneToMany(targetEntity="VariableMatrixConfig", mappedBy="matrix", cascade={"persist"})
+     */
+    private $columns;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Sample", mappedBy="matrix", cascade={"persist"})
+     */
+    private $rows;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->columns = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Matrix
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add columns
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columns
+     * @return Matrix
+     */
+    public function addColumn(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columns)
+    {
+        $this->columns[] = $columns;
+
+        return $this;
+    }
+
+    /**
+     * Remove columns
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columns
+     */
+    public function removeColumn(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columns)
+    {
+        $this->columns->removeElement($columns);
+    }
+
+    /**
+     * Get columns
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getColumns()
+    {
+        return $this->columns;
+    }
+
+    /**
+     * Add rows
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows
+     * @return Matrix
+     */
+    public function addRow(\Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows)
+    {
+        $this->rows[] = $rows;
+
+        return $this;
+    }
+
+    /**
+     * Remove rows
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows
+     */
+    public function removeRow(\Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows)
+    {
+        $this->rows->removeElement($rows);
+    }
+
+    /**
+     * Get rows
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRows()
+    {
+        return $this->rows;
+    }
 }

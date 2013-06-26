@@ -1,3 +1,6 @@
+variable_api:
+    pattern: /api/variable/
+    
 season_api:
     pattern: /api/season/
       
@@ -16,9 +19,11 @@ season_search_by_name:
         _method: POST
 
 season_set_api:
-     pattern: /api/variable/{{variable_id}}/seasonSet/
+     pattern: /api/variable/{variable_id}/seasonSet/
+     defaults: { _controller: IchnaeaApiBundle:Api:getVariableSeasonSet, _format: json }
      requirements:
          variable_id: "\d+"
+         _method: GET
 
 season_set_delete:
     pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}
@@ -31,3 +36,29 @@ season_set_component_delete:
     defaults: { _controller: IchnaeaApiBundle:Api:deleteSeasonSetComponent, _format: json }
     requirements:
         _method: DELETE
+
+matrix_api:
+    pattern: /api/matrix/{matrix_id}
+    requirements:
+        matrix_id: "\d+"
+        
+matrix_column:
+    pattern: /api/matrix/{matrix_id}/column/{column_id}
+    defaults: { _controller: IchnaeaApiBundle:Api:updateMatrixColumn, _format: json }
+    requirements:
+        _method: PUT
+        matrix_id: "\d+"
+        column_id: "\d+"
+
+sample_api:
+    pattern: /api/matrix/{matrix_id}/sample/
+    requirements: 
+        matrix_id: "\d+"
+
+sample_update:
+    pattern: /api/matrix/{matrix_id}/sample/{sample_id}
+    defaults: { _controller: IchnaeaApiBundle:Api:updateSample, _format: json }
+    requirements:
+        _method: PUT
+        matrix_id: "\d+"
+        sample_id: "\d+"

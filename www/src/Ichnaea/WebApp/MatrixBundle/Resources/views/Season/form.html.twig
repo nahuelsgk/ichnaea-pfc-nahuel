@@ -44,7 +44,6 @@
            <textarea id="content" name="content">{% if season is not null %}{{season.content}}{% endif %}</textarea>
         </div>
       </div>
- 
       <div class="control-group">
         <div class="controls">
           <button class="btn" id="submit_add_season" name="action" value="add">{% if season is null %}Save{% else %}Update{% endif %}</button>
@@ -66,12 +65,14 @@ function init_datepicker(){
     $('#end_date').datepicker({dateFormat: "dd-mm-yy"});
 }
 
-function notify(message){
+function notify(message)
+{
   alert(message);
   return false;  
 }
 
-function checkErrors(){
+function checkErrors()
+{
   //Check dates
   //Check an file imported
   if ($('#name').val() == '') return notify('Please write a name');
@@ -80,29 +81,10 @@ function checkErrors(){
   if ($('#content').val() == '') return notify('Please insert the content of a file or type');
   else return true;
 }
+
 $(document).ready(function(){
     init_datepicker();
     $('#seasonForm').submit(checkErrors);
-    
-	// Check for the various File API support.
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-      // Great success! All the File APIs are supported.
-    } else {
-    alert('The File APIs are not fully supported in this browser. You must copy the content of the season file for each one season.');
-    }
-    
-    $('#files').change(function (e){
-      e = e || window.event;
-      e.preventDefault(); 
- 	  e = e.originalEvent || e;
- 	  console.log(e);
-      var file = e.target.files[0];  
-      var reader = new FileReader();  
-      reader.onload = function (evt) {  
-               console.log(evt.target.result);
-               $('#content').val(evt.target.result);  
-      }
-      reader.readAsText(file);   
-    });
-});
+    importFileIntoInput('files', 'content');
+});	
 {% endblock %}

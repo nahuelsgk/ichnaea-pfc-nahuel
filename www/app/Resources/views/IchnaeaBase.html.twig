@@ -8,10 +8,9 @@
      padding-bottom: 40px;
  }
  </style>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
-
 <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-affix.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-carousel.js') }}"></script>
@@ -23,6 +22,7 @@
 <script src="{{ asset('bootstrap/js/bootstrap-popover.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-tooltip.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-button.js') }}"></script>
+
 <!--
   This mades that dropdown menu dont work  
   <script src="{{ asset('bootstrap/js/bootstrap-dropdown.js') }}"></script> 
@@ -30,6 +30,7 @@
 <script src="{{ asset('bootstrap/js/bootstrap-scrollspy.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-transition.js') }}"></script>
 <script src="{{ asset('Ichnaea/js/common.js') }}"></script>
+<script src="{{ asset('Ichnaea/js/jquery.easyui.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('Ichnaea/css/common.css') }}">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css">
@@ -48,6 +49,13 @@
             
             <ul class="nav">
              {% if app.user %}
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matrixs <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+               <li><a href="{{path('matrix_form')}}">New matrix</a></li>
+               <li><a href="{{path('matrix_list')}}">Matrix list</a></li>
+              </ul>
+             </li>
              <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Variables <b class="caret"></b></a>
               <ul class="dropdown-menu">

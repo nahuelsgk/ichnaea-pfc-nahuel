@@ -15,6 +15,29 @@ function clear_form(ele) {
 	});
 }
 
+function importFileIntoInput(fromInput, toInput){
+    // Check for the various File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      // Great success! All the File APIs are supported.
+    } else {
+    alert('The File APIs are not fully supported in this browser. You must copy the content of the season file for each one season.');
+    }
+    
+    $('#'+fromInput).change(function (e){
+      e = e || window.event;
+      e.preventDefault(); 
+ 	  e = e.originalEvent || e;
+ 	  console.log(e);
+      var file = e.target.files[0];  
+      var reader = new FileReader();  
+      reader.onload = function (evt) {  
+               console.log(evt.target.result);
+               $('#'+toInput).val(evt.target.result);  
+      }
+      reader.readAsText(file);   
+    });
+}
+
 function sendEvent(uri, method, params, success_callback){
 	console.log("Commons: Trying to send to new codeignite api");
 	$.ajax({
@@ -29,10 +52,10 @@ function sendEvent(uri, method, params, success_callback){
 		},
 		error: function(data, type){
 			  if(type==='timeout') {
-				  //showMessage('error', 10000, "Connection problems. Can't send request")
+				  errorMessage("Connection problems. Can't send request")
 			  }
 			  else{
-				  //showMessage('error', 10000, console.log(data.msg));
+				  errorMessage('Ajax error');
 		      }
 			  
 		}
@@ -55,6 +78,18 @@ function confirmMessage($message, $continueAction){
 	              
 	          }
 	      },
+	      close: function (event, ui) {
+	          $(this).remove();
+	      }
+	});
+}
+
+function errorMessage($message){
+	  $('<div></div>').appendTo('body')
+	  .html('<div><h6>'+$message+'</h6></div>')
+	  .dialog({
+	      modal: true, title: 'message', zIndex: 10000, autoOpen: true,
+	      width: 'auto', resizable: false,
 	      close: function (event, ui) {
 	          $(this).remove();
 	      }

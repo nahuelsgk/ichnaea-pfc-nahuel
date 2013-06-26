@@ -2,11 +2,15 @@
 
 namespace Ichnaea\WebApp\MatrixBundle\Service;
 
+use Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig;
+
 use Doctrine\ORM\EntityManager;
 use Ichnaea\WebApp\MatrixBundle\Entity\Season;
 use Ichnaea\WebApp\MatrixBundle\Entity\Variable;
 use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSet;
 use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSetComponent;
+use Ichnaea\WebApp\MatrixBundle\Entity\Matrix;
+use Ichnaea\WebApp\MatrixBundle\Entity\Sample;
 
 class IchnaeaService{
     
@@ -118,34 +122,11 @@ class IchnaeaService{
 			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
 		}
 		$this->em->flush();
-		
-		//$seasonSet_id = $seasonSet->getId();
-		//$this->addComponentsToSeasonSet($seasonSet_id, $newComponents, $this->em);
 	}
-	/*
-	public function createSeasonSet($variable_id, $name, $array_already_seasons = NULL){
-		$seasonSet = new SeasonSet();
-		$seasonSet->setName($name);
-		$seasonSet->setVariableId($variable_id);
-		$this->em->persist($seasonSet);
-		$this->em->flush();
-		$season_set_id = $seasonSet->getId();
-		
-		//@TODO: mapping relations insert like this?
-		foreach($array_already_seasons as $season_id){
-			$seasonSetComponent = new SeasonSetComponent();
-			$seasonSetComponent->setSeasonSetId($season_set_id);
-			$seasonSetComponent->setSeasonId($season_id);
-			var_dump($seasonSetComponent);
-			$this->em->persist($seasonSetComponent);
-			$this->em->flush();
-		}
-		return $season_set_id;
-	}*/
-	
 
 	public function getVariableSeasonSets($variable_id){
-		return $this->em->getRepository('MatrixBundle:SeasonSet')->findByVariableId($variable_id);
+		$variable = $this->em->getRepository('MatrixBundle:Variable')->find($variable_id);
+		return $variable->getSeasonSet();
 	}
 
 	public function getSeasonSet($id){
@@ -165,15 +146,6 @@ class IchnaeaService{
 			$components[$index]['id']   = $season->getId();
 			$components[$index]['component_id'] = $c->getId();
 			$index++;
-			/* When entities well done
-			$season = $c->getSeason();
-			$components[$index]['name'] = $season->getName();
-			$components[$index]['id']   = $season->getId();
-			$components[$index]['component_id'] = $c->getId();
-			//$season = $c->getSeason();
-			//print_r($season->getName());
-			$index++;
-			*/
 		}
 		return $components;
 	}
@@ -182,25 +154,6 @@ class IchnaeaService{
 		$season = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
 		$this->em->remove($season);
 		$this->em->flush();
-	}
-	
-	
-	
-	protected function addComponentsToSeasonSet($seasonSet_id, $components, $em)
-	{
-		var_dump($components);
-		foreach($components as $component){
-			print("Entering...");
-			$seasonSetComponent = new SeasonSetComponent();
-			var_dump($seasonSet_id);
-			var_dump($component);
-			$seasonSetComponent->setSeasonSetId($seasonSet_id);
-			$seasonSetComponent->setSeasonId($component);
-			var_dump($seasonSetComponent);
-			$this->em->persist($seasonSetComponent);
-			$this->em->flush();
-		}
-	
 	}
 	
 	public function deleteSeasonSetComponent($variable_id, $season_set_id, $season_id)
@@ -212,9 +165,103 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
+	/*
+	 * The content of the file: must be ; separated
+	 * NO_MATTER_WHAT ; COLUMN_ALIAS ; COLUMN ALIAS ; .....
+	 * SAMPLE_NAME    ; VALUES       ; VALUES       ;
+	 * 
+	 * @TODO/ Must validate the csv format also...
+	 */
+	public function createMatrixFromCSVContent($name, $content){
+		
+		$matrix = new Matrix();
+		$matrix->setName($name);
+
+		$index=0;
+		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
+			$max_colums=0;
+			
+			//First row: variables alias
+			if($index == 0){
+				$columns    = explode(";", $line);
+			  	$m_columns  = count($columns);
+			  	
+			  	//Exclude first column
+			  	for($i=1; $i<$m_columns; $i++){
+			  		//print("Variable alias: ".$columns[$i]."<br>");
+			  		$variableConfiguration = new VariableMatrixConfig();
+			  		$variableConfiguration->setName($columns[$i]);
+			  		$variableConfiguration->setMatrix($matrix);
+			  		$matrix->addColumn($variableConfiguration);
+			  		$max_columns = $i-1;
+			  	}
+			}
+			//Samples
+			else{
+				//Check empty lines
+				if($line != ''){
+					$columns    = explode(";", $line);
+				
+					//First Column: Definition of sample	
+					$sample = new Sample();
+					$sample->setName($columns[0]);
+					$sample->setMatrix($matrix);
+					$sample->setSamples(array_slice($columns, 1, null, TRUE));
+					$matrix->addRow($sample);
+				}			
+			}
+			
+			$index++;
+		}
+		$this->em->persist($matrix);
+		$this->em->flush();
+	}
+
+	public function getAllMatrixs(){
+		return $this->em->getRepository('MatrixBundle:Matrix')->findAll();
+	}
+	
+	public function getMatrix($id){
+		return $this->em->getRepository('MatrixBundle:Matrix')->find($id);
+	}
+	
+	public function updateMatrixVariable($matrix_id, $column_id, $new_name, $new_variable, $new_seasonSet = NULL){
+		$variableConfigurationRepository = $this->em->getRepository('MatrixBundle:VariableMatrixConfig');
+		$variableRepository 			 = $this->em->getRepository('MatrixBundle:Variable');
+		$seasonSetRepository			 = $this->em->getRepository('MatrixBundle:SeasonSet');
+		 
+		//@TODO Dont know how to get the matrix and update 
+		$column  = $variableConfigurationRepository->find($column_id);
+		$column->setName($new_name);
+		
+		//Update the variables if they are different. By now always update
+		$variable = $variableRepository->find($new_variable);
+		$column->setVariable($variable);
+		
+		//If it was updated unset the seasonSet
+		if($new_seasonSet){
+		 $seasonSet = $seasonSetRepository->find($new_seasonSet);
+		 $column->setSeasonSet($seasonSet);
+		}
+		
+		$this->em->persist($column);
+		$this->em->flush();
+	}
+	
+	public function updateSample($matrix_id, $sample_id, $new_name, $new_date = NULL)
+	{
+		$sampleRepository = $this->em->getRepository('MatrixBundle:Sample');
+		$sample = $sampleRepository->find($sample_id);
+		$sample->setName($new_name);
+		if(!is_null($new_date)) $sample->setDate(new \DateTime($new_date));
+		$this->em->persist($sample);
+		$this->em->flush();		
+	}
+	
 	public function echoTest(){
 		print("Container loaded success");
 	}
+
 }
 
 ?>

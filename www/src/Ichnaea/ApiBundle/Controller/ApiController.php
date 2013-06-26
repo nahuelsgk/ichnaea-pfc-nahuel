@@ -36,5 +36,35 @@ class ApiController extends FosRestController{
     	$ret = $ichnaeaService->deleteSeasonSetComponent($variable_id, $seasonSet_id, $component_id);
     	return $this->view($ret, 200);
     }
+    
+    public function getVariableSeasonSetAction($variable_id)
+    {
+    	$ichnaeaService = $this->get('ichnaea.service');
+    	$seasonSets = $ichnaeaService->getVariableSeasonSets($variable_id);
+    	return $this->view($seasonSets, 200);
+    }
+    
+    public function updateMatrixColumnAction($matrix_id, $column_id)
+    {
+    	$request = $this->getRequest();
+    	$new_name       = $request->get('name');
+    	$new_variable   = $request->get('variable');
+    	$new_seasonSet  = $request->get('season');
+    	
+    	$ichnaeaService = $this->get('ichnaea.service');
+    	$ichnaeaService->updateMatrixVariable($matrix_id, $column_id, $new_name, $new_variable, $new_seasonSet);
+    	return $this->view(null, 200); 	
+    }
+    
+    public function updateSampleAction($matrix_id, $sample_id)
+    {
+    	$request  = $this->getRequest();
+    	$new_name = $request->get('name');
+    	$new_date = $request->get('date');
+    	
+    	$ichnaeaService = $this->get('ichnaea.service');
+    	$ichnaeaService->updateSample($matrix_id, $sample_id, $new_name, $new_date);
+    	return $this->view(null, 200);
+    }
 }
 ?>

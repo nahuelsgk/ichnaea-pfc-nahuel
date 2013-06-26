@@ -1,7 +1,3 @@
-matrix_homepage:
-    pattern:  /matrix/list
-    defaults: { _controller: MatrixBundle:Default:index }
-    
 season_list:
     pattern: /season/list
     defaults: { _controller: MatrixBundle:Season:index }
@@ -92,4 +88,24 @@ season_set_update:
           _method: POST
           variable_id: "\d+"
           season_set_id: "\d+"
-        
+
+matrix_form:
+    pattern: /matrix
+    defaults: { _controller: MatrixBundle:Matrix:getMatrixForm }
+
+matrix_list:
+    pattern: /matrix/list
+    defaults: { _controller: MatrixBundle:Matrix:listSystemsMatrix }
+
+matrix_create_action:
+    pattern: /matrix/create
+    defaults: { _controller: MatrixBundle:Matrix:createMatrix }
+    requirements:
+        _method: POST
+    
+matrix_ui:
+    pattern: /matrix/{matrix_id}
+    defaults: { _controller: MatrixBundle:Matrix:guiMatrix }
+    requirements:
+        _method: GET
+        matrix_id: "\d+"

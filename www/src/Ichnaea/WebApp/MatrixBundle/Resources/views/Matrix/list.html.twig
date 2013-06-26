@@ -1,0 +1,28 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+{% block body %}
+<table>
+ <theader>
+   <th>&nbsp;</th>
+   <th>Name</th>
+ </theader>
+ <tbody>
+ {% for matrix in matrixs %}
+   <tr>
+   <td>
+     <a class="btn btn-mini" href="{{path('matrix_ui', {'matrix_id': matrix.id})}}" name="view_matrix" title="View matrix and edit columns and samples">
+       <i class="icon-edit"></i>
+     </a>
+   </td>
+   <td>
+     {{matrix.name}}
+   </td>
+   </tr>
+ {% endfor %}
+ </tbody>
+</table>
+{% endblock %}
+
+{% block extra_javascript %}
+
+{% endblock %}
