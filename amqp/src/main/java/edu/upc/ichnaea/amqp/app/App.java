@@ -4,80 +4,98 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.logging.Logger;
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
+import edu.upc.ichnaea.amqp.cli.OptionException;
+import edu.upc.ichnaea.amqp.cli.Options;
+import edu.upc.ichnaea.amqp.cli.StringOption;
+import edu.upc.ichnaea.amqp.client.ClientInterface;
+
 public abstract class App
 {
 	protected Connection mConnection;
-	protected String mUri;
+	protected String mUri = "amqp://localhost";
+	protected static Logger LOGGER = Logger.getLogger(App.class.getName());
 
-	protected String getDefaultServerUri()
-	{
-		return "amqp://localhost";
-	}
-
-    public static void main(String[] args, App app)
-    {
+    public static void main(String[] args, App app) {
     	try {
-    		app.setArguments(Arrays.asList(args));
-	        app.connect();
+    		app.parseArguments(args);
+    		app.connect();
+	        app.setup();    		
 	        app.start();
 	        app.end();
-        } catch (Exception ex) {
-            System.err.println("Main thread caught exception: " + ex);
-            ex.printStackTrace();
+    	} catch (OptionException e) {
+    		getLogger().severe("Could not parse arguments: " + e.getMessage());
+    		app.printHelp();
             System.exit(1);
-        }	    	
+    	} catch (Exception e) {
+    		throw new RuntimeException(e);
+        }	
+    }
+    
+    public static Logger getLogger() {
+    	return LOGGER;
     }
     
     protected void connect()
-    	throws KeyManagementException, NoSuchAlgorithmException, URISyntaxException, IOException
-    {
-        ConnectionFactory connFactory = new ConnectionFactory();
+    	throws KeyManagementException, NoSuchAlgorithmException, URISyntaxException, IOException {
+    	getLogger().info("connecting...");
+    	ConnectionFactory connFactory = new ConnectionFactory();
         connFactory.setUri(mUri);
         mConnection = connFactory.newConnection();
-        setup();
     }
     
-    public void setArguments(List<String> args)
-    {
-    	String uri = getDefaultServerUri();
-    	if(args.size() > 0){
-    		uri = args.get(0);
-    		args.remove(0);
-    	}
-        setUri(uri);
+    protected void parseArguments(String[] args) throws OptionException {
+       getOptions().parse(args);
     }
     
-    protected void setup() throws IOException
-    {
+    protected void printHelp() {
+    	getOptions().printHelp();
     }
     
-    protected void start() throws IOException
-    {
+    protected void setup() throws IOException {
+    	getLogger().info("setting up app...");
     }
     
-    protected void end() throws IOException
-    {
+    protected void start() throws IOException {
+    	getLogger().info("starting app...");
+    }
+    
+    protected void end() throws IOException {
+    	getLogger().info("ending app...");
 	    mConnection.close();
     }
     
-    public void setUri(String uri)
-    {
-    	mUri = uri;
-    }
-    
-    protected Connection getConnection()
-    {
+    protected Connection getConnection() {
     	return mConnection;
     }
     
-    protected String getUri()
-    {
+    protected String getUri() {
     	return mUri;
-    }     
+    }
+    
+    protected Options getOptions() {
+    	final Options options = new Options("ichnaea-amqp");
+    	options.add(new StringOption("uri") {
+			@Override
+			public void setValue(String value) {
+				mUri = value;
+			}
+		}.setDefaultValue(mUri).setDescription("The uri of the amqp server."));
+    	return options;
+    }
+    
+    protected void runClient(ClientInterface client) throws IOException {
+		try {
+			client.run();
+			while(!client.hasFinished()){
+				// wait forever
+				Thread.sleep(1000);
+			}			
+		} catch (InterruptedException e) {
+		}    	
+    }
 }

@@ -1,35 +1,95 @@
 package edu.upc.ichnaea.shell;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 public class Shell implements ShellInterface {
+	
+	public static class CommandResult implements CommandResultInterface
+	{
+		private Process mProcess;
+		
+		public CommandResult(Process pr) {
+			mProcess = pr;
+		}
+
+		@Override
+		public InputStream getInputStream() {
+			return mProcess.getInputStream();
+		}
+
+		@Override
+		public InputStream getErrorStream() {
+			return mProcess.getErrorStream();
+		}
+
+		@Override
+		public int getExitStatus() {
+			return mProcess.exitValue();
+		}
+
+		@Override
+		public void close() {
+			try {
+				mProcess.waitFor();
+			} catch (InterruptedException e) {
+			}	
+		}
+	};
+	
+	protected Logger mLogger = Logger.getLogger(Shell.class.getName());
+	
+	public Logger getLogger() {
+		return mLogger;
+	}	
 
 	@Override
-	public CommandResult run(Command command) throws IOException, InterruptedException {
-
+	public CommandResult run(CommandInterface command) throws IOException, InterruptedException {
 		Runtime run = Runtime.getRuntime();
-		Process pr= run.exec(command.toString());
-		pr.waitFor();
-		String out = readInputStream(pr.getInputStream());
-		String err = readInputStream(pr.getErrorStream());
-		return new CommandResult(out, err, pr.exitValue());
+		command.beforeRun(this);
+		Process pr = run.exec(command.toString());
+		return new CommandResult(pr);
+	}
+
+	@Override
+	public FileInputStream readFile(String path) throws FileNotFoundException {
+		return new FileInputStream(path);
+	}
+
+	@Override
+	public FileOutputStream writeFile(String path) throws IOException {
+		try {
+			return new FileOutputStream(path);
+		} catch (FileNotFoundException e) {
+			throw new IOException("Path is a directory.");
+		}
 	}
 	
-	public static String readInputStream(InputStream in) throws IOException
-	{
-		String out = "";
-		byte[] tmp = new byte[1024];
-		
-		while(in.available()>0){
-			int i = in.read(tmp, 0, tmp.length);
-			if(i<0){
-				break;
-			}
-			out += new String(tmp, 0, i);
+	public void removeFile(String path) throws IOException {
+		if(!new File(path).delete())
+		{
+			throw new IOException("could not delete path");
 		}
+	}
+
+	@Override
+	public String getTempPath() throws IOException {
+		return System.getProperty("java.io.tmpdir"); 
+	}
+
+	@Override
+	public void open() throws IOException {
+
+	}
+
+	@Override
+	public void close() throws IOException {
 		
-		return out;
-	}	
+	}
 
 }
