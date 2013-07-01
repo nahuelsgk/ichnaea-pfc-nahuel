@@ -39,6 +39,11 @@ class Matrix
     private $rows;
     
     /**
+     * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\UserBundle\Entity\User", inversedBy="matrixs")
+     */								
+    private $owner;
+    
+    /**
      * Constructor
      */
     public function __construct()
@@ -143,5 +148,28 @@ class Matrix
     public function getRows()
     {
         return $this->rows;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \Ichnaea\WebApp\UserBundle\Entity\User $owner
+     * @return Matrix
+     */
+    public function setOwner(\Ichnaea\WebApp\UserBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \Ichnaea\WebApp\UserBundle\Entity\User 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }

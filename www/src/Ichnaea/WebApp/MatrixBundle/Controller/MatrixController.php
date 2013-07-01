@@ -4,21 +4,23 @@ namespace Ichnaea\WebApp\MatrixBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MatrixController extends Controller
-{
-	
+{	
 	public function getMatrixFormAction()
 	{
 		return $this->render('MatrixBundle:Matrix:form.html.twig');
 	}
-	
-	
+		
 	public function createMatrixAction(){
 		$request = $this->getRequest();
 		$name = $request->request->get("name");
 		$csvContent = $request->request->get("content");
+		
+		$user = $this->getUser();
+		$owner_id = $user->getId();
+		
 		$ichnaeaService = $this->get('ichnaea.service');
-		$ichnaeaService = $ichnaeaService->createMatrixFromCSVContent($name, $csvContent);
-		return $this->render('MatrixBundle:Matrix:form.html.twig');
+		$matrix_id = $ichnaeaService->createMatrixFromCSVContent($name, $csvContent, $owner_id);
+		return $this->redirect($this->generateUrl('matrix_ui', array('matrix_id'=>$matrix_id)));
 	}
 	
 	public function listSystemsMatrixAction(){

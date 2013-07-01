@@ -172,7 +172,7 @@ class IchnaeaService{
 	 * 
 	 * @TODO/ Must validate the csv format also...
 	 */
-	public function createMatrixFromCSVContent($name, $content){
+	public function createMatrixFromCSVContent($name, $content, $owner_id){
 		
 		$matrix = new Matrix();
 		$matrix->setName($name);
@@ -213,8 +213,16 @@ class IchnaeaService{
 			
 			$index++;
 		}
+		
+		#Attach to the user
+		$userRepository = $this->em->getRepository('UserBundle:User');
+		$user = $userRepository->find($owner_id);
+		$matrix->setOwner($user);
+		
 		$this->em->persist($matrix);
 		$this->em->flush();
+		
+		return $matrix->getId();
 	}
 
 	public function getAllMatrixs(){

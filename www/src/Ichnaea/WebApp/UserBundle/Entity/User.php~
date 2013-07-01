@@ -2,8 +2,8 @@
 
 namespace Ichnaea\WebApp\UserBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="users")
  * @ORM\Entity
  */
-class User implements UserInterface
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -20,179 +20,49 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Matrix", mappedBy="owner") 
+     * 
      */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="login", type="string", length=255)
-     */
-    private $login;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="passwd", type="string", length=255)
-     */
-    private $passwd;
+    protected $matrixs;
     
-  /**
-     * @inheritDoc
-     */
-    public function getUsername()
+    public function __construct()
     {
-        return $this->name;
+        parent::__construct();
     }
 
     /**
-     * @inheritDoc
-     */
-    public function getSalt(){}
-    /**
-     * @inheritDoc
-     */
-    public function getPassword()
-    {
-        return $this->passwd;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function eraseCredentials()
-    {
-    }
-
-    /**
-     * @see \Serializable::serialize()
-     */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-        ));
-    }
-
-    /**
-     * @see \Serializable::unserialize()
-     */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-        ) = unserialize($serialized);
-    }
-
-    /**
-     * Get id
+     * Add matrixs
      *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
+     * @param \Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs
      * @return User
      */
-    public function setName($name)
+    public function addMatrix(\Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs)
     {
-        $this->name = $name;
+        $this->matrixs[] = $matrixs;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Remove matrixs
      *
-     * @return string 
+     * @param \Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs
      */
-    public function getName()
+    public function removeMatrix(\Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs)
     {
-        return $this->name;
+        $this->matrixs->removeElement($matrixs);
     }
 
     /**
-     * Set login
+     * Get matrixs
      *
-     * @param string $login
-     * @return User
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function setLogin($login)
+    public function getMatrixs()
     {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
-     * Get login
-     *
-     * @return string 
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * Set passwd
-     *
-     * @param string $passwd
-     * @return User
-     */
-    public function setPasswd($passwd)
-    {
-        $this->passwd = $passwd;
-
-        return $this;
-    }
-
-    /**
-     * Get passwd
-     *
-     * @return string 
-     */
-    public function getPasswd()
-    {
-        return $this->passwd;
-    }
-    
-    public function equals(UserInterface $user)
-    {
-        if (!$user instanceof WebserviceUser) {
-        }
-
-        if (md5($this->passwd."ipfc") !== $user->getPassword()) {
-            return false;
-        }
-
-        if ($this->getSalt() !== $user->getSalt()) {
-        }
-
-        if ($this->username !== $user->getUsername()) {
-            return false;
-        }
-
-        return true;
+        return $this->matrixs;
     }
 }
