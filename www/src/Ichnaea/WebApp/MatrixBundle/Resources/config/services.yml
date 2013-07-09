@@ -1,11 +1,6 @@
 parameters:
-#    matrix.example.class: Ichnaea\WebApp\MatrixBundle\Example
 
 services:
-#    matrix.example:
-#        class: %matrix.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
-    
     ichnaea.service: 
          class: Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService
          arguments: [ @doctrine.orm.entity_manager ]

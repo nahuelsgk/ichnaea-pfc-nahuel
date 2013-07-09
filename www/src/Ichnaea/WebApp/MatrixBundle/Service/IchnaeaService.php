@@ -233,6 +233,16 @@ class IchnaeaService{
 		return $this->em->getRepository('MatrixBundle:Matrix')->find($id);
 	}
 	
+	public function updateMatrixConfiguration($user_id, $matrix_id, $visibility = TRUE){
+		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
+		$matrix = $matrixRepository->find($matrix_id);
+		$matrix->setVisible($visibility);
+		$this->em->persist($matrix);
+		$this->em->flush();
+		
+		return $matrix;
+	}
+
 	public function updateMatrixVariable($matrix_id, $column_id, $new_name, $new_variable, $new_seasonSet = NULL){
 		$variableConfigurationRepository = $this->em->getRepository('MatrixBundle:VariableMatrixConfig');
 		$variableRepository 			 = $this->em->getRepository('MatrixBundle:Variable');
@@ -256,12 +266,15 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
-	public function updateSample($matrix_id, $sample_id, $new_name, $new_date = NULL)
+	public function updateSample($matrix_id, $sample_id, $new_name, $new_date = NULL, $new_origin = NULL)
 	{
 		$sampleRepository = $this->em->getRepository('MatrixBundle:Sample');
 		$sample = $sampleRepository->find($sample_id);
+		
 		$sample->setName($new_name);
 		if(!is_null($new_date)) $sample->setDate(new \DateTime($new_date));
+		if(!is_null($new_origin)) $sample->setOrigin($new_origin);
+		
 		$this->em->persist($sample);
 		$this->em->flush();		
 	}

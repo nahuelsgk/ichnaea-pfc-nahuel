@@ -58,12 +58,12 @@ class ApiController extends FosRestController{
     
     public function updateSampleAction($matrix_id, $sample_id)
     {
-    	$request  = $this->getRequest();
-    	$new_name = $request->get('name');
-    	$new_date = $request->get('date');
-    	
+    	$request    = $this->getRequest();
+    	$new_name   = $request->get('name');
+    	$new_date   = $request->get('date');
+    	$new_origin = $request->get('origin'); 
     	$ichnaeaService = $this->get('ichnaea.service');
-    	$ichnaeaService->updateSample($matrix_id, $sample_id, $new_name, $new_date);
+    	$ichnaeaService->updateSample($matrix_id, $sample_id, $new_name, $new_date, $new_origin);
     	return $this->view(null, 200);
     }
 }

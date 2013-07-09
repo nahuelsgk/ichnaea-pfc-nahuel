@@ -1,5 +1,7 @@
 {% extends '::IchnaeaBase.html.twig' %}
 
+{% block page_title %}System's matrixs{% endblock %}
+
 {% block body %}
 <table>
  <theader>
@@ -10,8 +12,8 @@
  {% for matrix in matrixs %}
    <tr>
    <td>
-     <a class="btn btn-mini" href="{{path('matrix_ui', {'matrix_id': matrix.id})}}" name="view_matrix" title="View matrix and edit columns and samples">
-       <i class="icon-edit"></i>
+    <a class="btn btn-mini" href="{{path('matrix_ui_view', {'matrix_id': matrix.id})}}" name="view_matrix" title="View matrix">
+       <i class="icon-eye-open"></i>
      </a>
    </td>
    <td>
@@ -24,5 +26,4 @@
 {% endblock %}
 
 {% block extra_javascript %}
-
 {% endblock %}

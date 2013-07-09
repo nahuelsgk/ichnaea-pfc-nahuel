@@ -103,9 +103,24 @@ matrix_create_action:
     requirements:
         _method: POST
     
-matrix_ui:
-    pattern: /matrix/{matrix_id}
+matrix_ui_edit:
+    pattern: /matrix/{matrix_id}/edit
     defaults: { _controller: MatrixBundle:Matrix:guiMatrix }
     requirements:
         _method: GET
         matrix_id: "\d+"
+
+matrix_ui_view:
+    pattern: /matrix/{matrix_id}
+    defaults: { _controller: MatrixBundle:Matrix:viewMatrix }
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+
+matrix_save_configuration:
+    pattern: /matrix/{matrix_id}/save
+    defaults: { _controller: MatrixBundle:Matrix:saveConfiguration }
+    requirements: 
+        _method: POST
+        matrix_id: "\d+"
+

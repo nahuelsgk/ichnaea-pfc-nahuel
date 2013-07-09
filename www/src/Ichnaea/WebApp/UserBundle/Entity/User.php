@@ -36,10 +36,10 @@ class User extends BaseUser
     /**
      * Add matrixs
      *
-     * @param \Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\Matrix $matrixs
      * @return User
      */
-    public function addMatrix(\Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs)
+    public function addMatrix(\Ichnaea\WebApp\MatrixBundle\Entity\Matrix $matrixs)
     {
         $this->matrixs[] = $matrixs;
 
@@ -49,9 +49,9 @@ class User extends BaseUser
     /**
      * Remove matrixs
      *
-     * @param \Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\Matrix $matrixs
      */
-    public function removeMatrix(\Ichnaea\WebApp\UserBundle\Entity\Matrix $matrixs)
+    public function removeMatrix(\Ichnaea\WebApp\MatrixBundle\Entity\Matrix $matrixs)
     {
         $this->matrixs->removeElement($matrixs);
     }

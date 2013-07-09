@@ -1,5 +1,4 @@
 <?php
-
 namespace Ichnaea\WebApp\MatrixBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -42,6 +41,14 @@ class Matrix
      * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\UserBundle\Entity\User", inversedBy="matrixs")
      */								
     private $owner;
+
+	/**
+	 * @var boolean  
+	 * 
+	 * @ORM\Column(name="visible", type="boolean", nullable=false)
+	 * 
+	 */    
+    private $visible;
     
     /**
      * Constructor
@@ -171,5 +178,28 @@ class Matrix
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     * @return Matrix
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean 
+     */
+    public function getVisible()
+    {
+        return $this->visible;
     }
 }

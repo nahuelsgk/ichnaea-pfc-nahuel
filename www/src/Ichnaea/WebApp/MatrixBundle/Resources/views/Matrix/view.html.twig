@@ -1,16 +1,19 @@
 {% extends '::IchnaeaGui.html.twig' %}
 
-{% block page_title %}Configuring matrix {{matrix.name}} {% endblock %}
+{% block page_title %}Viewing matrix {{matrix.name}} {% endblock %}
 {% block body %}
+
+{% if app.user.id == matrix.owner.id %}
 <div class="container">
 <form class="form-inline" action="{{path('matrix_save_configuration', {'matrix_id':matrix.id})}}" method="post">
  <legend>Configuration</legend>
- <label class="radio inline">Visible</label>
  <input type="radio" name="visible" value="no" {% if matrix.visible == false %}checked{% endif %}>Invisible</input>
  <input type="radio" name="visible" value="yes" {% if matrix.visible == true %}checked{% endif %}>Visible</input>
  <button type="submit" class="btn">Save configuration</button>
 </form>
 </div>
+{% endif %}
+
 <table border="0" cellpadding="0" cellspacing="0" class='main'>
             <tr>
                 <td class='tablefrozencolumn'>
@@ -29,23 +32,10 @@
    							<tr id="sample-{{sample.id}}">
    							    <td align="center" class='frozen-index'>{{loop.index}}</td>
    								<td class='{% if loop.last %}inner-frozen-last{% else %}inner-frozen{% endif %} frozencol'>
-   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
-   									<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
-   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleOrigin-{{sample.id}}" value="{{sample.origin}}" placeholder="Sample origin"></input>
-   									<a class="btn btn-mini" style="visibility: hidden;" 
-   										id="sample-{{sample.id}}-action" 
-   										title="Update sample info" 
-   										onclick="updateSampleData(
-   													{{sample.id}}, 
-   													$('#sampleName-{{sample.id}}').val(), 
-   													$('#sampleDate-{{sample.id}}').val(),
-   													$('#sampleOrigin-{{sample.id}}').val(),
-   													'sample-{{sample.id}}-action');">
-   									<i class="icon-edit"></i></a>
-   								</td>
+   									{{sample.name}} - {% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %} - {{sample.origin}}
    							</tr>	
    							{% endfor %}
-                        </table>
+                       </table>
                     </div>
                 </td>
                 <td class='tablecontent'>
@@ -54,32 +44,13 @@
                             <tr>
                                 {% for column in matrix.columns %}
 								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
-								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 
-								    <select id="seasonSetListVariable-{{column.id}}" class="input-medium" 
-								      onchange="displayHiddenElement('column-{{column.id}}-action');">
-								    {% if column.variable is not null and column.seasonSet is not null%} 
-								     <option value="{{column.seasonSet.id}}">{{column.seasonSet.name}}</option>
-								    {% endif %}
-								    </select>
+								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 								   
+								    {% if column.variable is not null and column.seasonSet is not null%} {{column.seasonSet.name}} {% endif %}
 								    <br/>
 								    <a title="Variable selection"><i class="icon-wrench"></i></a>
-								    <select placeholder="Select the variable" class="input-medium" id="selectedSingleVariable-{{column.id}}" onChange="loadSeasonSetIntoSelectListAction(this.value, 'seasonSetListVariable-{{column.id}}');displayHiddenElement('column-{{column.id}}-action');"">
-								        <option value="0">None</option>
-								      	{% for availableVar in availableVars %}
-								        	<option value="{{availableVar.id}}" {% if column.variable is not null and column.variable.id == availableVar.id%} selected="selected" {% endif %}>{{availableVar.name}} </option>
-								      	{% endfor %}
-								    </select>
+								    {% if column.variable is not null %} {{column.variable.name}} {% endif %}
 								    <br/>
-								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a>
-								   	<input type="text" class="input-medium" id="column-name-{{column.name}}" value="{{column.name}}" onchange="displayHiddenElement('column-{{column.id}}-action');">
-								    <br/>
-								    <a class="btn btn-mini" style="visibility: hidden;" id="column-{{column.id}}-action" onclick="updateVariableConfigurationAction(
-								   			'{{column.id}}',
-								   			$('#column-name-{{column.name}}').val(),
-								   			$('#selectedSingleVariable-{{column.id}}').val(),
-								   			$('#seasonSetListVariable-{{column.id}}').val(),
-								   			'column-{{column.id}}-action'
-								   		);"><i class="icon-edit"></i></a>
+								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a> {{column.name}}<br/>
 								   </td>
 								   {% endfor %}
                             </tr>
