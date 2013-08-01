@@ -1,6 +1,7 @@
 package edu.upc.ichnaea.amqp.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,11 +37,15 @@ public class Season implements Iterable<SeasonTrial>, Comparable<Season> {
 		return mTrials.size();
 	}
 	
-	public SeasonTrial get(int index) {
+	public Collection<SeasonTrial> getTrials() {
+		return mTrials;
+	}
+	
+	public SeasonTrial getTrial(int index) {
 		return mTrials.get(index);
 	}
 	
-	public void add(SeasonTrial trial) {
+	public void addTrial(SeasonTrial trial) {
 		mTrials.add(trial);
 	}
 
