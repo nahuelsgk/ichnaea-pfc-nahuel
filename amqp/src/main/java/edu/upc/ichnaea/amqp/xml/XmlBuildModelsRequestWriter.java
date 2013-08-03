@@ -14,16 +14,16 @@ public class XmlBuildModelsRequestWriter extends XmlWriter {
 	}
 
 	public XmlBuildModelsRequestWriter build(BuildModelsRequest data) {
-		Element root = getRoot();
+		Element xmlRoot = getRoot();
 
-		root.setAttribute("id", String.valueOf(data.getId()));
-		root.setAttribute("type", "build_models");
+		xmlRoot.setAttribute("id", String.valueOf(data.getId()));
+		xmlRoot.setAttribute("type", "build_models");
 		if(data instanceof BuildModelsFakeRequest) {
 			BuildModelsFakeRequest fakeData = (BuildModelsFakeRequest) data;
-			root.setAttribute("fake", fakeData.toString());
+			xmlRoot.setAttribute("fake", fakeData.toString());
 		} else {
-			Element datasetXml = appendChild("dataset");
-			new XmlDatasetWriter(getDocument(), datasetXml).build(data.getDataset());			
+			Element xmlDataset = appendChild("dataset");
+			new XmlDatasetWriter(getDocument(), xmlDataset).build(data.getDataset());			
 		}
 		
 		return this;

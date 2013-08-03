@@ -20,7 +20,7 @@ public class XmlDatasetWriter extends XmlWriter {
 	}	
 	
 	public XmlDatasetWriter build(Dataset dataset) {
-		Element root = getRoot();
+		Element xmlRoot = getRoot();
 		
 		for(DatasetColumn col : dataset)
 		{			
@@ -32,7 +32,7 @@ public class XmlDatasetWriter extends XmlWriter {
 				xmlRow.setTextContent(cell.toString());
 				xmlCol.appendChild(xmlRow);
 			}
-			root.appendChild(xmlCol);
+			xmlRoot.appendChild(xmlCol);
 		}
 		return this;
 	}
