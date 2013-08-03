@@ -2,6 +2,7 @@ package edu.upc.ichnaea.amqp.xml;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import edu.upc.ichnaea.amqp.model.DatasetSeasons;
@@ -13,6 +14,10 @@ public class XmlDatasetSeasonsWriter extends XmlWriter {
 	public XmlDatasetSeasonsWriter() throws ParserConfigurationException {
 		super("seasons");
 	}
+	
+	public XmlDatasetSeasonsWriter(Document parent, Element root) {
+		super(parent, root);
+	}		
 
 	public XmlDatasetSeasonsWriter build(DatasetSeasons data) {
 		Element xmlRoot = getRoot();

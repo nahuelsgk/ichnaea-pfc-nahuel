@@ -21,8 +21,8 @@ public class DatasetSeasons implements Comparable<DatasetSeasons> {
 		return mColumns.get(column);
 	}
 	
-	public void put(String column, DatasetSeasonsColumn seasons) {
-		mColumns.put(column, seasons);
+	public void put(String name, DatasetSeasonsColumn column) {
+		mColumns.put(name, column);
 	}
 	
 	public int size() {
