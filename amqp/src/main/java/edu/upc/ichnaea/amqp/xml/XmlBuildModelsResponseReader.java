@@ -24,13 +24,13 @@ public class XmlBuildModelsResponseReader extends XmlReader<BuildModelsResponseH
 	
 	public BuildModelsResponse read(String mpdata) throws SAXException, IOException, MessagingException {
 		MimeMultipart mp = new MimeMultipart(new ByteArrayDataSource(mpdata.getBytes(), "multipart/mixed"));
-		Object content = mp.getBodyPart(0).getContent();
-		super.parse(new String(IOUtils.read(content)));
-
+		Object content;
 		if(mp.getCount()>1) {
 			content = mp.getBodyPart(1).getContent();
 			getHandler().setResponseData(IOUtils.read(content));
 		}
+		content = mp.getBodyPart(0).getContent();
+		super.parse(new String(IOUtils.read(content)));
 		return getData();
 	}
 

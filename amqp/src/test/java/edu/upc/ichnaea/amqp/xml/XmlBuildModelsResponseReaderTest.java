@@ -30,7 +30,7 @@ public class XmlBuildModelsResponseReaderTest {
     	
     	BuildModelsResponse resp = reader.read(data);
     	
-    	assertEquals(455, resp.getId());
+    	assertEquals("455", resp.getId());
     	
     	assertEquals("paco", new String(resp.getData()));
     }

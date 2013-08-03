@@ -41,7 +41,7 @@ public class XmlBuildModelsRequestWriterTest {
         
         String xml = new XmlBuildModelsRequestWriter().build(model).toString();
         
-        String expectedXml = "<request id=\"455\" section=\"2\" season=\"summer\" type=\"build_models\"><dataset><column name=\"test\">" +
+        String expectedXml = "<request id=\"455\" type=\"build_models\"><dataset><column name=\"test\">" +
         		"<value>1.0</value><value>2.0</value><value>3.0</value></column><column name=\"test2\">" +
         		"<value>4.0</value><value>5.0</value><value>6.0</value></column></dataset></request>";
         
