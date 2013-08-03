@@ -25,11 +25,11 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	
 	BuildModelsRequest mRequest;
 	DatasetHandler mDatasetHandler;
+	DatasetSeasonsHandler mSeasonsHandler;
 	DatasetSeasons mSeasons;
 	Dataset mDataset;
 	String mId;
 	String mFake;
-	int mSection;
 	
 	public BuildModelsRequest getData() {
 		return mRequest;
@@ -43,10 +43,10 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	public void startDocument() throws SAXException {
 		mRequest = null;
 		mDatasetHandler = null;
+		mSeasonsHandler = null;
 		mDataset = null;
 		mId = null;
 		mFake = null;
-		mSection = 0;
 	}
 
 	@Override
@@ -75,15 +75,18 @@ public class BuildModelsRequestHandler implements ContentHandler {
 				throw new SAXException("A dataset cannot be inside another one.");
 			}
 			mDatasetHandler = new DatasetHandler();
-		}		
+		} else if(localName.equalsIgnoreCase(DatasetSeasonsHandler.TAG_SEASONS)) {
+			if(mSeasonsHandler != null) {
+				throw new SAXException("Seasons cannot be inside another.");
+			}
+			mSeasonsHandler = new DatasetSeasonsHandler();			
+		}
 		if(mDatasetHandler != null) {
 			mDatasetHandler.startElement(uri, localName, qName, atts);
+		} else if(mDatasetHandler != null) {
+			mSeasonsHandler.startElement(uri, localName, qName, atts);			
 		} else if(localName.equalsIgnoreCase(TAG_REQUEST)) {
 			mId = atts.getValue(ATTR_ID);
-			try {
-				mSection = Integer.parseInt(atts.getValue(ATTR_SECTION));
-			} catch (NumberFormatException e) {
-			}
 			if(atts.getValue(ATTR_FAKE) != null) {
 				mFake = atts.getValue(ATTR_FAKE);
 			} else {
@@ -99,11 +102,17 @@ public class BuildModelsRequestHandler implements ContentHandler {
 			throws SAXException {
 		if(mDatasetHandler != null) {
 			mDatasetHandler.endElement(uri, localName, qName);
-			mDataset = mDatasetHandler.getDataset();
-			if(mDataset != null) {
+			if(localName.equalsIgnoreCase(DatasetHandler.TAG_DATASET)) {
+				mDataset = mDatasetHandler.getDataset();
 				mDatasetHandler = null;
 			}
-		}		
+		} else if(mSeasonsHandler != null) {
+			mSeasonsHandler.endElement(uri, localName, qName);
+			if(localName.equalsIgnoreCase(DatasetSeasonsHandler.TAG_SEASONS)) {
+				mSeasons = mSeasonsHandler.getSeasons();
+				mSeasonsHandler = null;
+			}			
+		}
 	}
 
 	@Override
@@ -111,21 +120,38 @@ public class BuildModelsRequestHandler implements ContentHandler {
 			throws SAXException {
 		if(mDatasetHandler != null) {
 			mDatasetHandler.characters(ch, start, length);
-		}		
+		} else if (mSeasonsHandler != null) {
+			mSeasonsHandler.characters(ch, start, length);
+		}
 	}
 
 	@Override
 	public void ignorableWhitespace(char[] ch, int start, int length)
 			throws SAXException {
+		if(mDatasetHandler != null) {
+			mDatasetHandler.ignorableWhitespace(ch, start, length);
+		} else if (mSeasonsHandler != null) {
+			mSeasonsHandler.ignorableWhitespace(ch, start, length);
+		}		
 	}
 
 	@Override
 	public void processingInstruction(String target, String data)
 			throws SAXException {
+		if(mDatasetHandler != null) {
+			mDatasetHandler.processingInstruction(target, data);
+		} else if (mSeasonsHandler != null) {
+			mSeasonsHandler.processingInstruction(target, data);
+		}		
 	}
 
 	@Override
 	public void skippedEntity(String name) throws SAXException {
+		if(mDatasetHandler != null) {
+			mDatasetHandler.skippedEntity(name);
+		} else if (mSeasonsHandler != null) {
+			mSeasonsHandler.skippedEntity(name);
+		}		
 	}
 
 }

@@ -28,6 +28,7 @@ public class XmlDatasetSeasonsReaderTest {
     	assertEquals(3, seasons.values().size());
     	assertEquals(1, seasons.get("test").get(0.5f).size());
     	assertEquals(123.6, seasons.get("test").get(0.5f).getTrial(0).get(1).floatValue(), 0.0001);
+    	assertTrue(seasons.keySet().contains("test3"));
     }
 
 }
