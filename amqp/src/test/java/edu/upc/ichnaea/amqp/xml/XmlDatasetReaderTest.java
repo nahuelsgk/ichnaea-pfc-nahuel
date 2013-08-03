@@ -3,14 +3,10 @@ package edu.upc.ichnaea.amqp.xml;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.Collection;
 
 import org.junit.Test;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
 
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
@@ -26,12 +22,7 @@ public class XmlDatasetReaderTest {
     	xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";    	
     	xml += "</dataset>";
     	
-    	DatasetHandler handler = new DatasetHandler();
-    	XMLReader parser = XMLReaderFactory.createXMLReader();
-    	parser.setContentHandler(handler);
-    	parser.parse(new InputSource(new StringReader(xml)));
-    	
-    	Dataset dataset = handler.getDataset();
+    	Dataset dataset = new XmlDatasetReader().read(xml);
     	
     	Collection<String> names = dataset.columnNames();
     	assertTrue(names.contains("test"));

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import edu.upc.ichnaea.amqp.model.DatasetColumnSeasons;
+import edu.upc.ichnaea.amqp.model.DatasetSeasonsColumn;
 import edu.upc.ichnaea.amqp.model.DatasetSeasons;
 import edu.upc.ichnaea.amqp.model.Season;
 
@@ -47,9 +47,9 @@ public class SeasonsFolderReader {
 					throw new InvalidParameterException("Could not find season with name '"+seasonName+"' in positions.");
 				}
 				Season season = new SeasonReader().read(new FileReader(file));
-				DatasetColumnSeasons colSeasons = seasons.get(col);
+				DatasetSeasonsColumn colSeasons = seasons.get(col);
 				if(colSeasons == null) {
-					colSeasons = new DatasetColumnSeasons();
+					colSeasons = new DatasetSeasonsColumn();
 				}
 				colSeasons.put(mPositions.get(seasonName), season);
 				seasons.put(col, colSeasons);

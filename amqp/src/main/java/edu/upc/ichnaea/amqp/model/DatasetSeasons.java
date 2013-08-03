@@ -7,21 +7,21 @@ import java.util.Set;
 
 public class DatasetSeasons implements Comparable<DatasetSeasons> {
 
-	protected Map<String, DatasetColumnSeasons> mColumns;
+	protected Map<String, DatasetSeasonsColumn> mColumns;
 	
 	public DatasetSeasons() {
-		this(new HashMap<String, DatasetColumnSeasons>());
+		this(new HashMap<String, DatasetSeasonsColumn>());
 	}
 	
-	public DatasetSeasons(Map<String, DatasetColumnSeasons> columns) {
+	public DatasetSeasons(Map<String, DatasetSeasonsColumn> columns) {
 		mColumns = columns;
 	}
 	
-	public DatasetColumnSeasons get(String column) {
+	public DatasetSeasonsColumn get(String column) {
 		return mColumns.get(column);
 	}
 	
-	public void put(String column, DatasetColumnSeasons seasons) {
+	public void put(String column, DatasetSeasonsColumn seasons) {
 		mColumns.put(column, seasons);
 	}
 	
@@ -33,7 +33,7 @@ public class DatasetSeasons implements Comparable<DatasetSeasons> {
 		return mColumns.keySet();
 	}
 	
-	public Collection<DatasetColumnSeasons> values() {
+	public Collection<DatasetSeasonsColumn> values() {
 		return mColumns.values();
 	}
 

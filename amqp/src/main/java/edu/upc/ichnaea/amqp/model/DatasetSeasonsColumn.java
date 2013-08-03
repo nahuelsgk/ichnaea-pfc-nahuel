@@ -5,20 +5,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class DatasetColumnSeasons implements Comparable<DatasetColumnSeasons> {
+/**
+ * Model class that represents all the season data for a dataset column.
+ * Index for a season is a float that represents the position of the season
+ * inside a timeline (For example Winter=0.0, Summer=0.5).
+ * 
+ * @author mibero
+ */
+public class DatasetSeasonsColumn implements Comparable<DatasetSeasonsColumn> {
 
 	protected Map<Float, Season> mSeasons;
 	
-	public DatasetColumnSeasons() {
+	public DatasetSeasonsColumn() {
 		this(new HashMap<Float, Season>());
 	}
 	
-	public DatasetColumnSeasons(Map<Float, Season> seasons) {
+	public DatasetSeasonsColumn(Map<Float, Season> seasons) {
 		mSeasons = seasons;
 	}
 	
 	public void put(float position, Season season) {
 		mSeasons.put(position, season);
+	}
+	
+	public Season get(float position) {
+		return mSeasons.get(position);
 	}
 	
 	public int size() {
@@ -34,7 +45,7 @@ public class DatasetColumnSeasons implements Comparable<DatasetColumnSeasons> {
 	}
 
 	@Override
-	public int compareTo(DatasetColumnSeasons o) {
+	public int compareTo(DatasetSeasonsColumn o) {
 		int c = mSeasons.size()-o.mSeasons.size();
 		if(c == 0) {
 			for(float i : mSeasons.keySet()) {
