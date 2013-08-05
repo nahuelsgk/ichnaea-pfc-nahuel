@@ -27,4 +27,8 @@ public class BuildModelsRequest {
 	public DatasetSeasons getSeasons() {
 		return mSeasons;
 	}
+	
+	public boolean isEmpty() {
+		return mDataset.isEmpty() && mSeasons.isEmpty();
+	}
 }

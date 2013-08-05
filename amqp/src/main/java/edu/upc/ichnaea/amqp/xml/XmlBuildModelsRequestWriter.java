@@ -22,9 +22,11 @@ public class XmlBuildModelsRequestWriter extends XmlWriter {
 			BuildModelsFakeRequest fakeData = (BuildModelsFakeRequest) data;
 			xmlRoot.setAttribute("fake", fakeData.toString());
 		} else {
-			Element xmlDataset = appendChild("dataset");
-			new XmlDatasetWriter(getDocument(), xmlDataset).build(data.getDataset());
-			if(data.getSeasons().size() > 0) {
+			if(!data.getDataset().isEmpty()) {
+				Element xmlDataset = appendChild("dataset");
+				new XmlDatasetWriter(getDocument(), xmlDataset).build(data.getDataset());
+			}
+			if(!data.getSeasons().isEmpty()) {
 				Element xmlSeasons = appendChild("seasons");
 				new XmlDatasetSeasonsWriter(getDocument(), xmlSeasons).build(data.getSeasons());
 			}

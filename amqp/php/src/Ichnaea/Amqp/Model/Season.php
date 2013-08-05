@@ -92,6 +92,21 @@ class Season implements \IteratorAggregate
     }
 
     /**
+     * Return if the season is empty
+     *
+     * @return boolean true if the season is empty
+     */
+    public function isEmpty()
+    {
+        foreach($this->trials as &$trial) {
+            if(!empty($trial)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Set the trials data. Each array element is
      * an array of float key value pairs.
      *

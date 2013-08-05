@@ -10,7 +10,9 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.upc.ichnaea.amqp.cli.BooleanOption;
 import edu.upc.ichnaea.amqp.cli.EnumOption;
+import edu.upc.ichnaea.amqp.cli.InvalidOptionException;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.ReadFileOption;
 import edu.upc.ichnaea.amqp.cli.StringOption;
@@ -42,6 +44,7 @@ public class BuildModelsRequestApp extends App {
 	String mRequestQueue = "ichnaea.build-models.request";
 	String mRequestExchange = "ichnaea.build-models.request";
 	String mFake = null;
+	boolean mDebug = false;
 	
     public static void main(String[] args) {   	
     	main(args, new BuildModelsRequestApp());
@@ -104,6 +107,12 @@ public class BuildModelsRequestApp extends App {
 				mFake = value;
 			}
     	}.setDefaultValue(mFake).setDescription("Do a fake request. Format should be T:I where T are the total seconds and I are the update seconds."));
+    	options.add(new BooleanOption("debug") {
+			@Override
+			public void setValue(boolean value) {
+				mDebug = value;
+			}
+		}.setDefaultValue(mDebug).setDescription("Print the outgoing request instead of sending it."));    	    	
     	return options;
     }
 	
@@ -123,14 +132,27 @@ public class BuildModelsRequestApp extends App {
 	
 	protected DatasetSeasons readSeasons() throws IOException {
 		int i = mSeasonsPath.lastIndexOf("/");
-		String format = mSeasonsPath.substring(i+1);
-		File folder = new File(mSeasonsPath.substring(0, i));
+		String format;
+		File folder;		
+		if(i<0) {
+			format = mSeasonsPath;
+			folder = new File(".");
+		} else {
+			format = mSeasonsPath.substring(i+1);
+			folder = new File(mSeasonsPath.substring(0, i));
+		}
+		if(!folder.isDirectory()) {
+			throw new IllegalArgumentException("Invalid seasons directory");
+		}
+		if(!folder.canRead()) {
+			throw new IllegalArgumentException("Cannot read seasons directory");
+		}		
 		String parts[] = mSeasonPositions.split(",");
 		Map<String, Float> positions = new HashMap<String, Float>();
 		for(String part : parts) {
 			String partParts[] = part.trim().split(":");
 			if(partParts.length != 2) {
-				throw new IOException("Strange season position format");
+				throw new IllegalArgumentException("Strange season position format");
 			}
 			positions.put(partParts[0], Float.valueOf(partParts[1]));
 		}
@@ -145,12 +167,18 @@ public class BuildModelsRequestApp extends App {
 		BuildModelsRequest request;
 		if(mFake != null) {
 			request = new BuildModelsFakeRequest(id, mFake);
-		} else {
+		} else if(mDatasetReader != null) {
 			request = new BuildModelsRequest(id, readDataset(), readSeasons());
+		} else {
+			throw new InvalidOptionException("No dataset specified");
 		}
 		mClient = new BuildModelsRequestClient(request,
 				mRequestQueue, mRequestExchange, mResponseQueue, mResponseOutput);
-		mClient.setup(mConnection.createChannel());
+		if(mDebug) {
+			mClient.setDebug(true);
+		} else {		
+			mClient.setup(mConnection.createChannel());
+		}
 	}
 	
 	@Override

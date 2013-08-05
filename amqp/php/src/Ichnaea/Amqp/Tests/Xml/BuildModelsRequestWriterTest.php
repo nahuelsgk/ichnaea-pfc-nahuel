@@ -14,7 +14,7 @@ class BuildModelsRequestWriterTest extends \PHPUnit_Framework_TestCase
             "BA"    => array(1, 2, 3, 4, 5),
             "CNFC"  => array(1, 2, 3, 5, 6),
         ));
-        $req->addSeason("BA", 0.5, array(
+        $req->getSeasons()->addSeason("BA", 0.5, array(
             array(
                 0   => 4.4,
                 10  => 40,

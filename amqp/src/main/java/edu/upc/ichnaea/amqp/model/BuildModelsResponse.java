@@ -32,7 +32,11 @@ public class BuildModelsResponse {
 		mId = id;
 		mStart = start;
 		mEnd = end;
-	}	
+	}
+	
+	public boolean isEmpty() {
+		return !hasStart() && !hasEnd() && !hasError() && !hasData();
+	}
 	
 	public String getId() {
 		return mId;

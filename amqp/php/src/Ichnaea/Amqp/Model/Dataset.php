@@ -169,4 +169,19 @@ class Dataset implements \IteratorAggregate
     {
         return $this->columns;
     }
+
+    /**
+     * Return if the dataset is empty
+     *
+     * @return boolean true if the dataset is empty
+     */
+    public function isEmpty()
+    {
+        foreach($this->columns as &$column) {
+            if(!empty($column)) {
+                return false;
+            }
+        }
+        return true;
+    }     
 }

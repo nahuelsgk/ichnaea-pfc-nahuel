@@ -90,7 +90,13 @@ Use the `-h` command line argument to get all the available options.
     mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh -s ssh://user:password@localhost"
     
     * issue a test build-models request
-    mvn exec:java -Dexec.args="build-models:request -d test.csv"
+    mvn exec:java -Dexec.args="build-models:request --dataset test.csv"
+    
+    * debug a build-models request
+    mvn exec:java -Dexec.args="build-models:request --debug
+    	--dataset ../kvm/fixtures/dadesOrigSenseDA.csv
+    	--season-positions 
+    	--seasons ../kvm/files/ichnaea/data/ageing/env/env%column%-%season%.txt"
 
 ### PHP setup
 

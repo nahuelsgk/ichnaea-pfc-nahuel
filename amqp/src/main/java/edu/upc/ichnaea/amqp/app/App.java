@@ -31,6 +31,9 @@ public abstract class App
     		getLogger().severe("Could not parse arguments: " + e.getMessage());
     		app.printHelp();
             System.exit(1);
+    	} catch (IllegalArgumentException e) {
+    		getLogger().severe("Wrong argument: " + e.getMessage());
+            System.exit(1);            
     	} catch (Exception e) {
     		throw new RuntimeException(e);
         }	

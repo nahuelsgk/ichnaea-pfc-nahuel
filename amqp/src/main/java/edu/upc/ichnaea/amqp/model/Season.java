@@ -53,4 +53,13 @@ public class Season implements Iterable<SeasonTrial>, Comparable<Season> {
 	public Iterator<SeasonTrial> iterator() {
 		return mTrials.iterator();
 	}
+	
+	public boolean isEmpty() {
+		for(SeasonTrial trial : mTrials) {
+			if(!trial.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

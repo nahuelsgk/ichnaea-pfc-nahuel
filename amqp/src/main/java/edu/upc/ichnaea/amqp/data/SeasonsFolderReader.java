@@ -19,6 +19,7 @@ public class SeasonsFolderReader {
 	static final String PlaceholderRegex = "%(.+?)%";
 	protected String mFormat;
 	protected Map<String,Float> mPositions;
+	protected boolean mStrict = false;
 	
 	public SeasonsFolderReader() {
 		mFormat = "env%column%-%season%.txt";
@@ -44,7 +45,11 @@ public class SeasonsFolderReader {
 				String col = match.group("column");
 				String seasonName = match.group("season");
 				if(!mPositions.containsKey(seasonName)) {
-					throw new InvalidParameterException("Could not find season with name '"+seasonName+"' in positions.");
+					if(mStrict) {
+						throw new InvalidParameterException("Could not find season with name '"+seasonName+"' in positions.");
+					} else {
+						continue;
+					}
 				}
 				Season season = new SeasonReader().read(new FileReader(file));
 				DatasetSeasonsColumn colSeasons = seasons.get(col);

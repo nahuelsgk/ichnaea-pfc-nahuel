@@ -19,6 +19,7 @@ import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestWriter;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseReader;
+import edu.upc.ichnaea.amqp.xml.XmlPrettyFormatter;
 
 
 public class BuildModelsRequestClient extends Client {
@@ -28,6 +29,7 @@ public class BuildModelsRequestClient extends Client {
 	String mRequestExchange;
 	String mRequestQueue;
 	String mResponseQueue;
+	boolean mDebug = false;
 	
 	public BuildModelsRequestClient(BuildModelsRequest request, String requestQueue, String requestExchange, String responseQueue, OutputStream output) {
 		mRequest = request;
@@ -37,15 +39,25 @@ public class BuildModelsRequestClient extends Client {
 		mResponseQueue = responseQueue;
 	}
 	
+	public void setDebug(boolean debug) {
+		mDebug = debug;
+	}
+	
 	protected void sendRequest(String routingKey) throws ParserConfigurationException, IOException {
 		getLogger().info("sending build models request to exchange \""+mRequestExchange+"\"...");
-		
-		Channel ch = getChannel();
-		BasicProperties props = new AMQP.BasicProperties.Builder()
-    	.contentType("text/xml").replyTo(routingKey).build();
 
 		String xml = new XmlBuildModelsRequestWriter().build(mRequest).toString();
-		ch.basicPublish(mRequestExchange, "", props, xml.getBytes());
+		
+		if(mDebug) {
+			getLogger().info(new XmlPrettyFormatter().format(xml));
+			setFinished(true);
+		} else {
+			Channel ch = getChannel();
+			BasicProperties props = new AMQP.BasicProperties.Builder()
+	    	.contentType("text/xml").replyTo(routingKey).build();
+	
+			ch.basicPublish(mRequestExchange, "", props, xml.getBytes());
+		}
 	}
 	
 	protected void processResponse(byte[] body) throws IOException, SAXException, MessagingException {
@@ -99,22 +111,23 @@ public class BuildModelsRequestClient extends Client {
 		String routingKey = mRequest.getId();	
 		boolean autoAck = true;
 
-		ch.basicConsume(mResponseQueue, autoAck, new DefaultConsumer(ch){
-			@Override
-			public void handleDelivery(String consumerTag,
-				Envelope envelope,
-                AMQP.BasicProperties properties,
-                byte[] body)
-                throws IOException
-                {
-					try {
-						processResponse(body);
-					} catch (Exception e) {
-						throw new IOException(e);
-					}
-                }
-		});
-		
+		if(ch != null) {
+			ch.basicConsume(mResponseQueue, autoAck, new DefaultConsumer(ch){
+				@Override
+				public void handleDelivery(String consumerTag,
+					Envelope envelope,
+	                AMQP.BasicProperties properties,
+	                byte[] body)
+	                throws IOException
+	                {
+						try {
+							processResponse(body);
+						} catch (Exception e) {
+							throw new IOException(e);
+						}
+	                }
+			});
+		}
 		try {
 			sendRequest(routingKey);
 		}catch(Exception e) {

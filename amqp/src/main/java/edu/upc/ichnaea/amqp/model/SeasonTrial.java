@@ -53,4 +53,8 @@ public class SeasonTrial implements Iterable<SeasonValue>, Comparable<SeasonTria
 		return mValues.iterator();
 	}
 	
+	public boolean isEmpty() {
+		return mValues.isEmpty();
+	}
+	
 }

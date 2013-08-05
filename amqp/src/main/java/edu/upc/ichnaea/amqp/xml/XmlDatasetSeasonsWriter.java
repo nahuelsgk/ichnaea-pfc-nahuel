@@ -25,17 +25,21 @@ public class XmlDatasetSeasonsWriter extends XmlWriter {
 		for(String colName : data.keySet())
 		{
 			DatasetSeasonsColumn col = data.get(colName);
-			Element xmlCol = createElement("column");
-			xmlCol.setAttribute("name", colName);
-			for(float seasonPosition : col.keySet())
-			{
-				Season season = col.get(seasonPosition);
-				Element xmlSeason = createElement("season");
-				xmlSeason.setAttribute("position", String.valueOf(seasonPosition));
-				new XmlSeasonWriter(getDocument(), xmlSeason).build(season);
-				xmlCol.appendChild(xmlSeason); 
+			if(!col.isEmpty()) {
+				Element xmlCol = createElement("column");
+				xmlCol.setAttribute("name", colName);
+				for(float seasonPosition : col.keySet())
+				{
+					Season season = col.get(seasonPosition);
+					if(!season.isEmpty()) {
+						Element xmlSeason = createElement("season");
+						xmlSeason.setAttribute("position", String.valueOf(seasonPosition));
+						new XmlSeasonWriter(getDocument(), xmlSeason).build(season);
+						xmlCol.appendChild(xmlSeason);
+					}
+				}
+				xmlRoot.appendChild(xmlCol);
 			}
-			xmlRoot.appendChild(xmlCol);
 		}
 		
 		return this;

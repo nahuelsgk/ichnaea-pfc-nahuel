@@ -24,15 +24,17 @@ public class XmlDatasetWriter extends XmlWriter {
 		
 		for(DatasetColumn col : dataset)
 		{			
-			Element xmlCol = createElement("column");
-			xmlCol.setAttribute("name", col.getName());
-			for(DatasetCell cell : col)
-			{
-				Element xmlRow = createElement("value");
-				xmlRow.setTextContent(cell.toString());
-				xmlCol.appendChild(xmlRow);
+			if(!col.isEmpty()) {
+				Element xmlCol = createElement("column");
+				xmlCol.setAttribute("name", col.getName());
+				for(DatasetCell cell : col)
+				{
+					Element xmlRow = createElement("value");
+					xmlRow.setTextContent(cell.toString());
+					xmlCol.appendChild(xmlRow);
+				}
+				xmlRoot.appendChild(xmlCol);
 			}
-			xmlRoot.appendChild(xmlCol);
 		}
 		return this;
 	}

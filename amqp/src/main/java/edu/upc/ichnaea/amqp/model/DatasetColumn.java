@@ -83,4 +83,8 @@ public class DatasetColumn implements Iterable<DatasetCell>, Comparable<DatasetC
 		return diff;
 	}
 	
+	public boolean isEmpty() {
+		return mCells.isEmpty();
+	}	
+	
 }

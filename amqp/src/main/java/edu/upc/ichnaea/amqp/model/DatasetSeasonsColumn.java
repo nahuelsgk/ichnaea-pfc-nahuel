@@ -59,4 +59,13 @@ public class DatasetSeasonsColumn implements Comparable<DatasetSeasonsColumn> {
 			return c;
 		}
 	}
+	
+	public boolean isEmpty() {
+		for(Season season : mSeasons.values()) {
+			if(!season.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
