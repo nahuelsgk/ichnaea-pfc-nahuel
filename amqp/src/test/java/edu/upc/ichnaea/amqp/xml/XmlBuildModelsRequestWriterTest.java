@@ -13,10 +13,10 @@ import org.xml.sax.SAXException;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
-import edu.upc.ichnaea.amqp.model.DatasetSeasons;
-import edu.upc.ichnaea.amqp.model.DatasetSeasonsColumn;
-import edu.upc.ichnaea.amqp.model.Season;
-import edu.upc.ichnaea.amqp.model.SeasonTrial;
+import edu.upc.ichnaea.amqp.model.DatasetAging;
+import edu.upc.ichnaea.amqp.model.DatasetAgingColumn;
+import edu.upc.ichnaea.amqp.model.Aging;
+import edu.upc.ichnaea.amqp.model.AgingTrial;
 
 
 public class XmlBuildModelsRequestWriterTest {
@@ -37,10 +37,10 @@ public class XmlBuildModelsRequestWriterTest {
         column2.add(6f);
         dataset.add(column2);
         
-        DatasetSeasons seasons = new DatasetSeasons();
+        DatasetAging agings = new DatasetAging();
         
         String id = "455";
-        BuildModelsRequest model = new BuildModelsRequest(id, dataset, seasons);
+        BuildModelsRequest model = new BuildModelsRequest(id, dataset, agings);
         
         String xml = new XmlBuildModelsRequestWriter().build(model).toString();
         
@@ -53,7 +53,7 @@ public class XmlBuildModelsRequestWriterTest {
     }
     
     @Test
-    public void testSeasonsXML() throws ParserConfigurationException, SAXException, IOException
+    public void testAgingsXML() throws ParserConfigurationException, SAXException, IOException
     {    
     	Dataset dataset = new Dataset();
         DatasetColumn column = new DatasetColumn("test");
@@ -62,27 +62,27 @@ public class XmlBuildModelsRequestWriterTest {
         column.add(3f);
         dataset.add(column);
         
-        DatasetSeasons seasons = new DatasetSeasons();
-    	DatasetSeasonsColumn seasonColumn = new DatasetSeasonsColumn();
-    	Season season = new Season();
-    	SeasonTrial trial = new SeasonTrial();
+        DatasetAging agings = new DatasetAging();
+    	DatasetAgingColumn agingColumn = new DatasetAgingColumn();
+    	Aging aging = new Aging();
+    	AgingTrial trial = new AgingTrial();
     	trial.add("0", "4.4");
     	trial.add("10", "40");
     	trial.add("50", "120.6");
-    	season.addTrial(trial);
-    	seasonColumn.put(0.5f, season);
-    	seasons.put("test", seasonColumn);
+    	aging.addTrial(trial);
+    	agingColumn.put(0.5f, aging);
+    	agings.put("test", agingColumn);
         
         String id = "455";
-        BuildModelsRequest model = new BuildModelsRequest(id, dataset, seasons);
+        BuildModelsRequest model = new BuildModelsRequest(id, dataset, agings);
         
         String xml = new XmlBuildModelsRequestWriter().build(model).toString();
         
         String expectedXml = "<request id=\"455\" type=\"build_models\"><dataset><column name=\"test\">" +
-        		"<value>1.0</value><value>2.0</value><value>3.0</value></column></dataset><seasons>" +
-        		"<column name=\"test\"><season position=\"0.5\"><trial>" +
+        		"<value>1.0</value><value>2.0</value><value>3.0</value></column></dataset><agings>" +
+        		"<column name=\"test\"><aging position=\"0.5\"><trial>" +
     			"<value key=\"0\">4.4</value><value key=\"10\">40</value>" +
-    			"<value key=\"50\">120.6</value></trial></season></column></seasons></request>";
+    			"<value key=\"50\">120.6</value></trial></aging></column></agings></request>";
         
         Diff xmlDiff = new Diff(expectedXml, xml);
         assertTrue(xmlDiff.toString(), xmlDiff.similar());

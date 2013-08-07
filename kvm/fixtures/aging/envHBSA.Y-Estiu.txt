@@ -1,0 +1,10 @@
+# Envelliment SFBIF Estiu (2 assajos)
+# Al primer assaig hem posat 1.5 on deia <3 i hem eliminat l'entrada de 72 hores
+
+0    5.40 
+24   3.00
+48   1.50
+
+0    5.30
+24   4.38
+

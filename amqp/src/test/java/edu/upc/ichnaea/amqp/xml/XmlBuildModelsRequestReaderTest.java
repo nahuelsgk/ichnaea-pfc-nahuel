@@ -17,7 +17,7 @@ public class XmlBuildModelsRequestReaderTest {
     @Test
     public void testXML() throws SAXException, IOException
     {    
-    	String xml = "<request id=\"432\" section=\"1\" type=\"build_models\" season=\"winter\"><dataset>\n";
+    	String xml = "<request id=\"432\" type=\"build_models\"><dataset>\n";
     	xml += "<column name=\"test\"><value>1.5</value><value>2</value><value>3</value></column>\n";
     	xml += "<column name=\"test2\"><value>3</value><value>4</value></column>\n";
     	xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";    	

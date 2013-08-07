@@ -3,12 +3,12 @@ package edu.upc.ichnaea.amqp.model;
 public class BuildModelsRequest {
 
 	protected Dataset mDataset;
-	protected DatasetSeasons mSeasons;
+	protected DatasetAging mAging;
 	protected String mId;
 	
-	public BuildModelsRequest(String id, Dataset dataset, DatasetSeasons seasons) {
+	public BuildModelsRequest(String id, Dataset dataset, DatasetAging aging) {
 		mDataset = dataset;
-		mSeasons = seasons;
+		mAging = aging;
 		mId = id;
 	}
 	
@@ -24,11 +24,11 @@ public class BuildModelsRequest {
 		return mDataset;
 	}
 	
-	public DatasetSeasons getSeasons() {
-		return mSeasons;
+	public DatasetAging getAging() {
+		return mAging;
 	}
 	
 	public boolean isEmpty() {
-		return mDataset.isEmpty() && mSeasons.isEmpty();
+		return mDataset.isEmpty() && mAging.isEmpty();
 	}
 }

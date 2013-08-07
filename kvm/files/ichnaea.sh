@@ -16,7 +16,7 @@ FAKE=""
 
 function USAGE {
 	echo "Ichnaea wrapper by Miguel Ibero <miguel@ibero.me>"
-	echo "usage: $0 --season [summer|winter] [--section=N] [--output=file.zip] [--fake=duration:interval] data.csv"
+	echo "usage: $0 --aging=path/to/aging [--output=file.zip] [--fake=duration:interval] data.csv"
 	exit 0
 }
 
@@ -24,7 +24,7 @@ function PRINT_LOG {
 	echo "$1" 
 }
 
-OPTS=`getopt -o scfo -l "season:,section:,output:,fake:" -- "$@"`
+OPTS=`getopt -o scfo -l "aging:,output:,fake:" -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -35,7 +35,7 @@ eval set -- "$OPTS"
 while true
 do
     case "$1" in
-        -s|--season) SEASON="$2"; shift 2;;
+        -a|--aging) SEASON="$2"; shift 2;;
         -c|--section) SECTION="$2"; shift 2;;
         -o|--output) OUTFILE="$2"; shift 2;;
         -f|--fake) FAKE="$2"; shift 2;;

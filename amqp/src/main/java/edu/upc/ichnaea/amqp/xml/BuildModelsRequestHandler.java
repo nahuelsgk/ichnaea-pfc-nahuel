@@ -8,25 +8,22 @@ import org.xml.sax.SAXException;
 import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
-import edu.upc.ichnaea.amqp.model.DatasetSeasons;
+import edu.upc.ichnaea.amqp.model.DatasetAging;
 
 public class BuildModelsRequestHandler implements ContentHandler {
 
 	final static String TYPE = "build_models";
-	final static String SEASON_WINTER = "winter";
-	final static String SEASON_SUMMER = "summer";
 	
 	final static String TAG_REQUEST = "request";
-	final static String ATTR_SEASON = "season";
+	final static String ATTR_AGING = "aging";
 	final static String ATTR_ID = "id";
-	final static String ATTR_SECTION = "section";
 	final static String ATTR_REQUEST_TYPE = "type";
 	final static String ATTR_FAKE = "fake";
 	
 	BuildModelsRequest mRequest;
 	DatasetHandler mDatasetHandler;
-	DatasetSeasonsHandler mSeasonsHandler;
-	DatasetSeasons mSeasons;
+	DatasetAgingHandler mAgingHandler;
+	DatasetAging mAging;
 	Dataset mDataset;
 	String mId;
 	String mFake;
@@ -43,7 +40,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	public void startDocument() throws SAXException {
 		mRequest = null;
 		mDatasetHandler = null;
-		mSeasonsHandler = null;
+		mAgingHandler = null;
 		mDataset = null;
 		mId = null;
 		mFake = null;
@@ -54,7 +51,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		if(mFake != null) {
 			mRequest = new BuildModelsFakeRequest(mId, mFake);
 		} else {
-			mRequest = new BuildModelsRequest(mId, mDataset, mSeasons);
+			mRequest = new BuildModelsRequest(mId, mDataset, mAging);
 		}
 	}
 
@@ -75,16 +72,16 @@ public class BuildModelsRequestHandler implements ContentHandler {
 				throw new SAXException("A dataset cannot be inside another one.");
 			}
 			mDatasetHandler = new DatasetHandler();
-		} else if(localName.equalsIgnoreCase(DatasetSeasonsHandler.TAG_SEASONS)) {
-			if(mSeasonsHandler != null) {
-				throw new SAXException("Seasons cannot be inside another.");
+		} else if(localName.equalsIgnoreCase(DatasetAgingHandler.TAG_AGINGS)) {
+			if(mAgingHandler != null) {
+				throw new SAXException("Agings cannot be inside another.");
 			}
-			mSeasonsHandler = new DatasetSeasonsHandler();			
+			mAgingHandler = new DatasetAgingHandler();			
 		}
 		if(mDatasetHandler != null) {
 			mDatasetHandler.startElement(uri, localName, qName, atts);
 		} else if(mDatasetHandler != null) {
-			mSeasonsHandler.startElement(uri, localName, qName, atts);			
+			mAgingHandler.startElement(uri, localName, qName, atts);			
 		} else if(localName.equalsIgnoreCase(TAG_REQUEST)) {
 			mId = atts.getValue(ATTR_ID);
 			if(atts.getValue(ATTR_FAKE) != null) {
@@ -106,11 +103,11 @@ public class BuildModelsRequestHandler implements ContentHandler {
 				mDataset = mDatasetHandler.getDataset();
 				mDatasetHandler = null;
 			}
-		} else if(mSeasonsHandler != null) {
-			mSeasonsHandler.endElement(uri, localName, qName);
-			if(localName.equalsIgnoreCase(DatasetSeasonsHandler.TAG_SEASONS)) {
-				mSeasons = mSeasonsHandler.getSeasons();
-				mSeasonsHandler = null;
+		} else if(mAgingHandler != null) {
+			mAgingHandler.endElement(uri, localName, qName);
+			if(localName.equalsIgnoreCase(DatasetAgingHandler.TAG_AGINGS)) {
+				mAging = mAgingHandler.getAgings();
+				mAgingHandler = null;
 			}			
 		}
 	}
@@ -120,8 +117,8 @@ public class BuildModelsRequestHandler implements ContentHandler {
 			throws SAXException {
 		if(mDatasetHandler != null) {
 			mDatasetHandler.characters(ch, start, length);
-		} else if (mSeasonsHandler != null) {
-			mSeasonsHandler.characters(ch, start, length);
+		} else if (mAgingHandler != null) {
+			mAgingHandler.characters(ch, start, length);
 		}
 	}
 
@@ -130,8 +127,8 @@ public class BuildModelsRequestHandler implements ContentHandler {
 			throws SAXException {
 		if(mDatasetHandler != null) {
 			mDatasetHandler.ignorableWhitespace(ch, start, length);
-		} else if (mSeasonsHandler != null) {
-			mSeasonsHandler.ignorableWhitespace(ch, start, length);
+		} else if (mAgingHandler != null) {
+			mAgingHandler.ignorableWhitespace(ch, start, length);
 		}		
 	}
 
@@ -140,8 +137,8 @@ public class BuildModelsRequestHandler implements ContentHandler {
 			throws SAXException {
 		if(mDatasetHandler != null) {
 			mDatasetHandler.processingInstruction(target, data);
-		} else if (mSeasonsHandler != null) {
-			mSeasonsHandler.processingInstruction(target, data);
+		} else if (mAgingHandler != null) {
+			mAgingHandler.processingInstruction(target, data);
 		}		
 	}
 
@@ -149,8 +146,8 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	public void skippedEntity(String name) throws SAXException {
 		if(mDatasetHandler != null) {
 			mDatasetHandler.skippedEntity(name);
-		} else if (mSeasonsHandler != null) {
-			mSeasonsHandler.skippedEntity(name);
+		} else if (mAgingHandler != null) {
+			mAgingHandler.skippedEntity(name);
 		}		
 	}
 

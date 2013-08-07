@@ -8,7 +8,7 @@ namespace Ichnaea\Amqp\Model;
  * This request contains:
  * * an unique identifier
  * * a dataset
- * * a list of seasons for each column
+ * * a list of agings for each column
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
@@ -20,9 +20,9 @@ class BuildModelsRequest
     private $id;
 
     /**
-     * @var DatasetSeasons
+     * @var DatasetAging
      */
-    private $seasons;
+    private $agings;
 
     /**
      * @var Dataset
@@ -41,7 +41,7 @@ class BuildModelsRequest
         }
         $this->id = $id;
         $this->dataset = new Dataset();
-        $this->seasons = new DatasetSeasons();
+        $this->agings = new DatasetAging();
     }
 
     /**
@@ -61,16 +61,16 @@ class BuildModelsRequest
     }
 
     /**
-     * Set the data for the seasons
+     * Set the data for the agings
      *
-     * @param mixed $seasons the data
+     * @param mixed $agings the data
      */
-    public function setSeasons($seasons)
+    public function setAgings($agings)
     {
-        if (!$seasons instanceof DatasetSeasons) {
-            $seasons = new DatasetSeasons($seasons);
+        if (!$agings instanceof DatasetAgings) {
+            $agings = new DatasetAgings($agings);
         }
-        $this->seasons = $seasons;
+        $this->agings = $agings;
     }    
 
     /**
@@ -84,13 +84,13 @@ class BuildModelsRequest
     }
 
     /**
-     * Get the entire seasons data
+     * Get the entire agings data
      *
-     * @return DatasetSeasons seasons
+     * @return DatasetAgings agings
      */
-    public function getSeasons()
+    public function getAgings()
     {
-        return $this->seasons;
+        return $this->agings;
     }
 
     /**
@@ -112,7 +112,7 @@ class BuildModelsRequest
     {
         return array(
             "id"		=> $this->id,
-            "seasons"	=> $this->seasons->toArray(),
+            "agings"	=> $this->agings->toArray(),
             "dataset"	=> $this->dataset->toArray()
         );
     }
@@ -127,8 +127,8 @@ class BuildModelsRequest
         if (array_key_exists('dataset', $data)) {
             $this->setDataset($data['dataset']);
         }
-        if (array_key_exists('seasons', $data)) {
-            $this->setSeasons($data['seasons']);
+        if (array_key_exists('agings', $data)) {
+            $this->setAgings($data['agings']);
         }
         if (isset($data['fake_duration']) || isset($data['fake_interval'])) {
             $this->setFake($data['fake_duration'].":".$data['fake_interval']);

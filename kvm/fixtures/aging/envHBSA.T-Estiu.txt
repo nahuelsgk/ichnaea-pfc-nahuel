@@ -1,0 +1,10 @@
+# Envelliment TBIF Estiu (2 assajos)
+# Al primer assaig hem posat 1.5 on deia <3 i hem eliminat l'entrada de 72 hores
+
+0    6.40 
+24   3.90
+48   1.50
+
+0    5.90
+24   4.84
+

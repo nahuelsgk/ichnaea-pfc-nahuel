@@ -1,0 +1,10 @@
+# Envelliment DiE Estiu (2 assajos)
+# ULL que les corbes pujen i no baixen !!!
+
+0    0.935
+24   0.975
+72   0.909
+
+0    0.946
+24   0.949
+72   0.815

@@ -19,11 +19,11 @@ import edu.upc.ichnaea.amqp.cli.StringOption;
 import edu.upc.ichnaea.amqp.cli.WriteFileOption;
 import edu.upc.ichnaea.amqp.client.BuildModelsRequestClient;
 import edu.upc.ichnaea.amqp.data.CsvDatasetReader;
-import edu.upc.ichnaea.amqp.data.SeasonsFolderReader;
+import edu.upc.ichnaea.amqp.data.AgingFolderReader;
 import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
-import edu.upc.ichnaea.amqp.model.DatasetSeasons;
+import edu.upc.ichnaea.amqp.model.DatasetAging;
 import edu.upc.ichnaea.amqp.xml.XmlDatasetReader;
 
 public class BuildModelsRequestApp extends App {
@@ -34,8 +34,8 @@ public class BuildModelsRequestApp extends App {
 	}
 	
 	BuildModelsRequestClient mClient;
-	String mSeasonsPath = "env%column%-%season%.txt";
-	String mSeasonPositions = "Summer:0.5, Winter:0.0, Estiu:0.5, Hivern:0.0";
+	String mAgingPath = "env%column%-%name%.txt";
+	String mAgingPositions = "Summer:0.5, Winter:0.0, Estiu:0.5, Hivern:0.0";
 	Format mDatasetFormat = Format.Csv;
 	Reader mDatasetReader;
 	FileOutputStream mResponseOutput;
@@ -59,18 +59,18 @@ public class BuildModelsRequestApp extends App {
 				mDatasetReader = new InputStreamReader(value);
 			}
 		}.setDescription("The file with the dataset."));    	
-    	options.add(new StringOption("seasons") {
+    	options.add(new StringOption("aging") {
 			@Override
 			public void setValue(String value) {
-				mSeasonsPath = value;
+				mAgingPath = value;
 			}
-		}.setDefaultValue(mSeasonsPath).setDescription("The path where the season files are kept."));
-    	options.add(new StringOption("season-positions") {
+		}.setDefaultValue(mAgingPath).setDescription("The path where the aging files are kept."));
+    	options.add(new StringOption("aging-positions") {
 			@Override
 			public void setValue(String value) {
-				mSeasonPositions = value;
+				mAgingPositions = value;
 			}
-		}.setDefaultValue(mSeasonPositions).setDescription("The list of positions of the seasons."));    	
+		}.setDefaultValue(mAgingPositions).setDescription("The list of positions of the agings."));    	
     	options.add(new EnumOption<Format>("dataset-format") {
 			@Override
 			public void setValue(Format value) {
@@ -130,34 +130,34 @@ public class BuildModelsRequestApp extends App {
 		}
 	}
 	
-	protected DatasetSeasons readSeasons() throws IOException {
-		int i = mSeasonsPath.lastIndexOf("/");
+	protected DatasetAging readAging() throws IOException {
+		int i = mAgingPath.lastIndexOf("/");
 		String format;
 		File folder;		
 		if(i<0) {
-			format = mSeasonsPath;
+			format = mAgingPath;
 			folder = new File(".");
 		} else {
-			format = mSeasonsPath.substring(i+1);
-			folder = new File(mSeasonsPath.substring(0, i));
+			format = mAgingPath.substring(i+1);
+			folder = new File(mAgingPath.substring(0, i));
 		}
 		if(!folder.isDirectory()) {
-			throw new IllegalArgumentException("Invalid seasons directory");
+			throw new IllegalArgumentException("Invalid aging directory");
 		}
 		if(!folder.canRead()) {
-			throw new IllegalArgumentException("Cannot read seasons directory");
+			throw new IllegalArgumentException("Cannot read aging directory");
 		}		
-		String parts[] = mSeasonPositions.split(",");
+		String parts[] = mAgingPositions.split(",");
 		Map<String, Float> positions = new HashMap<String, Float>();
 		for(String part : parts) {
 			String partParts[] = part.trim().split(":");
 			if(partParts.length != 2) {
-				throw new IllegalArgumentException("Strange season position format");
+				throw new IllegalArgumentException("Strange aging position format");
 			}
 			positions.put(partParts[0], Float.valueOf(partParts[1]));
 		}
-		SeasonsFolderReader seasonsReader = new SeasonsFolderReader(format, positions);
-		return seasonsReader.read(folder);
+		AgingFolderReader agingReader = new AgingFolderReader(format, positions);
+		return agingReader.read(folder);
 	}
 
 	@Override
@@ -168,7 +168,7 @@ public class BuildModelsRequestApp extends App {
 		if(mFake != null) {
 			request = new BuildModelsFakeRequest(id, mFake);
 		} else if(mDatasetReader != null) {
-			request = new BuildModelsRequest(id, readDataset(), readSeasons());
+			request = new BuildModelsRequest(id, readDataset(), readAging());
 		} else {
 			throw new InvalidOptionException("No dataset specified");
 		}

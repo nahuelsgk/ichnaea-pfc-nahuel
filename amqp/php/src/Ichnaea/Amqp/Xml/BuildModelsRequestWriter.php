@@ -45,19 +45,19 @@ class BuildModelsRequestWriter extends Writer
         $writer = new DatasetWriter($this->getDocument(), $xmlDataset);
         $writer->build($req->getDataset());
 
-        // write seasons
-        $xmlSeasons = $this->createElement("seasons");
-        $xmlRoot->appendChild($xmlSeasons);
-        foreach($req->getSeasons() as $col=>$colSeasons) {
-            $xmlColSeasons = $this->createElement("column");
-            $xmlColSeasons->setAttribute("name", $col);
-            $xmlSeasons->appendChild($xmlColSeasons);
-            foreach($colSeasons as $pos=>$season) {
-                $xmlSeason = $this->createElement("season");
-                $xmlSeason->setAttribute("position", $pos);
-                $xmlColSeasons->appendChild($xmlSeason);
-                $writer = new SeasonWriter($this->getDocument(), $xmlSeason);
-                $writer->build($season);
+        // write agings
+        $xmlAgings = $this->createElement("agings");
+        $xmlRoot->appendChild($xmlAgings);
+        foreach($req->getAgings() as $col=>$colAgings) {
+            $xmlColAgings = $this->createElement("column");
+            $xmlColAgings->setAttribute("name", $col);
+            $xmlAgings->appendChild($xmlColAgings);
+            foreach($colAgings as $pos=>$aging) {
+                $xmlAging = $this->createElement("aging");
+                $xmlAging->setAttribute("position", $pos);
+                $xmlColAgings->appendChild($xmlAging);
+                $writer = new AgingWriter($this->getDocument(), $xmlAging);
+                $writer->build($aging);
             }
         }
     }

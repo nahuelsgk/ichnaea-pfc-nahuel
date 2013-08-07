@@ -26,9 +26,9 @@ public class XmlBuildModelsRequestWriter extends XmlWriter {
 				Element xmlDataset = appendChild("dataset");
 				new XmlDatasetWriter(getDocument(), xmlDataset).build(data.getDataset());
 			}
-			if(!data.getSeasons().isEmpty()) {
-				Element xmlSeasons = appendChild("seasons");
-				new XmlDatasetSeasonsWriter(getDocument(), xmlSeasons).build(data.getSeasons());
+			if(!data.getAging().isEmpty()) {
+				Element xmlAgings = appendChild("agings");
+				new XmlDatasetAgingWriter(getDocument(), xmlAgings).build(data.getAging());
 			}
 		}
 		return this;

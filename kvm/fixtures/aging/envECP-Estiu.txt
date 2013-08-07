@@ -1,0 +1,10 @@
+# Envelliment ECP Estiu (2 assajos)
+# ULL que les corbes pujen i no baixen !!!
+
+0    12.5 
+24   20.8 
+72   16.6 
+
+0    8.30 
+24   33.3 
+72   41.6 
