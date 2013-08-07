@@ -22,7 +22,7 @@ class BuildModelsRequest
     /**
      * @var DatasetAging
      */
-    private $agings;
+    private $aging;
 
     /**
      * @var Dataset
@@ -41,7 +41,7 @@ class BuildModelsRequest
         }
         $this->id = $id;
         $this->dataset = new Dataset();
-        $this->agings = new DatasetAging();
+        $this->aging = new DatasetAging();
     }
 
     /**
@@ -61,16 +61,16 @@ class BuildModelsRequest
     }
 
     /**
-     * Set the data for the agings
+     * Set the data for the aging
      *
-     * @param mixed $agings the data
+     * @param mixed $aging the data
      */
-    public function setAgings($agings)
+    public function setAging($aging)
     {
-        if (!$agings instanceof DatasetAgings) {
-            $agings = new DatasetAgings($agings);
+        if (!$aging instanceof DatasetAging) {
+            $aging = new DatasetAging($aging);
         }
-        $this->agings = $agings;
+        $this->aging = $aging;
     }    
 
     /**
@@ -84,13 +84,13 @@ class BuildModelsRequest
     }
 
     /**
-     * Get the entire agings data
+     * Get the entire aging data
      *
-     * @return DatasetAgings agings
+     * @return DatasetAging aging
      */
-    public function getAgings()
+    public function getAging()
     {
-        return $this->agings;
+        return $this->aging;
     }
 
     /**
@@ -112,7 +112,7 @@ class BuildModelsRequest
     {
         return array(
             "id"		=> $this->id,
-            "agings"	=> $this->agings->toArray(),
+            "aging"	    => $this->aging->toArray(),
             "dataset"	=> $this->dataset->toArray()
         );
     }
@@ -127,11 +127,8 @@ class BuildModelsRequest
         if (array_key_exists('dataset', $data)) {
             $this->setDataset($data['dataset']);
         }
-        if (array_key_exists('agings', $data)) {
-            $this->setAgings($data['agings']);
-        }
-        if (isset($data['fake_duration']) || isset($data['fake_interval'])) {
-            $this->setFake($data['fake_duration'].":".$data['fake_interval']);
+        if (array_key_exists('aging', $data)) {
+            $this->setAging($data['aging']);
         }
     }
 

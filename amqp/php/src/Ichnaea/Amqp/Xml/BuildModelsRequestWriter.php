@@ -49,10 +49,10 @@ class BuildModelsRequestWriter extends Writer
         }
 
         // write agings
-        if(!$req->getAgings()->isEmpty()) {
+        if(!$req->getAging()->isEmpty()) {
             $xmlAgings = $this->createElement("agings");
             $xmlRoot->appendChild($xmlAgings);
-            foreach($req->getAgings() as $col=>$colAgings) {
+            foreach($req->getAging() as $col=>$colAgings) {
                 $xmlColAgings = $this->createElement("column");
                 $xmlColAgings->setAttribute("name", $col);
                 $xmlAgings->appendChild($xmlColAgings);

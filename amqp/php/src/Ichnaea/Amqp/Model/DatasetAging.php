@@ -16,10 +16,12 @@ class DatasetAging implements \IteratorAggregate
      */
     private $columns = array();
 
-    public function __construct($columns=array())
+    public function __construct(array $data=array())
     {
-        if (is_array($columns)) {
-            $this->setColumns($columns);
+        if(isset($data['files']) && is_array($data['files'])) {
+
+        } else {
+            $this->setColumns($data);
         }
     }
 

@@ -114,6 +114,22 @@ public class BuildModelsProcessClient extends Client {
 			throws IOException, InterruptedException, ParserConfigurationException {
 		
 		Calendar start = Calendar.getInstance();
+		
+		String err = null;
+		BuildModelsResponse resp;
+		
+		if(req.getDataset() == null) {
+			err = "No dataset recieved.";
+		} else if(req.getAging() == null) {
+			err = "No aging recieved.";
+		}
+		if(err != null) {
+			resp = new BuildModelsResponse(replyTo, start, null, err);
+			getLogger().warning(err);	
+			sendResponse(resp, replyTo);
+			return;
+		}
+		
 		String datasetPath = FileUtils.tempPath(mShell.getTempPath());
 		getLogger().info("writing dataset to "+datasetPath);
 		OutputStream out = mShell.writeFile(datasetPath);
@@ -135,12 +151,11 @@ public class BuildModelsProcessClient extends Client {
 		getLogger().info("reading output file in "+cmd.getOutputPath());
 		Calendar end = Calendar.getInstance();
 		
-		BuildModelsResponse resp;
 		try{
 			byte[] data = IOUtils.read(mShell.readFile(cmd.getOutputPath()));
 			resp = new BuildModelsResponse(replyTo, start, end, data);
 		}catch(IOException e){
-			String err = "failed to read output file: "+e.getMessage();
+			err = "failed to read output file: "+e.getMessage();
 			getLogger().warning(err);
 			resp = new BuildModelsResponse(replyTo, start, end, err);
 		}

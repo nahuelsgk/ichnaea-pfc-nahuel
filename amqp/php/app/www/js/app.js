@@ -114,7 +114,7 @@ app.directive('fileUpload', function () {
               }
             };
           })(i);
-          reader.readAsBinaryString(files[i]);
+          reader.readAsText(files[i]);
         }
       });
     }
