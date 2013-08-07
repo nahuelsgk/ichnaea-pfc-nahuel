@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="my">
+<html lang="en" ng-app="app">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ichnaea Amqp Test</title>
@@ -21,7 +21,7 @@
           <div class="panel">
             <div class="panel-heading">Add task</div>
 
-              <form id="build-models-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl" my-prevent-submit>
+              <form id="build-models-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl">
                 <fieldset>
         			  <div class="alert alert-danger" ng-show="error">
         			    <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -38,7 +38,7 @@
                     <div class="form-group">
                       <label class="control-label col-lg-2" for="build-models-form-dataset">Dataset</label>
                       <div class="col-lg-10">
-                        <input class="form-control" type="file" name="dataset" ng-model="task.dataset"/>
+                        <input class="form-control" type="file" name="dataset" ng-model="task.dataset" file-upload/>
                       </div>
                     </div>
                     <div class="form-group">
@@ -46,13 +46,13 @@
                       <div class="col-lg-10">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" value="csv" checked>
+                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" ng-model="task.dataset_format" value="csv" checked>
                             CSV
                           </label>
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" value="xml">
+                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" ng-model="task.dataset_format" value="xml">
                             XML
                           </label>
                         </div>
@@ -61,7 +61,8 @@
                     <div class="form-group">
                       <label class="control-label col-lg-2" for="build-models-form-aging">Aging</label>
                       <div class="col-lg-10">
-                        <input class="form-control" type="file" name="aging" ng-model="task.aging"/>
+                        <input class="form-control" type="file" name="aging" ng-model="task.aging" file-upload multiple/>
+                        <p class="help-block">You can select multiple files.</p>
                       </div>
                     </div>
                     <div class="form-group">
@@ -69,18 +70,25 @@
                       <div class="col-lg-10">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="aging-format" id="build-models-form-aging-format" value="csv" checked>
-                            Zip with tabbed data
+                            <input type="radio" name="aging-format" id="build-models-form-aging-format" value="tab" ng-model="task.aging_format" checked>
+                            tabbed data
                           </label>
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="aging-format" id="build-models-form-aging-format" value="xml">
+                            <input type="radio" name="aging-format" id="build-models-form-aging-format" ng-model="task.aging_format" value="xml">
                             XML
                           </label>
                         </div>
                       </div>
-                    </div>                  
+                    </div>
+                    <div class="form-group" ng-show="task.aging_format=='tab'">
+                      <label class="control-label col-lg-2" for="build-models-form-aging">Aging filename format</label>
+                      <div class="col-lg-10">
+                        <input type="text" class="form-control" name="aging-filename-format" ng-model="task.aging_filename_format" />
+                        <p class="help-block">How the aging file names are related to the dataset columns.</p>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <div class="col-lg-offset-2 col-lg-10">
                         <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
@@ -96,7 +104,7 @@
                       <label class="control-label col-lg-2" for="build-models-form-fake-duration">Duration</label>
                       <div class="col-lg-2">
                         <div class="input-group">
-                          <input type="number" value="10" class="form-control" name="fake_duration" ng-model="task.fake_duration" id="build-models-form-fake-duration" />
+                          <input type="number" class="form-control" name="fake_duration" ng-model="task.fake_duration" id="build-models-form-fake-duration" />
                           <span class="input-group-addon">seconds</span>
                         </div>
                       </div>
@@ -105,7 +113,7 @@
                       <label class="control-label col-lg-2" for="build-models-form-fake-interval">Interval</label>
                       <div class="col-lg-2">
                         <div class="input-group">
-                          <input type="number" value="1" class="form-control" name="fake_interval" ng-model="task.fake_interval" id="build-models-form-fake-interval" />
+                          <input type="number" class="form-control" name="fake_interval" ng-model="task.fake_interval" id="build-models-form-fake-interval" />
                           <span class="input-group-addon">seconds</span>
                         </div>
                       </div>

@@ -4,8 +4,27 @@ function BuildModelsTaskFormCtrl($scope, $routeParams, $http) {
 
   $scope.task = {
     fake_duration: 10,
-    fake_interval: 1
+    fake_interval: 1,
+    dataset_format: 'csv',
+    aging_format: 'tab',
+    aging_filename_format: 'env%column%-%name%.txt'
   };
+
+  $scope.$on('filesSelected', function(ev, files, contents, name) {
+    var reader = new FileReader()
+    if(name === "dataset") {
+      if(files.length > 0) {
+        $scope.task.dataset = contents[0];
+      } else {
+        delete $scope.task.dataset;
+      }
+    } else if(name === "aging") {
+      $scope.task.aging = {};
+      for(var i=0; i<files.length; i++) {
+        $scope.task.aging[files[i].name] = contents[i]
+      }
+    }
+  });
 
   $scope.addTask = function(task) {
     var params = {
@@ -58,12 +77,11 @@ function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
   }, 1000);
   updateTasks();
 
-  $scope.$on('buildModelsTaskAdded', function(task) {
-    debugger;
+  $scope.$on('buildModelsTaskAdded', function() {
     updateTasks();
   });
 
-  $scope.$on('buildModelsTaskRemoved', function(id) {
+  $scope.$on('buildModelsTaskRemoved', function() {
     updateTasks();
   });  
 
@@ -76,10 +94,29 @@ function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
   };
 }
 
-angular.module('my', [])
-  .directive('MyPreventSubmit', function(scope, element) {
-    element.on('submit', function(event) {
-      debugger;
-      event.preventDefault();
-    });
-  });
+var app = angular.module('app', []);
+app.directive('fileUpload', function () {
+  return {
+    scope: true,
+    link: function ($scope, el, attrs) {
+      el.bind('change', function (event) {
+        var files = event.target.files;
+        var pending = files.length;
+        var contents = new Array(files.length);
+        for(var i=0; i<files.length; i++) {
+          var reader = new FileReader();
+          (function (i) { 
+            reader.onload = function(e){
+              contents[i] = e.target.result;
+              pending -= 1;
+              if(pending <= 0) {
+                $scope.$emit("filesSelected", files, contents, attrs.name);
+              }
+            };
+          })(i);
+          reader.readAsBinaryString(files[i]);
+        }
+      });
+    }
+  };
+});
