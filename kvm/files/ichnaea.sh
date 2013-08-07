@@ -5,14 +5,13 @@ pushd `dirname $0` > /dev/null
 SCRIPTPATH=`pwd -P`
 popd > /dev/null
 
-SEASON=""
+AGING=""
 DATAFILE=""
 OUTFILE=""
-SECTION="1"
-SUMMER="Estiu"
-WINTER="Hivern"
 ICHNAEADIR=""
 FAKE=""
+SECTION="1"
+SEASON="Hivern"
 
 function USAGE {
 	echo "Ichnaea wrapper by Miguel Ibero <miguel@ibero.me>"
@@ -35,8 +34,7 @@ eval set -- "$OPTS"
 while true
 do
     case "$1" in
-        -a|--aging) SEASON="$2"; shift 2;;
-        -c|--section) SECTION="$2"; shift 2;;
+        -a|--aging) AGING="$SCRIPTPATH/$2"; shift 2;;
         -o|--output) OUTFILE="$2"; shift 2;;
         -f|--fake) FAKE="$2"; shift 2;;
         --) shift; break;;
@@ -49,7 +47,7 @@ done
 
 shift $(($OPTIND - 1))
 
-DATAFILE="$1"
+DATAFILE="$SCRIPTPATH/$1"
 
 function TIME_START {
 	STARTTIME=`date +%s`
@@ -96,22 +94,15 @@ then
 		USAGE
 	fi
 
-	case "$SEASON" in
-		summer) SEASON=$SUMMER;;
-		winter) SEASON=$WINTER;;
-		*) SEASON="";;
-	esac
-
-	if [ "$SEASON" == "" ]
+	if [ "$AGING" == "" ]
 	then
-		PRINT_LOG "no season specified"
+		PRINT_LOG "no aging specified"
 		USAGE
 	fi
-
-	if ! [[ "$SECTION" =~ ^[0-9]+$ ]]
+	if [ ! -d "$AGING" ]
 	then
-		PRINT_LOG "section has to be an integer"
-		USAGE
+		PRINT_LOG "aging '$AGING' is not a directory"
+		USAGE	
 	fi
 
 	if [ ! -f "$DATAFILE" ]
@@ -126,15 +117,20 @@ then
 	fi
 
 	TMPDIR=`mktemp -d`
+	TMPDIR="/tmp/ichnaea"
+	mkdir -p $TMPDIR
 	PRINT_LOG "working in temp directory $TMPDIR"
-	pushd $TMPDIR/r > /dev/null
-	PRINT_LOG "building dataset..."
 	cp -r $ICHNAEADIR/* $TMPDIR
-	cp $DATAFILE $TMPDIR/data
+	mkdir -p $TMPDIR/data
+	mkdir -p $TMPDIR/data_objects
+	cp -r $AGING $TMPDIR/data/aging
+	cp $DATAFILE $TMPDIR/data/cyprus.csv
+	pushd $TMPDIR/src > /dev/null	
 
-	RESULT=`REXEC section_dataset_building.R` > 2
-	PRINT_LOG "building models for season '$SEASON' and section '$SECTION'..."
-	REXEC section_models_building.R $SECTION $SEASON
+	PRINT_LOG "building dataset..."
+	RESULT=`REXEC section_dataset_building.R`
+	PRINT_LOG "building models..."
+	REXEC section_models_building.R $SEASON
 
 	ZIPFILE=$TMPDIR/build_models.zip
 	zip -j $ZIPFILE $TMPDIR/data_objects/section_models_*.Rdata
@@ -147,7 +143,7 @@ then
 	fi
 
 	popd > /dev/null
-	rm -rf $TMPDIR
+	// rm -rf $TMPDIR
 else
 	FAKE_DURATION=`echo $FAKE | sed -e "s/\(.*\):.*/\1/g"`
 	FAKE_INTERVAL=`echo $FAKE | sed -e "s/.*:\(.*\)/\1/g"`
