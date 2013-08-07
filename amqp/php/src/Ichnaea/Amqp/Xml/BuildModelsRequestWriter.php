@@ -3,6 +3,7 @@
 namespace Ichnaea\Amqp\Xml;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
+use Ichnaea\Amqp\Model\BuildModelsFakeRequest;
 
 /**
  * An XML writer that writes BuildModelsRequest objects to xml
@@ -40,24 +41,28 @@ class BuildModelsRequestWriter extends Writer
         }
         
         // write dataset
-        $xmlDataset = $this->createElement("dataset");
-        $xmlRoot->appendChild($xmlDataset);
-        $writer = new DatasetWriter($this->getDocument(), $xmlDataset);
-        $writer->build($req->getDataset());
+        if(!$req->getDataset()->isEmpty()) {
+            $xmlDataset = $this->createElement("dataset");
+            $xmlRoot->appendChild($xmlDataset);
+            $writer = new DatasetWriter($this->getDocument(), $xmlDataset);
+            $writer->build($req->getDataset());
+        }
 
         // write agings
-        $xmlAgings = $this->createElement("agings");
-        $xmlRoot->appendChild($xmlAgings);
-        foreach($req->getAgings() as $col=>$colAgings) {
-            $xmlColAgings = $this->createElement("column");
-            $xmlColAgings->setAttribute("name", $col);
-            $xmlAgings->appendChild($xmlColAgings);
-            foreach($colAgings as $pos=>$aging) {
-                $xmlAging = $this->createElement("aging");
-                $xmlAging->setAttribute("position", $pos);
-                $xmlColAgings->appendChild($xmlAging);
-                $writer = new AgingWriter($this->getDocument(), $xmlAging);
-                $writer->build($aging);
+        if(!$req->getAgings()->isEmpty()) {
+            $xmlAgings = $this->createElement("agings");
+            $xmlRoot->appendChild($xmlAgings);
+            foreach($req->getAgings() as $col=>$colAgings) {
+                $xmlColAgings = $this->createElement("column");
+                $xmlColAgings->setAttribute("name", $col);
+                $xmlAgings->appendChild($xmlColAgings);
+                foreach($colAgings as $pos=>$aging) {
+                    $xmlAging = $this->createElement("aging");
+                    $xmlAging->setAttribute("position", $pos);
+                    $xmlColAgings->appendChild($xmlAging);
+                    $writer = new AgingWriter($this->getDocument(), $xmlAging);
+                    $writer->build($aging);
+                }
             }
         }
     }

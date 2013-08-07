@@ -1,137 +1,85 @@
 
 
-App = Ember.Application.create({
-  LOG_TRANSITIONS: true
-});
+function BuildModelsTaskFormCtrl($scope, $routeParams, $http) {
 
-App.Store = DS.Store.extend({
-  revision: 12
-});
-App.store = App.Store.create();
+  $scope.task = {
+    fake_duration: 10,
+    fake_interval: 1
+  };
 
-App.Router.map(function() {
-  this.route("build-models", { path: "/" });
-});
-
-setInterval(function(){
-  App.store.findQuery(App.BuildModelsTask, {});
-}, 1000);
-
-App.UploadFileView = Ember.TextField.extend({
-    type: 'file',
-    attributeBindings: ['name'],
-    change: function(evt) {
-      var self = this;
-      var input = evt.target;
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          var fileToUpload = e.srcElement.result;
-          self.get('controller').set(self.get('name'), fileToUpload);
-        }
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-});
-
-App.BuildModelsFormView = Ember.View.extend({
-  templateName: 'build-models-form',
-  title: 'Build Models',
-  submitReal: function(evt) {
-    var elm = $(this.get('element'));
-    var data = {
+  $scope.addTask = function(task) {
+    var params = {
+      "build-models-task": task
     };
-    this.get('controller').send('addTask', data);
-  },
-  submitFake: function() {
-    var elm = $(this.get('element'));
-    var data = {
-      fake: true,
-      fake_duration: elm.find('#build-models-form-fake-duration').val(),
-      fake_interval: elm.find('#build-models-form-fake-interval').val(),
-    };
-    this.get('controller').send('addTask', data);
-  }
-});
-
-App.BuildModelsTasksView = Ember.CollectionView.extend({
-  tagName: 'tbody',
-  itemViewClass: 'App.BuildModelsTaskView',  
-  createChildView: function(viewClass, attrs) {
-    attrs.task = attrs.content;
-    return this._super(viewClass, attrs);
-  }
-});
-
-App.BuildModelsTaskView = Ember.View.extend({
-  templateName: 'build-models-task',
-  classNameBindings: ['rowClass'],
-  task: null,
-  taskId: function() {
-    return this.get('task.id');
-  }.property('task.id'),
-  taskError: function() {
-    return this.get('task.error');
-  }.property('task.error'),    
-  startTime: function() {
-    return this.get('task.start');
-  }.property('task.start'),
-  endTime: function() {
-    return this.get('task.end');
-  }.property('task.end'),
-  percent: function() {
-    return this.get('task.progress')*100;
-  }.property('task.progress'),  
-  barStyle: function() {
-    return "width: "+this.get('percent')+"%;";
-  }.property('percent'),
-  rowClass: function() {
-    if(this.get('task.error')) {
-      return 'error';
-    } else if(this.get('task.progress')>=1) {
-      return 'success';
-    } else {
-      return '';
-    }
-  }.property('task.error', 'task.progress'),
-  didInsertElement: function() {
-    var elm = $(this.get('element'));
-    elm.find('.has-tooltip').tooltip();
-  },
-  removeItem: function(evt) {
-    var task = this.get('task');
-    this.get('controller').send('deleteTask', task);
-  }
-});
-
-App.BuildModelsController = Ember.Controller.extend({
-  tasks: function() {
-    return App.BuildModelsTask.find();
-  }.property().volatile(),
-  deleteTask: function(task) {
-    task.deleteRecord();
-    App.store.commit();
-  },
-  addTask: function(data){
-    var self = this;
-    data.dataset = this.get('dataset');
-    var task = App.BuildModelsTask.createRecord(data);
-    task.on("isError", function(msg){
-      this.set("error", msg);
+    $http.post("build-models-tasks", params).success(function(data){
+      $scope.$emit('buildModelsTaskAdded', data["build-models-task"]);
+    }).error(function(data){
+      $scope.error = "There was an error sending the request.";
     });
-    App.store.commit();
-  }
-});
+  };
 
-App.BuildModelsTask = DS.Model.extend({
-  start: DS.attr('date'),
-  end: DS.attr('date'),
-  progress: DS.attr('number', { defaultValue: 0 }),
-  error: DS.attr('string'),
-  season: DS.attr('string'),
-  fake_duration: DS.attr('number'),
-  fake_interval: DS.attr('number')
-});
-App.BuildModelsTask.toString = function() {
-  return "/build-models-task";
-};
+  $scope.addFakeTask = function(data) {
+    var task = angular.copy(data);
+    task.fake = true;
+    this.addTask(task);
+  };
+}
+
+function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
+  $scope.tasks = {};
+  var updateTasks = function() {
+    $http.get('build-models-tasks').success(function(data) {
+      var tasks = data["build-models-tasks"];
+      for(var i in tasks) {
+        var task = tasks[i];
+        if($scope.tasks[task.id] !== undefined) {
+          angular.extend($scope.tasks[task.id], task);
+        } else {
+          $scope.tasks[task.id] = task;
+        }
+      }
+      for(var id in $scope.tasks) {
+        var found = false;
+        for(var j in tasks) {
+          if(tasks[j].id === id) {
+            found = true;
+            break;
+          }
+        }
+        if(!found) {
+          delete $scope.tasks[id];
+        }
+      }
+    });
+  };
+
+  setInterval(function(){
+    updateTasks();
+  }, 1000);
+  updateTasks();
+
+  $scope.$on('buildModelsTaskAdded', function(task) {
+    debugger;
+    updateTasks();
+  });
+
+  $scope.$on('buildModelsTaskRemoved', function(id) {
+    updateTasks();
+  });  
+
+  $scope.deleteTask = function(id) {
+    $http.delete('build-models-tasks/'+id).success(function(data) {
+      $scope.$emit('buildModelsTaskRemoved', id);
+    }).error(function(data){
+      $scope.error = "There was an error deleting the task.";
+    });
+  };
+}
+
+angular.module('my', [])
+  .directive('MyPreventSubmit', function(scope, element) {
+    element.on('submit', function(event) {
+      debugger;
+      event.preventDefault();
+    });
+  });

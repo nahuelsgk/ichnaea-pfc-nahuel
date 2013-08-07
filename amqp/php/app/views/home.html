@@ -1,125 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Ichnaea Amqp Test</title>
-	    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css" media="all" />
-	    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all" />
-	    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<html lang="en" ng-app="my">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ichnaea Amqp Test</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/angular.min.js" type="text/javascript"></script>   
+    <script src="js/app.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="body" class="container">
+      <div class="col-12">
+        <header class="page-header">
+          <h1>Ichnaea Amqp Test</a>
+        </header>
+        <div id="main" class="row-fluid">
+          <form id="build-models-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl" my-prevent-submit>
+            <fieldset>
+              <legend>Add task</legend>
 
-	    <script src="js/jquery.min.js" type="text/javascript"></script>
-	    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-	    <script src="js/handlebars.js" type="text/javascript"></script>   
-	    <script src="js/ember.min.js" type="text/javascript"></script>  
-	    <script src="js/ember-data.min.js" type="text/javascript"></script>
-	    <script src="js/app.js" type="text/javascript"></script>
+			  <div class="alert alert-danger" ng-show="error">
+			    <button type="button" class="close" data-dismiss="alert">&times;</button>
+			    {{error}}
+			  </div>			                
 
-	    <script type="text/javascript">
-		DS.RESTAdapter.reopen({
-		  namespace: 'ichnaea'
-		});
-		</script>
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#build-models-form-real" data-toggle="tab">Real</a></li>
+                <li><a href="#build-models-form-fake" data-toggle="tab">Fake</a></li>
+              </ul>
 
-		<script type="text/x-handlebars" data-template-name="build-models">
-			{{view App.BuildModelsFormView}}
-			<table class="table table-striped">
-			<thead>
-				<tr><th>Id</th><th>Start</th><th>End</th><th>Progress</th><th></th></tr>
-			</thead>
-			{{view App.BuildModelsTasksView contentBinding="controller.tasks"}}
-  			</table>
-		</script>
-
-		<script type="text/x-handlebars" data-template-name="build-models-task">
-			<td><a href="#" class="has-tooltip" data-toggle="tooltip" {{bindAttr title="view.taskError"}}>
-			{{view.taskId}}</a></td>
-			<td>{{view.startTime}}</td>
-			<td>{{view.endTime}}</td>
-			<td>
-			<div class="progress progress-striped">
-			<div class="bar" {{bindAttr style="view.barStyle"}}>{{view.percent}}%</div>
-			</div></td>
-			<td>
-			<div class="btn-group">
-			    <a class="btn btn-primary btn-mini" href="#" data-toggle="dropdown" >Actions</a>
-			    <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-			    <span class="caret"></span></a>
-			    <ul class="dropdown-menu">
-			        <li><a href="#" {{action "removeItem" target="view"}} class="delete-task"><i class="icon-trash"></i> Delete</a></li>
-			    </ul>
-			</div>
-			</td>
-		</script>
-
-		<script type="text/x-handlebars" data-template-name="build-models-form">
-			<form class="form-horizontal" method="POST" action="build-models" enctype="multipart/form-data">
-				<fieldset>
-					<legend>{{view.title}}</legend>
-
-					<ul class="nav nav-tabs">
-					  <li class="active"><a href="#build-models-form-real" data-toggle="tab" class="disable-fake">Real</a></li>
-					  <li><a href="#build-models-form-fake" data-toggle="tab" class="enable-fake">Fake</a></li>
-					</ul>
-
-					<div class="tab-content">
-						<div class="tab-pane active" id="build-models-form-real">
-							<div class="control-group">
-							    <label class="control-label" for="build-models-form-dataset">Data</label>
-							    <div class="controls">
-							    	{{#view App.UploadFileView name="dataset" id="build-models-form-dataset"}}
-							    	{{/view}}
-							    </div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" class="btn" {{action "submitReal" target="view"}}>Submit</button>
-								</div>
-							</div>
-						</div>
-						<div class="tab-pane" id="build-models-form-fake">
-							<div class="control-group">
-							    <label class="control-label" for="build-models-form-fake-duration">Duration</label>
-							    <div class="controls">
-								    <div class="input-append">
-									    <input type="text" value="10" class="input-mini" name="fake_duration" id="build-models-form-fake-duration" />
-									    <span class="add-on">seconds</span>
-									</div>
-								</div>
-							</div>
-							<div class="control-group">
-							    <label class="control-label" for="build-models-form-fake-interval">Interval</label>
-							    <div class="controls">
-									<div class="input-append">
-									    <input type="text" value="1" class="input-mini" name="fake_interval" id="build-models-form-fake-interval" />
-									    <span class="add-on">seconds</span>
-									</div>
-							    </div>
-								</div>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" class="btn" {{action "submitFake" target="view"}}>Submit</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</script>
-
-		<script type="text/x-handlebars" data-template-name="application">
-			<div id="body" class="container">
-				<div class="span12">
-				    <header class="page-header">
-				        <h1>Ichnaea Amqp Test</a>
-				    </header>
-				    <div id="main" class="row-fluid">
-				        {{outlet}}
-				    </div>
-				</div>
-			</div>
-		</script>
-
-    </head>
-    <body>
-    </body>
+              <div class="tab-content">
+                <div class="tab-pane active" id="build-models-form-real">
+                  <div class="form-group">
+                    <label class="control-label col-lg-2" for="build-models-form-dataset">Data</label>
+                    <div class="col-lg-10">
+                      <input class="form-control" type="file" name="dataset" ng-model="task.dataset"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="build-models-form-fake">
+                  <div class="form-group">
+                    <label class="control-label col-lg-2" for="build-models-form-fake-duration">Duration</label>
+                    <div class="col-lg-2">
+                      <div class="input-group">
+                        <input type="number" value="10" class="form-control" name="fake_duration" ng-model="task.fake_duration" id="build-models-form-fake-duration" />
+                        <span class="input-group-addon">seconds</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-2" for="build-models-form-fake-interval">Interval</label>
+                    <div class="col-lg-2">
+                      <div class="input-group">
+                        <input type="number" value="1" class="form-control" name="fake_interval" ng-model="task.fake_interval" id="build-models-form-fake-interval" />
+                        <span class="input-group-addon">seconds</span>
+                      </div>
+                    </div>
+                    </div>
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button type="submit" name="submit-fake" class="btn btn-default" ng-click="addFakeTask(task)">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+          <table class="table table-striped" ng-controller="BuildModelsTaskListCtrl">
+            <thead>
+              <tr><th>Id</th><th>Start</th><th>End</th><th>Progress</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="task in tasks" ng-class="{danger: task.error, success: task.progress == 1}">
+                <td>{{task.id}}</td>
+                <td>{{task.start | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{task.end | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>
+                <div class="progress progress-striped">
+                <div class="progress-bar" style="width:{{task.progress*100}}%;">{{task.progress*100}}%</div>
+                </div></td>
+                <td>
+                <div class="btn-group">
+                  <a class="btn btn-primary btn-sm" href="#" data-toggle="dropdown" >Actions</a>
+                  <a class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="delete-task" ng-click="deleteTask(task.id)"><i class="icon-trash"></i> Delete</a></li>
+                  </ul>
+                </div>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

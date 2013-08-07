@@ -1,5 +1,8 @@
 package edu.upc.ichnaea.amqp.xml;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -19,6 +22,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	final static String ATTR_ID = "id";
 	final static String ATTR_REQUEST_TYPE = "type";
 	final static String ATTR_FAKE = "fake";
+	final static String ATTR_FAKE_REGEX = "(?<duration>\\d+):(?<interval>\\d+)";
 	
 	BuildModelsRequest mRequest;
 	DatasetHandler mDatasetHandler;
@@ -26,7 +30,9 @@ public class BuildModelsRequestHandler implements ContentHandler {
 	DatasetAging mAging;
 	Dataset mDataset;
 	String mId;
-	String mFake;
+	boolean mFake;
+	float mFakeDuration;
+	float mFakeInterval;
 	
 	public BuildModelsRequest getData() {
 		return mRequest;
@@ -43,13 +49,13 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		mAgingHandler = null;
 		mDataset = null;
 		mId = null;
-		mFake = null;
+		mFake = false;
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		if(mFake != null) {
-			mRequest = new BuildModelsFakeRequest(mId, mFake);
+		if(mFake) {
+			mRequest = new BuildModelsFakeRequest(mId, mFakeDuration, mFakeInterval);
 		} else {
 			mRequest = new BuildModelsRequest(mId, mDataset, mAging);
 		}
@@ -85,7 +91,14 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		} else if(localName.equalsIgnoreCase(TAG_REQUEST)) {
 			mId = atts.getValue(ATTR_ID);
 			if(atts.getValue(ATTR_FAKE) != null) {
-				mFake = atts.getValue(ATTR_FAKE);
+				mFake = true;
+				Pattern pattern = Pattern.compile(ATTR_FAKE_REGEX);
+				Matcher match = pattern.matcher(atts.getValue(ATTR_FAKE));
+				if(!match.matches()) {			
+					throw new SAXException("Fake attribute should be in [duration:interval] format.");
+				}
+				mFakeDuration = Float.parseFloat(match.group("duration"));
+				mFakeInterval = Float.parseFloat(match.group("interval"));
 			} else {
 				if(!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
 					throw new SAXException("Invalid message type");

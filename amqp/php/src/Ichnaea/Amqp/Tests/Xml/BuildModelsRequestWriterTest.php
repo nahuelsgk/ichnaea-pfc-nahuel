@@ -3,6 +3,7 @@
 namespace Ichnaea\Amqp\Tests\Model;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
+use Ichnaea\Amqp\Model\BuildModelsFakeRequest;
 use Ichnaea\Amqp\Xml\BuildModelsRequestWriter;
 
 class BuildModelsRequestWriterTest extends \PHPUnit_Framework_TestCase
@@ -39,5 +40,19 @@ class BuildModelsRequestWriterTest extends \PHPUnit_Framework_TestCase
         $expectedXml .= '</trial></aging></column></agings></request>';
         
         $this->assertXmlStringEqualsXmlString($expectedXml, $xml, "BuildModelsRequest xml writer exports request data.");
+    }
+
+    public function testWritingFakeXml()
+    {
+        $req = new BuildModelsFakeRequest(2);
+        $req->setDuration(10);
+        $req->setInterval(1);
+
+        $xml = new BuildModelsRequestWriter();
+        $xml->build($req);
+
+        $expectedXml = '<request id="2" fake="10:1" type="build_models"></request>';
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $xml, "BuildModelsRequest xml writer exports fake request data.");
     }
 }
