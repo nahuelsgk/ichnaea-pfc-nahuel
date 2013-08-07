@@ -17,132 +17,137 @@
           <h1>Ichnaea Amqp Test</a>
         </header>
         <div id="main" class="row-fluid">
-          <form id="build-models-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl" my-prevent-submit>
-            <fieldset>
-              <legend>Add task</legend>
 
-			  <div class="alert alert-danger" ng-show="error">
-			    <button type="button" class="close" data-dismiss="alert">&times;</button>
-			    {{error}}
-			  </div>			                
+          <div class="panel">
+            <div class="panel-heading">Add task</div>
 
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#build-models-form-real" data-toggle="tab">Real</a></li>
-                <li><a href="#build-models-form-fake" data-toggle="tab">Fake</a></li>
-              </ul>
+              <form id="build-models-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl" my-prevent-submit>
+                <fieldset>
+        			  <div class="alert alert-danger" ng-show="error">
+        			    <button type="button" class="close" data-dismiss="alert">&times;</button>
+        			    {{error}}
+        			  </div>			                
 
-              <div class="tab-content">
-                <div class="tab-pane active" id="build-models-form-real">
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="build-models-form-dataset">Dataset</label>
-                    <div class="col-lg-10">
-                      <input class="form-control" type="file" name="dataset" ng-model="task.dataset"/>
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#build-models-form-real" data-toggle="tab">Real</a></li>
+                  <li><a href="#build-models-form-fake" data-toggle="tab">Fake</a></li>
+                </ul>
+
+                <div class="tab-content">
+                  <div class="tab-pane active" id="build-models-form-real">
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="build-models-form-dataset">Dataset</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" type="file" name="dataset" ng-model="task.dataset"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="build-models-form-dataset">Dataset format</label>
+                      <div class="col-lg-10">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" value="csv" checked>
+                            CSV
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" value="xml">
+                            XML
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="build-models-form-aging">Aging</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" type="file" name="aging" ng-model="task.aging"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="build-models-form-aging">Aging format</label>
+                      <div class="col-lg-10">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="aging-format" id="build-models-form-aging-format" value="csv" checked>
+                            Zip with tabbed data
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="aging-format" id="build-models-form-aging-format" value="xml">
+                            XML
+                          </label>
+                        </div>
+                      </div>
+                    </div>                  
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="build-models-form-dataset">Dataset format</label>
-                    <div class="col-lg-10">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="dataset-format" id="build-models-form-dataset-format" value="csv" checked>
-                          CSV
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="dataset-format" id="build-models-form-dataset-format" value="xml">
-                          XML
-                        </label>
+                  <div class="tab-pane" id="build-models-form-fake">
+                    <p class="lead">
+                      A fake request sends the data to the amqp server but the server does not process anything,
+                      it only waits for a given time. It is useful to test server responses.
+                    </p>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="build-models-form-fake-duration">Duration</label>
+                      <div class="col-lg-2">
+                        <div class="input-group">
+                          <input type="number" value="10" class="form-control" name="fake_duration" ng-model="task.fake_duration" id="build-models-form-fake-duration" />
+                          <span class="input-group-addon">seconds</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="build-models-form-aging">Aging</label>
-                    <div class="col-lg-10">
-                      <input class="form-control" type="file" name="aging" ng-model="task.aging"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="build-models-form-aging">Aging format</label>
-                    <div class="col-lg-10">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="aging-format" id="build-models-form-aging-format" value="csv" checked>
-                          Zip with tabbed data
-                        </label>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="build-models-form-fake-interval">Interval</label>
+                      <div class="col-lg-2">
+                        <div class="input-group">
+                          <input type="number" value="1" class="form-control" name="fake_interval" ng-model="task.fake_interval" id="build-models-form-fake-interval" />
+                          <span class="input-group-addon">seconds</span>
+                        </div>
                       </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="aging-format" id="build-models-form-aging-format" value="xml">
-                          XML
-                        </label>
                       </div>
-                    </div>
-                  </div>                  
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                      <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" name="submit-fake" class="btn btn-default" ng-click="addFakeTask(task)">Submit</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" id="build-models-form-fake">
-                  <p class="lead">
-                    A fake request sends the data to the amqp server but the server does not process anything,
-                    it only waits for a given time. It is useful to test server responses.
-                  </p>
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="build-models-form-fake-duration">Duration</label>
-                    <div class="col-lg-2">
-                      <div class="input-group">
-                        <input type="number" value="10" class="form-control" name="fake_duration" ng-model="task.fake_duration" id="build-models-form-fake-duration" />
-                        <span class="input-group-addon">seconds</span>
-                      </div>
-                    </div>
+              </form>
+            </div>
+          <div class="panel">
+            <div class="panel-heading">Current tasks</div>
+            <table class="table table-striped table-hover" ng-controller="BuildModelsTaskListCtrl">
+              <thead>
+                <tr><th>Id</th><th>Start</th><th>End</th><th>Progress</th><th></th></tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="task in tasks" ng-class="{danger: task.error, success: task.progress == 1}">
+                  <td>{{task.id}}</td>
+                  <td>{{task.start | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                  <td>{{task.end | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                  <td>
+                  <div class="progress progress-striped">
+                  <div class="progress-bar" style="width:{{task.progress*100}}%;">{{task.progress*100}}%</div>
+                  </div></td>
+                  <td>
+                  <div class="btn-group">
+                    <a class="btn btn-primary btn-sm" href="#" data-toggle="dropdown" >Actions</a>
+                    <a class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#" class="delete-task" ng-click="deleteTask(task.id)"><i class="icon-trash"></i> Delete</a></li>
+                    </ul>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="build-models-form-fake-interval">Interval</label>
-                    <div class="col-lg-2">
-                      <div class="input-group">
-                        <input type="number" value="1" class="form-control" name="fake_interval" ng-model="task.fake_interval" id="build-models-form-fake-interval" />
-                        <span class="input-group-addon">seconds</span>
-                      </div>
-                    </div>
-                    </div>
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                      <button type="submit" name="submit-fake" class="btn btn-default" ng-click="addFakeTask(task)">Submit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </form>
-          <table class="table table-striped" ng-controller="BuildModelsTaskListCtrl">
-            <thead>
-              <tr><th>Id</th><th>Start</th><th>End</th><th>Progress</th><th></th></tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="task in tasks" ng-class="{danger: task.error, success: task.progress == 1}">
-                <td>{{task.id}}</td>
-                <td>{{task.start | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td>{{task.end | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td>
-                <div class="progress progress-striped">
-                <div class="progress-bar" style="width:{{task.progress*100}}%;">{{task.progress*100}}%</div>
-                </div></td>
-                <td>
-                <div class="btn-group">
-                  <a class="btn btn-primary btn-sm" href="#" data-toggle="dropdown" >Actions</a>
-                  <a class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
-                  <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#" class="delete-task" ng-click="deleteTask(task.id)"><i class="icon-trash"></i> Delete</a></li>
-                  </ul>
-                </div>
-                </td>
-              </tr>
-            </tbody>
+                  </td>
+                </tr>
+              </tbody>
             </table>
+          </div>
         </div>
       </div>
     </div>
