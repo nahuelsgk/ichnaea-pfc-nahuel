@@ -12,14 +12,45 @@ namespace Ichnaea\Amqp\Model;
 class DatasetAging implements \IteratorAggregate
 {
     /**
-     * @var array
+     * The data array can have two formats. The simple
+     * One is an array of arrays indexed by column name
+     * and then by unitary position. The complex one
+     * is an associative array containing three keys:
+     *
+     * * `files` is an array of aging objects with the
+     *   filenames as keys. The aging object can also
+     *   be an array or something that can be loaded by
+     *   the aging class
+     * * `format` is a format string that can contain
+     *   `%column%` and `%name%` placeholders. This format
+     *   is used to decide the column and the position of the
+     *   aging
+     * * `positions` is an array that relates `%name%`
+     *   placeholders to unitary position values
+     *
+     * @var array data for the dataset aging
      */
     private $columns = array();
 
     public function __construct(array $data=array())
     {
         if(isset($data['files']) && is_array($data['files'])) {
-
+            $data = array_merge(array(
+                'format'    => 'env%column%-%name%.txt',
+                'positions' => array()
+            ), $data);
+            $regex = '/^'.preg_replace('/%(.+?)%/', '(?<$1>.+?)', $data['format']).'$/';
+            foreach($data['files'] as $filename => $aging) {
+                if ($data instanceof \SplFileInfo || $data instanceof \SplFileObject) {
+                    $filename = $file->getFileInfo();
+                }
+                if(preg_match($regex, $filename, $m)) {
+                    if(isset($data['positions'][$m['name']])) {
+                        $position = $data['positions'][$m['name']];
+                        $this->addAging($m['column'], $position, $aging);
+                    }
+                }
+            }
         } else {
             $this->setColumns($data);
         }
@@ -65,6 +96,27 @@ class DatasetAging implements \IteratorAggregate
             }
         }
     }
+
+    /**
+     * Return the data of a column by name
+     *
+     * @param string $name the name of the column
+     * @return array the column data
+     */
+    public function getColumn($name)
+    {
+        return $this->columns[$name];
+    }
+
+    /**
+     * Return the column names
+     *
+     * @return array the column names
+     */
+    public function getColumnNames()
+    {
+        return array_keys($this->columns);
+    }    
 
     /**
      * Return an array iterator to the parts

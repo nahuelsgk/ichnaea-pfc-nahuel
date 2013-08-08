@@ -45,7 +45,6 @@ class DatasetAgingTest extends \PHPUnit_Framework_TestCase
 			)
 		));
 
-        // $this->assertEquals(2, count($aging->getTrials()), "Trials are loaded correctly from string.");
-        
+        $this->assertEquals(array('BA'), $aging->getColumnNames(), "Dataset aging is loaded correctly from a files array.");
     }
 }
