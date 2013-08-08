@@ -40,11 +40,12 @@ class DatasetAgingTest extends \PHPUnit_Framework_TestCase
 			),
 			"format"	=> "env%column%-%name%.txt",
 			"positions"	=> array(
-				"Estiu" => 0.5,
-				"Hivern" => 0.0
+				"Estiu" => "0.5",
+				"Hivern" => "0.0"
 			)
 		));
 
         $this->assertEquals(array('BA'), $aging->getColumnNames(), "Dataset aging is loaded correctly from a files array.");
+        $this->assertEquals(5.34, $aging->getAging('BA', "0.0")->getValue(1, 48), "Dataset aging loaded has the correct values.");
     }
 }

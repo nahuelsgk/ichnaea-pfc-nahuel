@@ -134,6 +134,23 @@ class Aging implements \IteratorAggregate
     }
 
     /**
+     * Return an aging value
+     *
+     * @param int $trial position of the trial
+     * @param float $key key for the trial value
+     * @param mixed default value to return if the key or trial are not found
+     * @return array the trials data
+     */
+    public function getValue($trial, $key, $default=null)
+    {
+        if(isset($this->trials[$trial]) && is_array($this->trials[$trial])
+            && isset($this->trials[$trial][$key])) {
+            return $this->trials[$trial][$key];
+        }
+        return $default;
+    }
+
+    /**
      * Return an array iterator to the parts
      * so that the aging can be used in fereach
      *
