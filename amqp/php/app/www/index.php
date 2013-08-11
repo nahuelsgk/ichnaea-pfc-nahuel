@@ -56,6 +56,15 @@ $app->get('/build-models-tasks', function (Request $req) use ($app) {
 
 $app->post('/build-models-tasks', function (Request $req) use ($app) {
     $data = $req->request->get("build-models-task");
+    if(!array_key_exists('aging_positions', $data)) {
+        $data['aging_positions'] = array(
+            'Estiu'     => '0.5',
+            'Hivern'    => '0.0',
+            'Summer'    => '0.5',
+            'Winter'    => '0.0'
+        );
+    }
+
     $model = BuildModelsRequest::fromArray($data);
     $app['ichnaea_amqp']->send($model);
     $model = new BuildModelsResponse($model->getId());

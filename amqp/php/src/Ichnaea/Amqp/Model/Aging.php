@@ -38,13 +38,6 @@ class Aging implements \IteratorAggregate
     private $trials = array();
 
     /**
-     * End of line string used to split lines
-     *
-     * @var string
-     */
-    const EndOfLine = PHP_EOL;
-
-    /**
      * Constructor. The data parameter can be of multiple
      * types:
      *
@@ -64,7 +57,7 @@ class Aging implements \IteratorAggregate
             $contents = "";
             while (!$file->eof()) { 
                 $file->next(); 
-                $contents = $file->current().self::EndOfLine; 
+                $contents = $file->current().PHP_EOL; 
             } 
             $data = $contents;
         }
@@ -72,17 +65,27 @@ class Aging implements \IteratorAggregate
             // remove comments
             $data = preg_replace("/^\s*#.*$\n?/m", "", $data);
             // split by trials
-            $data = preg_split("/".self::EndOfLine."{2,}/", $data);
-            foreach($data as &$trial) {
-                $lines = explode(self::EndOfLine, trim($trial));
-                $trial = array();
-                foreach($lines as &$line) {
-                    // split each key value line
-                    $parts = preg_split("/\s+/", trim($line));
-                    if(count($parts) != 2) {
-                        throw new \InvalidArgumentException("Strange line '".$line."'.");
+            $trials = preg_split("/(\t?\n){2,}/", $data);
+            $data = array();
+            foreach($trials as $trial) {
+                $trial = trim($trial);
+                if(!empty($trial)) {
+                    $lines = preg_split("/(\t?\n)/", $trial);
+                    $trial = array();
+                    foreach($lines as $line) {
+                        $line = trim($line);
+                        if(!empty($line)) {
+                            // split each key value line
+                            $parts = preg_split("/\s+/", $line);
+                            if(count($parts) != 2) {
+                                throw new \InvalidArgumentException("Strange line '".$line."'.");
+                            }
+                            $trial[floatval($parts[0])] = floatval($parts[1]);
+                        }
                     }
-                    $trial[floatval($parts[0])] = floatval($parts[1]);
+                    if(!empty($trial)) {
+                        $data[] = $trial;
+                    }
                 }
             }
         }

@@ -195,10 +195,11 @@ public class BuildModelsProcessClient extends Client {
 	protected void processRequest(final String replyTo, byte[] body)
 			throws IOException, SAXException, InterruptedException, ParserConfigurationException {
 		getLogger().info("received a request");
+		getLogger().info(new String(body));
 		
+		getLogger().info("parsing the request");
 		BuildModelsRequest req = new XmlBuildModelsRequestReader().read(new String(body));
 
-		getLogger().info(new String(body));
 		getLogger().info("opening shell");
 		mShell.open();
 		

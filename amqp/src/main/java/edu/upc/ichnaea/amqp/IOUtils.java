@@ -21,10 +21,8 @@ public class IOUtils {
 		
 		byte[] buffer = new byte[1024];
 		int len = 0;
-		int off = 0;
 		while ((len = in.read(buffer)) != -1) {
-			out.write(buffer, off, len);
-			off += len;
+			out.write(buffer, 0, len);
 		}
 
 		return out.toByteArray();

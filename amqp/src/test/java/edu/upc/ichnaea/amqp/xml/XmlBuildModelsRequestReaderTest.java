@@ -3,11 +3,13 @@ package edu.upc.ichnaea.amqp.xml;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import edu.upc.ichnaea.amqp.IOUtils;
 import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
@@ -50,6 +52,18 @@ public class XmlBuildModelsRequestReaderTest {
     	BuildModelsFakeRequest fake = (BuildModelsFakeRequest) message;
     	assertEquals(10, fake.getDuration(), 0.000001);
     	assertEquals(1, fake.getInterval(), 0.000001);
+    }
+    
+    @Test    
+    public void testBigXML() throws SAXException, IOException
+    {
+    	InputStream in = getClass().getClassLoader().getResourceAsStream("build_models_request.xml");
+    	String xml = new String(IOUtils.read(in));
+    	BuildModelsRequest message = new XmlBuildModelsRequestReader().read(xml);
+    	
+    	assertEquals(104, message.getDataset().rows().size());
+    	assertEquals(28, message.getDataset().columns().size());
+    	assertEquals(21, message.getAging().keySet().size());
     }
 
 }

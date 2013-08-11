@@ -128,6 +128,15 @@ class BuildModelsRequest
             $this->setDataset($data['dataset']);
         }
         if (array_key_exists('aging', $data)) {
+            if(array_key_exists('aging_filename_format', $data)) {
+                $data['aging'] = array(
+                    'files'     => $data['aging'],
+                    'format'    => $data['aging_filename_format']
+                );
+                if(array_key_exists('aging_positions', $data)) {
+                    $data['aging']['positions'] = $data['aging_positions'];
+                }
+            }
             $this->setAging($data['aging']);
         }
     }

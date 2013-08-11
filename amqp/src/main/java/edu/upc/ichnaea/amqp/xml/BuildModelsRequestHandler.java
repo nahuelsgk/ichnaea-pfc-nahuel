@@ -80,7 +80,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
 		}
 		if(mDatasetHandler != null) {
 			mDatasetHandler.startElement(uri, localName, qName, atts);
-		} else if(mDatasetHandler != null) {
+		} else if(mAgingHandler != null) {
 			mAgingHandler.startElement(uri, localName, qName, atts);			
 		} else if(localName.equalsIgnoreCase(TAG_REQUEST)) {
 			mId = atts.getValue(ATTR_ID);

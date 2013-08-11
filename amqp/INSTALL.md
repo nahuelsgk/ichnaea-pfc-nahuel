@@ -32,7 +32,7 @@ This will build a file in `target/ichnaea-amqp.jar`.
 
 To run the basic build-models:process consumer:
 
-    ./target/ichanea-amqp.jar build-models:process -i /path/to/ichnaea.sh
+    ./target/ichnaea-amqp.jar build-models:process -i /path/to/ichnaea.sh
 
 To run the basic build-models:request publisher:
 
