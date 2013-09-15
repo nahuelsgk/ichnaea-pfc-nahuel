@@ -9,7 +9,7 @@ public class BuildModelsFakeRequest extends BuildModelsRequest {
 	protected float mDuration;
 	protected float mInterval;
 	
-	final static String DATA_REGEX = "(?<duration>\\d+):(?<interval>\\d+)";
+	final static String DATA_REGEX = "(?<duration>[\\d.]+):(?<interval>[\\d.]+)";
 	
 	public BuildModelsFakeRequest(String id, float duration, float interval) {
 		super(id);
