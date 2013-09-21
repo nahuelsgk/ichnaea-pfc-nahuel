@@ -42,6 +42,11 @@ class Matrix
      */								
     private $owner;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="trainer")
+     */
+    private $training;
+    
 	/**
 	 * @var boolean  
 	 * 

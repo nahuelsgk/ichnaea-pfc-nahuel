@@ -30,7 +30,7 @@
 <script src="{{ asset('bootstrap/js/bootstrap-scrollspy.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-transition.js') }}"></script>
 <script src="{{ asset('Ichnaea/js/common.js') }}"></script>
-<script src="{{ asset('Ichnaea/js/jquery.easyui.min.js') }}"></script>
+<script src="{{ asset('Ichnaea/js/jquery-validation-1.11.1/dist/jquery.validate.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('Ichnaea/css/common.css') }}">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css">
@@ -88,14 +88,12 @@
          </div>
         </div>
         
-        <div class="container">
         
-        <h2>{% block header_page_title %}{% endblock %}</h2>
         
         {% block breadcrumbs %}{% endblock %}
         
 		{% block body %}{% endblock %}
-		</div>
+	
 		<script language="javascript" type="text/javascript">
 		{% block extra_javascript %}{% endblock %}
 		</script>

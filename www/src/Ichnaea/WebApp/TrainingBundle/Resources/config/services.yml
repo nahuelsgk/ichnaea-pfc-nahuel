@@ -1,0 +1,7 @@
+parameters:
+#    ichnaea_web_app_training.example.class: Ichnaea\WebApp\TrainingBundle\Example
+
+services:    
+    ichnaea.training_service:
+        class: Ichnaea\WebApp\TrainingBundle\Services\TrainingService
+        arguments: [@doctrine.orm.entity_manager, @ichnaea.makefileService]

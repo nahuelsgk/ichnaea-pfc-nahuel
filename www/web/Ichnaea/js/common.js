@@ -52,7 +52,7 @@ function sendEvent(uri, method, params, success_callback){
 		},
 		error: function(data, type){
 			  if(type==='timeout') {
-				  errorMessage("Connection problems. Can't send request")
+				  errorMessage("Connection problems. Can't send request");
 			  }
 			  else{
 				  errorMessage('Ajax error');

@@ -1,10 +1,11 @@
-{% extends '::IchnaeaBase.html.twig' %}
+{% extends '::GUI/withContainer.html.twig' %}
 
 {% block page_title %}System's seasons list{% endblock %}
 
 {% block header_page_title %}System's seasons{% endblock %}
 
 {% block body %}
+<div class="container">
  <div id="seasons_list" style="float: left; width: 50%; margin: 10px;">
   <h2>Seasons</h2>
    <table>
@@ -35,6 +36,7 @@
   <h2>Season content</h2>
   <textarea id="season_content_text" cols="40" rows="20" readonly></textarea>
  </div>
+</div>
 </div>
 {% endblock %}
 

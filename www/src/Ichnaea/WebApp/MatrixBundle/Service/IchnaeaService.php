@@ -11,6 +11,7 @@ use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSet;
 use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSetComponent;
 use Ichnaea\WebApp\MatrixBundle\Entity\Matrix;
 use Ichnaea\WebApp\MatrixBundle\Entity\Sample;
+use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as Utils;
 
 class IchnaeaService{
     
@@ -18,7 +19,7 @@ class IchnaeaService{
 	
 	public function __construct(EntityManager $em){
 		$this->em = $em;
-	}
+	} 	
 	
 	public function createSeason($name, $notes, $start_date, $end_date, $content)
 	{
@@ -233,13 +234,22 @@ class IchnaeaService{
 		return $this->em->getRepository('MatrixBundle:Matrix')->find($id);
 	}
 	
+	public function getM($id)
+	{
+		$matrix = $this->em->getRepository('MatrixBundle:Matrix')->find($id);
+		$sample = $matrix->getRows();
+		
+		#We accept that the matrixs are complete,no empty values. So we can get just the first sample 
+		$sample_data = $sample[0]->getSamples();
+		return count($sample_data); 
+	}
+	
 	public function updateMatrixConfiguration($user_id, $matrix_id, $visibility = TRUE){
 		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
 		$matrix = $matrixRepository->find($matrix_id);
 		$matrix->setVisible($visibility);
 		$this->em->persist($matrix);
 		$this->em->flush();
-		
 		return $matrix;
 	}
 
@@ -277,6 +287,16 @@ class IchnaeaService{
 		
 		$this->em->persist($sample);
 		$this->em->flush();		
+	}
+	
+	public function buildFiles($matrix_id){
+		
+		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
+		$matrix = $matrixRepository->find($matrix_id);
+		
+		$utils = new Utils();
+		$utils->writeMatrixToDisk($matrix);
+		
 	}
 	
 	public function echoTest(){

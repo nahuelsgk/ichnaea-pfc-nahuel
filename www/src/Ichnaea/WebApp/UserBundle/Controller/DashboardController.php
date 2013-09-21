@@ -11,6 +11,7 @@ class DashboardController extends Controller{
 	{
 		return $this->render('UserBundle::dashboard.html.twig');	
 	}
+	
 }
 
 ?>

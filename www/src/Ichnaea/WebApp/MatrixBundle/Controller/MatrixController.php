@@ -69,6 +69,13 @@ class MatrixController extends Controller
 		return $this->render('MatrixBundle:Matrix:view.html.twig', array('matrix' => $matrix));
 	}
 	
+	public function buildFilesAction($matrix_id){
+		$ichnaeaService = $this->get('ichnaea.service');
+		$matrix = $ichnaeaService->buildFiles($matrix_id);
+		return $this->redirect($this->generateUrl('matrix_ui_edit',array("matrix_id" => $matrix_id)));
+		
+	}
+	
 	private function resolveMatrixGUI($matrix){
 		if($matrix->getVisible() == TRUE)
 				return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id' => $matrix->getId())));

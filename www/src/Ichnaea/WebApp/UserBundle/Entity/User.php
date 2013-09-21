@@ -2,8 +2,9 @@
 
 namespace Ichnaea\WebApp\UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
@@ -23,10 +24,14 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Matrix", mappedBy="owner") 
-     * 
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Matrix", mappedBy="owner")  
      */
     protected $matrixs;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="trainer")  
+     */
+    protected $trainings;
     
     public function __construct()
     {
@@ -74,5 +79,38 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add trainings
+     *
+     * @param \Ichnaea\WebApp\TrainingBundle\Entity\Training $trainings
+     * @return User
+     */
+    public function addTraining(\Ichnaea\WebApp\TrainingBundle\Entity\Training $trainings)
+    {
+        $this->trainings[] = $trainings;
+
+        return $this;
+    }
+
+    /**
+     * Remove trainings
+     *
+     * @param \Ichnaea\WebApp\TrainingBundle\Entity\Training $trainings
+     */
+    public function removeTraining(\Ichnaea\WebApp\TrainingBundle\Entity\Training $trainings)
+    {
+        $this->trainings->removeElement($trainings);
+    }
+
+    /**
+     * Get trainings
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrainings()
+    {
+        return $this->trainings;
     }
 }

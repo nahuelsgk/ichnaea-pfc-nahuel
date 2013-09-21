@@ -1,19 +1,10 @@
-{% extends '::IchnaeaGui.html.twig' %}
+{% extends '::GUI/withOutContainer.html.twig' %}
 
 {% block page_title %}Viewing matrix {{matrix.name}} {% endblock %}
-{% block body %}
 
-{% if app.user.id == matrix.owner.id %}
-<div class="container">
-<form class="form-inline" action="{{path('matrix_save_configuration', {'matrix_id':matrix.id})}}" method="post">
- <legend>Configuration</legend>
- <input type="radio" name="visible" value="no" {% if matrix.visible == false %}checked{% endif %}>Invisible</input>
- <input type="radio" name="visible" value="yes" {% if matrix.visible == true %}checked{% endif %}>Visible</input>
- <button type="submit" class="btn">Save configuration</button>
-</form>
-</div>
-{% endif %}
+{% block main_content %}
 
+<div class="container-full-width">
 <table border="0" cellpadding="0" cellspacing="0" class='main'>
             <tr>
                 <td class='tablefrozencolumn'>

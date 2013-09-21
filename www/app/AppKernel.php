@@ -26,7 +26,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             new Ichnaea\ApiBundle\IchnaeaApiBundle(),
-            
+            new Ichnaea\WebApp\TrainingBundle\IchnaeaWebAppTrainingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -124,3 +124,11 @@ matrix_save_configuration:
         _method: POST
         matrix_id: "\d+"
 
+matrix_build_files:
+    pattern: /matrix/{matrix_id}/build_files
+    defaults: { _controller: MatrixBundle:Matrix:buildFiles}
+    requirements:
+        _method: POST
+        matrix_id: "\d+"
+    
+

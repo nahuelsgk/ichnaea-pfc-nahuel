@@ -1,3 +1,7 @@
+ichnaea_web_app_training:
+    resource: "@IchnaeaWebAppTrainingBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ichnaea_api:
     resource: "@IchnaeaApiBundle/Resources/config/routing.yml"
     prefix:   /
@@ -14,5 +18,5 @@ home:
     pattern: /
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /variable/list
+        path: /dashboard
         permanent: true

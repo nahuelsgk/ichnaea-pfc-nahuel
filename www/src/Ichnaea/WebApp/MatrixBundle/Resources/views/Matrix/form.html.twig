@@ -1,8 +1,8 @@
-{% extends '::IchnaeaBase.html.twig' %}
+{% extends '::GUI/withContainer.html.twig' %}
 
 {% block page_title %}Create a new matrix{% endblock %}
 
-{% block body %}
+{% block main_content %}
 <form method="post" id="seasonForm" class="form-horizontal" action="{{path('matrix_create_action')}}">
  <div class="control-group">
   <label class="control-label" for="seasonName">Name</label>
