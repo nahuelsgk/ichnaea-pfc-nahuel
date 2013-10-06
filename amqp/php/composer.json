@@ -13,6 +13,7 @@
         "videlalvaro/php-amqplib": "2.0.*@dev"
     },
     "require-dev": {
+        "ex-sqlite": "*",
         "silex/silex": "1.1.*@dev",
         "doctrine/dbal": "2.3.*",
         "phpunit/phpunit": "3.7.*"        

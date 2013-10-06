@@ -75,7 +75,7 @@ In the `app` folder there is a test app, to install it do the following.
 
 * Run the java ichnaea request process consumer
 
-    mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh"
+    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh"
 
 * Run the php response process consumer
 

@@ -119,9 +119,9 @@ public class BuildModelsProcessClient extends Client {
 		BuildModelsResponse resp;
 		
 		if(req.getDataset() == null) {
-			err = "No dataset recieved.";
+			err = "No dataset received.";
 		} else if(req.getAging() == null) {
-			err = "No aging recieved.";
+			err = "No aging received.";
 		}
 		if(err != null) {
 			resp = new BuildModelsResponse(replyTo, start, null, err);

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.lang.IllegalArgumentException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -22,7 +23,7 @@ public class AgingFolderReader {
 	protected boolean mStrict = false;
 	
 	public AgingFolderReader() {
-		mFormat = "env%column%-%name%.txt";
+		mFormat = "env%column%-%aging%.txt";
 		mPositions = new HashMap<String,Float>();
 		mPositions.put("Summer", 0.5f);
 		mPositions.put("Estiu", 0.5f);
@@ -41,9 +42,19 @@ public class AgingFolderReader {
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		for(File file : folder.listFiles()) {
 			Matcher match = pattern.matcher(file.getName());
-			if(match.matches()) {		
-				String col = match.group("column");
-				String agingName = match.group("aging");
+			if(match.matches()) {
+				String col;
+				try{
+					col = match.group("column");
+				}catch(IllegalArgumentException e){
+					throw new InvalidParameterException("Aging file pattern does not contain the %column% marker.");
+				}
+				String agingName;
+				try{			
+					agingName = match.group("aging");
+				}catch(IllegalArgumentException e){
+					throw new InvalidParameterException("Aging file pattern does not contain the %aging% marker.");
+				}
 				if(!mPositions.containsKey(agingName)) {
 					if(mStrict) {
 						throw new InvalidParameterException("Could not find aging with name '"+agingName+"' in positions.");

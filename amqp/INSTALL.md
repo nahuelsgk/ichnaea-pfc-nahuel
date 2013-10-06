@@ -14,7 +14,7 @@ main jar once.
 * install oracle jdk 7
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
-    sudo apt-get install oracle-jdk7-installer
+    sudo apt-get install oracle-java8-installer
 
 * install rabbitmq-server
     sudo apt-get install rabbitmq-server
@@ -47,7 +47,7 @@ Use the `-h` command line argument to get all the available options.
 * install oracle jdk 7
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
-    sudo apt-get install oracle-jdk7-installer
+    sudo apt-get install oracle-java8-installer
 
 * install rabbitmq-server
     sudo apt-get install rabbitmq-server
@@ -86,17 +86,14 @@ Use the `-h` command line argument to get all the available options.
 * run the project jar
 
     * listen to new build-models requests
-    mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh"
-    mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh -s ssh://user:password@localhost"
-    
-    * issue a test build-models request
-    mvn exec:java -Dexec.args="build-models:request --dataset test.csv"
-    
+    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh"
+    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh -s ssh://user:password@localhost"
+
+    * issue a fake test build-models request
+    mvn exec:java -Dexec.args="build-models:request --fake 10:1"
+
     * debug a build-models request
-    mvn exec:java -Dexec.args="build-models:request --debug
-    	--dataset ../kvm/fixtures/dadesOrigSenseDA.csv
-    	--season-positions 
-    	--seasons ../kvm/files/ichnaea/data/ageing/env/env%column%-%season%.txt"
+    mvn exec:java -Dexec.args="build-models:request --debug --dataset ../kvm/fixtures/cyprus.csv --aging ../kvm/fixtures/aging/env%column%-%aging%.txt"
 
 ### PHP setup
 

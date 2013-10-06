@@ -146,7 +146,7 @@ public class BuildModelsRequestApp extends App {
 		}
 		if(!folder.canRead()) {
 			throw new IllegalArgumentException("Cannot read aging directory");
-		}		
+		}
 		String parts[] = mAgingPositions.split(",");
 		Map<String, Float> positions = new HashMap<String, Float>();
 		for(String part : parts) {

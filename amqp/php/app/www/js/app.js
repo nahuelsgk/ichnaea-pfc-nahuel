@@ -7,7 +7,7 @@ function BuildModelsTaskFormCtrl($scope, $routeParams, $http) {
     fake_interval: 1,
     dataset_format: 'csv',
     aging_format: 'tab',
-    aging_filename_format: 'env%column%-%name%.txt'
+    aging_filename_format: 'env%column%-%aging%.txt'
   };
 
   $scope.$on('filesSelected', function(ev, files, contents, name) {
