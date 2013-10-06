@@ -13,7 +13,7 @@ use \Ichnaea\Amqp\Model\BuildModelsResponse;
 $dbConfig = new DbConfiguration();
 $dbParams = array(
     'driver'   => 'pdo_sqlite',
-    'path'     => __DIR__.'/../app.db',
+    'path'     => __DIR__.'/../db/app.db',
 );
 $db = DbDriverManader::getConnection($dbParams, $dbConfig);
 

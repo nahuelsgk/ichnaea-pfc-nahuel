@@ -22,10 +22,10 @@ class DatasetAging implements \IteratorAggregate
      *   be an array or something that can be loaded by
      *   the aging class
      * * `format` is a format string that can contain
-     *   `%column%` and `%name%` placeholders. This format
+     *   `%column%` and `%aging%` placeholders. This format
      *   is used to decide the column and the position of the
      *   aging
-     * * `positions` is an array that relates `%name%`
+     * * `positions` is an array that relates `%aging%`
      *   placeholders to unitary position values
      *
      * @var array data for the dataset aging
@@ -36,7 +36,7 @@ class DatasetAging implements \IteratorAggregate
     {
         if(isset($data['files']) && is_array($data['files'])) {
             $data = array_merge(array(
-                'format'    => 'env%column%-%name%.txt',
+                'format'    => 'env%column%-%aging%.txt',
                 'positions' => array()
             ), $data);
             $regex = '/^'.preg_replace('/%(.+?)%/', '(?<$1>.+?)', $data['format']).'$/';
@@ -45,8 +45,8 @@ class DatasetAging implements \IteratorAggregate
                     $filename = $file->getFileInfo();
                 }
                 if(preg_match($regex, $filename, $m)) {
-                    if(isset($data['positions'][$m['name']])) {
-                        $position = $data['positions'][$m['name']];
+                    if(isset($data['positions'][$m['aging']])) {
+                        $position = $data['positions'][$m['aging']];
                         $this->setAging($m['column'], $position, $aging);
                     }
                 }

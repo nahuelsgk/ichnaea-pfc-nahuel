@@ -69,6 +69,8 @@ In the `app` folder there is a test app, to install it do the following.
 
     php php/app/bin/build_database.php
 
+Please make shure that the apache user has write permissions for the `db` folder.
+
 * Change config.php to point to a running amqp server
 
 * Configure the webserver to point to `php/app/www`

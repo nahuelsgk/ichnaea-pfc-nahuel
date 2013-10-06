@@ -9,7 +9,7 @@ $config = new Configuration();
 
 $connectionParams = array(
     'driver'   => 'pdo_sqlite',
-    'path'     => __DIR__.'/../app.db',
+    'path'     => __DIR__.'/../db/app.db',
 );
 $conn = DriverManager::getConnection($connectionParams, $config);
 $sm = $conn->getSchemaManager();

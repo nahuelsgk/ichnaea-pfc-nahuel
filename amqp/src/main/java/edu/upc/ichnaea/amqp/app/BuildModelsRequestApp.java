@@ -34,7 +34,7 @@ public class BuildModelsRequestApp extends App {
 	}
 	
 	BuildModelsRequestClient mClient;
-	String mAgingPath = "env%column%-%name%.txt";
+	String mAgingPath = "env%column%-%aging%.txt";
 	String mAgingPositions = "Summer:0.5, Winter:0.0, Estiu:0.5, Hivern:0.0";
 	Format mDatasetFormat = Format.Csv;
 	Reader mDatasetReader;

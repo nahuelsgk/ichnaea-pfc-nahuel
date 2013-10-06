@@ -21,7 +21,7 @@ $app['ichnaea_amqp'] = new Connection(ICHNAEA_AMQP_URL);
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_sqlite',
-        'path'     => __DIR__.'/../app.db',
+        'path'     => __DIR__.'/../db/app.db',
     ),
 ));
 

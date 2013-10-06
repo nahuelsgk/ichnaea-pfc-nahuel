@@ -100,3 +100,17 @@ Use the `-h` command line argument to get all the available options.
 See `php/README.md`.
 
 
+#### Possible problems
+
+By default the server will [block connections](http://stackoverflow.com/questions/10427028/rabbitmq-connection-in-blocking-state)
+if it does not have enough memory or disk space. To check if the requests are being connections instal the web managment.
+
+    sudo rabbitmq-plugins enable rabbitmq_management
+
+Restart the server for the changes to take effect
+
+    sudo service rabbitmq-server restart
+
+Open the web browser at http://localhost:55672 and enter with user guest password guest.
+
+

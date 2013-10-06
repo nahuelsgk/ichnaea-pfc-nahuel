@@ -38,7 +38,7 @@ class DatasetAgingTest extends \PHPUnit_Framework_TestCase
 	48   5.34
 	120  5.87",
 			),
-			"format"	=> "env%column%-%name%.txt",
+			"format"	=> "env%column%-%aging%.txt",
 			"positions"	=> array(
 				"Estiu" => "0.5",
 				"Hivern" => "0.0"
