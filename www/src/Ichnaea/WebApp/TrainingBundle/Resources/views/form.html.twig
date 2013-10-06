@@ -1,0 +1,118 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Create a training{% endblock %}
+
+{% block body %}
+<div class="container">
+ <form method="post" id="trainingForm" class="form-horizontal" action="{{path('submit_training', {"matrix_id": matrix_id})}}">
+  <legend>Create a new training</legend>
+  <div class="control-group">
+   <label class="control-label" for="Name">Name</label>
+    <div class="controls">
+     <input type="text" id="name" name="name" placeholder="Training name" required>
+    </div>
+  </div>
+  <div class="control-group">
+   <label class="control-label" for="Name">Description</label>
+    <div class="controls">
+     <input type="text" id="description" name="description" placeholder="Brief description">
+    </div>
+  </div>
+  <legend>Advanced options <a id="expand_action" class="btn btn-mini"><i class="icon-plus"></i></a></legend>
+  <div id="advanced_options">
+  <div class="control-group">
+   <label class="control-label" for="Name">K1 times K2</label>
+    <div class="controls">
+     K1 <input type="text" id="k1" name="k1" placeholder="Default value: 10">
+    </div>
+    <div class="controls">
+     K2 <input type="text" id="k2" name="k2" placeholder="Default value: 10">
+    </div>
+  </div>
+  <div class="control-group">
+   <label class="control-label" for="Name">Percentage best models</label>
+    <div class="controls">
+     <input type="text" id="best_models_percentage" name="best_models_percentage" placeholder="Default value: 0.25">
+    </div>
+  </div>
+  <div class="control-group">
+   <label class="control-label" for="min_max_size">Size of variable's set</label>
+    <div class="controls">
+     Min size <input type="text" id="min_size_variable_set" name="min_size_variable_set" placeholder="Default value: 1">
+    </div>
+    <div class="controls">
+     Max size <input type="text" id="max_size_variable_set" name="max_size_variable_set" placeholder="Default value: 5">
+    </div>
+  </div>
+  <div class="control-group">
+   <label class="control-label" for="type_of_search">Type of search</label>
+    <div class="controls">
+     <select id="type_of_search" name="type_of_search">
+       <option value="backward">Backward</option>
+       <option value="fordward">Fordward</option>
+       <option value="exhaustive">Exhaustive</option>
+     </select>
+    </div>
+  </div>
+  </div>
+  <div class="form-actions">
+   <button type="submit" class="btn btn-primary">Save changes</button>
+  </div>
+ </form>
+</div>
+{% endblock %}
+
+{% block extra_javascript %}
+$(document).ready(function(){
+
+ $("#advanced_options").hide();
+ $("#expand_action").click(function()
+  {
+    $("#advanced_options").slideToggle(500);
+  });
+  
+ $( "#trainingForm" ).validate({
+  rules: {
+    k1: {
+      number: true
+    },
+    k2: {
+      number: true
+    },
+    max_size_variable_set: {
+      number: true,
+      max: {{n_columns}},
+      min: function(){if ($('#min_size_variable_set').value()) return ('#min_size_variable_set').value(); return 1;}
+    },
+    min_size_variable_set: {
+      number: true,
+      max: function(){if ($('#max_size_variable_set').value()) return ('#max_size_variable_set').value(); return 5;},
+      min: 0,
+      //Falta que min <= max
+    },
+    best_models_percentage: {
+      number: true,
+      max: 100,
+      min: 0,
+    },
+    min_size_variable_set: {
+      number: true
+    },
+    max_size_variable_set: {
+      number: true
+    }
+  }, 
+  messages: {
+    k1: {
+      number: "Must be an integer"
+    },
+    k2: {
+      number: "Must be an integer"
+    },
+    best_models_percentage: {
+      number: "Must be a decimal between 0 and 100"
+    }
+  }
+});
+ });
+{% endblock %}

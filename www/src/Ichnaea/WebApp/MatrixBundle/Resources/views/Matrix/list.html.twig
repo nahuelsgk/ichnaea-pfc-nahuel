@@ -1,0 +1,32 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}System's matrixs{% endblock %}
+
+{% block main_content %}
+<table>
+ <theader>
+   <th>&nbsp;</th>
+   <th>Name</th>
+ </theader>
+ <tbody>
+ {% for matrix in matrixs %}
+   <tr>
+   <td>
+    <a class="btn btn-mini" href="{{path('matrix_ui_view', {'matrix_id': matrix.id})}}" name="view_matrix" title="View matrix">
+       <i class="icon-eye-open"></i>
+     </a>
+     <a class="btn btn-mini" href="{{path('create_training_form', {'matrix_id': matrix.id})}}" name="create_training" title="Create training">
+       <i class="icon-road"></i>
+     </a>
+   </td>
+   <td>
+     {{matrix.name}}
+   </td>
+   </tr>
+ {% endfor %}
+ </tbody>
+</table>
+{% endblock %}
+
+{% block extra_javascript %}
+{% endblock %}

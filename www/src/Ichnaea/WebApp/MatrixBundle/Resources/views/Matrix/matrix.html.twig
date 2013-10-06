@@ -1,0 +1,187 @@
+{% extends '::GUI/withOutContainer.html.twig' %}
+
+{% block page_title %}Configuring matrix {{matrix.name}} {% endblock %}
+{% block main_content %}
+<div class="container">
+<form class="form-inline" action="{{path('matrix_save_configuration', {'matrix_id':matrix.id})}}" method="post">
+ <legend>Configuration</legend>
+ <label class="radio inline">Visible</label>
+ <input type="radio" name="visible" value="no" {% if matrix.visible == false %}checked{% endif %}>Invisible</input>
+ <input type="radio" name="visible" value="yes" {% if matrix.visible == true %}checked{% endif %}>Visible</input>
+ <button type="submit" class="btn">Save configuration</button>
+</form>
+<form class="form-inline" action="{{path('matrix_build_files', {'matrix_id': matrix.id})}}" onsubmit="confirm_build_matrix_files();" method="post">
+<button class="btn btn-primary" >Build Matrix Files</button>
+</form>
+</div>
+<table border="0" cellpadding="0" cellspacing="0" class='main'>
+            <tr>
+                <td class='tablefrozencolumn'>
+                    <div id='divroot' class='root'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='root'>
+                            <tr>
+                                <td class='inner-head frozencol colwidth head' align="center">
+                                  {{matrix.name}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='divfrozen' class='frozen'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='frozen'>
+							{% for sample in matrix.rows %}
+   							<tr id="sample-{{sample.id}}">
+   							    <td align="center" class='frozen-index'>{{loop.index}}</td>
+   								<td class='{% if loop.last %}inner-frozen-last{% else %}inner-frozen{% endif %} frozencol'>
+   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
+   									<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
+   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleOrigin-{{sample.id}}" value="{{sample.origin}}" placeholder="Sample origin"></input>
+   									<a class="btn btn-mini" style="visibility: hidden;" 
+   										id="sample-{{sample.id}}-action" 
+   										title="Update sample info" 
+   										onclick="updateSampleData(
+   													{{sample.id}}, 
+   													$('#sampleName-{{sample.id}}').val(), 
+   													$('#sampleDate-{{sample.id}}').val(),
+   													$('#sampleOrigin-{{sample.id}}').val(),
+   													'sample-{{sample.id}}-action');">
+   									<i class="icon-edit"></i></a>
+   								</td>
+   							</tr>	
+   							{% endfor %}
+                        </table>
+                    </div>
+                </td>
+                <td class='tablecontent'>
+                    <div id='headscroll' class='divhead'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='head'>
+                            <tr>
+                                {% for column in matrix.columns %}
+								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
+								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 
+								    <select id="seasonSetListVariable-{{column.id}}" class="input-medium" 
+								      onchange="displayHiddenElement('column-{{column.id}}-action');">
+								    {% if column.variable is not null and column.seasonSet is not null%} 
+								     <option value="{{column.seasonSet.id}}">{{column.seasonSet.name}}</option>
+								    {% endif %}
+								    </select>
+								    <br/>
+								    <a title="Variable selection"><i class="icon-wrench"></i></a>
+								    <select placeholder="Select the variable" class="input-medium" id="selectedSingleVariable-{{column.id}}" onChange="loadSeasonSetIntoSelectListAction(this.value, 'seasonSetListVariable-{{column.id}}');displayHiddenElement('column-{{column.id}}-action');"">
+								        <option value="0">None</option>
+								      	{% for availableVar in availableVars %}
+								        	<option value="{{availableVar.id}}" {% if column.variable is not null and column.variable.id == availableVar.id%} selected="selected" {% endif %}>{{availableVar.name}} </option>
+								      	{% endfor %}
+								    </select>
+								    <br/>
+								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a>
+								   	<input type="text" class="input-medium" id="column-name-{{column.name}}" value="{{column.name}}" onchange="displayHiddenElement('column-{{column.id}}-action');">
+								    <br/>
+								    <a class="btn btn-mini" style="visibility: hidden;" id="column-{{column.id}}-action" onclick="updateVariableConfigurationAction(
+								   			'{{column.id}}',
+								   			$('#column-name-{{column.name}}').val(),
+								   			$('#selectedSingleVariable-{{column.id}}').val(),
+								   			$('#seasonSetListVariable-{{column.id}}').val(),
+								   			'column-{{column.id}}-action'
+								   		);"><i class="icon-edit"></i></a>
+								   </td>
+								   {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='contentscroll' class='content' onscroll='reposHead(this);'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='content' id='innercontent'>
+                        {% for sample in matrix.rows %}
+						 <tr>
+						   {% for value in sample.samples %}
+						   <td class='inner col_content' align="center">{{value}}</td>
+						   {% endfor %}
+						 </tr>
+						 {% endfor %}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+{% endblock %}
+
+{% block extra_javascript %}
+function displaySuccessfulAction(elem)
+{
+  var previous_content = $('#'+elem).html(); 
+  console.log(previous_content);
+  var html_ok = ('<i class="icon-ok"></i>');
+  $('#'+elem).html(html_ok);
+  $('#'+elem).fadeOut(1500, function(){
+  	$('#'+elem).html(previous_content);
+  	$('#'+elem).css('display', 'inline');
+  	$('#'+elem).css('visibility', 'hidden');
+  });
+  
+}
+
+function confirm_build_matrix_files()
+{
+  confirmMessage("You are about to rebuild matrix files. Are you sure do you want to continue?", function(){return true;});
+}
+
+function displayHiddenElement(elem)
+{
+
+  $('#'+elem).css('visibility', 'visible');
+}
+
+function renderListSeasonSets(listData, toListId)
+{
+    $('#'+toListId).empty();
+    $.each(listData, function (index, value){
+        	$('#'+toListId).append($('<option>', {value: value.id, text: value.name}));
+    });
+}
+
+function updateVariableConfigurationAction(column_id, column_name, column_variable_id, season_set_id, column_button_action)
+{
+   sendEvent('{{path('matrix_api', {"matrix_id": matrix.id })}}/column/'+column_id, 'PUT', {name: column_name, variable: column_variable_id, season: season_set_id}, function (data){displaySuccessfulAction(column_button_action)});    
+}
+
+
+function updateSampleData(sample_id, sample_name, sample_date, sample_origin, sample_button_action)
+{
+   sendEvent('{{path('sample_api', {"matrix_id": matrix.id })}}'+sample_id, 'PUT', {name: sample_name, date: sample_date, origin:sample_origin }, function (data){displaySuccessfulAction(sample_button_action)});
+}
+
+function loadSeasonSetIntoSelectListAction(variable_id, idOptionList)
+{
+	sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
+}
+
+//@TODO: move to jquery
+function reposHead(e) 
+{
+    var h = document.getElementById('headscroll');
+    h.scrollLeft = e.scrollLeft;
+    var f = document.getElementById('divfrozen');
+    f.scrollTop = e.scrollTop;
+}
+
+//@TODO: move to jquery
+function reposHorizontal(e) {
+    var h = document.getElementById('headscroll');
+    var c = document.getElementById('contentscroll');
+    h.scrollLeft = e.scrollLeft*50;
+    c.scrollLeft = e.scrollLeft*50;
+}
+
+//@TODO: move to jquery
+function reposVertical(e) {
+    var h = document.getElementById('divfrozen');
+    var c = document.getElementById('contentscroll');
+    h.scrollTop = e.scrollTop*100;
+    c.scrollTop = e.scrollTop*100;
+}
+function init_datepicker(){
+    $('.sampleDate').datepicker({dateFormat: "dd-mm-yy"});
+}
+$(document).ready(function(){
+    init_datepicker();
+ });
+{% endblock %}

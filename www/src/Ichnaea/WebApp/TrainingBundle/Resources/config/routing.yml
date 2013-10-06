@@ -1,0 +1,33 @@
+ichnaea_web_app_training_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Default:index }
+
+create_training_form:
+    pattern: /matrix/{matrix_id}/training
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:getForm }
+    requirements: 
+        _method: GET
+        matrix_id: "\d+"
+        
+training_view:
+    pattern: /matrix/{matrix_id}/training/{training_id}
+    defaults: {_controller: IchnaeaWebAppTrainingBundle:Training:viewTraining, check: false }
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+        
+training_check:
+    pattern: /matrix/{matrix_id}/training/{training_id}/check
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:viewTraining, check: true }
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+    
+submit_training:
+    pattern: /matrix/{matrix_id}/training/submit
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:postTraining}
+    requirements:
+        _method: POST
+        matrix_id: "\d+"

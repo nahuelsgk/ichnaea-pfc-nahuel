@@ -1,0 +1,32 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Viewing {{training.name}}{% endblock %}
+
+{% block body %}
+<div class="container">
+ <legend>{{training.name}} <i>created by</i> {{training.trainer.username}} <i>on</i> {{training.created|date('d-m-Y')}}</i></legend>
+ <span>Description: </span><span>{{training.description}}<span></br>
+ <legend>Configuration</legend>
+ <table class="table">
+ <tr>
+   <th>K1</th>
+   <th>K2</th>
+   <th>Best models</th>
+   <th>Minimum size variable set</th>
+   <th>Maximum size variable set</th>
+   <th>Type of search</th>
+ </tr>
+ <tr>
+   <td>{{training.k1}}</td> 
+   <td>{{training.k2}}</td>
+   <td>{{training.bestModels}} %</td>
+   <td>{{training.minSizeVariableSet}}</td>
+   <td>{{training.maxSizeVariableSet}}</td>
+   <td>{{training.typeOfSearch}}</td>
+ </tr>
+ </table>
+ <form name="check_trainig" action="{{path('training_check', {matrix_id: training.matrix.id, training_id: training.id})}}">
+ <button type="submit" class="btn btn-primary">Check training</button>
+ </form>
+ <legend>Results</legend>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Your dashboard{% endblock %}
+
+
+{% block main_content %}
+<h1>Welcome {{app.user.username}}</h1>
+
+<div style="float: left; width: 45%;">
+ <legend>Your matrixs</legend>
+ <table class="table">
+ <tr>
+  <th>&nbsp;</th>
+  <th>Name</th>
+  <th>&nbsp;</th>
+ </tr>
+ {% for matrix in app.user.matrixs %}
+ <tr>
+  <td>
+  	<a class="btn btn-mini" href="{{path('matrix_ui_edit', {'matrix_id': matrix.id})}}" name="view_matrix" title="Configure columns and samples">
+    <i class="icon-edit"></i></td>
+  <td>{{matrix.name}}</td>
+ </tr>
+ {% endfor %}
+ </table>
+</div>
+
+<div style="float: right; width: 45%;">
+ <legend>Your trainings</legend>
+ <table class="table">
+ <tr>
+  <th>&nbsp;</th>
+  <th>Name</th>
+  <th>Status</th>
+ </tr>
+ {% for training in app.user.trainings %}
+ <tr>
+   <td>
+     <a class="btn btn-mini" href="{{path('training_view', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
+     <i class="icon-eye-open"></i></td>
+   <td>{{training.name}}</td>
+   <td></td>
+ </tr>
+ {% endfor %}
+<div>
+{% endblock %}

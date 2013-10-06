@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<head>
+<title>{% block page_title %}{% endblock %}</title>
+
+<style type="text/css">
+ body {
+     padding-top: 60px;
+     padding-bottom: 40px;
+ }
+ </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+<script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
+<script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-affix.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-carousel.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-modal.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-tab.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-typeahead.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-alert.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-collapse.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-popover.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-tooltip.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-button.js') }}"></script>
+
+<!--
+  This mades that dropdown menu dont work  
+  <script src="{{ asset('bootstrap/js/bootstrap-dropdown.js') }}"></script> 
+-->
+<script src="{{ asset('bootstrap/js/bootstrap-scrollspy.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap-transition.js') }}"></script>
+<script src="{{ asset('Ichnaea/js/common.js') }}"></script>
+<script src="{{ asset('Ichnaea/js/jquery.easyui.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('Ichnaea/css/common.css') }}">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css">
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="{{path('home')}}">Ichnaea</a>
+          <div class="nav-collapse collapse">
+            
+            <ul class="nav">
+             {% if app.user %}
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matrixs <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+               <li><a href="{{path('matrix_form')}}">New matrix</a></li>
+               <li><a href="{{path('matrix_list')}}">Matrix list</a></li>
+              </ul>
+             </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Variables <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+               <li><a href="{{path('variable_list')}}">System's variables</a></li>
+               <li><a href="{{path('variable_new')}}">New variable</a></li>
+              </ul>
+             </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seasons <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+               <li><a href="{{path('season_list')}}">System's seasons</a></li>
+               <li><a href="{{path('season_form')}}">New season</a></li>
+              </ul>
+              </li>
+             {% endif %}
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">User corner<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+               {% if app.user %}
+               	<li><a href="{{path('user_dashboard')}}">My dashboard</a></li>
+               	<li><a href="{{path('fos_user_change_password')}}">Change password</a></li>
+               {% endif %}
+               <li><a href="{{path('fos_user_resetting_request')}}">Request a new password</a></li>
+              </ul>
+             </li>
+             <li><a href="{{path('fos_user_security_logout')}}">Logout</a></li>
+            </ul>
+           </div><!--/.nav-collapse -->
+          </div>
+         </div>
+        </div>
+        <div class="container-full-width">
+
+        <h2>{% block header_page_title %}{% endblock %}</h2>
+        
+        {% block breadcrumbs %}{% endblock %}
+        
+		{% block body %}{% endblock %}
+		<script language="javascript" type="text/javascript">
+		{% block extra_javascript %}{% endblock %}
+		</script>
+		</body>
+		</html>
+		

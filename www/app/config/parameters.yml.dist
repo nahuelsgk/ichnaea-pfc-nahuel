@@ -1,0 +1,16 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     3306
+    database_name:     ichnaea
+    database_user:     root
+    database_password: qwerasdf
+
+    mailer_transport:  smtp
+    mailer_host:       mail.lsi.upc.edu
+    mailer_user:       ~
+    mailer_password:   ~
+    mailer_port:      25
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt

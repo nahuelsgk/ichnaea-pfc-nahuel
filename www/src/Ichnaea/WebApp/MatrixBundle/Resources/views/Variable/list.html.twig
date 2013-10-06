@@ -1,0 +1,29 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+{% block page_title %}System's variables list{% endblock %}
+
+{% block body %}
+<div class="container">
+<table id="table_variables" class="table-striped">
+		<thead>
+		 <th align="center" style="padding-left: 10px;padding-right: 10px;">&nbsp;</th>
+		 <th align="center" style="padding-left: 10px;padding-right: 10px;">Name</th>
+		 <th align="center" style="padding-left: 10px;padding-right: 10px;">Description</th>
+		</thead>
+		<tbody id="__list_single_var_content">
+		 {% for variable in variables %}
+		 <tr>
+		 <td>
+		 	<a class="btn btn-mini" href="{{path('variable_edit', {'variable_id': variable.id})}}" name="edit_variable" title="Edit single variable">
+     			<i class="icon-edit"></i></a>
+     		<a class="btn btn-mini" href="{{path('season_set_form', {'variable_id': variable.id})}}" name="add_season_set" title="Add season sets">
+     			<i class="icon-plus"></i></a>
+     	 </td>
+		 <td>{{variable.name}}</td>
+		 <td>{{variable.description}}</td>
+		 </tr>
+		 {% endfor %}
+		</tbody>
+</table>
+</div>
+{% endblock %}

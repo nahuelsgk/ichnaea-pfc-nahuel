@@ -1,0 +1,11 @@
+parameters:
+
+services:
+    ichnaea.service: 
+         class: Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService
+         arguments: [ @doctrine.orm.entity_manager ]
+    
+    ichnaea.makefileService:
+         class: Ichnaea\WebApp\MatrixBundle\Service\IchnaeaMakefileService
+         arguments: [ @doctrine.orm.entity_manager ]
+    

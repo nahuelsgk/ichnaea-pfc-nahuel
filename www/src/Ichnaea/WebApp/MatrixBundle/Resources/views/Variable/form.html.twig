@@ -1,0 +1,73 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+{% block page_title %}{% if variable is null %}New variable{% else %}Edit {{variable.name}}{% endif %}{% endblock %}
+
+{% block header_page_title %}{% if variable is null %}New variable{% else %}Editing <i>{{ variable.name }}</i>{% endif %}{% endblock %}
+
+{% block body %}
+<div class="container">
+<form id="variableForm" method="post" action="{{ variable is null ? path('variable_create') : path('variable_update', {'variable_id': variable.id}) }}">
+	<fieldset>
+	<legend>Basic info</legend>
+	<label>Name of the variable</label>
+	<input type="text" placeholder="Variable's name" name="var_name" id="var_name" value="{% if variable is not null %}{{ variable.name }}{% endif %}">
+	<label>Description of the variable</label>
+	<input type="text" placeholder="Variable's description" name="var_description" id="var_description" value="{% if variable is not null %}{{ variable.description }}{% endif %}">
+	</fieldset>
+<button type="submit" class="btn">{% if variable is null %}Save{% else %}Update{% endif %}</button>
+</form>
+
+{% if action == 'update' %}
+<legend>List of season set
+  <a class="btn btn-mini" name="edit_season_set" title="Add a season set" href="{{ path('season_set_form', {'variable_id': variable.id } )}}">
+  <i class="icon-plus"></i></a></legend>
+<ul>
+{% for season_set in variable.seasonSet %}
+<li id="item-{{season_set.id}}">
+  <a class="btn btn-mini" name="delete_season_set" onclick="deleteSeasonSet('item-{{season_set.id}}', {{season_set.id}})" title="Delete Season Set">
+  <i class="icon-trash"></i></a>
+  <a class="btn btn-mini" name="edit_season_set" title="Edit Season Set or add season to the set" href="{{ path('season_set_edit', {'variable_id': variable.id, 'season_set_id': season_set.id } )}}">
+  <i class="icon-edit"></i></a>
+  {{season_set.name}}
+  <ul>
+  {% for season in season_set.season %}
+    <li>{{season.name}}</li>
+  {% endfor %}
+  </ul>
+</li>
+{% endfor %}
+</ul>
+
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_javascript %}
+function notify(message){
+    alert(message);
+    return false;
+}
+function checkErrors(){
+    if ($('#var_name').val() == '') return notify('Needs a name');
+    return true;
+}
+{% if action == 'update' %}
+
+function deleteLi(li)
+{
+    $('#'+li).remove();
+}
+
+function deleteSeasonSetAction(li, seasonSet_id)
+{
+    sendEvent('{{path('season_set_api', {'variable_id': variable.id})}}'+seasonSet_id, 'DELETE', {}, function (data) {deleteLi(li)})
+}
+
+function deleteSeasonSet(li, seasonSet_id)
+{
+    confirmMessage('You are about to delete a season set', function(){deleteSeasonSetAction(li, seasonSet_id)})
+}
+
+{% endif %}
+$('#variableForm').submit(checkErrors);
+{% endblock %}
