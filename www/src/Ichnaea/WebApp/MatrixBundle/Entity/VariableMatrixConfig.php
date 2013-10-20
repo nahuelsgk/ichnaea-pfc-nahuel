@@ -30,13 +30,13 @@ class VariableMatrixConfig
     private $name;
     
     /**
-     * @ORM\OneToOne(targetEntity="Variable")
+     * @ORM\ManyToOne(targetEntity="Variable")
      * @ORM\JoinColumn(name="variable_id", referencedColumnName="id")
      */
     private $variable;
     
     /**
-     * @ORM\OneToOne(targetEntity="SeasonSet")
+     * @ORM\ManyToOne(targetEntity="SeasonSet")
      * @ORM\JoinColumn(name="seasonSet", referencedColumnName="id")
      */
 

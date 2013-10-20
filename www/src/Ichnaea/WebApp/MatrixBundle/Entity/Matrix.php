@@ -50,10 +50,10 @@ class Matrix
 	/**
 	 * @var boolean  
 	 * 
-	 * @ORM\Column(name="visible", type="boolean", nullable=false)
+	 * @ORM\Column(name="visible", type="boolean", nullable=false, options={"default" = 0})
 	 * 
 	 */    
-    private $visible;
+    private $visible = false;
     
     /**
      * Constructor

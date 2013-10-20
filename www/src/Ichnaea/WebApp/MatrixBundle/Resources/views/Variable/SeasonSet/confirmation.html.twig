@@ -1,0 +1,23 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+
+{% block page_title %} Delete a whole season set{% endblock %}
+
+{% block header_page_title %}Delete a season set and its file{% endblock %}
+
+{% block body %}
+<div class="container">
+You are about to delete a season set and all the files involved. You must understand this action and it's behaviour into the system. 
+Please be caution with this action. If you know are completely sure of what you are about to do, please confirm the action.
+<br>Season set name: {{season_set.name}}<br>
+Files:
+<ul>
+  {% for component in season_set.components %}
+    <li>{{component.season.name}}</li>
+  {% endfor %}
+</ul> 
+<form method="POST">
+<button type="submit" class="btn">Delete all</button>
+</form>
+{% endblock %}
+

@@ -39,6 +39,7 @@
      <a class="btn btn-mini" href="{{path('training_view', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
      <i class="icon-eye-open"></i></td>
    <td>{{training.name}}</td>
+   <td>{{training.status}}</td>
    <td></td>
  </tr>
  {% endfor %}

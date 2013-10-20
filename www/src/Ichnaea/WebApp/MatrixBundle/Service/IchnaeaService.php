@@ -31,7 +31,7 @@ class IchnaeaService{
 		$season->setContent($content);
 		$this->em->persist($season);
 		$this->em->flush();
-		return $season->getId();
+		return $season;
 	}
 	
 	public function updateSeason($id, $name, $notes, $start_date, $end_date, $content)
@@ -53,7 +53,9 @@ class IchnaeaService{
 	
 	public function getSeasonById($id)
 	{
+	    error_log("Calling to get the season");
     	$season = $this->em->getRepository('MatrixBundle:Season')->find($id);
+    	error_log("Calling to get the season. We got ".$season->getId());
         return $season;
 	}
 	
@@ -94,35 +96,80 @@ class IchnaeaService{
 		return $this->em->getRepository('MatrixBundle:Variable')->find($variable_id);	
 	}
 	
-	public function createSeasonSet($variable_id, $name, $seasonIds = NULL){
-		
+	/*
+	 * seasonIds: array of ids already in the systems
+	 * components: array to create new seasons for the system. The array structure
+	 * 	[0][filename]
+	 *  [0][type] = 'all_year | summer | spring | autumn | winter'
+	 *  [0][content]
+	 * 
+	 * Result: A season set created with components(new or already in the system)
+	 */
+	public function createSeasonSet($variable_id, $name, $seasonIds = NULL, $components){
+		//basic info setting
 		$seasonSet = new SeasonSet();
 		$seasonSet->setName($name);
 		
 		$variable = $this->em->getRepository('MatrixBundle:Variable')->find($variable_id);
 		$seasonSet->setVariable($variable);
-
+		$this->em->persist($seasonSet);
+		
 		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
+		
+		//@TODO: dont work, need to be converted into components 
 		foreach($seasonIds as $seasonId){
 			$season = $seasonRepository->find($seasonId);
 			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
 		}
-		$this->em->persist($seasonSet);
+		
+		//@TODO: replicated code
+		foreach($components as $component){
+			$filename = $component['filename'];
+			$content  = $component['content'];
+			$type     = $component['type'];
+			
+			$season = $this->createSeason($filename, NULL, NULL, NULL, $content);
+			
+			$seasonSetComponent = new SeasonSetComponent();
+			$seasonSetComponent->setSeason($season);
+			$seasonSetComponent->setSeasonSet($seasonSet);
+			$seasonSetComponent->setSeasonType($type);
+			$this->em->persist($seasonSetComponent);
+		}
+		
 		$this->em->flush();
 		
 		return $seasonSet->getId();
 	}
 	
-    public function updateSeasonSet($seasonSet_id, $name, $seasonIds = NULL){
+    public function updateSeasonSet($seasonSet_id, $name, $seasonIds = NULL, $components = NULL){
 		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
 		$seasonSet->setName($name);
 		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
 		
+		//@TODO: dont work, need to be converted into components
 		foreach($seasonIds as $seasonId){
 			$season = $seasonRepository->find($seasonId);
 			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
 		}
+		
+		//@TODO: replicated code
+		foreach($components as $component){
+			$filename = $component['filename'];
+			$content  = $component['content'];
+			$type     = $component['type'];
+				
+			$season = $this->createSeason($filename, NULL, NULL, NULL, $content);
+				
+			$seasonSetComponent = new SeasonSetComponent();
+			$seasonSetComponent->setSeason($season);
+			$seasonSetComponent->setSeasonSet($seasonSet);
+			$seasonSetComponent->setSeasonType($type);
+			$this->em->persist($seasonSetComponent);
+		}
+		
 		$this->em->flush();
+		return $seasonSet->getId();
 	}
 
 	public function getVariableSeasonSets($variable_id){
@@ -157,12 +204,30 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
-	public function deleteSeasonSetComponent($variable_id, $season_set_id, $season_id)
-	{
+	public function deleteSeasonSetCascade($season_set_id){
 		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($season_set_id);
-		$season    = $this->em->getRepository('MatrixBundle:Season')->find($season_id);
-		$seasonSet->removeSeason($season);
-		$this->em->persist($seasonSet);
+		
+		$components = $seasonSet->getComponents();
+		foreach ($components as $component){
+			$this->em->remove($component->getSeason());
+			$this->em->remove($component);
+		}
+		$this->em->remove($seasonSet);
+		$this->em->flush();
+	}
+	
+	public function deleteSeasonSetComponent($variable_id, $season_set_id, $component_id)
+	{
+		$seasonSetComponent = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->find($component_id);
+		$this->em->remove($seasonSetComponent);
+		$this->em->flush();
+	}
+	
+	public function deleteCompleteSeasonSetComponent($variable_id, $season_set_id, $component_id)
+	{
+		$seasonSetComponent = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->find($component_id);
+		$this->em->remove($seasonSetComponent);
+		$this->em->remove($seasonSetComponent->getSeason());
 		$this->em->flush();
 	}
 	

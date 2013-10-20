@@ -67,27 +67,43 @@ season_set_form:
         variable_id: "\d+"
 
 season_set_create:
-    pattern: /variable/{variable_id}/season_set/create
-    defaults: { _controller: MatrixBundle:Variable:createSeasonSet }    
+    pattern: /variable/{variable_id}/season_set/
+    defaults: { _controller: MatrixBundle:Variable:seasonSetForm }    
     requirements:
          _method: POST
          variable_id: "\d+"
          
 season_set_edit:
     pattern: /variable/{variable_id}/season_set/{season_set_id}
-    defaults: { _controller: MatrixBundle:Variable:seasonSetForm }
+    defaults: { _controller: MatrixBundle:Variable:editSeasonSetForm }
     requirements:
         _method: GET
         variable_id: "\d+"
         season_set_id: "\d+"
-        
+
 season_set_update:
-     pattern: /variable/{variable_id}/season_set/{season_set_id}/update
-     defaults: { _controller: MatrixBundle:Variable:updateSeasonSet }
+     pattern: /variable/{variable_id}/season_set/{season_set_id}
+     defaults: { _controller: MatrixBundle:Variable:editSeasonSetForm }
      requirements:
           _method: POST
           variable_id: "\d+"
           season_set_id: "\d+"
+
+season_set_delete_confirmation:
+    pattern: /variable/{variable_id}/season_set/{season_set_id}/delete
+    defaults: { _controller: MatrixBundle:Variable:seasonSetCompleteDestroyForm }
+    requirements: 
+        _method: GET
+        variable_id: "\d+"
+        season_set_id: "\d+"
+
+season_set_delete_action:
+    pattern: /variable/{variable_id}/season_set/{season_set_id}/delete
+    defaults: { _controller: MatrixBundle:Variable:seasonSetCompleteDestroyForm }
+    requirements: 
+        _method: POST
+        variable_id: "\d+"
+        season_set_id: "\d+"            
 
 matrix_form:
     pattern: /matrix

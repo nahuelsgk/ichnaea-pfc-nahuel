@@ -21,7 +21,7 @@ class MatrixController extends Controller
 		
 		$ichnaeaService = $this->get('ichnaea.service');
 		$matrix_id = $ichnaeaService->createMatrixFromCSVContent($name, $csvContent, $owner_id);
-		return $this->redirect($this->generateUrl('matrix_ui', array('matrix_id'=>$matrix_id)));
+		return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id'=>$matrix_id)));
 	}
 	
 	public function listSystemsMatrixAction(){

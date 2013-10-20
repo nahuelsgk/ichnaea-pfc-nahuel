@@ -23,8 +23,8 @@ class SeasonController extends Controller{
 		$start_date = $request->request->get("start_date");
 		$end_date   = $request->request->get("end_date");
 		$content    = $request->request->get("content");
-		$season_id  = $ichnaeaService->createSeason($name, $notes, $start_date, $end_date, $content);
-		return $this->redirect($this->generateUrl('season_edit', array('season_id' => $season_id)));
+		$season     = $ichnaeaService->createSeason($name, $notes, $start_date, $end_date, $content);
+		return $this->redirect($this->generateUrl('season_edit', array('season_id' => $season->getId())));
 	}
 	
 	public function updateSeasonAction($season_id)

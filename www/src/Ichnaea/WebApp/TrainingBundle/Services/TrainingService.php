@@ -4,6 +4,7 @@ namespace Ichnaea\WebApp\TrainingBundle\Services;
 use Doctrine\ORM\EntityManager;
 use Ichnaea\WebApp\TrainingBundle\Entity\Training;
 use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaMakefileService as MakefileService;
+use Example\Ichnaea\Amqp\Model;
 
 class TrainingService{
 	
@@ -15,12 +16,24 @@ class TrainingService{
 		$this->mfs = $mfs;
 	}
 	
+	private function buildDataSet(){
+		
+	}
 	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, $k1 = NULL, $k2 = NULL, 
 									$best_models = NULL, $min_size_var_set = NULL, $max_size_var_set = NULL, 
 									$type_of_search = NULL){
 										
 		$trainer = $this->em->getRepository('UserBundle:User')->find($trainer_id);
 		$matrix = $this->em->getRepository('MatrixBundle:Matrix')->find($matrix_id);
+		
+		//Firs create the response
+		//build the data array for the dataset
+		//...build the data of the matrix...
+		//...send the data
+		 
+		
+		
+		//If everything is ok we can create the training
 		$training = new Training();										
 		$training->setName($name);
 		$training->setTrainer($trainer);

@@ -37,6 +37,13 @@ class ApiController extends FosRestController{
     	return $this->view($ret, 200);
     }
     
+    public function deleteSeasonSetComponentCascadeAction($variable_id, $seasonSet_id, $component_id)
+    {
+    	$ichnaeaService = $this->get('ichnaea.service');
+    	$ret = $ichnaeaService->deleteCompleteSeasonSetComponent($variable_id, $seasonSet_id, $component_id);
+    	return $this->view($ret, 200);
+    }
+    
     public function getVariableSeasonSetAction($variable_id)
     {
     	$ichnaeaService = $this->get('ichnaea.service');

@@ -33,7 +33,7 @@ function importFileIntoInput(fromInput, toInput){
       reader.onload = function (evt) {  
                console.log(evt.target.result);
                $('#'+toInput).val(evt.target.result);  
-      }
+      };
       reader.readAsText(file);   
     });
 }

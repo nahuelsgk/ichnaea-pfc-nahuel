@@ -52,6 +52,61 @@ class MatrixUtils{
 		}
 	}
 	
+	/*
+	 * Builds an structure for send it to the cue
+	 * {
+	 *  [dataset_format] => csv
+	 *  [aging_format] => tab
+	 *  [aging_filename_format] =>  env%column%-%name%.txt
+	 *  [aging] => {
+	 *    [envBA-Estiu.txt] => season_content
+	 *  }
+ 	 * }
+	 * */
+    public function buildDatasetFromMatrix($matrix){
+    	//init dataset basics
+    	$dataSet = array();
+    	$dataSet["dataset_format"] = "csv";
+    	$dataSet["aging_format"] = "tab";
+    	$dataSet["aging_fileformat"] = "env%column%-%name%.txt";
+    	$dataSet[aging] = array();
+    	
+    	//fulfill season contents
+    	$columns = $matrix->getColumns();
+    	$i = 0;
+    	foreach($columns as $column){
+    		
+    		//get the season set of the column
+    		$seasonSet = $column->getSeasonSet();
+    		
+    		if($seasonSet instanceof SeasonSet){
+    			//get the seasons of the season sets
+    			$seasons = $seasonSet->getSeason();	
+    			
+    			//for each of the season...
+    			foreach($seasons as $season){
+    				$season_name    = $season->getName();
+    				$season_content = $season->getContent();
+    				$season_season  = resolve_season($season->getStartDate(), $season->getEndDate());
+    				error_log("Season: ".$name_file);
+    				error_log("**Content: ".$content_file."\n");
+    				$file_path = $dir_path.'/'.$name_file.'.txt';
+    				error_log("***into ".$file_path);
+    				
+    			}
+    		}
+    		$i++;
+    	}
+    	dumpIntoErrorLog($data);	
+    }
+    
+    private function dumpIntoErrorLog($data){
+    	ob_start();
+    	var_dump($data);
+    	$contents = ob_get_contents();
+    	ob_end_clean();
+    	error_log($contents);
+    }
 	
 }
 

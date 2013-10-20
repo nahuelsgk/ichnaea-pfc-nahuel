@@ -14,7 +14,7 @@
 		 {% for variable in variables %}
 		 <tr>
 		 <td>
-		 	<a class="btn btn-mini" href="{{path('variable_edit', {'variable_id': variable.id})}}" name="edit_variable" title="Edit single variable">
+		 	<a class="btn btn-mini" href="{{path('variable_edit', {'variable_id': variable.id})}}" name="edit_variable" title="Edit single variable or view season sets">
      			<i class="icon-edit"></i></a>
      		<a class="btn btn-mini" href="{{path('season_set_form', {'variable_id': variable.id})}}" name="add_season_set" title="Add season sets">
      			<i class="icon-plus"></i></a>

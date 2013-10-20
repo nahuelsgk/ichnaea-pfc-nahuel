@@ -55,6 +55,7 @@ $app->get('/build-models-tasks', function (Request $req) use ($app) {
 });
 
 $app->post('/build-models-tasks', function (Request $req) use ($app) {
+    echo "POST";
     $data = $req->request->get("build-models-task");
     if (isset($data['dataset'])) {
         $data['dataset'] = base64_decode($data['dataset']);

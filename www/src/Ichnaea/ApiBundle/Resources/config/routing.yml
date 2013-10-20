@@ -37,6 +37,13 @@ season_set_component_delete:
     requirements:
         _method: DELETE
 
+season_set_component_delete_complete:
+    pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}/component/{component_id}/complete
+    defaults: { _controller: IchnaeaApiBundle:Api:deleteSeasonSetComponentCascade, _format: json }
+    requirements:
+        _method: DELETE
+
+
 matrix_api:
     pattern: /api/matrix/{matrix_id}
     requirements:

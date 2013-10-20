@@ -1,6 +1,22 @@
 {% extends '::IchnaeaBase.html.twig' %}
 
-{% block page_title %}{% if action == 'create' %}New season set for '{{variable_name}}'{% else %}Edit season set '{{season_set.name}}' of '{{season_set.variable.name}}'{% endif %}{% endblock %}
+{% macro season_options(n_file, selected) %}
+  <select name="season_{{n_file}}">
+    <option value="spring">Spring</option>
+    <option value="summer">Summer</option>
+    <option value="autumn">Autumn</option>
+    <option value="winter">Winter</option>
+    <option value="all_year">All year</option>
+  </select>
+{% endmacro %}
+
+{% block page_title %}
+  {% if action == 'create' %}
+    New season set for '{{variable_name}}'
+  {% else %}
+    Edit season set '{{season_set.name}}' of '{{season_set.variable.name}}'
+  {% endif %}
+{% endblock %}
 
 {% block header_page_title %}{% if action == 'create' %}New season set for {{variable_name}}{% else %}Edit season set <i>{{season_set.name}}</i> of <i><a href="{{path('variable_edit', {variable_id: season_set.variable.id})}}"> {{season_set.variable.name}}</a></i>{% endif %}{% endblock %}
 
@@ -14,28 +30,50 @@
 			{% endif %}" 
 	class="form-horizontal">
 	
-    <legend>{% if action == 'create' %}New season set{% else %}Edit season set attributes {% endif %}</legend>
+    <legend>
+      {% if action == 'create' %}New season set
+      {% else %}Edit season set {% endif %} for <i>{{variable_name}}</i></a></i>  
+    </legend>
 	<div class="control-group">
-        <label class="control-label" for="seasonName">Name</label>
+        <label class="control-label" for="seasonName">Name of the season set</label>
         <div class="controls">
           <input type="text" id="name_season_set" name="season_set_name" placeholder="Season set's name" {% if action == 'update' %}value="{{season_set.name}}"{% endif %}>
         </div>
     </div>
 	
 	{% if action == 'update' %}
-	<legend>List of seasons</legend>
+	<legend>List of seasons in this season set</legend>
 	<ul>
-	{% for season in season_set_components %}
-		<li id="season_set_component-{{season.id}}">
-		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set" onclick='deleteSeasonSetComponent( {{season.id}}, "season_set_component-{{season.id}}")' >
-  		  <i class="icon-trash"></i></a>{{season.name}}
+	{% for season_component in season_set_components %}
+		<li id="season_set_component-{{season_component.id}}">
+		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component" onclick='deleteSeasonSetComponent( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
+  		  <i class="icon-trash"></i></a>
+  		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component and file" onclick='deleteSeasonSetComponentComplete( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
+  		  <i class="icon-remove-sign"></i></a> </i> 
+  		  {{season_component.season.name}} is configured for this season set as <i>{{ season_component.seasonType }}</i>
+  		  
   		</li>
 	{% endfor %}
 	</ul>
 	{% endif %}
 	
+	<legend>Add new seasons to this season set</legend>
+	<div class="control-group">
+        <label class="control-label" for="end-date">Seasons file</label>
+        <div class="controls">
+           <input type="file" id="file_0" name="file_0" />
+           {{ _self.season_options(0, 'summer') }}
+           <textarea id="content_0" name="content_0" readonly></textarea>
+        </div>
+        <div class="controls">
+           <input type="file" id="file_1" name="file_1" />
+           {{ _self.season_options(1, 'summer') }}
+           <textarea id="content_1" name="content_1" readonly></textarea>
+        </div>
+    </div>
 	
-    <legend>Add seasons
+	<div style="display: none">
+    <legend>Add shared seasons
     	<a class="btn btn-mini" name="add_season" title="Add season from the system" onclick="addSeasonComponent();">
      	<i class="icon-plus"></i></a>
     </legend>
@@ -49,6 +87,7 @@
            -->
         </div>
       </div>
+    </div>
     </div>
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -79,6 +118,7 @@ var indexSeasonComponents = 0;
 
 {% if action == 'update' %}
 function deleteItem(li){
+    console.log('The item will try to delete is: '+li);
     $('#'+li).remove();
 }
 
@@ -88,8 +128,19 @@ function deleteSeasonSetComponentAction(seasonComponent_id, li){
     	{},
     	function (data){deleteItem(li)});
 }
+
+function deleteCompleteSeasonSetComponentAction(seasonComponent_id, li){
+	sendEvent('{{path('season_set_delete',{'variable_id': variable_id, 'seasonSet_id': season_set.id })}}/component/'+seasonComponent_id+'/complete',
+      	'DELETE',
+    	{},
+    	function (data){deleteItem(li)});
+}
+
 function deleteSeasonSetComponent(seasonComponent_id, li){
-	confirmMessage('You are about to delete a season from a season set', function (){deleteSeasonSetComponentAction(seasonComponent_id, li)});
+	confirmMessage('You are about to delete a season from a season set. This will not delete the file', function (){deleteSeasonSetComponentAction(seasonComponent_id, li)});
+}
+function deleteSeasonSetComponentComplete(seasonComponent_id, li){
+	confirmMessage('You are about to delete a season from a season set and its file. WARNING: THIS WILL DELETE THE FILE', function (){deleteCompleteSeasonSetComponentAction(seasonComponent_id, li)});
 }
 {% endif %}
 
@@ -135,5 +186,9 @@ function addSeasonComponent(){
 $(document).ready(function(){
     $('#seasonSet_form').submit(checkErrors);
 	addSeasonComponent();
+	importFileIntoInput('file_0', 'content_0');
+	importFileIntoInput('file_1', 'content_1');
+	
 });
 {% endblock %}
+

@@ -57,19 +57,56 @@ class VariableController extends Controller{
 		return $this->redirect($this->generateUrl('variable_edit', array('variable_id'=>$variable_id)));	
 	}
 	
-	public function seasonSetFormAction($variable_id, $season_set_id = NULL)
+	
+	private function buildSeasonComponents($request){
+		$seasons = array();
+		$n_files = 0;
+		if($request->get('file_0') != '' && $request->get('content_0') != ''){
+			$seasons[$n_files]['filename'] = $request->get('file_0');
+		  	$seasons[$n_files]['type']      = $request->get('season_0');
+		  	$seasons[$n_files]['content']   = $request->get('content_0');
+		  	$n_files++;
+		}
+		if($request->get('file_1') != '' && $request->get('content_1') != ''){
+			$seasons[$n_files]['filename'] = $request->get('file_1');
+			$seasons[$n_files]['type']      = $request->get('season_1');
+			$seasons[$n_files]['content']   = $request->get('content_1');
+		}
+		return $seasons;
+	}
+	
+	public function seasonSetFormAction($variable_id)
 	{	
+		$request = $this->get('request');
+		
+		if ($request->getMethod() == 'POST') {
+			$request = $this->getRequest();
+			$ichnaeaService = $this->get('ichnaea.service');
+			$name = $request->get('season_set_name');
+			
+			//read season file contents(components of the season set)
+			$seasons = $this->buildSeasonComponents($request);
+
+			//Season that are already in the system and were choosen
+			$already_seasons = $request->get('season_id');
+			
+			
+			$season_id = $ichnaeaService->createSeasonSet(
+					$variable_id,
+				    $name, 
+					array_filter($already_seasons),
+					$seasons
+			);
+			return $this->redirect($this->generateUrl('season_set_edit', array('variable_id'=>$variable_id, 'season_set_id' => $season_id )));
+		}
+
+		//... by default is get request
 		$action = 'create';
 		$season_set = NULL;
 		$season_set_components = NULL;
 		$ichnaeaService = $this->get('ichnaea.service');
 		$season = $ichnaeaService->getVariableById($variable_id);
-		if (!is_null($season_set_id)) {	
-			$action = 'update';
-			
-			$season_set = $ichnaeaService->getSeasonSet($season_set_id);
-			$season_set_components = $season_set->getSeason();
-		}
+		
 		return $this->render(
 			'MatrixBundle:Variable:SeasonSet/form.html.twig', 
 			array(
@@ -82,25 +119,51 @@ class VariableController extends Controller{
 		);
 	}
 	
-	public function createSeasonSetAction($variable_id)
+	
+	public function seasonSetCompleteDestroyFormAction($variable_id, $season_set_id)
 	{
 		$request = $this->getRequest();
 		$ichnaeaService = $this->get('ichnaea.service');
-		$name = $request->get("season_set_name");
+		
+		if($request->getMethod() == 'POST'){
+			//perform season massacre
+			$ichnaeaService->deleteSeasonSetCascade($season_set_id);
 			
-		$already_seasons = $request->get("season_id");
-		$season_id = $ichnaeaService->createSeasonSet($variable_id, $name, array_filter($already_seasons));
-		return $this->redirect($this->generateUrl('season_set_edit', array('variable_id'=>$variable_id, 'season_set_id' => $season_id )));
+			//redirect into the variable form
+			return $this->redirect($this->generateUrl('variable_edit', array('variable_id' => $variable_id)));
+		}
+		
+		
+		$seasonSet = $ichnaeaService->getSeasonSet($season_set_id);
+		return $this->render('MatrixBundle:Variable:SeasonSet/confirmation.html.twig', array('season_set'=>$seasonSet));
 	}
 	
-	public function updateSeasonSetAction($variable_id, $season_set_id = NULL)
+	public function editSeasonSetFormAction($variable_id, $season_set_id)
 	{
 		$request = $this->getRequest();
 		$ichnaeaService = $this->get('ichnaea.service');
-		$name = $request->get("season_set_name");
-		$new_seasons = $request->get("season_id");
-		$ichnaeaService->updateSeasonSet($season_set_id, $name, array_filter($new_seasons));
-		return $this->redirect($this->generateUrl('season_set_edit', array('variable_id' => $variable_id, 'season_set_id' => $season_set_id)));
+		
+		if ($request->getMethod() == 'POST'){
+		  $name = $request->get("season_set_name");
+		  $new_seasons = $request->get("season_id");
+		  $seasons = $this->buildSeasonComponents($request);
+		  $ichnaeaService->updateSeasonSet($season_set_id, $name, array_filter($new_seasons), $seasons);
+		  return $this->redirect($this->generateUrl('season_set_edit', array('variable_id' => $variable_id, 'season_set_id' => $season_set_id)));
+		}
+		
+		$action = 'update';
+		$season_set = $ichnaeaService->getSeasonSet($season_set_id);
+		$season_set_components = $season_set->getComponents();
+		
+		return $this->render(
+				'MatrixBundle:Variable:SeasonSet/form.html.twig',
+				array(
+						'variable_id' 			=> $variable_id,
+						'action'      			=> $action,
+						'variable_name'			=> $season_set->getVariable()->getName(),
+						'season_set'  			=> $season_set,
+						'season_set_components' => $season_set_components
+		));
 	}
 }
 

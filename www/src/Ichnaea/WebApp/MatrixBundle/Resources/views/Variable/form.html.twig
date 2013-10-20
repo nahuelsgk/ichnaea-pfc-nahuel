@@ -24,14 +24,17 @@
 <ul>
 {% for season_set in variable.seasonSet %}
 <li id="item-{{season_set.id}}">
-  <a class="btn btn-mini" name="delete_season_set" onclick="deleteSeasonSet('item-{{season_set.id}}', {{season_set.id}})" title="Delete Season Set">
-  <i class="icon-trash"></i></a>
   <a class="btn btn-mini" name="edit_season_set" title="Edit Season Set or add season to the set" href="{{ path('season_set_edit', {'variable_id': variable.id, 'season_set_id': season_set.id } )}}">
   <i class="icon-edit"></i></a>
+  <a class="btn btn-mini" name="delete_season_set" onclick="deleteSeasonSet('item-{{season_set.id}}', {{season_set.id}})" title="Delete Season Set">
+  <i class="icon-trash" style=""></i></a>
+  <a class="btn btn-mini" name="delete_season_set_complete" href="{{ path('season_set_delete_confirmation', {'variable_id': variable.id, 'season_set_id': season_set.id })}}" title="Becareful!: Delete Season Set and seasons files. This will be only for admins">
+  <i class="icon-remove-sign"></i></a>
+  
   {{season_set.name}}
   <ul>
-  {% for season in season_set.season %}
-    <li>{{season.name}}</li>
+  {% for component in season_set.components %}
+    <li>{{component.season.name}}</li>
   {% endfor %}
   </ul>
 </li>
@@ -65,7 +68,7 @@ function deleteSeasonSetAction(li, seasonSet_id)
 
 function deleteSeasonSet(li, seasonSet_id)
 {
-    confirmMessage('You are about to delete a season set', function(){deleteSeasonSetAction(li, seasonSet_id)})
+    confirmMessage('You are about to delete a season set. This will no delete the season file. Only the sets.', function(){deleteSeasonSetAction(li, seasonSet_id)})
 }
 
 {% endif %}
