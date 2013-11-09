@@ -10,23 +10,29 @@
   <h2>Seasons</h2>
    <table>
     <tr>
-     <th style="padding-left: 5px; padding-right: 5px;">&nbsp;</th>
+     <th style="padding-left: 5px; padding-right: 10px;"><strong>#</strong></th>
      <th style="padding-left: 5px; padding-right: 5px;">Name</th>
+     <th style="padding-left: 5px; padding-right: 5px;">&nbsp;</th>
+     <!-- @TODO: by now not useful info
      <th style="padding-left: 5px; padding-right: 5px;">Notes</th>
      <th style="padding-left: 5px; padding-right: 5px;">Start</th>
      <th style="padding-left: 5px; padding-right: 5px;">Finish</th>
+     -->
     </tr>
     <tbody id="seasons_table">
     {% for season in seasons %}
     <tr id="season-{{season.id}}" data-id={{season.id}} class="" onclick="loadSeasonContentForm(this);">
+     <td><strong>{{loop.index}}<strong></th>
+     <td class="name">{{season.name}}</td>
+     <!-- @TODO: By now not useful info  
+     <td class="notes">{{season.notes}}</td> 
+     <td class="star_date">{{season.startDate|date("d-m-Y")}}</td>
+     <td class="end_date">{{season.endDate|date("d-m-Y")}}</td>
+     -->
      <td class="actions_link">
        <a class="btn btn-mini" href="{{path('season_edit', {'season_id' : season.id})}}" name="edit_season" title="Edit season">
      	<i class="icon-edit"></i></a>
      </td>
-     <td class="name">{{season.name}}</td>
-     <td class="notes">{{season.notes}}</td> 
-     <td class="star_date">{{season.startDate|date("d-m-Y")}}</td>
-     <td class="end_date">{{season.endDate|date("d-m-Y")}}</td>
     </tr>
     {% endfor%}
     </tbody>

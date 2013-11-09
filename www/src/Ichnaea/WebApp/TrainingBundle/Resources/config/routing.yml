@@ -4,11 +4,18 @@ ichnaea_web_app_training_homepage:
 
 create_training_form:
     pattern: /matrix/{matrix_id}/training
-    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:getForm }
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:trainingForm }
     requirements: 
         _method: GET
         matrix_id: "\d+"
-        
+
+submit_training:
+    pattern: /matrix/{matrix_id}/training
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:trainingForm}
+    requirements:
+        _method: POST
+        matrix_id: "\d+"
+                
 training_view:
     pattern: /matrix/{matrix_id}/training/{training_id}
     defaults: {_controller: IchnaeaWebAppTrainingBundle:Training:viewTraining, check: false }
@@ -25,9 +32,4 @@ training_check:
         matrix_id: "\d+"
         training_id: "\d+"
     
-submit_training:
-    pattern: /matrix/{matrix_id}/training/submit
-    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:postTraining}
-    requirements:
-        _method: POST
-        matrix_id: "\d+"
+

@@ -2,18 +2,23 @@
 
 {% block page_title %}Configuring matrix {{matrix.name}} {% endblock %}
 {% block main_content %}
+
 <div class="container">
-<form class="form-inline" action="{{path('matrix_save_configuration', {'matrix_id':matrix.id})}}" method="post">
- <legend>Configuration</legend>
- <label class="radio inline">Visible</label>
- <input type="radio" name="visible" value="no" {% if matrix.visible == false %}checked{% endif %}>Invisible</input>
- <input type="radio" name="visible" value="yes" {% if matrix.visible == true %}checked{% endif %}>Visible</input>
- <button type="submit" class="btn">Save configuration</button>
+
+<form class="form-inline" method="post">
+<legend>Configuration</legend>
+<label for="visible">Visible</label>
+<select name="visible">
+<option value="yes" {% if matrix.visible == TRUE %}selected{% endif %}>Visible</option>
+<option value="no" {% if matrix.visible == FALSE %}selected{% endif %}>Invisible</option>
+</select>
+<button type="submit" class="btn">Save configuration</button>
 </form>
-<form class="form-inline" action="{{path('matrix_build_files', {'matrix_id': matrix.id})}}" onsubmit="confirm_build_matrix_files();" method="post">
-<button class="btn btn-primary" >Build Matrix Files</button>
-</form>
+
+
 </div>
+<legend class="container">Matrix Data</legend>
+<div id="container_matrix" style="width: 98%; margin-left: auto; margin-right: auto;">
 <table border="0" cellpadding="0" cellspacing="0" class='main'>
             <tr>
                 <td class='tablefrozencolumn'>
@@ -26,6 +31,7 @@
                             </tr>
                         </table>
                     </div>
+                    
                     <div id='divfrozen' class='frozen'>
                         <table border="0" cellpadding="0" cellspacing="0" width="100%" class='frozen'>
 							{% for sample in matrix.rows %}
@@ -102,6 +108,7 @@
                 </td>
             </tr>
         </table>
+</div>
 {% endblock %}
 
 {% block extra_javascript %}

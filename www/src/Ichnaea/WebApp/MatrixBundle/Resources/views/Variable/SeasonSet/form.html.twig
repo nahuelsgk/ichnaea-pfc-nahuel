@@ -1,12 +1,12 @@
 {% extends '::IchnaeaBase.html.twig' %}
 
-{% macro season_options(n_file, selected) %}
+{% macro season_options(n_file, selected_option) %}
   <select name="season_{{n_file}}">
-    <option value="spring">Spring</option>
-    <option value="summer">Summer</option>
-    <option value="autumn">Autumn</option>
-    <option value="winter">Winter</option>
-    <option value="all_year">All year</option>
+    <option value="spring" {% if selected_option == 'spring' %}selected{% endif %}>Spring</option>
+    <option value="summer" {% if selected_option == 'summer' %}selected{% endif %}>Summer</option>
+    <option value="autumn" {% if selected_option == 'autumn' %}selected{% endif %}>Autumn</option>
+    <option value="winter" {% if selected_option == 'winter' %}selected{% endif %}>Winter</option>
+    <option value="all_year" {% if selected_option == 'all_year' %}selected{% endif %}>All year</option>
   </select>
 {% endmacro %}
 
@@ -67,7 +67,7 @@
         </div>
         <div class="controls">
            <input type="file" id="file_1" name="file_1" />
-           {{ _self.season_options(1, 'summer') }}
+           {{ _self.season_options(1, 'winter') }}
            <textarea id="content_1" name="content_1" readonly></textarea>
         </div>
     </div>

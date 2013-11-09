@@ -120,7 +120,6 @@ class Training
      */
     private $pathTable;
 
-    
     /**
      * @ORM\ManyToOne
      */

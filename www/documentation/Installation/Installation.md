@@ -1,5 +1,15 @@
-1 - Checkout the git project
-2 - Run composer
-3 - Copy the dist file
-4 - Configure your database
-5 - Mail?
+Checkout the git project
+
+Run composer
+
+Copy the dist file
+
+Configure your database
+
+Insert some basic dato to start operate
+---------------------------------------
+Only if the first instance and the database is empty, import the sql files under DefaultData.
+
+
+Mail?
+

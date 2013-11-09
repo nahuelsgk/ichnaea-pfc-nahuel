@@ -32,17 +32,31 @@ class MatrixController extends Controller
 	}
 	
 	public function guiMatrixAction($matrix_id){
-		
 		$ichnaeaService = $this->get('ichnaea.service');
 		
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
+		
 		if ($this->getUser() != $matrix->getOwner()) {
 			throw new HttpException(403, 'Unauthorized access.');
 		}
 		
+		$request = $this->getRequest();
+		$user_id = $this->getUser()->getId();
+		if ($request->getMethod() == 'POST'){
+			$visible = $request->get('visible');
+			$matrix = $ichnaeaService->updateMatrixConfiguration($user_id, $matrix_id, $visible == 'yes' ? TRUE : FALSE );
+			return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id' => $matrix->getId())));;
+	   	}
+	   	
 		$availableVars = $ichnaeaService->getAllVariables();
 		//echo '<pre>';\Doctrine\Common\Util\Debug::dump($matrix);echo '</pre>';
-		return $this->render('MatrixBundle:Matrix:matrix.html.twig', array('matrix' => $matrix, 'availableVars' => $availableVars));
+		return $this->render(
+				'MatrixBundle:Matrix:matrix.html.twig', 
+				array(
+						'matrix' => $matrix, 
+						'availableVars' => $availableVars
+				)
+		);
 	}
 	
 	public function saveConfigurationAction($matrix_id) {

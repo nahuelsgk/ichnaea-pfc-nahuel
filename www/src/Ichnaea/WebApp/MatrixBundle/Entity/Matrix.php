@@ -207,4 +207,17 @@ class Matrix
     {
         return $this->visible;
     }
+    
+    /**
+     * Checks if the matrix is trainable
+     */
+    public function isTrainable() {
+    	$columns = $this->getColumns();
+    	foreach ($columns as $column) {
+    		if ($column->getVariable == NULL) return false;
+    	}
+    	if ($this->getVisible == FALSE)  return false;
+    	
+    	return true;
+    }
 }

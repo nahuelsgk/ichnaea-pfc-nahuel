@@ -36,67 +36,16 @@
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css">
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="{{path('home')}}">Ichnaea</a>
-          <div class="nav-collapse collapse">
-            
-            <ul class="nav">
-             {% if app.user %}
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matrixs <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-               <li><a href="{{path('matrix_form')}}">New matrix</a></li>
-               <li><a href="{{path('matrix_list')}}">Matrix list</a></li>
-              </ul>
-             </li>
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Variables <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-               <li><a href="{{path('variable_list')}}">System's variables</a></li>
-               <li><a href="{{path('variable_new')}}">New variable</a></li>
-              </ul>
-             </li>
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seasons <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-               <li><a href="{{path('season_list')}}">System's seasons</a></li>
-               <li><a href="{{path('season_form')}}">New season</a></li>
-              </ul>
-              </li>
-             {% endif %}
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">User corner<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-               {% if app.user %}
-               	<li><a href="{{path('user_dashboard')}}">My dashboard</a></li>
-               	<li><a href="{{path('fos_user_change_password')}}">Change password</a></li>
-               {% endif %}
-               <li><a href="{{path('fos_user_resetting_request')}}">Request a new password</a></li>
-              </ul>
-             </li>
-             <li><a href="{{path('fos_user_security_logout')}}">Logout</a></li>
-            </ul>
-           </div><!--/.nav-collapse -->
-          </div>
-         </div>
-        </div>
+
+{% include 'menu.html.twig' %}
         
-        
-        
-        {% block breadcrumbs %}{% endblock %}
-        
-		{% block body %}{% endblock %}
+	{% block breadcrumbs %}{% endblock %}
+      
+	{% block body %}{% endblock %}
 	
-		<script language="javascript" type="text/javascript">
-		{% block extra_javascript %}{% endblock %}
-		</script>
-		</body>
-		</html>
+	<script language="javascript" type="text/javascript">
+	{% block extra_javascript %}{% endblock %}
+	</script>
+	</body>
+</html>
 		

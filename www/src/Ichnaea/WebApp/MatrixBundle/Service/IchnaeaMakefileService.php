@@ -17,6 +17,7 @@ class IchnaeaMakefileService{
 	}
 	
 	/**
+	 * @TODO: Remove this awful function
 	 * Read all each columns, the season set. Grab all the season and write the season in a txt
 	 * Returns the directory path where all the files
 	 */

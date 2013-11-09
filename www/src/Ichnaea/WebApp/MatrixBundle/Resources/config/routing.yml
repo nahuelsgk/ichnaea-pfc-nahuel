@@ -126,6 +126,13 @@ matrix_ui_edit:
         _method: GET
         matrix_id: "\d+"
 
+matrix_ui_edit_submit:
+    pattern: /matrix/{matrix_id}/edit
+    defaults: { _controller: MatrixBundle:Matrix:guiMatrix }
+    requirements:
+        _method: POST
+        matrix_id: "\d+"
+
 matrix_ui_view:
     pattern: /matrix/{matrix_id}
     defaults: { _controller: MatrixBundle:Matrix:viewMatrix }

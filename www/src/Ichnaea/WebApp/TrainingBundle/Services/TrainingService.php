@@ -3,20 +3,21 @@ namespace Ichnaea\WebApp\TrainingBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Ichnaea\WebApp\TrainingBundle\Entity\Training;
-use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaMakefileService as MakefileService;
-use Example\Ichnaea\Amqp\Model;
+use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
+use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
+use Ichnaea\Amqp\Model\BuildModelsResponse as BuildModelsResponse;
+use Ichnaea\Amqp\Connection as Connection;
 
 class TrainingService{
 	
 	protected $em;
 	protected $mfs;
 	
-	public function __construct(EntityManager $em, MakefileService $mfs){
+	public function __construct(EntityManager $em){
 		$this->em = $em;
-		$this->mfs = $mfs;
 	}
 	
-	private function buildDataSet(){
+	private function buildDataSet($matrix){
 		
 	}
 	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, $k1 = NULL, $k2 = NULL, 
@@ -26,14 +27,24 @@ class TrainingService{
 		$trainer = $this->em->getRepository('UserBundle:User')->find($trainer_id);
 		$matrix = $this->em->getRepository('MatrixBundle:Matrix')->find($matrix_id);
 		
-		//Firs create the response
+		//First create the response
+		$mu = new MatrixUtils();
+        $data = $mu->buildDatasetFromMatrix($matrix);
+		
 		//build the data array for the dataset
-		//...build the data of the matrix...
-		//...send the data
-		 
-		
-		
-		//If everything is ok we can create the training
+        $model = BuildModelsRequest::fromArray($data);
+        		
+		//... prepare a connection and send the data
+        /*$conn = new Connection('test:test@localhost');
+        $model = new BuildModelsResponse($model->getId());
+        $conn->send($model);
+        $data = $model->toArray();
+        error_log("Data after build model response".$data);
+
+        //@TODO: Dont know what to do with this
+        //insert('build_models_tasks', $model->toArray());
+        
+		//Create thre training
 		$training = new Training();										
 		$training->setName($name);
 		$training->setTrainer($trainer);
@@ -43,28 +54,21 @@ class TrainingService{
 			$training->setDescription($description);
 		}
 		
-		if(!empty($k1)){ 
-			$training->setK1($k1);
-		}
+		if(!empty($k1)) $training->setK1($k1);
 		
-		if(!empty($k2)) 
-			$training->setK2($k2);
+		if(!empty($k2)) $training->setK2($k2);
 			
-		if(!empty($best_models)) 
-			$training->setBestModels($best_models);
+		if(!empty($best_models)) $training->setBestModels($best_models);
 			
-		if(!empty($min_size_var_set)) 
-			$training->setMinSizeVariableSet($min_size_var_set);
+		if(!empty($min_size_var_set)) $training->setMinSizeVariableSet($min_size_var_set);
 			
-		if(!empty($max_size_var_set)) 
-			$training->setMaxSizeVariableSet($max_size_var_set);
+		if(!empty($max_size_var_set)) $training->setMaxSizeVariableSet($max_size_var_set);
 			
-		if(!empty($type_of_search)) 
-			$training->setTypeOfSearch($type_of_search);
+		if(!empty($type_of_search)) $training->setTypeOfSearch($type_of_search);
 			
 		$this->em->persist($training);
 		$this->em->flush();
-		return $training->getId();
+		return $training->getId();*/
 	}
 
 	public function getTraining($training_id){
@@ -80,9 +84,6 @@ class TrainingService{
 		$matrix_id = $matrix->getId();
 		
 		//check status
-		$mfs = new MakefileService($this->em);
-		$mfs->prepareMatrixFiles($matrix_id, $training_id);
-		
 		
 		//Check if files already prepared
 		
