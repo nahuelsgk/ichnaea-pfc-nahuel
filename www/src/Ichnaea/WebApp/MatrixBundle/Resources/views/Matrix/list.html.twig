@@ -15,9 +15,12 @@
     <a class="btn btn-mini" href="{{path('matrix_ui_view', {'matrix_id': matrix.id})}}" name="view_matrix" title="View matrix">
        <i class="icon-eye-open"></i>
      </a>
+     {% if matrix.visible == '0' %}
+     {% else %}
      <a class="btn btn-mini" href="{{path('create_training_form', {'matrix_id': matrix.id})}}" name="create_training" title="Create training">
        <i class="icon-road"></i>
      </a>
+     {% endif %}
    </td>
    <td>
      {{matrix.name}}

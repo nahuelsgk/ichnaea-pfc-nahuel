@@ -3,8 +3,6 @@
 namespace Ichnaea\WebApp\TrainingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-;
-
 
 class TrainingController extends Controller
 {
@@ -37,8 +35,8 @@ class TrainingController extends Controller
     				$max_size_var_set, $type_of_search);
     		 
     		//While dev.... redirect into the origin
-    		return $this->redirect($this->generateUrl('create_training_form', array('matrix_id' => $matrix_id)));
-    		//return $this->redirect($this->generateUrl('training_view', array('matrix_id' => $matrix_id, 'training_id' => $training_id)));
+    		//return $this->redirect($this->generateUrl('create_training_form', array('matrix_id' => $matrix_id)));
+    		return $this->redirect($this->generateUrl('training_view', array('matrix_id' => $matrix_id, 'training_id' => $training_id)));
     	}
     	
         return $this->render(

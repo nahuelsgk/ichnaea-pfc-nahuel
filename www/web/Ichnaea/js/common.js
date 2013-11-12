@@ -1,3 +1,4 @@
+//@TODO: Web App common features
 function clear_form(ele) {
 	$(ele).find(':input').each(function() {
     switch(this.type) {
@@ -103,4 +104,38 @@ function decode_result_event(data){
     }
   }
 
+}
+
+//Matrix js functions
+
+//Autoresize the matrix table
+function dynamic_height(reduce_height) {
+    var dyn_h = (($(window).height())-300-reduce_height);
+ 	$('#divfrozen').css({'height':dyn_h+'px'});
+ 	$('#contentscroll').css({'height':dyn_h+'px'});
+}
+
+//@TODO: move to jquery
+function reposHead(e) 
+{
+    var h = document.getElementById('headscroll');
+    h.scrollLeft = e.scrollLeft;
+    var f = document.getElementById('divfrozen');
+    f.scrollTop = e.scrollTop;
+}
+
+//@TODO: move to jquery
+function reposHorizontal(e) {
+    var h = document.getElementById('headscroll');
+    var c = document.getElementById('contentscroll');
+    h.scrollLeft = e.scrollLeft*50;
+    c.scrollLeft = e.scrollLeft*50;
+}
+
+//@TODO: move to jquery
+function reposVertical(e) {
+    var h = document.getElementById('divfrozen');
+    var c = document.getElementById('contentscroll');
+    h.scrollTop = e.scrollTop*100;
+    c.scrollTop = e.scrollTop*100;
 }

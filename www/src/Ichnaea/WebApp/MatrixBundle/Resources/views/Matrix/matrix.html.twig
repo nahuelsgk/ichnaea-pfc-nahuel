@@ -3,8 +3,8 @@
 {% block page_title %}Configuring matrix {{matrix.name}} {% endblock %}
 {% block main_content %}
 
+<div id="menu_info_block">
 <div class="container">
-
 <form class="form-inline" method="post">
 <legend>Configuration</legend>
 <label for="visible">Visible</label>
@@ -14,10 +14,11 @@
 </select>
 <button type="submit" class="btn">Save configuration</button>
 </form>
-
-
 </div>
-<legend class="container">Matrix Data</legend>
+
+<legend class="container">Matrix Data <div id="submit_info" style="display: inline;"><button id="save_all_changes" class="btn btn-danger" style="visibility: hidden;" onclick="save_all_pending_action();">Save all changes</button></div></legend>
+</div>
+
 <div id="container_matrix" style="width: 98%; margin-left: auto; margin-right: auto;">
 <table border="0" cellpadding="0" cellspacing="0" class='main'>
             <tr>
@@ -38,9 +39,10 @@
    							<tr id="sample-{{sample.id}}">
    							    <td align="center" class='frozen-index'>{{loop.index}}</td>
    								<td class='{% if loop.last %}inner-frozen-last{% else %}inner-frozen{% endif %} frozencol'>
-   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
+   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action')" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
    									<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
-   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleOrigin-{{sample.id}}" value="{{sample.origin}}" placeholder="Sample origin"></input>
+   									<input 
+   									class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleOrigin-{{sample.id}}" value="{{sample.origin}}" placeholder="Sample origin"></input>
    									<a class="btn btn-mini" style="visibility: hidden;" 
    										id="sample-{{sample.id}}-action" 
    										title="Update sample info" 
@@ -80,11 +82,20 @@
 								    </select>
 								    <br/>
 								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a>
-								   	<input type="text" class="input-medium" id="column-name-{{column.name}}" value="{{column.name}}" onchange="displayHiddenElement('column-{{column.id}}-action');">
+								   	<input 
+								   		type="text" 
+								   		class="input-medium" 
+								   		id="column-name-{{column.id}}" 
+								   		value="{{column.name}}" 
+								   		onchange="
+								   			displayHiddenElement('column-{{column.id}}-action'); 
+								   			displayHiddenElement('save_all_changes');">
 								    <br/>
-								    <a class="btn btn-mini" style="visibility: hidden;" id="column-{{column.id}}-action" onclick="updateVariableConfigurationAction(
+								    <a class="btn btn-mini save_button_action_column" 
+								    style="visibility: hidden;" id="column-{{column.id}}-action" 
+								    onclick="updateVariableConfigurationAction(
 								   			'{{column.id}}',
-								   			$('#column-name-{{column.name}}').val(),
+								   			$('#column-name-{{column.id}}').val(),
 								   			$('#selectedSingleVariable-{{column.id}}').val(),
 								   			$('#seasonSetListVariable-{{column.id}}').val(),
 								   			'column-{{column.id}}-action'
@@ -133,7 +144,6 @@ function confirm_build_matrix_files()
 
 function displayHiddenElement(elem)
 {
-
   $('#'+elem).css('visibility', 'visible');
 }
 
@@ -147,6 +157,7 @@ function renderListSeasonSets(listData, toListId)
 
 function updateVariableConfigurationAction(column_id, column_name, column_variable_id, season_set_id, column_button_action)
 {
+   console.log("We will submit alias "+column_name);
    sendEvent('{{path('matrix_api', {"matrix_id": matrix.id })}}/column/'+column_id, 'PUT', {name: column_name, variable: column_variable_id, season: season_set_id}, function (data){displaySuccessfulAction(column_button_action)});    
 }
 
@@ -161,34 +172,19 @@ function loadSeasonSetIntoSelectListAction(variable_id, idOptionList)
 	sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
 }
 
-//@TODO: move to jquery
-function reposHead(e) 
-{
-    var h = document.getElementById('headscroll');
-    h.scrollLeft = e.scrollLeft;
-    var f = document.getElementById('divfrozen');
-    f.scrollTop = e.scrollTop;
-}
 
-//@TODO: move to jquery
-function reposHorizontal(e) {
-    var h = document.getElementById('headscroll');
-    var c = document.getElementById('contentscroll');
-    h.scrollLeft = e.scrollLeft*50;
-    c.scrollLeft = e.scrollLeft*50;
-}
-
-//@TODO: move to jquery
-function reposVertical(e) {
-    var h = document.getElementById('divfrozen');
-    var c = document.getElementById('contentscroll');
-    h.scrollTop = e.scrollTop*100;
-    c.scrollTop = e.scrollTop*100;
-}
 function init_datepicker(){
     $('.sampleDate').datepicker({dateFormat: "dd-mm-yy"});
 }
+
+function save_all_pending_action() {
+	var pendings = $('.save_button_action_column').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	$(pendings).each(function(index, element){$(element).trigger('click');});
+	$('#save_all_changes').css('visibility', 'hidden');
+	  
+}
 $(document).ready(function(){
     init_datepicker();
+ 	dynamic_height($('#menu_info_block').height());   
  });
 {% endblock %}

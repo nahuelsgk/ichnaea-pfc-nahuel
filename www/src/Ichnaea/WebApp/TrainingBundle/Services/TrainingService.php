@@ -31,11 +31,11 @@ class TrainingService{
 		$mu = new MatrixUtils();
         $data = $mu->buildDatasetFromMatrix($matrix);
 		
-		//build the data array for the dataset
+        //build the data array for the dataset
         $model = BuildModelsRequest::fromArray($data);
         		
 		//... prepare a connection and send the data
-        /*$conn = new Connection('test:test@localhost');
+        $conn = new Connection('test:test@localhost');
         $model = new BuildModelsResponse($model->getId());
         $conn->send($model);
         $data = $model->toArray();
@@ -68,7 +68,7 @@ class TrainingService{
 			
 		$this->em->persist($training);
 		$this->em->flush();
-		return $training->getId();*/
+		return $training->getId();
 	}
 
 	public function getTraining($training_id){

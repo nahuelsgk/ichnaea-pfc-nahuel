@@ -51,89 +51,120 @@ class MatrixUtils{
 		}
 	}
 	
-	/*
-	 * Builds an structure for send it to the cue
-	 * 
-	 * Return:
-	 * {
-	 *  [dataset_format] => csv
-	 *  [aging_format] => tab
-	 *  [aging_filename_format] =>  env%column%-%name%.txt
-	 *  [aging] => {
-	 *    [envBA-Estiu.txt] => season_content
-	 *    [env/VARIABLE/-/SEASON NAME/] => season_content
-	 *  }
- 	 * }
-	 * */
-    public function buildDatasetFromMatrix($matrix){
-    	//init dataset basics
-    	$dataSet = array();
-    	$dataSet["dataset_format"] = "csv";
-    	$dataSet["aging_format"] = "tab";
-    	$dataSet["aging_fileformat"] = "env%column%-%name%.txt";
-    	$dataSet["aging"] = array();
+/*
+* Builds an structure for send it to the cue
+* 
+* Return:
+* {
+*  [dataset_format] => csv
+*  [aging_format] => tab
+*  [aging_filename_format] =>  env%column%-%name%.txt
+*  [aging] => {
+*    [envBA-Estiu.txt] => season_content
+*    [env/VARIABLE/-/SEASON NAME/] => season_content
+*  }
+*  [dataset] => "matrix file"
+*  
+* }
+* */
+public function buildDatasetFromMatrix($matrix){	
+    $dataSet = array();
+    $dataSet["fake_duration"]         = 10;
+    $dataSet["fake_interval"]         = 1; 
+    $dataSet["dataset_format"]        = "csv";
+    $dataSet["aging_format"]          = "tab";
+    $dataSet["aging_filename_format"] = "env%column%-%name%.txt";
+    $dataSet["aging"] = array();
+    
+    //Array of strings. This is the content of the matrix as a cvs
+    $csv_content = array();
+    //This array will be the first row of the matrix as csv
+    $columns_name = array();
+    //...first cell of the first row, default value
+    $columns_name[] = "CLASS";
+    
+    
+    //BUILD the aging data
+    $i = 0; 
+    $columns = $matrix->getColumns();
+    foreach($columns as $column){
     	
-    	$columns = $matrix->getColumns();
-    	$i = 0;
-    	foreach($columns as $column){
-    		error_log("Building the column: ".$i);
-    		if ($column->getVariable() instanceof Variable){
-	    		$variable_identifier = $column->getVariable()->getName();
+    	//Column with variable associated
+    	if ($column->getVariable() instanceof Variable){
+    		$var_id    = $column->getVariable()->getName();
+	    	$seasonSet = $column->getSeasonSet();
+	    	
+	    	if ($seasonSet instanceof SeasonSet){
 	    		
-	    		//get the season set of the column
-	    		$seasonSet = $column->getSeasonSet();
-	    		//error_log("*Variable: ".$i." => ".$variable_identifier);		
-	    		if($seasonSet instanceof SeasonSet){
-	    			//get the seasons of the season sets
-	    			$season_set_components = $seasonSet->getComponents();	
-	    			
-	    			$j = 0;
-	    			//for each of the season...
-	    			foreach($season_set_components as $component){
-	    				$season = $component->getSeason();
-	    				$season_content = $season->getContent();
-	    				$season_season  = $component->getSeasonType();
-	    				$env_filename = 'env'.$variable_identifier.'-'.$this->resolveSeasonName($season_season).'.txt';
-	    				//error_log("**Instance file:".$env_filename);
-	    				$dataSet["aging"][$env_filename] = $season_content;	
-	    				//error_log("** Built ".$env_filename."-component: ".var_dump($dataSet["aging"][$env_filename]));
-	    				$j++;
-	    			}
+	    		$season_set_components = $seasonSet->getComponents();	
+	    		$j = 0;
+	    		foreach($season_set_components as $component){
+	    			$season         = $component->getSeason();
+	    			$season_content = $season->getContent();
+	    			$season_season  = $component->getSeasonType();
+	    			//must respect the "aging_fileformat"
+	    			$aging_name = 'env'.$var_id.'-'.$this->resolveSeasonName($season_season).'.txt';
+	    			$dataSet["aging"][$aging_name] = $season_content;
+	    			$columns_name[] = $var_id;	
+	    			$j++;
 	    		}
-	    		else{
-	    			error_log("**EXCEPTION: No season set configured");
-	    		}
-	    		
-    		}
-    		else {
-    			error_log("*EXCEPTION: No variable is configured for a column ".$i);
-    				throw new \Exception('Column '.$i.' not properly configured');
-    		}
-    		$i++;
-    	}
-    	$this->dumpIntoErrorLog($dataSet);
-    	return $dataSet;	
-    }
+	    	}  
+   		}
+   		
+   		//Another kind of variable, just grab 
+   		else{
+   			//In this case we use the alias
+   			$columns_name[] = $column->getName();
+   		}
+   		$i++;
+   	}
+   	
+   	//First row, joins all the columns name with ;
+   	$csv_content[] = implode($columns_name,";");
+   	
+   	//Finally ful fill the samples
+   	$samples = $matrix->getRows();
+   	foreach ($samples as $sample) {
+   		$row_content = array();
+   		$values      = $sample->getSamples();
+   		$sample_name = $sample->getName();
+   		$row_content = array_merge( (array) $sample_name, (array)$values);
+   		$csv_content[] = implode($row_content, ";");
+   	}
+   	$csv = implode($csv_content, "\r\n");
+   	$dataSet["dataset"] = $csv;
+   	
+   	//@TODO: by now default values
+   	$dataSet['aging_positions'] = array(
+   			'Estiu'     => '0.5',
+   			'Hivern'    => '0.0',
+   			'Summer'    => '0.5',
+   			'Winter'    => '0.0'
+   	);
+   	
+	   	
+   	return $dataSet;	
+}
+  
+
+private function resolveSeasonName($season_name){
+   	$seasons = array(
+   		'summer'   => 'Estiu',
+   		'winter'   => 'Hivern',
+   		'spring'   => 'Primavera',
+   		'autumn'   => 'Tardor',
+   		'all_year' => 'TotAny'
+  	);
+  	return $seasons[$season_name];
+}
     
-    private function resolveSeasonName($season_name){
-    	error_log("****Resolving ".$season_name);
-    	$seasons = array(
-    		'summer'   => 'Estiu',
-    		'winter'   => 'Hivern',
-    		'spring'   => 'Primavera',
-    		'autumn'   => 'Tardor',
-    		'all_year' => 'TotAny'
-    	);
-    	return $seasons[$season_name];
-    }
-    
-    private function dumpIntoErrorLog($data){
-    	ob_start();
-    	var_dump($data);
-    	$contents = ob_get_contents();
-    	ob_end_clean();
-    	error_log($contents);
-    }
+private function dumpIntoErrorLog($data){
+   	ob_start();
+   	var_dump($data);
+   	$contents = ob_get_contents();
+   	ob_end_clean();
+	error_log($contents);
+}
 	
 }
 

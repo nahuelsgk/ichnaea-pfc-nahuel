@@ -108,34 +108,13 @@ function loadSeasonSetIntoSelectListAction(variable_id, idOptionList)
 	sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
 }
 
-//@TODO: move to jquery
-function reposHead(e) 
-{
-    var h = document.getElementById('headscroll');
-    h.scrollLeft = e.scrollLeft;
-    var f = document.getElementById('divfrozen');
-    f.scrollTop = e.scrollTop;
-}
 
-//@TODO: move to jquery
-function reposHorizontal(e) {
-    var h = document.getElementById('headscroll');
-    var c = document.getElementById('contentscroll');
-    h.scrollLeft = e.scrollLeft*50;
-    c.scrollLeft = e.scrollLeft*50;
-}
-
-//@TODO: move to jquery
-function reposVertical(e) {
-    var h = document.getElementById('divfrozen');
-    var c = document.getElementById('contentscroll');
-    h.scrollTop = e.scrollTop*100;
-    c.scrollTop = e.scrollTop*100;
-}
 function init_datepicker(){
     $('.sampleDate').datepicker({dateFormat: "dd-mm-yy"});
 }
+
 $(document).ready(function(){
     init_datepicker();
+    dynamic_height(0);
  });
 {% endblock %}
