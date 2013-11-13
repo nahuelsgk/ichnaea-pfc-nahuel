@@ -10,12 +10,15 @@ DATAFILE=""
 OUTFILE=""
 ICHNAEADIR=""
 FAKE=""
+INSTALL=""
 SECTION="1"
 SEASON="Hivern"
+DEBUG=""
+RBIN=`which R`
 
 function USAGE {
 	echo "Ichnaea wrapper by Miguel Ibero <miguel@ibero.me>"
-	echo "usage: $0 --aging=path/to/aging [--output=file.zip] [--fake=duration:interval] data.csv"
+	echo "usage: $0 --install --debug --aging=path/to/aging [--output=file.zip] [--fake=duration:interval] data.csv"
 	exit 0
 }
 
@@ -23,7 +26,7 @@ function PRINT_LOG {
 	echo "$1" 
 }
 
-OPTS=`getopt -o scfo -l "aging:,output:,fake:" -- "$@"`
+OPTS=`getopt -o scfoid -l "aging:,output:,fake:,install,debug" -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -34,6 +37,8 @@ eval set -- "$OPTS"
 while true
 do
     case "$1" in
+    	-i|--install) INSTALL="1"; shift 1;;
+    	-d|--debug) DEBUG="1"; shift 1;;
         -a|--aging) AGING="$SCRIPTPATH/$2"; shift 2;;
         -o|--output) OUTFILE="$2"; shift 2;;
         -f|--fake) FAKE="$2"; shift 2;;
@@ -74,7 +79,12 @@ function REXEC {
 	ERRFILE=`tempfile`
 	RFILE="$1"
 	shift
-    R --vanilla --no-readline --quiet --slave --args $@ < "$RFILE" 2> $ERRFILE
+	if [ "$DEBUG" == "1" ]
+	then
+		$RBIN --vanilla --no-readline --slave --args $@ < "$RFILE" | tee $ERRFILE 2>&1
+	else
+		$RBIN --vanilla --no-readline --quiet --slave --args $@ < "$RFILE" 2> $ERRFILE
+	fi
     ERROR=`cat $ERRFILE`
     rm $ERRFILE
 }
@@ -88,63 +98,87 @@ TIME_START
 if [ "$FAKE" == "" ]
 then
 
-	if [ "$DATAFILE" == "" ]
-	then
-		PRINT_LOG "no input file specified"
-		USAGE
-	fi
-
-	if [ "$AGING" == "" ]
-	then
-		PRINT_LOG "no aging specified"
-		USAGE
-	fi
-	if [ ! -d "$AGING" ]
-	then
-		PRINT_LOG "aging '$AGING' is not a directory"
-		USAGE	
-	fi
-
-	if [ ! -f "$DATAFILE" ]
-	then
-		PRINT_LOG "could not read data file $DATAFILE"
-		USAGE
-	fi
-
 	if [ "$ICHNAEADIR" == "" ]
 	then
 		ICHNAEADIR="$SCRIPTPATH/ichnaea"
 	fi
 
-	TMPDIR=`mktemp -d`
-	TMPDIR="/tmp/ichnaea"
-	mkdir -p $TMPDIR
-	PRINT_LOG "working in temp directory $TMPDIR"
-	cp -r $ICHNAEADIR/* $TMPDIR
-	mkdir -p $TMPDIR/data
-	mkdir -p $TMPDIR/data_objects
-	cp -r $AGING $TMPDIR/data/aging
-	cp $DATAFILE $TMPDIR/data/cyprus.csv
-	pushd $TMPDIR/src > /dev/null	
-
-	PRINT_LOG "building dataset..."
-	RESULT=`REXEC section_dataset_building.R`
-	PRINT_LOG "building models..."
-	REXEC section_models_building.R $SEASON
-
-	ZIPFILE=$TMPDIR/build_models.zip
-	zip -j $ZIPFILE $TMPDIR/data_objects/section_models_*.Rdata
-
-	if [ "$OUTFILE" == "" ]
+	if [ "$RBIN" == "" ]
 	then
-		cat $ZIPFILE
-	else
-		cp $ZIPFILE $OUTFILE
+		PRINT_LOG "binary R executable was not found on the path"
+		exit
 	fi
 
-	popd > /dev/null
-	// rm -rf $TMPDIR
-else
+	if [ "$INSTALL" == "1" ]
+	then
+		PRINT_LOG "installing required R modules"
+		pushd $ICHNAEADIR/src > /dev/null
+		REXEC install.R
+		popd > /dev/null
+	else
+
+		if [ "$DATAFILE" == "" ]
+		then
+			PRINT_LOG "no input file specified"
+			USAGE
+		fi
+
+		if [ "$AGING" == "" ]
+		then
+			PRINT_LOG "no aging specified"
+			USAGE
+		fi
+		if [ ! -d "$AGING" ]
+		then
+			PRINT_LOG "aging '$AGING' is not a directory"
+			USAGE	
+		fi
+
+		if [ ! -f "$DATAFILE" ]
+		then
+			PRINT_LOG "could not read data file $DATAFILE"
+			USAGE
+		fi
+
+		TMPDIR=`mktemp -d`
+		mkdir -p $TMPDIR
+		if [ "$DEBUG" == "" ]
+		then
+			PRINT_LOG "working in temp directory $TMPDIR"
+		fi
+		cp -r $ICHNAEADIR/* $TMPDIR
+		mkdir -p $TMPDIR/data
+		mkdir -p $TMPDIR/data_objects
+		cp -r $AGING $TMPDIR/data/aging
+		cp $DATAFILE $TMPDIR/data/cyprus.csv
+		pushd $TMPDIR/src > /dev/null	
+
+		PRINT_LOG "building dataset..."
+		RESULT=`REXEC section_dataset_building.R`
+		PRINT_LOG "building models..."
+		REXEC section_models_building.R $SEASON
+
+		ZIPFILE=$TMPDIR/build_models.zip
+		zip -j $ZIPFILE $TMPDIR/data_objects/section_models_*.Rdata
+
+		if [ "$OUTFILE" == "" ]
+		then
+			cat $ZIPFILE
+		else
+			cp $ZIPFILE $OUTFILE
+		fi
+
+		popd > /dev/null
+
+		if [ "$DEBUG" == "" ]
+		then
+			rm -rf $TMPDIR
+		fi
+	fi
+fi
+
+if [ "$FAKE" == "1" ]
+then
 	FAKE_DURATION=`echo $FAKE | sed -e "s/\(.*\):.*/\1/g"`
 	FAKE_INTERVAL=`echo $FAKE | sed -e "s/.*:\(.*\)/\1/g"`
 	

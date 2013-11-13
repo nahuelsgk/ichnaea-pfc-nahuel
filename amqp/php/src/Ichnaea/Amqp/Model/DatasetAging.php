@@ -88,11 +88,10 @@ class DatasetAging implements \IteratorAggregate
     public function setColumns(array $columns)
     {
         foreach($columns as $col=>&$agings) {
-            if(!is_array($agings)) {
-                throw new \InvalidArgumentException("Each column should contain a aging array.");
-            }
-            foreach($agings as $pos=>&$aging) {
-                $this->setAging($col, $pos, $aging);
+            if(is_array($agings)) {
+                foreach($agings as $pos=>&$aging) {
+                    $this->setAging($col, $pos, $aging);
+                }
             }
         }
     }
