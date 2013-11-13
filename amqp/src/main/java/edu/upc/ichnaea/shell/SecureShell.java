@@ -215,5 +215,17 @@ public class SecureShell implements ShellInterface {
 	public String getTempPath() {
 		return "/tmp";
 	}
+
+	public void createFolder(String path) throws IOException {
+		try{
+			ChannelSftp channel = (ChannelSftp) mSession.openChannel("sftp");
+			channel.connect();
+		    channel.mkdir(path);
+		}catch(SftpException e){			
+			throw new IOException(e);
+		}catch(JSchException e){
+			throw new IOException(e);
+		}
+	}
 	
 }

@@ -20,7 +20,7 @@ public class AgingFolderReader {
 	static final String PlaceholderRegex = "%(.+?)%";
 	protected String mFormat;
 	protected Map<String,Float> mPositions;
-	protected boolean mStrict = false;
+	protected boolean mStrict = true;
 	
 	public AgingFolderReader() {
 		mFormat = "env%column%-%aging%.txt";

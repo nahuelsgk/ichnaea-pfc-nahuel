@@ -14,55 +14,46 @@ public class CsvWriter {
 	protected char mEscape = '\\';
 	protected String mLineEnd = "\n";
 
-	public CsvWriter(Writer writer)
-	{
+	public CsvWriter(Writer writer) {
 		mWriter = writer;
 	}
 	
-	public void setSeparator(char sep)
-	{
+	public void setSeparator(char sep) {
 		mSeparator = sep;
 	}
 	
-	public void setQuote(char quote)
-	{
+	public void setQuote(char quote) {
 		mQuote = quote;
 	}
 	
-	public void setEscape(char escape)
-	{
+	public void setEscape(char escape) {
 		mEscape = escape;
 	}
 	
-	public void setLineEnd(String lineEnd)
-	{
+	public void setLineEnd(String lineEnd) {
 		mLineEnd = lineEnd;
 	}
 	
-	protected au.com.bytecode.opencsv.CSVWriter getWriter()
-	{
-		if(mCsvWriter == null)
-		{
+	protected au.com.bytecode.opencsv.CSVWriter getWriter() {
+		if(mCsvWriter == null) {
 			mCsvWriter = new au.com.bytecode.opencsv.CSVWriter(mWriter, mSeparator, mQuote, mEscape, mLineEnd);
 		}
 		return mCsvWriter;
 	}
 	
-	protected void writeAll(List<String[]> rows)
-	{
+	protected void writeAll(List<String[]> rows) {
 		getWriter().writeAll(rows);
 	}
 	
-	protected void writeNext(String[] row)
-	{
+	protected void writeNext(String[] row) {
 		getWriter().writeNext(row);
 	}
-	public void close() throws IOException
-	{
-		if(mCsvWriter != null)
-		{
+	
+	public void close() throws IOException {
+		if(mCsvWriter != null) {
 			mCsvWriter.close();
 			mCsvWriter = null;
+			mWriter = null;
 		}
 	}
 }

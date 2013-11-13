@@ -34,9 +34,13 @@ To run the basic build-models:process consumer:
 
     ./target/ichnaea-amqp.jar build-models:process -i ../kvm/files/ichnaea.sh
 
-To run the basic build-models:request publisher:
+To run the basic build-models:request publisher with a fake request:
 
     ./target/ichnaea-amqp.jar build-models:request -f 10:1
+
+To run the basic build-models:request publisher with a real request:
+
+    ./target/ichnaea-amqp.jar build-models:request --aging=../kvm/fixtures/aging/env%column%-%aging%.txt --dataset=../kvm/fixtures/cyprus.csv
 
 Use the `-h` command line argument to get all the available options.
 

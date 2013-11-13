@@ -39,7 +39,7 @@ do
     case "$1" in
     	-i|--install) INSTALL="1"; shift 1;;
     	-d|--debug) DEBUG="1"; shift 1;;
-        -a|--aging) AGING="$SCRIPTPATH/$2"; shift 2;;
+        -a|--aging) AGING="$2"; shift 2;;
         -o|--output) OUTFILE="$2"; shift 2;;
         -f|--fake) FAKE="$2"; shift 2;;
         --) shift; break;;
@@ -52,7 +52,7 @@ done
 
 shift $(($OPTIND - 1))
 
-DATAFILE="$SCRIPTPATH/$1"
+DATAFILE="$1"
 
 function TIME_START {
 	STARTTIME=`date +%s`

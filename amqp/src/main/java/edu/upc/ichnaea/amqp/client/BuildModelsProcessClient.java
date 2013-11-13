@@ -23,6 +23,7 @@ import com.rabbitmq.client.Envelope;
 import edu.upc.ichnaea.amqp.FileUtils;
 import edu.upc.ichnaea.amqp.IOUtils;
 import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
+import edu.upc.ichnaea.amqp.data.AgingFolderWriter;
 import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
@@ -135,8 +136,19 @@ public class BuildModelsProcessClient extends Client {
 		OutputStream out = mShell.writeFile(datasetPath);
 		new CsvDatasetWriter(new OutputStreamWriter(out)).write(req.getDataset()).close();
 		
+		String agingPath = FileUtils.tempPath(mShell.getTempPath());
+		getLogger().info("writing aging to "+agingPath);
+		mShell.createFolder(agingPath);
+		String agingFormat = agingPath + "/env%column%-%aging%.txt";
+		new AgingFolderWriter(agingFormat) {
+			@Override
+			protected OutputStream createFile(String path) throws IOException {
+				return mShell.writeFile(path);
+			}
+		}.write(req.getAging());
+		
 		getLogger().info("calling build models command");
-		BuildModelsCommand cmd = new BuildModelsCommand(datasetPath);
+		BuildModelsCommand cmd = new BuildModelsCommand(datasetPath, agingPath);
 		
 		cmd.setScriptPath(mScriptPath);
 		getLogger().info(cmd.toString());
@@ -147,6 +159,9 @@ public class BuildModelsProcessClient extends Client {
 		
 		getLogger().info("deleting temporary dataset file");
 		mShell.removeFile(datasetPath);
+		
+		getLogger().info("deleting temporary aging folder");
+		mShell.removeFile(agingPath);
 		
 		getLogger().info("reading output file in "+cmd.getOutputPath());
 		Calendar end = Calendar.getInstance();

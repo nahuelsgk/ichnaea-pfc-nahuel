@@ -18,7 +18,9 @@ public class AgingReader {
 		while ((line = br.readLine()) != null) {
 			line = line.trim();
 			if(line.isEmpty()) {
-				aging.addTrial(trial);
+				if(trial.size() > 0) {
+					aging.addTrial(trial);
+				}
 				trial = new AgingTrial();
 			} else if(line.trim().charAt(0) == '#') {
 				// comment
@@ -30,6 +32,9 @@ public class AgingReader {
 				trial.add(words[0], words[1]);
 			}
 		}
+		if(trial.size() > 0) {
+			aging.addTrial(trial);
+		}		
 		return aging;
 	}
 }

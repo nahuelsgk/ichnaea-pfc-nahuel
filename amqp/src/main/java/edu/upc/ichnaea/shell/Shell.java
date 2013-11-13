@@ -92,4 +92,8 @@ public class Shell implements ShellInterface {
 		
 	}
 
+	public void createFolder(String path) throws IOException {
+		new File(path).mkdirs();
+	}
+
 }

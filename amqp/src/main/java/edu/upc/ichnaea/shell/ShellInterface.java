@@ -14,5 +14,6 @@ public interface ShellInterface {
 	public InputStream readFile(String path) throws IOException, FileNotFoundException;
 	public OutputStream writeFile(String path) throws IOException;
 	public void removeFile(String path) throws IOException;
+	public void createFolder(String path) throws IOException;
 	public String getTempPath() throws IOException;
 }

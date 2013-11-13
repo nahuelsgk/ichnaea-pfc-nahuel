@@ -6,13 +6,16 @@ import edu.upc.ichnaea.amqp.FileUtils;
 
 public class BuildModelsCommand extends IchnaeaCommand {
 
+	private String mAgingPath;
 	private String mDatasetPath;
 	private String mOutputPath;
 	
-	public BuildModelsCommand(String datasetPath) {
+	public BuildModelsCommand(String datasetPath, String agingPath) {
 		mDatasetPath = datasetPath;
+		mAgingPath = agingPath;
 	}
 	
+	@Override
 	public void beforeRun(ShellInterface shell) {
 		try {
 			mOutputPath = FileUtils.tempPath(shell.getTempPath());
@@ -30,6 +33,7 @@ public class BuildModelsCommand extends IchnaeaCommand {
 		if(mOutputPath != null) {
 			params += " --output=\""+mOutputPath+"\"";
 		}
+		params += " --aging=\""+mAgingPath+"\"";
 		params += " "+mDatasetPath;
 		return params;
 	}
