@@ -142,7 +142,7 @@ then
 
 		TMPDIR=`mktemp -d`
 		mkdir -p $TMPDIR
-		if [ "$DEBUG" == "" ]
+		if [ "$DEBUG" == "1" ]
 		then
 			PRINT_LOG "working in temp directory $TMPDIR"
 		fi
