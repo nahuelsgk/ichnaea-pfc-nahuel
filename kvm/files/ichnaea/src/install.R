@@ -1,4 +1,4 @@
-
+install.packages("kernlab")
 install.packages("rvmbinary.tar.gz")
 install.packages("boot")
 install.packages("car")
@@ -6,7 +6,6 @@ install.packages("pnn")
 install.packages("e1071")
 install.packages("KernSmooth")
 install.packages("ipred")
-install.packages("kernlab")
 install.packages("mlbench")
 install.packages("prodlim")
 install.packages("TunePareto")
