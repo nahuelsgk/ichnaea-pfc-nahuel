@@ -31,9 +31,10 @@ public class BuildModelsCommand extends IchnaeaCommand {
 		String params = "";
 
 		if(mOutputPath != null) {
-			params += " --output=\""+mOutputPath+"\"";
+			params += " --output="+mOutputPath+"";
 		}
-		params += " --aging=\""+mAgingPath+"\"";
+		params += " --aging="+mAgingPath+"";
+		params += " --debug";
 		params += " "+mDatasetPath;
 		return params;
 	}

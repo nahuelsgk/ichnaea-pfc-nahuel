@@ -158,10 +158,10 @@ public class BuildModelsProcessClient extends Client {
 		sendRequestUpdates(result, start, replyTo);
 		
 		getLogger().info("deleting temporary dataset file");
-		mShell.removeFile(datasetPath);
+		mShell.removePath(datasetPath);
 		
 		getLogger().info("deleting temporary aging folder");
-		mShell.removeFile(agingPath);
+		mShell.removePath(agingPath);
 		
 		getLogger().info("reading output file in "+cmd.getOutputPath());
 		Calendar end = Calendar.getInstance();

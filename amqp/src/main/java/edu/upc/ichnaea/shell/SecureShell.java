@@ -13,6 +13,7 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpATTRS;
 import com.jcraft.jsch.SftpException;
 
 public class SecureShell implements ShellInterface {
@@ -199,11 +200,16 @@ public class SecureShell implements ShellInterface {
 	}
 
 	@Override
-	public void removeFile(String path) throws IOException {
+	public void removePath(String path) throws IOException {
 		try{
 			ChannelSftp channel = (ChannelSftp) mSession.openChannel("sftp");
 			channel.connect();
-			channel.rm(path);
+			SftpATTRS attrs = channel.stat(path);
+			if(attrs.isDir()) {
+				channel.rmdir(path);	
+			} else {
+				channel.rm(path);
+			}
 		}catch(SftpException e){
 			throw new IOException(e);
 		}catch(JSchException e){

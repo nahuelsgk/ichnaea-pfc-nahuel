@@ -9,6 +9,14 @@ On Ubuntu
 TO execute the ichnaea amqp publishers and consumers you only need to build the
 main jar once.
 
+#### Setup ichnaea R scripts
+
+* install R interpreter
+    sudo apt-get install r-base-core
+    
+* install required R modules
+    ../kvm/files/ichnaea.sh --install
+
 #### Setup required programms and libraries
 
 * install oracle jdk 7

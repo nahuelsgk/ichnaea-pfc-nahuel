@@ -70,11 +70,22 @@ public class Shell implements ShellInterface {
 		}
 	}
 	
-	public void removeFile(String path) throws IOException {
-		if(!new File(path).delete())
-		{
-			throw new IOException("could not delete path");
-		}
+	private void removeFile(File file) throws IOException {
+		if(file.exists()) {
+	        File[] files = file.listFiles();
+	        if(null != files) {
+	            for(int i=0; i<files.length; i++) {
+	                removeFile(files[i]);
+	            }
+	        }
+			if(!file.delete()) {
+				throw new IOException("could not delete path");
+			}
+	    }
+	}
+	
+	public void removePath(String path) throws IOException {
+		removeFile(new File(path));
 	}
 
 	@Override
