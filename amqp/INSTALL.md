@@ -14,7 +14,7 @@ main jar once.
 * install oracle jdk 7
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
-    sudo apt-get install oracle-java8-installer
+    sudo apt-get install oracle-java7-installer
 
 * install rabbitmq-server
     sudo apt-get install rabbitmq-server
@@ -62,11 +62,15 @@ Use the `-h` command line argument to get all the available options.
 * install eclipse
     sudo apt-get install eclipse
 
+* update eclipse
+    sudo eclipse
+    Help -> Check for updates
+
 #### Create an eclipse workspace
     
 * run eclipse and create a workspace
     eclipse
-
+    
 * install m2eclipse plugin
     http://download.eclipse.org/technology/m2e/releases
     

@@ -1,17 +1,11 @@
 package edu.upc.ichnaea.amqp.data;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.security.InvalidParameterException;
-import java.lang.IllegalArgumentException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import edu.upc.ichnaea.amqp.model.DatasetAgingColumn;
 import edu.upc.ichnaea.amqp.model.DatasetAging;

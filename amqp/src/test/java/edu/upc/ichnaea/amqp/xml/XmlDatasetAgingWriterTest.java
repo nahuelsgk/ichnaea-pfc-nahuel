@@ -60,16 +60,16 @@ public class XmlDatasetAgingWriterTest {
     	agings.put("test2", column);
     	
     	String xml = new XmlDatasetAgingWriter().build(agings).toString();
-    	String expectedXml = "<agings><column name=\"test2\"><aging position=\"0.0\">";
-    	expectedXml += "<trial><value key=\"10\">43</value><value key=\"50\">123.6</value>";
-    	expectedXml += "</trial></aging><aging position=\"0.2\">";
-    	expectedXml += "<trial><value key=\"10\">43</value><value key=\"50\">123.6</value>";
-    	expectedXml += "</trial></aging></column><column name=\"test\"><aging position=\"0.5\"><trial>";
+    	String expectedXml = "<agings><column name=\"test\"><aging position=\"0.5\"><trial>";
         expectedXml += "<value key=\"0\">4.4</value><value key=\"10\">40</value>";
         expectedXml += "<value key=\"50\">120.6</value></trial><trial><value key=\"0\">5.4</value>";
         expectedXml += "<value key=\"10\">43</value><value key=\"50\">123.6</value></trial>";
         expectedXml += "<trial><value key=\"10\">43</value><value key=\"50\">123.6</value>";
-        expectedXml += "</trial></aging></column></agings>"; 
+        expectedXml += "</trial></aging></column><column name=\"test2\"><aging position=\"0.0\">";
+    	expectedXml += "<trial><value key=\"10\">43</value><value key=\"50\">123.6</value>";
+    	expectedXml += "</trial></aging><aging position=\"0.2\">";
+    	expectedXml += "<trial><value key=\"10\">43</value><value key=\"50\">123.6</value>";
+    	expectedXml += "</trial></aging></column></agings>"; 
 
         Diff xmlDiff = new Diff(expectedXml, xml);
         assertTrue(xmlDiff.toString(), xmlDiff.similar());

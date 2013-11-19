@@ -16,7 +16,6 @@ public class Main {
 	static Map<String,Action> getActions() {
     	Map<String,Action> actions = new HashMap<String,Action>();
     	actions.put("build-models:process", new Action(){
-			@Override
 			public void run(String[] args) {
 				BuildModelsProcessApp.main(args);
 			}
@@ -26,7 +25,6 @@ public class Main {
 			}
     	});
     	actions.put("build-models:request", new Action(){
-			@Override
 			public void run(String[] args) {
 				BuildModelsRequestApp.main(args);
 			}
