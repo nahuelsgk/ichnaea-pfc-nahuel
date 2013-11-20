@@ -35,7 +35,7 @@ aged_samples_lr <- function( attributes , season , orig_data , correction , mean
 		
 		# list in which the essays LR coefficients (slope and increment) will be stored
 		essays_coef <- list()
-		
+	
 		# obtaining in which indexes of the aged samples start each one of the essays (new essay => t=0)
 		essay_splits <- c( which( aged_samples$time == 0 ) , length( aged_samples$time ) + 1 )
 		essay_splits <- essay_splits[ -1 ] # removing the first (there will always be a zero on first aged_samples row)
@@ -46,14 +46,14 @@ aged_samples_lr <- function( attributes , season , orig_data , correction , mean
 		    
 			# obtaining the samples of the current essay
 			essay_samples <- aged_samples[ last_split : ( split - 1 ) , ] # selecting only the essay_samples
-		  
+      
 			# if correction is TRUE values are considered slightly diluted and therefore are corrected
 			if ( correction ){
     		# correction is done using the log10 of the median of the attribute human rows of the original matrix
 				essay_samples[ , 2 ] <- essay_samples[ , 2 ] + 
 					log10( median( orig_data[ which( orig_data$CLASS == HUMAN ) , attr ] ) ) - aged_samples[ last_split , 2 ]  
 			}
-      
+   
       # performing LR over the current essay values and storing in the list of all the essays LR coefficients
 			essays_coef <- c( essays_coef , list( lm( value ~ time , data = essay_samples )$coefficients ) )
   
@@ -144,4 +144,74 @@ age_dataset <- function( dataset , times , age_lr  ){
 	# returning list
 	list_aged_data
 }
+
+
+age <- function(sample, season) {
+  load("../data_objects/aging_coefs.Rdata")
+  season_coefs <- aging_coefs[[season]]
+  
+  attrs <- intersect(colnames(sample), AGEING_AVAILABLE_ATTRS)
+  n <- length(attrs)
+  
+  load("../data_objects/prepared_original_data.Rdata")
+  
+  prepared_data <- keep_season(prepared_data, season)
+  prepared_data <- prepared_data[, attrs]
+  
+  combs <- combn(1:n, 2)
+  
+  df <- data.frame(matrix(ncol=2, nrow=0))
+  for (k in 1:ncol(combs)) {
+    # Adding equations like: log(uij/uij') - (aj - aj')t = log(v~j/v~j')
+    j1 <- combs[1,k]
+    j2 <- combs[2,k]
+    
+    a1 <- season_coefs[[attrs[j1]]][2]
+    a2 <- season_coefs[[attrs[j2]]][2]
+    coef <- a1 - a2
+    
+    for (i in 1:nrow(prepared_data)) {
+      uij1 <- prepared_data[i, attrs[j1]]
+      uij2 <- prepared_data[i, attrs[j2]]
+      vj1 <- sample[1, attrs[j1]]
+      vj2 <- sample[1, attrs[j2]]
+      
+      if (vj1 != 0 && vj2 != 0 && uij1 != 0 && uij2 != 0) {
+        indep <- -(log10(vj1/vj2) - log10(uij1/uij2))
+        if (is.nan(indep)) {
+          print(sample)
+          print(a2)
+          print(vj2)
+          skdjskdjsdj
+        }
+        df <- rbind(df, c(coef, indep))
+      }
+    }
+  }
+  colnames(df) <- c("t", "ind")
+  
+  a <- tapply(df$ind, df$t, mean)
+  b <- as.numeric(names(a))
+  c <- a/b
+  
+  d1 <- mean(c)
+  d2 <- mean(c, trim = 0.1)
+  d3 <- median(c)
+  
+  lsq <- lm(ind ~ t, df)
+  
+  cat(paste("Least squares únic. t* =", as.numeric(lsq$coefficients[2]), "\n"))
+  cat(paste("Least squares per segments, mean. t* =", d1, "\n"))
+  cat(paste("Least squares per segments, trimmed mean 0.1. t* =", d2, "\n"))
+  cat(paste("Least squares per segments, median. t* =", d3, "\n"))
+  
+  cat(paste("\nTemps envelliment real. t*=", sample$age, "\n"))
+}
+
+keep_season <- function(data, season) {
+  data
+}
+
+
+
 ###############################################################################################################################################################

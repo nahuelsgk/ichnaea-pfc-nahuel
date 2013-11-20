@@ -43,8 +43,8 @@ accuracy <- function(real, pred) {
 f_measure <- function(real, pred) {
   if (length(real) == length(pred)) {
     # sorting the levels of the factors
-    real <- factor(real, levels=sort(levels(real)))
-    pred <- factor(pred, levels=sort(levels(pred)))    
+    real <- factor(real, levels=c(1,-1))
+    pred <- factor(pred, levels=c(1,-1))
     
     tab <- table(real, pred)
     
@@ -54,12 +54,16 @@ f_measure <- function(real, pred) {
     TP <- tab[1,1]
     FN <- tab[1,2]
     
-    # precision
-    P <- TP / (TP + FP)
-    # recall
-    R <- TP / (TP + FN)
-    
-    2*P*R/(P+R)
+    if (TP > 0) {
+      # precision
+      P <- TP / (TP + FP)
+      # recall
+      R <- TP / (TP + FN)
+      
+      2*P*R/(P+R)  
+    } else {
+      0
+    }
   }
   else {
     NA
@@ -80,7 +84,7 @@ predict_from_signature <- function( sample, signature , train_data ){
   # SLDA building
   ##############################################################################
   if ( signature$alg == "slda" ){
-    m <- ipred::slda( y = train_data[ , "CLASS" ] , X = train_data[ , signature$comb ] , CV = FALSE ) 
+    m <- ipred::slda( y = train_data[ , "CLASS" ] , X = train_data[ , signature$comb, drop=FALSE ] , CV = FALSE ) 
     m_pred <- custom_predict_slda( m , sample[ , signature$comb ] )$class
   } 
   ##############################################################################
@@ -111,7 +115,7 @@ predict_from_signature <- function( sample, signature , train_data ){
   # KNN building
   ##############################################################################
   else if ( signature$alg == "knn" ){
-    m <- class::knn( train = train_data[ , signature$comb  ] , test = sample[ , signature$comb  ] , 
+    m <- class::knn( train = train_data[ , signature$comb, drop=FALSE  ] , test = sample[ , signature$comb, drop=FALSE  ] , 
                      cl = train_data[ , "CLASS" ] , k = signature$args[[ 1 ]] , prob = FALSE )
     m_pred <- m
   } 
@@ -144,15 +148,9 @@ predict_from_signature <- function( sample, signature , train_data ){
   # PNN building
   ##############################################################################
   else if ( signature$alg == "pnn" ){
-    print(signature$comb)
-    print(as.matrix(sample[, signature$comb]))
     m <- pnn::smooth( pnn::learn( cbind( train_data[ , "CLASS" ], train_data[ , signature$comb  ] ) ), sigma=signature$args[[ 1 ]] )
-    
-    print(m)
     a <- pnn::guess(m, as.matrix(sample[, signature$comb]))
-    print(a)
     m_pred <- as.numeric(a$category)
-    print(m_pred)
   }
   ##############################################################################
   
@@ -199,129 +197,128 @@ predict_from_signature <- function( sample, signature , train_data ){
 ##### Returns a matrix in which each row contains: model algorithm , attribute combination , model performance , model parameters.
 ##### IMPORTANT! The build model is not returned, just its "signature"
 ##### Params:
-#####   - attrs: attributes from data.frame train_data that will be used as explanatory variables
+##### - attrs: attributes from data.frame train_data that will be used as explanatory variables
 #####	- train_data: data.frame that contains training data
 #####	- folds: list of array in which each of the elements (indexed by attribute name) are the rows corresponding to a particular folds to compute CV performance
-build_models <- function( attrs , train_data , folds ){	
+deprecated__build_models <- function( attrs , train_data , folds ){
   # matrix in which resulting models will be stored, this is the object to be returned
   models_matrix <- c()
   if ( DEBUG ){ cat( "******************************************************\n" ) }
   if ( DEBUG ){ cat( "Building models for attribute set" , attrs , "\n" ) }
   
   # SLDA building
-  ##############################################################################
-  if ( DEBUG ){ cat( "SLDA\n") }
-  perfs <- sapply( folds , function ( fold_va_indexes ){ 
-    m <- ipred::slda( y = train_data[ -fold_va_indexes , "CLASS" ] , X = train_data[ -fold_va_indexes , attrs ] , CV = FALSE ) 
-    m_pred <- custom_predict_slda( m , train_data[ fold_va_indexes , attrs ] )$class
+  models_matrix <- rbind(models_matrix, build_slda(attrs, train_data, folds))
+  
+  # SVM with linear, polynomic and radial kernels building
+  for (c in SVM_C_VALUES) {
+    models_matrix <- rbind(models_matrix, build_svm(attrs, train_data, folds, c, "lin"))
+    models_matrix <- rbind(models_matrix, build_svm(attrs, train_data, folds, c, "poly"))
+    models_matrix <- rbind(models_matrix, build_svm(attrs, train_data, folds, c, "rbf"))
+  }
+  
+  # k-NN building
+  for (k in NN_K_VALUES){
+    models_matrix <- rbind(models_matrix, build_knn(attrs, train_data, folds, k))
+  }
+  
+  # Logistic Regression building
+  models_matrix <- rbind(models_matrix, build_lr(attrs, train_data, folds))
+  
+  # Naive Bayes building
+  models_matrix <- rbind(models_matrix, build_nb(attrs, train_data, folds))
 
+  # Probabilistic Neural Network building
+  for (sigma in PNN_SIGMA_VALUES){
+    if(FALSE){ #no prediu bé!
+      models_matrix <- rbind(models_matrix, build_pnn(attrs, train_data, folds, sigma))
+    }
+  }
+  
+  # RVM with linear, polynomic and radial kernels building
+  # only available for two classes
+  if (FALSE) { # ojo que de vegades retorna algun NaN!
+    models_matrix <- rbind(models_matrix, build_rvm(attrs, train_data, folds, "lin"))
+    models_matrix <- rbind(models_matrix, build_rvm(attrs, train_data, folds, "poly"))
+    models_matrix <- rbind(models_matrix, build_rvm(attrs, train_data, folds, "rbf"))
+  }
+  
+  # returning matrix in which resulting models are stored
+  models_matrix
+}
+###############################################################################################################################################################
+
+build_slda <- function(attrs, train_data, folds) {
+  perfs <- sapply( folds , function ( fold_va_indexes ){
+    m <- ipred::slda( y = train_data[ -fold_va_indexes , "CLASS" ] , X = train_data[ -fold_va_indexes , attrs, drop=F ] , CV = FALSE )
+    m_pred <- custom_predict_slda( m , train_data[ fold_va_indexes , attrs ] )$class
+    
     if (CRITERION == "ACCURACY") {
       accuracy(train_data[ fold_va_indexes , "CLASS" ], m_pred)
     } else if (CRITERION == "F-MEASURE"){
       f_measure(train_data[ fold_va_indexes , "CLASS" ], m_pred)
     }
   } )
-  models_matrix <- rbind( models_matrix , list( 	alg = "slda" , comb = attrs , perf = mean( perfs ) , args = list() ) )
-  ##############################################################################
   
-  
-  # SVM with linear, polynomic and radial kernels building
-  ##############################################################################
+  list(alg = "slda", comb = attrs, perf = mean( perfs ), args = list())
+}
+
+build_svm <- function(attrs, train_data, folds, c, kern) {
   # converting training data to a matrix since it is required by SVM methods
   matr_train_data <- as.matrix( train_data[ , attrs ] )
   matr_class_data <- as.matrix( train_data[ , "CLASS" ] )
-  # estimating sigma value for RBF kernel SVM
-  kpar_rbf_kern <- list( sigma = mean( sigest( matr_train_data , scaled = FALSE )[ c( 1 , 3 ) ] ) )
-  # for each one of the available cost parameter values to be optimized
-  for ( c in SVM_C_VALUES ){
-    # applying function for each one of the folds, perfs will be an array with the performance of each fold
-    # current fold will be considered the validation fold, hence the name fold_va_indexes
-    
-    # linear kernel
-    if ( DEBUG ){ cat( "SVM, linear kernel, C=" , c , "\n") }
-    perfs <- sapply( folds , function ( fold_va_indexes ){ 
-      # building model using the indexes NOT contained on fold_va_indexes array 
-      m <- kernlab::ksvm( matr_train_data[ -fold_va_indexes , ] , matr_class_data[ -fold_va_indexes , ] , kernel = "polydot" , 
-                          kpar = list( degree = 1 , scale = 1 , offset = 1 ) , C = c , scaled = FALSE )
-      # predicting the indexes contained on fold_va_indexes array 
-      m_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
-      
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
-      }
-    } )
-    models_matrix <- rbind( models_matrix , list( alg = "svm" , comb = attrs , perf = mean( perfs ) , args = list( "lin" , c ) ) )
-    
-    # polynomial degree 2 kernel
-    if ( DEBUG ){ cat( "SVM, poly 2-deg kernel, C=" , c , "\n") }
-    perfs <- sapply( folds , function ( fold_va_indexes ){
-      # building model using the indexes NOT contained on fold_va_indexes array 
-      m <- kernlab::ksvm( matr_train_data[ -fold_va_indexes , ] , matr_class_data[ -fold_va_indexes , ] , kernel = "polydot" , 
-                          kpar = list( degree = 2 ) , C = c , scaled = FALSE )
-      # predicting the indexes contained on fold_va_indexes array 
-      m_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
   
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
-      }
-    } )
-    models_matrix <- rbind( models_matrix , list( alg = "svm" , comb = attrs , perf = mean( perfs ) , args = list( "poly" , c ) ) )
-    
-    # rbf kernel
-    if ( DEBUG ){ cat( "SVM, rbf kernel, C=" , c , "\n") }
-    perfs <- sapply( folds , function ( fold_va_indexes ){
-      # building model using the indexes NOT contained on fold_va_indexes array 
-      m <- kernlab::ksvm(	matr_train_data[ -fold_va_indexes , ] , matr_class_data[ -fold_va_indexes , ] , kernel = "rbfdot" , 
-                          kpar = kpar_rbf_kern , C = c , scaled = FALSE )
-      # predicting the indexes contained on fold_va_indexes array 
-      m_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
-      
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
-      }
-    } )
-    models_matrix <- rbind( models_matrix , list( alg = "svm" , comb = attrs , perf = mean( perfs ) , args = list( "rbf" , c , kpar_rbf_kern ) ) )
+  # selecting appropriate parameters according to the kernel
+  if (kern == "lin") {
+    kernel <- "polydot"
+    kpar <- list( degree = 1 , scale = 1 , offset = 1 )
+    params <- list("lin", c)
+  } else if (kern == "poly") {
+    kernel <- "polydot"
+    kpar <- list( degree = 2 )
+    params <- list("poly", c)
+  } else if (kern == "rbf") {
+    kernel <- "rbfdot"
+    # estimating sigma value for RBF kernel SVM
+    kpar <- list( sigma = mean( sigest( matr_train_data , scaled = FALSE )[ c( 1 , 3 ) ]))
+    params <- list("rbf", c, kpar)
   }
-  ##############################################################################
   
+  perfs <- sapply( folds , function ( fold_va_indexes ){ 
+    # building model using the indexes NOT contained on fold_va_indexes array 
+    m <- kernlab::ksvm( matr_train_data[ -fold_va_indexes , ], matr_class_data[ -fold_va_indexes , ], kernel = kernel, kpar = kpar, C = c , scaled = FALSE )
+    
+    # predicting the indexes contained on fold_va_indexes array 
+    m_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
+    
+    # computing the performance
+    if (CRITERION == "ACCURACY") {
+      accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
+    } else if (CRITERION == "F-MEASURE"){
+      f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), m_pred)
+    }
+  } )
   
-  # k-NN building
-  ##############################################################################
-  # for each one of the k parameter values to be optimized
-  for ( k in NN_K_VALUES ){ 
-    # applying function for each one of the folds, perfs will be an array with the performance of each fold
-    # current fold will be considered the validation fold, hence the name fold_va_indexes 
-    if ( DEBUG ){ cat( "k-NN, k=" , k , "\n") }
-    perfs <- sapply( folds , function ( fold_va_indexes ){
-      # building model using the indexes NOT contained on fold_va_indexes array and predicting the indexes contained on fold_va_indexes array
-      m <- class::knn( train = train_data[ -fold_va_indexes , attrs ] , test = train_data[ fold_va_indexes , attrs ] , 
-                       cl = train_data[ -fold_va_indexes , "CLASS" ] , k = k , prob = FALSE )
+  list(alg = "svm", comb = attrs, perf = mean(perfs), args = params)
+}
 
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(train_data[ fold_va_indexes , "CLASS" ], m)
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(train_data[ fold_va_indexes , "CLASS" ], m)
-      }
-    } )
-    models_matrix <- rbind( models_matrix , list( alg = "knn" , comb = attrs , perf = mean( perfs ) , args = list( k ) ) )
-  }
-  ##############################################################################
+build_knn <- function(attrs, train_data, folds, k) {
+  perfs <- sapply( folds , function ( fold_va_indexes ){
+    # building model using the indexes NOT contained on fold_va_indexes array and predicting the indexes contained on fold_va_indexes array
+    m <- class::knn( train = train_data[ -fold_va_indexes , attrs, drop=FALSE ] , test = train_data[ fold_va_indexes , attrs, drop=FALSE ] , 
+                     cl = train_data[ -fold_va_indexes , "CLASS" ] , k = k , prob = FALSE )
+    
+    # computing the performance
+    if (CRITERION == "ACCURACY") {
+      accuracy(train_data[ fold_va_indexes , "CLASS" ], m)
+    } else if (CRITERION == "F-MEASURE"){
+      f_measure(train_data[ fold_va_indexes , "CLASS" ], m)
+    }
+  } )
   
-  # logistic regression building
-  ##############################################################################
-  # applying function for each one of the folds, perfs will be an array with the performance of each fold
-  # current fold will be considered the validation fold, hence the name fold_va_indexes 
-  if ( DEBUG ){ cat( "LR \n") }
+  list(alg = "knn", comb = attrs, perf = mean(perfs), args = list(k))
+}
+
+build_lr <- function(attrs, train_data, folds) {
   perfs <- sapply( folds , function ( fold_va_indexes ){
     # building model using the indexes NOT contained on fold_va_indexes array 
     m_lr <- stats::glm( CLASS ~ . , data = train_data[ -fold_va_indexes , c( attrs , "CLASS" ) ] , family = binomial )
@@ -339,15 +336,11 @@ build_models <- function( attrs , train_data , folds ){
       f_measure(train_data[ fold_va_indexes , "CLASS" ], as.factor(glfpredt))
     }
   } )
-  models_matrix <- rbind( models_matrix , list( alg = "lr" , comb = attrs , perf = mean( perfs ) , args = list() ) )
-  ##############################################################################
   
-  
-  # Naive Bayes building
-  ##############################################################################
-  # applying function for each one of the folds, perfs will be an array with the performance of each fold
-  # current fold will be considered the validation fold, hence the name fold_va_indexes 
-  if ( DEBUG ){ cat( "NB\n") }
+  list(alg = "lr", comb = attrs, perf = mean(perfs), args = list())
+}
+
+build_nb <- function(attrs, train_data, folds) {
   perfs <- sapply( folds , function ( fold_va_indexes ){
     # building model using the indexes NOT contained on fold_va_indexes array
     m <- e1071::naiveBayes(x = train_data[ -fold_va_indexes , attrs ], y = train_data[ -fold_va_indexes , "CLASS" ])
@@ -361,258 +354,332 @@ build_models <- function( attrs , train_data , folds ){
       f_measure(train_data[ fold_va_indexes , "CLASS" ], m_pred)
     }
   } )
-  models_matrix <- rbind( models_matrix , list( alg = "nb" , comb = attrs , perf = mean( perfs ) , args = list() ) )
   
-  ##############################################################################
-  
-  if(FALSE){ #no prediu bé!
-  # Probabilistic Neural Network building
-  ##############################################################################
-  # for each one of the k parameter values to be optimized
-  for ( sigma in PNN_SIGMA_VALUES ){
-    # applying function for each one of the folds, perfs will be an array with the performance of each fold
-    # current fold will be considered the validation fold, hence the name fold_va_indexes
-    if ( DEBUG ){ cat( "PNN, sigma=" , sigma , "\n") }
-    perfs <- sapply( folds , function ( fold_va_indexes ){
-      # building model using the indexes NOT contained on fold_va_indexes array
-      m <- pnn::smooth( pnn::learn( cbind( train_data[ -fold_va_indexes , "CLASS" ], train_data[ -fold_va_indexes , attrs ] ) ), sigma=sigma )
-      # predicting the indexes contained on fold_va_indexes array
-      m_pred <- NULL
-      for (i in 1:length(fold_va_indexes)) {
-        m_pred <- c(m_pred, as.numeric(pnn::guess(m, as.matrix(train_data[fold_va_indexes[i], attrs]))$category))
-      }
-      
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(train_data[ fold_va_indexes , "CLASS" ], m_pred)
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(train_data[ fold_va_indexes , "CLASS" ], m_pred)
-      }
-    } )
-    models_matrix <- rbind( models_matrix , list( alg = "pnn" , comb = attrs , perf = mean( perfs ) , args = list( sigma ) ) )
-  }
-  ##############################################################################
-  }
-  
-  
-  # only available for two classes
-  if (TRUE) {
-    # RVM with linear, polynomic and radial kernels building
-    ##############################################################################
-    # converting training data to a matrix since it is required by RVM methods
-    matr_train_data <- as.matrix( train_data[ , attrs ] )
-    matr_class_data <- as.matrix( train_data[ , "CLASS" ] )
-    # estimating sigma value for RBF kernel RVM
-    kpar_rbf_kern <- list( sigma = mean( sigest( matr_train_data , scaled = FALSE )[ c( 1 , 3 ) ] ) )
-    
-    # applying function for each one of the folds, perfs will be an array with the performance of each fold
-    # current fold will be considered the validation fold, hence the name fold_va_indexes 
-    
-    # linear kernel
-    if ( DEBUG ){ cat( "RVM, linear kernel\n" ) }
-    sink(file="/dev/null")
-    perfs <- sapply( folds , function ( fold_va_indexes ){ 
-      # building model using the indexes NOT contained on fold_va_indexes array
-      m <- rvmbinary::rvmbinary( matr_train_data[ -fold_va_indexes , ] , as.factor(matr_class_data[ -fold_va_indexes , ]) , kernel = "polydot" , 
-                          parameters = c( degree = 1 , scale = 1 , offset = 1 ) )
-      # predicting the indexes contained on fold_va_indexes array 
-      m_pnn_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
-      m_pred <- NULL
-      m_pred[m_pnn_pred < 0.5] = HUMAN
-      m_pred[m_pnn_pred >= 0.5] = ANIMAL
-      
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
-      }
-    } )
-    sink()
-    models_matrix <- rbind( models_matrix , list( alg = "rvm" , comb = attrs , perf = mean( perfs ) , args = list( "lin" ) ) )
-    
-    # polynomial degree 2 kernel
-    if ( DEBUG ){ cat( "RVM, poly 2-deg kernel\n" ) }
-    sink(file="/dev/null")
-    perfs <- sapply( folds , function ( fold_va_indexes ){
-      # building model using the indexes NOT contained on fold_va_indexes array 
-      m <- rvmbinary::rvmbinary( matr_train_data[ -fold_va_indexes , ] , as.factor(matr_class_data[ -fold_va_indexes , ]) , kernel = "polydot" , 
-                          parameters = c( degree = 2 , scale = 1 , offset = 1 ) )
-      # predicting the indexes contained on fold_va_indexes array 
-      m_pnn_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
-      m_pred <- NULL
-      m_pred[m_pnn_pred < 0.5] = HUMAN
-      m_pred[m_pnn_pred >= 0.5] = ANIMAL
-      
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
-      }
-    } )
-    sink()
-    models_matrix <- rbind( models_matrix , list( alg = "rvm" , comb = attrs , perf = mean( perfs ) , args = list( "poly" ) ) )
-    
-    # rbf kernel
-    if ( DEBUG ){ cat( "RVM, rbf kernel\n" ) }
-    sink(file="/dev/null")
-    perfs <- sapply( folds , function ( fold_va_indexes ){
-      # building model using the indexes NOT contained on fold_va_indexes array 
-      m <- rvmbinary::rvmbinary(  matr_train_data[ -fold_va_indexes , ] , as.factor(matr_class_data[ -fold_va_indexes , ]) , kernel = "rbfdot" , 
-                           parameters = kpar_rbf_kern )
-      # predicting the indexes contained on fold_va_indexes array 
-      m_pnn_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
-      m_pred <- NULL
-      m_pred[m_pnn_pred < 0.5] = HUMAN
-      m_pred[m_pnn_pred >= 0.5] = ANIMAL
-      
-      # computing the performance
-      if (CRITERION == "ACCURACY") {
-        accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
-      } else if (CRITERION == "F-MEASURE"){
-        f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
-      }
-    } )
-    sink()
-    models_matrix <- rbind( models_matrix , list( alg = "rvm" , comb = attrs , perf = mean( perfs ) , args = list( "rbf" , kpar_rbf_kern) ) )
-  
-    ##############################################################################
-  }
-  
-  # returning matrix in which resulting models are stored
-  models_matrix
+  list(alg = "nb", comb = attrs, perf = mean(perfs), args = list())
 }
+
+build_pnn <- function(attrs, train_data, folds, sigma) {
+  perfs <- sapply( folds , function ( fold_va_indexes ){
+    # building model using the indexes NOT contained on fold_va_indexes array
+    m <- pnn::smooth( pnn::learn( cbind( train_data[ -fold_va_indexes , "CLASS" ], train_data[ -fold_va_indexes , attrs ] ) ), sigma=sigma )
+    # predicting the indexes contained on fold_va_indexes array
+    m_pred <- NULL
+    for (i in 1:length(fold_va_indexes)) {
+      a <- train_data[fold_va_indexes[i], attrs]
+      print(str(c(1,1)))
+      print(str(a))
+
+      b <- pnn::guess(m, a)
+      print(b)
+      dsdmsdmksm
+      m_pred <- c(m_pred, as.numeric(b))
+    }
+    
+    # computing the performance
+    if (CRITERION == "ACCURACY") {
+      accuracy(train_data[ fold_va_indexes , "CLASS" ], as.factor(m_pred))
+    } else if (CRITERION == "F-MEASURE"){
+      f_measure(train_data[ fold_va_indexes , "CLASS" ], as.factor(m_pred))
+    }
+  } )
+  
+  list(alg = "pnn", comb = attrs, perf = mean(perfs), args = list(sigma))
+}
+
+build_rvm <- function(attrs, train_data, folds, kern) {
+  # converting training data to a matrix since it is required by RVM methods
+  matr_train_data <- as.matrix( train_data[ , attrs ] )
+  matr_class_data <- as.matrix( train_data[ , "CLASS" ] )
+  
+  # selecting appropriate parameters according to the kernel
+  if (kern == "lin") {
+    kernel <- "polydot"
+    kpar <- list( degree = 1 , scale = 1 , offset = 1 )
+    params <- list("lin")
+  } else if (kern == "poly") {
+    kernel <- "polydot"
+    kpar <- list( degree = 2 , scale = 1 , offset = 1 )
+    params <- list("poly")
+  } else if (kern == "rbf") {
+    kernel <- "rbfdot"
+    # estimating sigma value for RBF kernel RVM
+    kpar <- list( sigma = mean( sigest( matr_train_data , scaled = FALSE )[ c( 1 , 3 ) ]))
+    params <- list("rbf", kpar)
+  }
+  
+  sink(file="/dev/null")
+  perfs <- sapply( folds , function ( fold_va_indexes ){
+    # building model using the indexes NOT contained on fold_va_indexes array
+    m <- rvmbinary::rvmbinary(matr_train_data[-fold_va_indexes,], as.factor(matr_class_data[-fold_va_indexes,]), kernel = kernel, parameters = kpar)
+    # predicting the indexes contained on fold_va_indexes array 
+    m_pnn_pred <- predict( m , matr_train_data[ fold_va_indexes , ] )
+    m_pred <- NULL
+    m_pred[m_pnn_pred < 0.5] = HUMAN
+    m_pred[m_pnn_pred >= 0.5] = ANIMAL
+    
+    # computing the performance
+    if (CRITERION == "ACCURACY") {
+      accuracy(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
+    } else if (CRITERION == "F-MEASURE"){
+      f_measure(as.factor(matr_class_data[ fold_va_indexes , ]), as.factor(m_pred))
+    }
+  } )
+  sink()
+  
+  list(alg = "rvm", comb = attrs, perf = mean(perfs), args = params)
+}
+
 ###############################################################################################################################################################
 
+build_all_section_models <- function(sections_train_data , active_sections){
+  section_models <- list()
+  for ( i in active_sections ){
+    if (DEBUG) { print(paste("*********** SECTION", i, "******************")) }
+    
+    # obtaining the training data set that will be used for this section models to be trained
+    section_tr_data <- sections_train_data[[ i ]]$data
+    
+    # generating the cross-validation folds that will be used to estimate the validation performance for this section models
+    # number of folds will be ONE TIME FOLDS_NUMBER-Cross Validation
+    folds <- TunePareto::generateCVRuns( section_tr_data[ , "CLASS"] , 1 , FOLDS_NUMBER , stratified = TRUE )
+    folds <- unlist( folds , recursive = FALSE ) # converting list of list to list of array
+    
+    # obtaining the vector with the available attributes
+    available_attrs <- setdiff(names(section_tr_data), NON_COMBINATIONS_ATTRS)
+    
+    t0 <- Sys.time()
+    if (DEBUG){ cat(paste("Building models (started at ", t0, ")\n")) }      
+    
+    models <- feature_selection(available_attrs, section_tr_data, folds)
+    
+    t1 <- Sys.time()
+    if (DEBUG){ cat(paste("Finished building models (started at ", t0, ", finished at ", t1, ")\n")) }
+    
+    # Adding them to the returning list
+    section_models[[i]] <- models
+  }
 
+  # returning the list that contains the models' signature for each one of the sections
+  section_models
+}
 
+feature_selection <- function(available_attrs, data, folds) {
+  models <- c()
+  
+  # SLDA building
+  if (DEBUG) { cat(paste(">>>SLDA", "\n")) }
+  models <- rbind(models, search(available_attrs, data, folds, build_slda))
+  
+  # SVM with linear, polynomic and radial kernels building
+  for (c in SVM_C_VALUES) {
+    if (DEBUG) { cat(paste(">>>SVM lin c=", c, "\n")) }
+    models <- rbind(models, search(available_attrs, data, folds, build_svm, c, "lin"))
+    if (DEBUG) { cat(paste(">>>SVM poly c=", c, "\n")) }
+    models <- rbind(models, search(available_attrs, data, folds, build_svm, c, "poly"))
+    if (DEBUG) { cat(paste(">>>SVM rbf c=", c, "\n")) }
+    models <- rbind(models, search(available_attrs, data, folds, build_svm, c, "rbf"))
+  }
+  
+  # k-NN building
+  for (k in NN_K_VALUES){
+    if (DEBUG) { cat(paste(">>>kNN k=", k, "\n")) }
+    models <- rbind(models, search(available_attrs, data, folds, build_knn, k))
+  }
+  
+  # Logistic Regression building
+  if (DEBUG) { cat(paste(">>>LR", "\n")) }
+  models <- rbind(models, search(available_attrs, data, folds, build_lr))
+  
+  
+  # Naive Bayes building
+  if (DEBUG) { cat(paste(">>>NB", "\n")) }
+  models <- rbind(models, search(available_attrs, data, folds, build_nb))
+  
+  # Probabilistic Neural Network building
+  for (sigma in PNN_SIGMA_VALUES){
+    if (DEBUG) { cat(paste(">>>PNN sigma=", sigma, "\n")) }
+    if(FALSE){ #no prediu bé, retorna NA!
+      models <- rbind(models, search(available_attrs, data, folds, build_pnn, sigma))
+    }
+  }
+  
+  # RVM with linear, polynomic and radial kernels building
+  # only available for two classes
+  if (DEBUG) { cat(paste(">>>RVM lin", "\n")) }
+  models <- rbind(models, search(available_attrs, data, folds, build_rvm, "lin"))
+  if (DEBUG) { cat(paste(">>>RVM poly", "\n")) }
+  models <- rbind(models, search(available_attrs, data, folds, build_rvm, "poly"))
+  if (DEBUG) { cat(paste(">>>RVM rbf", "\n")) }
+  models <- rbind(models, search(available_attrs, data, folds, build_rvm, "rbf"))
+  
+  # returning list in which resulting models are stored
+  models
+}
+
+search <- function(available_attrs, data, folds, build, ...) {
+  if (SEARCH_ALG == "BLIND_SEARCH") {
+    blind_search(available_attrs, data, folds, build, ...)
+  } else if (SEARCH_ALG == "FORWARD_SEARCH") {
+    forward_search(available_attrs, data, folds, build, ...)
+  } else if (SEARCH_ALG == "BACKWARD_SEARCH") {
+    backward_search(available_attrs, data, folds, build, ...)
+  }
+}
+
+blind_search <- function(available_attrs, data, folds, build, ...) {
+  for ( num_attrs in MODELS_ATTRS_SIZE_COMBINATIONS ){
+    # computing all possible ways of getting num_attrs attributes:
+    # all the atributes from current section tr data will be considered except the ones in NON_ATTRS_COMBINATIONS
+    current_combs <- combn(available_attrs, num_attrs)
+    # building models for each one of the combinations of num_attrs attributes
+    models <- c(models, apply(current_combs, MARGIN = 2, build, data, folds, ...))
+  }
+  models
+}
+
+forward_search <- function(available_attrs, data, folds, build, ...) {
+  models <- list()
+  
+  selected_attrs <- NULL
+  selected_perfs <- NULL
+  
+  # Iterating until no available attributes remain
+  while (length(available_attrs) > 0) {
+    performances <- data.frame(available_attrs, rep(1, length(available_attrs)), stringsAsFactors=FALSE)
+    colnames(performances) <- c("attr", "perf")
+
+    attr_models <- NULL
+    # Looking for the best attribute to include
+    for (attr in available_attrs) {
+      attr_models[[attr]] <- build(union(selected_attrs, attr), data, folds, ...)
+      performances$perf[performances$attr == attr] <- attr_models[[attr]]$perf
+    }
+    
+    best_perf <- max(performances$perf)
+    best_attr <- performances$attr[performances$perf == best_perf]
+    
+    # Ties are broken at random
+    if(length(best_attr) > 1) {
+      best_attr <- sample(best_attr, 1)
+    }
+    
+    if ( DEBUG ){ cat( paste( "Chosen attribute", best_attr, "with a performance of", best_perf, "\n")) }
+    
+    # Updating with the best models
+    models[[length(models) + 1]] <- attr_models[[best_attr]]
+    
+    selected_perfs <- c(selected_perfs, best_perf)
+    selected_attrs <- union(selected_attrs, best_attr)
+    available_attrs <- setdiff(available_attrs, best_attr)
+  }
+
+  models
+}
+
+backward_search <- function(available_attrs, data, folds) {
+  remaining_attrs <- available_attrs
+  discarded_attrs <- NULL
+  discarded_perfs <- NULL
+  
+  # Iterating until no available attributes remain
+  while (length(remaining_attrs) > 2) {
+    performances <- data.frame(remaining_attrs, rep(1, length(remaining_attrs)))
+    colnames(performances) <- c("attr", "perf")
+    
+    attr_models <- NULL
+    # Looking for the best attribute to exclude
+    for (attr in remaining_attrs) {
+      attr_models[[attr]] <- build_models(setdiff(remaining_attrs, attr), data, folds)
+      performances$perf[performances$attr == attr] <- max(unlist(attr_models[[attr]][, "perf"]))
+    }
+    best_perf <- max(performances$perf)
+    best_attr <- performances$attr[performances$perf == best_perf]
+    
+    # Ties are broken at random
+    if(length(best_attr) > 1) {
+      best_attr <- sample(best_attr, 1)
+    }
+    
+    if ( DEBUG ){ cat( paste( "Chosen attribute", best_attr, "with a performance of", best_perf, "\n")) }
+    
+    # Updating with the best models
+    models[[length(models) + 1]] <- attr_models[[best_attr]]
+    
+    discarded_perfs <- c(discarded_perfs, best_perf)
+    discarded_attrs <- union(discarded_attrs, best_attr)
+    remaining_attrs <- setdiff(remaining_attrs, best_attr)
+  }
+  
+  # Adding the final two
+  discarded_perfs <- c(discarded_perfs, performances$perf[performances$attr != best_attr])
+  discarded_attrs <- union(discarded_attrs, performances$attr[performances$attr != best_attr])
+  
+}
+
+###############################################################################################################################################################
+
+#**************************************************************************************************************************************************************
+# deprecated!
 ##### FUNCTION: 
 ##### build_all_section_models( sections_train_data , active_sections )  :  list of matrices
 ##### Builds all the models for the active_sections using the i-th train dataset from sections_train_data list.
 ##### Returns a list in which each element is a matrix in which each row contains: model algorithm , attribute combination , model performance , model parameters.
 ##### The indexes of the returned list are the number of the sections, the ones contained on list active_sections
 ##### Params:
-##### 	- sections_train_data: list of data.frames, each element i is the training dataset for section i
+#####   - sections_train_data: list of data.frames, each element i is the training dataset for section i
 #####	- train_data: data.frame that contains training data
-build_all_section_models <- function( sections_train_data , active_sections ){
-	section_models <- list()
-	# for all the sections
-	for ( i in active_sections ){
-		if ( DEBUG ){ print( paste( "*********** SECTION" , i , "******************" ) ) }
-		# initializing the list in which the current section models will be stored
-		models <- list()
-		# obtaining the training data set that will be used for this section models to be trained
-		section_tr_data <- sections_train_data[[ i ]]$data
-		# generating the cross-validation folds that will be used to estimate the validation performance for this section models
-		# number of folds will be ONE TIME FOLDS_NUMBER-Cross Validation
-		folds <- TunePareto::generateCVRuns( section_tr_data[ , "CLASS"] , 1 , FOLDS_NUMBER , stratified = TRUE )
-		folds <- unlist( folds , recursive = FALSE ) # converting list of list to list of array
+deprecated_build_all_section_models <- function( sections_train_data , active_sections ){
+  section_models <- list()
+  # for all the sections
+  for ( i in active_sections ){
+    if ( DEBUG ){ print( paste( "*********** SECTION" , i , "******************" ) ) }
+    # obtaining the training data set that will be used for this section models to be trained
+    section_tr_data <- sections_train_data[[ i ]]$data
+    # generating the cross-validation folds that will be used to estimate the validation performance for this section models
+    # number of folds will be ONE TIME FOLDS_NUMBER-Cross Validation
+    folds <- TunePareto::generateCVRuns( section_tr_data[ , "CLASS"] , 1 , FOLDS_NUMBER , stratified = TRUE )
+    folds <- unlist( folds , recursive = FALSE ) # converting list of list to list of array
     
     if (SEARCH_ALG == "BLIND_SEARCH") {
       # Blind search
-  		for ( num_attrs in MODELS_ATTRS_SIZE_COMBINATIONS ){
-  			# computing all possible ways of getting num_attrs attributes:
-  			# all the atributes from current section tr data will be considered except the ones in NON_ATTRS_COMBINATIONS
-  			current_combs <- combn( setdiff( names( section_tr_data ) , NON_COMBINATIONS_ATTRS ) , num_attrs  )
-  			# building models for each one of the combinations of num_attrs attributes
+      for ( num_attrs in MODELS_ATTRS_SIZE_COMBINATIONS ){
+        # computing all possible ways of getting num_attrs attributes:
+        # all the atributes from current section tr data will be considered except the ones in NON_ATTRS_COMBINATIONS
+        current_combs <- combn( setdiff( names( section_tr_data ) , NON_COMBINATIONS_ATTRS ) , num_attrs  )
+        # building models for each one of the combinations of num_attrs attributes
         if ( DEBUG ){ print( paste( "Building" , dim( current_combs )[2] , "models of" , num_attrs , "attributes ( started at" , Sys.time() , ")" ) ) }
-  			models <- c( models , apply( current_combs , MARGIN = 2 , build_models , section_tr_data , folds ) )
-  		}
+        models <- c( models , apply( current_combs , MARGIN = 2 , build_models , section_tr_data , folds ) )
+      }
     } else if (SEARCH_ALG == "FORWARD_SEARCH") {
       # Forward search      
       t0 <- Sys.time()
       if ( DEBUG ){ cat( paste( "Building models with forward search (started at " , t0 , ")\n" ) ) }
       available_attrs <- setdiff(setdiff(names(section_tr_data), NON_COMBINATIONS_ATTRS), "FE")
-      selected_attrs <- "FE"
-      selected_perfs <- 42
       
-      # Iterating until no available attributes remain
-      while (length(available_attrs) > 0) {        
-        performances <- data.frame(available_attrs, rep(1, length(available_attrs)))
-        colnames(performances) <- c("attr", "perf")
-        
-        attr_models <- NULL
-        # Looking for the best attribute to include
-        for (attr in available_attrs) {
-          attr_models[[attr]] <- build_models(union(selected_attrs, attr), section_tr_data, folds)
-          performances$perf[performances$attr == attr] <- max(unlist(attr_models[[attr]][, "perf"]))
-        }
-        best_perf <- min(performances$perf)
-        best_attr <- performances$attr[performances$perf == best_perf]
-        
-        # Ties are broken at random
-        if(length(best_attr) > 1) {
-          best_attr <- sample(best_attr, 1)
-        }
-        
-        if ( DEBUG ){ cat( paste( "Chosen attribute", best_attr, "with a performance of", best_perf, "\n")) }
-        
-        # Updating with the best models
-        models[[length(models) + 1]] <- attr_models[[best_attr]]
-        
-        selected_perfs <- c(selected_perfs, best_perf)
-        selected_attrs <- union(selected_attrs, best_attr)
-        available_attrs <- setdiff(available_attrs, best_attr)
-        
-        t1 <- Sys.time()
-        if ( DEBUG ){ cat( paste( "Finished building models with forward search (time elapsed: " , t1 - t0 , "s)" ) ) }
-      }
+      models <- forward_search(available_attrs, section_tr_data, folds)
+      
+      t1 <- Sys.time()
+      if ( DEBUG ){ cat( paste( "Finished building models with forward search (started at " , t0, ", finished at ", t1, ")\n" ) ) }
     } else if (SEARCH_ALG == "BACKWARD_SEARCH") {
       # Backward search
       t0 <- Sys.time()
       if ( DEBUG ){ cat( paste( "Building models with backward search (started at " , t0 , ")\n" ) ) }
-      remaining_attrs <- setdiff(names(section_tr_data), NON_COMBINATIONS_ATTRS)
-      discarded_attrs <- NULL
-      discarded_perfs <- NULL
+      available_attrs <- setdiff(names(section_tr_data), NON_COMBINATIONS_ATTRS)
       
-      # Iterating until no available attributes remain
-      while (length(remaining_attrs) > 2) {
-        performances <- data.frame(remaining_attrs, rep(1, length(remaining_attrs)))
-        colnames(performances) <- c("attr", "perf")
-        
-        attr_models <- NULL
-        # Looking for the best attribute to exclude
-        for (attr in remaining_attrs) {
-          attr_models[[attr]] <- build_models(setdiff(remaining_attrs, attr), section_tr_data, folds)
-          performances$perf[performances$attr == attr] <- max(unlist(attr_models[[attr]][, "perf"]))
-        }
-        best_perf <- max(performances$perf)
-        best_attr <- performances$attr[performances$perf == best_perf]
-        
-        # Ties are broken at random
-        if(length(best_attr) > 1) {
-          best_attr <- sample(best_attr, 1)
-        }
-
-        if ( DEBUG ){ cat( paste( "Chosen attribute", best_attr, "with a performance of", best_perf, "\n")) }
-        
-        # Updating with the best models
-        models[[length(models) + 1]] <- attr_models[[best_attr]]
-        
-        discarded_perfs <- c(discarded_perfs, best_perf)
-        discarded_attrs <- union(discarded_attrs, best_attr)
-        remaining_attrs <- setdiff(remaining_attrs, best_attr)
-      }
-      
-      # Adding the final two
-      discarded_perfs <- c(discarded_perfs, performances$perf[performances$attr != best_attr])
-      discarded_attrs <- union(discarded_attrs, performances$attr[performances$attr != best_attr])
+      models <- backward_search(available_attrs, section_tr_data, folds)
       
       t1 <- Sys.time()
-      if ( DEBUG ){ cat( paste( "Ended building models with backward search (time elapsed: " , t1 - t0 , "s)" ) ) }
+      if ( DEBUG ){ cat( paste( "Finished building models with backward search (started at " , t0, ", finished at ", t1, ")\n" ) ) }
     }
     
-		# Building a matrix with all the model signatures for the current section
-		do.call( rbind , models )
-		# Adding them to the returning list
-		section_models[[ length( section_models ) + 1 ]] <- models
-	}
-	# returning the list that contains the models' signature for each one of the sections
+    # Building a matrix with all the model signatures for the current section
+    do.call( rbind , models )
+    # Adding them to the returning list
+    section_models[[ length( section_models ) + 1 ]] <- models
+  }
+  # returning the list that contains the models' signature for each one of the sections
   section_models
 }
-###############################################################################################################################################################
-
 
 #**************************************************************************************************************************************************************
 # deprecated?
@@ -627,7 +694,7 @@ build_all_section_models <- function( sections_train_data , active_sections ){
 #####	- train_data: data.frame that contains training data
 #####	- folds: list of array in which each of the elements is the fold (array of row indices) that will be used to compute the validation error; of course,
 #####			the other indices not contained in each fold will be the ones used to train the model in that particular fold.
-build_model_from_signature <- function( signature , train_data ,  folds ){
+deprecated__build_model_from_signature <- function( signature , train_data ,  folds ){
   # matrix in which resulting model will be stored, this is the object to be returned
   models_matrix <- c()
   
@@ -733,7 +800,7 @@ build_model_from_signature <- function( signature , train_data ,  folds ){
 }
 ###############################################################################################################################################################
 
-build_models_from_signatures <- function( model_signatures , training_data ){
+deprecated__build_models_from_signatures <- function( model_signatures , training_data ){
   models <- list()
   folds_10 <- TunePareto::generateCVRuns( training_data[ , "CLASS"] , 10 , 10 , stratified = TRUE )
   folds_10 <- unlist( folds_10 , recursive = FALSE ) # converting list of list to list of array

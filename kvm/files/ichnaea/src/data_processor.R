@@ -71,8 +71,8 @@ process <- function( data , standardize=FALSE ){
 	if ( "HBSA.Y" %in% colnames( data ) ) data$HBSA.Y <- log10( data$HBSA.Y + EPSILON )
 	if ( "HBSA.T" %in% colnames( data ) ) data$HBSA.T <- log10( data$HBSA.T + EPSILON )
 	###########################################################
-	
-	
+
+  
 	# standardization
 	if ( standardize == TRUE ){
 		# attributes to be standardized, notice names(data) contains recent created ratios

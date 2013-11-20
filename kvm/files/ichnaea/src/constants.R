@@ -13,12 +13,10 @@ DEBUG = TRUE
 # as a denominator in some ratio
 EPSILON = 0.00001
 
-# SLOPE and THRESHOLD constants: indexes of the slope and threshold coefficients within the linear regression result
-SLOPE = 2
-THRESHOLD = 1
-
 # AGE_SECTIONS constant: list of the age sections, a bag of models will be generated for each one of the sections
 AGE_SECTIONS = c( 0 , 25 , 50) # , 75 , 100 , 125 , 150 )
+
+CLASS <- "CLASS"
 
 ##################################### READING #####################################
 
@@ -59,6 +57,7 @@ LOG_10_ATTRS = c( "FC" , "FE" , "CL" , "SOMCPH" , "FTOTAL" , "FRNAPH" , "RYC2056
 # DIL_DEGREE are included)
 NON_STD_ATTRS = c( "CLASS" , "Dentium" , "Adolescentis" , "DA" , "DIL_DEGREE")
 
+# deprecated?
 # DIRECT_DILUTED_ATTRS constant: list of all the attributes that are directly diluted by dividing its value by the dilution degree
 DIRECT_DILUTED_ATTRS = c(   "FC" , "FE" , "CL" , "SOMCPH" , "FTOTAL" , "FRNAPH" , "RYC2056" , "GA17" , "FRNAPH.I" , "FRNAPH.II" , "FRNAPH.III" , "FRNAPH.IV" ,
                             "HBSA.Y" , "HBSA.T" )
@@ -67,8 +66,14 @@ DIRECT_DILUTED_ATTRS = c(   "FC" , "FE" , "CL" , "SOMCPH" , "FTOTAL" , "FRNAPH" 
 AGEING_AVAILABLE_ATTRS = c( "FC" , "FE" , "CL" , "SOMCPH" , "FRNAPH" ,"FRNAPH.I" , "FRNAPH.II" , "FRNAPH.III" , "FRNAPH.IV", "RYC2056" , "GA17" , "HBSA.Y", 
                             "HBSA.T" )
 
+# DIL_ATTRS constant: list of the attributes for which the dilution does take place
+DIL_AVAILABLE_ATTRS = c( "FC" , "FE" , "CL" , "SOMCPH" , "FRNAPH" ,"FRNAPH.I" , "FRNAPH.II" , "FRNAPH.III" , "FRNAPH.IV", "RYC2056" , "GA17" , "HBSA.Y", "HBSA.T" )
+
 # NON_ATTRS_COMBINATIONS constant: list of all the attributes that will not be considered when computing all the combinations of a given size
-NON_COMBINATIONS_ATTRS = c( "CLASS" , "DIL_DEGREE",                    "SOMCPH" , "FRNAPH" ,"FRNAPH.I" , "FRNAPH.II" , "FRNAPH.III" , "FRNAPH.IV", "RYC2056" , "GA17" , "HBSA.Y", "HBSA.T")
+NON_COMBINATIONS_ATTRS = c( "CLASS" , "DIL_DEGREE")#,                    "SOMCPH" , "FRNAPH" ,"FRNAPH.I" , "FRNAPH.II" , "FRNAPH.III" , "FRNAPH.IV", "RYC2056" , "GA17" , "HBSA.Y", "HBSA.T")
+
+# RELEVANT_ATTRS_MV constant: important attributes to include in megavalidation samples
+RELEVANT_ATTRS_MV <-  c( "FC" , "FE" , "CL" , "SOMCPH" , "FRNAPH.II" , "GA17" , "HBSA.Y", "HBSA.T" )
 
 ##################################### MODELS #####################################
 
@@ -93,17 +98,27 @@ MAX_MODELS <- 5
 
 # SEARCH_ALG constant: represents the algorithms used in feature selection ("BLIND_SEARCH", "FORWARD_SEARCH" or "BACKWARD_SEARCH")
 #SEARCH_ALG <- "BLIND_SEARCH"
-#SEARCH_ALG <- "FORWARD_SEARCH"
-SEARCH_ALG <- "BACKWARD_SEARCH"
+SEARCH_ALG <- "FORWARD_SEARCH"
+#SEARCH_ALG <- "BACKWARD_SEARCH"
 
 # CRITERION constant: represents the criterion used to compare models ("ACCURACY", "F-MEASURE")
 #CRITERION <- "ACCURACY"
 CRITERION <- "F-MEASURE"
 
+##################################### MEGAVALIDATION #####################################
 
+# SLOPE and THRESHOLD constants: indexes of the slope and threshold coefficients within the linear regression result
+SLOPE = 2
+THRESHOLD = 1
 
+# NUM_SAMPLES_MV constant: Number of samples generated in megavalidation
+NUM_SAMPLES_MV <- 100
 
+# MAX_AGE_TIME constant: maximum time with which samples in megavalidation will be aged
+MAX_AGE_TIME <- 150
 
+# MAX_DIL_DEG constant: maximum dilution degree with which samples in megavalidation will be aged
+MAX_DIL_DEG <- 500
 
 
 

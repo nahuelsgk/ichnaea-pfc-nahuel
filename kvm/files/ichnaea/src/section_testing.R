@@ -7,55 +7,76 @@ source( "constants.R" )
 source( "data_reader.R" )
 source( "data_processor.R" )
 source( "models.R" )
+source( "ageing.R" )
 
 load( "../data_objects/aged_processed_data_summer.Rdata" )
 load( "../data_objects/aged_processed_data_winter.Rdata" )
 
-# reading test data
-if ( DEBUG ){ print( "Reading data from CSV file..." ) }
-test_data <- read( "../data/cyprus_test.csv" , "," , ";" , "CLASS" )
+MEGAVALIDATION <- TRUE
 
-# preparing test data: dropping useless variables, variable conversion and threshold correction
-if ( DEBUG ){ print( "Preparing data..." ) }
-prepared_test_data <- prepare( test_data )
+if (MEGAVALIDATION) {
+  # reading prepared test data
+  if ( DEBUG ){ print( "Reading prepared data from MegaValidation file..." ) }
+  load("../data_objects/data_MV.Rdata")
+  
+  # processing test data: applying log10 and creating derived variables
+  if ( DEBUG ){ print( "Processing data..." ) }
+  processed_test_data <- process( data_MV )$data
+  
+  print(cbind(data_MV$FRNAPH.III, processed_test_data$FRNAPH.III))
+  dfkjdfkjdkfjfkj
+} else {
+  # reading test data
+  if ( DEBUG ){ print( "Reading data from CSV file..." ) }
+  test_data <- read( "../data/cyprus_test.csv" , "," , ";" , "CLASS" )
+  
+  # preparing test data: dropping useless variables, variable conversion and threshold correction
+  if ( DEBUG ){ print( "Preparing data..." ) }
+  prepared_test_data <- prepare( test_data )
 
-# processing test data: applying log10 and creating derived variables
-if ( DEBUG ){ print( "Processing data..." ) }
-processed_test_data <- process( prepared_test_data )$data
+  # processing test data: applying log10 and creating derived variables
+  if ( DEBUG ){ print( "Processing data..." ) }
+  processed_test_data <- process( prepared_test_data )$data
+}
 
 predicted_test_data <- NULL
 for(i in 1:nrow(processed_test_data)) {
   if(DEBUG) {cat(paste("***New sample, #", i, "\n"))}
-  
   na.sample <- processed_test_data[i,]
   sample <- na.sample[, !is.na(na.sample)]
   sample_variables <- colnames(sample)
   
   # finding summer/winter
-  season <- "summer"
+  season <- SUMMER
   
   # finding aging section
-  section <- 1
+  age_time <- age(sample, season)
+  
+  if (i > 4) {
+    dkfjdskfjdkfjk
+  }
+  section <- 3
   
   # loading the corresponding models object
-  load( paste("../data_objects/section_models_", season, "_", section,".Rdata", sep="") )
+  #load( paste("../data_objects/section_models_", season, "_", section,".Rdata", sep="") )
+  load( paste("../data_objects/section_models_summer_", section,".Rdata", sep="") )
+  section_models <- models[[section]]
   
   train_data <- aged_processed_data_summer[[section]]$data
   mu_sigma_attrs_df <- aged_processed_data_summer[[section]]$mu_sigma_attrs_df
   
   # standarisation
-  mu <- mu_sigma_attrs_df[1, setdiff(sample_variables, "CLASS")]
-  sigma <- mu_sigma_attrs_df[2, setdiff(sample_variables, "CLASS")]
-  sample[, setdiff(sample_variables, "CLASS")] <- (sample[, setdiff(sample_variables, "CLASS")] - mu)/sigma
-  
+  mu <- mu_sigma_attrs_df[1, setdiff(sample_variables, c("CLASS", "dil", "age", "season"))]
+  sigma <- mu_sigma_attrs_df[2, setdiff(sample_variables, c("CLASS", "dil", "age", "season"))]
+  sample[, setdiff(sample_variables, c("CLASS", "dil", "age", "season"))] <- (sample[, setdiff(sample_variables, c("CLASS", "dil", "age", "season"))] - mu)/sigma
   
   # deleting models using non available variables
   suitable_models <- NULL
-  for(j in 1:length(models[[section]])) {
-    models_matrix <- models[[section]][[j]]
+  for(j in 1:length(section_models)) {
+    model <- section_models[[j]]
     
-    if (all(models_matrix[1,]$comb %in% sample_variables)) {
-      suitable_models <- rbind(suitable_models, models_matrix)
+    if (all(model$comb %in% sample_variables)) {
+      suitable_models <- rbind(suitable_models, model)
     }
   }
   
@@ -77,26 +98,29 @@ for(i in 1:nrow(processed_test_data)) {
     best_models <- suitable_models
   }
   
-  # prediction for each of the selected models
-  predicted_models <- NULL
-  for(j in 1:dim(best_models)[1]) {
-    model <- best_models[j,]
-    model$pred <- predict_from_signature(sample, model, train_data)
-    predicted_models <- rbind(predicted_models, model)
-  }
-  
+  if (is.null(best_models)) {
+    print("No puc predir :(")
+  } else {
+    # prediction for each of the selected models
+    predicted_models <- NULL
+    for(j in 1:dim(best_models)[1]) {
+      model <- best_models[j,]
+      model$pred <- predict_from_signature(sample, model, train_data)
+      predicted_models <- rbind(predicted_models, model)
+    }
     
-  # majority vote
-  predictions <- unlist(predicted_models[, "pred"])
-  predictions <- table(predictions)
-  predictions <- predictions[predictions == max(predictions)]           # we keep only the most voted classes
-  predictions <- predictions[sample(1:length(predictions), size=1)]     # and pick one randomly among the most voted
-  
-  final_prediction <- names(predictions)
-  
-  # adding the prediction to the sample
-  na.sample$PRED <- final_prediction
-  predicted_test_data <- rbind(predicted_test_data, na.sample)
+    # majority vote
+    predictions <- unlist(predicted_models[, "pred"])
+    predictions <- table(predictions)
+    predictions <- predictions[predictions == max(predictions)]           # we keep only the most voted classes
+    predictions <- predictions[sample(1:length(predictions), size=1)]     # and pick one randomly among the most voted
+    
+    final_prediction <- names(predictions)
+    
+    # adding the prediction to the sample
+    na.sample$PRED <- final_prediction
+    predicted_test_data <- rbind(predicted_test_data, na.sample)
+  }
 }
 
 # changing order of levels to get the confusion matrix

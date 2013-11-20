@@ -16,15 +16,19 @@ original_data <- read( "../data/cyprus.csv" , "," , ";" , "CLASS" )
 if ( DEBUG ){ print( "Preparing data..." ) }
 prepared_data <- prepare( original_data )
 
+save( list = c( "prepared_data" ) , file = "../data_objects/prepared_original_data.Rdata" )
+
 # computing logistic regressions for ageing essays on both seasions
+aslr <- c()
 if ( DEBUG ){ print( "Computing ageing essays linear regressions for winter..." ) }
-aslr_win <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , WINTER , prepared_data , TRUE , TRUE , FALSE )
+aslr$win <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , WINTER , prepared_data , TRUE , TRUE , FALSE )
 if ( DEBUG ){ print( "Computing ageing essays linear regressions for summer..." ) }
-aslr_sum <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , SUMMER , prepared_data , TRUE , TRUE , FALSE )
+aslr$sum <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , SUMMER , prepared_data , TRUE , TRUE , FALSE )
+save( list = c("aslr"), file = "../data_objects/aging_coefs.Rdata" )
 
 # ageing prepared data (for both winter and summer seasons)
-aged_data_summer <- age_dataset( prepared_data , c( AGE_SECTIONS ) , aslr_sum )
-aged_data_winter <- age_dataset( prepared_data , c( AGE_SECTIONS ) , aslr_win )
+aged_data_summer <- age_dataset( prepared_data , c( AGE_SECTIONS ) , aslr$sum )
+aged_data_winter <- age_dataset( prepared_data , c( AGE_SECTIONS ) , aslr$win )
 
 # processing aged data
 if ( DEBUG ){ print( "Processing all the sections..." ) }
