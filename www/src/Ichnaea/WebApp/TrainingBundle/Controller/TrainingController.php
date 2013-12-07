@@ -47,22 +47,24 @@ class TrainingController extends Controller
         );
     }
     
-    public function getTrainingAction($matrix_id)
+    /*public function getTrainingAction($matrix_id)
     {
     	return $this->render(
     			'IchnaeaWebAppTrainingBundle::form.html.twig', 
     			array(
     					'matrix_id' => $matrix_id)
     	);
-    }
+    }*/
     
-    public function viewTrainingAction($matrix_id, $training_id, $check)
+    public function viewTrainingAction($matrix_id, $training_id)
     {
 		$trainingService = $this->get('ichnaea.trainingService');
 		$training = $trainingService->getTraining($training_id);
-		if($check){
-			$trainingService->checkTraining($training_id);
+		
+		if($this->getRequest()->getMethod() == 'POST'){
+			$status = $trainingService->checkTraining($training_id);
 		}
+		
 		return $this->render('IchnaeaWebAppTrainingBundle::view.html.twig', array('training' => $training));
     }
 }

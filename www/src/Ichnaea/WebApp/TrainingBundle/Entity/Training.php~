@@ -28,6 +28,7 @@ class Training
 
     /**
      * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Matrix", inversedBy="trainings")
+     * @ORM\JoinColumn(name="matrix_id", referencedColumnName="id", nullable=false)
      */
     protected $matrix;
     
@@ -51,14 +52,7 @@ class Training
      * @ORM\Column(name="created", type="datetime", nullable=false)
      */
     private $created;
-    
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="last_modification", type="datetime", nullable=false)
-     */
-    private $lastModification;
-    
+        
     /**
      * @var string
      * @ORM\Column(name="status", type="string", columnDefinition="ENUM('preparing', 'closed', 'working', 'finished')") 
@@ -126,11 +120,17 @@ class Training
      */
     private $pathTable;
 
+    /**
+     * @ORM\Column(name="data", type="blob", nullable = false)
+     */
+    private $data;
     
     /**
-     * @ORM\ManyToOne
+     * @var string
+     * @ORM\Column(name="error", type="string", length=255, nullable = true	)
      */
-
+    private $error;
+    
     /**
      * Get id
      *
@@ -469,60 +469,128 @@ class Training
     public function createdDefault()
     { 
     	$date = new \DateTime("now");
-    	$this->created = $date;
-        $this->lastModification = $date;	 
+    	$this->created = $date;	 
     }
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->coach = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trainer = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add coach
+     * Add trainer
      *
-     * @param \Ichnaea\WebApp\UserBundle\Entity\User $coach
+     * @param \Ichnaea\WebApp\UserBundle\Entity\User $trainer
      * @return Training
      */
-    public function addCoach(\Ichnaea\WebApp\UserBundle\Entity\User $coach)
+    public function addTrainer(\Ichnaea\WebApp\UserBundle\Entity\User $trainer)
     {
-        $this->coach[] = $coach;
+        $this->trainer[] = $trainer;
 
         return $this;
     }
 
     /**
-     * Remove coach
+     * Remove trainer
      *
-     * @param \Ichnaea\WebApp\UserBundle\Entity\User $coach
+     * @param \Ichnaea\WebApp\UserBundle\Entity\User $trainer
      */
-    public function removeCoach(\Ichnaea\WebApp\UserBundle\Entity\User $coach)
+    public function removeTrainer(\Ichnaea\WebApp\UserBundle\Entity\User $trainer)
     {
-        $this->coach->removeElement($coach);
+        $this->trainer->removeElement($trainer);
     }
 
     /**
-     * Get coach
+     * Get trainer
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCoach()
+    public function getTrainer()
     {
-        return $this->coach;
+        return $this->trainer;
     }
 
     /**
-     * Set coach
+     * Set trainer
      *
-     * @param \Ichnaea\WebApp\UserBundle\Entity\User $coach
+     * @param \Ichnaea\WebApp\UserBundle\Entity\User $trainer
      * @return Training
      */
-    public function setCoach(\Ichnaea\WebApp\UserBundle\Entity\User $coach = null)
+    public function setTrainer(\Ichnaea\WebApp\UserBundle\Entity\User $trainer = null)
     {
-        $this->coach = $coach;
+        $this->trainer = $trainer;
 
         return $this;
+    }
+
+    /**
+     * Set matrix
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\Matrix $matrix
+     * @return Training
+     */
+    public function setMatrix(\Ichnaea\WebApp\MatrixBundle\Entity\Matrix $matrix = null)
+    {
+        $this->matrix = $matrix;
+
+        return $this;
+    }
+
+    /**
+     * Get matrix
+     *
+     * @return \Ichnaea\WebApp\MatrixBundle\Entity\Matrix 
+     */
+    public function getMatrix()
+    {
+        return $this->matrix;
+    }
+
+    /**
+     * Set data
+     *
+     * @param string $data
+     * @return Training
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Get data
+     *
+     * @return string 
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Set error
+     *
+     * @param string $error
+     * @return Training
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * Get error
+     *
+     * @return string 
+     */
+    public function getError()
+    {
+        return $this->error;
     }
 }

@@ -1,50 +1,48 @@
 <?php 
 namespace Ichnaea\WebApp\TrainingBundle\Services;
 
-use Doctrine\ORM\EntityManager;
+//@TODO: change autoload forms
+require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload.php';
+
+use Doctrine\ORM\EntityManager as SymfonyEM;
 use Ichnaea\WebApp\TrainingBundle\Entity\Training;
 use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
 use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
 use Ichnaea\Amqp\Model\BuildModelsResponse as BuildModelsResponse;
 use Ichnaea\Amqp\Connection as Connection;
 
+
 class TrainingService{
 	
 	protected $em;
 	protected $mfs;
-	
-	public function __construct(EntityManager $em){
-		$this->em = $em;
+	protected $con;
+	public function __construct(SymfonyEM $em)
+	{
+		$this->em  = $em;
+		$this->con = new Connection('test:test@localhost'); 
 	}
 	
-	private function buildDataSet($matrix){
+	private function buildDataSet($matrix)
+	{
 		
 	}
+	
 	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, $k1 = NULL, $k2 = NULL, 
 									$best_models = NULL, $min_size_var_set = NULL, $max_size_var_set = NULL, 
-									$type_of_search = NULL){
+									$type_of_search = NULL)
+	{
 										
 		$trainer = $this->em->getRepository('UserBundle:User')->find($trainer_id);
-		$matrix = $this->em->getRepository('MatrixBundle:Matrix')->find($matrix_id);
+		$matrix  = $this->em->getRepository('MatrixBundle:Matrix')->find($matrix_id);
 		
-		//First create the response
-		$mu = new MatrixUtils();
-        $data = $mu->buildDatasetFromMatrix($matrix);
-		
+		//Prepare stuff for the queue
+		$data = MatrixUtils::buildDatasetFromMatrix($matrix);
+  
         //build the data array for the dataset
         $model = BuildModelsRequest::fromArray($data);
         		
-		//... prepare a connection and send the data
-        $conn = new Connection('test:test@localhost');
-        $model = new BuildModelsResponse($model->getId());
-        $conn->send($model);
-        $data = $model->toArray();
-        error_log("Data after build model response".$data);
-
-        //@TODO: Dont know what to do with this
-        //insert('build_models_tasks', $model->toArray());
-        
-		//Create thre training
+		//Create the training entity
 		$training = new Training();										
 		$training->setName($name);
 		$training->setTrainer($trainer);
@@ -54,21 +52,25 @@ class TrainingService{
 			$training->setDescription($description);
 		}
 		
-		if(!empty($k1)) $training->setK1($k1);
-		
-		if(!empty($k2)) $training->setK2($k2);
-			
-		if(!empty($best_models)) $training->setBestModels($best_models);
-			
+		if(!empty($k1))               $training->setK1($k1);
+		if(!empty($k2))               $training->setK2($k2);
+		if(!empty($best_models))      $training->setBestModels($best_models);
 		if(!empty($min_size_var_set)) $training->setMinSizeVariableSet($min_size_var_set);
-			
 		if(!empty($max_size_var_set)) $training->setMaxSizeVariableSet($max_size_var_set);
-			
-		if(!empty($type_of_search)) $training->setTypeOfSearch($type_of_search);
-			
+		if(!empty($type_of_search))   $training->setTypeOfSearch($type_of_search);
+
+		//... prepare a connection and send the data
+		$this->con->open();
+		$this->con->send($model);
+		$this->con->close();
+				
+		//$model = new BuildModelsResponse($model->getId());
+		
+		//Persist the entity
 		$this->em->persist($training);
 		$this->em->flush();
-		return $training->getId();
+		$training_id = $training->getId();
+		return $training_id;
 	}
 
 	public function getTraining($training_id){
@@ -93,7 +95,6 @@ class TrainingService{
 		
 		//Cue is ready
 		
-		//
 	}
 }
 ?>

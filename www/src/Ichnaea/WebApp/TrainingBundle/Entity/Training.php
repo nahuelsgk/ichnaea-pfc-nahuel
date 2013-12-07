@@ -121,9 +121,11 @@ class Training
     private $pathTable;
 
     /**
-     * @ORM\ManyToOne
+     * @var string
+     * @ORM\Column(name="error", type="string", length=255, nullable = true	)
      */
-
+    private $error;
+    
     /**
      * Get id
      *
@@ -539,5 +541,29 @@ class Training
     public function getMatrix()
     {
         return $this->matrix;
+    }
+
+
+    /**
+     * Set error
+     *
+     * @param string $error
+     * @return Training
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * Get error
+     *
+     * @return string 
+     */
+    public function getError()
+    {
+        return $this->error;
     }
 }

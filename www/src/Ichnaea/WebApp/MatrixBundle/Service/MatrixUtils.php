@@ -10,10 +10,6 @@ use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSet as SeasonSet;
  */
 class MatrixUtils{
 	
-	public function __construct()
-	{
-	}
-	
 	/**
 	 * Read all each columns, the season set. Grab all the season and write the season in a txt
 	 * Returns the directory path where all the files
@@ -67,13 +63,13 @@ class MatrixUtils{
 *  
 * }
 * */
-public function buildDatasetFromMatrix($matrix){	
+static public function buildDatasetFromMatrix($matrix){	
     $dataSet = array();
     $dataSet["fake_duration"]         = 10;
     $dataSet["fake_interval"]         = 1; 
     $dataSet["dataset_format"]        = "csv";
     $dataSet["aging_format"]          = "tab";
-    $dataSet["aging_filename_format"] = "env%column%-%name%.txt";
+    $dataSet["aging_filename_format"] = "env%column%-%aging%.txt";
     $dataSet["aging"] = array();
     
     //Array of strings. This is the content of the matrix as a cvs
@@ -103,7 +99,7 @@ public function buildDatasetFromMatrix($matrix){
 	    			$season_content = $season->getContent();
 	    			$season_season  = $component->getSeasonType();
 	    			//must respect the "aging_fileformat"
-	    			$aging_name = 'env'.$var_id.'-'.$this->resolveSeasonName($season_season).'.txt';
+	    			$aging_name = 'env'.$var_id.'-'.MatrixUtils::resolveSeasonName($season_season).'.txt';
 	    			$dataSet["aging"][$aging_name] = $season_content;
 	    			$columns_name[] = $var_id;	
 	    			$j++;
@@ -145,9 +141,8 @@ public function buildDatasetFromMatrix($matrix){
 	   	
    	return $dataSet;	
 }
-  
-
-private function resolveSeasonName($season_name){
+ 
+static 	private function resolveSeasonName($season_name){
    	$seasons = array(
    		'summer'   => 'Estiu',
    		'winter'   => 'Hivern',

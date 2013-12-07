@@ -25,10 +25,10 @@ training_view:
         training_id: "\d+"
         
 training_check:
-    pattern: /matrix/{matrix_id}/training/{training_id}/check
+    pattern: /matrix/{matrix_id}/training/{training_id}
     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:viewTraining, check: true }
     requirements:
-        _method: GET
+        _method: POST
         matrix_id: "\d+"
         training_id: "\d+"
     
