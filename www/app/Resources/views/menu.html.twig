@@ -1,3 +1,4 @@
+{% if app.user %}
 <div class="navbar navbar-inverse navbar-fixed-top">
  <div class="navbar-inner">
   <div class="container">
@@ -23,7 +24,7 @@
      </li>
     </ul>
     <!-- @TODO: only for historic reason and recover quickly
-             {% if app.user %}
+             
              <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matrixs <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -45,16 +46,14 @@
                <li><a href="{{path('season_form')}}">New season</a></li>
               </ul>
               </li>
-             {% endif %}-->
+             -->
     <ul class="nav">
      <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">User corner<b class="caret"></b></a>
       <ul class="dropdown-menu">
-      {% if app.user %}
        <li><a href="{{path('user_dashboard')}}">My dashboard</a></li>
        <li><a href="{{path('fos_user_change_password')}}">Change password</a></li>
-      {% endif %}
-      <li><a href="{{path('fos_user_resetting_request')}}">Request a new password</a></li>
+       <li><a href="{{path('fos_user_resetting_request')}}">Request a new password</a></li>
       </ul>
       </li>
       <li><a href="{{path('fos_user_security_logout')}}">Logout</a></li>
@@ -63,3 +62,4 @@
    </div>
   </div>
  </div>
+ {% endif %}

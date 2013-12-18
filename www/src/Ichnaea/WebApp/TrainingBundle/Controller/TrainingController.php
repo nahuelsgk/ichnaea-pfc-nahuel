@@ -67,4 +67,19 @@ class TrainingController extends Controller
 		
 		return $this->render('IchnaeaWebAppTrainingBundle::view.html.twig', array('training' => $training));
     }
+
+	public function deleteTrainingAction($matrix_id, $training_id)
+	{
+		//@TODO: only can do it the trainer or the admin
+		$trainingService = $this->get('ichnaea.trainingService');
+		$training = $trainingService->getTraining($training_id);
+		return $this->render('IchnaeaWebAppTrainingBundle::delete_form.html.twig', array('training' => $training));
+	}
+	
+	public function submitDeleteTrainingAction($matrix_id, $training_id){
+		//@TODO: only can do it the trainer or the admin
+		$trainingService = $this->get('ichnaea.trainingService');
+		$trainingService->deleteTraining($training_id);
+		return $this->redirect($this->generateUrl('user_dashboard'));
+	}
 }

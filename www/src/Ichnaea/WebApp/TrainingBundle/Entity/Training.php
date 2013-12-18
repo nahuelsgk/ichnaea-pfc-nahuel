@@ -122,6 +122,18 @@ class Training
 
     /**
      * @var string
+     * @ORM\Column(name="request_id", type="string", length=255, nullable = false) 
+     */
+    private $requestId;
+    
+    /**
+     * @var decimal
+     * @ORM\Column(name="progress", type="decimal", precision=5, scale=2)
+     */
+    private $progress = 0;
+    
+    /**
+     * @var string
      * @ORM\Column(name="error", type="string", length=255, nullable = true	)
      */
     private $error;
@@ -543,7 +555,29 @@ class Training
         return $this->matrix;
     }
 
-
+    /**
+     * Set error
+     *
+     * @param string $error
+     * @return Training
+     */
+    public function setRequestId($id)
+    {
+    	$this->requestId = $id;
+    	
+    	return $this;
+    }
+        
+    /**
+     * Get requestId
+     *
+     * @return string
+     */
+    public function getRequestId()
+    {
+    	return $this->requestId;
+    }
+    
     /**
      * Set error
      *
@@ -553,7 +587,6 @@ class Training
     public function setError($error)
     {
         $this->error = $error;
-
         return $this;
     }
 
@@ -566,4 +599,26 @@ class Training
     {
         return $this->error;
     }
+    
+    /**
+     * Set progress
+     * 
+     * @param decimal $progress
+     * @return Training
+     */
+    public function setProgress	($progress) {
+    	$this->progress = $progress;
+    	return $this;
+    }
+    
+    /**
+     * Get progress
+     * 
+     * @return decimal
+     */
+    public function getProgress() {
+    	return $this->progress;
+    }
+    
+    
 }

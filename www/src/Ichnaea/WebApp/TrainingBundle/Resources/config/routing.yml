@@ -31,5 +31,19 @@ training_check:
         _method: POST
         matrix_id: "\d+"
         training_id: "\d+"
-    
+        
+training_delete:
+     pattern: /matrix/{matrix_id}/training/{training_id}/delete
+     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:deleteTraining}
+     requirements:
+         _method: GET
+         matrix_id: "\d+"
+         training_id: "\d+"
 
+training_delete_submit:
+     pattern: /matrix/{matrix_id}/training/{training_id}/delete/submit
+     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:submitDeleteTraining}
+     requirements:
+         _method: GET
+         matrix_id: "\d+"
+         training_id: "\d+"

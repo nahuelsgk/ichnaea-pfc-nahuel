@@ -1,0 +1,14 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Delete training{% endblock %}
+
+{% block body %}
+<div class="container">
+You're a about to delete the training:<br>
+Name: {{training.name}}<br>
+Description: {{training.description}}<br>
+Are you sure?
+<form method="GET" id="trainingDeleteForm" class="form-horizontal" action="{{path('training_delete_submit', {matrix_id: training.matrix.id, training_id: training.id})}}">
+<button type="submit" class="btn btn-danger">Delete</button>
+</div>
+{% endblock %}

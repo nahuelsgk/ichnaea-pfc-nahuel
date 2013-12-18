@@ -58,7 +58,10 @@ class TrainingService{
 		if(!empty($min_size_var_set)) $training->setMinSizeVariableSet($min_size_var_set);
 		if(!empty($max_size_var_set)) $training->setMaxSizeVariableSet($max_size_var_set);
 		if(!empty($type_of_search))   $training->setTypeOfSearch($type_of_search);
-
+	
+		//... set the request id for the cue...
+		$training->setRequestId($model->getId());
+		
 		//... prepare a connection and send the data
 		$this->con->open();
 		$this->con->send($model);
@@ -76,12 +79,18 @@ class TrainingService{
 	public function getTraining($training_id){
 		return $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
 	}
+	
+	public function deleteTraining($training_id){
+		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
+		$this->em->remove($training);
+		$this->em->flush();
+	}
 
 	public function checkTraining($training_id){
 		error_log("*** Now lets check the training. ***");
 
 		#Get the training and the matrix id
-		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
+		$training  = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
 		$matrix    = $training->getMatrix();
 		$matrix_id = $matrix->getId();
 		

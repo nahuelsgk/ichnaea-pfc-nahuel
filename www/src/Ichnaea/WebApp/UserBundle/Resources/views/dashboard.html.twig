@@ -9,11 +9,14 @@
 <div style="float: left; width: 45%;">
  <legend>Your matrixs</legend>
  <table class="table">
+ <thead>
  <tr>
   <th>&nbsp;</th>
   <th>Name</th>
   <th>&nbsp;</th>
  </tr>
+ </thead>
+ <tbody>
  {% for matrix in app.user.matrixs %}
  <tr>
   <td>
@@ -22,26 +25,37 @@
   <td>{{matrix.name}}</td>
  </tr>
  {% endfor %}
+ </tbody>
  </table>
 </div>
 
 <div style="float: right; width: 45%;">
  <legend>Your trainings</legend>
  <table class="table">
+ <thead>
  <tr>
   <th>&nbsp;</th>
   <th>Name</th>
-  <th>Status</th>
+  <th>Progress</th>
+  <th>Result</th>
  </tr>
+ </thead>
+ {% if app.user.trainings %}
+ <tbody>
  {% for training in app.user.trainings %}
  <tr>
    <td>
      <a class="btn btn-mini" href="{{path('training_view', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
-     <i class="icon-eye-open"></i></td>
+     <i class="icon-eye-open"></i>
+     <a class="btn btn-mini" href="{{path('training_delete', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
+     <i class="icon-remove"></i></td>
    <td>{{training.name}}</td>
-   <td>{{training.status}}</td>
+   <td>{{training.progress}}</td>
    <td></td>
  </tr>
  {% endfor %}
+ </tbody>
+ {% endif %}
+ </table>
 <div>
 {% endblock %}
