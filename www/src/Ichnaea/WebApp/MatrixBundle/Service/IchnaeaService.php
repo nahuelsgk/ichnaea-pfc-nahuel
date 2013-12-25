@@ -231,14 +231,15 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
-/*
- * The content of the file: must be ; separated
- * NO_MATTER_WHAT ; COLUMN_ALIAS ; COLUMN ALIAS ; .....
- * SAMPLE_NAME    ; VALUES       ; VALUES       ;
- * 
- * @TODO/ Must validate the csv format also...
- */
-public function createMatrixFromCSVContent($name, $content, $owner_id){
+	/*
+	 * The content of the file: must be ; separated
+	 * NO_MATTER_WHAT ; COLUMN_ALIAS ; COLUMN ALIAS ; .....
+	 * SAMPLE_NAME    ; VALUES       ; VALUES       ;
+	 * 
+	 * @TODO/ Must validate the csv format also...
+	 * @TODO/ Must be move into Utils 
+	 */
+	public function createMatrixFromCSVContent($name, $content, $owner_id){
 	
 	$matrix = new Matrix();
 	$matrix->setName($name);
@@ -291,9 +292,9 @@ public function createMatrixFromCSVContent($name, $content, $owner_id){
 	return $matrix->getId();
 }
 
-public function getAllMatrixs(){
-	return $this->em->getRepository('MatrixBundle:Matrix')->findAll();
-}
+	public function getAllMatrixs(){
+		return $this->em->getRepository('MatrixBundle:Matrix')->findAll();
+	}
 	
 	public function getMatrix($id){
 		return $this->em->getRepository('MatrixBundle:Matrix')->find($id);
@@ -354,14 +355,23 @@ public function getAllMatrixs(){
 		$this->em->flush();		
 	}
 	
-	public function buildFiles($matrix_id){
-		
-		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
-		$matrix = $matrixRepository->find($matrix_id);
-		
-		$utils = new Utils();
-		$utils->writeMatrixToDisk($matrix);
-		
+	/**
+	 * 
+	 * @param string $format
+	 * @param string $type
+	 * @param id $matrix_id
+	 * 
+	 * Get the matrix as file content.
+	 * Param type:
+	 * - simple: csv is alias columns, alias samples, and data
+	 * - complete: completed configured(not contempleted)
+	 * 
+	 */
+	public function getMatrixAs($format = 'csv', $type='simple', $matrix_id)
+	{
+		$matrix = $this->getMatrix($matrix_id);
+		$dataSet = Utils::buildDatasetFromMatrix($matrix);
+		return $dataSet['dataset'];
 	}
 	
 	public function echoTest(){

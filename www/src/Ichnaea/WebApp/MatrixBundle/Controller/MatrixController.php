@@ -3,6 +3,7 @@ namespace Ichnaea\WebApp\MatrixBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 class MatrixController extends Controller
 {	
@@ -83,11 +84,35 @@ class MatrixController extends Controller
 		return $this->render('MatrixBundle:Matrix:view.html.twig', array('matrix' => $matrix));
 	}
 	
-	public function buildFilesAction($matrix_id){
+	public function buildFilesAction($matrix_id)
+	{
 		$ichnaeaService = $this->get('ichnaea.service');
 		$matrix = $ichnaeaService->buildFiles($matrix_id);
 		return $this->redirect($this->generateUrl('matrix_ui_edit',array("matrix_id" => $matrix_id)));
 		
+	}
+	
+	public function downloadFormAction($matrix_id)
+	{
+		$ichnaeaService = $this->get('ichnaea.service');
+		$matrix = $ichnaeaService->getMatrix($matrix_id);
+	    return $this->render('MatrixBundle:Matrix:download_form.html.twig', 
+	    		array(
+	    				'matrix_id'   => $matrix->getId(),
+	    				'matrix_name' => $matrix->getName(),
+	    ));	
+	}
+	
+	public function downloadAction($matrix_id) 
+	{
+		$ichnaeaService = $this->get('ichnaea.service');
+		$file_content = $ichnaeaService->getMatrixAs('csv', 'simple', $matrix_id);
+		
+	    $response = new Response();
+	    $response->setContent($file_content);
+	    $response->headers->set('Content-Type', 'text/csv');
+	    
+	    return $response;
 	}
 	
 	private function resolveMatrixGUI($matrix){
@@ -96,5 +121,6 @@ class MatrixController extends Controller
 		
 		return $this->redirect($this->generateUrl('matrix_ui_view', array('matrix_id' => $matrix->getId())));
 	}
+	
 }
 ?>

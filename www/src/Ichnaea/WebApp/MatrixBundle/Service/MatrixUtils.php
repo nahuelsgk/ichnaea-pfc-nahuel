@@ -14,7 +14,7 @@ class MatrixUtils{
 	 * Read all each columns, the season set. Grab all the season and write the season in a txt
 	 * Returns the directory path where all the files
 	 */
-	public function writeMatrixToDisk($matrix)
+	/*public function writeMatrixToDisk($matrix)
 	{
 		error_log("*** Preparing files\n");
 		//Check if the directory exists
@@ -45,10 +45,12 @@ class MatrixUtils{
 			}
 			$i++;
 		}
-	}
+	}*/
 	
 /*
-* Builds an structure for send it to the cue
+* Builds a dataSet and metainfo for several usages:
+* a) info for send it to the queue
+* b) builds a csv file to send for downloading
 * 
 * Return:
 * {
@@ -59,7 +61,7 @@ class MatrixUtils{
 *    [envBA-Estiu.txt] => season_content
 *    [env/VARIABLE/-/SEASON NAME/] => season_content
 *  }
-*  [dataset] => "matrix file"
+*  [dataset] => "matrix file as csv"
 *  
 * }
 * */
@@ -101,13 +103,14 @@ static public function buildDatasetFromMatrix($matrix){
 	    			//must respect the "aging_fileformat"
 	    			$aging_name = 'env'.$var_id.'-'.MatrixUtils::resolveSeasonName($season_season).'.txt';
 	    			$dataSet["aging"][$aging_name] = $season_content;
-	    			$columns_name[] = $var_id;	
 	    			$j++;
 	    		}
 	    	}  
+	    	//Just one column per variable
+	    	$columns_name[] = $var_id;
    		}
    		
-   		//Another kind of variable, just grab 
+   		//Another kind of column(no variable associated) 
    		else{
    			//In this case we use the alias
    			$columns_name[] = $column->getName();
@@ -142,6 +145,10 @@ static public function buildDatasetFromMatrix($matrix){
    	return $dataSet;	
 }
  
+static public function convertMatrixIntoCSV($type){
+	
+}
+
 static 	private function resolveSeasonName($season_name){
    	$seasons = array(
    		'summer'   => 'Estiu',

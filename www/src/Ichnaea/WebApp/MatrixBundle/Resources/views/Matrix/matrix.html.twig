@@ -16,7 +16,9 @@
 </form>
 </div>
 
-<legend class="container">Matrix Data <div id="submit_info" style="display: inline;"><button id="save_all_changes" class="btn btn-danger" style="visibility: hidden;" onclick="save_all_pending_action();">Save all changes</button></div></legend>
+<legend class="container">Matrix Data 
+	<a class="btn btn-mini" href="{{path('matrix_download_form', {'matrix_id': matrix.id})}}" name="download_matrix" title="Download matrix"><i class="icon-arrow-down"></i></a>
+    <div id="submit_info" style="display: inline;"><button id="save_all_changes" class="btn btn-danger" style="visibility: hidden;" onclick="save_all_pending_action();">Save all changes</button></div></legend>
 </div>
 
 <div id="container_matrix" style="width: 98%; margin-left: auto; margin-right: auto;">

@@ -155,3 +155,17 @@ matrix_build_files:
         matrix_id: "\d+"
     
 
+matrix_download_form:
+    pattern: /matrix/{matrix_id}/download
+    defaults: { _controller: MatrixBundle:Matrix:downloadForm}
+    requirements: 
+        _method: GET
+        matrix_id: "\d+"
+
+matrix_download:
+    pattern: /matrix/{matrix_id}/downloading
+    defaults: { _controller: MatrixBundle:Matrix:download}
+    requirements: 
+        _method: POST
+        matrix_id: "\d+"
+        
