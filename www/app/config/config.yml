@@ -67,6 +67,8 @@ fos_user:
     db_driver: orm 
     firewall_name: main
     user_class: Ichnaea\WebApp\UserBundle\Entity\User
+    group:
+        group_class: Ichnaea\WebApp\UserBundle\Entity\Group
     from_email:
         address:  donot-to-reply-ichnaea@lsi.upc.edu
         sender_name: Ichnaea Web Service

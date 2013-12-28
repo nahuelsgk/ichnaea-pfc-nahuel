@@ -29,9 +29,18 @@ class User extends BaseUser
     protected $matrixs;
     
     /**
-     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="traineer")  
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="trainer")  
      */
     protected $trainings;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Ichnaea\WebApp\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
     
     public function __construct()
     {

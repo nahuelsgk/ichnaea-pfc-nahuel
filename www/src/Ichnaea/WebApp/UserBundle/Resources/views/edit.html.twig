@@ -1,0 +1,10 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Edit {{ user.username }} {% endblock %}
+
+{% block main_content %}
+<legend>Roles</legend>
+{% for group in user.groups %}
+
+{% endfor %}
+{% endblock %}

@@ -20,3 +20,12 @@ fos_user_change_password:
 user_dashboard:
     path: /dashboard
     defaults: { _controller: UserBundle:Dashboard:getDashboard }
+    
+user_list:
+    path: /users
+    defaults: { _controller: UserBundle:Users:getUsersList }
+
+edit_user:
+    path: /user/{user_id}
+    defaults: { _controller: UserBundle:Users:editUser }
+    

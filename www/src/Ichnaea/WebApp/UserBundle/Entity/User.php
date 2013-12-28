@@ -33,6 +33,15 @@ class User extends BaseUser
      */
     protected $trainings;
     
+    /**
+     * @ORM\ManyToMany(targetEntity="Ichnaea\WebApp\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
+    
     public function __construct()
     {
         parent::__construct();

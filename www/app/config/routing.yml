@@ -10,6 +10,10 @@ user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
 
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+    
 matrix:
     resource: "@MatrixBundle/Resources/config/routing.yml"
     prefix:   /
@@ -20,3 +24,4 @@ home:
         _controller: FrameworkBundle:Redirect:urlRedirect
         path: /dashboard
         permanent: true
+        
