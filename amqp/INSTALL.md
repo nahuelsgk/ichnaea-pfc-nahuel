@@ -15,7 +15,7 @@ main jar once.
     sudo apt-get install r-base-core
     
 * install required R modules
-    ../kvm/files/ichnaea.sh --install
+    ../r/files/ichnaea.sh --install
 
 #### Setup required programms and libraries
 
@@ -40,7 +40,7 @@ This will build a file in `target/ichnaea-amqp.jar`.
 
 To run the basic build-models:process consumer:
 
-    ./target/ichnaea-amqp.jar build-models:process -i ../kvm/files/ichnaea.sh
+    ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh
 
 To run the basic build-models:request publisher with a fake request:
 
@@ -48,7 +48,7 @@ To run the basic build-models:request publisher with a fake request:
 
 To run the basic build-models:request publisher with a real request:
 
-    ./target/ichnaea-amqp.jar build-models:request --aging=../kvm/fixtures/aging/env%column%-%aging%.txt --dataset=../kvm/fixtures/cyprus.csv
+    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv
 
 Use the `-h` command line argument to get all the available options.
 
@@ -102,19 +102,18 @@ Use the `-h` command line argument to get all the available options.
 * run the project jar
 
     * listen to new build-models requests
-    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh"
-    mvn exec:java -Dexec.args="build-models:process -i ../kvm/files/ichnaea.sh -s ssh://user:password@localhost"
+    mvn exec:java -Dexec.args="build-models:process -i ../r/files/ichnaea.sh"
+    mvn exec:java -Dexec.args="build-models:process -i ../r/files/ichnaea.sh -s ssh://user:password@localhost"
 
     * issue a fake test build-models request
     mvn exec:java -Dexec.args="build-models:request --fake 10:1"
 
     * debug a build-models request
-    mvn exec:java -Dexec.args="build-models:request --debug --dataset ../kvm/fixtures/cyprus.csv --aging ../kvm/fixtures/aging/env%column%-%aging%.txt"
+    mvn exec:java -Dexec.args="build-models:request --debug --dataset ../r/fixtures/cyprus.csv --aging ../r/fixtures/aging/env%column%-%aging%.txt"
 
 ### PHP setup
 
 See `php/README.md`.
-
 
 #### Possible problems
 
@@ -127,6 +126,19 @@ Restart the server for the changes to take effect
 
     sudo service rabbitmq-server restart
 
-Open the web browser at http://localhost:55672 and enter with user guest password guest.
+Open the web browser at http://localhost:55672 and enter with user `guest` password `guest`.
 
+### Building documentation
 
+The in-depth document can be found at doc/ichnaea_amqp.md and can be converted from markdown
+to different formats using `pandoc`.
+
+    sudo apt-get install pandoc latex-beamer
+
+To convert to pdf use the following command:
+
+    pandoc -s --highlight-style pygments -o ichnaea_amqp.pdf ichnaea_amqp.md
+
+To convert to html use the following command:
+
+    pandoc -s --highlight-style pygments -o ichnaea_amqp.html ichnaea_amqp.md
