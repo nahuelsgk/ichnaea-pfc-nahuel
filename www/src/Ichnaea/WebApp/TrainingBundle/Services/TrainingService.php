@@ -6,6 +6,7 @@ require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload
 
 use Doctrine\ORM\EntityManager as SymfonyEM;
 use Ichnaea\WebApp\TrainingBundle\Entity\Training;
+use Ichnaea\WebApp\TrainingBundle\Model\TrainingValidation;
 use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
 use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
 use Ichnaea\Amqp\Model\BuildModelsResponse as BuildModelsResponse;
@@ -61,6 +62,11 @@ class TrainingService{
 	
 		//... set the request id for the cue...
 		$training->setRequestId($model->getId());
+
+		//Validates the training
+		$validation = new TrainingValidation($training);
+		$validation->validate();
+		if ($validation->valid() == FALSE) return $validation;
 		
 		//... prepare a connection and send the data
 		$this->con->open();
@@ -72,8 +78,8 @@ class TrainingService{
 		//Persist the entity
 		$this->em->persist($training);
 		$this->em->flush();
-		$training_id = $training->getId();
-		return $training_id;
+		$validation->setTraining($training);
+		return $validation;
 	}
 
 	public function getTraining($training_id){

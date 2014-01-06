@@ -38,7 +38,7 @@ class MatrixController extends Controller
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
 		
 		if ($this->getUser() != $matrix->getOwner()) {
-			throw new HttpException(403, 'Unauthorized access.');
+			throw new HttpException(403, 'You are not the owner.');
 		}
 		
 		$request = $this->getRequest();
@@ -105,8 +105,12 @@ class MatrixController extends Controller
 	
 	public function downloadAction($matrix_id) 
 	{
+		$request = $this->getRequest();
+		$type    = $request->request->get("type_download");
+		
+		
 		$ichnaeaService = $this->get('ichnaea.service');
-		$file_content = $ichnaeaService->getMatrixAs('csv', 'simple', $matrix_id);
+		$file_content = $ichnaeaService->getMatrixAs('csv', $type, $matrix_id);
 		
 	    $response = new Response();
 	    $response->setContent($file_content);

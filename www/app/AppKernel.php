@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             new Ichnaea\ApiBundle\IchnaeaApiBundle(),
             new Ichnaea\WebApp\TrainingBundle\IchnaeaWebAppTrainingBundle(),
+        	new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

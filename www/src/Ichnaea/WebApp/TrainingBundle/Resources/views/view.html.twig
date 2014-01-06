@@ -29,4 +29,15 @@
  <button type="submit" class="btn btn-primary">Check training</button>
  </form>
  <legend>Results</legend>
+ Status: 
+    <div class="progress progress-striped ">
+    <div class="bar" style="width: {{ training.progress * 100 }}%;"></div>
+</div>
+ 
+ {% if training.error %}
+   Error on training: <div class="error">{{ training.error }} </div>
+   <form name="resend_training" action="{{path('resend_training', {matrix_id: training.matrix.id, training_id: training.id})}}">
+   <button type="submit" class="btn btn-danger">Resend training</button>
+   </form>
+ {% endif %}
 {% endblock %}

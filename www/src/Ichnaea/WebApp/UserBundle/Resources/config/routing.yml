@@ -26,6 +26,6 @@ user_list:
     defaults: { _controller: UserBundle:Users:getUsersList }
 
 edit_user:
-    path: /user/{user_id}
+    path: /user/{user_id}/edit
     defaults: { _controller: UserBundle:Users:editUser }
     

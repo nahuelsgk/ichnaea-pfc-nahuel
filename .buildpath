@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="amqp/php/app"/>
+	<buildpathentry kind="src" path="amqp/php/src/Ichnaea/Amqp"/>
+	<buildpathentry kind="src" path="www/app"/>
+	<buildpathentry kind="src" path="www/bin"/>
+	<buildpathentry kind="src" path="www/src/Ichnaea/ApiBundle"/>
+	<buildpathentry kind="src" path="www/src/Ichnaea/WebApp/MatrixBundle"/>
+	<buildpathentry kind="src" path="www/src/Ichnaea/WebApp/TrainingBundle"/>
+	<buildpathentry kind="src" path="www/src/Ichnaea/WebApp/UserBundle"/>
+	<buildpathentry kind="src" path="www/vendor"/>
+	<buildpathentry kind="src" path="www/web"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>

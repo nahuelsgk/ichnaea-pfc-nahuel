@@ -31,6 +31,14 @@ training_check:
         _method: POST
         matrix_id: "\d+"
         training_id: "\d+"
+
+resend_training:
+    pattern: /matrix/{matrix_id}/training/{training_id}
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:viewTraining, check: true }
+    requirements:
+        _method: POST
+        matrix_id: "\d+"
+        training_id: "\d+"
         
 training_delete:
      pattern: /matrix/{matrix_id}/training/{training_id}/delete

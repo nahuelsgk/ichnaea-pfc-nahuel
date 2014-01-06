@@ -5,15 +5,29 @@
 
 {% block main_content %}
 <table class="table">
+<thead>
+<tr>
+  <th>Username</th>
+  <th>Email</th>
+  <th>Group</th>
+  <th>Actions</th>
+<tr>
+</thead>
+<tbody>
 {% for user in users %}
 <tr>
 <td>{{ user.username }}</td>
 <td>{{ user.email }}</td>
+<td>{% for group in user.groups %} {{ group.name}} {% endfor %}</td>
 <td>
   <a class="btn btn-mini" href="{{ path('edit_user', {'user_id': user.id}) }}" name="edit_user" title="Add roles">
   <i class="icon-edit"></i>
 </td>
+<td>
+
+</td>
 </tr>
 {% endfor %}
+</tbody>
 </table>
 {% endblock %}

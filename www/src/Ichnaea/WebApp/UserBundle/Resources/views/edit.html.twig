@@ -3,8 +3,19 @@
 {% block page_title %}Edit {{ user.username }} {% endblock %}
 
 {% block main_content %}
-<legend>Roles</legend>
-{% for group in user.groups %}
-
+<legend>Groups</legend>
+<form action={{ path('edit_user',{user_id: user.id}) }} method="POST">
+<select name="group">
+{% for group in sys_groups %}
+  <option {%  if user.groups[0].id == group.id %}selected{% endif %} value="{{ group.name }}">{{ group.name }}</option>
 {% endfor %}
+</select>
+<button type="submit">Save</button>
+</form>
+<legend>Roles</legend>
+<ul>
+{% for role in user.groups[0].roles %}
+  <li>{{ role }}</li>
+{% endfor %}
+</ul>
 {% endblock %}

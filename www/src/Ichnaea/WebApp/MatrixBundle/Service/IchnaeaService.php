@@ -370,7 +370,7 @@ class IchnaeaService{
 	public function getMatrixAs($format = 'csv', $type='simple', $matrix_id)
 	{
 		$matrix = $this->getMatrix($matrix_id);
-		$dataSet = Utils::buildDatasetFromMatrix($matrix);
+		$dataSet = Utils::buildDatasetFromMatrix($matrix, $type);
 		return $dataSet['dataset'];
 	}
 	

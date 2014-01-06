@@ -30,12 +30,33 @@ class TrainingController extends Controller
     		$type_of_search   = $request->request->get("type_of_search");
     		 
     		$trainingService = $this->get('ichnaea.training_service');
-    		$training_id = $trainingService->createTraining($matrix_id, $coach_id, $name, $description, $k1, $k2,
+    		$validation = $trainingService->createTraining($matrix_id, $coach_id, $name, $description, $k1, $k2,
     				$best_models, $min_size_var_set,
     				$max_size_var_set, $type_of_search);
     		 
-    		//While dev.... redirect into the origin
-    		//return $this->redirect($this->generateUrl('create_training_form', array('matrix_id' => $matrix_id)));
+
+    		
+    		if ($validation->valid() == FALSE){
+    			$errors = $validation->getErrorsAsArrayOfStrings();
+    			return $this->render(
+    					'IchnaeaWebAppTrainingBundle::form.html.twig',
+    					array(
+    						"matrix_id"      => $matrix_id,
+    						"n_columns"      => $n_columns,
+    						"name" 		     => $name,
+    						"description"    => $description,
+    						"k1"		     => $k1,
+    						"k2"		     => $k2,
+    						"best_models"    => $best_models,
+     						"min_size"       => $min_size_var_set,
+    						"max_size"       => $max_size_var_set,
+    						"type_of_search" => $type_of_search,
+    						"errors"	     => $errors
+    					)
+    			);
+    		} 
+    		
+  			$training_id = $validation->getTraining()->getId();
     		return $this->redirect($this->generateUrl('training_view', array('matrix_id' => $matrix_id, 'training_id' => $training_id)));
     	}
     	

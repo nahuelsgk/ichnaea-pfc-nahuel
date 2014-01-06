@@ -4,54 +4,22 @@ namespace Ichnaea\WebApp\MatrixBundle\Service;
 use Ichnaea\WebApp\MatrixBundle\Entity\Matrix as Matrix;
 use Ichnaea\WebApp\MatrixBundle\Entity\Variable as Variable;
 use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSet as SeasonSet;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer as DateTimeToStringTransformer;
 
 /*
  * This service is the responsable of create all seasons files for a matrix 
  */
 class MatrixUtils{
 	
-	/**
-	 * Read all each columns, the season set. Grab all the season and write the season in a txt
-	 * Returns the directory path where all the files
-	 */
-	/*public function writeMatrixToDisk($matrix)
-	{
-		error_log("*** Preparing files\n");
-		//Check if the directory exists
-
-		//@TODO: abstract this with configuration files
-		$dir_path = '/opt/lampp/htdocs/ichnaea/www/data/'.$matrix->getId();
-		if(!file_exists($dir_path)){
-			mkdir($dir_path, 0777,  false);
-		}
-		
-		$columns = $matrix->getColumns();
-		$i = 0;
-		foreach($columns as $column){
-			error_log("Column ".$i."\n");
-			//Read all the season sets and write it into files
-			$seasonSet = $column->getSeasonSet();
-			if($seasonSet instanceof SeasonSet){
-				$seasons = $seasonSet->getSeason();
-			 	foreach($seasons as $season){
-			 		$name_file    = $season->getName();
-			 		$content_file = $season->getContent();
-					error_log("Season: ".$name_file);
-					error_log("**Content: ".$content_file."\n");
-					$file_path = $dir_path.'/'.$name_file.'.txt';
-					error_log("***into ".$file_path);
-					file_put_contents($file_path, $content_file);
-			 	}
-			}
-			$i++;
-		}
-	}*/
-	
 /*
 * Builds a dataSet and metainfo for several usages:
 * a) info for send it to the queue
 * b) builds a csv file to send for downloading
 * 
+* IMPORTANT: its an overload function. It's also used for generate csv. The type of csv is simple
+* or completed configured for uploading matrixs
+* IMPORTANT: CLASS is a reserved word for empty cells
+*
 * Return:
 * {
 *  [dataset_format] => csv
@@ -62,10 +30,12 @@ class MatrixUtils{
 *    [env/VARIABLE/-/SEASON NAME/] => season_content
 *  }
 *  [dataset] => "matrix file as csv"
+
+*  @TODO: put exemples in documentation
 *  
 * }
 * */
-static public function buildDatasetFromMatrix($matrix){	
+static public function buildDatasetFromMatrix($matrix, $type = 'simple'){	
     $dataSet = array();
     $dataSet["fake_duration"]         = 10;
     $dataSet["fake_interval"]         = 1; 
@@ -74,22 +44,30 @@ static public function buildDatasetFromMatrix($matrix){
     $dataSet["aging_filename_format"] = "env%column%-%aging%.txt";
     $dataSet["aging"] = array();
     
+    $empty_cell_string = "CLASS";
+    
     //Array of strings. This is the content of the matrix as a cvs
     $csv_content = array();
     //This array will be the first row of the matrix as csv
     $columns_name = array();
     //...first cell of the first row, default value
-    $columns_name[] = "CLASS";
-    
+    $columns_name[] = $empty_cell_string;
+
+    //Empty cells if complete
+    if ($type == 'complete') {
+    	$columns_name[] = $empty_cell_string;
+    	$columns_name[] = $empty_cell_string;
+    }   
     
     //BUILD the aging data
     $i = 0; 
     $columns = $matrix->getColumns();
+    
+    //BEGIN CSV @1 - ROWS with the var name/alias if simple; if complete only var name
     foreach($columns as $column){
-    	
     	//Column with variable associated
     	if ($column->getVariable() instanceof Variable){
-    		$var_id    = $column->getVariable()->getName();
+    		$var_name    = $column->getVariable()->getName();
 	    	$seasonSet = $column->getSeasonSet();
 	    	
 	    	if ($seasonSet instanceof SeasonSet){
@@ -101,33 +79,83 @@ static public function buildDatasetFromMatrix($matrix){
 	    			$season_content = $season->getContent();
 	    			$season_season  = $component->getSeasonType();
 	    			//must respect the "aging_fileformat"
-	    			$aging_name = 'env'.$var_id.'-'.MatrixUtils::resolveSeasonName($season_season).'.txt';
+	    			$aging_name = 'env'.$var_name.'-'.MatrixUtils::resolveSeasonName($season_season).'.txt';
 	    			$dataSet["aging"][$aging_name] = $season_content;
 	    			$j++;
 	    		}
 	    	}  
 	    	//Just one column per variable
-	    	$columns_name[] = $var_id;
+	    	$columns_name[] = $var_name;
    		}
    		
    		//Another kind of column(no variable associated) 
    		else{
    			//In this case we use the alias
-   			$columns_name[] = $column->getName();
+   			if ($type == 'simple') $columns_name[] = $column->getName();
+   			else $columns_name[] = $empty_cell_string;
    		}
    		$i++;
-   	}
-   	
+   	}	
    	//First row, joins all the columns name with ;
    	$csv_content[] = implode($columns_name,";");
+   	//END CSV @1
+   	
+   	//BEGIN CSV @2 - Row with id of the season set
+   	$columns_name = array();
+   	if ($type == 'complete')
+   	{
+   		$columns_name = array();
+   		$columns_name[] = $empty_cell_string;
+   		$columns_name[] = $empty_cell_string;
+   		$columns_name[] = $empty_cell_string;
+   		foreach($columns as $column)
+   		{
+   			if ($column->getVariable() instanceof Variable)
+   			{
+   				$columns_name[] = $column->getSeasonSet()->getId();
+   			}
+   			else $columns_name[] = $empty_cell_string;		 
+   		}
+   		$csv_content[] = implode($columns_name,";");
+   	}
+   	//END CSV @2
+   	
+   	//BEGIN CSV @3 - Row with the aliases
+   	$columns_name = array();
+   	if ($type == 'complete')
+   	{
+   		$columns_name = array();
+   		$columns_name[] = $empty_cell_string;
+   		$columns_name[] = $empty_cell_string;
+   		$columns_name[] = $empty_cell_string;
+   		foreach($columns as $column)
+   		{
+   		    $columns_name[] = $column->getName();
+   		}
+   		$csv_content[] = implode($columns_name,";");
+   	}
+   	//END CSV @3
    	
    	//Finally ful fill the samples
    	$samples = $matrix->getRows();
    	foreach ($samples as $sample) {
-   		$row_content = array();
-   		$values      = $sample->getSamples();
-   		$sample_name = $sample->getName();
-   		$row_content = array_merge( (array) $sample_name, (array)$values);
+   		$row_content   = array();
+   		$values        = $sample->getSamples();
+   		$sample_name   = $sample->getName();
+   		$sample_date   = $sample->getDate();
+   		$sample_origin = $sample->getOrigin(); 
+   		if ($type == 'simple') $row_content = array_merge( (array) $sample_name, (array)$values);
+   		
+   		//BEGIN CSV @4 - IF complete add origins and dates
+   		else
+   		{ 
+   			$row_content = array_merge(
+   					(array) $sample_name, 
+   					$sample_date instanceof \DateTime ? (array) $sample_date->format('Y-m-d') : (array) $empty_cell_string, 
+   					!empty($sample_origin) ? (array) $sample_origin : (array) $empty_cell_string,
+   					(array) $values
+   			);
+   		}
    		$csv_content[] = implode($row_content, ";");
    	}
    	$csv = implode($csv_content, "\r\n");
@@ -143,10 +171,6 @@ static public function buildDatasetFromMatrix($matrix){
    	
 	   	
    	return $dataSet;	
-}
- 
-static public function convertMatrixIntoCSV($type){
-	
 }
 
 static 	private function resolveSeasonName($season_name){

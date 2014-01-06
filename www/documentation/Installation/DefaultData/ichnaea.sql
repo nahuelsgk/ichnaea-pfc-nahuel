@@ -16,6 +16,22 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `groups`
+--
+
+DROP TABLE IF EXISTS `groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_F06D39705E237E06` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `matrix`
 --
 
@@ -39,7 +55,7 @@ CREATE TABLE `matrix` (
 
 LOCK TABLES `matrix` WRITE;
 /*!40000 ALTER TABLE `matrix` DISABLE KEYS */;
-INSERT INTO `matrix` VALUES (14,'Cyprus',25,0);
+INSERT INTO `matrix` VALUES (14,'Cyprus',25,1);
 /*!40000 ALTER TABLE `matrix` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,12 +198,15 @@ CREATE TABLE `training` (
   `pathTable` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `trainer_id` int(11) DEFAULT NULL,
   `matrix_id` int(11) NOT NULL,
+  `error` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `request_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `progress` decimal(5,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D5128A8FFB08EDF6` (`trainer_id`),
   KEY `IDX_D5128A8FAA000BE7` (`matrix_id`),
   CONSTRAINT `FK_D5128A8FAA000BE7` FOREIGN KEY (`matrix_id`) REFERENCES `matrix` (`id`),
   CONSTRAINT `FK_D5128A8FFB08EDF6` FOREIGN KEY (`trainer_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +215,35 @@ CREATE TABLE `training` (
 
 LOCK TABLES `training` WRITE;
 /*!40000 ALTER TABLE `training` DISABLE KEYS */;
+INSERT INTO `training` VALUES (1,'New training','Hello Description','2013-12-18 17:38:15','preparing',10,10,0.25000,1,5,'backward',NULL,NULL,NULL,25,14,'failed to read output file: /tmp/a065784c-048c-4fb1-9298-1b044ef9ad6f (El fitxer o directori no existeix)','52b1cf7771b74',1.00);
 /*!40000 ALTER TABLE `training` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_group`
+--
+
+DROP TABLE IF EXISTS `user_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_group` (
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`group_id`),
+  KEY `IDX_8F02BF9DA76ED395` (`user_id`),
+  KEY `IDX_8F02BF9DFE54D947` (`group_id`),
+  CONSTRAINT `FK_8F02BF9DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FK_8F02BF9DFE54D947` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_group`
+--
+
+LOCK TABLES `user_group` WRITE;
+/*!40000 ALTER TABLE `user_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -236,7 +283,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (25,'nahuelsgk','nahuelsgk','nahuelsgk@gmail.com','nahuelsgk@gmail.com',1,'agmzvmy0osg0w0088ck84ogosoowgc8','SIuNOHHlYhJhvd64obsPwt5+lbaGz79q75e7Z3pvZNj/ZAgSBuQJuFY1xWp86EuEEN1D35MrpoXHjRIN1E1ukw==','2013-11-09 18:54:27',0,0,NULL,'Uv5o6lnwoRvyi0hnnRjbZQqVFLWF0ciT4NES5u391cU','2013-08-25 09:17:28','a:0:{}',0,NULL),(26,'nahuelsgk2','nahuelsgk2','nahuel@conexionesbcn.net','nahuel@conexionesbcn.net',1,'504zcgxqwk0s8swsw80sk4sks0wo0cw','AMoxb2EyE5VdTOzw7Go641ZTXcxdpNxejRz/UVTKP5c2Q6d8a5LlWgV8+6qkwYduquxRkjPglA4FifIu+DOyFg==','2013-07-09 12:18:12',0,0,NULL,'MeZRe75OglEMCERF4LOjq_VgeAN6Ra090goyupBM-F8',NULL,'a:0:{}',0,NULL);
+INSERT INTO `users` VALUES (25,'nahuelsgk','nahuelsgk','nahuelsgk@gmail.com','nahuelsgk@gmail.com',1,'agmzvmy0osg0w0088ck84ogosoowgc8','SIuNOHHlYhJhvd64obsPwt5+lbaGz79q75e7Z3pvZNj/ZAgSBuQJuFY1xWp86EuEEN1D35MrpoXHjRIN1E1ukw==','2013-12-30 12:36:15',0,0,NULL,'Uv5o6lnwoRvyi0hnnRjbZQqVFLWF0ciT4NES5u391cU','2013-08-25 09:17:28','a:0:{}',0,NULL),(26,'nahuelsgk2','nahuelsgk2','nahuel@conexionesbcn.net','nahuel@conexionesbcn.net',1,'504zcgxqwk0s8swsw80sk4sks0wo0cw','AMoxb2EyE5VdTOzw7Go641ZTXcxdpNxejRz/UVTKP5c2Q6d8a5LlWgV8+6qkwYduquxRkjPglA4FifIu+DOyFg==','2013-07-09 12:18:12',0,0,NULL,'MeZRe75OglEMCERF4LOjq_VgeAN6Ra090goyupBM-F8',NULL,'a:0:{}',0,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +341,7 @@ CREATE TABLE `variable_matrix_config` (
 
 LOCK TABLES `variable_matrix_config` WRITE;
 /*!40000 ALTER TABLE `variable_matrix_config` DISABLE KEYS */;
-INSERT INTO `variable_matrix_config` VALUES (352,14,'FC Alias',39,11),(353,14,'FE Alias',40,12),(354,14,'CL Alias',41,13),(355,14,'SOMCPH Alias',42,14),(356,14,'FTOTAL Alias ',NULL,NULL),(357,14,'FRNAPH Alias',50,16),(358,14,'',51,17),(359,14,'',44,18),(360,14,'',45,19),(361,14,'',46,20),(362,14,'RYC2056 Alias',47,21),(363,14,'COP Alias',NULL,NULL),(364,14,'ETHYLCOP Alias',NULL,NULL),(365,14,'EPICOP Alias',NULL,NULL),(366,14,'CHOL Alias',NULL,NULL),(367,14,'DiE Alias',52,26),(368,14,'FM-FS Alias',53,27),(369,14,'Hir Alias',54,28),(370,14,'DiC Alias',55,29),(371,14,'ECP Alias',56,30),(372,14,'ECT Alias',NULL,NULL),(373,14,'GA17 Alias',49,32),(374,14,'Dentium Alias',NULL,NULL),(375,14,'Adolescentis Alias',NULL,NULL),(376,14,'DA Alias',NULL,NULL),(377,14,'HBSA-Y Alias',48,36),(378,14,'HBSA-T Alias',57,37);
+INSERT INTO `variable_matrix_config` VALUES (352,14,'FC alias a',39,11),(353,14,'FE alias b',40,12),(354,14,'CL alias ',41,13),(355,14,'SOMCPH Alias',42,14),(356,14,'FTOTAL Alias ',NULL,NULL),(357,14,'FRNAPH Alias',50,16),(358,14,'FRNAPH I Alias',51,17),(359,14,'FRNAPH II',44,18),(360,14,'FRNAPH III',45,19),(361,14,'FRNAPH IV',46,20),(362,14,'RYC2056 Alias',47,21),(363,14,'COP Alias',NULL,NULL),(364,14,'ETHYLCOP Alias',NULL,NULL),(365,14,'EPICOP Alias',NULL,NULL),(366,14,'CHOL Alias',NULL,NULL),(367,14,'DiE Alias',52,26),(368,14,'FM-FS Alias',53,27),(369,14,'Hir Alias',54,28),(370,14,'DiC Alias',55,29),(371,14,'ECP Alias',56,30),(372,14,'ECT Alias',NULL,NULL),(373,14,'GA17 Alias',49,32),(374,14,'Dentium Alias',NULL,NULL),(375,14,'Adolescentis Alias',NULL,NULL),(376,14,'DA Alias',NULL,NULL),(377,14,'HBSA-Y Alias',48,36),(378,14,'HBSA-T Alias',57,37);
 /*!40000 ALTER TABLE `variable_matrix_config` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -307,4 +354,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-09 22:10:15
+-- Dump completed on 2013-12-30 12:46:55
