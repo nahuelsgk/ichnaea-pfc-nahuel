@@ -33,10 +33,10 @@ training_check:
         training_id: "\d+"
 
 resend_training:
-    pattern: /matrix/{matrix_id}/training/{training_id}
-    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:viewTraining, check: true }
+    pattern: /matrix/{matrix_id}/training/{training_id}/resend
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:resendTraining, check: true }
     requirements:
-        _method: POST
+        _method: GET
         matrix_id: "\d+"
         training_id: "\d+"
         

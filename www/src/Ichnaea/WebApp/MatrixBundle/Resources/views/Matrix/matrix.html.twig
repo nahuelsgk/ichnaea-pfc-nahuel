@@ -44,8 +44,13 @@
    									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action')" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
    									<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
    									<input 
-   									class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleOrigin-{{sample.id}}" value="{{sample.origin}}" placeholder="Sample origin"></input>
-   									<a class="btn btn-mini" style="visibility: hidden;" 
+   										class="input-small origin_input" 
+   										onchange="displayHiddenElement('sample-{{sample.id}}-action');
+   											  	  displayHiddenElement('save_all_changes');" 
+   										id="sampleOrigin-{{sample.id}}" 
+   										value="{{sample.origin}}" 
+   										placeholder="Sample origin"></input>
+   									<a class="btn btn-mini save_button_action_row" style="visibility: hidden;" 
    										id="sample-{{sample.id}}-action" 
    										title="Update sample info" 
    										onclick="updateSampleData(
@@ -179,14 +184,48 @@ function init_datepicker(){
     $('.sampleDate').datepicker({dateFormat: "dd-mm-yy"});
 }
 
+function fullfillOriginsInput(idToFulFill)
+{
+  var availableOrigins = [
+    "Human",
+    "Cow",
+    "Pig"
+  ];
+  
+  $('.origin_input').each(function (index, element){
+      if (jQuery.inArray($(element).val(), availableOrigins) == -1 && $(element).attr('id') != idToFulFill) availableOrigins.push($(element).val());
+  });
+  
+  $('#' + idToFulFill).autocomplete({
+    source: availableOrigins
+  });
+}
+
+function init_inputOrigins()
+{
+	console.log("Init on input events on origins");
+	$('.origin_input').on('input', function(){
+	  console.log('Written on '+$(this).attr('id'));
+	  fullfillOriginsInput($(this).attr('id'));
+	  
+	});
+}
+
 function save_all_pending_action() {
+    //Save all columns
 	var pendings = $('.save_button_action_column').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	$(pendings).each(function(index, element){$(element).trigger('click');});
+	$('#save_all_changes').css('visibility', 'hidden');
+	
+	//Save all rows
+	var pendings = $('.save_button_action_row').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
 	$(pendings).each(function(index, element){$(element).trigger('click');});
 	$('#save_all_changes').css('visibility', 'hidden');
 	  
 }
 $(document).ready(function(){
     init_datepicker();
+    init_inputOrigins();
  	dynamic_height($('#menu_info_block').height());   
  });
 {% endblock %}
