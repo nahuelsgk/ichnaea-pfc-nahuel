@@ -17,60 +17,65 @@ import edu.upc.ichnaea.amqp.model.Aging;
 
 public class AgingFolderReader {
 
-	static final String PlaceholderRegex = "%(.+?)%";
-	protected String mFormat;
-	protected Map<String,Float> mPositions;
-	protected boolean mStrict = true;
-	
-	public AgingFolderReader() {
-		mFormat = "env%column%-%aging%.txt";
-		mPositions = new HashMap<String,Float>();
-		mPositions.put("Summer", 0.5f);
-		mPositions.put("Estiu", 0.5f);
-		mPositions.put("Winter", 0.0f);
-		mPositions.put("Hivern", 0.0f);
-	}	
-	
-	public AgingFolderReader(String format, Map<String,Float> positions) {
-		mFormat = format;
-		mPositions = positions;
-	}
-	
-	public DatasetAging read(File folder) throws FileNotFoundException, IOException {
-		DatasetAging agings = new DatasetAging();
-		String regex = mFormat.replaceAll(PlaceholderRegex, "(?<$1>.+?)");
-		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-		for(File file : folder.listFiles()) {
-			Matcher match = pattern.matcher(file.getName());
-			if(match.matches()) {
-				String col;
-				try{
-					col = match.group("column");
-				}catch(IllegalArgumentException e){
-					throw new InvalidParameterException("Aging file pattern does not contain the %column% marker.");
-				}
-				String agingName;
-				try{			
-					agingName = match.group("aging");
-				}catch(IllegalArgumentException e){
-					throw new InvalidParameterException("Aging file pattern does not contain the %aging% marker.");
-				}
-				if(!mPositions.containsKey(agingName)) {
-					if(mStrict) {
-						throw new InvalidParameterException("Could not find aging with name '"+agingName+"' in positions.");
-					} else {
-						continue;
-					}
-				}
-				Aging aging = new AgingReader().read(new FileReader(file));
-				DatasetAgingColumn agingCol = agings.get(col);
-				if(agingCol == null) {
-					agingCol = new DatasetAgingColumn();
-				}
-				agingCol.put(mPositions.get(agingName), aging);
-				agings.put(col, agingCol);
-			}
-		}
-		return agings;
-	}
+    static final String PlaceholderRegex = "%(.+?)%";
+    protected String mFormat;
+    protected Map<String, Float> mPositions;
+    protected boolean mStrict = true;
+
+    public AgingFolderReader() {
+        mFormat = "env%column%-%aging%.txt";
+        mPositions = new HashMap<String, Float>();
+        mPositions.put("Summer", 0.5f);
+        mPositions.put("Estiu", 0.5f);
+        mPositions.put("Winter", 0.0f);
+        mPositions.put("Hivern", 0.0f);
+    }
+
+    public AgingFolderReader(String format, Map<String, Float> positions) {
+        mFormat = format;
+        mPositions = positions;
+    }
+
+    public DatasetAging read(File folder) throws FileNotFoundException,
+            IOException {
+        DatasetAging agings = new DatasetAging();
+        String regex = mFormat.replaceAll(PlaceholderRegex, "(?<$1>.+?)");
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        for (File file : folder.listFiles()) {
+            Matcher match = pattern.matcher(file.getName());
+            if (match.matches()) {
+                String col;
+                try {
+                    col = match.group("column");
+                } catch (IllegalArgumentException e) {
+                    throw new InvalidParameterException(
+                            "Aging file pattern does not contain the %column% marker.");
+                }
+                String agingName;
+                try {
+                    agingName = match.group("aging");
+                } catch (IllegalArgumentException e) {
+                    throw new InvalidParameterException(
+                            "Aging file pattern does not contain the %aging% marker.");
+                }
+                if (!mPositions.containsKey(agingName)) {
+                    if (mStrict) {
+                        throw new InvalidParameterException(
+                                "Could not find aging with name '" + agingName
+                                        + "' in positions.");
+                    } else {
+                        continue;
+                    }
+                }
+                Aging aging = new AgingReader().read(new FileReader(file));
+                DatasetAgingColumn agingCol = agings.get(col);
+                if (agingCol == null) {
+                    agingCol = new DatasetAgingColumn();
+                }
+                agingCol.put(mPositions.get(agingName), aging);
+                agings.put(col, agingCol);
+            }
+        }
+        return agings;
+    }
 }

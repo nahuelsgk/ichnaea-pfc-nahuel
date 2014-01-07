@@ -8,18 +8,17 @@ import edu.upc.ichnaea.amqp.model.DatasetAging;
 
 public class XmlDatasetAgingReader extends XmlReader<DatasetAgingHandler> {
 
-	public XmlDatasetAgingReader() {
-		super(new DatasetAgingHandler());
-	}
-	
-	public DatasetAging getData()
-	{
-		return getHandler().getAgings();
-	}
-	
-	public DatasetAging read(String xml) throws SAXException, IOException {
-		super.parse(xml);
-		return getData();
-	}
+    public XmlDatasetAgingReader() {
+        super(new DatasetAgingHandler());
+    }
+
+    public DatasetAging getData() {
+        return getHandler().getAgings();
+    }
+
+    public DatasetAging read(String xml) throws SAXException, IOException {
+        super.parse(xml);
+        return getData();
+    }
 
 }

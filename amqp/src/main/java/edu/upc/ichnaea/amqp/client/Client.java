@@ -10,32 +10,32 @@ import edu.upc.ichnaea.amqp.app.App;
 
 public abstract class Client implements ClientInterface {
 
-	private Channel mChannel;
-	private boolean mFinished = false;
-	private static Logger LOGGER = Logger.getLogger(App.class.getName());
-	
-    public static Logger getLogger() {
-    	return LOGGER;
-    }
-	
-	protected Channel getChannel() {
-		return mChannel;
-	}
-	
-	protected String getUniqueId() {
-		return UUID.randomUUID().toString();
-	}
+    private Channel mChannel;
+    private boolean mFinished = false;
+    private static Logger LOGGER = Logger.getLogger(App.class.getName());
 
-	@Override
-	public void setup(Channel channel) throws IOException {
-		mChannel = channel;
-	}
-	
-	protected void setFinished(boolean finished) {
-		mFinished = finished;
-	}
-	
-	public boolean hasFinished() {
-		return mFinished;
-	}
+    public static Logger getLogger() {
+        return LOGGER;
+    }
+
+    protected Channel getChannel() {
+        return mChannel;
+    }
+
+    protected String getUniqueId() {
+        return UUID.randomUUID().toString();
+    }
+
+    @Override
+    public void setup(Channel channel) throws IOException {
+        mChannel = channel;
+    }
+
+    protected void setFinished(boolean finished) {
+        mFinished = finished;
+    }
+
+    public boolean hasFinished() {
+        return mFinished;
+    }
 }
