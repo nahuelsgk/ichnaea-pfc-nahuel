@@ -81,7 +81,8 @@ public class BuildModelsProcessApp extends App {
             throw new InvalidOptionException(e.getMessage());
         }
         mClient = new BuildModelsProcessClient(shell, mScriptPath,
-                mRequestQueue, mResponseQueues.split(","), mResponseExchange);
+                mRequestQueue, mResponseQueues.split(","), mResponseExchange,
+                mFork);
         mClient.setup(mConnection.createChannel());
     }
 

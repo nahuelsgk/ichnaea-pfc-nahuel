@@ -38,6 +38,8 @@ import edu.upc.ichnaea.shell.ShellInterface;
 public class BuildModelsProcessClient extends Client {
 
     ShellInterface mShell;
+    int mMaxThreads;
+    int mCurrentThreads = 0;
     String mScriptPath;
     String mTimeFormat = "EEE MMM dd HH:mm:ss z yyyy";
     String mRegexPercentage = "(\\d*)%";
@@ -92,16 +94,18 @@ public class BuildModelsProcessClient extends Client {
                     onUpdate(percent, end);
                 }
             }
-            if (result.getExitStatus() != 0) {
+
+            result.close();
+
+            int exitStatus = result.getExitStatus();
+            if (exitStatus != 0) {
                 InputStream es = result.getErrorStream();
                 if (es.available() > 0) {
                     error = new String(IOUtils.read(es));
                 } else {
-                    error = "Got command exit status " + result.getExitStatus();
+                    error = "Got command exit status " + exitStatus;
                 }
             }
-
-            result.close();
 
             if (error != null) {
                 throw new IOException(error);
@@ -113,8 +117,9 @@ public class BuildModelsProcessClient extends Client {
 
     public BuildModelsProcessClient(ShellInterface shell, String scriptPath,
             String requestQueue, String[] responseQueues,
-            String responseExchange) {
+            String responseExchange, int maxThreads) {
         mShell = shell;
+        mMaxThreads = maxThreads;
         mScriptPath = scriptPath;
         mRequestQueue = requestQueue;
         mResponseQueues = responseQueues;
@@ -249,13 +254,16 @@ public class BuildModelsProcessClient extends Client {
                 try {
                     sendResponse(new BuildModelsResponse(replyTo, start, end,
                             percent), replyTo);
-                } catch (IOException | ParserConfigurationException e) {
+                } catch (Exception e) {
+                    getLogger().warning(
+                            "error sending status update: "
+                                    + e.getLocalizedMessage());
                 }
             }
         };
     }
 
-    protected void processRequest(final String replyTo, byte[] body)
+    protected void processRequest(String replyTo, byte[] body)
             throws IOException, SAXException, InterruptedException,
             ParserConfigurationException {
         getLogger().info("received a request");
@@ -278,6 +286,44 @@ public class BuildModelsProcessClient extends Client {
         mShell.close();
     }
 
+    synchronized protected void updateCurrentThreads(int change) {
+        mCurrentThreads += change;
+    }
+
+    synchronized boolean maxThreadsReached() {
+        return mCurrentThreads >= mMaxThreads;
+    }
+
+    protected void spawnProcessRequest(final String replyTo, final byte[] body) {
+        updateCurrentThreads(1);
+
+        Thread task = new Thread() {
+            public void run() {
+                try {
+                    processRequest(replyTo, body);
+                } catch (Exception e) {
+                    getLogger().warning(
+                            "error processing request: "
+                                    + e.getLocalizedMessage());
+                }
+                synchronized (BuildModelsProcessClient.class) {
+                    updateCurrentThreads(-1);
+                }
+            }
+        };
+
+        if (maxThreadsReached()) {
+            getLogger().info(
+                    "running last task of " + mMaxThreads + " in main thread");
+            task.run();
+        } else {
+            getLogger().info(
+                    "spawning task thread " + mCurrentThreads + " of "
+                            + mMaxThreads);
+            task.start();
+        }
+    }
+
     @Override
     public void setup(Channel channel) throws IOException {
         super.setup(channel);
@@ -297,13 +343,9 @@ public class BuildModelsProcessClient extends Client {
         ch.basicConsume(mRequestQueue, autoAck, new DefaultConsumer(ch) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope,
-                    AMQP.BasicProperties properties, byte[] body)
-                    throws IOException {
-                try {
-                    processRequest(properties.getReplyTo(), body);
-                } catch (Exception e) {
-                    throw new IOException(e);
-                }
+                    final AMQP.BasicProperties properties, final byte[] body) {
+
+                spawnProcessRequest(properties.getReplyTo(), body);
             }
         });
         getLogger().info(

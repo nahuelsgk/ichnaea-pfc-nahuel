@@ -5,3 +5,4 @@
 /amqp/.settings
 /amqp/doc/ichnaea_amqp.pdf
 /amqp/doc/ichnaea_amqp.html
+.fuse*
