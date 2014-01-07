@@ -2,6 +2,7 @@ package edu.upc.ichnaea.amqp.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -54,10 +55,15 @@ public class BuildModelsProcessClient extends Client {
 			SimpleDateFormat dateFormat = new SimpleDateFormat(mTimeFormat);
 			float percent = 0;
 			Calendar end = null;
-			String line;
+			String line = null;
+			String error = null;
 			boolean updated = false;
 
-			while((line = in.readLine()) != null) {
+			while(!result.finished()) {
+				line = in.readLine();
+				if(line == null) {
+					break;
+				}
 				updated = false;
 				Matcher m = regexPercent.matcher(line);
 				if(m.find()) {
@@ -85,8 +91,20 @@ public class BuildModelsProcessClient extends Client {
 					onUpdate(percent, end);
 				}
 			}
-
+			if(result.getExitStatus() != 0) {
+				InputStream es = result.getErrorStream();
+				if(es.available() > 0) {
+				    error = new String(IOUtils.read(es));
+				} else {
+					error = "Got command exit status "+result.getExitStatus();
+				}
+			}
+		
 			result.close();
+			
+			if(error != null) {
+				throw new IOException(error);
+			}
 		}
 		
 		protected abstract void onUpdate(float percent, Calendar end);
@@ -117,7 +135,7 @@ public class BuildModelsProcessClient extends Client {
 		Calendar start = Calendar.getInstance();
 		
 		String err = null;
-		BuildModelsResponse resp;
+		BuildModelsResponse resp = null;
 		
 		if(req.getDataset() == null) {
 			err = "No dataset received.";
@@ -155,7 +173,14 @@ public class BuildModelsProcessClient extends Client {
 		CommandResultInterface result = mShell.run(cmd);
 		
 		getLogger().info("reading command result");
-		sendRequestUpdates(result, start, replyTo);
+		try{
+			sendRequestUpdates(result, start, replyTo);
+		}catch(IOException e){
+			err = "failed command result: "+e.getMessage();
+			getLogger().warning(err);
+			Calendar end = Calendar.getInstance();
+			resp = new BuildModelsResponse(replyTo, start, end, err);
+		}
 		
 		getLogger().info("deleting temporary dataset file");
 		mShell.removePath(datasetPath);
@@ -163,16 +188,18 @@ public class BuildModelsProcessClient extends Client {
 		getLogger().info("deleting temporary aging folder");
 		mShell.removePath(agingPath);
 		
-		getLogger().info("reading output file in "+cmd.getOutputPath());
-		Calendar end = Calendar.getInstance();
-		
-		try{
-			byte[] data = IOUtils.read(mShell.readFile(cmd.getOutputPath()));
-			resp = new BuildModelsResponse(replyTo, start, end, data);
-		}catch(IOException e){
-			err = "failed to read output file: "+e.getMessage();
-			getLogger().warning(err);
-			resp = new BuildModelsResponse(replyTo, start, end, err);
+		if(resp == null) {
+			getLogger().info("reading output file in "+cmd.getOutputPath());
+			Calendar end = Calendar.getInstance();
+			
+			try{
+				byte[] data = IOUtils.read(mShell.readFile(cmd.getOutputPath()));
+				resp = new BuildModelsResponse(replyTo, start, end, data);
+			}catch(IOException e){
+				err = "failed to read output file: "+e.getMessage();
+				getLogger().warning(err);
+				resp = new BuildModelsResponse(replyTo, start, end, err);
+			}
 		}
 		getLogger().info("sending result");		
 		sendResponse(resp, replyTo);
@@ -190,7 +217,17 @@ public class BuildModelsProcessClient extends Client {
 		CommandResultInterface result = mShell.run(cmd);
 		
 		getLogger().info("reading command result");
-		sendRequestUpdates(result, start, replyTo);
+		try{
+			sendRequestUpdates(result, start, replyTo);
+		}catch(IOException e){
+			String err = "failed command result: "+e.getMessage();
+			getLogger().warning(err);
+			Calendar end = Calendar.getInstance();
+			BuildModelsResponse resp = new BuildModelsResponse(replyTo, start, end, err);
+			getLogger().info("sending result");		
+			sendResponse(resp, replyTo);			
+			return;
+		}		
 	}
 	
 	protected void sendRequestUpdates(CommandResultInterface result, final Calendar start, final String replyTo)
@@ -219,7 +256,6 @@ public class BuildModelsProcessClient extends Client {
 		mShell.open();
 		
 		if(req instanceof BuildModelsFakeRequest) {
-			getLogger().info("calling fake build models command");
 			processFakeRequest((BuildModelsFakeRequest)req, replyTo);
 		} else {
 			processRealRequest(req, replyTo);

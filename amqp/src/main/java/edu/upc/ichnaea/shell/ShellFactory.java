@@ -7,7 +7,7 @@ public class ShellFactory {
 
 	public ShellInterface create(String url) throws MalformedURLException {
 		if(url == null || url.length() == 0) {
-			return new Shell();
+			return new LocalShell();
 		} else {
 			return new SecureShell(url);
 		}
@@ -17,6 +17,6 @@ public class ShellFactory {
 		if(options.get("url") != null || options.get("host") != null) {
 			return SecureShell.create(options); 
 		}
-		return new Shell();
+		return new LocalShell();
 	}
 }

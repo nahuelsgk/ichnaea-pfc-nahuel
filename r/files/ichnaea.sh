@@ -175,10 +175,7 @@ then
 			rm -rf $TMPDIR
 		fi
 	fi
-fi
-
-if [ "$FAKE" == "1" ]
-then
+else
 	FAKE_DURATION=`echo $FAKE | sed -e "s/\(.*\):.*/\1/g"`
 	FAKE_INTERVAL=`echo $FAKE | sed -e "s/.*:\(.*\)/\1/g"`
 	

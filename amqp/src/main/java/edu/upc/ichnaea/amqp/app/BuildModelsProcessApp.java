@@ -3,6 +3,7 @@ package edu.upc.ichnaea.amqp.app;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import edu.upc.ichnaea.amqp.cli.IntegerOption;
 import edu.upc.ichnaea.amqp.cli.InvalidOptionException;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.StringOption;
@@ -14,50 +15,57 @@ public class BuildModelsProcessApp extends App {
 
 	BuildModelsProcessClient mClient;
 	String mShell;
+	int mFork = 1;
 	String mScriptPath = "./ichnaea.sh";
 	String mRequestQueue = "ichnaea.build-models.request";
 	String mResponseQueues = "ichnaea.build-models.response";
 	String mResponseExchange = "ichnaea.build-models.response";	
 	
-    public static void main(String[] args) {   	
-    	main(args, new BuildModelsProcessApp());
-    }	
+	public static void main(String[] args) {   	
+		main(args, new BuildModelsProcessApp());
+	}	
 	
-    protected Options getOptions() {
-    	Options options = super.getOptions();
-    	options.add(new StringOption("shell") {
+	protected Options getOptions() {
+		Options options = super.getOptions();
+		options.add(new StringOption("shell") {
 			@Override
 			public void setValue(String value) throws InvalidOptionException {
 				mShell = value;
 			}
 		}.setDescription("The url to the remote shell."));
-    	options.add(new StringOption("ichnaea-script") {
+		options.add(new IntegerOption("fork") {
+			@Override
+			public void setValue(int value) throws InvalidOptionException {
+				mFork = value;
+			}
+		}.setDefaultValue(mFork).setDescription("The max amount of processes to spawn."));		
+		options.add(new StringOption("ichnaea-script") {
 			@Override
 			public void setValue(String value) throws InvalidOptionException {
 				mScriptPath = value;
 			}
 		}.setDefaultValue(mScriptPath).setDescription("The path to the ichnaea script."));
-    	options.add(new StringOption("request-queue"){
+		options.add(new StringOption("request-queue"){
 			@Override
 			public void setValue(String value) {
 				mRequestQueue = value;
 			}
-    	}.setDefaultValue(mRequestQueue).setDescription("The queue to listen for requests.")); 	
-    	options.add(new StringOption("response-queue"){
+		}.setDefaultValue(mRequestQueue).setDescription("The queue to listen for requests.")); 	
+		options.add(new StringOption("response-queue"){
 			@Override
 			public void setValue(String value) {
 				mResponseQueues = value;
 			}
-    	}.setDefaultValue(mResponseQueues).setDescription("A comma-separated list of queues to send the responses."));
-    	options.add(new StringOption("response-exchange"){
+		}.setDefaultValue(mResponseQueues).setDescription("A comma-separated list of queues to send the responses."));
+		options.add(new StringOption("response-exchange"){
 			@Override
 			public void setValue(String value) {
 				mResponseExchange = value;
 			}
-    	}.setDefaultValue(mResponseExchange).setDescription("The exchange to send responses."));        	
-    	return options;
-    }
-    
+		}.setDefaultValue(mResponseExchange).setDescription("The exchange to send responses."));			
+		return options;
+	}
+	
 	@Override
 	protected void setup() throws IOException {
 		super.setup();

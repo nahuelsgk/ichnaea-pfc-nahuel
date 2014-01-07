@@ -40,6 +40,11 @@ public class SecureShell implements ShellInterface {
 		public int getExitStatus() {
 			return mChannel.getExitStatus();
 		}
+		
+		@Override
+		public boolean finished() {
+			return mChannel.isClosed();
+		}
 
 		@Override
 		public void close() {
@@ -160,7 +165,7 @@ public class SecureShell implements ShellInterface {
 	}
 	
 	@Override
-	public CommandResult run(CommandInterface command) throws IOException {
+	public CommandResultInterface run(CommandInterface command) throws IOException {
 		try{
 			ChannelExec channel = (ChannelExec) mSession.openChannel("exec");			
 			command.beforeRun(this);

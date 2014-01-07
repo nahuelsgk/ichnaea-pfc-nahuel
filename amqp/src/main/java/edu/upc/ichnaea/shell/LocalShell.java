@@ -1,5 +1,6 @@
 package edu.upc.ichnaea.shell;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
-public class Shell implements ShellInterface {
+public class LocalShell implements ShellInterface {
 	
 	public static class CommandResult implements CommandResultInterface
 	{
@@ -30,7 +31,21 @@ public class Shell implements ShellInterface {
 
 		@Override
 		public int getExitStatus() {
-			return mProcess.exitValue();
+			try {
+				return mProcess.exitValue();
+		    } catch (IllegalThreadStateException itse) {
+		        return -1;
+		    }
+		}
+		
+		@Override
+		public boolean finished() {
+			try {
+				mProcess.exitValue();
+		    } catch (IllegalThreadStateException itse) {
+		        return false;
+		    }
+		    return true;
 		}
 
 		@Override
@@ -38,22 +53,63 @@ public class Shell implements ShellInterface {
 			try {
 				mProcess.waitFor();
 			} catch (InterruptedException e) {
-			}	
+			}
 		}
 	};
 	
-	protected Logger mLogger = Logger.getLogger(Shell.class.getName());
+	public static class CommandErrorResult implements CommandResultInterface
+	{
+		private InputStream mErrorStream;
+		private InputStream mInputStream;
+		private int mExitStatus;
+		
+		public CommandErrorResult(Exception e, int status) {
+			mErrorStream = new ByteArrayInputStream(e.getLocalizedMessage().getBytes());
+			mInputStream = new ByteArrayInputStream(new byte[0]);
+			mExitStatus = status;
+		}
+
+		@Override
+		public InputStream getInputStream() {
+			return mInputStream;
+		}
+
+		@Override
+		public InputStream getErrorStream() {
+			return mErrorStream;
+		}
+
+		@Override
+		public int getExitStatus() {
+			return mExitStatus;
+		}
+		
+		@Override
+		public boolean finished() {
+		    return true;
+		}
+
+		@Override
+		public void close() {
+		}
+	};
+	
+	protected Logger mLogger = Logger.getLogger(LocalShell.class.getName());
 	
 	public Logger getLogger() {
 		return mLogger;
 	}	
 
 	@Override
-	public CommandResult run(CommandInterface command) throws IOException, InterruptedException {
+	public CommandResultInterface run(CommandInterface command) throws IOException, InterruptedException {
 		Runtime run = Runtime.getRuntime();
 		command.beforeRun(this);
-		Process pr = run.exec(command.toString());
-		return new CommandResult(pr);
+		try {
+			Process pr = run.exec(command.toString());
+			return new CommandResult(pr);
+		} catch(IOException e) {
+			return new CommandErrorResult(e,-1);
+		}
 	}
 
 	@Override

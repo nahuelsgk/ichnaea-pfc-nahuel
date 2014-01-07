@@ -45,8 +45,14 @@ function BuildModelsTaskFormCtrl($scope, $routeParams, $http) {
 }
 
 function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
+  
   $scope.tasks = {};
+  $scope.updating = true;  
+
   var updateTasks = function() {
+    if(!$scope.updating) {
+      return;
+    }
     $http.get('build-models-tasks').success(function(data) {
       var tasks = data["build-models-tasks"];
       for(var i in tasks) {
@@ -69,6 +75,8 @@ function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
           delete $scope.tasks[id];
         }
       }
+    }).error(function(){
+      $scope.updating = false;
     });
   };
 
@@ -83,7 +91,11 @@ function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
 
   $scope.$on('buildModelsTaskRemoved', function() {
     updateTasks();
-  });  
+  });
+  
+  $scope.retryUpdate = function() {
+  	$scope.updating = true;
+  };  
 
   $scope.deleteTask = function(id) {
     $http.delete('build-models-tasks/'+id).success(function(data) {

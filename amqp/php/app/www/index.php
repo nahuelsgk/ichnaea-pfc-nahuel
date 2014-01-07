@@ -9,6 +9,9 @@ use Ichnaea\Amqp\Connection;
 use Ichnaea\Amqp\Model\BuildModelsRequest;
 use Ichnaea\Amqp\Model\BuildModelsResponse;
 
+// setup timezone to prevent error when using \DateTime
+date_default_timezone_set(@date_default_timezone_get());
+
 function getView($name)
 {
     return file_get_contents(__DIR__.'/../views/'.$name);
