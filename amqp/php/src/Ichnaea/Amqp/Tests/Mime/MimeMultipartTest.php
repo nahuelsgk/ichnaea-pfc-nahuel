@@ -20,6 +20,6 @@ class MimeMultipartTest extends \PHPUnit_Framework_TestCase
 
         $expected = "--boundary\r\nName: Value\r\n\r\nbody\r\nlala\r\n--boundary--\r\n";
         $this->assertEquals($expected, "".$mime, "exports to string");
-    }    
+    }
 
 }

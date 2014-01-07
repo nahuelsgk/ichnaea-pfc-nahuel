@@ -19,7 +19,7 @@ class MimePart
     /**
      * The string that separates the name and the value of a header
      *
-     * @var string     
+     * @var string
      */
     const HeaderSeparator = ":";
 
@@ -28,7 +28,7 @@ class MimePart
      * is the windows end of line, also in unix software, we use that
      *
      * @var string
-     */    
+     */
     const EndOfLine = "\r\n";
 
     /**
@@ -39,7 +39,7 @@ class MimePart
     private $headers = array();
 
     /**
-     * The part body 
+     * The part body
      *
      * @var string
      */
@@ -65,7 +65,7 @@ class MimePart
     /**
      * Returns the value for a header by name, null otherwise
      *
-     * @param string $name the name of the header
+     * @param  string $name the name of the header
      * @return string the header value
      */
     public function getHeader($name)
@@ -85,7 +85,7 @@ class MimePart
     public function setHeader($name, $value)
     {
         $name = str_replace("\n", " ", $name);
-        $value = str_replace("\n", " ", $value);        
+        $value = str_replace("\n", " ", $value);
         $this->headers[trim($name)] = trim($value);
     }
 
@@ -97,7 +97,7 @@ class MimePart
     public function setHeaders(array $headers)
     {
         $this->headers = array();
-        foreach($headers as $name=>$value) {
+        foreach ($headers as $name=>$value) {
             $this->setHeader($name, $value);
         }
     }
@@ -182,7 +182,7 @@ class MimePart
                 }
             } else {
                 $body .= $line;
-                if($k<count($lines)-1) {
+                if ($k<count($lines)-1) {
                     $body .= self::EndOfLine;
                 }
             }

@@ -71,7 +71,7 @@ class BuildModelsRequest
             $aging = new DatasetAging($aging);
         }
         $this->aging = $aging;
-    }    
+    }
 
     /**
      * Get the request id
@@ -95,7 +95,7 @@ class BuildModelsRequest
 
     /**
      * Get the dataset
-     * 
+     *
      * @return Dataset the dataset
      */
     public function getDataset()
@@ -128,12 +128,12 @@ class BuildModelsRequest
             $this->setDataset($data['dataset']);
         }
         if (array_key_exists('aging', $data)) {
-            if(array_key_exists('aging_filename_format', $data)) {
+            if (array_key_exists('aging_filename_format', $data)) {
                 $data['aging'] = array(
                     'files'     => $data['aging'],
                     'format'    => $data['aging_filename_format']
                 );
-                if(array_key_exists('aging_positions', $data)) {
+                if (array_key_exists('aging_positions', $data)) {
                     $data['aging']['positions'] = $data['aging_positions'];
                 }
             }
@@ -150,7 +150,7 @@ class BuildModelsRequest
     public static function fromArray(array $data)
     {
         $data = array_merge(array('id'=>null), $data);
-        if(array_key_exists('fake', $data) && $data['fake']) {
+        if (array_key_exists('fake', $data) && $data['fake']) {
             $req = new BuildModelsFakeRequest($data['id']);
         } else {
             $req = new self($data['id']);

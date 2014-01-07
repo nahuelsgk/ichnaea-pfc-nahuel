@@ -38,7 +38,7 @@ class BuildModelsRequestWriterTest extends \PHPUnit_Framework_TestCase
         $expectedXml .= '<value key="0">4.4</value><value key="10">40</value><value key="50">120.6</value></trial>';
         $expectedXml .= '<trial><value key="0">5.4</value><value key="10">43</value><value key="50">123.6</value>';
         $expectedXml .= '</trial></aging></column></agings></request>';
-        
+
         $this->assertXmlStringEqualsXmlString($expectedXml, $xml, "BuildModelsRequest xml writer exports request data.");
     }
 

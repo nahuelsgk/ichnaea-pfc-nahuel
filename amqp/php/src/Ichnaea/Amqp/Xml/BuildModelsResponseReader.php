@@ -17,7 +17,7 @@ class BuildModelsResponseReader extends Reader
     /**
      * Read a response object
      *
-     * @param string $data the response data
+     * @param  string              $data the response data
      * @return BuildModelsResponse a response object
      */
     public function read($data)

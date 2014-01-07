@@ -34,18 +34,18 @@ class DatasetAging implements \IteratorAggregate
 
     public function __construct(array $data=array())
     {
-        if(isset($data['files']) && is_array($data['files'])) {
+        if (isset($data['files']) && is_array($data['files'])) {
             $data = array_merge(array(
                 'format'    => 'env%column%-%aging%.txt',
                 'positions' => array()
             ), $data);
             $regex = '/^'.preg_replace('/%(.+?)%/', '(?<$1>.+?)', $data['format']).'$/';
-            foreach($data['files'] as $filename => $aging) {
+            foreach ($data['files'] as $filename => $aging) {
                 if ($data instanceof \SplFileInfo || $data instanceof \SplFileObject) {
                     $filename = $file->getFileInfo();
                 }
-                if(preg_match($regex, $filename, $m)) {
-                    if(isset($data['positions'][$m['aging']])) {
+                if (preg_match($regex, $filename, $m)) {
+                    if (isset($data['positions'][$m['aging']])) {
                         $position = $data['positions'][$m['aging']];
                         $this->setAging($m['column'], $position, $aging);
                     }
@@ -60,10 +60,10 @@ class DatasetAging implements \IteratorAggregate
      * This sets a aging.
      * Each aging data is associated to a dataset column
      * And is set in a unitary position (typically Summer:0.5, Winter:1.0)
-     * 
-     * @param string  $column The dataset column associated to the aging
-     * @param float   $position the unitary position of the aging
-     * @param Aging  $aging The aging data     
+     *
+     * @param string $column   The dataset column associated to the aging
+     * @param float  $position the unitary position of the aging
+     * @param Aging  $aging    The aging data
      */
     public function setAging($column, $position, $aging)
     {
@@ -73,10 +73,10 @@ class DatasetAging implements \IteratorAggregate
         if (!$aging instanceof Aging) {
             $aging = new Aging($aging);
         }
-        if(!isset($this->columns[$column])) {
+        if (!isset($this->columns[$column])) {
             $this->columns[$column] = array();
         }
-        $this->columns[$column][(string)$position] = $aging;
+        $this->columns[$column][(string) $position] = $aging;
     }
 
     /**
@@ -87,9 +87,9 @@ class DatasetAging implements \IteratorAggregate
      */
     public function setColumns(array $columns)
     {
-        foreach($columns as $col=>&$agings) {
-            if(is_array($agings)) {
-                foreach($agings as $pos=>&$aging) {
+        foreach ($columns as $col=>&$agings) {
+            if (is_array($agings)) {
+                foreach ($agings as $pos=>&$aging) {
                     $this->setAging($col, $pos, $aging);
                 }
             }
@@ -99,25 +99,25 @@ class DatasetAging implements \IteratorAggregate
     /**
      * Return an aging
      *
-     * @param string $name the name of the column
-     * @param float $position the position of the aging
-     * @return Aging the aging object or null
+     * @param  string $name     the name of the column
+     * @param  float  $position the position of the aging
+     * @return Aging  the aging object or null
      */
     public function getAging($name, $position)
     {
-        if(isset($this->columns[$name]) && is_array($this->columns[$name]) && 
-            isset($this->columns[$name][(string)$position])) {
-            return $this->columns[$name][(string)$position];
+        if(isset($this->columns[$name]) && is_array($this->columns[$name]) &&
+            isset($this->columns[$name][(string) $position])) {
+            return $this->columns[$name][(string) $position];
         } else {
             return null;
         }
-    }    
+    }
 
     /**
      * Return the data of a column by name
      *
-     * @param string $name the name of the column
-     * @return array the column data
+     * @param  string $name the name of the column
+     * @return array  the column data
      */
     public function getColumn($name)
     {
@@ -132,7 +132,7 @@ class DatasetAging implements \IteratorAggregate
     public function getColumnNames()
     {
         return array_keys($this->columns);
-    }    
+    }
 
     /**
      * Return an array iterator to the parts
@@ -174,11 +174,12 @@ class DatasetAging implements \IteratorAggregate
      */
     public function isEmpty()
     {
-        foreach($this->columns as &$column) {
-            if(!empty($column)) {
+        foreach ($this->columns as &$column) {
+            if (!empty($column)) {
                 return false;
             }
         }
+
         return true;
-    }    
+    }
 }

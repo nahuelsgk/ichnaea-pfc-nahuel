@@ -37,11 +37,12 @@ class BuildModelsRequestWriter extends Writer
 
         if ($req instanceof BuildModelsFakeRequest) {
             $xmlRoot->setAttribute("fake", $req->getDuration().":".$req->getInterval());
+
             return;
         }
-        
+
         // write dataset
-        if(!$req->getDataset()->isEmpty()) {
+        if (!$req->getDataset()->isEmpty()) {
             $xmlDataset = $this->createElement("dataset");
             $xmlRoot->appendChild($xmlDataset);
             $writer = new DatasetWriter($this->getDocument(), $xmlDataset);
@@ -49,14 +50,14 @@ class BuildModelsRequestWriter extends Writer
         }
 
         // write agings
-        if(!$req->getAging()->isEmpty()) {
+        if (!$req->getAging()->isEmpty()) {
             $xmlAgings = $this->createElement("agings");
             $xmlRoot->appendChild($xmlAgings);
-            foreach($req->getAging() as $col=>$colAgings) {
+            foreach ($req->getAging() as $col=>$colAgings) {
                 $xmlColAgings = $this->createElement("column");
                 $xmlColAgings->setAttribute("name", $col);
                 $xmlAgings->appendChild($xmlColAgings);
-                foreach($colAgings as $pos=>$aging) {
+                foreach ($colAgings as $pos=>$aging) {
                     $xmlAging = $this->createElement("aging");
                     $xmlAging->setAttribute("position", $pos);
                     $xmlColAgings->appendChild($xmlAging);

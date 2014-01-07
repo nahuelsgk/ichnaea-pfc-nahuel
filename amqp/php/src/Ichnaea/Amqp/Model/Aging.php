@@ -10,13 +10,13 @@ namespace Ichnaea\Amqp\Model;
  * A aging can be loaded from and to a string in the form:
  * ```
  * # this is a trial
- * 0    4.00 
+ * 0    4.00
  * 48   3.85
  * 144  3.54
  * 288  3.08
  * 360  2.85
- * 
- * 
+ *
+ *
  * # this is another trial
  * 0    3.80
  * 48   3.66
@@ -34,7 +34,7 @@ class Aging implements \IteratorAggregate
      * contains an array of float key value pairs
      *
      * @var array
-     */    
+     */
     private $trials = array();
 
     /**
@@ -55,10 +55,10 @@ class Aging implements \IteratorAggregate
         }
         if ($data instanceof \SplFileObject) {
             $contents = "";
-            while (!$file->eof()) { 
-                $file->next(); 
-                $contents = $file->current().PHP_EOL; 
-            } 
+            while (!$file->eof()) {
+                $file->next();
+                $contents = $file->current().PHP_EOL;
+            }
             $data = $contents;
         }
         if (is_string($data)) {
@@ -67,23 +67,23 @@ class Aging implements \IteratorAggregate
             // split by trials
             $trials = preg_split("/(\t?\n){2,}/", $data);
             $data = array();
-            foreach($trials as $trial) {
+            foreach ($trials as $trial) {
                 $trial = trim($trial);
-                if(!empty($trial)) {
+                if (!empty($trial)) {
                     $lines = preg_split("/(\t?\n)/", $trial);
                     $trial = array();
-                    foreach($lines as $line) {
+                    foreach ($lines as $line) {
                         $line = trim($line);
-                        if(!empty($line)) {
+                        if (!empty($line)) {
                             // split each key value line
                             $parts = preg_split("/\s+/", $line);
-                            if(count($parts) != 2) {
+                            if (count($parts) != 2) {
                                 throw new \InvalidArgumentException("Strange line '".$line."'.");
                             }
                             $trial[floatval($parts[0])] = floatval($parts[1]);
                         }
                     }
-                    if(!empty($trial)) {
+                    if (!empty($trial)) {
                         $data[] = $trial;
                     }
                 }
@@ -101,11 +101,12 @@ class Aging implements \IteratorAggregate
      */
     public function isEmpty()
     {
-        foreach($this->trials as &$trial) {
-            if(!empty($trial)) {
+        foreach ($this->trials as &$trial) {
+            if (!empty($trial)) {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -117,8 +118,8 @@ class Aging implements \IteratorAggregate
      */
     public function setTrials(array $trials)
     {
-        foreach($trials as &$trial) {
-            if(!is_array($trial)) {
+        foreach ($trials as &$trial) {
+            if (!is_array($trial)) {
                 throw new \InvalidArgumentException("Each trial needs to be an array");
             }
         }
@@ -139,9 +140,9 @@ class Aging implements \IteratorAggregate
     /**
      * Return an aging value
      *
-     * @param int $trial position of the trial
-     * @param float $key key for the trial value
-     * @param mixed default value to return if the key or trial are not found
+     * @param  int   $trial position of the trial
+     * @param  float $key   key for the trial value
+     *                      @param mixed default value to return if the key or trial are not found
      * @return array the trials data
      */
     public function getValue($trial, $key, $default=null)
@@ -150,6 +151,7 @@ class Aging implements \IteratorAggregate
             && isset($this->trials[$trial][$key])) {
             return $this->trials[$trial][$key];
         }
+
         return $default;
     }
 

@@ -50,9 +50,9 @@ class Dataset implements \IteratorAggregate
         }
         if (is_string($data)) {
             $rows = explode("\n", $data);
-            foreach($rows as &$row) {
+            foreach ($rows as &$row) {
                 $row = str_getcsv($row, self::CsvDelimiter);
-                array_walk($row, function(&$value){
+                array_walk($row, function (&$value) {
                     $value = trim($value);
                 });
             }
@@ -67,13 +67,13 @@ class Dataset implements \IteratorAggregate
 
     /**
      * Sets the columns
-     * 
+     *
      * @param array $cols columns
      */
     public function setColumns(array $cols)
     {
         foreach ($cols as &$col) {
-            if(!is_array($col)) {
+            if (!is_array($col)) {
                 throw new \InvalidArgumentException("Each column needs to be an array");
             }
         }
@@ -101,15 +101,15 @@ class Dataset implements \IteratorAggregate
     /**
      * Sets the data by rows. Each element of the array
      * is considered a row.
-     * 
-     * @param array $rows the row data
-     * @param bool $withNames if the first row contains the column names
+     *
+     * @param array $rows      the row data
+     * @param bool  $withNames if the first row contains the column names
      */
     public function setRows(array $rows, $withNames=false)
     {
         $rows = array_values($rows);
         if ($withNames) {
-            if(!is_array($rows[0])) {
+            if (!is_array($rows[0])) {
                 throw new \InvalidArgumentException("Row names need to be an array.");
             }
             $this->setColumnNames($rows[0]);
@@ -130,8 +130,8 @@ class Dataset implements \IteratorAggregate
     /**
      * Return the data of a column by name
      *
-     * @param string $name the name of the column
-     * @return array the column data
+     * @param  string $name the name of the column
+     * @return array  the column data
      */
     public function getColumn($name)
     {
@@ -177,11 +177,12 @@ class Dataset implements \IteratorAggregate
      */
     public function isEmpty()
     {
-        foreach($this->columns as &$column) {
-            if(!empty($column)) {
+        foreach ($this->columns as &$column) {
+            if (!empty($column)) {
                 return false;
             }
         }
+
         return true;
-    }     
+    }
 }

@@ -63,7 +63,7 @@ class BuildModelsFakeRequest extends BuildModelsRequest
     public function getInterval()
     {
         return $this->interval;
-    }    
+    }
 
     /**
      * Export the request to an array
