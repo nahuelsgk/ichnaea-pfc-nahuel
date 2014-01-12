@@ -30,7 +30,7 @@
      <td class="end_date">{{season.endDate|date("d-m-Y")}}</td>
      -->
      <td class="actions_link">
-       <a class="btn btn-mini" href="{{path('season_edit', {'season_id' : season.id})}}" name="edit_season" title="Edit season">
+       <a class="btn btn-mini edit_season_link" href="{{path('season_edit', {'season_id' : season.id})}}" name="edit_season" title="Edit season">
      	<i class="icon-edit"></i></a>
      </td>
     </tr>
@@ -63,6 +63,18 @@ function loadSeasonContentForm(button){
 	var id = $(button).attr('data-id');
 	$(button).attr('class', 'active');
 	sendEvent('{{path('season_api')}}'+id, 'GET', {}, renderSeasonContent);
+	
 }
 
+function initPropagation()
+{
+  $('.edit_season_link').click(function( event ) {
+    event.stopPropagation();
+});.;
+}
+
+$(document).ready(function()
+{
+  initStopPropagation();
+});
 {% endblock %}

@@ -342,6 +342,14 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
+	
+	public function matrixIsUpdateable($matrix_id)
+	{
+		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
+		$matrix = $matrixRepository->find($matrix_id);
+		return $matrix->isUpdatable();
+	}
+	
 	public function updateSample($matrix_id, $sample_id, $new_name, $new_date = NULL, $new_origin = NULL)
 	{
 		$sampleRepository = $this->em->getRepository('MatrixBundle:Sample');

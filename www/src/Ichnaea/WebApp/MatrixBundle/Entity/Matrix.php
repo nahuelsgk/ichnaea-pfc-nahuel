@@ -43,7 +43,7 @@ class Matrix
     private $owner;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="trainer")
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="matrix")
      */
     private $training;
     
@@ -209,15 +209,52 @@ class Matrix
     }
     
     /**
-     * Checks if the matrix is trainable
+     * Checks if the matrix is trainable. The matrix is trainible if is visible
      */
     public function isTrainable() {
-    	$columns = $this->getColumns();
-    	foreach ($columns as $column) {
-    		if ($column->getVariable == NULL) return false;
-    	}
-    	if ($this->getVisible == FALSE)  return false;
-    	
+    	if ($this->getVisible() == FALSE) return false;
     	return true;
+    }
+    
+    /**
+     * Check if the matrix is still update-able. Basically check if have any training
+     */
+    public function isUpdatable() 
+    {
+    	if ($this->getTraining()->count() > 0) return FALSE;
+    	return true;  
+    }
+
+    /**
+     * Add training
+     *
+     * @param \Ichnaea\WebApp\TrainingBundle\Entity\Training $training
+     * @return Matrix
+     */
+    public function addTraining(\Ichnaea\WebApp\TrainingBundle\Entity\Training $training)
+    {
+        $this->training[] = $training;
+
+        return $this;
+    }
+
+    /**
+     * Remove training
+     *
+     * @param \Ichnaea\WebApp\TrainingBundle\Entity\Training $training
+     */
+    public function removeTraining(\Ichnaea\WebApp\TrainingBundle\Entity\Training $training)
+    {
+        $this->training->removeElement($training);
+    }
+
+    /**
+     * Get training
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTraining()
+    {
+        return $this->training;
     }
 }

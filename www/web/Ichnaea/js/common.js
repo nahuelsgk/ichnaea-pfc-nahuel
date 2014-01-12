@@ -66,8 +66,12 @@ function confirmMessage($message, $continueAction){
 	  $('<div></div>').appendTo('body')
 	  .html('<div><h6>'+$message+'</h6></div>')
 	  .dialog({
-	      modal: true, title: 'message', zIndex: 10000, autoOpen: true,
-	      width: 'auto', resizable: false,
+	      modal: true, 
+	      title: 'message', 
+	      zIndex: 10000, 
+	      autoOpen: true,
+	      width: 'auto', 
+	      resizable: false,
 	      buttons: {
 	          Yes: function () {
 	        	  $continueAction();
@@ -78,6 +82,28 @@ function confirmMessage($message, $continueAction){
 	              $(this).dialog("close");
 	              
 	          }
+	      },
+	      close: function (event, ui) {
+	          $(this).remove();
+	      }
+	});
+}
+
+function displayMessage($message, $continueAction){
+	  $('<div></div>').appendTo('body')
+	  .html('<div><h6>'+$message+'</h6></div>')
+	  .dialog({
+	      modal: true, 
+	      title: 'message', 
+	      zIndex: 10000, 
+	      autoOpen: true,
+	      width: 'auto', 
+	      resizable: false,
+	      buttons: {
+	          Yes: function () {
+	              $(this).dialog("close");
+	        
+	          },
 	      },
 	      close: function (event, ui) {
 	          $(this).remove();

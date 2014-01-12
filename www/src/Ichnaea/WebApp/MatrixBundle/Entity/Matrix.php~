@@ -42,18 +42,18 @@ class Matrix
      */								
     private $owner;
 
-    /*
-     * @ORM\OneToMany(targetEntity="Ichanea\WebApp\TrainingBundle\Entity\Training", inversedBy="trainer")
+    /**
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="trainer")
      */
     private $training;
     
 	/**
 	 * @var boolean  
 	 * 
-	 * @ORM\Column(name="visible", type="boolean", nullable=false)
+	 * @ORM\Column(name="visible", type="boolean", nullable=false, options={"default" = 0})
 	 * 
 	 */    
-    private $visible;
+    private $visible = false;
     
     /**
      * Constructor
@@ -206,5 +206,21 @@ class Matrix
     public function getVisible()
     {
         return $this->visible;
+    }
+    
+    /**
+     * Checks if the matrix is trainable. The matrix is trainible if is visible
+     */
+    public function isTrainable() {
+    	if ($this->getVisible() == FALSE) return false;
+    	return true;
+    }
+    
+    /**
+     * Check if the matrix is still update-able
+     */
+    public function isUpdatable() 
+    {
+    	
     }
 }

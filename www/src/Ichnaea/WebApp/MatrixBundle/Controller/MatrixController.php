@@ -4,6 +4,7 @@ namespace Ichnaea\WebApp\MatrixBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\Response;
+use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
 
 class MatrixController extends Controller
 {	
@@ -38,7 +39,7 @@ class MatrixController extends Controller
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
 		
 		if ($this->getUser() != $matrix->getOwner()) {
-			throw new HttpException(403, 'You are not the owner.');
+			throw new HttpException(403, 'You are not the owner of this matrix.');
 		}
 		
 		$request = $this->getRequest();
@@ -50,10 +51,14 @@ class MatrixController extends Controller
 	   	}
 	   	
 		$availableVars = $ichnaeaService->getAllVariables();
+		$editable      = $matrix->getVisible();
+		$updateable    = $ichnaeaService->matrixIsUpdateable($matrix_id);
 		//echo '<pre>';\Doctrine\Common\Util\Debug::dump($matrix);echo '</pre>';
 		return $this->render(
 				'MatrixBundle:Matrix:matrix.html.twig', 
 				array(
+						'updateable' => $updateable,
+						'editable' => $editable,
 						'matrix' => $matrix, 
 						'availableVars' => $availableVars
 				)

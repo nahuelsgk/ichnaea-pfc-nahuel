@@ -130,6 +130,19 @@
 {% endblock %}
 
 {% block extra_javascript %}
+
+{% if editable == true %}
+var editable = true;
+{% else %}
+var editable = false;
+{%  endif %}
+
+{% if updateable == true %}
+var updateable = true;
+{% else %}
+var updateable = false;
+{%  endif %}
+
 function displaySuccessfulAction(elem)
 {
   var previous_content = $('#'+elem).html(); 
@@ -223,9 +236,12 @@ function save_all_pending_action() {
 	$('#save_all_changes').css('visibility', 'hidden');
 	  
 }
+
 $(document).ready(function(){
     init_datepicker();
     init_inputOrigins();
- 	dynamic_height($('#menu_info_block').height());   
+ 	dynamic_height($('#menu_info_block').height());
+ 	if (editable == true) {displayMessage("The matrix is visible. This means users can training it. If you want edit it, please change visibility property to invisible.");}
+ 	if (updateable == false) {displayMessage("The matrix has been trained. Please consider update actions, because has not retroactive effects. Consider to clone the matrix when the feature is able.");}   
  });
 {% endblock %}
