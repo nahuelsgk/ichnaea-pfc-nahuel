@@ -52,21 +52,21 @@ class BuildModelsResponse
      * The end time
      *
      * @var \DateTime
-     */    
+     */
     private $end = null;
 
     /**
      * The data
      *
      * @var mixed
-     */     
+     */
     private $data = null;
 
     /**
      * The error string
      *
      * @var string
-     */ 
+     */
     private $error = null;
 
     /**
@@ -91,7 +91,7 @@ class BuildModelsResponse
     public function setProgress($p)
     {
         $p = floatval($p);
-        if($p < 0 || $p > 1) {
+        if ($p < 0 || $p > 1) {
             throw new \InvalidArgumentException("Progress should be between 0.0 and 1.0");
         }
         $this->progress = $p;

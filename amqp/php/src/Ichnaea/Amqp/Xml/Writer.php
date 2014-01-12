@@ -20,7 +20,7 @@ abstract class Writer
      * The dom element used as root
      *
      * @var \DOMElement
-     */    
+     */
     private $root;
 
     /**
@@ -78,7 +78,7 @@ abstract class Writer
     /**
      * Create a new element
      *
-     * @param string $name name of the element tag
+     * @param string $name  name of the element tag
      * @param string $value contents of the element tag
      */
     protected function createElement($name, $value="")

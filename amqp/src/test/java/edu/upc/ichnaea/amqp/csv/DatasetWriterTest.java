@@ -14,8 +14,7 @@ import edu.upc.ichnaea.amqp.model.DatasetColumn;
 public class DatasetWriterTest {
 
     @Test
-    public void testCSV() throws IOException
-    {
+    public void testCSV() throws IOException {
         Dataset dataset = new Dataset();
         DatasetColumn column = new DatasetColumn("test");
         column.add(1);
@@ -27,22 +26,20 @@ public class DatasetWriterTest {
         column.add(4);
         column.add(5);
         dataset.add(column);
-        
+
         column = new DatasetColumn("test3");
         column.add(6);
         column.add(7);
-        column.add(8);    	
+        column.add(8);
         dataset.add(column);
-      
+
         StringWriter strWriter = new StringWriter();
         CsvDatasetWriter writer = new CsvDatasetWriter(strWriter);
         writer.setQuote('\'');
         writer.write(dataset).close();
-        
-        String expectedCsv = "'test';'atest2';'test3'\n" +
-        			"'1';'4';'6'\n" +
-        			"'2';'5';'7'\n" +
-        			"'3';;'8'\n";
+
+        String expectedCsv = "'test';'atest2';'test3'\n" + "'1';'4';'6'\n"
+                + "'2';'5';'7'\n" + "'3';;'8'\n";
         assertEquals(expectedCsv, strWriter.toString());
     }
 }

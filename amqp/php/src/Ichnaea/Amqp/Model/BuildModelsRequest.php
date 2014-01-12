@@ -8,7 +8,7 @@ namespace Ichnaea\Amqp\Model;
  * This request contains:
  * * an unique identifier
  * * a dataset
- * * a list of seasons for each column
+ * * a list of agings for each column
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
@@ -20,9 +20,9 @@ class BuildModelsRequest
     private $id;
 
     /**
-     * @var array
+     * @var DatasetAging
      */
-    private $seasons = array();
+    private $aging;
 
     /**
      * @var Dataset
@@ -41,6 +41,7 @@ class BuildModelsRequest
         }
         $this->id = $id;
         $this->dataset = new Dataset();
+        $this->aging = new DatasetAging();
     }
 
     /**
@@ -60,44 +61,16 @@ class BuildModelsRequest
     }
 
     /**
-     * This adds season data to the build models request
-     * Each season data is associated to a dataset column
-     * And is set in a unitary position (typically Summer:0.5, Winter:1.0)
-     * 
-     * @param string  $column The dataset column associated to the season
-     * @param float   $position the unitary position of the season
-     * @param Season  $season The season data     
-     */
-    public function addSeason($column, $position, $season)
-    {
-        if ($position < 0 || $position > 1) {
-            throw new \InvalidArgumentException("Season position should be unitary.");
-        }
-        if (!$season instanceof Season) {
-            $season = new Season($season);
-        }
-        if(!isset($this->seasons[$column])) {
-            $this->seasons[$column] = array();
-        }
-        $this->seasons[$column][(string)$position] = $season;
-    }
-
-    /**
-     * Load all the seasons at once. The array should be indexed
-     * by column name and then by season position
+     * Set the data for the aging
      *
-     * @param array $seasons an array of Season objects
+     * @param mixed $aging the data
      */
-    public function setSeasons(array $seasons)
+    public function setAging($aging)
     {
-        foreach($seasons as $col=>&$colSeasons) {
-            if(!is_array($colSeasons)) {
-                throw new \InvalidArgumentException("Each column should contain a season array.");
-            }
-            foreach($colSeasons as $pos=>&$season) {
-                $this->setSeason($col, $pos, $season);
-            }
+        if (!$aging instanceof DatasetAging) {
+            $aging = new DatasetAging($aging);
         }
+        $this->aging = $aging;
     }
 
     /**
@@ -111,18 +84,18 @@ class BuildModelsRequest
     }
 
     /**
-     * Get the entire seasons array
+     * Get the entire aging data
      *
-     * @return array seasons
+     * @return DatasetAging aging
      */
-    public function getSeasons()
+    public function getAging()
     {
-        return $this->seasons;
+        return $this->aging;
     }
 
     /**
      * Get the dataset
-     * 
+     *
      * @return Dataset the dataset
      */
     public function getDataset()
@@ -139,8 +112,7 @@ class BuildModelsRequest
     {
         return array(
             "id"		=> $this->id,
-            "seasons"	=> $this->seasons,
-            "section"	=> $this->section,
+            "aging"	    => $this->aging->toArray(),
             "dataset"	=> $this->dataset->toArray()
         );
     }
@@ -155,11 +127,17 @@ class BuildModelsRequest
         if (array_key_exists('dataset', $data)) {
             $this->setDataset($data['dataset']);
         }
-        if (array_key_exists('seasons', $data)) {
-            $this->setSeasons($data['seasons']);
-        }
-        if (isset($data['fake_duration']) || isset($data['fake_interval'])) {
-            $this->setFake($data['fake_duration'].":".$data['fake_interval']);
+        if (array_key_exists('aging', $data)) {
+            if (array_key_exists('aging_filename_format', $data)) {
+                $data['aging'] = array(
+                    'files'     => $data['aging'],
+                    'format'    => $data['aging_filename_format']
+                );
+                if (array_key_exists('aging_positions', $data)) {
+                    $data['aging']['positions'] = $data['aging_positions'];
+                }
+            }
+            $this->setAging($data['aging']);
         }
     }
 
@@ -172,7 +150,7 @@ class BuildModelsRequest
     public static function fromArray(array $data)
     {
         $data = array_merge(array('id'=>null), $data);
-        if(array_key_exists('fake', $data) && $data['fake']) {
+        if (array_key_exists('fake', $data) && $data['fake']) {
             $req = new BuildModelsFakeRequest($data['id']);
         } else {
             $req = new self($data['id']);

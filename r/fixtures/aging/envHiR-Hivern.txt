@@ -1,0 +1,9 @@
+# Envelliment HiR Hivern (2 assajos)
+
+0    20.8 
+120  12.5 
+168  33.3 
+
+0    29.1 
+48   29.1
+96   45.8

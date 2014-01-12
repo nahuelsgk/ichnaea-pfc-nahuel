@@ -10,10 +10,13 @@ use \Ichnaea\Amqp\Model\BuildModelsResponse;
 
 // define('AMQP_DEBUG', true);
 
+// setup timezone to prevent error when using \DateTime
+date_default_timezone_set(@date_default_timezone_get());
+
 $dbConfig = new DbConfiguration();
 $dbParams = array(
     'driver'   => 'pdo_sqlite',
-    'path'     => __DIR__.'/../app.db',
+    'path'     => __DIR__.'/../db/app.db',
 );
 $db = DbDriverManader::getConnection($dbParams, $dbConfig);
 

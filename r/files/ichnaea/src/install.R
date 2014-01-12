@@ -1,0 +1,20 @@
+local({r <- getOption("repos")
+       r["CRAN"] <- "http://cran.r-project.org" 
+       options(repos=r)
+})
+
+install.packages("gtools")
+install.packages("kernlab")
+install.packages("rvmbinary.tar.gz")
+install.packages("boot")
+install.packages("car")
+install.packages("pnn")
+install.packages("e1071")
+install.packages("KernSmooth")
+install.packages("ipred")
+install.packages("mlbench")
+install.packages("prodlim")
+install.packages("TunePareto")
+# XML needs libxml2-dev installed to compile
+install.packages("XML")
+install.packages("StatDataML")

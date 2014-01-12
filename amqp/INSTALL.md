@@ -9,12 +9,20 @@ On Ubuntu
 TO execute the ichnaea amqp publishers and consumers you only need to build the
 main jar once.
 
+#### Setup ichnaea R scripts
+
+* install R interpreter
+    sudo apt-get install r-base-core
+    
+* install required R modules
+    ../r/files/ichnaea.sh --install
+
 #### Setup required programms and libraries
 
 * install oracle jdk 7
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
-    sudo apt-get install oracle-jdk7-installer
+    sudo apt-get install oracle-java7-installer
 
 * install rabbitmq-server
     sudo apt-get install rabbitmq-server
@@ -32,11 +40,15 @@ This will build a file in `target/ichnaea-amqp.jar`.
 
 To run the basic build-models:process consumer:
 
-    ./target/ichanea-amqp.jar build-models:process -i /path/to/ichnaea.sh
+    ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh --debug
 
-To run the basic build-models:request publisher:
+To run the basic build-models:request publisher with a fake request:
 
     ./target/ichnaea-amqp.jar build-models:request -f 10:1
+
+To run the basic build-models:request publisher with a real request:
+
+    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv --output=/tmp/output.zip
 
 Use the `-h` command line argument to get all the available options.
 
@@ -47,7 +59,7 @@ Use the `-h` command line argument to get all the available options.
 * install oracle jdk 7
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
-    sudo apt-get install oracle-jdk7-installer
+    sudo apt-get install oracle-java8-installer
 
 * install rabbitmq-server
     sudo apt-get install rabbitmq-server
@@ -58,11 +70,15 @@ Use the `-h` command line argument to get all the available options.
 * install eclipse
     sudo apt-get install eclipse
 
+* update eclipse
+    sudo eclipse
+    Help -> Check for updates
+
 #### Create an eclipse workspace
     
 * run eclipse and create a workspace
     eclipse
-
+    
 * install m2eclipse plugin
     http://download.eclipse.org/technology/m2e/releases
     
@@ -86,14 +102,43 @@ Use the `-h` command line argument to get all the available options.
 * run the project jar
 
     * listen to new build-models requests
-    mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh"
-    mvn exec:java -Dexec.args="build-models:process -i /path/to/ichnaea.sh -s ssh://user:password@localhost"
-    
-    * issue a test build-models request
-    mvn exec:java -Dexec.args="build-models:request -d test.csv"
+    mvn exec:java -Dexec.args="build-models:process -i ../r/files/ichnaea.sh"
+    mvn exec:java -Dexec.args="build-models:process -i ../r/files/ichnaea.sh -s ssh://user:password@localhost"
+
+    * issue a fake test build-models request
+    mvn exec:java -Dexec.args="build-models:request --fake 10:1"
+
+    * debug a build-models request
+    mvn exec:java -Dexec.args="build-models:request --debug --dataset ../r/fixtures/cyprus.csv --aging ../r/fixtures/aging/env%column%-%aging%.txt"
 
 ### PHP setup
 
 See `php/README.md`.
 
+#### Possible problems
 
+By default the server will [block connections](http://stackoverflow.com/questions/10427028/rabbitmq-connection-in-blocking-state)
+if it does not have enough memory or disk space. To check if the requests are being connections instal the web managment.
+
+    sudo rabbitmq-plugins enable rabbitmq_management
+
+Restart the server for the changes to take effect
+
+    sudo service rabbitmq-server restart
+
+Open the web browser at http://localhost:55672 and enter with user `guest` password `guest`.
+
+### Building documentation
+
+The in-depth document can be found at doc/ichnaea_amqp.md and can be converted from markdown
+to different formats using `pandoc`.
+
+    sudo apt-get install pandoc latex-beamer
+
+To convert to pdf use the following command:
+
+    pandoc -s --highlight-style pygments -o ichnaea_amqp.pdf ichnaea_amqp.md
+
+To convert to html use the following command:
+
+    pandoc -s --highlight-style pygments -o ichnaea_amqp.html ichnaea_amqp.md

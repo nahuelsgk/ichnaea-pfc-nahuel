@@ -24,11 +24,11 @@ use Ichnaea\Amqp\Xml\BuildModelsResponseReader;
  * ```
  * $amqp = new AmqpConnection(ICHNAEA_AMQP_URL);
  * $amqp->open();
- * $amqp->listenForBuildModelResponse(function(BuildModelsResponse $resp) use ($db) {
+ * $amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($db) {
  *     print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
  * });
  * $amqp->wait();
- * $amqp->close(); 
+ * $amqp->close();
  * ```
  *
  * Look at the `app` directory for a working example.
@@ -48,14 +48,14 @@ class Connection
      * The amqp server channel
      *
      * @var AMQPChannel
-     */    
+     */
     private $ch = null;
 
     /**
      * Additional options to the ichnaea connection
      *
      * @var array
-     */    
+     */
     private $opts = array();
 
     /**
@@ -63,15 +63,15 @@ class Connection
      *
      * @see parse_url
      * @var url
-     */    
+     */
     private $url = array();
 
     /**
      * Constructor.
      *
-     * @param mixed $url the url to the ichnaea amqp server
+     * @param mixed $url     the url to the ichnaea amqp server
      * @param array $options aditional options
-     */ 
+     */
     public function __construct($url, array $options=array())
     {
         $this->setOptions($options);
@@ -153,7 +153,7 @@ class Connection
     /**
      * Sends a request to the server
      *
-     * @param mixed $req the request     
+     * @param mixed $req the request
      */
     public function send($model)
     {
@@ -171,7 +171,7 @@ class Connection
     public function listenForBuildModelResponse(\Closure $callback)
     {
         $this->ch->basic_consume($this->opts['build-models.response.queue'], "",
-            false, false, false, false, function(AMQPMessage $msg) use ($callback) {
+            false, false, false, false, function (AMQPMessage $msg) use ($callback) {
                 $reader = new BuildModelsResponseReader();
                 $resp = $reader->read($msg->body);
                 if ($resp) {

@@ -25,11 +25,11 @@ class MimeMultipart implements \IteratorAggregate
      * is the windows end of line, also in unix software, we use that
      *
      * @var string
-     */    
+     */
     const EndOfLine = "\r\n";
 
     /**
-     * The boundary marker of this multipart 
+     * The boundary marker of this multipart
      *
      * @var string
      */
@@ -91,7 +91,7 @@ class MimeMultipart implements \IteratorAggregate
      * Returns one MIME part or null if it does not exist
      *
      * @see MimePart
-     * @param integer $n the part number
+     * @param  integer  $n the part number
      * @return MimePart the part
      */
     public function getPart($n)
@@ -118,10 +118,10 @@ class MimeMultipart implements \IteratorAggregate
      */
     public function addPart($part)
     {
-        if(is_string($part)) {
+        if (is_string($part)) {
             $part = MimePart::fromString($part);
         }
-        if(!$part instanceof MimePart) {
+        if (!$part instanceof MimePart) {
             throw new \InvalidArgumentException("part needs to be a MimePart object");
         }
         $this->parts[] = $part;

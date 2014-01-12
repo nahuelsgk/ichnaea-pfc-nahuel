@@ -1,4 +1,8 @@
-kvm/tmp/*
-amqp/bin
-amqp/target
-amqp/php/vendor
+/r/tmp/*
+/amqp/bin
+/amqp/target
+/amqp/php/vendor
+/amqp/.settings
+/amqp/doc/ichnaea_amqp.pdf
+/amqp/doc/ichnaea_amqp.html
+.fuse*

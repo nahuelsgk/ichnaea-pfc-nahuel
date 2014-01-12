@@ -37,6 +37,6 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array("BA", "CNFC"), $data->getColumnNames(), "Column names are the keys of the columns array.");
         $this->assertEquals(array(1, 2, 3, 5, 6), $data->getColumn("CNFC"), "Columns return their row values by name.");
-    }    
+    }
 
 }

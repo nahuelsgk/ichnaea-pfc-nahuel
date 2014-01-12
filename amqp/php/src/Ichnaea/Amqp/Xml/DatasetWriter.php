@@ -17,7 +17,7 @@ class DatasetWriter extends Writer
      *
      * @param \DOMDocument the document to use
      * @param \DOMElement the element to use as root
-     */    
+     */
     public function __construct($document=null, $root="dataset")
     {
         parent::__construct($document, $root);

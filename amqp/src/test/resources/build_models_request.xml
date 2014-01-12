@@ -1,0 +1,3502 @@
+<?xml version="1.0"?>
+<request id="52076348a2bfc" type="build_models">
+  <dataset>
+    <column name="CLASS">
+      <value>P1-HM06</value>
+      <value>P1-HM07</value>
+      <value>P1-HM08</value>
+      <value>P1-HM09</value>
+      <value>P1-HM12</value>
+      <value>P1-HM13</value>
+      <value>P1-HM14</value>
+      <value>P1-HM15</value>
+      <value>P1-HM16</value>
+      <value>P1-HM17</value>
+      <value>P1-HM18</value>
+      <value>P1-HM19</value>
+      <value>P1-HM20</value>
+      <value>P1-HM21</value>
+      <value>P1-HM22</value>
+      <value>P1-CW10</value>
+      <value>P1-PG07</value>
+      <value>P1-PG10</value>
+      <value>P1-PG12</value>
+      <value>P1-PG13</value>
+      <value>P1-PL09</value>
+      <value>P1-PL10</value>
+      <value>P1-PL11</value>
+      <value>P1-PL12</value>
+      <value>P1-PL13</value>
+      <value>P1-PL14</value>
+      <value>P1-PL15</value>
+      <value>P1-PL16</value>
+      <value>P2-HM17</value>
+      <value>P2-HM18</value>
+      <value>P2-HM19</value>
+      <value>P2-HM20</value>
+      <value>P2-HM22</value>
+      <value>P2-HM23</value>
+      <value>P2-HM24</value>
+      <value>P2-HM25</value>
+      <value>P2-HM26</value>
+      <value>P2-CW13</value>
+      <value>P2-CW14</value>
+      <value>P2-CW15</value>
+      <value>P2-CW16</value>
+      <value>P2-CW17</value>
+      <value>P2-CW18</value>
+      <value>P2-CW19</value>
+      <value>P2-CW21</value>
+      <value>P2-CW22</value>
+      <value>P3-HM13</value>
+      <value>P3-HM14</value>
+      <value>P3-HM15</value>
+      <value>P3-HM17</value>
+      <value>P3-HM18</value>
+      <value>P3-HM20</value>
+      <value>P3-HM21</value>
+      <value>P3-CW13</value>
+      <value>P3-CW/HS14</value>
+      <value>P3-CW17</value>
+      <value>P3-CW19</value>
+      <value>P4-HM13</value>
+      <value>P4-HM14</value>
+      <value>P4-HM15</value>
+      <value>P4-HM16</value>
+      <value>P4-HM18</value>
+      <value>P4-HM19</value>
+      <value>P4-HM20</value>
+      <value>P4-HM21</value>
+      <value>P4-HM22</value>
+      <value>P4-CW05</value>
+      <value>P4-CW07</value>
+      <value>P4-CW08</value>
+      <value>P4-PG09</value>
+      <value>P4-PG10</value>
+      <value>P4-PG11</value>
+      <value>P4-PL13</value>
+      <value>P4-PL14</value>
+      <value>P4-PL15</value>
+      <value>P5-HM18</value>
+      <value>P5-HM19</value>
+      <value>P5-HM22</value>
+      <value>P5-HM24</value>
+      <value>P5-HM25</value>
+      <value>P5-HM27</value>
+      <value>P5-HM28</value>
+      <value>P5-HM30</value>
+      <value>P5-HM31</value>
+      <value>P5-PL19</value>
+      <value>P5-PL20</value>
+      <value>P5-PL23</value>
+      <value>P5-PL26</value>
+      <value>P5-PL29</value>
+      <value>P5-PG20</value>
+      <value>P5-PG23</value>
+      <value>P5-PG26</value>
+      <value>P5-PG29</value>
+      <value>P1-HM05</value>
+      <value>P1-CW09</value>
+      <value>P1-PG11</value>
+      <value>P2-HM21</value>
+      <value>P2-CW20</value>
+      <value>P3-HM16</value>
+      <value>P4-HM17</value>
+      <value>P4-CW06</value>
+      <value>P5-HM21</value>
+      <value>P5-PG19</value>
+      <value/>
+    </column>
+    <column name="FC">
+      <value>1,70E+07</value>
+      <value>9,70E+06</value>
+      <value>9,20E+06</value>
+      <value>2,40E+06</value>
+      <value>3,40E+07</value>
+      <value>5,20E+06</value>
+      <value>1,20E+07</value>
+      <value>1,30E+07</value>
+      <value>9,00E+06</value>
+      <value>7,10E+06</value>
+      <value>5,10E+06</value>
+      <value>1,10E+07</value>
+      <value>2,30E+07</value>
+      <value>1,80E+07</value>
+      <value>3,00E+06</value>
+      <value>3,90E+07</value>
+      <value>3,60E+07</value>
+      <value>3,50E+07</value>
+      <value>6,70E+07</value>
+      <value>7,20E+06</value>
+      <value>1,80E+08</value>
+      <value>3,70E+05</value>
+      <value>9,60E+07</value>
+      <value>1,80E+07</value>
+      <value>5,00E+06</value>
+      <value>1,90E+06</value>
+      <value>2,30E+07</value>
+      <value>6,70E+07</value>
+      <value>3,95E+06</value>
+      <value>2,62E+06</value>
+      <value>3,00E+06</value>
+      <value>3,81E+06</value>
+      <value>6,06E+06</value>
+      <value>5,70E+06</value>
+      <value>5,65E+06</value>
+      <value>4,48E+06</value>
+      <value>6,15E+06</value>
+      <value>3,09E+06</value>
+      <value>7,95E+06</value>
+      <value>3,38E+06</value>
+      <value>5,29E+06</value>
+      <value>8,82E+05</value>
+      <value>4,68E+06</value>
+      <value>3,28E+06</value>
+      <value>2,04E+06</value>
+      <value>1,22E+06</value>
+      <value>2,00E+07</value>
+      <value>3,60E+06</value>
+      <value>7,60E+06</value>
+      <value>5,50E+06</value>
+      <value>3,10E+06</value>
+      <value>7,66E+05</value>
+      <value>3,50E+06</value>
+      <value>3,80E+05</value>
+      <value>3,90E+06</value>
+      <value>2,61E+05</value>
+      <value>8,00E+03</value>
+      <value>1,20E+07</value>
+      <value>3,50E+06</value>
+      <value>1,90E+07</value>
+      <value>1,80E+06</value>
+      <value>1,40E+06</value>
+      <value>1,20E+07</value>
+      <value>1,10E+07</value>
+      <value>1,40E+07</value>
+      <value>1,50E+06</value>
+      <value>1,50E+07</value>
+      <value>4,10E+07</value>
+      <value>1,80E+07</value>
+      <value>5,70E+07</value>
+      <value>2,40E+08</value>
+      <value>2,70E+08</value>
+      <value>4,00E+07</value>
+      <value>4,50E+07</value>
+      <value>2,10E+08</value>
+      <value>6,60E+06</value>
+      <value>1,30E+08</value>
+      <value>1,80E+07</value>
+      <value>1,30E+07</value>
+      <value>8,80E+07</value>
+      <value>3,00E+07</value>
+      <value>8,10E+07</value>
+      <value>1,40E+07</value>
+      <value>3,50E+07</value>
+      <value>1,00E+07</value>
+      <value>9,80E+06</value>
+      <value>9,20E+06</value>
+      <value>9,20E+06</value>
+      <value>1,60E+07</value>
+      <value>8,00E+07</value>
+      <value>1,10E+08</value>
+      <value>5,20E+07</value>
+      <value>2,90E+07</value>
+      <value>9,00E+06</value>
+      <value>2,70E+07</value>
+      <value>7,40E+07</value>
+      <value>4,80E+06</value>
+      <value>3,47E+06</value>
+      <value>1,20E+06</value>
+      <value>1,20E+06</value>
+      <value>3,00E+07</value>
+      <value>4,40E+06</value>
+      <value>7,60E+07</value>
+    </column>
+    <column name="FE">
+      <value>1,60E+06</value>
+      <value>4,80E+05</value>
+      <value>9,40E+05</value>
+      <value>1,70E+06</value>
+      <value>4,50E+05</value>
+      <value>3,50E+05</value>
+      <value>8,20E+05</value>
+      <value>1,00E+06</value>
+      <value>7,20E+05</value>
+      <value>8,00E+05</value>
+      <value>1,20E+05</value>
+      <value>5,50E+05</value>
+      <value>1,60E+06</value>
+      <value>2,50E+06</value>
+      <value>2,30E+06</value>
+      <value>2,70E+05</value>
+      <value>2,40E+05</value>
+      <value>3,00E+05</value>
+      <value>5,40E+05</value>
+      <value>1,10E+05</value>
+      <value>6,50E+06</value>
+      <value>6,00E+04</value>
+      <value>2,30E+06</value>
+      <value>8,30E+06</value>
+      <value>3,00E+05</value>
+      <value>7,70E+05</value>
+      <value>5,40E+05</value>
+      <value>1,10E+06</value>
+      <value>1,52E+06</value>
+      <value>9,67E+05</value>
+      <value>1,48E+06</value>
+      <value>1,11E+06</value>
+      <value>1,60E+06</value>
+      <value>1,87E+06</value>
+      <value>1,94E+06</value>
+      <value>1,25E+06</value>
+      <value>1,90E+06</value>
+      <value>2,73E+05</value>
+      <value>4,32E+05</value>
+      <value>3,23E+05</value>
+      <value>1,08E+05</value>
+      <value>1,22E+05</value>
+      <value>5,78E+05</value>
+      <value>9,43E+05</value>
+      <value>9,77E+05</value>
+      <value>1,75E+06</value>
+      <value>1,20E+06</value>
+      <value>3,10E+05</value>
+      <value>5,60E+05</value>
+      <value>7,20E+05</value>
+      <value>3,10E+05</value>
+      <value>6,73E+05</value>
+      <value>6,27E+05</value>
+      <value>1,20E+05</value>
+      <value>3,50E+05</value>
+      <value>1,20E+05</value>
+      <value>3,45E+04</value>
+      <value>1,80E+06</value>
+      <value>1,00E+06</value>
+      <value>1,90E+06</value>
+      <value>2,10E+06</value>
+      <value>2,40E+06</value>
+      <value>2,00E+06</value>
+      <value>2,60E+06</value>
+      <value>2,20E+06</value>
+      <value>2,20E+06</value>
+      <value>2,00E+07</value>
+      <value>1,80E+07</value>
+      <value>4,20E+08</value>
+      <value>1,90E+06</value>
+      <value>1,60E+08</value>
+      <value>5,00E+07</value>
+      <value>5,00E+05</value>
+      <value>3,70E+06</value>
+      <value>3,00E+06</value>
+      <value>9,20E+05</value>
+      <value>1,80E+06</value>
+      <value>1,10E+06</value>
+      <value>1,20E+06</value>
+      <value>1,60E+06</value>
+      <value>3,30E+06</value>
+      <value>2,20E+06</value>
+      <value>5,20E+06</value>
+      <value>2,60E+06</value>
+      <value>9,20E+05</value>
+      <value>3,70E+05</value>
+      <value>1,20E+06</value>
+      <value>1,20E+06</value>
+      <value>1,60E+06</value>
+      <value>1,30E+07</value>
+      <value>1,30E+07</value>
+      <value>4,40E+06</value>
+      <value>1,90E+06</value>
+      <value>6,70E+05</value>
+      <value>7,70E+05</value>
+      <value>5,20E+05</value>
+      <value>1,23E+06</value>
+      <value>8,87E+05</value>
+      <value>3,40E+05</value>
+      <value>2,10E+06</value>
+      <value>7,50E+07</value>
+      <value>9,60E+05</value>
+      <value>6,20E+06</value>
+    </column>
+    <column name="CL">
+      <value>6,00E+05</value>
+      <value>1,30E+05</value>
+      <value>4,50E+05</value>
+      <value>4,00E+05</value>
+      <value>3,20E+05</value>
+      <value>1,00E+05</value>
+      <value>2,50E+05</value>
+      <value>3,60E+05</value>
+      <value>4,80E+05</value>
+      <value>2,90E+05</value>
+      <value>5,60E+04</value>
+      <value>1,60E+05</value>
+      <value>4,50E+05</value>
+      <value>6,30E+05</value>
+      <value>6,30E+05</value>
+      <value>5,20E+05</value>
+      <value>1,20E+05</value>
+      <value>7,90E+04</value>
+      <value>1,80E+05</value>
+      <value>3,10E+04</value>
+      <value>1,00E+04</value>
+      <value>2,00E+04</value>
+      <value>1,30E+04</value>
+      <value>9,00E+03</value>
+      <value>3,00E+04</value>
+      <value>3,00E+04</value>
+      <value>4,00E+04</value>
+      <value>2,60E+04</value>
+      <value>2,92E+04</value>
+      <value>6,92E+04</value>
+      <value>4,21E+04</value>
+      <value>8,16E+04</value>
+      <value>8,67E+04</value>
+      <value>9,93E+04</value>
+      <value>1,42E+05</value>
+      <value>4,80E+04</value>
+      <value>1,10E+05</value>
+      <value>8,98E+03</value>
+      <value>1,01E+04</value>
+      <value>7,41E+04</value>
+      <value>2,24E+04</value>
+      <value>1,43E+04</value>
+      <value>3,54E+04</value>
+      <value>8,01E+03</value>
+      <value>1,09E+04</value>
+      <value>4,32E+04</value>
+      <value>1,10E+05</value>
+      <value>4,70E+04</value>
+      <value>2,10E+05</value>
+      <value>7,20E+04</value>
+      <value>1,20E+05</value>
+      <value>2,27E+05</value>
+      <value>4,14E+03</value>
+      <value>1,80E+05</value>
+      <value>3,30E+04</value>
+      <value>4,23E+04</value>
+      <value>2,00E+05</value>
+      <value>1,00E+04</value>
+      <value>1,20E+04</value>
+      <value>1,80E+04</value>
+      <value>1,80E+04</value>
+      <value>1,30E+04</value>
+      <value>3,50E+04</value>
+      <value>1,50E+04</value>
+      <value>2,50E+04</value>
+      <value>1,50E+04</value>
+      <value>9,00E+04</value>
+      <value>2,00E+05</value>
+      <value>1,20E+05</value>
+      <value>5,00E+07</value>
+      <value>5,50E+06</value>
+      <value>8,00E+06</value>
+      <value>1,00E+05</value>
+      <value>2,40E+05</value>
+      <value>5,00E+04</value>
+      <value>1,00E+05</value>
+      <value>2,00E+05</value>
+      <value>2,00E+05</value>
+      <value>3,60E+05</value>
+      <value>1,00E+05</value>
+      <value>1,80E+05</value>
+      <value>2,80E+05</value>
+      <value>9,00E+04</value>
+      <value>1,80E+05</value>
+      <value>1,90E+03</value>
+      <value>5,30E+04</value>
+      <value>2,00E+03</value>
+      <value>2,00E+03</value>
+      <value>2,90E+04</value>
+      <value>1,20E+07</value>
+      <value>2,00E+07</value>
+      <value>5,00E+05</value>
+      <value>1,20E+07</value>
+      <value>2,20E+05</value>
+      <value>4,90E+04</value>
+      <value>3,20E+04</value>
+      <value>9,18E+04</value>
+      <value>1,03E+04</value>
+      <value>5,70E+04</value>
+      <value>2,50E+04</value>
+      <value>3,00E+05</value>
+      <value>1,50E+05</value>
+      <value>9,10E+06</value>
+    </column>
+    <column name="SOMCPH">
+      <value>6,20E+06</value>
+      <value>5,10E+06</value>
+      <value>8,60E+06</value>
+      <value>1,50E+07</value>
+      <value>9,00E+06</value>
+      <value>2,60E+06</value>
+      <value>3,10E+06</value>
+      <value>5,60E+06</value>
+      <value>1,50E+06</value>
+      <value>4,80E+06</value>
+      <value>4,30E+06</value>
+      <value>5,30E+06</value>
+      <value>5,70E+06</value>
+      <value>2,80E+06</value>
+      <value>6,60E+06</value>
+      <value>1,20E+07</value>
+      <value>3,10E+06</value>
+      <value>1,20E+08</value>
+      <value>6,90E+07</value>
+      <value>1,20E+07</value>
+      <value>7,90E+06</value>
+      <value>4,00E+04</value>
+      <value>5,20E+06</value>
+      <value>4,10E+06</value>
+      <value>7,90E+06</value>
+      <value>3,20E+06</value>
+      <value>3,40E+06</value>
+      <value>1,50E+07</value>
+      <value>1,40E+06</value>
+      <value>4,68E+05</value>
+      <value>8,27E+06</value>
+      <value>1,42E+06</value>
+      <value>8,46E+05</value>
+      <value>1,09E+06</value>
+      <value>2,93E+06</value>
+      <value>1,23E+06</value>
+      <value>2,05E+05</value>
+      <value>5,40E+06</value>
+      <value>1,19E+07</value>
+      <value>4,60E+06</value>
+      <value>2,33E+07</value>
+      <value>3,00E+06</value>
+      <value>2,05E+06</value>
+      <value>3,10E+06</value>
+      <value>3,70E+06</value>
+      <value>6,41E+06</value>
+      <value>1,30E+06</value>
+      <value>1,20E+05</value>
+      <value>5,60E+05</value>
+      <value>6,10E+05</value>
+      <value>2,60E+05</value>
+      <value>3,45E+05</value>
+      <value>2,04E+05</value>
+      <value>2,50E+04</value>
+      <value>6,50E+04</value>
+      <value>3,10E+05</value>
+      <value>2,10E+05</value>
+      <value>4,90E+05</value>
+      <value>3,00E+05</value>
+      <value>1,10E+06</value>
+      <value>7,00E+05</value>
+      <value>6,00E+05</value>
+      <value>1,10E+06</value>
+      <value>1,10E+06</value>
+      <value>1,40E+05</value>
+      <value>9,50E+05</value>
+      <value>2,20E+06</value>
+      <value>3,10E+07</value>
+      <value>1,30E+06</value>
+      <value>2,40E+07</value>
+      <value>1,50E+08</value>
+      <value>1,90E+08</value>
+      <value>3,00E+05</value>
+      <value>1,10E+06</value>
+      <value>3,10E+05</value>
+      <value>8,60E+06</value>
+      <value>3,00E+06</value>
+      <value>3,70E+06</value>
+      <value>1,60E+05</value>
+      <value>5,60E+06</value>
+      <value>2,10E+06</value>
+      <value>2,00E+06</value>
+      <value>5,90E+05</value>
+      <value>5,10E+06</value>
+      <value>4,00E+05</value>
+      <value>1,10E+06</value>
+      <value>3,20E+06</value>
+      <value>1,40E+06</value>
+      <value>9,40E+05</value>
+      <value>3,20E+07</value>
+      <value>5,40E+07</value>
+      <value>7,30E+07</value>
+      <value>2,40E+07</value>
+      <value>4,20E+06</value>
+      <value>7,00E+06</value>
+      <value>3,10E+07</value>
+      <value>1,16E+06</value>
+      <value>2,10E+06</value>
+      <value>1,10E+05</value>
+      <value>7,00E+05</value>
+      <value>3,10E+07</value>
+      <value>2,20E+06</value>
+      <value>3,80E+07</value>
+    </column>
+    <column name="FTOTAL">
+      <value>4,70E+05</value>
+      <value>9,70E+05</value>
+      <value>7,60E+05</value>
+      <value>9,20E+05</value>
+      <value>1,30E+06</value>
+      <value>5,40E+05</value>
+      <value>6,20E+05</value>
+      <value>7,40E+05</value>
+      <value>2,90E+05</value>
+      <value>4,20E+05</value>
+      <value>3,90E+05</value>
+      <value>8,40E+05</value>
+      <value>4,10E+05</value>
+      <value>4,80E+05</value>
+      <value>3,80E+05</value>
+      <value>5,60E+06</value>
+      <value>5,30E+06</value>
+      <value>1,30E+06</value>
+      <value>1,30E+06</value>
+      <value>3,80E+05</value>
+      <value>1,40E+07</value>
+      <value>8,50E+03</value>
+      <value>1,20E+06</value>
+      <value>2,00E+06</value>
+      <value>7,60E+05</value>
+      <value>1,60E+05</value>
+      <value>1,70E+05</value>
+      <value>1,90E+07</value>
+      <value>2,85E+05</value>
+      <value>4,95E+05</value>
+      <value>4,09E+06</value>
+      <value>6,10E+05</value>
+      <value>3,25E+05</value>
+      <value>4,15E+05</value>
+      <value>4,90E+05</value>
+      <value>2,65E+05</value>
+      <value>4,77E+05</value>
+      <value>3,01E+06</value>
+      <value>&lt;100</value>
+      <value>&lt;100</value>
+      <value>9,00E+02</value>
+      <value>1,12E+07</value>
+      <value>6,60E+06</value>
+      <value>2,35E+06</value>
+      <value>2,61E+06</value>
+      <value>1,27E+06</value>
+      <value>9,00E+05</value>
+      <value>3,60E+04</value>
+      <value>6,50E+05</value>
+      <value>5,90E+05</value>
+      <value>1,40E+05</value>
+      <value>2,00E+05</value>
+      <value>1,88E+05</value>
+      <value>&lt; 100</value>
+      <value>&lt; 1000</value>
+      <value>2,00E+02</value>
+      <value>&lt;200</value>
+      <value>2,60E+05</value>
+      <value>1,40E+05</value>
+      <value>1,60E+05</value>
+      <value>9,00E+04</value>
+      <value>2,20E+05</value>
+      <value>1,30E+05</value>
+      <value>1,10E+04</value>
+      <value>1,50E+05</value>
+      <value>1,70E+05</value>
+      <value>9,10E+03</value>
+      <value>1,40E+04</value>
+      <value>1,60E+04</value>
+      <value>5,30E+05</value>
+      <value>1,30E+07</value>
+      <value>1,20E+06</value>
+      <value>2,50E+03</value>
+      <value>4,10E+05</value>
+      <value>1,70E+04</value>
+      <value>1,30E+05</value>
+      <value>2,90E+06</value>
+      <value>1,40E+06</value>
+      <value>1,50E+05</value>
+      <value>1,50E+06</value>
+      <value>7,70E+05</value>
+      <value>1,30E+06</value>
+      <value>2,20E+05</value>
+      <value>3,30E+05</value>
+      <value>6,40E+05</value>
+      <value>9,70E+05</value>
+      <value>3,80E+05</value>
+      <value>6,70E+05</value>
+      <value>5,00E+05</value>
+      <value>2,40E+06</value>
+      <value>1,10E+06</value>
+      <value>7,40E+05</value>
+      <value>1,30E+06</value>
+      <value>6,50E+05</value>
+      <value>1,10E+05</value>
+      <value>1,30E+06</value>
+      <value>7,15E+05</value>
+      <value>2,65E+06</value>
+      <value>8,00E+04</value>
+      <value>1,30E+04</value>
+      <value>1,00E+04</value>
+      <value>8,10E+05</value>
+      <value>3,80E+06</value>
+    </column>
+    <column name="FRNAPH">
+      <value>4,10E+05</value>
+      <value>8,70E+05</value>
+      <value>7,40E+05</value>
+      <value>8,30E+05</value>
+      <value>1,20E+06</value>
+      <value>4,00E+05</value>
+      <value>4,50E+05</value>
+      <value>6,40E+05</value>
+      <value>2,80E+05</value>
+      <value>3,90E+05</value>
+      <value>3,70E+05</value>
+      <value>7,70E+05</value>
+      <value>3,10E+05</value>
+      <value>4,50E+05</value>
+      <value>3,30E+05</value>
+      <value>3,60E+03</value>
+      <value>5,20E+06</value>
+      <value>1,30E+06</value>
+      <value>1,10E+06</value>
+      <value>3,60E+05</value>
+      <value>1,40E+07</value>
+      <value>8,50E+03</value>
+      <value>1,19E+06</value>
+      <value>1,98E+06</value>
+      <value>7,50E+05</value>
+      <value>1,60E+03</value>
+      <value>1,60E+05</value>
+      <value>1,90E+07</value>
+      <value>2,80E+05</value>
+      <value>4,94E+05</value>
+      <value>2,36E+06</value>
+      <value>5,96E+05</value>
+      <value>2,84E+05</value>
+      <value>3,71E+05</value>
+      <value>4,55E+05</value>
+      <value>2,33E+05</value>
+      <value>4,39E+05</value>
+      <value>3,01E+06</value>
+      <value>0,00E+00</value>
+      <value>0,00E+00</value>
+      <value>9,00E+02</value>
+      <value>1,12E+07</value>
+      <value>6,59E+06</value>
+      <value>2,34E+06</value>
+      <value>2,61E+06</value>
+      <value>9,38E+05</value>
+      <value>8,30E+05</value>
+      <value>3,50E+04</value>
+      <value>5,60E+05</value>
+      <value>5,60E+05</value>
+      <value>1,20E+05</value>
+      <value>4,00E+04</value>
+      <value>4,82E+04</value>
+      <value>0,00E+00</value>
+      <value>0,00E+00</value>
+      <value>0,00E+00</value>
+      <value>0,00E+00</value>
+      <value>8,00E+04</value>
+      <value>4,00E+04</value>
+      <value>3,00E+04</value>
+      <value>4,00E+04</value>
+      <value>5,00E+04</value>
+      <value>4,00E+04</value>
+      <value>4,50E+04</value>
+      <value>5,50E+04</value>
+      <value>7,00E+04</value>
+      <value>5,00E+03</value>
+      <value>7,00E+03</value>
+      <value>6,00E+03</value>
+      <value>2,00E+04</value>
+      <value>1,20E+06</value>
+      <value>4,00E+05</value>
+      <value>1,00E+03</value>
+      <value>5,00E+04</value>
+      <value>1,00E+04</value>
+      <value>1,10E+05</value>
+      <value>2,70E+06</value>
+      <value>1,30E+06</value>
+      <value>1,30E+05</value>
+      <value>1,40E+06</value>
+      <value>7,70E+05</value>
+      <value>1,20E+06</value>
+      <value>2,20E+05</value>
+      <value>3,20E+05</value>
+      <value>6,40E+05</value>
+      <value>9,70E+05</value>
+      <value>3,80E+05</value>
+      <value>6,70E+05</value>
+      <value>5,00E+05</value>
+      <value>1,60E+06</value>
+      <value>1,00E+06</value>
+      <value>6,40E+05</value>
+      <value>9,90E+05</value>
+      <value>5,90E+05</value>
+      <value>7,70E+04</value>
+      <value>1,10E+06</value>
+      <value>7,02E+05</value>
+      <value>2,65E+06</value>
+      <value>7,10E+04</value>
+      <value>3,00E+04</value>
+      <value>5,00E+03</value>
+      <value>8,10E+05</value>
+      <value>2,00E+06</value>
+    </column>
+    <column name="FRNAPH I">
+      <value>9</value>
+      <value>7</value>
+      <value>2</value>
+      <value>2</value>
+      <value>0</value>
+      <value>0</value>
+      <value>5</value>
+      <value>0</value>
+      <value>4</value>
+      <value>12</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3</value>
+      <value>0</value>
+      <value>0</value>
+      <value>86</value>
+      <value>4</value>
+      <value>48</value>
+      <value>0</value>
+      <value>2</value>
+      <value>95</value>
+      <value>96</value>
+      <value>27</value>
+      <value>36</value>
+      <value>63</value>
+      <value>24</value>
+      <value>27</value>
+      <value>0</value>
+      <value>14</value>
+      <value>4</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>2</value>
+      <value>6</value>
+      <value>3</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>86</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3</value>
+      <value>8</value>
+      <value>0</value>
+      <value>17</value>
+      <value>14</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>10</value>
+      <value>2</value>
+      <value>10</value>
+      <value>4</value>
+      <value>5</value>
+      <value>19</value>
+      <value>10</value>
+      <value>8</value>
+      <value>14</value>
+      <value>49</value>
+      <value>33</value>
+      <value>5</value>
+      <value>32</value>
+      <value>52</value>
+      <value>13</value>
+      <value>32</value>
+      <value>55</value>
+      <value>50</value>
+      <value>0</value>
+      <value>1,6</value>
+      <value>11,7</value>
+      <value>0</value>
+      <value>21,3</value>
+      <value>0</value>
+      <value>14,5</value>
+      <value>0</value>
+      <value>21,8</value>
+      <value>0,9</value>
+      <value>39,1</value>
+      <value>13,4</value>
+      <value>28,6</value>
+      <value>43,6</value>
+      <value>69,4</value>
+      <value>79,4</value>
+      <value>77,8</value>
+      <value>97,3</value>
+      <value>5</value>
+      <value>2</value>
+      <value>67</value>
+      <value>6</value>
+      <value>0</value>
+      <value>11</value>
+      <value>13</value>
+      <value>24</value>
+      <value>0</value>
+      <value>21,8</value>
+    </column>
+    <column name="FRNAPH II">
+      <value>61</value>
+      <value>70</value>
+      <value>59</value>
+      <value>63</value>
+      <value>92</value>
+      <value>91</value>
+      <value>41</value>
+      <value>69</value>
+      <value>61</value>
+      <value>54</value>
+      <value>97</value>
+      <value>70</value>
+      <value>24</value>
+      <value>46</value>
+      <value>95</value>
+      <value>0</value>
+      <value>3</value>
+      <value>0</value>
+      <value>69</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>56</value>
+      <value>66</value>
+      <value>40</value>
+      <value>78</value>
+      <value>71</value>
+      <value>79</value>
+      <value>64</value>
+      <value>63</value>
+      <value>70</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>87</value>
+      <value>25</value>
+      <value>50</value>
+      <value>26</value>
+      <value>24</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>45</value>
+      <value>32</value>
+      <value>28</value>
+      <value>22</value>
+      <value>28</value>
+      <value>22</value>
+      <value>32</value>
+      <value>21</value>
+      <value>64</value>
+      <value>12</value>
+      <value>25</value>
+      <value>3</value>
+      <value>12</value>
+      <value>4</value>
+      <value>3</value>
+      <value>12</value>
+      <value>0</value>
+      <value>8</value>
+      <value>100</value>
+      <value>45,3</value>
+      <value>46,9</value>
+      <value>97,4</value>
+      <value>59</value>
+      <value>100</value>
+      <value>59,7</value>
+      <value>100</value>
+      <value>56,4</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1,4</value>
+      <value>0</value>
+      <value>0</value>
+      <value>2</value>
+      <value>0</value>
+      <value>0</value>
+      <value>59</value>
+      <value>9</value>
+      <value>0</value>
+      <value>68</value>
+      <value>1</value>
+      <value>22</value>
+      <value>37</value>
+      <value>5</value>
+      <value>97,2</value>
+      <value>0</value>
+    </column>
+    <column name="FRNAPH III">
+      <value>30</value>
+      <value>22</value>
+      <value>38</value>
+      <value>35</value>
+      <value>7</value>
+      <value>9</value>
+      <value>51</value>
+      <value>31</value>
+      <value>35</value>
+      <value>34</value>
+      <value>3</value>
+      <value>30</value>
+      <value>73</value>
+      <value>54</value>
+      <value>5</value>
+      <value>7</value>
+      <value>91</value>
+      <value>33</value>
+      <value>31</value>
+      <value>95</value>
+      <value>3</value>
+      <value>3</value>
+      <value>34</value>
+      <value>62</value>
+      <value>22</value>
+      <value>60</value>
+      <value>73</value>
+      <value>100</value>
+      <value>29</value>
+      <value>19</value>
+      <value>51</value>
+      <value>20</value>
+      <value>24</value>
+      <value>15</value>
+      <value>30</value>
+      <value>25</value>
+      <value>27</value>
+      <value>99</value>
+      <value>0</value>
+      <value>0</value>
+      <value>14</value>
+      <value>98</value>
+      <value>97</value>
+      <value>96</value>
+      <value>93</value>
+      <value>97</value>
+      <value>0</value>
+      <value>0</value>
+      <value>7</value>
+      <value>58</value>
+      <value>38</value>
+      <value>22</value>
+      <value>46</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>30</value>
+      <value>45</value>
+      <value>51</value>
+      <value>59</value>
+      <value>49</value>
+      <value>50</value>
+      <value>45</value>
+      <value>59</value>
+      <value>5</value>
+      <value>6</value>
+      <value>17</value>
+      <value>2</value>
+      <value>4</value>
+      <value>5</value>
+      <value>4</value>
+      <value>6</value>
+      <value>18</value>
+      <value>8</value>
+      <value>0</value>
+      <value>53,1</value>
+      <value>41,4</value>
+      <value>1,3</value>
+      <value>18,1</value>
+      <value>0</value>
+      <value>24,2</value>
+      <value>0</value>
+      <value>12,7</value>
+      <value>0,9</value>
+      <value>0</value>
+      <value>85,6</value>
+      <value>10</value>
+      <value>56,4</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3,7</value>
+      <value>0</value>
+      <value>34</value>
+      <value>54</value>
+      <value>15</value>
+      <value>21</value>
+      <value>96</value>
+      <value>56</value>
+      <value>39</value>
+      <value>10</value>
+      <value>2,8</value>
+      <value>0</value>
+    </column>
+    <column name="FRNAPH IV">
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>2</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>7</value>
+      <value>2</value>
+      <value>19</value>
+      <value>0</value>
+      <value>3</value>
+      <value>2</value>
+      <value>0</value>
+      <value>38</value>
+      <value>2</value>
+      <value>16</value>
+      <value>16</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>11</value>
+      <value>9</value>
+      <value>2</value>
+      <value>5</value>
+      <value>6</value>
+      <value>4</value>
+      <value>6</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>3</value>
+      <value>3</value>
+      <value>3</value>
+      <value>2</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3</value>
+      <value>8</value>
+      <value>13</value>
+      <value>34</value>
+      <value>16</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>15</value>
+      <value>21</value>
+      <value>11</value>
+      <value>15</value>
+      <value>18</value>
+      <value>9</value>
+      <value>13</value>
+      <value>12</value>
+      <value>17</value>
+      <value>33</value>
+      <value>25</value>
+      <value>4</value>
+      <value>52</value>
+      <value>9</value>
+      <value>21</value>
+      <value>50</value>
+      <value>27</value>
+      <value>34</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1,3</value>
+      <value>1,6</value>
+      <value>0</value>
+      <value>1,6</value>
+      <value>0</value>
+      <value>9,1</value>
+      <value>98,2</value>
+      <value>60,9</value>
+      <value>1</value>
+      <value>60</value>
+      <value>0</value>
+      <value>30,6</value>
+      <value>18,6</value>
+      <value>18,5</value>
+      <value>2,7</value>
+      <value>2</value>
+      <value>36</value>
+      <value>18</value>
+      <value>5</value>
+      <value>3</value>
+      <value>11</value>
+      <value>11</value>
+      <value>61</value>
+      <value>0</value>
+      <value>78,2</value>
+    </column>
+    <column name="RYC2056">
+      <value>3,30E+04</value>
+      <value>3,70E+04</value>
+      <value>5,70E+04</value>
+      <value>1,50E+04</value>
+      <value>6,40E+04</value>
+      <value>2,40E+04</value>
+      <value>4,10E+04</value>
+      <value>1,02E+05</value>
+      <value>3,40E+05</value>
+      <value>9,40E+04</value>
+      <value>3,60E+04</value>
+      <value>3,30E+04</value>
+      <value>1,10E+05</value>
+      <value>1,40E+04</value>
+      <value>8,80E+04</value>
+      <value>6,60E+04</value>
+      <value>1,90E+04</value>
+      <value>9,10E+05</value>
+      <value>8,20E+04</value>
+      <value>2,20E+04</value>
+      <value>2,00E+05</value>
+      <value>1,40E+03</value>
+      <value>6,50E+04</value>
+      <value>6,70E+04</value>
+      <value>8,10E+05</value>
+      <value>1,90E+04</value>
+      <value>4,40E+04</value>
+      <value>1,30E+05</value>
+      <value>1,48E+04</value>
+      <value>2,15E+04</value>
+      <value>4,00E+04</value>
+      <value>2,00E+04</value>
+      <value>2,65E+04</value>
+      <value>2,15E+04</value>
+      <value>4,90E+04</value>
+      <value>5,60E+04</value>
+      <value>3,30E+04</value>
+      <value>1,50E+02</value>
+      <value>&lt;50</value>
+      <value>&lt;100</value>
+      <value>&lt;100</value>
+      <value>4,00E+02</value>
+      <value>4,00E+03</value>
+      <value>1,33E+03</value>
+      <value>4,00E+03</value>
+      <value>1,64E+03</value>
+      <value>2,30E+03</value>
+      <value>1,10E+03</value>
+      <value>1,20E+04</value>
+      <value>4,10E+04</value>
+      <value>1,20E+04</value>
+      <value>1,00E+03</value>
+      <value>7,00E+02</value>
+      <value>1,00E+02</value>
+      <value>&lt; 50</value>
+      <value>2,00E+02</value>
+      <value>&lt;100</value>
+      <value>4,50E+03</value>
+      <value>1,90E+04</value>
+      <value>1,50E+04</value>
+      <value>2,00E+04</value>
+      <value>2,00E+04</value>
+      <value>6,50E+03</value>
+      <value>9,50E+03</value>
+      <value>1,10E+04</value>
+      <value>7,20E+03</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>2,00E+02</value>
+      <value>1,40E+04</value>
+      <value>4,30E+05</value>
+      <value>8,80E+04</value>
+      <value>1,00E+02</value>
+      <value>2,00E+02</value>
+      <value>&lt;20</value>
+      <value>1,60E+04</value>
+      <value>2,00E+05</value>
+      <value>3,40E+04</value>
+      <value>8,00E+04</value>
+      <value>3,10E+04</value>
+      <value>5,70E+03</value>
+      <value>6,50E+04</value>
+      <value>4,70E+03</value>
+      <value>1,60E+04</value>
+      <value>3,00E+02</value>
+      <value>1,00E+04</value>
+      <value>1,70E+04</value>
+      <value>4,00E+02</value>
+      <value>1,00E+02</value>
+      <value>1,80E+04</value>
+      <value>1,70E+04</value>
+      <value>1,80E+04</value>
+      <value>6,20E+04</value>
+      <value>1,17E+04</value>
+      <value>1,20E+03</value>
+      <value>1,70E+05</value>
+      <value>3,00E+04</value>
+      <value>1,50E+03</value>
+      <value>1,20E+03</value>
+      <value>1,30E+04</value>
+      <value>&lt;50</value>
+      <value>2,00E+05</value>
+      <value>1,80E+04</value>
+    </column>
+    <column name="COP">
+      <value>15,9</value>
+      <value>5,8</value>
+      <value>19,4</value>
+      <value>31,4</value>
+      <value>27,2</value>
+      <value>11,5</value>
+      <value>254,2</value>
+      <value>9,1</value>
+      <value>69,0</value>
+      <value>65,9</value>
+      <value>441,4</value>
+      <value>446,5</value>
+      <value>137,3</value>
+      <value>157,9</value>
+      <value>112,6</value>
+      <value>388,2</value>
+      <value>3,3</value>
+      <value>133,5</value>
+      <value>3,0</value>
+      <value>8,5</value>
+      <value>7,8</value>
+      <value>2,5</value>
+      <value>0,9</value>
+      <value>6,7</value>
+      <value>129,7</value>
+      <value>142,7</value>
+      <value>5,3</value>
+      <value>34,4</value>
+      <value>191,1</value>
+      <value>255,0</value>
+      <value>704,3</value>
+      <value>766,6</value>
+      <value>582,5</value>
+      <value>2347,3</value>
+      <value>579,8</value>
+      <value>387,1</value>
+      <value>313,3</value>
+      <value>188,8</value>
+      <value>413,0</value>
+      <value>249,0</value>
+      <value>176,0</value>
+      <value>1644,0</value>
+      <value>285,0</value>
+      <value>91,0</value>
+      <value>82,0</value>
+      <value>56,0</value>
+      <value>20,2</value>
+      <value>20,5</value>
+      <value>32,3</value>
+      <value>18,2</value>
+      <value>221</value>
+      <value>5,0</value>
+      <value>7,2</value>
+      <value>&lt;1</value>
+      <value>10,0</value>
+      <value>6,7</value>
+      <value>&lt;1</value>
+      <value>64,6</value>
+      <value>35,4</value>
+      <value>106,2</value>
+      <value>91,3</value>
+      <value>32,2</value>
+      <value>30,8</value>
+      <value>34,4</value>
+      <value>23,2</value>
+      <value>36,1</value>
+      <value>13,3</value>
+      <value>3,5</value>
+      <value>410</value>
+      <value>8,3</value>
+      <value>4080</value>
+      <value>920</value>
+      <value>0,9</value>
+      <value>2,0</value>
+      <value>230</value>
+      <value>79,0</value>
+      <value>70,8</value>
+      <value>31,4</value>
+      <value>83,0</value>
+      <value>37,8</value>
+      <value>12,9</value>
+      <value>42,1</value>
+      <value>39,0</value>
+      <value>36,6</value>
+      <value>&lt;0,1</value>
+      <value>&lt;0,1</value>
+      <value>4,3</value>
+      <value>9,5</value>
+      <value>3,71</value>
+      <value>280,0</value>
+      <value>206,7</value>
+      <value>820,0</value>
+      <value>98,46</value>
+      <value>69,1</value>
+      <value>183,4</value>
+      <value>84,5</value>
+      <value>864,4</value>
+      <value>29,0</value>
+      <value>9,4</value>
+      <value>31,3</value>
+      <value>9,0</value>
+      <value>85,5</value>
+      <value>75,0</value>
+    </column>
+    <column name="ETHYLCOP">
+      <value>9,3</value>
+      <value>&lt;1</value>
+      <value>10,1</value>
+      <value>11,5</value>
+      <value>132,9</value>
+      <value>22,6</value>
+      <value>32,9</value>
+      <value>1,8</value>
+      <value>15,6</value>
+      <value>17,8</value>
+      <value>118,2</value>
+      <value>391,7</value>
+      <value>53,7</value>
+      <value>21,1</value>
+      <value>18,3</value>
+      <value>298,6</value>
+      <value>10,1</value>
+      <value>79,0</value>
+      <value>40,9</value>
+      <value>12,4</value>
+      <value>10,4</value>
+      <value>14,0</value>
+      <value>16,2</value>
+      <value>33,8</value>
+      <value>154,6</value>
+      <value>892,9</value>
+      <value>16,1</value>
+      <value>85,9</value>
+      <value>164,8</value>
+      <value>&lt;0,1</value>
+      <value>111,8</value>
+      <value>310,8</value>
+      <value>293,5</value>
+      <value>495,7</value>
+      <value>2984,9</value>
+      <value>1047,6</value>
+      <value>402,0</value>
+      <value>11000,8</value>
+      <value>36222,0</value>
+      <value>33784,0</value>
+      <value>3773,0</value>
+      <value>7618,0</value>
+      <value>7557,0</value>
+      <value>7609,0</value>
+      <value>5115,0</value>
+      <value>7255,0</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>1,6</value>
+      <value>1,8</value>
+      <value>48,0</value>
+      <value>765,0</value>
+      <value>313,3</value>
+      <value>175,0</value>
+      <value>17,8</value>
+      <value>10,1</value>
+      <value>19,4</value>
+      <value>15,0</value>
+      <value>15</value>
+      <value>15,7</value>
+      <value>15,4</value>
+      <value>16,6</value>
+      <value>14,6</value>
+      <value>83,4</value>
+      <value>34,9</value>
+      <value>3220</value>
+      <value>85,2</value>
+      <value>5320</value>
+      <value>4530</value>
+      <value>58,3</value>
+      <value>17,1</value>
+      <value>1470</value>
+      <value>9,3</value>
+      <value>&lt;1</value>
+      <value>&lt;0,1</value>
+      <value>27,8</value>
+      <value>8,5</value>
+      <value>2,7</value>
+      <value>10,6</value>
+      <value>74,3</value>
+      <value>105,71</value>
+      <value>&lt;0,1</value>
+      <value>&lt;0,1</value>
+      <value>24,3</value>
+      <value>45,3</value>
+      <value>36,57</value>
+      <value>2526,6</value>
+      <value>346,7</value>
+      <value>2192,5</value>
+      <value>324,61</value>
+      <value>44,3</value>
+      <value>120,3</value>
+      <value>168,0</value>
+      <value>268,7</value>
+      <value>4359,0</value>
+      <value>&lt;1</value>
+      <value>16,3</value>
+      <value>58,2</value>
+      <value>43,8</value>
+      <value>680,0</value>
+    </column>
+    <column name="EPICOP">
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>0,7</value>
+      <value>0,9</value>
+      <value>49,6</value>
+      <value>&lt;0,1</value>
+      <value>13,3</value>
+      <value>1,6</value>
+      <value>12,0</value>
+      <value>9,4</value>
+      <value>82,7</value>
+      <value>126,5</value>
+      <value>26,0</value>
+      <value>19,8</value>
+      <value>7,6</value>
+      <value>107,2</value>
+      <value>2,7</value>
+      <value>48,5</value>
+      <value>1,5</value>
+      <value>7,1</value>
+      <value>11,0</value>
+      <value>0,9</value>
+      <value>0,9</value>
+      <value>34,4</value>
+      <value>51,7</value>
+      <value>220,3</value>
+      <value>1,1</value>
+      <value>19,2</value>
+      <value>49,6</value>
+      <value>87,2</value>
+      <value>128,2</value>
+      <value>360,9</value>
+      <value>498,7</value>
+      <value>2035,0</value>
+      <value>301,0</value>
+      <value>3,5</value>
+      <value>265,9</value>
+      <value>3816,9</value>
+      <value>1820,0</value>
+      <value>1794,0</value>
+      <value>206,0</value>
+      <value>6232,0</value>
+      <value>1739,0</value>
+      <value>316,0</value>
+      <value>1328,0</value>
+      <value>919,0</value>
+      <value>1,4</value>
+      <value>1,0</value>
+      <value>26,0</value>
+      <value>1,6</value>
+      <value>3</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>5,0</value>
+      <value>6,7</value>
+      <value>&lt;1</value>
+      <value>2,7</value>
+      <value>1,2</value>
+      <value>3,6</value>
+      <value>0,5</value>
+      <value>9,8</value>
+      <value>2,5</value>
+      <value>4,5</value>
+      <value>5,8</value>
+      <value>&lt;1</value>
+      <value>12,8</value>
+      <value>&lt;0,1</value>
+      <value>530</value>
+      <value>9,6</value>
+      <value>3220</value>
+      <value>1700</value>
+      <value>1,5</value>
+      <value>&lt;0,1</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>7,71</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>0,6</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>1,0</value>
+      <value>4,16</value>
+      <value>&lt;1</value>
+      <value>&lt;1</value>
+      <value>6,85</value>
+      <value>500</value>
+      <value>266,66</value>
+      <value>1382,5</value>
+      <value>220</value>
+      <value>29,0</value>
+      <value>76,0</value>
+      <value>18,6</value>
+      <value>448,6</value>
+      <value>331,0</value>
+      <value>&lt;1</value>
+      <value>10,5</value>
+      <value>6,7</value>
+      <value>3,25</value>
+      <value>325</value>
+    </column>
+    <column name="CHOL">
+      <value>17,2</value>
+      <value>12,1</value>
+      <value>17,3</value>
+      <value>28,7</value>
+      <value>2884,4</value>
+      <value>&lt;0,1</value>
+      <value>63,3</value>
+      <value>3,5</value>
+      <value>33,4</value>
+      <value>29,8</value>
+      <value>323,8</value>
+      <value>300,0</value>
+      <value>73,8</value>
+      <value>66,7</value>
+      <value>45,0</value>
+      <value>385,4</value>
+      <value>12,8</value>
+      <value>114,7</value>
+      <value>113,5</value>
+      <value>15,0</value>
+      <value>23,2</value>
+      <value>75,8</value>
+      <value>81,2</value>
+      <value>507,3</value>
+      <value>1986,2</value>
+      <value>626,6</value>
+      <value>1452,0</value>
+      <value>55,9</value>
+      <value>192,8</value>
+      <value>184,1</value>
+      <value>401,1</value>
+      <value>536,7</value>
+      <value>486,4</value>
+      <value>1285,3</value>
+      <value>814,4</value>
+      <value>395,3</value>
+      <value>494,5</value>
+      <value>4206,2</value>
+      <value>5434,0</value>
+      <value>4965,0</value>
+      <value>633,0</value>
+      <value>4003,0</value>
+      <value>1629,0</value>
+      <value>770,0</value>
+      <value>703,0</value>
+      <value>940,0</value>
+      <value>11,6</value>
+      <value>&lt;1</value>
+      <value>23,0</value>
+      <value>8,0</value>
+      <value>12,0</value>
+      <value>5,0</value>
+      <value>7,4</value>
+      <value>&lt;1</value>
+      <value>150,0</value>
+      <value>66,6</value>
+      <value>40,0</value>
+      <value>30,8</value>
+      <value>26,4</value>
+      <value>43,2</value>
+      <value>37,6</value>
+      <value>24,2</value>
+      <value>22,8</value>
+      <value>25,8</value>
+      <value>18,3</value>
+      <value>27,0</value>
+      <value>58,7</value>
+      <value>17,7</value>
+      <value>2460,0</value>
+      <value>76,7</value>
+      <value>6600,0</value>
+      <value>5190,0</value>
+      <value>&lt;0,1</value>
+      <value>10,7</value>
+      <value>760,0</value>
+      <value>27,0</value>
+      <value>17,5</value>
+      <value>21,71</value>
+      <value>85,5</value>
+      <value>31,0</value>
+      <value>6,9</value>
+      <value>29,7</value>
+      <value>38,3</value>
+      <value>28,9</value>
+      <value>169,0</value>
+      <value>19,2</value>
+      <value>105,3</value>
+      <value>205,5</value>
+      <value>164,85</value>
+      <value>746,7</value>
+      <value>386,66</value>
+      <value>1885,0</value>
+      <value>251,53</value>
+      <value>98,8</value>
+      <value>168,4</value>
+      <value>1129,4</value>
+      <value>594,0</value>
+      <value>431,0</value>
+      <value>0,6</value>
+      <value>25,9</value>
+      <value>35,6</value>
+      <value>60,0</value>
+      <value>310,0</value>
+    </column>
+    <column name="DiE">
+      <value>0,98</value>
+      <value>0,95</value>
+      <value>0,99</value>
+      <value>0,94</value>
+      <value>0,96</value>
+      <value>0,94</value>
+      <value>0,98</value>
+      <value>0,99</value>
+      <value>0,92</value>
+      <value>0,97</value>
+      <value>0,92</value>
+      <value>0,94</value>
+      <value>0,98</value>
+      <value>0,95</value>
+      <value>0,95</value>
+      <value>0,99</value>
+      <value>0,97</value>
+      <value>0,88</value>
+      <value>0,98</value>
+      <value>0,98</value>
+      <value>0,80</value>
+      <value>0,87</value>
+      <value>0,91</value>
+      <value>0,96</value>
+      <value>0,98</value>
+      <value>0,91</value>
+      <value>0,97</value>
+      <value>0,90</value>
+      <value>0,81</value>
+      <value>0,88</value>
+      <value>0,90</value>
+      <value>0,89</value>
+      <value>0,84</value>
+      <value>0,87</value>
+      <value>0,90</value>
+      <value>0,89</value>
+      <value>0,88</value>
+      <value>0,95</value>
+      <value>0,96</value>
+      <value>0,78</value>
+      <value>0,80</value>
+      <value>0,98</value>
+      <value>0,97</value>
+      <value>0,96</value>
+      <value>0,95</value>
+      <value>0,94</value>
+      <value>0,90</value>
+      <value>0,44</value>
+      <value>0,98</value>
+      <value>0,90</value>
+      <value>0,95</value>
+      <value>0,96</value>
+      <value>0,96</value>
+      <value>0,76</value>
+      <value>0,31</value>
+      <value>0,09</value>
+      <value>0,55</value>
+      <value>0,92</value>
+      <value>0,98</value>
+      <value>0,96</value>
+      <value>0,92</value>
+      <value>0,96</value>
+      <value>0,90</value>
+      <value>0,93</value>
+      <value>0,90</value>
+      <value>0,98</value>
+      <value>0,92</value>
+      <value>0,81</value>
+      <value>0,94</value>
+      <value>0,94</value>
+      <value>0,83</value>
+      <value>0,82</value>
+      <value>0,87</value>
+      <value>0,82</value>
+      <value>0,63</value>
+      <value>0,95</value>
+      <value>0,96</value>
+      <value>0,98</value>
+      <value>0,90</value>
+      <value>0,98</value>
+      <value>0,95</value>
+      <value>0,96</value>
+      <value>0,79</value>
+      <value>0,99</value>
+      <value>0,94</value>
+      <value>0,91</value>
+      <value>0,86</value>
+      <value>0,82</value>
+      <value>0,89</value>
+      <value>0,50</value>
+      <value>0,76</value>
+      <value>0,84</value>
+      <value>0,94</value>
+      <value>0,98</value>
+      <value>0,92</value>
+      <value>0,98</value>
+      <value>0,90</value>
+      <value>0,96</value>
+      <value>0,94</value>
+      <value>0,96</value>
+      <value>0,87</value>
+      <value>0,93</value>
+      <value>0,75</value>
+    </column>
+    <column name="FM-FS">
+      <value>71</value>
+      <value>71</value>
+      <value>50</value>
+      <value>46</value>
+      <value>54</value>
+      <value>67</value>
+      <value>58</value>
+      <value>71</value>
+      <value>46</value>
+      <value>71</value>
+      <value>83</value>
+      <value>79</value>
+      <value>67</value>
+      <value>88</value>
+      <value>50</value>
+      <value>46</value>
+      <value>54</value>
+      <value>67</value>
+      <value>67</value>
+      <value>75</value>
+      <value>79</value>
+      <value>70</value>
+      <value>67</value>
+      <value>100</value>
+      <value>67</value>
+      <value>54</value>
+      <value>71</value>
+      <value>92</value>
+      <value>96</value>
+      <value>83</value>
+      <value>96</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>96</value>
+      <value>88</value>
+      <value>88</value>
+      <value>83</value>
+      <value>42</value>
+      <value>4</value>
+      <value>46</value>
+      <value>67</value>
+      <value>67</value>
+      <value>67</value>
+      <value>50</value>
+      <value>88</value>
+      <value>83</value>
+      <value>94</value>
+      <value>75</value>
+      <value>88</value>
+      <value>83</value>
+      <value>71</value>
+      <value>67</value>
+      <value>67</value>
+      <value>90</value>
+      <value>0</value>
+      <value>25</value>
+      <value>58</value>
+      <value>67</value>
+      <value>67</value>
+      <value>88</value>
+      <value>79</value>
+      <value>79</value>
+      <value>71</value>
+      <value>79</value>
+      <value>71</value>
+      <value>17</value>
+      <value>8</value>
+      <value>9</value>
+      <value>42</value>
+      <value>29</value>
+      <value>67</value>
+      <value>11</value>
+      <value>79</value>
+      <value>29</value>
+      <value>88</value>
+      <value>58</value>
+      <value>92</value>
+      <value>50</value>
+      <value>83</value>
+      <value>83</value>
+      <value>79</value>
+      <value>96</value>
+      <value>75</value>
+      <value>67</value>
+      <value>54</value>
+      <value>83</value>
+      <value>54</value>
+      <value>88</value>
+      <value>12</value>
+      <value>42</value>
+      <value>54</value>
+      <value>42</value>
+      <value>75</value>
+      <value>25</value>
+      <value>42</value>
+      <value>96</value>
+      <value>67</value>
+      <value>58</value>
+      <value>75</value>
+      <value>7</value>
+      <value>29</value>
+      <value>50</value>
+    </column>
+    <column name="Hir">
+      <value>4</value>
+      <value>13</value>
+      <value>13</value>
+      <value>38</value>
+      <value>25</value>
+      <value>21</value>
+      <value>25</value>
+      <value>25</value>
+      <value>38</value>
+      <value>13</value>
+      <value>25</value>
+      <value>4</value>
+      <value>33</value>
+      <value>4</value>
+      <value>17</value>
+      <value>33</value>
+      <value>8</value>
+      <value>29</value>
+      <value>8</value>
+      <value>12</value>
+      <value>4</value>
+      <value>0</value>
+      <value>0</value>
+      <value>88</value>
+      <value>4</value>
+      <value>0</value>
+      <value>8</value>
+      <value>0</value>
+      <value>0</value>
+      <value>4</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>4</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>4</value>
+      <value>33</value>
+      <value>42</value>
+      <value>42</value>
+      <value>4</value>
+      <value>4</value>
+      <value>12</value>
+      <value>0</value>
+      <value>0</value>
+      <value>4</value>
+      <value>0</value>
+      <value>21</value>
+      <value>4</value>
+      <value>4</value>
+      <value>4</value>
+      <value>4</value>
+      <value>33</value>
+      <value>0</value>
+      <value>96</value>
+      <value>75</value>
+      <value>29</value>
+      <value>12</value>
+      <value>17</value>
+      <value>12</value>
+      <value>17</value>
+      <value>12</value>
+      <value>25</value>
+      <value>8</value>
+      <value>17</value>
+      <value>17</value>
+      <value>46</value>
+      <value>0</value>
+      <value>25</value>
+      <value>21</value>
+      <value>25</value>
+      <value>56</value>
+      <value>12</value>
+      <value>4</value>
+      <value>12</value>
+      <value>17</value>
+      <value>0</value>
+      <value>12</value>
+      <value>8</value>
+      <value>4</value>
+      <value>12</value>
+      <value>0</value>
+      <value>12</value>
+      <value>17</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>4</value>
+      <value>79</value>
+      <value>54</value>
+      <value>29</value>
+      <value>25</value>
+      <value>17</value>
+      <value>63</value>
+      <value>8</value>
+      <value>0</value>
+      <value>0</value>
+      <value>17</value>
+      <value>17</value>
+      <value>29</value>
+      <value>54</value>
+      <value>54</value>
+    </column>
+    <column name="DiC">
+      <value>0,97</value>
+      <value>0,94</value>
+      <value>0,90</value>
+      <value>0,94</value>
+      <value>0,93</value>
+      <value>1,00</value>
+      <value>0,99</value>
+      <value>0,99</value>
+      <value>0,93</value>
+      <value>0,99</value>
+      <value>0,98</value>
+      <value>0,99</value>
+      <value>0,99</value>
+      <value>0,97</value>
+      <value>0,98</value>
+      <value>0,96</value>
+      <value>0,81</value>
+      <value>1,00</value>
+      <value>0,94</value>
+      <value>0,98</value>
+      <value>0,86</value>
+      <value>0,92</value>
+      <value>0,86</value>
+      <value>0,96</value>
+      <value>0,98</value>
+      <value>0,91</value>
+      <value>0,92</value>
+      <value>0,98</value>
+      <value>0,99</value>
+      <value>0,99</value>
+      <value>0,94</value>
+      <value>0,98</value>
+      <value>0,97</value>
+      <value>0,98</value>
+      <value>0,98</value>
+      <value>0,99</value>
+      <value>0,97</value>
+      <value>0,93</value>
+      <value>0,85</value>
+      <value>0,91</value>
+      <value>0,88</value>
+      <value>0,96</value>
+      <value>0,98</value>
+      <value>0,92</value>
+      <value>0,86</value>
+      <value>0,94</value>
+      <value>0,98</value>
+      <value>1,00</value>
+      <value>0,98</value>
+      <value>0,83</value>
+      <value>0,99</value>
+      <value>0,91</value>
+      <value>0,83</value>
+      <value>0,91</value>
+      <value>0,61</value>
+      <value>16,00</value>
+      <value>8,00</value>
+      <value>0,97</value>
+      <value>0,96</value>
+      <value>0,97</value>
+      <value>0,98</value>
+      <value>0,95</value>
+      <value>0,96</value>
+      <value>0,95</value>
+      <value>0,98</value>
+      <value>0,99</value>
+      <value>0,87</value>
+      <value>0,87</value>
+      <value>0,96</value>
+      <value>0,88</value>
+      <value>0,92</value>
+      <value>0,88</value>
+      <value>0,41</value>
+      <value>0,55</value>
+      <value>0,38</value>
+      <value>0,75</value>
+      <value>0,99</value>
+      <value>0,95</value>
+      <value>0,92</value>
+      <value>0,99</value>
+      <value>0,94</value>
+      <value>0,96</value>
+      <value>0,89</value>
+      <value>0,97</value>
+      <value>0,95</value>
+      <value>0,93</value>
+      <value>0,90</value>
+      <value>0,92</value>
+      <value>0,95</value>
+      <value>0,88</value>
+      <value>0,79</value>
+      <value>0,89</value>
+      <value>0,69</value>
+      <value>0,94</value>
+      <value>0,97</value>
+      <value>0,91</value>
+      <value>0,95</value>
+      <value>0,96</value>
+      <value>0,96</value>
+      <value>0,90</value>
+      <value>0,86</value>
+      <value>0,86</value>
+      <value>0,84</value>
+    </column>
+    <column name="ECP">
+      <value>71</value>
+      <value>88</value>
+      <value>96</value>
+      <value>79</value>
+      <value>96</value>
+      <value>83</value>
+      <value>75</value>
+      <value>92</value>
+      <value>100</value>
+      <value>83</value>
+      <value>83</value>
+      <value>79</value>
+      <value>92</value>
+      <value>96</value>
+      <value>88</value>
+      <value>100</value>
+      <value>83</value>
+      <value>100</value>
+      <value>100</value>
+      <value>92</value>
+      <value>100</value>
+      <value>92</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>92</value>
+      <value>92</value>
+      <value>96</value>
+      <value>96</value>
+      <value>96</value>
+      <value>96</value>
+      <value>100</value>
+      <value>92</value>
+      <value>96</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>75</value>
+      <value>67</value>
+      <value>50</value>
+      <value>54</value>
+      <value>63</value>
+      <value>58</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>1</value>
+      <value>1</value>
+      <value>88</value>
+      <value>83</value>
+      <value>92</value>
+      <value>83</value>
+      <value>83</value>
+      <value>96</value>
+      <value>79</value>
+      <value>89</value>
+      <value>92</value>
+      <value>96</value>
+      <value>100</value>
+      <value>88</value>
+      <value>92</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>33</value>
+      <value>88</value>
+      <value>46</value>
+      <value>42</value>
+      <value>96</value>
+      <value>75</value>
+      <value>96</value>
+      <value>75</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>92</value>
+      <value>100</value>
+      <value>92</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+      <value>50</value>
+      <value>96</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+    </column>
+    <column name="ECT">
+      <value>46</value>
+      <value>45</value>
+      <value>75</value>
+      <value>0</value>
+      <value>50</value>
+      <value>67</value>
+      <value>58</value>
+      <value>83</value>
+      <value>100</value>
+      <value>75</value>
+      <value>71</value>
+      <value>58</value>
+      <value>92</value>
+      <value>63</value>
+      <value>75</value>
+      <value>92</value>
+      <value>63</value>
+      <value>88</value>
+      <value>100</value>
+      <value>75</value>
+      <value>79</value>
+      <value>67</value>
+      <value>71</value>
+      <value>88</value>
+      <value>92</value>
+      <value>100</value>
+      <value>92</value>
+      <value>96</value>
+      <value>92</value>
+      <value>92</value>
+      <value>96</value>
+      <value>96</value>
+      <value>96</value>
+      <value>96</value>
+      <value>100</value>
+      <value>92</value>
+      <value>92</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>67</value>
+      <value>67</value>
+      <value>50</value>
+      <value>54</value>
+      <value>58</value>
+      <value>58</value>
+      <value>92</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+      <value>100</value>
+      <value>88</value>
+      <value>83</value>
+      <value>92</value>
+      <value>83</value>
+      <value>83</value>
+      <value>96</value>
+      <value>79</value>
+      <value>86</value>
+      <value>92</value>
+      <value>96</value>
+      <value>100</value>
+      <value>88</value>
+      <value>92</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>25</value>
+      <value>88</value>
+      <value>42</value>
+      <value>33</value>
+      <value>88</value>
+      <value>71</value>
+      <value>96</value>
+      <value>75</value>
+      <value>100</value>
+      <value>100</value>
+      <value>100</value>
+      <value>92</value>
+      <value>100</value>
+      <value>92</value>
+      <value>100</value>
+      <value>100</value>
+      <value>96</value>
+      <value>67</value>
+      <value>83</value>
+      <value>88</value>
+      <value>96</value>
+      <value>100</value>
+      <value>50</value>
+      <value>96</value>
+      <value>100</value>
+      <value>96</value>
+      <value>100</value>
+    </column>
+    <column name="GA17">
+      <value>1,90E+05</value>
+      <value>9,70E+04</value>
+      <value>1,20E+04</value>
+      <value>2,40E+05</value>
+      <value>1,40E+05</value>
+      <value>2,40E+04</value>
+      <value>7,20E+05</value>
+      <value>4,30E+04</value>
+      <value>1,20E+04</value>
+      <value>5,60E+04</value>
+      <value>6,10E+04</value>
+      <value>3,00E+04</value>
+      <value>9,00E+03</value>
+      <value>2,20E+04</value>
+      <value>5,50E+04</value>
+      <value>&lt;20</value>
+      <value>2,50E+02</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>1,40E+02</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>2,52E+03</value>
+      <value>3,82E+03</value>
+      <value>2,34E+04</value>
+      <value>1,61E+04</value>
+      <value>1,90E+04</value>
+      <value>2,25E+04</value>
+      <value>1,60E+04</value>
+      <value>1,07E+04</value>
+      <value>1,40E+04</value>
+      <value>&lt;100</value>
+      <value>&lt;100</value>
+      <value>&lt;100</value>
+      <value>&lt;100</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>1,90E+03</value>
+      <value>1,70E+03</value>
+      <value>1,60E+04</value>
+      <value>2,70E+04</value>
+      <value>9,80E+03</value>
+      <value>7,00E+02</value>
+      <value>1,40E+03</value>
+      <value>&lt; 50</value>
+      <value>&lt; 50</value>
+      <value>&lt;100</value>
+      <value>&lt;100</value>
+      <value>1,60E+03</value>
+      <value>1,10E+03</value>
+      <value>2,00E+03</value>
+      <value>1,80E+03</value>
+      <value>3,50E+03</value>
+      <value>8,20E+03</value>
+      <value>7,70E+03</value>
+      <value>2,90E+03</value>
+      <value>2,10E+03</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>5,30E+04</value>
+      <value>5,00E+04</value>
+      <value>1,30E+04</value>
+      <value>4,40E+04</value>
+      <value>3,50E+03</value>
+      <value>1,40E+04</value>
+      <value>6,70E+03</value>
+      <value>1,90E+05</value>
+      <value>6,00E+03</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>&lt;50</value>
+      <value>1,40E+05</value>
+      <value>&lt;20</value>
+      <value>&lt;20</value>
+      <value>1,25E+04</value>
+      <value>&lt;50</value>
+      <value>2,20E+03</value>
+      <value>5,80E+03</value>
+      <value>&lt;50</value>
+      <value>1,70E+04</value>
+      <value>&lt;50</value>
+    </column>
+    <column name="Dentium">
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+    </column>
+    <column name="Adolescentis">
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+    </column>
+    <column name="DA">
+      <value>2</value>
+      <value>2</value>
+      <value>1</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>1</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>2</value>
+      <value>1</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>2</value>
+      <value>2</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>2</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>2</value>
+      <value>2</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>2</value>
+      <value>2</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>2</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>2</value>
+      <value>2</value>
+      <value>0</value>
+      <value>2</value>
+      <value>0</value>
+      <value>2</value>
+      <value>2</value>
+      <value>0</value>
+      <value>2</value>
+      <value>1</value>
+    </column>
+    <column name="HBSA-Y">
+      <value>1,86E+07</value>
+      <value>3,63E+06</value>
+      <value>3,72E+06</value>
+      <value>8,91E+06</value>
+      <value>5,01E+06</value>
+      <value>5,89E+05</value>
+      <value>8,91E+05</value>
+      <value>6,31E+06</value>
+      <value>5,89E+05</value>
+      <value>2,00E+07</value>
+      <value>1,00E+05</value>
+      <value>5,01E+05</value>
+      <value>5,50E+06</value>
+      <value>1,00E+06</value>
+      <value>7,08E+06</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 39810</value>
+      <value>&lt;100000</value>
+      <value>8,91E+05</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 39810</value>
+      <value>&lt;  2951</value>
+      <value>&lt;  1548816</value>
+      <value>&lt;  870963</value>
+      <value>2,00E+05</value>
+      <value>5,01E+05</value>
+      <value>2,95E+05</value>
+      <value>4,68E+05</value>
+      <value>2,81E+06</value>
+      <value>8,00E+05</value>
+      <value>1,13E+07</value>
+      <value>8,13E+05</value>
+      <value>8,67E+05</value>
+      <value>6,33E+05</value>
+      <value>6,10E+05</value>
+      <value>5,00E+06</value>
+      <value>1,03E+06</value>
+      <value>&lt;5E+04</value>
+      <value>&lt;5E+05</value>
+      <value>&lt;5E+04</value>
+      <value>&lt;1E+04</value>
+      <value>&lt;4,35E+04</value>
+      <value>6,45E+04</value>
+      <value>&lt;3,33E+05</value>
+      <value>&lt;3,33E+05</value>
+      <value>7,83E+05</value>
+      <value>5,80E+06</value>
+      <value>3,30E+06</value>
+      <value>1,80E+06</value>
+      <value>2,10E+06</value>
+      <value>2,40E+06</value>
+      <value>4,09E+06</value>
+      <value>2,80E+06</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt;10000</value>
+      <value>&lt;10000</value>
+      <value>1,80E+06</value>
+      <value>8,10E+05</value>
+      <value>4,20E+05</value>
+      <value>7,20E+05</value>
+      <value>1,30E+06</value>
+      <value>6,10E+06</value>
+      <value>2,10E+06</value>
+      <value>3,40E+06</value>
+      <value>3,00E+06</value>
+      <value>&lt;10E+04</value>
+      <value>&lt;10E+05</value>
+      <value>&lt;10E+05</value>
+      <value>&lt;10E+07</value>
+      <value>&lt;10E+07</value>
+      <value>&lt;10E+07</value>
+      <value>&lt;10E+07</value>
+      <value>&lt;10E+08</value>
+      <value>&lt;10E+07</value>
+      <value>7,00E+05</value>
+      <value>1,98E+07</value>
+      <value>1,87E+07</value>
+      <value>3,62E+07</value>
+      <value>1,40E+08</value>
+      <value>3,50E+05</value>
+      <value>1,05E+06</value>
+      <value>5,72E+06</value>
+      <value>1,11E+07</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>&lt; 10000</value>
+      <value>1,35E+07</value>
+      <value>&lt;147910</value>
+      <value>3,98E+05</value>
+      <value>7,50E+05</value>
+      <value>&lt;3,33E+05</value>
+      <value>1,60E+06</value>
+      <value>1,10E+06</value>
+      <value>&lt;10E+05</value>
+      <value>4,67E+06</value>
+      <value>&lt; 10000</value>
+    </column>
+    <column name="HBSA-T">
+      <value>3,89E+07</value>
+      <value>7,76E+06</value>
+      <value>9,33E+06</value>
+      <value>2,69E+07</value>
+      <value>8,91E+06</value>
+      <value>5,13E+07</value>
+      <value>1,00E+07</value>
+      <value>3,39E+07</value>
+      <value>3,16E+06</value>
+      <value>7,94E+07</value>
+      <value>3,98E+05</value>
+      <value>2,00E+06</value>
+      <value>1,70E+07</value>
+      <value>7,94E+06</value>
+      <value>2,00E+07</value>
+      <value>2,09E+06</value>
+      <value>3,98E+06</value>
+      <value>6,03E+07</value>
+      <value>2,75E+07</value>
+      <value>1,20E+06</value>
+      <value>3,98E+07</value>
+      <value>2,95E+05</value>
+      <value>4,90E+07</value>
+      <value>2,75E+07</value>
+      <value>1,45E+07</value>
+      <value>2,95E+07</value>
+      <value>3,24E+07</value>
+      <value>2,09E+07</value>
+      <value>5,81E+06</value>
+      <value>1,62E+06</value>
+      <value>3,13E+07</value>
+      <value>3,91E+06</value>
+      <value>1,77E+06</value>
+      <value>1,80E+06</value>
+      <value>2,22E+06</value>
+      <value>2,00E+07</value>
+      <value>2,78E+06</value>
+      <value>2,05E+06</value>
+      <value>8,50E+06</value>
+      <value>2,05E+06</value>
+      <value>8,64E+05</value>
+      <value>7,87E+06</value>
+      <value>4,94E+06</value>
+      <value>1,80E+07</value>
+      <value>6,80E+07</value>
+      <value>3,70E+06</value>
+      <value>3,50E+07</value>
+      <value>1,10E+07</value>
+      <value>3,00E+07</value>
+      <value>1,40E+07</value>
+      <value>1,90E+07</value>
+      <value>1,46E+07</value>
+      <value>7,55E+06</value>
+      <value>5,10E+06</value>
+      <value>6,60E+06</value>
+      <value>7,00E+04</value>
+      <value>3,64E+04</value>
+      <value>2,60E+07</value>
+      <value>7,90E+06</value>
+      <value>2,20E+06</value>
+      <value>1,85E+06</value>
+      <value>2,70E+06</value>
+      <value>9,70E+07</value>
+      <value>6,40E+06</value>
+      <value>8,50E+06</value>
+      <value>5,20E+06</value>
+      <value>2,30E+06</value>
+      <value>7,10E+06</value>
+      <value>2,20E+07</value>
+      <value>3,80E+09</value>
+      <value>1,30E+09</value>
+      <value>1,50E+09</value>
+      <value>3,90E+09</value>
+      <value>5,40E+09</value>
+      <value>2,50E+09</value>
+      <value>1,17E+08</value>
+      <value>7,00E+07</value>
+      <value>1,10E+08</value>
+      <value>4,67E+07</value>
+      <value>1,75E+08</value>
+      <value>1,75E+06</value>
+      <value>5,83E+06</value>
+      <value>6,53E+06</value>
+      <value>1,63E+07</value>
+      <value>1,10E+08</value>
+      <value>3,73E+07</value>
+      <value>1,09E+07</value>
+      <value>9,57E+07</value>
+      <value>1,63E+07</value>
+      <value>1,28E+08</value>
+      <value>2,22E+09</value>
+      <value>8,17E+08</value>
+      <value>4,32E+08</value>
+      <value>1,38E+07</value>
+      <value>1,48E+07</value>
+      <value>2,29E+07</value>
+      <value>3,16E+06</value>
+      <value>2,77E+07</value>
+      <value>1,40E+07</value>
+      <value>2,60E+06</value>
+      <value>1,30E+07</value>
+      <value>1,52E+07</value>
+      <value>3,27E+03</value>
+    </column>
+  </dataset>
+  <agings>
+    <column name="SOMCPH">
+      <aging position="0.0">
+        <trial>
+          <value key="0">6.41</value>
+          <value key="48">6.41</value>
+          <value key="192">6.08</value>
+          <value key="336">6</value>
+        </trial>
+        <trial>
+          <value key="0">5.23</value>
+          <value key="48">5.15</value>
+          <value key="144">5.15</value>
+          <value key="288">4.32</value>
+          <value key="360">4.11</value>
+        </trial>
+        <trial>
+          <value key="0">4.4</value>
+          <value key="24">4.2</value>
+          <value key="72">3.9</value>
+          <value key="168">3.6</value>
+        </trial>
+        <trial>
+          <value key="0">5.3</value>
+          <value key="24">5.1</value>
+          <value key="48">4.9</value>
+          <value key="72">4.7</value>
+          <value key="96">4.6</value>
+          <value key="168">4.4</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">5.4</value>
+          <value key="24">4.8</value>
+          <value key="72">4.1</value>
+          <value key="168">3.1</value>
+          <value key="144">2.9</value>
+          <value key="192">2.7</value>
+          <value key="48">4.3</value>
+          <value key="96">3.8</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="RYC2056">
+      <aging position="0.0">
+        <trial>
+          <value key="0">6.62</value>
+          <value key="48">6.6</value>
+          <value key="144">6.15</value>
+          <value key="288">6</value>
+          <value key="360">5.8</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">6.32</value>
+          <value key="24">6.15</value>
+          <value key="72">5.67</value>
+          <value key="168">4.18</value>
+          <value key="144">5.26</value>
+          <value key="192">2.6</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="HiR">
+      <aging position="0.0">
+        <trial>
+          <value key="0">29.1</value>
+          <value key="120">12.5</value>
+          <value key="168">33.3</value>
+          <value key="48">29.1</value>
+          <value key="96">45.8</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">12.5</value>
+          <value key="24">25</value>
+          <value key="72">45.8</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="HBSA.Y">
+      <aging position="0.0">
+        <trial>
+          <value key="0">5.7</value>
+          <value key="24">4</value>
+          <value key="48">3.67</value>
+          <value key="72">3.18</value>
+        </trial>
+        <trial>
+          <value key="0">5.3</value>
+          <value key="24">4.38</value>
+          <value key="48">3.6</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">5.3</value>
+          <value key="24">4.38</value>
+          <value key="48">1.5</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="HBSA.T">
+      <aging position="0.0">
+        <trial>
+          <value key="0">6.4</value>
+          <value key="24">4.9</value>
+          <value key="48">4.6</value>
+          <value key="72">4.18</value>
+        </trial>
+        <trial>
+          <value key="0">5.9</value>
+          <value key="24">4.84</value>
+          <value key="48">4.3</value>
+          <value key="120">3.3</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">5.9</value>
+          <value key="24">4.84</value>
+          <value key="48">1.5</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="GA17">
+      <aging position="0.0">
+        <trial>
+          <value key="0">3.5</value>
+          <value key="24">3.5</value>
+          <value key="48">3.5</value>
+          <value key="72">3</value>
+          <value key="96">2.7</value>
+          <value key="168">2.6</value>
+        </trial>
+        <trial>
+          <value key="0">3.6</value>
+          <value key="24">3.6</value>
+          <value key="48">3.5</value>
+          <value key="72">3.1</value>
+          <value key="96">3</value>
+          <value key="168">2.6</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">3.5</value>
+          <value key="24">2.8</value>
+          <value key="48">2.4</value>
+          <value key="72">2</value>
+          <value key="96">1.7</value>
+          <value key="168">1.4</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FRNAPH.IV">
+      <aging position="0.0">
+        <trial>
+          <value key="0">3.3</value>
+          <value key="48">2.99</value>
+          <value key="144">2.32</value>
+          <value key="288">1.31</value>
+          <value key="360">0.81</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">3</value>
+          <value key="24">1.9</value>
+          <value key="48">1.6</value>
+          <value key="72">1.3</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FRNAPH.III">
+      <aging position="0.0">
+        <trial>
+          <value key="0">3.7</value>
+          <value key="48">3.27</value>
+          <value key="144">2.4</value>
+          <value key="288">1.11</value>
+          <value key="360">0.46</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">3.6</value>
+          <value key="24">2.7</value>
+          <value key="48">2</value>
+          <value key="72">1.9</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FRNAPH.II">
+      <aging position="0.0">
+        <trial>
+          <value key="0">4</value>
+          <value key="48">3.85</value>
+          <value key="144">3.54</value>
+          <value key="288">3.08</value>
+          <value key="360">2.85</value>
+        </trial>
+        <trial>
+          <value key="0">3.8</value>
+          <value key="48">3.66</value>
+          <value key="144">3.37</value>
+          <value key="288">2.94</value>
+          <value key="360">2.72</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">3.5</value>
+          <value key="24">3.3</value>
+          <value key="48">2.5</value>
+          <value key="72">2.4</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FRNAPH.I">
+      <aging position="0.0">
+        <trial>
+          <value key="0">3.2</value>
+          <value key="48">3.15</value>
+          <value key="144">3.04</value>
+          <value key="288">2.88</value>
+          <value key="360">2.8</value>
+        </trial>
+        <trial>
+          <value key="0">3.1</value>
+          <value key="48">3.04</value>
+          <value key="144">2.93</value>
+          <value key="288">2.75</value>
+          <value key="360">2.67</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">3.1</value>
+          <value key="24">2.5</value>
+          <value key="48">2.3</value>
+          <value key="72">2.3</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FRNAPH">
+      <aging position="0.0">
+        <trial>
+          <value key="0">6.67</value>
+          <value key="48">6.65</value>
+          <value key="192">5.97</value>
+          <value key="336">5.15</value>
+        </trial>
+        <trial>
+          <value key="0">4.98</value>
+          <value key="48">4.92</value>
+          <value key="144">4.83</value>
+          <value key="288">3.94</value>
+          <value key="360">3.72</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">4.66</value>
+          <value key="24">3.57</value>
+          <value key="72">2.3</value>
+          <value key="168">0.5</value>
+          <value key="144">2</value>
+          <value key="192">0.5</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FMFS">
+      <aging position="0.0">
+        <trial>
+          <value key="0">54.1</value>
+          <value key="120">66.6</value>
+          <value key="168">50</value>
+          <value key="48">54.1</value>
+          <value key="96">50</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">66.6</value>
+          <value key="24">58.3</value>
+          <value key="72">54.1</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FE">
+      <aging position="0.0">
+        <trial>
+          <value key="0">4.29</value>
+          <value key="24">4.04</value>
+          <value key="48">4.18</value>
+          <value key="72">3.88</value>
+          <value key="168">2.4</value>
+          <value key="240">2.62</value>
+          <value key="264">3.23</value>
+          <value key="144">4.56</value>
+          <value key="288">4.28</value>
+          <value key="360">3.23</value>
+          <value key="96">3.82</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">4.7</value>
+          <value key="24">3.7</value>
+          <value key="48">3.13</value>
+          <value key="72">2.41</value>
+          <value key="168">3.04</value>
+          <value key="192">2.23</value>
+          <value key="144">3.17</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="FC">
+      <aging position="0.0">
+        <trial>
+          <value key="0">5.45</value>
+          <value key="24">5.4</value>
+          <value key="48">5.34</value>
+          <value key="72">5.11</value>
+          <value key="168">3.74</value>
+          <value key="216">3.7</value>
+          <value key="240">3.65</value>
+        </trial>
+        <trial>
+          <value key="0">5.54</value>
+          <value key="24">5.48</value>
+          <value key="48">5.43</value>
+          <value key="120">3.91</value>
+          <value key="144">3.86</value>
+          <value key="168">3.7</value>
+          <value key="265">3.53</value>
+        </trial>
+        <trial>
+          <value key="0">6.41</value>
+          <value key="48">5.61</value>
+          <value key="192">4.85</value>
+          <value key="336">4.04</value>
+        </trial>
+        <trial>
+          <value key="0">5.99</value>
+          <value key="48">5.95</value>
+          <value key="144">5</value>
+          <value key="288">4.91</value>
+          <value key="360">3.6</value>
+        </trial>
+        <trial>
+          <value key="0">6.18</value>
+          <value key="48">6.32</value>
+          <value key="72">5.76</value>
+          <value key="96">4.92</value>
+          <value key="168">5.06</value>
+          <value key="216">3.6</value>
+        </trial>
+        <trial>
+          <value key="0">5.47</value>
+          <value key="24">5.25</value>
+          <value key="48">5.49</value>
+          <value key="72">4.94</value>
+          <value key="96">4.77</value>
+          <value key="168">3.08</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">5.61</value>
+          <value key="24">4.81</value>
+          <value key="48">5.34</value>
+          <value key="72">3.58</value>
+          <value key="168">2.3</value>
+        </trial>
+        <trial>
+          <value key="0">5.38</value>
+          <value key="24">5.23</value>
+          <value key="72">4.2</value>
+          <value key="144">3.59</value>
+          <value key="192">2.41</value>
+        </trial>
+        <trial>
+          <value key="0">6.59</value>
+          <value key="24">5.6</value>
+          <value key="72">4.2</value>
+          <value key="144">3.97</value>
+          <value key="168">2.8</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="ECP">
+      <aging position="0.0">
+        <trial>
+          <value key="0">16.6</value>
+          <value key="120">12.5</value>
+          <value key="168">12.5</value>
+          <value key="48">20.8</value>
+          <value key="96">25</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">8.3</value>
+          <value key="24">33.3</value>
+          <value key="72">41.6</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="DiE">
+      <aging position="0.0">
+        <trial>
+          <value key="0">0.982</value>
+          <value key="120">0.982</value>
+          <value key="168">0.946</value>
+          <value key="48">0.938</value>
+          <value key="96">0.906</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">0.946</value>
+          <value key="24">0.949</value>
+          <value key="72">0.815</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="DiC">
+      <aging position="0.0">
+        <trial>
+          <value key="0">0.982</value>
+          <value key="120">0.953</value>
+          <value key="168">0.913</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">0.866</value>
+          <value key="72">0.917</value>
+          <value key="96">0.964</value>
+          <value key="48">0.946</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="CNFC">
+      <aging position="0.0">
+        <trial>
+          <value key="0">45.8</value>
+          <value key="120">45.8</value>
+          <value key="168">45.8</value>
+          <value key="48">37.5</value>
+          <value key="96">33.3</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">25</value>
+          <value key="24">58.3</value>
+          <value key="72">66.6</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="CL">
+      <aging position="0.0">
+        <trial>
+          <value key="0">4.08</value>
+          <value key="24">4.04</value>
+          <value key="48">4</value>
+          <value key="72">3.95</value>
+          <value key="168">3.65</value>
+          <value key="216">3.15</value>
+          <value key="240">3</value>
+        </trial>
+        <trial>
+          <value key="0">3.9</value>
+          <value key="24">3.78</value>
+          <value key="48">3.6</value>
+          <value key="144">3.56</value>
+          <value key="168">3.48</value>
+          <value key="264">2.95</value>
+        </trial>
+        <trial>
+          <value key="0">5.73</value>
+          <value key="48">5.64</value>
+          <value key="192">5.58</value>
+          <value key="336">5.46</value>
+        </trial>
+        <trial>
+          <value key="0">5.34</value>
+          <value key="48">5.15</value>
+          <value key="144">5</value>
+          <value key="288">5</value>
+          <value key="360">4.69</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">4.38</value>
+          <value key="24">4.32</value>
+          <value key="48">3.38</value>
+          <value key="72">4.08</value>
+          <value key="144">3</value>
+          <value key="192">2.78</value>
+          <value key="168">2.78</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="BE">
+      <aging position="0.0">
+        <trial>
+          <value key="0">6.94</value>
+          <value key="24">6.12</value>
+          <value key="48">5.34</value>
+          <value key="72">6.11</value>
+          <value key="168">6.36</value>
+          <value key="216">6.29</value>
+          <value key="240">5.81</value>
+          <value key="120">5.87</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">6.91</value>
+          <value key="24">6.05</value>
+          <value key="48">5.99</value>
+          <value key="72">4.52</value>
+        </trial>
+      </aging>
+    </column>
+    <column name="BA">
+      <aging position="0.0">
+        <trial>
+          <value key="0">6.94</value>
+          <value key="24">6.12</value>
+          <value key="48">5.34</value>
+          <value key="72">6.11</value>
+          <value key="168">6.36</value>
+          <value key="216">6.29</value>
+          <value key="240">5.81</value>
+          <value key="120">5.87</value>
+        </trial>
+      </aging>
+      <aging position="0.5">
+        <trial>
+          <value key="0">6.91</value>
+          <value key="24">6.05</value>
+          <value key="48">5.99</value>
+          <value key="72">4.52</value>
+        </trial>
+      </aging>
+    </column>
+  </agings>
+</request>

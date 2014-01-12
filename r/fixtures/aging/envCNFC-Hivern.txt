@@ -1,0 +1,9 @@
+# Envelliment CNFC Hivern (2 assajos)
+
+0    63.3
+120  45.8
+168  45.8
+
+0    45.8 
+48   37.5 
+96   33.3 

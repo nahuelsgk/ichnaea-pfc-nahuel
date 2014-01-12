@@ -15,13 +15,14 @@ public class DatasetReaderTest {
 
     @Test
     public void testFile() throws IOException {
-    	InputStream in = getClass().getClassLoader().getResourceAsStream("test.csv");
-    	CsvDatasetReader reader = new CsvDatasetReader();
-    	reader.setSeparator(';');
-    	Dataset dataset = reader.read(new InputStreamReader(in));
-    	
-    	assertEquals(27, dataset.columnNames().size());
-    	
-    	dataset.get("RYC2056");
+        InputStream in = getClass().getClassLoader().getResourceAsStream(
+                "test.csv");
+        CsvDatasetReader reader = new CsvDatasetReader();
+        reader.setSeparator(';');
+        Dataset dataset = reader.read(new InputStreamReader(in));
+
+        assertEquals(27, dataset.columnNames().size());
+
+        dataset.get("RYC2056");
     }
 }

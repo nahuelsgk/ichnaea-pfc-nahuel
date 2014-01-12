@@ -1,0 +1,10 @@
+# Envelliment DiC Estiu (2 assajos)
+# ULL que les corbes pujen i no baixen !!!
+
+0    0.819
+72   0.917
+96   0.949
+
+0    0.866
+48   0.946
+96   0.964
