@@ -47,6 +47,7 @@ public class BuildModelsProcessClient extends Client {
     String mRequestQueue;
     String[] mResponseQueues;
     String mResponseExchange;
+    boolean mVerbose = false;
 
     public abstract class CommandReader {
 
@@ -66,6 +67,9 @@ public class BuildModelsProcessClient extends Client {
                 line = in.readLine();
                 if (line == null) {
                     break;
+                }
+                if(mVerbose) {
+                    getLogger().info(line);
                 }
                 updated = false;
                 Matcher m = regexPercent.matcher(line);
@@ -124,6 +128,10 @@ public class BuildModelsProcessClient extends Client {
         mRequestQueue = requestQueue;
         mResponseQueues = responseQueues;
         mResponseExchange = responseExchange;
+    }
+
+    public void setVerbose(boolean verbose) {
+        mVerbose = verbose;
     }
 
     protected void sendResponse(BuildModelsResponse response, String replyTo)

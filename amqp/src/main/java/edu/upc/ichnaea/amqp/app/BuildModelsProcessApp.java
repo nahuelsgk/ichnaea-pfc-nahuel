@@ -7,6 +7,7 @@ import edu.upc.ichnaea.amqp.cli.IntegerOption;
 import edu.upc.ichnaea.amqp.cli.InvalidOptionException;
 import edu.upc.ichnaea.amqp.cli.Options;
 import edu.upc.ichnaea.amqp.cli.StringOption;
+import edu.upc.ichnaea.amqp.cli.BooleanOption;
 import edu.upc.ichnaea.amqp.client.BuildModelsProcessClient;
 import edu.upc.ichnaea.shell.ShellFactory;
 import edu.upc.ichnaea.shell.ShellInterface;
@@ -20,6 +21,7 @@ public class BuildModelsProcessApp extends App {
     String mRequestQueue = "ichnaea.build-models.request";
     String mResponseQueues = "ichnaea.build-models.response";
     String mResponseExchange = "ichnaea.build-models.response";
+    boolean mVerbose = false;
 
     public static void main(String[] args) {
         main(args, new BuildModelsProcessApp());
@@ -68,6 +70,13 @@ public class BuildModelsProcessApp extends App {
             }
         }.setDefaultValue(mResponseExchange).setDescription(
                 "The exchange to send responses."));
+        options.add(new BooleanOption("verbose") {
+            @Override
+            public void setValue(boolean value) {
+                mVerbose = value;
+            }
+        }.setDefaultValue(mVerbose).setDescription(
+                "Print the command output."));
         return options;
     }
 
@@ -83,6 +92,7 @@ public class BuildModelsProcessApp extends App {
         mClient = new BuildModelsProcessClient(shell, mScriptPath,
                 mRequestQueue, mResponseQueues.split(","), mResponseExchange,
                 mFork);
+        mClient.setVerbose(mVerbose);
         mClient.setup(mConnection.createChannel());
     }
 

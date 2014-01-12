@@ -40,7 +40,7 @@ This will build a file in `target/ichnaea-amqp.jar`.
 
 To run the basic build-models:process consumer:
 
-    ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh
+    ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh --debug
 
 To run the basic build-models:request publisher with a fake request:
 
