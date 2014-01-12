@@ -1,3 +1,9 @@
+local({r <- getOption("repos")
+       r["CRAN"] <- "http://cran.r-project.org" 
+       options(repos=r)
+})
+
+install.packages("gtools")
 install.packages("kernlab")
 install.packages("rvmbinary.tar.gz")
 install.packages("boot")

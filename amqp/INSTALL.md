@@ -48,7 +48,7 @@ To run the basic build-models:request publisher with a fake request:
 
 To run the basic build-models:request publisher with a real request:
 
-    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv
+    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv --output=/tmp/output.zip
 
 Use the `-h` command line argument to get all the available options.
 

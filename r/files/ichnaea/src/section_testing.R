@@ -24,15 +24,11 @@ if (MEGAVALIDATION) {
   processed_test_data <- process( data_MV )$data
   
   print(cbind(data_MV$FRNAPH.III, processed_test_data$FRNAPH.III))
-  dfkjdfkjdkfjfkj
+
 } else {
-  # reading test data
-  if ( DEBUG ){ print( "Reading data from CSV file..." ) }
-  test_data <- read( "../data/cyprus_test.csv" , "," , ";" , "CLASS" )
-  
   # preparing test data: dropping useless variables, variable conversion and threshold correction
-  if ( DEBUG ){ print( "Preparing data..." ) }
-  prepared_test_data <- prepare( test_data )
+  if ( DEBUG ){ print( "Reading preparing data..." ) }
+  prepared_test_data <- read( "../data_objects/cyprus_test.csv" , "," , ";" , "CLASS" )
 
   # processing test data: applying log10 and creating derived variables
   if ( DEBUG ){ print( "Processing data..." ) }

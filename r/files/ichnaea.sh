@@ -11,6 +11,7 @@ OUTFILE=""
 ICHNAEADIR=""
 FAKE=""
 INSTALL=""
+MEGAVALIDATION=""
 SECTION="1"
 SEASON="Hivern"
 DEBUG=""
@@ -26,7 +27,7 @@ function PRINT_LOG {
 	echo "$1" 
 }
 
-OPTS=`getopt -o scfoid -l "aging:,output:,fake:,install,debug" -- "$@"`
+OPTS=`getopt -o scfoid -l "aging:,output:,fake:,install,debug,megavalidation" -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -39,6 +40,7 @@ do
     case "$1" in
     	-i|--install) INSTALL="1"; shift 1;;
     	-d|--debug) DEBUG="1"; shift 1;;
+		-m|--megavalidation) MEGAVALIDATION="1"; shift 1;;
         -a|--aging) AGING="$2"; shift 2;;
         -o|--output) OUTFILE="$2"; shift 2;;
         -f|--fake) FAKE="$2"; shift 2;;
@@ -156,10 +158,16 @@ then
 		PRINT_LOG "building dataset..."
 		RESULT=`REXEC section_dataset_building.R`
 		PRINT_LOG "building models..."
-		REXEC section_models_building.R $SEASON
+
+		if [ "$MEGAVALIDATION" == "" ]
+		then
+			REXEC section_models_building.R $SEASON
+		else
+			REXEC megavalidation.R
+		fi
 
 		ZIPFILE=$TMPDIR/build_models.zip
-		zip -j $ZIPFILE $TMPDIR/data_objects/section_models_*.Rdata
+		zip -j $ZIPFILE $TMPDIR/data_objects/*
 
 		if [ "$OUTFILE" == "" ]
 		then
