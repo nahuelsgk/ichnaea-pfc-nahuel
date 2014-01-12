@@ -15,6 +15,7 @@ MEGAVALIDATION=""
 SECTION="1"
 SEASON="Hivern"
 DEBUG=""
+VERBOSE=""
 RBIN=`which R`
 
 function USAGE {
@@ -24,10 +25,10 @@ function USAGE {
 }
 
 function PRINT_LOG {
-	echo "$1" 
+	echo -e "$1" 
 }
 
-OPTS=`getopt -o scfoid -l "aging:,output:,fake:,install,debug,megavalidation" -- "$@"`
+OPTS=`getopt -o scfoid -l "aging:,output:,fake:,install,debug,verbose,megavalidation" -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -40,6 +41,7 @@ do
     case "$1" in
     	-i|--install) INSTALL="1"; shift 1;;
     	-d|--debug) DEBUG="1"; shift 1;;
+		-v|--verbose) VERBOSE="1"; shift 1;;
 		-m|--megavalidation) MEGAVALIDATION="1"; shift 1;;
         -a|--aging) AGING="$2"; shift 2;;
         -o|--output) OUTFILE="$2"; shift 2;;
@@ -55,6 +57,11 @@ done
 shift $(($OPTIND - 1))
 
 DATAFILE="$1"
+
+if [ "$DEBUG" == "1" ]
+then
+	VERBOSE="1"
+fi
 
 function TIME_START {
 	STARTTIME=`date +%s`
@@ -79,16 +86,19 @@ function TIME_END {
 
 function REXEC {
 	ERRFILE=`tempfile`
+	OUTFILE=`tempfile`
 	RFILE="$1"
 	shift
-	if [ "$DEBUG" == "1" ]
+	CMD="$RBIN --vanilla --no-readline --slave --args $@"
+	if [ "$VERBOSE" == "1" ]
 	then
-		$RBIN --vanilla --no-readline --slave --args $@ < "$RFILE" | tee $ERRFILE 2>&1
+		$CMD < $RFILE > >(tee $OUTFILE) 2> >(tee $ERRFILE >&2)
 	else
-		$RBIN --vanilla --no-readline --quiet --slave --args $@ < "$RFILE" 2> $ERRFILE
+		$CMD < $RFILE > $OUTFILE 2> $ERRFILE
 	fi
-    ERROR=`cat $ERRFILE`
-    rm $ERRFILE
+    ERR=`cat $ERRFILE`
+    OUT=`cat $OUTFILE`
+    rm $OUTFILE $ERRFILE
 }
 
 function CALC {
@@ -156,7 +166,13 @@ then
 		pushd $TMPDIR/src > /dev/null	
 
 		PRINT_LOG "building dataset..."
-		RESULT=`REXEC section_dataset_building.R`
+		REXEC section_dataset_building.R
+		if [ "$ERR" != "" ]
+		then
+			PRINT_LOG "error building dataset:"
+			PRINT_LOG "$ERR"
+			exit -1
+		fi
 		PRINT_LOG "building models..."
 
 		if [ "$MEGAVALIDATION" == "" ]
@@ -164,6 +180,12 @@ then
 			REXEC section_models_building.R $SEASON
 		else
 			REXEC megavalidation.R
+		fi
+		if [ "$ERR" != "" ]
+		then
+			PRINT_LOG "error building models:"
+			PRINT_LOG "$ERR"
+			exit -1
 		fi
 
 		ZIPFILE=$TMPDIR/build_models.zip

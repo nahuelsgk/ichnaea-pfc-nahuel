@@ -15,7 +15,11 @@ main jar once.
     sudo apt-get install r-base-core
     
 * install required R modules
-    ../r/files/ichnaea.sh --install
+    sudo ../r/files/ichnaea.sh --install --debug
+
+* test ichnaea running it from the command line
+
+    ../r/files/ichnaea.sh --debug --aging ../r/fixtures/aging --output /tmp/output.zip ../r/fixtures/cyprus.csv
 
 #### Setup required programms and libraries
 
@@ -40,7 +44,7 @@ This will build a file in `target/ichnaea-amqp.jar`.
 
 To run the basic build-models:process consumer:
 
-    ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh --debug
+    ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh --verbose
 
 To run the basic build-models:request publisher with a fake request:
 
