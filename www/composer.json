@@ -23,6 +23,7 @@
         "jquery/jquery": "1.9.*",
         "friendsofsymfony/rest-bundle": "dev-master",
         "jms/serializer-bundle": "dev-master",
+        "ichnaea/amqp": "dev-master",
 	"friendsofsymfony/user-bundle": "~2.0@dev",
 	"doctrine/doctrine-fixtures-bundle": "dev-master"
     },
@@ -59,6 +60,17 @@
                 "version": "1.9.1",
                 "dist": {
                     "url": "http://code.jquery.com/jquery-1.9.1.js",
+                    "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ichnaea/amqp",
+                "version": "dev-master",
+                "dist": {
+                    "url": "../amqp/php",
                     "type": "file"
                 }
             }

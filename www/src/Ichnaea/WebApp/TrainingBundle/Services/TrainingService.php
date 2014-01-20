@@ -2,8 +2,8 @@
 namespace Ichnaea\WebApp\TrainingBundle\Services;
 
 //@TODO: change autoload forms
-require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload.php';
-
+#require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload.php';
+require_once __DIR__.'/../../../../../../amqp/php/vendor/autoload.php';
 use Doctrine\ORM\EntityManager as SymfonyEM;
 use Ichnaea\WebApp\TrainingBundle\Entity\Training;
 use Ichnaea\WebApp\TrainingBundle\Model\TrainingValidation;

@@ -64,7 +64,17 @@ class TrainingController extends Controller
         		'IchnaeaWebAppTrainingBundle::form.html.twig', 
         		array(
         				"matrix_id" => $matrix_id, 
-        				"n_columns" => $n_columns)
+        				"n_columns" => $n_columns,
+        				"errors" => NULL,
+        				"name" => NULL,
+        				"description" => NULL,
+        				"k1"		     => NULL,
+        				"k2"		     => NULL,
+        				"best_models"    => NULL,
+        				"min_size"       => NULL,
+        				"max_size"       => NULL,
+        				"type_of_search" => NULL,
+        	)
         );
     }
     
