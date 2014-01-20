@@ -7,7 +7,7 @@ popd > /dev/null
 
 AGING=""
 DATAFILE=""
-OUTFILE=""
+OBJECTS=""
 ICHNAEADIR=""
 FAKE=""
 INSTALL=""
@@ -16,11 +16,12 @@ SECTION="1"
 SEASON="Hivern"
 DEBUG=""
 VERBOSE=""
+SECTION="build"
 RBIN=`which R`
 
 function USAGE {
 	echo "Ichnaea wrapper by Miguel Ibero <miguel@ibero.me>"
-	echo "usage: $0 --install --debug --aging=path/to/aging [--output=file.zip] [--fake=duration:interval] data.csv"
+	echo "usage: $0 --debug --verbose --aging=path/to/aging [--objects=file.zip] [intall|build data.csv|test data_test.csv|fake duration:interval]"
 	exit 0
 }
 
@@ -28,7 +29,7 @@ function PRINT_LOG {
 	echo -e "$1" 
 }
 
-OPTS=`getopt -o scfoid -l "aging:,output:,fake:,install,debug,verbose,megavalidation" -- "$@"`
+OPTS=`getopt -o scfoidvm -l "aging:,objects:,fake:,install,debug,verbose,megavalidation" -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -44,7 +45,7 @@ do
 		-v|--verbose) VERBOSE="1"; shift 1;;
 		-m|--megavalidation) MEGAVALIDATION="1"; shift 1;;
         -a|--aging) AGING="$2"; shift 2;;
-        -o|--output) OUTFILE="$2"; shift 2;;
+        -o|--objects) OBJECTS="$2"; shift 2;;
         -f|--fake) FAKE="$2"; shift 2;;
         --) shift; break;;
 		-*) PRINT_LOG "invalid option $1"; USAGE; shift; break;;
@@ -56,7 +57,8 @@ done
 
 shift $(($OPTIND - 1))
 
-DATAFILE="$1"
+SECTION="$1"
+DATAFILE="$2"
 
 if [ "$DEBUG" == "1" ]
 then
@@ -107,127 +109,131 @@ function CALC {
 
 TIME_START
 
-if [ "$FAKE" == "" ]
+if [ "$SECTION" == "build"]
 then
-
-	if [ "$ICHNAEADIR" == "" ]
+	if [ "$FAKE" == "" ]
 	then
-		ICHNAEADIR="$SCRIPTPATH/ichnaea"
-	fi
 
-	if [ "$RBIN" == "" ]
-	then
-		PRINT_LOG "binary R executable was not found on the path"
-		exit
-	fi
+		if [ "$ICHNAEADIR" == "" ]
+		then
+			ICHNAEADIR="$SCRIPTPATH/ichnaea"
+		fi
 
-	if [ "$INSTALL" == "1" ]
-	then
-		PRINT_LOG "installing required R modules"
-		pushd $ICHNAEADIR/src > /dev/null
-		REXEC install.R
-		popd > /dev/null
+		if [ "$RBIN" == "" ]
+		then
+			PRINT_LOG "binary R executable was not found on the path"
+			exit
+		fi
+
+		if [ "$INSTALL" == "1" ]
+		then
+			PRINT_LOG "installing required R modules"
+			pushd $ICHNAEADIR/src > /dev/null
+			REXEC install.R
+			popd > /dev/null
+		else
+
+			if [ "$DATAFILE" == "" ]
+			then
+				PRINT_LOG "no input file specified"
+				USAGE
+			fi
+
+			if [ "$AGING" == "" ]
+			then
+				PRINT_LOG "no aging specified"
+				USAGE
+			fi
+			if [ ! -d "$AGING" ]
+			then
+				PRINT_LOG "aging '$AGING' is not a directory"
+				USAGE	
+			fi
+
+			if [ ! -f "$DATAFILE" ]
+			then
+				PRINT_LOG "could not read data file $DATAFILE"
+				USAGE
+			fi
+
+			TMPDIR=`mktemp -d`
+			mkdir -p $TMPDIR
+			if [ "$DEBUG" == "1" ]
+			then
+				PRINT_LOG "working in temp directory $TMPDIR"
+			fi
+			cp -r $ICHNAEADIR/* $TMPDIR
+			mkdir -p $TMPDIR/data
+			mkdir -p $TMPDIR/data_objects
+			cp -r $AGING $TMPDIR/data/aging
+			cp $DATAFILE $TMPDIR/data/cyprus.csv
+			pushd $TMPDIR/src > /dev/null	
+
+			PRINT_LOG "building dataset..."
+			REXEC section_dataset_building.R
+			if [ "$ERR" != "" ]
+			then
+				PRINT_LOG "error building dataset:"
+				PRINT_LOG "$ERR"
+				exit -1
+			fi
+			PRINT_LOG "building models..."
+
+			if [ "$MEGAVALIDATION" == "" ]
+			then
+				REXEC section_models_building.R $SEASON
+			else
+				REXEC megavalidation.R
+			fi
+			if [ "$ERR" != "" ]
+			then
+				PRINT_LOG "error building models:"
+				PRINT_LOG "$ERR"
+				exit -1
+			fi
+
+			ZIPFILE=$TMPDIR/build_models.zip
+			zip -j $ZIPFILE $TMPDIR/data_objects/*
+
+			if [ "$OUTFILE" == "" ]
+			then
+				cat $ZIPFILE
+			else
+				cp $ZIPFILE $OUTFILE
+			fi
+
+			popd > /dev/null
+
+			if [ "$DEBUG" == "" ]
+			then
+				rm -rf $TMPDIR
+			fi
+		fi
 	else
-
-		if [ "$DATAFILE" == "" ]
+		FAKE_DURATION=`echo $FAKE | sed -e "s/\(.*\):.*/\1/g"`
+		FAKE_INTERVAL=`echo $FAKE | sed -e "s/.*:\(.*\)/\1/g"`
+		
+		if ! [[ "$FAKE_DURATION" =~ ^[0-9.]+$ || "$FAKE_INTERVAL" =~ ^[0-9.]+$ ]]
 		then
-			PRINT_LOG "no input file specified"
+			PRINT_LOG "invalid fake duration and interval"
 			USAGE
 		fi
-
-		if [ "$AGING" == "" ]
-		then
-			PRINT_LOG "no aging specified"
-			USAGE
-		fi
-		if [ ! -d "$AGING" ]
-		then
-			PRINT_LOG "aging '$AGING' is not a directory"
-			USAGE	
-		fi
-
-		if [ ! -f "$DATAFILE" ]
-		then
-			PRINT_LOG "could not read data file $DATAFILE"
-			USAGE
-		fi
-
-		TMPDIR=`mktemp -d`
-		mkdir -p $TMPDIR
-		if [ "$DEBUG" == "1" ]
-		then
-			PRINT_LOG "working in temp directory $TMPDIR"
-		fi
-		cp -r $ICHNAEADIR/* $TMPDIR
-		mkdir -p $TMPDIR/data
-		mkdir -p $TMPDIR/data_objects
-		cp -r $AGING $TMPDIR/data/aging
-		cp $DATAFILE $TMPDIR/data/cyprus.csv
-		pushd $TMPDIR/src > /dev/null	
-
-		PRINT_LOG "building dataset..."
-		REXEC section_dataset_building.R
-		if [ "$ERR" != "" ]
-		then
-			PRINT_LOG "error building dataset:"
-			PRINT_LOG "$ERR"
-			exit -1
-		fi
-		PRINT_LOG "building models..."
-
-		if [ "$MEGAVALIDATION" == "" ]
-		then
-			REXEC section_models_building.R $SEASON
-		else
-			REXEC megavalidation.R
-		fi
-		if [ "$ERR" != "" ]
-		then
-			PRINT_LOG "error building models:"
-			PRINT_LOG "$ERR"
-			exit -1
-		fi
-
-		ZIPFILE=$TMPDIR/build_models.zip
-		zip -j $ZIPFILE $TMPDIR/data_objects/*
-
-		if [ "$OUTFILE" == "" ]
-		then
-			cat $ZIPFILE
-		else
-			cp $ZIPFILE $OUTFILE
-		fi
-
-		popd > /dev/null
-
-		if [ "$DEBUG" == "" ]
-		then
-			rm -rf $TMPDIR
-		fi
+		FAKE_CURRENT="0"
+		PRINT_LOG "starting fake run of $FAKE_DURATION seconds in $FAKE_INTERVAL intervals"
+		FAKE_ENDTIME=`date -d "$FAKE_DURATION seconds"`
+		while [[ $(CALC "$FAKE_CURRENT<$FAKE_DURATION") == "1" ]]
+		do
+			sleep $FAKE_INTERVAL
+			FAKE_CURRENT=`CALC "$FAKE_CURRENT + $FAKE_INTERVAL"`
+			FAKE_PERCENT=`CALC "100 * $FAKE_CURRENT / $FAKE_DURATION"`
+			PRINT_LOG "----"
+			TIME_CURRENT
+			PRINT_LOG "percent: $FAKE_PERCENT%"
+			PRINT_LOG "finish: $FAKE_ENDTIME"
+			PRINT_LOG "----"
+		done
 	fi
 else
-	FAKE_DURATION=`echo $FAKE | sed -e "s/\(.*\):.*/\1/g"`
-	FAKE_INTERVAL=`echo $FAKE | sed -e "s/.*:\(.*\)/\1/g"`
-	
-	if ! [[ "$FAKE_DURATION" =~ ^[0-9.]+$ || "$FAKE_INTERVAL" =~ ^[0-9.]+$ ]]
-	then
-		PRINT_LOG "invalid fake duration and interval"
-		USAGE
-	fi
-	FAKE_CURRENT="0"
-	PRINT_LOG "starting fake run of $FAKE_DURATION seconds in $FAKE_INTERVAL intervals"
-	FAKE_ENDTIME=`date -d "$FAKE_DURATION seconds"`
-	while [[ $(CALC "$FAKE_CURRENT<$FAKE_DURATION") == "1" ]]
-	do
-		sleep $FAKE_INTERVAL
-		FAKE_CURRENT=`CALC "$FAKE_CURRENT + $FAKE_INTERVAL"`
-		FAKE_PERCENT=`CALC "100 * $FAKE_CURRENT / $FAKE_DURATION"`
-		PRINT_LOG "----"
-		TIME_CURRENT
-		PRINT_LOG "percent: $FAKE_PERCENT%"
-		PRINT_LOG "finish: $FAKE_ENDTIME"
-		PRINT_LOG "----"
-	done
 fi
 
 TIME_END

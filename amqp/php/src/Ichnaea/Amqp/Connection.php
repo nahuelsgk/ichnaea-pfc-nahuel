@@ -6,8 +6,12 @@ use PhpAmqpLib\Connection\AMQPConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
+use Ichnaea\Amqp\Model\TestingRequest;
 use Ichnaea\Amqp\Xml\BuildModelsRequestWriter;
 use Ichnaea\Amqp\Xml\BuildModelsResponseReader;
+use Ichnaea\Amqp\Xml\TestingRequestWriter;
+use Ichnaea\Amqp\Xml\TestingResponseReader;
+use Ichnaea\Amqp\Mime\MimeMultipart;
 
 /**
  * The Ichnaea Amqp connection
@@ -16,6 +20,9 @@ use Ichnaea\Amqp\Xml\BuildModelsResponseReader;
  * * `build-models.request.queue`: the name of the build models request queue
  * * `build-models.request.exchange`: the name of the build models request exchange
  * * `build-models.response.queue`: the name of the build models response queue
+ * * `testing.request.queue`: the name of the testing request queue
+ * * `testing.request.exchange`: the name of the testing request exchange
+ * * `testing.response.queue`: the name of the testing response queue 
  *
  * Sending requests can be done in the http server, but listening for responses
  * should be done in a script, since it will block the main thread.
@@ -27,6 +34,9 @@ use Ichnaea\Amqp\Xml\BuildModelsResponseReader;
  * $amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($db) {
  *     print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
  * });
+ * $amqp->listenForTestingResponse(function (TestingResponse $resp) use ($db) {
+ *     print "Received testing response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
+ * }); 
  * $amqp->wait();
  * $amqp->close();
  * ```
@@ -89,6 +99,9 @@ class Connection
             "build-models.request.queue"	=> "ichnaea.build-models.request",
             "build-models.request.exchange"	=> "ichnaea.build-models.request",
             "build-models.response.queue"	=> "ichnaea.build-models.response",
+            "testing.request.queue"         => "ichnaea.testing.request",
+            "testing.request.exchange"      => "ichnaea.testing.request",
+            "testing.response.queue"        => "ichnaea.testing.response",            
         ), $this->opts, $options);
     }
 
@@ -125,10 +138,16 @@ class Connection
         }
         $this->conn = new AMQPConnection($this->url['host'], $this->url['port'], $this->url['user'], $this->url['pass'], $this->url['path']);
         $this->ch = $this->conn->channel();
+        
         $this->ch->queue_declare($this->opts['build-models.request.queue'], false, false, false, null);
         $this->ch->exchange_declare($this->opts['build-models.request.exchange'], "direct", true);
         $this->ch->queue_bind($this->opts['build-models.request.queue'], $this->opts['build-models.request.exchange'], "");
         $this->ch->queue_declare($this->opts['build-models.response.queue'], false, false, false, null);
+
+        $this->ch->queue_declare($this->opts['testing.request.queue'], false, false, false, null);
+        $this->ch->exchange_declare($this->opts['testing.request.exchange'], "direct", true);
+        $this->ch->queue_bind($this->opts['testing.request.queue'], $this->opts['testing.request.exchange'], "");
+        $this->ch->queue_declare($this->opts['testing.response.queue'], false, false, false, null);        
     }
 
     /**
@@ -146,9 +165,30 @@ class Connection
         $msg = new AMQPMessage($xml, array('content_type' => 'text/xml'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['build-models.request.exchange']);
-
         return $xml;
     }
+
+    /**
+     * Sends a testing request to the server
+     *
+     * @param TestingRequest $req the request
+     */
+    public function sendTestingRequest(TestingRequest $req)
+    {
+        if (!$this->ch) {
+            throw new \UnexpectedValueException("Connection is not open");
+        }
+        $xml = new TestingRequestWriter();
+        $xml->build($req);
+        $mime = new MimeMultipart();
+        $mime->addPart($xml);
+        $mime->addPart($req->getData());
+        $msg = new AMQPMessage($mime, array('content_type' => 'text/xml'));
+        $msg->set("reply_to", $req->getId());
+        $this->ch->basic_publish($msg, $this->opts['testing.request.exchange']);
+
+        return $xml;
+    }    
 
     /**
      * Sends a request to the server
@@ -159,6 +199,8 @@ class Connection
     {
         if ($model instanceof BuildModelsRequest) {
             return $this->sendBuildModelsRequest($model);
+        } else if($model instanceof TestingRequest) {
+            return $this->sendTestingRequest($model);
         }
     }
 
@@ -181,6 +223,26 @@ class Connection
                 }
         });
     }
+
+    /**
+     * Listens for testing responses from the server. The callback will recieve
+     * the response object as a parameter
+     *
+     * @param \Closure $callback the callback called when a response arrives
+     */
+    public function listenForTestingResponse(\Closure $callback)
+    {
+        $this->ch->basic_consume($this->opts['testing.response.queue'], "",
+            false, false, false, false, function (AMQPMessage $msg) use ($callback) {
+                $reader = new TestingResponseReader();
+                $resp = $reader->read($msg->body);
+                if ($resp) {
+                    call_user_func($callback, $resp);
+                     $msg->delivery_info['channel']->
+                        basic_ack($msg->delivery_info['delivery_tag']);
+                }
+        });
+    }    
 
     /**
      * Closes the connection

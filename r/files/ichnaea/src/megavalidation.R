@@ -12,14 +12,20 @@ source( "ageing.R" )
 
 library( "gtools" )
 
+ponderat <- TRUE
+
 random_attributes <- function(available_attrs){
   if( length(available_attrs) > 1 && length(intersect(available_attrs, RELEVANT_ATTRS_MV)) > 0 ) {
     attrs <- c()
-    num_attrs <- min(max(rbinom(1, 5, 0.7), 2), 6) # num_attrs \in {2,3,4,5,6}
+    num_attrs <- min(max(rbinom(1, 5, 0.7), 2), 6) # num_attrs \in {2,3,4,5,6} # in fact, num_attrs \in {2,3,4,5}
     
-    relevant <- sample(intersect(available_attrs, RELEVANT_ATTRS_MV), 1)
-    rest <- sample( setdiff(available_attrs, relevant), num_attrs - 1)
-    attrs <- union(relevant, rest)
+    if (ponderat) {
+      relevant <- sample(intersect(available_attrs, RELEVANT_ATTRS_MV), 1)
+      rest <- sample( setdiff(available_attrs, relevant), num_attrs - 1)
+      attrs <- union(relevant, rest)
+    } else {
+      attrs <- sample(available_attrs, num_attrs)
+    }
     
     attrs
   }
@@ -32,8 +38,8 @@ attrs <-  names( prepared_data )
 attrs <- attrs[ attrs != "CLASS" ]
 
 aging_coefs <- list()
-aging_coefs[[WINTER]] <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , WINTER , prepared_data , TRUE , TRUE , FALSE )
-aging_coefs[[SUMMER]] <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , SUMMER , prepared_data , TRUE , TRUE , FALSE )
+aging_coefs[[WINTER]] <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , WINTER , prepared_data , CORRECTION , TRUE , FALSE )
+aging_coefs[[SUMMER]] <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , SUMMER , prepared_data , CORRECTION , TRUE , FALSE )
 
 if (DEBUG) { cat( "Generating VA data...\n" ) }
 
@@ -53,8 +59,8 @@ for (i in 1:NUM_SAMPLES_MV) {
   class <- prepared_data[rd_row, "CLASS"]
   
   # diluting and aging the instance
-  instance <- instance/rd_dil
   instance <- age_instance( instance , rd_time , aging_coefs[[rd_season]] )
+  instance <- instance/rd_dil
   
   # adding class and additional information
   instance$CLASS <- class
@@ -71,4 +77,8 @@ for (i in 1:NUM_SAMPLES_MV) {
 
 if (DEBUG) { cat( "\nDone!" ) }
 
-save( data_MV , file = "../data_objects/data_MV.Rdata" )
+if (ponderat) {
+  save( data_MV , file = "../data_objects/data_MV.Rdata" )
+} else {
+  save( data_MV , file = "../data_objects/data_MVT.Rdata" )
+}

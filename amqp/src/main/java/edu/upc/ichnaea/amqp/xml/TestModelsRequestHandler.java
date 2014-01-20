@@ -5,31 +5,29 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
-import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
+import edu.upc.ichnaea.amqp.model.TestModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
-import edu.upc.ichnaea.amqp.model.DatasetAging;
 
-public class BuildModelsRequestHandler implements ContentHandler {
+public class TestModelsRequestHandler implements ContentHandler {
 
     final static String TYPE = "build_models";
 
     final static String TAG_REQUEST = "request";
-    final static String ATTR_AGING = "aging";
     final static String ATTR_ID = "id";
     final static String ATTR_REQUEST_TYPE = "type";
-    final static String ATTR_FAKE = "fake";
 
-    BuildModelsRequest mRequest;
+    TestModelsRequest mRequest;
     DatasetHandler mDatasetHandler;
-    DatasetAgingHandler mAgingHandler;
-    DatasetAging mAging;
     Dataset mDataset;
+    byte[] mData;    
     String mId;
-    String mFake;
 
-    public BuildModelsRequest getData() {
+    public TestModelsRequest getData() {
         return mRequest;
+    }
+
+    public void setRequestData(byte[] data) {
+        mData = data;
     }
 
     @Override
@@ -40,20 +38,13 @@ public class BuildModelsRequestHandler implements ContentHandler {
     public void startDocument() throws SAXException {
         mRequest = null;
         mDatasetHandler = null;
-        mAgingHandler = null;
         mDataset = null;
-        mAging = null;
         mId = null;
-        mFake = null;
     }
 
     @Override
     public void endDocument() throws SAXException {
-        if (mFake != null) {
-            mRequest = new BuildModelsFakeRequest(mId, mFake);
-        } else {
-            mRequest = new BuildModelsRequest(mId, mDataset, mAging);
-        }
+        mRequest = new TestModelsRequest(mId, mDataset, mData);
     }
 
     @Override
@@ -74,24 +65,13 @@ public class BuildModelsRequestHandler implements ContentHandler {
                         "A dataset cannot be inside another one.");
             }
             mDatasetHandler = new DatasetHandler();
-        } else if (localName.equalsIgnoreCase(DatasetAgingHandler.TAG_AGINGS)) {
-            if (mAgingHandler != null) {
-                throw new SAXException("Agings cannot be inside another.");
-            }
-            mAgingHandler = new DatasetAgingHandler();
         }
         if (mDatasetHandler != null) {
             mDatasetHandler.startElement(uri, localName, qName, atts);
-        } else if (mAgingHandler != null) {
-            mAgingHandler.startElement(uri, localName, qName, atts);
         } else if (localName.equalsIgnoreCase(TAG_REQUEST)) {
             mId = atts.getValue(ATTR_ID);
-            if (atts.getValue(ATTR_FAKE) != null) {
-                mFake = atts.getValue(ATTR_FAKE);
-            } else {
-                if (!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
-                    throw new SAXException("Invalid message type");
-                }
+            if (!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
+                throw new SAXException("Invalid message type");
             }
         }
     }
@@ -105,12 +85,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
                 mDataset = mDatasetHandler.getDataset();
                 mDatasetHandler = null;
             }
-        } else if (mAgingHandler != null) {
-            mAgingHandler.endElement(uri, localName, qName);
-            if (localName.equalsIgnoreCase(DatasetAgingHandler.TAG_AGINGS)) {
-                mAging = mAgingHandler.getAgings();
-                mAgingHandler = null;
-            }
         }
     }
 
@@ -119,8 +93,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
             throws SAXException {
         if (mDatasetHandler != null) {
             mDatasetHandler.characters(ch, start, length);
-        } else if (mAgingHandler != null) {
-            mAgingHandler.characters(ch, start, length);
         }
     }
 
@@ -129,8 +101,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
             throws SAXException {
         if (mDatasetHandler != null) {
             mDatasetHandler.ignorableWhitespace(ch, start, length);
-        } else if (mAgingHandler != null) {
-            mAgingHandler.ignorableWhitespace(ch, start, length);
         }
     }
 
@@ -139,8 +109,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
             throws SAXException {
         if (mDatasetHandler != null) {
             mDatasetHandler.processingInstruction(target, data);
-        } else if (mAgingHandler != null) {
-            mAgingHandler.processingInstruction(target, data);
         }
     }
 
@@ -148,8 +116,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
     public void skippedEntity(String name) throws SAXException {
         if (mDatasetHandler != null) {
             mDatasetHandler.skippedEntity(name);
-        } else if (mAgingHandler != null) {
-            mAgingHandler.skippedEntity(name);
         }
     }
 

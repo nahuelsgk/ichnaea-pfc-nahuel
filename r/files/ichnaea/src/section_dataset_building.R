@@ -21,9 +21,9 @@ save( list = c( "prepared_data" ) , file = "../data_objects/prepared_original_da
 # computing logistic regressions for ageing essays on both seasions
 aslr <- c()
 if ( DEBUG ){ print( "Computing ageing essays linear regressions for winter..." ) }
-aslr$win <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , WINTER , prepared_data , TRUE , TRUE , FALSE )
+aslr$win <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , WINTER , prepared_data , CORRECTION , TRUE , FALSE )
 if ( DEBUG ){ print( "Computing ageing essays linear regressions for summer..." ) }
-aslr$sum <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , SUMMER , prepared_data , TRUE , TRUE , FALSE )
+aslr$sum <- aged_samples_lr( AGEING_AVAILABLE_ATTRS , SUMMER , prepared_data , CORRECTION , TRUE , FALSE )
 save( list = c("aslr"), file = "../data_objects/aging_coefs.Rdata" )
 
 # ageing prepared data (for both winter and summer seasons)
@@ -32,7 +32,7 @@ aged_data_winter <- age_dataset( prepared_data , c( AGE_SECTIONS ) , aslr$win )
 
 # processing aged data
 if ( DEBUG ){ print( "Processing all the sections..." ) }
-aged_processed_data_summer <- lapply( aged_data_summer , process , TRUE )
+aged_processed_data_summer <- lapply( aged_data_summer , process , FALSE )
 save( list = c( "aged_processed_data_summer" ) , file = "../data_objects/aged_processed_data_summer.Rdata" )
-aged_processed_data_winter <- lapply( aged_data_winter , process , TRUE )
+aged_processed_data_winter <- lapply( aged_data_winter , process , FALSE )
 save( list = c( "aged_processed_data_winter" ) , file = "../data_objects/aged_processed_data_winter.Rdata" )
