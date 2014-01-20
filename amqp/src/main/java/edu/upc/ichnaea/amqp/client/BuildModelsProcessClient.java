@@ -186,7 +186,7 @@ public class BuildModelsProcessClient extends Client {
         }.write(req.getAging());
 
         getLogger().info("calling build models command");
-        BuildModelsCommand cmd = new BuildModelsCommand(datasetPath, agingPath);
+        BuildModelsCommand cmd = new BuildModelsCommand(datasetPath, agingPath, mVerbose);
 
         cmd.setScriptPath(mScriptPath);
         getLogger().info(cmd.toString());

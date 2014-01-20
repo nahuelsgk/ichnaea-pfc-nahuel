@@ -9,12 +9,14 @@ public class BuildModelsCommand extends IchnaeaCommand {
     private String mAgingPath;
     private String mDatasetPath;
     private String mOutputPath;
+    private boolean mVerbose;
 
-    public BuildModelsCommand(String datasetPath, String agingPath) {
+    public BuildModelsCommand(String datasetPath, String agingPath, boolean verbose) {
         mDatasetPath = datasetPath;
         mAgingPath = agingPath;
+        mVerbose = verbose;
     }
-
+    
     @Override
     public void beforeRun(ShellInterface shell) {
         try {
@@ -34,7 +36,9 @@ public class BuildModelsCommand extends IchnaeaCommand {
             params += " --output=" + mOutputPath + "";
         }
         params += " --aging=" + mAgingPath + "";
-        params += " --debug";
+        if(mVerbose) {
+            params += " --verbose";
+        }
         params += " " + mDatasetPath;
         return params;
     }
