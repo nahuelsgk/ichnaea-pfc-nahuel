@@ -55,3 +55,9 @@ training_delete_submit:
          _method: GET
          matrix_id: "\d+"
          training_id: "\d+"
+
+training_queue_test:
+     pattern: /training_queue/check
+     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:queueTest}
+     requirements:
+         _method: GET

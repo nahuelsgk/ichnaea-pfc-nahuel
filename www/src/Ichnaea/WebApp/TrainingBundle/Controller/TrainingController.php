@@ -120,4 +120,14 @@ class TrainingController extends Controller
 		$trainingService->deleteTraining($training_id);
 		return $this->redirect($this->generateUrl('user_dashboard'));
 	}
+
+	public function queueTestAction(){
+		$user = $this->get('security.context')->getToken()->getUser();
+		if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
+			throw new AccessDeniedHttpException();
+		$trainingService = $this->get('ichnaea.training_service');
+		$result_queue = $trainingService->queueTest();
+		return $this->render('IchnaeaWebAppTrainingBundle::queue_checklist.html.twig', 
+				array("result_queue_status" => $result_queue["status"], "result_queue_message" => $result_queue["message"]));
+	}
 }

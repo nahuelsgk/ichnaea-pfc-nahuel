@@ -5,13 +5,20 @@
 {% block main_content %}
 <table>
  <theader>
-   <th>&nbsp;</th>
    <th>Name</th>
+   <th>Actions</th>
  </theader>
  <tbody>
  {% for matrix in matrixs %}
    <tr>
    <td>
+     {{matrix.name}}
+   </td>
+   <td>
+   {% if is_granted('ROLE_SUPER_ADMIN') %}
+   <a class="btn btn-mini" href="{{path('matrix_ui_edit', {'matrix_id': matrix.id})}}" name="view_matrix" title="For Admins: Configure columns and samples">
+   <i class="icon-edit"></i>
+   {%  endif %}
     <a class="btn btn-mini" href="{{path('matrix_ui_view', {'matrix_id': matrix.id})}}" name="view_matrix" title="View matrix">
        <i class="icon-eye-open"></i>
      </a>
@@ -21,9 +28,6 @@
        <i class="icon-road"></i>
      </a>
      {% endif %}
-   </td>
-   <td>
-     {{matrix.name}}
    </td>
    </tr>
  {% endfor %}

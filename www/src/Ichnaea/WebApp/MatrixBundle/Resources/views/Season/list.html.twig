@@ -30,8 +30,10 @@
      <td class="end_date">{{season.endDate|date("d-m-Y")}}</td>
      -->
      <td class="actions_link">
+       {% if is_granted('ROLE_SUPER_ADMIN') %}
        <a class="btn btn-mini edit_season_link" href="{{path('season_edit', {'season_id' : season.id})}}" name="edit_season" title="Edit season">
-     	<i class="icon-edit"></i></a>
+       <i class="icon-edit"></i></a>
+       {% endif %}
      </td>
     </tr>
     {% endfor%}
@@ -66,11 +68,12 @@ function loadSeasonContentForm(button){
 	
 }
 
-function initPropagation()
+function initStopPropagation()
 {
-  $('.edit_season_link').click(function( event ) {
+  $('.actions_link').click(function( event ) {
+    console.log("ENTERING!!");
     event.stopPropagation();
-});.;
+});
 }
 
 $(document).ready(function()

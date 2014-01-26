@@ -36,10 +36,17 @@
     <div class="bar" style="width: {{ training.progress * 100 }}%;"></div>
 </div>
  
- {% if training.error %}
+ {% if training.error or training.status == 'pending'%}
+ <form name="resend_training" action="{{path('resend_training', {matrix_id: training.matrix.id, training_id: training.id})}}">
+   {% if training.error %}
    Error on training: <div class="error">{{ training.error }} </div>
-   <form name="resend_training" action="{{path('resend_training', {matrix_id: training.matrix.id, training_id: training.id})}}">
+   {% endif %}
+   {% if training.status == 'pending'%}
+   <div class="error">The training is pending. Maybe connection problems. Try to resend it. If the problem persist, please contact to Ichnaea Administrators</div>
+   {% endif %}
    <button type="submit" class="btn btn-danger">Resend training</button>
    </form>
- {% endif %}
+ {% endif %} 
+   
+ 
 {% endblock %}

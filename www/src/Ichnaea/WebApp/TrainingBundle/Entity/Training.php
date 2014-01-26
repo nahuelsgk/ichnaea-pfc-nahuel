@@ -55,9 +55,9 @@ class Training
         
     /**
      * @var string
-     * @ORM\Column(name="status", type="string", columnDefinition="ENUM('preparing', 'closed', 'working', 'finished')") 
+     * @ORM\Column(name="status", type="string", columnDefinition="ENUM('pending', 'sent', 'finished')") 
      */
-    private $status = 'preparing';
+    private $status = 'pending';
     
     /**
      * @var integer
@@ -100,11 +100,6 @@ class Training
      */
     private $typeOfSearch = "backward";
     
-    /**
-     * @var string
-     * @ORM\Column(name="output_status", type="string", columnDefinition="ENUM('error', 'warning', 'exhaustive')", nullable= TRUE)
-     */
-    private $outputStatus;
     
     /**
      * @var string
@@ -413,7 +408,20 @@ class Training
 
         return $this;
     }
-
+	
+    public function setStatusAsPending()
+    {
+    	$this->setStatus("pending");
+    }
+    public function setStatusAsSent()
+    {
+    	 $this->setStatus("sent");
+    }
+    public function setStatusAsFinished()
+    {
+    	 $this->setStatus("finished");
+    }
+    
     /**
      * Get status
      *
@@ -445,29 +453,6 @@ class Training
     public function getTypeOfSearch()
     {
         return $this->typeOfSearch;
-    }
-
-    /**
-     * Set outputStatus
-     *
-     * @param string $outputStatus
-     * @return Training
-     */
-    public function setOutputStatus($outputStatus)
-    {
-        $this->outputStatus = $outputStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get outputStatus
-     *
-     * @return string 
-     */
-    public function getOutputStatus()
-    {
-        return $this->outputStatus;
     }
     
     /** 
@@ -619,6 +604,5 @@ class Training
     public function getProgress() {
     	return $this->progress;
     }
-    
     
 }

@@ -29,22 +29,7 @@ class ConsumerCommand extends ContainerAwareCommand
 		//->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to greet?')
 		//->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
 	}
-	/*
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
-		$name = $input->getArgument('name');
-		if ($name) {
-			$text = 'Hello '.$name;
-		} else {
-			$text = 'Hello';
-		}
 
-		if ($input->getOption('yell')) {
-			$text = strtoupper($text);
-		}
-
-		$output->writeln($text);
-	}*/
 	
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
@@ -52,21 +37,14 @@ class ConsumerCommand extends ContainerAwareCommand
 		$amqp = new AmqpConnection(ICHNAEA_AMQP_URL);
 		$amqp->open();
 		
-		$em = $this->getContainer()->get('doctrine')->getEntityManager();
+		//$em = $this->getContainer()->get('doctrine')->getEntityManager();
+		$trainingService = $this->getContainer()->get('ichnaea.training_service');
 		
-		$amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($em) {
+		//By now is only fired when it is finished
+		$amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($trainingService){
 			print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
-			
 			$data = $resp->toArray();
-			
-			//We must update the training searching by request id
-			$training = $em->getRepository('IchnaeaWebAppTrainingBundle:Training')->findOneBy(array('requestId'=>$resp->getId()));
-			if ($training instanceof Training) 
-			{
-			    $training->setProgress($data['progress']);
-			    $training->setError($data['error']);
-			    $em->flush();
-			}
+			$trainingService->updateTraining($resp->getId(), $data['progress'], $data['error'], $data['data'] );
 		});
 		$amqp->wait();
 	}

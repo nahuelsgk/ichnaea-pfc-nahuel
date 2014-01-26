@@ -1,0 +1,16 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Checklist{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>System checklist</h1>
+<h2>Queue status</h2>
+Checking rabbitmq connection:
+{% if result_queue_status == FALSE %}
+<div class="alert alert-danger">Connection problems with the message broker. It says: "{{ result_queue_message }}"</div>
+{% else %}
+<div class="alert alert-success">Connection rabbitmq correct</div>
+{% endif %}
+</div>
+{% endblock %}

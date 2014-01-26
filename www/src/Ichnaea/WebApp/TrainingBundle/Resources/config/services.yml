@@ -1,7 +1,10 @@
 parameters:
-#    ichnaea_web_app_training.example.class: Ichnaea\WebApp\TrainingBundle\Example
+    rabbitamqp_user: test
+    rabbitamqp_host: localhost
+    rabbitamqp_password: test
+    training_data_path: /opt/lampp/htdocs/ichnaea/ichnaea_data
 
 services:    
     ichnaea.training_service:
         class: Ichnaea\WebApp\TrainingBundle\Services\TrainingService
-        arguments: [@doctrine.orm.entity_manager, @ichnaea.makefileService]
+        arguments: [@doctrine.orm.entity_manager, "%rabbitamqp_user%", "%rabbitamqp_password%","%rabbitamqp_host%", "%training_data_path%"]
