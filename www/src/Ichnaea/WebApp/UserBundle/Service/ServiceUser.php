@@ -38,6 +38,11 @@ class ServiceUser{
 		//@Send email.		
 	}
 	
+	/*Just return the entity of the groups for the controllers*/
+	public function getGroupUsers() {
+		$group = $this->em->getRepository('UserBundle:Group')->findByName('user');
+		return $group;
+	}
 	
 }
 ?>

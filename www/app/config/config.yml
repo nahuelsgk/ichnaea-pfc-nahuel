@@ -85,4 +85,4 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     port:      %mailer_port%
-    spool:     { type: memory }        
+    spool:     { type: memory }

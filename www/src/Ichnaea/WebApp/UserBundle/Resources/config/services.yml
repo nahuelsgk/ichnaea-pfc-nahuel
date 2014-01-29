@@ -1,16 +1,2 @@
-parameters:
-#    user.example.class: Ichnaea\WebApp\UserBundle\Example
-    user.passwordEncoder: Ichnaea\WebApp\UserBundle\Service\PassIchnaeaInterface
-#user.manager.class: Ichnaea\WebApp\UserBundle\Service\ServiceUser
- 
-services:
-#    user.example:
-#        class: %user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
 
-     my_user_password_encoder:
-         class: %user.passwordEncoder%
-
-#     my_user_manager:
-#        class:  %user.manager.class%
-#        arguments: [ @doctrine.orm.entity_manager ]
+         
