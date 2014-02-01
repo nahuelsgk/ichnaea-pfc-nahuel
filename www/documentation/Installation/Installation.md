@@ -7,11 +7,13 @@ Checkout the git project
 Run composer
 ------------
 
-Copy the dist file
-------------------
+Configuration ichnaea WebApp
+----------------------------
+In www/app/config.yml you can configure databases, mailers. The fodler has a several files for enviroments. If the is the first time, copy the www/app/config-dist.yml into www/app/config.yml. Git is configured for ignore this specific files.
 
 Configure your database
 -----------------------
+Execute 
 
 Insert some basic dato to start operate
 ---------------------------------------
