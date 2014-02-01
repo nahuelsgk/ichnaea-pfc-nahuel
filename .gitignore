@@ -6,3 +6,5 @@
 /amqp/doc/ichnaea_amqp.pdf
 /amqp/doc/ichnaea_amqp.html
 .fuse*
+/ichnaea_data/
+/www/documentation/Installation/DefaultData/MakeDefaultData.sh
