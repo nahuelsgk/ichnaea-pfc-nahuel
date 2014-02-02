@@ -1,0 +1,121 @@
+\chapter{Grid Format}
+\label{cha:gridformat}
+
+In this annex the format of the grid files is described. They are kept in a plain text file with the $.grd$ or the $.rte$ extension, depending on whether or not the cell has already been routed. The file consists of a series of headers followed by the information indicated in such header. The sections of the file are as follows.
+
+\begin{description}
+  \item[Title] \hfill \\
+  Title of the grid.
+  \item[Sizes] \hfill \\
+  One line with several sizes of the grid, including
+  	\begin{itemize}
+  		\item Width.
+  		\item Length.
+  		\item Height.
+  		\item Number of signals.
+  		\item Number of properties.
+  		\item Number of attributes.
+  		\item Number of iopins.
+  	\end{itemize}
+  \item[Signals] \hfill \\
+  The list with the name of the signals included in the grid, on for each line.
+  \item[Terminals] \hfill \\
+  A boolean indicating if such signal is a terminal or not, on for each line.
+  \item[Iopins] \hfill \\
+  One line with the coordinates of all positions where iopins are considered legal.
+  \item[Attributes] \hfill \\
+  The list with the name of the attributes included in the grid, on for each line.
+  \item[Properties] \hfill \\
+  A list of properties of the grid, each line including its name and value.
+  \item[Grid] \hfill \\
+  The actual values of the grid points. Every line represents a vertex in the grid. For a given vertex, the signal present in said vertex and all edges of that vertex is represented with the index of the signal in the signal list. -1 indicates the position is free and -2 indicates the position is locked. In the case of attributes being present on the grid, they will also be expressed for every vertex and edge right after the corresponding signal. 
+\end{description}
+  
+Below comes a reduced example of a .grd file corresponding to an AND4 gate.
+  
+\begin{lstlisting}
+TITLE AND4_X1
+SIZES
+13 11 3 11 3 0 78
+SIGNALS
+VSS
+VDD
+A1
+A2
+A3
+A4
+ZN
+ZN_neg
+net_0
+net_1
+net_2
+TERMINALS
+0
+0
+1
+1
+1
+1
+1
+0
+0
+0
+0
+IOPINS
+0 0 2  1 0 2  2 0 2  3 0 2  4 0 2  5 0 2  6 0 2  7 0 2  8 0 2  9 0 2  10 0 2  11 0 2  12 0 2  0 2 2  1 2 2  2 2 2  3 2 2  [...]
+ATTRIBUTES
+PROPERTIES
+PLACEMENT /some_path/some_name.pla
+TEMPLATE /some_path/some_name.tpl
+TIME 1979-01-00@12:00:00
+GRID
+-2 -2 -2 -2 
+1 -1 1 -1 
+-1 -1 -1 
+-2 -2 -2 -2 
+1 -1 1 -1 
+-1 -1 -1 
+
+[...]
+
+0 -1 
+-2 -2 -2 
+0 0 -1 
+-1 -1 
+-2 -2 -2 
+0 0 -1 
+-1 -1 
+-2 -2 
+0 -1 
+-1 
+END
+\end{lstlisting}
+
+
+\chapter{CellRouter Command Line Interface}
+\label{cha:cli}
+
+In this appendix we will explain what the interface of CellRouter is. CellRouter admits the following command line arguments. All grid files follow the .grd structure exposed in appendix \ref{cha:gridformat}.
+
+\begin{description}
+  \item[Input] \hfill \\
+  Path of the input grid file.
+  \item[Output] \hfill \\
+  Path of the output grid file.
+  \item[Result] \hfill \\
+  Path of the file where execution data such as partial times is stored.
+  \item[Rules] \hfill \\
+  Path of the file where the design rules are stored.
+  \item[Rules set] \hfill \\
+  Name of the rules set that will be used, located into the file mentioned above.
+  \item[Halo] \hfill \\
+  As explained before, given a subnet, all variables not included in a certain routing region defined by the subnet elements get a direct value of false. The halo metric, which is a positive integer, allows to expand such region. Sometimes, when the halo is too little, no solution is found because some subnet becomes unroutable. However, when the halo is big, the problem might become intractable.
+  \item[Escapes] \hfill \\
+  When no valid routing is found, if the escapes argument is given, the router will allow for some pins to be connected externally. The argument is the number of pins which are allowed to be left unconnected; it should be minimum.
+  \item[Rounds] \hfill \\
+  Number of rip-up and re-routing iterations the optimization heuristic will make. More rounds usually means a better result at the expense of more computation time.
+  \item[Packs] \hfill \\
+  Number of signals that the optimization phase will rip-up and reroute at once.
+\end{description}
+
+  

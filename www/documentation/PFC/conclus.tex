@@ -1,0 +1,96 @@
+\chapter{Conclusions}
+\label{cha:conclusions}
+
+This chapter summarizes the conclusions that have been drawn during the development of this project, most of which have already been mentioned in other parts of the report. Additionally, possible future lines of work are given. It also includes a cost study of the project.  \\
+
+\section{Final Conclusions}
+
+Since the beginning, that partial solutions not being modified in successive routings meant discarding solutions that would have been found otherwise was the major nuisance to the development of the project. We focused on finding methods for the partial solutions to be intelligent enough so that satisfiability was preserved as much as possible. Advances have been done in this sense but the tool still has trouble in the case of congested cells. \\
+
+In the case of the Nangate cells, not much improvement has been observed. These cells are relatively small and can be solved in tractable time. The ones that were found satisfiable by CellDivider did not usually present a reduction on computational time except on the case of the congested ones, which were difficult to solve but, when routed, it was usually done using a fraction of the original time. \\
+
+The cells in the CatLib library also reacted differently depending on whether they were big or complex. In the first case, mainly the combinational gates, a great improvement has been found in terms of both computing time and memory usage. In the latter, the case of the full adder and flip-flop cells, the difficulties imposed by congestion have proved to be very hard to overcome. The HAX gate have presented very interesting results on how a cell without a clear structure can be routed in a fraction of the original time. As seen on the results chapter, when CellDivider was able to route the cells, in general it meant saving a lot of computational time. \\
+
+The use of divide and conquer techniques that this project presents has helped solving cells that were much harder to solve before. However, when the division is done in a congested place of the cell, chances that the router will not find a valid global solution are high. In the end there is a trade off between valid solutions and computation time, as it happens when using halo to route a cell: it can discard valid solutions but it speeds up many others. \\
+
+The goal of this project was to make big and complex cells become tractable using a SAT-based already existing framework. As a conclusion, much advance has been done but still a lot of work must be done in order to allow the divide-and-conquer method to discard less satisfiable solutions.
+
+\section{Future Work}
+
+From what has been done on this project several ideas for future work arise. Many of them are based on the idea of finding more cells to be satisfaible. \\
+
+The first one would be to look for a method such that previous partial routings are not imposed, but only suggested to the router. We would avoid a number of unsatisfiable results arising from poorly chosen partial solutions. This would probably require a more close interaction with the C++ parts of the project, since CellDivider only works at the grid abstraction level. \\
+
+It would also be interesting to combine the ideas of congestion-driven routing and scan routing so that the zones the scan router divides the cell into are not a given fraction of the cell, but those with the highest congestion. This way, the boundaries between regions would have the number of signals as low as possible. When scan-routing a cell using the zones where the number of signals are minimal as part boundaries, the chances that it will be unsatisfiable decrease and a valid global solution will probably be found. \\
+
+In the end, any work that reduces the number of unsatisfiable results would be welcomed. As it has been seen in the conclusions, the vast majority of times that cells were routable using CellDivider, it used less time and memory. The preservation of satisfaibility is the basic key in the divide-and-conquer strategy.\\
+
+Additionally, this project has dealt with single-height standard cells. However, other geometrical dispositions such as double-height cells and 3D cells also exist. It would be interesting to expand the ideas of this work and find ways to apply the methods proposed in such cells. \\
+
+
+\section{Cost Study}
+
+To calculate the cost of the project we will consider two aspects. One will be the cost of the work done. The second is the cost of the equipment that has been used to develop the project. On the work costs:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\textbf{Month} & \textbf{Work done} & \textbf{Man-hours} \\
+\hline
+October 2012 & \multirow{2}{*}{Knowing problem. Environment.} & 30 h. \\
+November 2012 & & 40 h.\\
+\hline
+December 2012 & C++ Porting. & 40 h. \\
+\hline
+January 2013 & Python Porting. & 40 h.\\
+\hline
+February 2013 & \multirow{3}{*}{Cluster. Part Routing. Concatenation. } & 60 h.\\
+March 2013 & & 80 h.\\
+April 2012 & & 90 h.\\
+\hline
+May 2013 & Meta-algorithms. Experiments. & 120 h.\\
+\hline
+June 2013 & Experiments. Project Report. & 100 h.\\
+\hline
+& & \textbf{600 h.} \\
+\end{tabular}
+\caption{Time study}
+\end{table}
+
+Considering a salary of about 25 euros per man hour, the total human cost of the project would be of 15000\euro. \\
+
+
+As for the tools used during the project:
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Tool} & \textbf{Cost} \\
+\hline
+Laptop & 1000\euro \\
+LSI Cluster & 331,35\euro \\
+Software tools & Free \\
+\hline
+\textbf{Total tool cost} & \textbf{1331,35\euro}
+\end{tabular}
+\caption{Tool cost study}
+\end{table}
+
+We consider the estimated cost of the laptop that was used for development and the cost of using the LSI Cluster for the experiments and running tests during the project. 705 hours of cluster computation were used, which at a price of 0,47 euros per hour adds up to 331,35\euro. \\
+
+When considering all costs together, the final cost calculation can be seen in the following table. \\
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lr}
+& \textbf{Cost} \\
+\hline
+Engineering costs & 15000\euro \\
+Tool costs & 1331,35\euro \\
+\hline
+\textbf{Total project cost} & \textbf{16331,35\euro}
+\end{tabular}
+\caption{Total costs}
+\end{table}
+
+
+

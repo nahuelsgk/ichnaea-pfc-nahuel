@@ -1,0 +1,80 @@
+\documentclass[a4paper,twoside,12pt,english,openright]{report}
+\usepackage[utf8]{inputenc}
+
+\usepackage{babel}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{ifpdf}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{amsthm}
+\usepackage[official]{eurosym}
+\usepackage[center]{caption}
+\usepackage{listings}
+\ifpdf \usepackage{hyperref} \fi
+\usepackage[toc]{glossaries}
+\usepackage[nottoc]{tocbibind}
+
+\renewcommand*{\glsclearpage}{\clearpage}
+
+\title{PFC}
+\author{Nahuel Velazco}
+\date{\today}
+
+\lstset{basicstyle=\footnotesize,
+	tabsize=4,
+	xleftmargin=26pt,
+	xrightmargin=26pt,
+	frame=leftline,
+	captionpos=b,
+	framesep=8pt,
+	aboveskip=16pt,
+	belowskip=16pt,
+	breaklines=true,
+	breakatwhitespace=true
+}
+%\makeglossaries
+
+\pagenumbering{roman}
+\input{glossary}
+
+\begin{document}
+\pagestyle{empty}
+
+\include{title}
+\cleardoublepage
+\include{prologue}
+\cleardoublepage
+\include{preface}
+\cleardoublepage
+\pagenumbering{gobble}
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+
+\pagestyle{headings}
+
+
+
+%\include{backgrnd}
+%\include{tool}
+%\include{design}
+%\include{partitionstrategy}
+%\include{results}
+%\include{conclus}
+
+\bibliographystyle{unsrt}
+\bibliography{biblio}
+%\printglossaries
+
+\appendix
+%\include{appendix}
+
+\end{document}
