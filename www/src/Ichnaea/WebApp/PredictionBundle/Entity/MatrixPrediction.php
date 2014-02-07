@@ -27,8 +27,14 @@ class PredictionMatrix
 	private $name;
 	
 	/**
-	 * @ORM\ManyToOne
+	 * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", inversedBy="predictionMatrix")
 	 */
 	private $training;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Sample", mappedBy="matrix", cascade={"persist"})
+	 */
+	private $rows;
+	
 }
 ?>
