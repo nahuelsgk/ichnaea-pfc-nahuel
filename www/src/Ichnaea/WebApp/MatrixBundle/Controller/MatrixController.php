@@ -51,15 +51,17 @@ class MatrixController extends Controller
 	   	}
 	   	
 		$availableVars = $ichnaeaService->getAllVariables();
-		$editable      = $matrix->getVisible();
-		$updateable    = $ichnaeaService->matrixIsUpdateable($matrix_id);
+		$visible       = $matrix->getVisible();
+		$isTrained     = $ichnaeaService->matrixIsTrained($matrix_id);
+		$complete      = $matrix->isComplete();
 		//echo '<pre>';\Doctrine\Common\Util\Debug::dump($matrix);echo '</pre>';
 		return $this->render(
 				'MatrixBundle:Matrix:matrix.html.twig', 
 				array(
-						'updateable' => $updateable,
-						'editable' => $editable,
-						'matrix' => $matrix, 
+						'visible'   => $visible,
+						'is_trained'=> $isTrained,
+						'complete'  => $complete,
+						'matrix'    => $matrix, 
 						'availableVars' => $availableVars
 				)
 		);
@@ -94,7 +96,6 @@ class MatrixController extends Controller
 		$ichnaeaService = $this->get('ichnaea.service');
 		$matrix = $ichnaeaService->buildFiles($matrix_id);
 		return $this->redirect($this->generateUrl('matrix_ui_edit',array("matrix_id" => $matrix_id)));
-		
 	}
 	
 	public function downloadFormAction($matrix_id)
@@ -122,6 +123,34 @@ class MatrixController extends Controller
 	    $response->headers->set('Content-Type', 'text/csv');
 	    
 	    return $response;
+	}
+	
+	public function cloneFormAction($matrix_id)
+	{
+		$ichnaeaService = $this->get("ichnaea.service");
+		$matrix = $ichnaeaService->getMatrix($matrix_id);
+		$today = date_create();
+		
+		return $this->render('MatrixBundle:Matrix:clone_form.html.twig',
+	    	array(
+			'matrix_name'     => $matrix->getName(),
+	        'matrix_id'       => $matrix->getId(),
+	        'matrix_new_name' => 'clone of '.$matrix->getName().' - '.date_timestamp_get($today)
+		));
+	}
+	
+	public function performCloneAction($matrix_id)
+	{
+	    
+	    $request = $this->getRequest();
+	    $owner   = $this->getUser();
+	    $name   = $request->request->get('name');
+	    
+	    $ichnaeaService = $this->get('ichnaea.service');
+	    $matrix        = $ichnaeaService->cloneMatrix($matrix_id, $owner ,$name);
+	    $matrix_id     = $matrix->getId();
+	    
+	    return $this->redirect($this->generateUrl('matrix_ui_edit',array("matrix_id" => $matrix_id)));
 	}
 	
 	private function resolveMatrixGUI($matrix){

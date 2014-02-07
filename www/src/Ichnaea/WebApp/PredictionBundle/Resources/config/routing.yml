@@ -1,0 +1,20 @@
+ichnaea_web_app_prediction_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Default:index }
+
+create_prediction_matrix_form:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionForm}
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+
+create_prediction_matrix_action:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionForm}
+    requirements:
+        _method: POST
+        matrix_id: "\d+"
+        training_id: "\d+"
+    

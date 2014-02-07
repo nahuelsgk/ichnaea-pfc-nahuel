@@ -7,8 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Training
  *
  * @ORM\Table(name="training")
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks 
+ * @ORM\Entity 
  */
 class Training
 {
@@ -55,9 +54,9 @@ class Training
         
     /**
      * @var string
-     * @ORM\Column(name="status", type="string", columnDefinition="ENUM('preparing', 'closed', 'working', 'finished')") 
+     * @ORM\Column(name="status", type="string", columnDefinition="ENUM('pending', 'sent', 'finished')") 
      */
-    private $status = 'preparing';
+    private $status = 'pending';
     
     /**
      * @var integer
@@ -100,11 +99,6 @@ class Training
      */
     private $typeOfSearch = "backward";
     
-    /**
-     * @var string
-     * @ORM\Column(name="output_status", type="string", columnDefinition="ENUM('error', 'warning', 'exhaustive')", nullable= TRUE)
-     */
-    private $outputStatus;
     
     /**
      * @var string
@@ -121,9 +115,16 @@ class Training
     private $pathTable;
 
     /**
-     * @ORM\Column(name="data", type="blob", nullable = false)
+     * @var string
+     * @ORM\Column(name="request_id", type="string", length=255, nullable = false) 
      */
-    private $data;
+    private $requestId;
+    
+    /**
+     * @var decimal
+     * @ORM\Column(name="progress", type="decimal", precision=5, scale=2)
+     */
+    private $progress = 0;
     
     /**
      * @var string
@@ -131,8 +132,17 @@ class Training
      */
     private $error;
     
+    
     /**
-     * Get id
+    * @ORM\ManyToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig")
+    * @ORM\JoinTable(name="training_variable_matrix_config",
+    *  joinColumns={@ORM\JoinColumn(name="training_id", referencedColumnName="id")},
+    *  inverseJoinColumns={@ORM\JoinColumn(name="column_id", referencedColumnName="id")}
+    * )  
+    */
+	private $columnsSelected;
+	
+    /** Get id
      *
      * @return integer 
      */
@@ -406,7 +416,20 @@ class Training
 
         return $this;
     }
-
+	
+    public function setStatusAsPending()
+    {
+    	$this->setStatus("pending");
+    }
+    public function setStatusAsSent()
+    {
+    	 $this->setStatus("sent");
+    }
+    public function setStatusAsFinished()
+    {
+    	 $this->setStatus("finished");
+    }
+    
     /**
      * Get status
      *
@@ -438,29 +461,6 @@ class Training
     public function getTypeOfSearch()
     {
         return $this->typeOfSearch;
-    }
-
-    /**
-     * Set outputStatus
-     *
-     * @param string $outputStatus
-     * @return Training
-     */
-    public function setOutputStatus($outputStatus)
-    {
-        $this->outputStatus = $outputStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get outputStatus
-     *
-     * @return string 
-     */
-    public function getOutputStatus()
-    {
-        return $this->outputStatus;
     }
     
     /** 
@@ -549,28 +549,28 @@ class Training
     }
 
     /**
-     * Set data
+     * Set error
      *
-     * @param string $data
+     * @param string $error
      * @return Training
      */
-    public function setData($data)
+    public function setRequestId($id)
     {
-        $this->data = $data;
-
-        return $this;
+    	$this->requestId = $id;
+    	
+    	return $this;
     }
-
+        
     /**
-     * Get data
+     * Get requestId
      *
-     * @return string 
+     * @return string
      */
-    public function getData()
+    public function getRequestId()
     {
-        return $this->data;
+    	return $this->requestId;
     }
-
+    
     /**
      * Set error
      *
@@ -580,7 +580,6 @@ class Training
     public function setError($error)
     {
         $this->error = $error;
-
         return $this;
     }
 
@@ -593,4 +592,25 @@ class Training
     {
         return $this->error;
     }
+    
+    /**
+     * Set progress
+     * 
+     * @param decimal $progress
+     * @return Training
+     */
+    public function setProgress	($progress) {
+    	$this->progress = $progress;
+    	return $this;
+    }
+    
+    /**
+     * Get progress
+     * 
+     * @return decimal
+     */
+    public function getProgress() {
+    	return $this->progress;
+    }
+    
 }

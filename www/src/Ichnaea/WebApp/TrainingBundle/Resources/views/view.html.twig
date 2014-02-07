@@ -9,24 +9,61 @@
  <legend>Configuration</legend>
  <table class="table">
  <tr>
-   <th>K1</th>
+   <!--  <th>K1</th>
    <th>K2</th>
    <th>Best models</th>
    <th>Minimum size variable set</th>
    <th>Maximum size variable set</th>
-   <th>Type of search</th>
+   <th>Type of search</th>-->
    <th>Cue id</th>
  </tr>
  <tr>
-   <td>{{training.k1}}</td> 
+   <!--  <td>{{training.k1}}</td> 
    <td>{{training.k2}}</td>
    <td>{{training.bestModels}} %</td>
    <td>{{training.minSizeVariableSet}}</td>
    <td>{{training.maxSizeVariableSet}}</td>
-   <td>{{training.typeOfSearch}}</td>
+   <td>{{training.typeOfSearch}}</td>-->
    <td>{{training.requestId}}</td>
  </tr>
  </table>
+ <legend>Origin versus: {% if training.originVersus == "" %} All versus all {% else %} {{ training.originVersus }} {% endif %}</legend>
+ 
+ <legend>Columns selected for this training</legend>
+ <div style="overflow-x: auto;">
+  <table class="table table-bordered">
+  <tr>
+  <tr>
+  <th style="background-color: grey">Variable</th>
+  {% for c in training.columnsSelected %}
+  <th>  
+  	{% if c.variable is not null %}{{ c.variable.name }}<br>{% endif %}
+  </th>
+  {% endfor %}
+  </tr>
+  
+  <tr>
+  <th style="background-color: grey">
+    Season Set
+  </th>
+  {% for c in training.columnsSelected %}
+  <th>  
+  	{% if c.seasonSet is not null %}{{ c.seasonSet.name }}<br>{% endif %}
+  </th>
+  {% endfor %}
+  </tr>
+  <tr>
+  <th style="background-color: grey">
+  Alias
+  </th>
+  {% for c in training.columnsSelected %}
+  <th>  
+     {{ c.name }}<br>
+  </th>
+  {% endfor %}
+  </tr>
+  </table>
+  </div>
  <form name="check_trainig" action="{{path('training_check', {matrix_id: training.matrix.id, training_id: training.id})}}">
  <button type="submit" class="btn btn-primary">Check training</button>
  </form>

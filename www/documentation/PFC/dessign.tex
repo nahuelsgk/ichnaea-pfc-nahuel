@@ -1,0 +1,48 @@
+\chapter{Disseny e implementaci\'{o}}
+\label{cha:dessign}
+
+\section{Introduccio}
+En aquest capitol veurem els patrons de dissenys emprats i les tecnologies implementades.
+
+\section{Patro de disseny}
+Per la implementaci\`{o} del sistema web s'han usat els seg\¨{u}ents patrons de disseny:
+  \begin{itemize}
+  \item Model-Vista-Controlador amb controlador frontal
+  \item Capa de Servei amb injecci\´{o} de depend\`{e}ncies
+  \item Mapejat de dades
+  \item Repositori de model de dades
+  \item View template
+  \item Interficies enriquides amb servei webs
+  \end{itemize}
+
+\subsection{Esquema del disseny}
+
+\section{Implementaci\'{o} i tecnologies}
+\section{Symfony}
+Symfony2 \´{e}s un framework que implementa Model-Vista-Controlador amb controlador frontal amb injecci\´{o} de depencies a la capa de serveis. Les entitats(model de dades) s'han implementat directament amb l'ORM Doctrine contra una base de dades MySQL.
+Arquitectonicament, Symfony2 estructura el codi en Bundle. Els "bundles" son un conjunt de serveis, entitats i recursos html independents entre si. Els bundles implementats son
+\begin{itemize}
+\item{Bundle de usuaris: UserBundle}
+\item{Bundle de matrius: MatrixBundle}
+\item{Bundle de trainings: TrainingBundle}
+\item{Bundle de serveis webs: ApiBundle}
+\item{Bundle de predicci\'{o}: PredictionBundle}
+\end{itemize}
+
+\section{Recursos}
+La estructura de recursos \´{e}s la seg\¨{u}ent:
+
+matrix/{id}/training
+
+\section{Servei web}
+S'ha emprat un API JSON Restful per enriquir les interficies. S'ha emprat aquesta tecnologia per la escalabilitat que aporta i perque en un futur es pogui aprofitar el desenvolupament d'aquesta.
+Les operacions, els recursos i el parametres son:
+
+\section{Capa de serveis}
+
+\section{Integraci\´{o} amb el sistema de cues RabbitMQP}
+
+\section{Esquema general arquitect\'{o}nic del sistema}
+
+
+

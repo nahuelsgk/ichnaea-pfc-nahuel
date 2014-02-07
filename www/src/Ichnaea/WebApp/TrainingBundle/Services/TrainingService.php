@@ -61,9 +61,24 @@ class TrainingService{
 		return $training->getId();
 	}
 	
+	/**
+	 * 
+	 * @param integer $matrix_id
+	 * @param integer $trainer_id
+	 * @param string $name
+	 * @param string $description
+	 * @param string $k1 OBSOLETE
+	 * @param string $k2 OBSOLETE
+	 * @param string $best_models OBSOLETE
+	 * @param string $min_size_var_set OBSOLETE
+	 * @param string $max_size_var_set OBSOLETE
+	 * @param string $type_of_search OBSOLETE
+	 * @param string $selection_columns OBSOLOTE
+	 * @return \Ichnaea\WebApp\TrainingBundle\Model\TrainingValidation
+	 */
 	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, $k1 = NULL, $k2 = NULL, 
 									$best_models = NULL, $min_size_var_set = NULL, $max_size_var_set = NULL, 
-									$type_of_search = NULL)
+									$type_of_search = NULL, $columns_selection = NULL, $origin = NULL)
 	{
 										
 		$trainer = $this->em->getRepository('UserBundle:User')->find($trainer_id);
@@ -91,7 +106,14 @@ class TrainingService{
 		if(!empty($min_size_var_set)) $training->setMinSizeVariableSet($min_size_var_set);
 		if(!empty($max_size_var_set)) $training->setMaxSizeVariableSet($max_size_var_set);
 		if(!empty($type_of_search))   $training->setTypeOfSearch($type_of_search);
-	
+	    if(!empty($columns_selection))	{
+	    	foreach($columns_selection as $k => $v){
+	    		$column = $this->em->getRepository("MatrixBundle:VariableMatrixConfig")->find($v);
+	    		$training->addColumnsSelected($column);
+	    	}
+	    }
+	    if($origin != NULL)			$training->setOrigin($origin);
+	    
 		//... set the request id for the cue...
 		$training->setRequestId($model->getId());
 

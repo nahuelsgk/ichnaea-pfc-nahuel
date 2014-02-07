@@ -37,20 +37,40 @@
   <th>&nbsp;</th>
   <th>Name</th>
   <th>Progress</th>
-  <th>Result</th>
+  <th>Error</th>
  </tr>
  </thead>
  {% if app.user.trainings %}
  <tbody>
  {% for training in app.user.trainings %}
- <tr>
+ <tr class="
+    {% if training.error != '' %}
+    warning
+    {% else %}
+ 	  {% if training.status == 'finished' %}
+ 	    {% if training.progress == '1.0' and training.error == "" %}
+ 	    success
+ 	    {% endif %}
+ 	  {% endif %}
+ 	  {% if training.status == 'sent' %}
+ 		  active
+ 	  {% endif %}
+ 	  {% if training.status == 'pending' %}
+ 	    danger
+ 	  {% endif %}
+ 	{% endif %}
+ ">
    <td>
      <a class="btn btn-mini" href="{{path('training_view', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
      <i class="icon-eye-open"></i>
      <a class="btn btn-mini" href="{{path('training_delete', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
-     <i class="icon-remove"></i></td>
+     <i class="icon-remove"></i>
+     <a class="btn btn-mini" href="{{path('create_prediction_matrix_form', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="Create a matrix prediction">
+     <i class="icon-th"></i>
+     </td>
    <td>{{training.name}}</td>
    <td>{{training.progress}}</td>
+   <td>{{training.error}}</td>
    <td></td>
  </tr>
  {% endfor %}

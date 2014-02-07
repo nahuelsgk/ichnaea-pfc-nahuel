@@ -10,6 +10,7 @@ class TrainingController extends Controller
     {
     	$matrixService = $this->get('ichnaea.service');
     	$n_columns     = $matrixService->getM($matrix_id);
+    	$matrix 	   = $matrixService->getMatrix($matrix_id);
     	
     	$request = $this->getRequest();
     	if ($request->getMethod() == 'POST'){
@@ -29,13 +30,16 @@ class TrainingController extends Controller
     		$max_size_var_set = $request->request->get("max_size_variable_set");
     		$type_of_search   = $request->request->get("type_of_search");
     		 
+    		//Select columns
+    		$columns_selection = $request->request->get("select_column");
+    		$origin            = $request->request->get("origin_versus");
+    		if ($origin == "all") $origin = NULL;
     		$trainingService = $this->get('ichnaea.training_service');
     		$validation = $trainingService->createTraining($matrix_id, $coach_id, $name, $description, $k1, $k2,
     				$best_models, $min_size_var_set,
-    				$max_size_var_set, $type_of_search);
+    				$max_size_var_set, $type_of_search, 
+    				$columns_selection, $origin);
     		 
-
-    		
     		if ($validation->valid() == FALSE){
     			$errors = $validation->getErrorsAsArrayOfStrings();
     			return $this->render(
@@ -51,7 +55,8 @@ class TrainingController extends Controller
      						"min_size"       => $min_size_var_set,
     						"max_size"       => $max_size_var_set,
     						"type_of_search" => $type_of_search,
-    						"errors"	     => $errors
+    						"errors"	     => $errors,
+    						
     					)
     			);
     		} 
@@ -74,6 +79,8 @@ class TrainingController extends Controller
         				"min_size"       => NULL,
         				"max_size"       => NULL,
         				"type_of_search" => NULL,
+        				"origins"		 => $matrix->getOrigins(),
+        				"columns"		 => $matrix->getColumns()
         	)
         );
     }
@@ -129,5 +136,16 @@ class TrainingController extends Controller
 		$result_queue = $trainingService->queueTest();
 		return $this->render('IchnaeaWebAppTrainingBundle::queue_checklist.html.twig', 
 				array("result_queue_status" => $result_queue["status"], "result_queue_message" => $result_queue["message"]));
+	}
+	
+	public function newPredictionFormAction($matrix_id, $training_id)
+	{
+		$trainingService = $this->get('ichnaea.trainingService');
+		$training = $trainingService->getTraining($training_id);
+		return $this->render('IchnaeaWebAppTrainingBundle:Prediction:form.html.twig', 
+			array(
+					'matrix_id'   => $matrix_id,
+					'training_id' => $training_id,
+		));
 	}
 }

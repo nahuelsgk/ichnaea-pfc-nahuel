@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Training
  *
  * @ORM\Table(name="training")
- * @ORM\Entity
+ * @ORM\Entity 
  * @ORM\HasLifecycleCallbacks 
  */
 class Training
@@ -132,9 +132,25 @@ class Training
      * @ORM\Column(name="error", type="string", length=255, nullable = true	)
      */
     private $error;
+
+    /**
+     * @var string
+     * @ORM\Column(name="origin_versus", type="string", length=255, nullable = true	)
+     */
+    private $originVersus;
+
     
     /**
-     * Get id
+    * @ORM\ManyToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig")
+    * @ORM\JoinTable(name="training_variable_matrix_config",
+    *  joinColumns={@ORM\JoinColumn(name="training_id", referencedColumnName="id")},
+    *  inverseJoinColumns={@ORM\JoinColumn(name="column_id", referencedColumnName="id")}
+    * )  
+    */
+	private $columnsSelected;
+	
+	
+    /** Get id
      *
      * @return integer 
      */
@@ -586,6 +602,28 @@ class Training
     }
     
     /**
+     * Set origin
+     *
+     * @param string $origin
+     * @return Training
+     */
+    public function setOrigin($origin)
+    {
+    	$this->originVersus = $origin;
+    	return $this;
+    }
+    
+    /**
+     * Get origin
+     *
+     * @return string
+     */
+    public function getOriginVersus()
+    {
+    	return $this->originVersus;
+    }
+    
+    /**
      * Set progress
      * 
      * @param decimal $progress
@@ -605,4 +643,37 @@ class Training
     	return $this->progress;
     }
     
+
+    /**
+     * Add columnsSelected
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnsSelected
+     * @return Training
+     */
+    public function addColumnsSelected(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnsSelected)
+    {
+        $this->columnsSelected[] = $columnsSelected;
+
+        return $this;
+    }
+
+    /**
+     * Remove columnsSelected
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnsSelected
+     */
+    public function removeColumnsSelected(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnsSelected)
+    {
+        $this->columnsSelected->removeElement($columnsSelected);
+    }
+
+    /**
+     * Get columnsSelected
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getColumnsSelected()
+    {
+        return $this->columnsSelected;
+    }
 }

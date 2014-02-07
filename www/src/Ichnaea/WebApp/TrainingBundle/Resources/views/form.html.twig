@@ -26,6 +26,61 @@
      <input type="text" id="description" name="description" placeholder="Brief description" {% if description %}value="{{ description }}"{% endif %}>
     </div>
   </div>
+  <legend>Columns selections</legend>
+  <p>Select the columns you want to train
+  <div style="overflow-x: auto;">
+  <table class="table table-bordered">
+  <tr>
+  <th style="background-color: grey">
+  Alias
+  <th>
+  {% for c in columns%}
+  <th>  
+     {{ c.name }}<br>
+  </th>
+  {% endfor %}
+  </tr>
+  <tr>
+  <th style="background-color: grey">Variable</th>
+  {% for c in columns%}
+  <th>  
+  	{% if c.variable is not null %}{{ c.variable.name }}<br>{% endif %}
+  </th>
+  {% endfor %}
+  </tr>
+  <tr>
+  <th style="background-color: grey">
+    Season Set
+  </th>
+  {% for c in columns%}
+  <th>  
+  	{% if c.seasonSet is not null %}{{ c.seasonSet.name }}<br>{% endif %}
+  </th>
+  {% endfor %}
+  <tbody>
+  <tr>
+  <td>Selection</td>
+  {% for c in columns%}
+  <td>
+  <input type="checkbox" name="select_column[]" id="column_{{ c.id }}" value="{{ c.id }}"></input>
+  </td>
+  {% endfor %}
+  </tbody>
+  <tr>
+  </table>
+  </div>
+  
+  <legend>Select versus<legend>
+  
+  <select id="origin_versus" name="origin_versus">
+  <option value="all" default>All</option>
+  {% for origin in origins %}
+  <option value="{{ origin }}">{{ origin }}</option>
+  {% endfor %}
+  </select>
+  
+  <!-- BEGIN DISPLAY NONE: This is only was for Ichnaea 1.0 -->
+  <div style="display: none;">
   <legend>Advanced options <a id="expand_action" class="btn btn-mini"><i class="icon-plus"></i></a></legend>
   <div id="advanced_options">
   <div class="control-group">
@@ -62,6 +117,9 @@
      </select>
     </div>
   </div>
+  </div>
+  <!-- END DISPLAY NONE: This is only was for Ichnaea 1.0 -->
+  
   </div>
   <div class="form-actions">
    <button type="submit" class="btn btn-primary">Save changes</button>

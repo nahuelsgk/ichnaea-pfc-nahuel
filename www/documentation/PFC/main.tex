@@ -1,5 +1,4 @@
-\documentclass[a4paper,twoside,12pt,english,openright]{report}
-\usepackage[utf8]{inputenc}
+\documentclass[a4paper,twoside,12pt,catalan,openright]{report}
 
 \usepackage{babel}
 \usepackage{graphicx}
@@ -24,7 +23,7 @@
 
 \renewcommand*{\glsclearpage}{\clearpage}
 
-\title{PFC}
+\title{Ichnaea Web Services}
 \author{Nahuel Velazco}
 \date{\today}
 
@@ -40,7 +39,7 @@
 	breaklines=true,
 	breakatwhitespace=true
 }
-%\makeglossaries
+\makeglossaries
 
 \pagenumbering{roman}
 \input{glossary}
@@ -50,10 +49,28 @@
 
 \include{title}
 \cleardoublepage
+
 \include{prologue}
 \cleardoublepage
+
 \include{preface}
 \cleardoublepage
+
+\include{glossary}
+\cleardoublepage
+
+\include{especification}
+\cleardoublepage
+
+\include{dessign}
+\cleardoublepage
+
+\include{userguide}
+\cleardoublepage
+
+\include{adminguide}
+\cleardouplepage
+
 \pagenumbering{gobble}
 \tableofcontents
 \cleardoublepage
@@ -61,14 +78,6 @@
 
 \pagestyle{headings}
 
-
-
-%\include{backgrnd}
-%\include{tool}
-%\include{design}
-%\include{partitionstrategy}
-%\include{results}
-%\include{conclus}
 
 \bibliographystyle{unsrt}
 \bibliography{biblio}

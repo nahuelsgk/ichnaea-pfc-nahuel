@@ -3,7 +3,6 @@
 namespace Ichnaea\WebApp\MatrixBundle\Service;
 
 use Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig;
-
 use Doctrine\ORM\EntityManager;
 use Ichnaea\WebApp\MatrixBundle\Entity\Season;
 use Ichnaea\WebApp\MatrixBundle\Entity\Variable;
@@ -233,63 +232,80 @@ class IchnaeaService{
 	
 	/*
 	 * The content of the file: must be ; separated
-	 * NO_MATTER_WHAT ; COLUMN_ALIAS ; COLUMN ALIAS ; .....
-	 * SAMPLE_NAME    ; VALUES       ; VALUES       ;
+	 * NO_MATTER_WHAT ; COLUMN_ALIAS ; COLUMN ALIAS ; .....; "ORIGIN"(OPTIONAL BUT SHOULD BE MANDATORY)
+	 * SAMPLE_NAME    ; VALUES       ; VALUES       ; .....; "STRING"(MANDATORY IF "ORIGIN" IS PRESENT )
 	 * 
 	 * @TODO/ Must validate the csv format also...
 	 * @TODO/ Must be move into Utils 
 	 */
-	public function createMatrixFromCSVContent($name, $content, $owner_id){
-	
-	$matrix = new Matrix();
-	$matrix->setName($name);
+	public function createMatrixFromCSVContent($name, $content, $owner_id)
+	{
+		$matrix = new Matrix();
+		$matrix->setName($name);
 
-	$index=0;
-	foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
-		$max_colums=0;
+		$index=0;
+		$origin = FALSE;
+		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
+			$max_colums=0;
 		
-		//First row: variables alias
-		if($index == 0){
-			$columns    = explode(";", $line);
-		  	$m_columns  = count($columns);
-		  	
-		  	//Exclude first column
-		  	for($i=1; $i<$m_columns; $i++){
-		  		//print("Variable alias: ".$columns[$i]."<br>");
-		  		$variableConfiguration = new VariableMatrixConfig();
-		  		$variableConfiguration->setName($columns[$i]);
-		  		$variableConfiguration->setMatrix($matrix);
-		  		$matrix->addColumn($variableConfiguration);
-		  		$max_columns = $i-1;
-		  	}
-		}
-		//Samples
-		else{
-			//Check empty lines
-			if($line != ''){
+			//First row: variables alias
+			if($index == 0){
 				$columns    = explode(";", $line);
-								
-				//First Column: Definition of sample	
-				$sample = new Sample();
-				$sample->setName($columns[0]);
-				$sample->setMatrix($matrix);
-				$sample->setSamples(array_slice($columns, 1, null, TRUE));
-				$matrix->addRow($sample);
-			}			
-		}
+		  		$m_columns  = count($columns);
+		  	
+		  		//resolve if the last column is ORIGIN
+		  		if ($columns[$m_columns-1] == "ORIGIN"){ 
+		  			$origin = TRUE;
+		  			//Just to avoid the last column
+		  			$m_columns = $m_columns --;
+		  		}
+		  	
+		  		//Exclude first column
+		  		for($i=1; $i<$m_columns; $i++){
+		  			//print("Variable alias: ".$columns[$i]."<br>");
+		  			$variableConfiguration = new VariableMatrixConfig();
+		  			$variableConfiguration->setName($columns[$i]);
+		  			$variableConfiguration->setMatrix($matrix);
+		  			$matrix->addColumn($variableConfiguration);
+		  			$max_columns = $i-1;
+		  		}
+			}
 		
-		$index++;
-	}
+			//lLater are all the samples
+			else{
+				//Check empty lines
+				if($line != ''){
+					$columns    = explode(";", $line);
+								
+					//First Column: Definition of sample	
+					$sample = new Sample();
+					$sample->setName($columns[0]);
+					$sample->setMatrix($matrix);
+					//$m_columns-2 because we want only from the position 1 to $m_columns-1 
+					if ($origin == TRUE){
+				  		$sample->setSamples(array_slice($columns, 1, $m_columns-2, TRUE));
+					}
+					//We want all the values until the end
+					else{
+				  		$sample->setSamples(array_slice($columns, 1, null, TRUE));
+					}
+					$matrix->addRow($sample);
+					if(isset($columns[$m_columns])) $sample->setOrigin($columns[$m_columns]);
+				}			
+			}
+		
+			$index++;
+		}
 	
-	#Attach to the user
-	$userRepository = $this->em->getRepository('UserBundle:User');
-	$user = $userRepository->find($owner_id);
-	$matrix->setOwner($user);
+		#Attach to the user
+		$userRepository = $this->em->getRepository('UserBundle:User');
+		$user = $userRepository->find($owner_id);
+		$matrix->setOwner($user);
+		
+		$this->em->persist($matrix);
+		$this->em->flush();
 	
-	$this->em->persist($matrix);
-	$this->em->flush();
-	
-	return $matrix->getId();
+		return $matrix->getId();
 }
 
 	public function getAllMatrixs(){
@@ -350,6 +366,22 @@ class IchnaeaService{
 		return $matrix->isUpdatable();
 	}
 	
+	public function matrixIsComplete($matrix_id)
+	{
+		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
+		$matrix = $matrixRepository->find($matrix_id);
+		return $matrix->isComplete();
+		
+	}
+	
+	public function matrixIsTrained($matrix_id)
+	{
+		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
+		$matrix = $matrixRepository->find($matrix_id);
+		return $matrix->isTrained();
+	
+	}
+	
 	public function updateSample($matrix_id, $sample_id, $new_name, $new_date = NULL, $new_origin = NULL)
 	{
 		$sampleRepository = $this->em->getRepository('MatrixBundle:Sample');
@@ -380,6 +412,46 @@ class IchnaeaService{
 		$matrix = $this->getMatrix($matrix_id);
 		$dataSet = Utils::buildDatasetFromMatrix($matrix, $type);
 		return $dataSet['dataset'];
+	}
+	
+	/**
+	 * 
+	 * @param integer $matrix_id
+	 * @param integer $owner
+	 * @param string $new_name
+	 * @return Matrix
+	 * 
+	 * Clones the matrix 
+	 * 
+	 */
+	public function cloneMatrix($matrix_id, $owner, $new_name){
+		$matrix_origin = $this->em->getRepository('MatrixBundle:Matrix')->find($matrix_id);
+		$clone = clone $matrix_origin;
+		$clone->setId(null);
+		$clone->setName($new_name);
+		$clone->setOwner($owner);
+		$clone->setVisible(false);
+		foreach ($matrix_origin->getColumns() as $column){
+			$variableConfiguration = new VariableMatrixConfig();
+		  	$variableConfiguration->setName($column->getName());
+		  	$variableConfiguration->setMatrix($clone);
+		  	$variableConfiguration->setSeasonSet($column->getSeasonSet());
+		  	$variableConfiguration->setVariable($column->getVariable());
+		  	$clone->addColumn($variableConfiguration);
+		}
+		foreach ($matrix_origin->getRows() as $row){
+			$sample = new Sample();
+			$sample->setName($row->getName());
+			$sample->setMatrix($clone);
+			$sample->setDate($row->getDate());
+			$sample->setOrigin($row->getOrigin());
+			error_log($sample->getSamples());
+			$sample->setSamples(array_slice($row->getSamples(), 1, null, TRUE));
+			$clone->addRow($sample);
+		}
+		$this->em->persist($clone);
+		$this->em->flush();
+		return $clone;
 	}
 	
 	public function echoTest(){

@@ -168,4 +168,17 @@ matrix_download:
     requirements: 
         _method: POST
         matrix_id: "\d+"
-        
+
+clone_matrix_form:
+    pattern: /matrix/{matrix_id}/clone
+    defaults: { _controller: MatrixBundle:Matrix:cloneForm }
+    requirements: 
+       _method: GET
+       matrix_id: "\d+"
+
+perform_clone_matrix:
+    pattern: /matrix/{matrix_id}/performClone
+    defaults: { _controller: MatrixBundle:Matrix:performClone }
+    requirements: 
+       _method: POST
+       matrix_id: "\d+"

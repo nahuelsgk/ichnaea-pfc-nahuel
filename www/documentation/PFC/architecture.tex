@@ -1,0 +1,43 @@
+\chapter{Disseny}
+\label{cha:dessign}
+
+\section{Introduccio}
+En aquest capitol veurem els patrons de dissenys emprats i les tecnologies implementades.
+
+\section{Patro de disseny}
+S'ha emprat el framework Symfony. El patr\´{o} usat \´{e}s:
+  \begin{itemize}
+  \item Model-Vista-Controlador 
+  \item Front Crontroller
+  \item Capa de Servei amb injecci\´{o} de depend\`{e}ncies
+  \item mapejat de dades
+  \item View template
+  \item Interficies enriquides amb servei webs
+  \end{itemize}
+
+\section{Symfony}
+Symfony2 \´{e}s un framework que implementa Front Controller amb injecci\´{o} de depencies a la capa de serveis. Les entitats(model de dades) s'han implementat directament amb l'ORM doctrine contra una base de dades MySQL.
+Arquitectonicament, Symfony2 estructura el codi en Bundle. Son unitat funcionals independents de recursos. En aquest cas els "bundles" son un conjunt de serveis, entitats i recursos html. Els bundles implementats son
+\begin{itemize}
+\item{User}
+\item{Matrix}
+\item{Training}
+\item{ApiBundle}
+\end{itemize}
+
+\section{Recursos}
+La estructura de recursos \´{e}s la seg\¨{u}ent:
+
+matrix/{id}/training
+
+\section{Servei web}
+S'ha emprat un API JSON Restful per enriquir les interficies. S'ha emprat aquesta tecnologia per la escalabilitat que aporta i perque en un futur es pogui aprofitar el desenvolupament d'aquesta.
+Les operacions, els recursos i el parametres son:
+
+\section{Capa de serveis}
+
+\section{Integraci\´{o} amb el sistema de cues RabbitMQP}
+
+
+
+

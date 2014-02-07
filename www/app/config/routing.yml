@@ -1,3 +1,7 @@
+ichnaea_web_app_prediction:
+    resource: "@IchnaeaWebAppPredictionBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ichnaea_web_app_training:
     resource: "@IchnaeaWebAppTrainingBundle/Resources/config/routing.yml"
     prefix:   /

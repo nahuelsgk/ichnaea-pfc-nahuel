@@ -61,3 +61,4 @@ training_queue_test:
      defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:queueTest}
      requirements:
          _method: GET
+

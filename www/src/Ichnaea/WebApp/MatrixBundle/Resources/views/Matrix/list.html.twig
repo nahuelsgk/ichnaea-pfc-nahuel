@@ -28,6 +28,9 @@
        <i class="icon-road"></i>
      </a>
      {% endif %}
+     <a class="btn btn-mini" href="{{path('clone_matrix_form', {'matrix_id': matrix.id})}}" name="clone_matrix" title="Clone the matrix">
+       <i class="icon-repeat"></i>
+     </a>
    </td>
    </tr>
  {% endfor %}

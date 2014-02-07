@@ -1,0 +1,19 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Download matrix{% endblock %}
+
+{% block main_content %}
+<legend>Clone '<i>{{matrix_name}}</i>'</legend>
+<p>You are about to clone the matrix {{ matrix_name }} to have a copy for you and be owner of your own matrix. You won't copy any training.</p>
+<form method="post" id="seasonForm" class="form-horizontal" action="{{path('perform_clone_matrix', {matrix_id: matrix_id})}}">
+<div class="control-group">
+  <label class="control-label" for="matrix_name">New name for the cloned matrix</label>
+    <div class="controls">
+      <input type="text" id="name" name="name" value="{{matrix_new_name}}">
+    </div>
+</div>
+<div class="form-actions">
+  <button type="submit" class="btn btn-primary">Clone</button>
+</div>
+</form>
+{% endblock %}

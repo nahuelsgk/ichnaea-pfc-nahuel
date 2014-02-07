@@ -1,0 +1,35 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Create a training{% endblock %}
+
+{% block body %}
+<div class="container">
+<legend>Matrix Prediction</legend>
+<form method="post" id="matrixForm" class="form-horizontal" action="{{path('create_prediction_matrix_action',{matrix_id: matrix_id, training_id: training_id})}}">
+<div class="control-group">
+  <label class="control-label" for="seasonName">Prediction matrix name</label>
+  <div class="controls">
+   <input type="text" id="name" name="name" placeholder="Prediction matrix's name" value="">
+  </div>
+ </div>
+ <div class="control-group">
+  <label class="control-label" for="files">Matrix file(only csv)</label>
+  <div class="controls">
+   <input type="file" id="files" name="files" multiple />
+  </div>
+  <div class="controls">
+   <textarea id="content" name="content"></textarea>
+  </div>
+  </div>
+  <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+  </div>
+  <legend>Format of the matrix: in development: must resume the columns</legend>
+</div>
+{% endblock %}
+
+{% block extra_javascript %}
+$(document).ready(function(){
+    importFileIntoInput('files', 'content');
+})
+{% endblock %}

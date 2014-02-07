@@ -210,16 +210,16 @@
         },
         {
             "name": "doctrine/collections",
-            "version": "v1.1",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "v1.1"
+                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/v1.1",
-                "reference": "v1.1",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/b99c5c46c87126201899afe88ec490a25eedd6a2",
+                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2",
                 "shasum": ""
             },
             "require": {
@@ -228,7 +228,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -244,7 +244,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -260,9 +261,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -273,7 +274,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2013-03-07 12:15:54"
+            "time": "2014-02-03 23:07:43"
         },
         {
             "name": "doctrine/common",
@@ -798,12 +799,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "5d06a93a349cef14aaff7c09a0deac6a4f2791ce"
+                "reference": "6ef729cbd4f6f5ae35919a46ebafe552639cd182"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/5d06a93a349cef14aaff7c09a0deac6a4f2791ce",
-                "reference": "5d06a93a349cef14aaff7c09a0deac6a4f2791ce",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/6ef729cbd4f6f5ae35919a46ebafe552639cd182",
+                "reference": "6ef729cbd4f6f5ae35919a46ebafe552639cd182",
                 "shasum": ""
             },
             "require": {
@@ -866,7 +867,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2014-01-23 15:35:34"
+            "time": "2014-02-01 19:09:20"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -875,12 +876,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "da9a97314884275c77a741205bda9f86afe23ffd"
+                "reference": "23d15ad680fe5b695df1565e7854342e608bc483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/da9a97314884275c77a741205bda9f86afe23ffd",
-                "reference": "da9a97314884275c77a741205bda9f86afe23ffd",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/23d15ad680fe5b695df1565e7854342e608bc483",
+                "reference": "23d15ad680fe5b695df1565e7854342e608bc483",
                 "shasum": ""
             },
             "require": {
@@ -935,7 +936,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-01-22 08:58:14"
+            "time": "2014-01-26 23:20:11"
         },
         {
             "name": "jdorn/sql-formatter",

@@ -2,6 +2,7 @@
 namespace Ichnaea\WebApp\MatrixBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Matrix
@@ -73,6 +74,18 @@ class Matrix
         return $this->id;
     }
 
+    /**
+     * Set id
+     *
+     * @return integer
+     */
+    public function setId($id)
+    {
+    	$this->id = $id;
+    	
+    	return $this;
+    }
+    
     /**
      * Set name
      *
@@ -212,17 +225,31 @@ class Matrix
      * Checks if the matrix is trainable. The matrix is trainible if is visible
      */
     public function isTrainable() {
-    	if ($this->getVisible() == FALSE) return false;
+    	if ($this->getVisible() == FALSE || $this->isComplete() == FALSE) return false;
     	return true;
     }
     
+    
+    public function isComplete() {
+    	foreach ($this->getRows() as $row)
+    	{
+    		if ($row->getOrigin() == null) return false;
+    	}
+    	return true;
+    }
     /**
      * Check if the matrix is still update-able. Basically check if have any training
      */
     public function isUpdatable() 
-    {
+    { 
     	if ($this->getTraining()->count() > 0) return FALSE;
     	return true;  
+    }
+    
+    public function isTrained()
+    {
+    	if ($this->getTraining()->count() > 0) return FALSE;
+    	return true;
     }
 
     /**
@@ -256,5 +283,19 @@ class Matrix
     public function getTraining()
     {
         return $this->training;
+    }
+    
+    /**
+     * Get an associate array with all the origins
+     */
+    public function getOrigins(){
+    	$originsArray = array();
+    	foreach($this->getRows() as $sample){
+    		$originsArray[$sample->getOrigin()] = $sample->getOrigin(); 
+    	}
+    	return $originsArray;
+    }
+    
+    public function __clone(){
     }
 }

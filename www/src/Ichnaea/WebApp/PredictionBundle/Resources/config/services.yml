@@ -1,0 +1,9 @@
+parameters:
+#    ichnaea_web_app_prediction.example.class: Ichnaea\WebApp\PredictionBundle\Example
+
+     ichnaea_web_app_prediction.service.class: Ichnaea\WebApp\PredictionBundle\PredictionService
+     
+services:
+     ichnaea_web_app_prediction.service:
+         class: %ichnaea_web_app_prediction.service.class%
+         arguments: [@doctrine.orm.entity_manager]
