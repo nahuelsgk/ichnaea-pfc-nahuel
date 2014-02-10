@@ -3,24 +3,45 @@
 
 \section{Casa de l'usuari}
 \label{sec:home}
-En el dashboard es poden veure dues seccions. Les matrius creades per tu i els trainings creats per tu. Actualment no es poden compartir propietat de matrius. Es a dir, una sola persona(el propietari/creador) solament pot editar la matriu. Per poder solventar aquest trau, existeix la possibilitat de clonar una matriu.
+Per accedir al home pots:
+\begin{itemize}
+\item accedir nom\'{e}s loguejan-te 
+\item desde "My matrixs" 
+\item desde "Trainings > My Trainings" o al logo de "Ichnaea".
+\end{itemize}
+
+En el dashboard es poden veure dues seccions. Les matrius(part esquerra) i els trainings(part dreta) creats per l'usuari. 
+Nota: Actualment no es poden compartir propietat de matrius. Es a dir, una sola persona(el propietari/creador) solament pot editar la matriu. Per poder solventar aquest trau, existeix la possibilitat de clonar una matriu. Mirar \ref{sec:clone_matrix}.
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/dashboard.png}
+  \includegraphics[scale=0.2]{img/userguide/dashboard_complete_trainings.png}
   \caption{Casa de l'usuari}
   \label{fig:placement}
-\end{figure} 
-Al llistat de la esquerra pots veure les matrius que ets propietari. I amb la icona de edici\´{o} pots anar a la pantalla de configuraci\´{o}.
-Al llistat de la dreta pots veure els trainings que has llençat.  \´{E}s un llistat de X columnes on:
+\end{figure}
+ 
+\subsection{Llistat de les meves matrius}
+Al llistat de la esquerra pots veure les matrius que ets propietari. Amb la icona de edici\´{o} pots anar a la pantalla de configuraci\´{o}. Per configurar la matriu, mirar \ref{sec:configure_matrix}.
+
+\subsection{Llistat dels meus trainings}
+Al llistat de la dreta pots veure els trainings que has creat on::
 \begin{itemize}
 \item Operacions
  \begin{itemize}
  \item La icona de l'ull es per anar a la pantalla de visualitzaci\´{o} del training.
- \item La icona de X, \´{e}s per esborrar el training.
+ \item La icona de la creu, \´{e}s per esborrar el training.
+ \item La icona de la quadricula, \'{e}s per crear prediccions i matrius de prediccions.
  \end{itemize}
 \item Nom del training
 \item Nom de la matriu entrenada
+\item Progres: actualment Ichnaea no retorna estat del proces- Solament ens diu si ha acabat o no.  Per tant els \'{u}nics valors son 0.00 i 1.00.
 \item Status. Actualment \´{e}s 0 o 1. Es a dir, acabada de entrenar o no. Ichnaea encara no dona status parcials de quan temps li queda per acabar o quan porta.
+\end{itemize}
+\subsubsection*{Estat del trainings}
+En la figura es contempla els estats possibles:
+\begin{itemize}
+\item Color verd: training sense errors i predectible
+\item Color gris: training actualment corrent
+\item Color salm\'{o}: training no enviat per algun problema amb la cua o amb errors.
 \end{itemize}
 
 \section{Crear una matriu desde un csv}
@@ -41,21 +62,47 @@ On:
 \item Alias de la columna: \´{e}s un nom qualsevol per identificar la columna
 \item Valor de la sample: \´{e}s el valor de la mostra per la columna(variable)
 \item Nom de la sample: \'{e}s un identificador de la mostra
+\item Origen de la sample: \'{e}s una cadena de caracters que especifica l'origen de la mostra. Solament es distingir\'{a} si a les capçaleres a la ultima columna s'expecifica la paraula ORIGIN.
 \end{itemize}
-En la pantalla, es pot seleccionar un fitxer csv i pujar'ho. Seguidament, es podr\`{a} establir la relaci\´{o} de la variable real de la columna i quin conjunt de season per defecte usa. 
+En la pantalla, es pot seleccionar un fitxer csv i pujar'ho. Seguidament, es podr\`{a} establir la relaci\´{o} de la variable real de la columna i quin conjunt de season per defecte usa. Mirar \ref{sec:configure_matrix}.
 
 \section{Configurar una matriu}
 \label{sec:configure_matrix}
-Per accedir a configurar una matriu, has d'anar a la teva pantalla de inici. Es pot accedir desde "My Matrix" al menu superior. 
+Per accedir a configurar una matriu, has d'anar a la teva pantalla de inici(mirar \ref{sec:home}). 
 Desde la interficie de configuraci\´{o} es pot configurar:
-- Donar un alias a la columna
-- Asociar una columna a una variable
-- Seleccionar un conjunt de seasons de la variable
-- Donar nom a un sample
-- Donar una data a un sample
-- Donar un origen a un sample
+\begin{itemize}
+\item Donar un alias a la columna
+\item Asociar una columna a una variable
+\item Seleccionar un conjunt de seasons de la variable
+\item Donar nom a un sample
+\item Donar una data a un sample
+\item Donar un origen a un sample
+\item Visualitzar missatges de validacions i notificacions
+\item Donar acces als usuaris per que puguin crear trainings.
+\end{itemize}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/matrix_configure.png}
+  \caption{Interficie de configuraci\'{o} de matrius}
+  \label{fig:configure_matrix}
+\end{figure}
+
+\subsection{Alias de una columna} 
+A la secci\'{o} de les capçaleres, a la icona del llapis, es pot especificar un alias a la columna. Si es prem "Enter" o es canvia el focus, s'activa el bot\'{o} de salvaguardat.
+\subsection{Especificar una columna a una variable i la season set}
+A la secci\'{o} de les capçaleres, a la icona de la clau anglesa, es pot seleccionar la variable del sistema. Autom\'{a}ticament, a la llista de dalt, es carrega la llista de "Seasons Set". Quan es selecciona un dels dos llistats, s'activa el bot\'{o} de salvaguardat. No \'{e}s obligatori donar-li una variable o una "Season Set".
+\subsection{Cambiar la visualitzaci\'{o}}
+A la secci\'{o} de configuraci\'{o}, es pot cambiar la visibilitat. Si la matriu \'{e}s invisible, els usuaris no poden crear trainings. Per guardar els canvis, s'ha de pitjar el but\'{o} "Save configuration".
+\subsection{Visualitzar missatges}
+Existeixen diverses restriccions i missatges:
+\begin{itemize}
+\item Notificaci\'{o} de visibilitat: una matriu visible es entrenable. 
+\item Notificaci\'{o} de matriu amb trainings creats. Una modificaci\'{o} crea una incoherencia amb aquests trainings ja que no ser\'{a} la mateixa matriu.
+\item Notificaci\'{o} origins. Les mostres necessiten obligatoriament uns origins.
+\end{itemize}
 
 \section{Clonar una matriu}
+\label{sec:clone_matrix}
 Desde el llistat menu "Ichnaea Data > View Matrix", podem accedir al llistat de variables del sistema. Amb la icona etiquetada com "Clone the matrix", podem clonar una matriu sencera configurada. No es copien els trainings.
 \begin{figure}[h!]
   \centering
@@ -63,18 +110,14 @@ Desde el llistat menu "Ichnaea Data > View Matrix", podem accedir al llistat de 
   \caption{Llistat de matrius}
   \label{fig:placement}
 \end{figure}
-Fent click a la icona de clonar, anem al formulari que suggereix un nom per identificar-la.
+Fent click a la icona de reload, anem al formulari que suggereix un nom per identificar-la.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/clone_matrix-2.png}
   \caption{Llistat de matrius}
   \label{fig:placement}
 \end{figure}
-Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}.
-
-
-\section{Crear una variable}
-Funcionalitat per administradors.
+Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}. Mirar \ref{sec:configure_matrix}.
 
 \section{Crear un conjunt de season}
 
@@ -86,13 +129,32 @@ El training cont\´{e} un nom i una descripci\´{o}. Es poden seleccionar quines
 El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\´{a} tots contra tots. Si \´{e}s selecciona un origen concret, el training es far\´{a}
 Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i la aplicaci\´{o} es redirigir\´{a} la pantalla de visualitzaci\´{o} de trainings.
 
+\subsection{Simular un training de la matriu Cyprus}
+Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions.
+
 \section{Visualitzar un training}
 Desde la casa de l'usuari, es pot veure els teus trainings i en quin estadi es troben. Amb la icona "ull", pots accedir a visualitzar la informaci\´{o} del training.
 Una vegada creat es pot veure:
 \begin{itemize}
 \end{itemize}
 
+\subsection{Problem\'{a}tiques de la creaci\'{o} de trainings}
+\subsubsection*{Error en el enviament}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/view_training_pending.png}
+  \caption{Training que es pot enviar a la cua}
+  \label{fig:placement}
+\end{figure}
+
+Actualment Ichnaea Software i el sistema de cues no esta implantat. Per defecte, la creaci\'{o} donar\'{a} error. Per tant, es pot utilitzar la simulaci\'{o} de trainings.
+A banda d'aix\'{o}, tenim predifinits un conjunt de situacions que a continuaci\'{o} descrivim.
+
 \section{Crear una matriu de predicci\'{o}}
 Desde la casa de l'usuari, es pot veure els teus trainings i en quin estadi es troben. Amb la icona "Quadradets"
+
+\section{Crear una predicci\'{o}}
+
+\section{Visualitzar una predicci\'{o}}
 
 
