@@ -6,6 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class TrainingController extends Controller
 {
+	/**
+	 * Controller for render and validations for creating a training
+	 * 
+	 * @param integer $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpFoundation\RedirectResponse
+	 */
     public function trainingFormAction($matrix_id)
     {
     	$matrixService = $this->get('ichnaea.service');
@@ -19,6 +25,8 @@ class TrainingController extends Controller
     		$name             = $request->request->get("name");
     		$description      = $request->request->get("description");
     		$this->get('logger')->info($description);
+    		
+    		/*BEGIN OLD CODE for ICHNAEA 1.0*/
     		$k1			      = $request->request->get("k1");
     		$this->get('logger')->info($k1);
     		$k2			      = $request->request->get("k2");
@@ -29,7 +37,8 @@ class TrainingController extends Controller
     		$this->get('logger')->info($best_models);
     		$max_size_var_set = $request->request->get("max_size_variable_set");
     		$type_of_search   = $request->request->get("type_of_search");
-    		 
+    		/*END OLD CODE for ICHNAEA 1.0*/
+    		
     		//Select columns
     		$columns_selection = $request->request->get("select_column");
     		$origin            = $request->request->get("origin_versus");
@@ -85,27 +94,39 @@ class TrainingController extends Controller
         );
     }
     
-    /*public function getTrainingAction($matrix_id)
-    {
-    	return $this->render(
-    			'IchnaeaWebAppTrainingBundle::form.html.twig', 
-    			array(
-    					'matrix_id' => $matrix_id)
-    	);
-    }*/
-    
+    /**
+     * 
+     * @param integer $matrix_id
+     * @param integer $training_id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewTrainingAction($matrix_id, $training_id)
     {
 		$trainingService = $this->get('ichnaea.trainingService');
 		$training = $trainingService->getTraining($training_id);
 		
+		$predictionService = $this->get('ichnaea_web_app_prediction.service');
+		$predictions       = $predictionService->getPredictionsFromTraining($training_id);
+		
 		if($this->getRequest()->getMethod() == 'POST'){
 			$status = $trainingService->checkTraining($training_id);
 		}
 		
-		return $this->render('IchnaeaWebAppTrainingBundle::view.html.twig', array('training' => $training));
+		return $this->render('IchnaeaWebAppTrainingBundle::view.html.twig', 
+			array(
+				'training'   => $training,
+				'predictions' => $predictions
+			)
+		);
     }
 
+    /**
+     * Render the delete training confirmation
+     * 
+     * @param integer $matrix_id
+     * @param integer $training_id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
 	public function deleteTrainingAction($matrix_id, $training_id)
 	{
 		//@TODO: only can do it the trainer or the admin
@@ -114,6 +135,13 @@ class TrainingController extends Controller
 		return $this->render('IchnaeaWebAppTrainingBundle::delete_form.html.twig', array('training' => $training));
 	}
 	
+	/**
+	 * Resend a training.
+	 * @TODO: maybe performs some validation. Only available when there are errors
+	 * @param integer $matrix_id
+	 * @param integer $training_id
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function resendTrainingAction ($matrix_id, $training_id)
 	{
 		$trainingService = $this->get('ichnaea.trainingService');
@@ -121,6 +149,13 @@ class TrainingController extends Controller
 		return $this->redirect($this->generateUrl('training_view', array('matrix_id' => $matrix_id, 'training_id' => $training_id)));
 	} 
 	
+	/**
+	 * Removes a training
+	 *  
+	 * @param integer $matrix_id
+	 * @param integer $training_id
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function submitDeleteTrainingAction($matrix_id, $training_id){
 		//@TODO: only can do it the trainer or the admin
 		$trainingService = $this->get('ichnaea.trainingService');
@@ -128,6 +163,12 @@ class TrainingController extends Controller
 		return $this->redirect($this->generateUrl('user_dashboard'));
 	}
 
+	/**
+	 * Test the queue service. May be have to move to another controller
+	 * 
+	 * @throws AccessDeniedHttpException
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function queueTestAction(){
 		$user = $this->get('security.context')->getToken()->getUser();
 		if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
@@ -136,16 +177,5 @@ class TrainingController extends Controller
 		$result_queue = $trainingService->queueTest();
 		return $this->render('IchnaeaWebAppTrainingBundle::queue_checklist.html.twig', 
 				array("result_queue_status" => $result_queue["status"], "result_queue_message" => $result_queue["message"]));
-	}
-	
-	public function newPredictionFormAction($matrix_id, $training_id)
-	{
-		$trainingService = $this->get('ichnaea.trainingService');
-		$training = $trainingService->getTraining($training_id);
-		return $this->render('IchnaeaWebAppTrainingBundle:Prediction:form.html.twig', 
-			array(
-					'matrix_id'   => $matrix_id,
-					'training_id' => $training_id,
-		));
 	}
 }

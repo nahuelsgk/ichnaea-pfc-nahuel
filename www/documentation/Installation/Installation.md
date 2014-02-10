@@ -23,6 +23,5 @@ b) First execute to have a user into the web app with admin
 php app/console doctrine:fixtures:load --append
 
 c) Extra: Insert the data into dabatase. The file to insert into the database: www/documentation/Installation/DefaultData/raw_fixtures.sql
-Warning: consider to update the field owner_id of the table matrix to an existing user.
-"update matrix set owner_id=1 where id=14;"
+Warning: The owner of the matrix is admin
 

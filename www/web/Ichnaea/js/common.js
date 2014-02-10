@@ -151,11 +151,12 @@ function reposHead(e)
 }
 
 //@TODO: move to jquery
+//Moves horizontal header to the left
 function reposHorizontal(e) {
     var h = document.getElementById('headscroll');
     var c = document.getElementById('contentscroll');
-    h.scrollLeft = e.scrollLeft*50;
-    c.scrollLeft = e.scrollLeft*50;
+    h.scrollLeft = e.scrollLeft*100;
+    c.scrollLeft = e.scrollLeft*100;
 }
 
 //@TODO: move to jquery

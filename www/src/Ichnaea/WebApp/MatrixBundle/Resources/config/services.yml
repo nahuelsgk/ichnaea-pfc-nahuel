@@ -1,5 +1,3 @@
-parameters:
-
 services:
     ichnaea.service: 
          class: Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService

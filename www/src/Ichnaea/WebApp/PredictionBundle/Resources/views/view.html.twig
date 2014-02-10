@@ -1,0 +1,73 @@
+{% extends '::GUI/withOutContainer.html.twig' %}
+
+{% block page_title %}Viewing prediction matrix {{matrix.name}} {% endblock %}
+
+{% block main_content %}
+<div class="container">
+<legend>
+Prediction matrix: "{{ matrix.name }}"
+<a class="btn btn-mini" href="{{path('update_prediction_matrix_form', {'prediction_id': matrix.id, 'training_id': matrix.training.id, 'matrix_id': matrix.training.matrix.id })}}" name="download_matrix" title="Update matrix"><i class="icon-refresh"></i></a>
+<a href="#" class="btn btn-large btn-success">Perform prediction</a>
+</legend>
+</div>
+<form>
+
+</form>
+<div class="container-full-width">
+<table border="0" cellpadding="0" cellspacing="0" class='main'>
+            <tr>
+                <td class='tablefrozencolumn'>
+                    <div id='divroot' class='root'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='root'>
+                            <tr>
+                                <td class='inner-head frozencol colwidth head' align="center">
+                                  {{matrix.name}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='divfrozen' class='frozen'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='frozen'>
+							{% for sample in matrix.rows %}
+   							<tr id="sample-{{sample.id}}">
+   							    <td align="center" class='frozen-index'>{{loop.index}}</td>
+   								<td class='{% if loop.last %}inner-frozen-last{% else %}inner-frozen{% endif %} frozencol'>
+   									{{sample.name}} - {% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %} - {{sample.origin}}
+   							</tr>	
+   							{% endfor %}
+                       </table>
+                    </div>
+                </td>
+                <td class='tablecontent'>
+                    <div id='headscroll' class='divhead'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='head'>
+                            <tr>
+                                {% for column in matrix.training.columnsSelected %}
+								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
+								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 								   
+								    {% if column.variable is not null and column.seasonSet is not null%} {{column.seasonSet.name}} {% endif %}
+								    <br/>
+								    <a title="Variable selection"><i class="icon-wrench"></i></a>
+								    {% if column.variable is not null %} {{column.variable.name}} {% endif %}
+								    <br/>
+								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a> {{column.name}}<br/>
+								   </td>
+								   {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='contentscroll' class='content' onscroll='reposHead(this);'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='content' id='innercontent'>
+                        {% for sample in matrix.rows %}
+						 <tr>
+						   {% for value in sample.samples %}
+						   <td class='inner col_content' align="center">{{value}}</td>
+						   {% endfor %}
+						 </tr>
+						 {% endfor %}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+{% endblock %}

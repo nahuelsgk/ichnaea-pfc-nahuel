@@ -52,9 +52,7 @@ class IchnaeaService{
 	
 	public function getSeasonById($id)
 	{
-	    error_log("Calling to get the season");
     	$season = $this->em->getRepository('MatrixBundle:Season')->find($id);
-    	error_log("Calling to get the season. We got ".$season->getId());
         return $season;
 	}
 	
@@ -254,10 +252,10 @@ class IchnaeaService{
 		  		$m_columns  = count($columns);
 		  	
 		  		//resolve if the last column is ORIGIN
-		  		if ($columns[$m_columns-1] == "ORIGIN"){ 
+		  		if (strpos($columns[$m_columns-1], "ORIGIN") !== false ){
 		  			$origin = TRUE;
 		  			//Just to avoid the last column
-		  			$m_columns = $m_columns --;
+		  			$m_columns --;
 		  		}
 		  	
 		  		//Exclude first column
@@ -283,14 +281,20 @@ class IchnaeaService{
 					$sample->setMatrix($matrix);
 					//$m_columns-2 because we want only from the position 1 to $m_columns-1 
 					if ($origin == TRUE){
-				  		$sample->setSamples(array_slice($columns, 1, $m_columns-2, TRUE));
+						foreach($columns as $key => $string) {
+							$columns[$key] = $this->cleanStringCSV($string);
+						}
+				  		$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
 					}
 					//We want all the values until the end
 					else{
 				  		$sample->setSamples(array_slice($columns, 1, null, TRUE));
 					}
 					$matrix->addRow($sample);
-					if(isset($columns[$m_columns])) $sample->setOrigin($columns[$m_columns]);
+					if(isset($columns[$m_columns]) && $origin)
+					{
+						$sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
+					}
 				}			
 			}
 		
@@ -306,8 +310,13 @@ class IchnaeaService{
 		$this->em->flush();
 	
 		return $matrix->getId();
-}
+	}
 
+	private function cleanStringCSV($string){
+		$invalid_chars = array('\'','"');
+		return str_replace($invalid_chars, "", $string);	
+	}
+	
 	public function getAllMatrixs(){
 		return $this->em->getRepository('MatrixBundle:Matrix')->findAll();
 	}
@@ -445,7 +454,6 @@ class IchnaeaService{
 			$sample->setMatrix($clone);
 			$sample->setDate($row->getDate());
 			$sample->setOrigin($row->getOrigin());
-			error_log($sample->getSamples());
 			$sample->setSamples(array_slice($row->getSamples(), 1, null, TRUE));
 			$clone->addRow($sample);
 		}

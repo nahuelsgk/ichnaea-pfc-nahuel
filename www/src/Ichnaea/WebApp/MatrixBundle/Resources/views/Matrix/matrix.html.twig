@@ -55,7 +55,7 @@
 							{% for sample in matrix.rows %}
    							<tr id="sample-{{sample.id}}">
    							    <td align="center" class='frozen-index'>{{loop.index}}</td>
-   								<td class='{% if loop.last %}inner-frozen-last{% else %}inner-frozen{% endif %} frozencol'>
+   								<td class='inner-frozen frozencol'>
    									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action')" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
    									<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
    									<input 
@@ -78,6 +78,7 @@
    								</td>
    							</tr>	
    							{% endfor %}
+   							<td class='inner-frozen-last frozencol'>&nbsp;</td>
                         </table>
                     </div>
                 </td>
@@ -86,7 +87,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" class='head'>
                             <tr>
                                 {% for column in matrix.columns %}
-								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
+								   <td class='inner-head col_header head'>
 								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 
 								    <select id="seasonSetListVariable-{{column.id}}" class="input-medium" 
 								      onchange="displayHiddenElement('column-{{column.id}}-action');">
@@ -124,6 +125,7 @@
 								   		);"><i class="icon-edit"></i></a>
 								   </td>
 								   {% endfor %}
+								   <td class='inner-head col_header_last head'>&nbsp;</td>
                             </tr>
                         </table>
                     </div>
@@ -219,9 +221,7 @@ function fullfillOriginsInput(idToFulFill)
 
 function init_inputOrigins()
 {
-	console.log("Init on input events on origins");
-	$('.origin_input').on('input', function(){
-	  console.log('Written on '+$(this).attr('id'));
+	$('.origin_input').on('input', function(){	  
 	  fullfillOriginsInput($(this).attr('id'));
 	  
 	});

@@ -10,6 +10,24 @@ create_prediction_matrix_form:
         matrix_id: "\d+"
         training_id: "\d+"
 
+update_prediction_matrix_form:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/update
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionUpdateForm}
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"
+
+update_prediction_matrix_action:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/update
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionUpdateForm}
+    requirements:
+        _method: POST
+        matrix_id: "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"
+        
 create_prediction_matrix_action:
     pattern: /matrix/{matrix_id}/training/{training_id}/prediction
     defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionForm}
@@ -17,4 +35,12 @@ create_prediction_matrix_action:
         _method: POST
         matrix_id: "\d+"
         training_id: "\d+"
-    
+
+view_matrix_prediction:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionMatrixForm}
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"

@@ -5,11 +5,17 @@
 {% block body %}
 <div class="container">
 <legend>Matrix Prediction</legend>
-<form method="post" id="matrixForm" class="form-horizontal" action="{{path('create_prediction_matrix_action',{matrix_id: matrix_id, training_id: training_id})}}">
+<form method="post" id="matrixForm" class="form-horizontal" action="
+{% if update is defined %}
+{{path('update_prediction_matrix_action',{matrix_id: matrix_id, training_id: training_id, prediction_id: prediction_id})}}
+{% else %}
+{{path('create_prediction_matrix_action',{matrix_id: matrix_id, training_id: training_id})}}
+{% endif %}
+">
 <div class="control-group">
   <label class="control-label" for="seasonName">Prediction matrix name</label>
   <div class="controls">
-   <input type="text" id="name" name="name" placeholder="Prediction matrix's name" value="">
+   <input type="text" id="name" name="name" placeholder="Prediction matrix's name" {% if update is defined %}value="{{ name }}"{% else %}value=""{% endif %}>
   </div>
  </div>
  <div class="control-group">
@@ -24,7 +30,43 @@
   <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save changes</button>
   </div>
-  <legend>Format of the matrix: in development: must resume the columns</legend>
+  <legend>Format of the training</legend>
+  <p>The format that csv must be.
+  <div style="overflow-x: auto;">
+  <table class="table table-bordered">
+  <tr>
+  <th style="background-color: grey">
+  Alias
+  </th>
+  {% for c in columns%}
+  <th>  
+     {{ c.name }}<br>
+  </th>
+  {% endfor %}
+  <th style="background-color: white;">&nbsp;</th>
+  </tr>
+  <tr>
+  <th style="background-color: grey">Variable</th>
+  {% for c in columns%}
+  <th>  
+  	{% if c.variable is not null %}{{ c.variable.name }}<br>{% endif %}
+  </th>
+  {% endfor %}
+  <th style="background-color: white;">&nbsp;</th>
+  </tr>
+  <tr>
+  <th style="background-color: grey">
+    Season Set
+  </th>
+  {% for c in columns%}
+  <th>  
+  	{% if c.seasonSet is not null %}{{ c.seasonSet.name }}<br>{% endif %}
+  </th>
+  {% endfor %}
+  <th style="background-color: white;">Season(optional)</th>
+  </tr>
+  </table>
+  </div>
 </div>
 {% endblock %}
 
