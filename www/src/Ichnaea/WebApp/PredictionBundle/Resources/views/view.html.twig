@@ -7,7 +7,7 @@
 <legend>
 Prediction matrix: "{{ matrix.name }}"
 <a class="btn btn-mini" href="{{path('update_prediction_matrix_form', {'prediction_id': matrix.id, 'training_id': matrix.training.id, 'matrix_id': matrix.training.matrix.id })}}" name="download_matrix" title="Update matrix"><i class="icon-refresh"></i></a>
-<a href="#" class="btn btn-large btn-success">Perform prediction</a>
+<a href="#" class="btn btn-mini btn-success">Perform prediction</a>
 </legend>
 </div>
 <form>
@@ -70,4 +70,10 @@ Prediction matrix: "{{ matrix.name }}"
                 </td>
             </tr>
         </table>
+{% endblock %}
+
+{% block extra_javascript %}
+$(document).ready(function(){
+ 	dynamic_height($('#menu_info_block').height());
+ }); 	   
 {% endblock %}

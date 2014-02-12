@@ -61,11 +61,14 @@ class PredictionService
 		
 					//First Column: Definition of sample
 					$sample = new PredictionSample();
-					$sample->setName($columns[0]);
+					$sample->setName($this->cleanStringCSV($columns[0]));
 					$sample->setMatrix($predictionMatrix);
+					foreach($columns as $key => $string) {
+						$columns[$key] = $this->cleanStringCSV($string);
+					}
 					$sample->setSamples(array_slice($columns, 1, $m_columns, TRUE));
 					$predictionMatrix->addRow($sample);
-					if(isset($columns[$m_columns+1])) $sample->setOrigin($columns[$m_columns+1]);
+					if(isset($columns[$m_columns+1])) $sample->setOrigin($this->cleanStringCSV($columns[$m_columns+1]));
 					$predictionMatrix->addRow($sample);
 				}	
 			}
@@ -91,6 +94,11 @@ class PredictionService
 	public function getPredictionsFromTraining($training_id)
 	{
 		return $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->findBy(array('training'=>$training_id));
+	}
+	
+	private function cleanStringCSV($string){
+		$invalid_chars = array('\'','"');
+		return str_replace($invalid_chars, "", $string);
 	}
 }
 
