@@ -25,21 +25,23 @@ class PredictionService
 	public function createMatrixPredictionFromCSV($training_id, $name, $content, $owner_id, $prediction_id = NULL) 
 	{
 		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
-error_log('Updating '.$prediction_id);
+		error_log('Creating a prediction '.$prediction_id);
 		$predictionMatrix;
-		if ( is_null($prediction_id) == FALSE)
+		if ( is_null($prediction_id) === TRUE)
 		{
+		  error_log("New prediction");
 		  $predictionMatrix = new PredictionMatrix();		
 		  $predictionMatrix->setName($name);
 		  $predictionMatrix->setTraining($training);
 		}
 		else 
 		{
+			error_log("Updating prediction");
 			$predictionMatrix = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
 			//Delete all samples
 			foreach ($predictionMatrix->getRows() as $sample){
 				$predictionMatrix->removeRow($sample);
-				$sample->remove();
+				$this->em->remove($sample);
 			}	
 		}
 		
@@ -63,10 +65,9 @@ error_log('Updating '.$prediction_id);
 					$sample->setMatrix($predictionMatrix);
 					$sample->setSamples(array_slice($columns, 1, $m_columns, TRUE));
 					$predictionMatrix->addRow($sample);
-					if(isset($columns[$m_columns])) $sample->setOrigin($columns[$m_columns+1]);
+					if(isset($columns[$m_columns+1])) $sample->setOrigin($columns[$m_columns+1]);
 					$predictionMatrix->addRow($sample);
 				}	
-				
 			}
 			$index++;
 		}

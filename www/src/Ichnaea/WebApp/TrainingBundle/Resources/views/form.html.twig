@@ -13,19 +13,33 @@
   {% endfor %}
   </div>
   {% endif %}
-  <legend>Create a new training</legend>
-  <div class="control-group">
-   <label class="control-label" for="Name">Name</label>
-    <div class="controls">
-     <input type="text" id="name" name="name" placeholder="Training name" required {% if name %}value="{{name}}"{% endif %}>
-    </div>
+  <div style="float: left; width: 50%;">
+	  <legend>Create a new training</legend>
+	  <div class="control-group">
+	   <label class="control-label" for="Name">Name</label>
+	    <div class="controls">
+	     <input type="text" id="name" name="name" placeholder="Training name" required {% if name %}value="{{name}}"{% endif %}>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	   <label class="control-label" for="Name">Description</label>
+	    <div class="controls">
+	     <input type="text" id="description" name="description" placeholder="Brief description" {% if description %}value="{{ description }}"{% endif %}>
+	    </div>
+	  </div>
   </div>
-  <div class="control-group">
-   <label class="control-label" for="Name">Description</label>
-    <div class="controls">
-     <input type="text" id="description" name="description" placeholder="Brief description" {% if description %}value="{{ description }}"{% endif %}>
-    </div>
+  <div style="float: left; width: 50%;">
+	  <legend>Select versus</legend>
+	  <select id="origin_versus" name="origin_versus">
+	  <option value="all" default>All</option>
+	  {% for origin in origins %}
+	  <option value="{{ origin }}">{{ origin }}</option>
+	  {% endfor %}
+	  </select>
   </div>
+</div>
+
+<div class="container">
   <legend>Columns selections</legend>
   <p>Select the columns you want to train
   <div style="overflow-x: auto;">
@@ -59,25 +73,18 @@
   {% endfor %}
   <tbody>
   <tr>
-  <td>Selection</td>
+  <td>
+  	Select all<input type="checkbox" id="select_all_columns" onclick="toggleChecked(this.checked)"></input>
+  </td>
   {% for c in columns%}
   <td>
-  <input type="checkbox" name="select_column[]" id="column_{{ c.id }}" value="{{ c.id }}"></input>
+  <input type="checkbox" class="selected_column" name="select_column[]" id="column_{{ c.id }}" value="{{ c.id }}" checked></input>
   </td>
   {% endfor %}
   </tbody>
   <tr>
   </table>
   </div>
-  
-  <legend>Select versus<legend>
-  
-  <select id="origin_versus" name="origin_versus">
-  <option value="all" default>All</option>
-  {% for origin in origins %}
-  <option value="{{ origin }}">{{ origin }}</option>
-  {% endfor %}
-  </select>
   
   <!-- BEGIN DISPLAY NONE: This is only was for Ichnaea 1.0 -->
   <div style="display: none;">
@@ -129,8 +136,14 @@
 {% endblock %}
 
 {% block extra_javascript %}
-$(document).ready(function(){
 
+function toggleChecked(status) {
+ $(".selected_column").each( function() {
+    $(this).prop("checked", status)
+ });
+}
+
+$(document).ready(function(){
  $("#advanced_options").hide();
  $("#expand_action").click(function()
   {

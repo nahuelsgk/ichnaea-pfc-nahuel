@@ -1,1 +1,2 @@
-Just import these data when database is empty to start working with some data. Only for development enviroments and databases.
+Default data to get started:
+Please read installation documentation in this parent directory.

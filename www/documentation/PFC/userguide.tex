@@ -125,16 +125,26 @@ Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}. Mirar
 
 \section{Crear un training}
 Per crear un training s'ha de accedir al menu superior "Trainings > Create a training". Desde el llistat de matrius del sistema, amb la icona de la "carretera", es pot accedir al formulari de creaci\´{o} de trainings.
-El training cont\´{e} un nom i una descripci\´{o}. Es poden seleccionar quines columnes vols entrenar de la matriu. 
-El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\´{a} tots contra tots. Si \´{e}s selecciona un origen concret, el training es far\´{a}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/create_.png}
+  \caption{Llistat de matrius}
+  \label{fig:placement}
+\end{figure}
+\begin{itemize}
+\item Part esquerra superior: El training cont\´{e} un nom i una descripci\´{o}. Es poden seleccionar quines columnes vols entrenar de la matriu. 
+\item Part dreta superior: Desplegable per seleccionar un dels origens disponibles.  El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\´{a} tots contra tots. Si \´{e}s selecciona un origen concret, el training es far\´{a} aquest origen contra els altres. Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}.
+\item Selecci\'{o} de columnes. Selecci\'{o} de columnes que vols entrenar.
+\end{itemize}
+
 Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i la aplicaci\´{o} es redirigir\´{a} la pantalla de visualitzaci\´{o} de trainings.
 
 \subsection{Simular un training de la matriu Cyprus}
-Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions.
+Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions. PENDENT DE CONFIRMAR REQUERIMENT.
 
 \section{Visualitzar un training}
-Desde la casa de l'usuari, es pot veure els teus trainings i en quin estadi es troben. Amb la icona "ull", pots accedir a visualitzar la informaci\´{o} del training.
-Una vegada creat es pot veure:
+Desde la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus trainings i en quin estadi es troben. Amb la icona "ull", pots accedir a visualitzar la informaci\´{o} del training.
+
 \begin{itemize}
 \end{itemize}
 
@@ -154,7 +164,34 @@ A banda d'aix\'{o}, tenim predifinits un conjunt de situacions que a continuaci\
 Desde la casa de l'usuari, es pot veure els teus trainings i en quin estadi es troben. Amb la icona "Quadradets"
 
 \section{Crear una predicci\'{o}}
+Desde la casa de l'usuari(mirar \ref{sec:home}) es pot crear una predicci\'{o} d'un training. Seleccionant la icona "quadricules" de un trainig correcte(en color verd), es pot crear un matriu de predicci\'{o}.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/create_prediction.png}
+  \caption{Exemple de creaci\'{o} de predicci\'{o}}
+  \label{fig:placement}
+\end{figure}
+A part superior \'{e}s pot seleccionar un fitxer per pujar la matriu per predir.
+A la part inferior es pot veure les columnes que el training t\'{e} seleccionades. La matrius en format csv ha de tenir el format indicat per la part inferior. En breu es podr\'{a} descarregar una template per tenir el template i poder simplement omplir els valors:
+\begin{center}
+    \begin{tabular}{ | l | l | l | p{5cm} |}
+    \hline
+    Cel.la bu\¨{i}da & Columna del training 0          & Columna del training 1              & .... & Columna del training n       & ORIGIN \\ \hline
+    Nom de la sample & Valor de la sample(opcional)    & Valor de la sample(opcional)        & .....& Valor de la sample(opcional) & Origen de la sample(opcional) \\ \hline
+    S01-10-20        & 0,000145                        &                                     & .... & <10                                                 & Human \\ \hline
+    \hline
+    \end{tabular}
+\end{center}
+Seguidament es pot visualitzar
 
-\section{Visualitzar una predicci\'{o}}
+\section{Llistar les meves prediccions}
+Cas d'us pendent d'especificar
+
+\section{Visualitzar una matriu de predicci\'{o}}
+Cas d'us pendent d'especificar.
+
+\subsection{Actualitzar una matriu de predicci\'{o}}
+
+\subsection{Executar una predicci\'{o} de una matriu de predicci\'{o}}
 
 
