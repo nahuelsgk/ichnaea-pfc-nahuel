@@ -34,6 +34,24 @@ public class Main {
                 return "Sends a build-models request and waits for the response";
             }
         });
+        actions.put("predict-models:process", new Action() {
+            public void run(String[] args) {
+                PredictModelsProcessApp.main(args);
+            }
+
+            public String description() {
+                return "Process incoming predict-models requests";
+            }
+        });
+        actions.put("predict-models:request", new Action() {
+            public void run(String[] args) {
+                PredictModelsRequestApp.main(args);
+            }
+
+            public String description() {
+                return "Sends a predict-models request and waits for the response";
+            }
+        });
         return actions;
     }
 

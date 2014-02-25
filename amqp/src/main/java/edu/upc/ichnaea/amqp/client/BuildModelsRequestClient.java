@@ -21,127 +21,69 @@ import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestWriter;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseReader;
 import edu.upc.ichnaea.amqp.xml.XmlPrettyFormatter;
 
-public class BuildModelsRequestClient extends Client {
-
+public class BuildModelsRequestClient extends AbstractRequestClient {
+    
     BuildModelsRequest mRequest;
     OutputStream mResponseOutput;
-    String mRequestExchange;
-    String mRequestQueue;
-    String mResponseQueue;
-    boolean mDebug = false;
 
-    public BuildModelsRequestClient(BuildModelsRequest request,
-            String requestQueue, String requestExchange, String responseQueue,
-            OutputStream output) {
+    public BuildModelsRequestClient(BuildModelsRequest request, String requestQueue,
+            String requestExchange, String responseQueue, OutputStream output) {
+        super(requestQueue, requestExchange, responseQueue);
         mRequest = request;
         mResponseOutput = output;
-        mRequestQueue = requestQueue;
-        mRequestExchange = requestExchange;
-        mResponseQueue = responseQueue;
     }
 
-    public void setDebug(boolean debug) {
-        mDebug = debug;
+    @Override
+    protected String setupRequest(AMQP.BasicProperties.Builder builder) throws IOException {
+        builder.contentType("text/xml");
+        try {
+            return new XmlBuildModelsRequestWriter().build(mRequest)
+            .toString();
+        } catch (ParserConfigurationException e) {
+            throw new IOException(e);
+        }
     }
-
+    
+    protected void debugRequest() throws IOException {
+        try {
+            String xml = new XmlBuildModelsRequestWriter().build(mRequest).toString();
+            getLogger().info(new XmlPrettyFormatter().format(xml));
+        } catch (ParserConfigurationException e) {
+            throw new IOException(e);
+        }
+    }
+    
+    @Override
+    protected String getRequestId() {
+        return mRequest.getId();
+    }
     protected void sendRequest(String routingKey)
             throws ParserConfigurationException, IOException {
         getLogger().info(
                 "sending build models request to exchange \""
                         + mRequestExchange + "\"...");
 
-        String xml = new XmlBuildModelsRequestWriter().build(mRequest)
-                .toString();
-
-        if (mDebug) {
-            getLogger().info(new XmlPrettyFormatter().format(xml));
-            setFinished(true);
-        } else {
-            Channel ch = getChannel();
-            BasicProperties props = new AMQP.BasicProperties.Builder()
-                    .contentType("text/xml").replyTo(routingKey).build();
-
-            ch.basicPublish(mRequestExchange, "", props, xml.getBytes());
-        }
+        super.sendRequest(routingKey);
     }
 
-    protected void processResponse(byte[] body) throws IOException,
-            SAXException, MessagingException {
-        BuildModelsResponse resp = new XmlBuildModelsResponseReader()
-                .read(new String(body));
-
-        if (resp.hasError()) {
-            getLogger().warning("got error: " + resp.getError());
-            setFinished(true);
-            return;
-        }
-
-        float progress = resp.getProgress();
-        SimpleDateFormat f = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
-
-        if (progress < 1) {
-            getLogger().info("request update");
-            int percent = Math.round(progress * 100);
-            getLogger().info("progress: " + percent + "%");
-            if (resp.hasEnd()) {
-                getLogger().info(
-                        "estimated end time: "
-                                + f.format(resp.getEnd().getTime()));
-            }
-        } else {
-            getLogger().info("request finished");
-            if (resp.hasStart()) {
-                getLogger().info(
-                        "start time: " + f.format(resp.getStart().getTime()));
-            }
-            if (resp.hasEnd()) {
-                getLogger().info(
-                        "end time: " + f.format(resp.getEnd().getTime()));
-            }
+    protected void processResponse(byte[] body) throws IOException {
+        try {
+            BuildModelsResponse resp = new XmlBuildModelsResponseReader()
+                    .read(new String(body));
             if (mResponseOutput != null && resp.hasData()) {
                 getLogger().info("writing build models response to a file ...");
                 mResponseOutput.write(resp.getData());
                 mResponseOutput.close();
-            }
-            setFinished(true);
+            }            
+        } catch (SAXException | MessagingException e) {
+            throw new IOException(e);
         }
     }
 
-    @Override
-    public void setup(Channel channel) throws IOException {
-        super.setup(channel);
-        channel.queueDeclare(mRequestQueue, false, false, false, null);
-        channel.exchangeDeclare(mRequestExchange, "direct", true);
-        channel.queueBind(mRequestQueue, mRequestExchange, "");
-        channel.queueDeclare(mResponseQueue, false, false, false, null);
-    }
 
     @Override
     public void run() throws IOException {
-        Channel ch = getChannel();
-        String routingKey = mRequest.getId();
-        boolean autoAck = true;
-
-        if (ch != null) {
-            ch.basicConsume(mResponseQueue, autoAck, new DefaultConsumer(ch) {
-                @Override
-                public void handleDelivery(String consumerTag,
-                        Envelope envelope, AMQP.BasicProperties properties,
-                        byte[] body) throws IOException {
-                    try {
-                        processResponse(body);
-                    } catch (Exception e) {
-                        throw new IOException(e);
-                    }
-                }
-            });
-        }
-        try {
-            sendRequest(routingKey);
-        } catch (Exception e) {
-            throw new IOException(e);
-        }
-
+        super.run();
         getLogger().info(
                 "waiting for build models response on queue \""
                         + mResponseQueue + "\"...");

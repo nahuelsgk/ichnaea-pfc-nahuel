@@ -2,22 +2,22 @@
 
 namespace Ichnaea\Amqp\Xml;
 
-use Ichnaea\Amqp\Model\TestModelsResponse;
+use Ichnaea\Amqp\Model\PredictModelsResponse;
 use Ichnaea\Amqp\Mime\MimeMultipart;
 use Ichnaea\Amqp\Mime\MimePart;
 
 /**
- * Xml reader that reads TestModelsResponse objects
+ * Xml reader that reads PredictModelsResponse objects
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
-class TestModelsResponseReader extends Reader
+class PredictModelsResponseReader extends Reader
 {
     /**
      * Read a response object
      *
-     * @param  string              $data the response data
-     * @return TestModelsResponse a response object
+     * @param  string $data the response data
+     * @return PredictModelsResponse a response object
      */
     public function read($data)
     {
@@ -29,7 +29,7 @@ class TestModelsResponseReader extends Reader
 
             foreach ($xml->childNodes as $node) {
                 if ($node->nodeName === 'response') {
-                    $resp = new TestModelsResponse($node->getAttribute('id'));
+                    $resp = new PredictModelsResponse($node->getAttribute('id'));
                     $resp->setProgress($node->getAttribute('progress'));
                     $resp->setStart($node->getAttribute('start'));
                     $resp->setEnd($node->getAttribute('end'));

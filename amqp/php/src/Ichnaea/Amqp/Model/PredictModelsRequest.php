@@ -3,17 +3,17 @@
 namespace Ichnaea\Amqp\Model;
 
 /**
- * This class represents a test models request
+ * This class represents a predict models request
  *
  * This request contains:
  * * an unique identifier
- * * the data returned from a build models response
+ * * the data returned from a predict models response
  * * a test dataset 
  *
- * @see TestModelsResponse
+ * @see PredictModelsResponse
  * @author Miguel Ibero <miguel@ibero.me>
  */
-class TestModelsRequest
+class PredictModelsRequest
 {
     /**
      * @var string
@@ -35,7 +35,7 @@ class TestModelsRequest
     private $dataset;
 
     /**
-     * Constructor for the testing request
+     * Constructor for the predict request
      *
      * @param string $id identifier for the request
      */
@@ -69,7 +69,7 @@ class TestModelsRequest
     }
 
     /**
-     * Set the data for the build models columns
+     * Set the data for the predict models columns
      * The data can be a Dataset object or
      * a dataset \SplFileObject, a string with csv data
      * or an array.

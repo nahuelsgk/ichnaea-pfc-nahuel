@@ -20,9 +20,9 @@ use Ichnaea\Amqp\Mime\MimeMultipart;
  * * `build-models.request.queue`: the name of the build models request queue
  * * `build-models.request.exchange`: the name of the build models request exchange
  * * `build-models.response.queue`: the name of the build models response queue
- * * `testing.request.queue`: the name of the testing request queue
- * * `testing.request.exchange`: the name of the testing request exchange
- * * `testing.response.queue`: the name of the testing response queue 
+ * * `predict-models.request.queue`: the name of the predict models request queue
+ * * `predict-models.request.exchange`: the name of the predict models request exchange
+ * * `predict-models.response.queue`: the name of the predict models response queue 
  *
  * Sending requests can be done in the http server, but listening for responses
  * should be done in a script, since it will block the main thread.
@@ -34,8 +34,8 @@ use Ichnaea\Amqp\Mime\MimeMultipart;
  * $amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($db) {
  *     print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
  * });
- * $amqp->listenForTestingResponse(function (TestingResponse $resp) use ($db) {
- *     print "Received testing response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
+ * $amqp->listenForPredictModelsResponse(function (PredictModelsResponse $resp) use ($db) {
+ *     print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
  * }); 
  * $amqp->wait();
  * $amqp->close();
@@ -96,12 +96,12 @@ class Connection
     private function setOptions(array $options)
     {
         $this->opts = array_merge(array(
-            "build-models.request.queue"	=> "ichnaea.build-models.request",
-            "build-models.request.exchange"	=> "ichnaea.build-models.request",
-            "build-models.response.queue"	=> "ichnaea.build-models.response",
-            "testing.request.queue"         => "ichnaea.testing.request",
-            "testing.request.exchange"      => "ichnaea.testing.request",
-            "testing.response.queue"        => "ichnaea.testing.response",            
+            "build-models.request.queue"        => "ichnaea.build-models.request",
+            "build-models.request.exchange"     => "ichnaea.build-models.request",
+            "build-models.response.queue"	    => "ichnaea.build-models.response",
+            "predict-models.request.queue"      => "ichnaea.predict-models.request",
+            "predict-models.request.exchange"   => "ichnaea.predict-models.request",
+            "predict-models.response.queue"     => "ichnaea.predict-models.response",            
         ), $this->opts, $options);
     }
 
@@ -144,10 +144,10 @@ class Connection
         $this->ch->queue_bind($this->opts['build-models.request.queue'], $this->opts['build-models.request.exchange'], "");
         $this->ch->queue_declare($this->opts['build-models.response.queue'], false, false, false, null);
 
-        $this->ch->queue_declare($this->opts['testing.request.queue'], false, false, false, null);
-        $this->ch->exchange_declare($this->opts['testing.request.exchange'], "direct", true);
-        $this->ch->queue_bind($this->opts['testing.request.queue'], $this->opts['testing.request.exchange'], "");
-        $this->ch->queue_declare($this->opts['testing.response.queue'], false, false, false, null);        
+        $this->ch->queue_declare($this->opts['predict-models.request.queue'], false, false, false, null);
+        $this->ch->exchange_declare($this->opts['predict-models.request.exchange'], "direct", true);
+        $this->ch->queue_bind($this->opts['predict-models.request.queue'], $this->opts['predict-models.request.exchange'], "");
+        $this->ch->queue_declare($this->opts['predict-models.response.queue'], false, false, false, null);        
     }
 
     /**
@@ -169,23 +169,23 @@ class Connection
     }
 
     /**
-     * Sends a testing request to the server
+     * Sends a predict models request to the server
      *
-     * @param TestingRequest $req the request
+     * @param PredictModelsRequest $req the request
      */
-    public function sendTestingRequest(TestingRequest $req)
+    public function sendPredictModelsRequest(PredictModelsRequest $req)
     {
         if (!$this->ch) {
             throw new \UnexpectedValueException("Connection is not open");
         }
-        $xml = new TestingRequestWriter();
+        $xml = new PredictModelsRequestWriter();
         $xml->build($req);
         $mime = new MimeMultipart();
         $mime->addPart($xml);
         $mime->addPart($req->getData());
         $msg = new AMQPMessage($mime, array('content_type' => 'text/xml'));
         $msg->set("reply_to", $req->getId());
-        $this->ch->basic_publish($msg, $this->opts['testing.request.exchange']);
+        $this->ch->basic_publish($msg, $this->opts['predict-models.request.exchange']);
 
         return $xml;
     }    
@@ -199,8 +199,8 @@ class Connection
     {
         if ($model instanceof BuildModelsRequest) {
             return $this->sendBuildModelsRequest($model);
-        } else if($model instanceof TestingRequest) {
-            return $this->sendTestingRequest($model);
+        } else if($model instanceof PredictModelsRequest) {
+            return $this->sendPredictModelsRequest($model);
         }
     }
 
@@ -225,16 +225,16 @@ class Connection
     }
 
     /**
-     * Listens for testing responses from the server. The callback will recieve
+     * Listens for predict models responses from the server. The callback will recieve
      * the response object as a parameter
      *
      * @param \Closure $callback the callback called when a response arrives
      */
-    public function listenForTestingResponse(\Closure $callback)
+    public function listenForPredictModelsResponse(\Closure $callback)
     {
-        $this->ch->basic_consume($this->opts['testing.response.queue'], "",
+        $this->ch->basic_consume($this->opts['predict-models.response.queue'], "",
             false, false, false, false, function (AMQPMessage $msg) use ($callback) {
-                $reader = new TestingResponseReader();
+                $reader = new PredictModelsResponseReader();
                 $resp = $reader->read($msg->body);
                 if ($resp) {
                     call_user_func($callback, $resp);

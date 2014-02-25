@@ -2,7 +2,6 @@ package edu.upc.ichnaea.amqp.xml;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 
 import javax.activation.DataHandler;
 import javax.mail.MessagingException;
@@ -13,42 +12,31 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Element;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
+import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
 
-public class XmlBuildModelsResponseWriter extends XmlWriter {
+public class XmlPredictModelsRequestWriter extends XmlWriter {
 
     private byte[] mData;
 
-    public XmlBuildModelsResponseWriter() throws ParserConfigurationException {
-        super(AbstractProgressResponseHandler.TAG_RESPONSE);
+    public XmlPredictModelsRequestWriter() throws ParserConfigurationException {
+        super(PredictModelsRequestHandler.TAG_REQUEST);
     }
 
-    public XmlBuildModelsResponseWriter build(BuildModelsResponse resp) {
-        Element root = getRoot();
+    public XmlPredictModelsRequestWriter build(PredictModelsRequest req) {
+        Element xmlRoot = getRoot();
 
-        root.setAttribute(AbstractProgressResponseHandler.ATTR_ID,
-                String.valueOf(resp.getId()));
-        root.setAttribute(AbstractProgressResponseHandler.ATTR_TYPE,
-                AbstractProgressResponseHandler.TYPE);
-
-        if (resp.hasError()) {
-            root.setAttribute(AbstractProgressResponseHandler.ATTR_ERROR,
-                    resp.getError());
+        xmlRoot.setAttribute(PredictModelsRequestHandler.ATTR_ID,
+                String.valueOf(req.getId()));
+        xmlRoot.setAttribute(PredictModelsRequestHandler.ATTR_REQUEST_TYPE,
+                PredictModelsRequestHandler.TYPE);
+        
+        if (!req.getDataset().isEmpty()) {
+            Element xmlDataset = appendChild(DatasetHandler.TAG_DATASET);
+            new XmlDatasetWriter(getDocument(), xmlDataset).build(req
+                    .getDataset());
         }
-        root.setAttribute(AbstractProgressResponseHandler.ATTR_PROGRESS,
-                String.valueOf(resp.getProgress()));
-
-        SimpleDateFormat f = new SimpleDateFormat(
-                AbstractProgressResponseHandler.CALENDAR_FORMAT);
-        if (resp.hasStart()) {
-            root.setAttribute(AbstractProgressResponseHandler.ATTR_START,
-                    f.format(resp.getStart().getTime()));
-        }
-        if (resp.hasEnd()) {
-            root.setAttribute(AbstractProgressResponseHandler.ATTR_END,
-                    f.format(resp.getEnd().getTime()));
-        }
-        mData = resp.getData();
+        
+        mData = req.getData();
         return this;
     }
 

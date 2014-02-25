@@ -19,7 +19,7 @@ main jar once.
 
 * test ichnaea running it from the command line
 
-    ../r/files/ichnaea.sh --debug --aging ../r/fixtures/aging --output /tmp/output.zip ../r/fixtures/cyprus.csv
+    ../r/files/ichnaea.sh --debug --aging ../r/fixtures/aging --output /tmp/cryprus_models.zip ../r/fixtures/cyprus.csv
 
 #### Setup required programms and libraries
 
@@ -40,22 +40,33 @@ Build a self contained jar file with all the dependencies
 
     mvn clean compile assembly:single
 
-This will build a file in `target/ichnaea-amqp.jar`.
+This will build an executable file in `target/ichnaea-amqp.jar`.
+Use the `-h` command line argument to get all the available options.
 
-To run the basic build-models:process consumer:
+##### Build models
+
+To run the basic build-models:process client:
 
     ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh --verbose
 
-To run the basic build-models:request publisher with a fake request:
+To run the basic build-models:request client with a fake request:
 
     ./target/ichnaea-amqp.jar build-models:request -f 10:1
 
-To run the basic build-models:request publisher with a real request:
+To run the basic build-models:request client with a real request:
 
-    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv --output=/tmp/output.zip
+    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv --output=/tmp/cryprus_models.zip
 
-Use the `-h` command line argument to get all the available options.
+##### Predict models
 
+To run the basic predict-models:process client:
+
+    ./target/ichnaea-amqp.jar predict-models:process -i ../r/files/ichnaea.sh --verbose
+    
+To run the basic predict-models:request client with a real request:
+
+    ./target/ichnaea-amqp.jar predict-models:request --data=../r/fixtures/cyprus_models.zip --dataset=../r/fixtures/cyprus_test.csv --output=/tmp/cryprus_result.txt
+    
 ### For Development
 
 #### Setup required programms and libraries

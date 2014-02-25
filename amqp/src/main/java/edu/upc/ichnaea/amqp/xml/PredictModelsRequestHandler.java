@@ -5,24 +5,24 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.TestModelsRequest;
+import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
 
-public class TestModelsRequestHandler implements ContentHandler {
+public class PredictModelsRequestHandler implements ContentHandler {
 
-    final static String TYPE = "build_models";
+    final static String TYPE = "predict_models";
 
     final static String TAG_REQUEST = "request";
     final static String ATTR_ID = "id";
     final static String ATTR_REQUEST_TYPE = "type";
 
-    TestModelsRequest mRequest;
+    PredictModelsRequest mRequest;
     DatasetHandler mDatasetHandler;
     Dataset mDataset;
     byte[] mData;    
     String mId;
 
-    public TestModelsRequest getData() {
+    public PredictModelsRequest getData() {
         return mRequest;
     }
 
@@ -44,7 +44,7 @@ public class TestModelsRequestHandler implements ContentHandler {
 
     @Override
     public void endDocument() throws SAXException {
-        mRequest = new TestModelsRequest(mId, mDataset, mData);
+        mRequest = new PredictModelsRequest(mId, mDataset, mData);
     }
 
     @Override

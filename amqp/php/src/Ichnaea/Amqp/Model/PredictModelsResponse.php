@@ -3,13 +3,13 @@
 namespace Ichnaea\Amqp\Model;
 
 /**
- * This class represents a test models response.
+ * This class represents a predict models response.
  *
  * This request contains:
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
-class TestModelsResponse : public AbstractProgressResponse
+class PredictModelsResponse : public AbstractProgressResponse
 {
 
     /**

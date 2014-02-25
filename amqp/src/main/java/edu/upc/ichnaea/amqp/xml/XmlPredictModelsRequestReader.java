@@ -5,25 +5,24 @@ import java.io.IOException;
 import org.xml.sax.SAXException;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
 import edu.upc.ichnaea.amqp.IOUtils;
-import edu.upc.ichnaea.amqp.model.TestModelsRequest;
+import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
 
-public class XmlTestModelsRequestReader extends
-        XmlReader<TestModelsRequestHandler> {
+public class XmlPredictModelsRequestReader extends
+        XmlReader<PredictModelsRequestHandler> {
 
-    public XmlTestModelsRequestReader() {
-        super(new TestModelsRequestHandler());
+    public XmlPredictModelsRequestReader() {
+        super(new PredictModelsRequestHandler());
     }
 
-    public TestModelsRequest getData() {
+    public PredictModelsRequest getData() {
         return getHandler().getData();
     }
 
-    public TestModelsRequest read(String mpdata) throws SAXException,
+    public PredictModelsRequest read(String mpdata) throws SAXException,
               IOException, MessagingException {
 
         MimeMultipart mp = new MimeMultipart(new ByteArrayDataSource(

@@ -1,18 +1,18 @@
 package edu.upc.ichnaea.amqp.model;
 
-public class TestModelsRequest {
+public class PredictModelsRequest {
 
     protected Dataset mDataset;
     protected byte[] mData;
     protected String mId;
 
-    public TestModelsRequest(String id, Dataset dataset, byte[] data) {
+    public PredictModelsRequest(String id, Dataset dataset, byte[] data) {
         mDataset = dataset;
         mId = id;
         mData = data;
     }
 
-    public TestModelsRequest(String id) {
+    public PredictModelsRequest(String id) {
         mId = id;
     }
 
@@ -22,6 +22,10 @@ public class TestModelsRequest {
 
     public Dataset getDataset() {
         return mDataset;
+    }
+    
+    public byte[] getData() {
+        return mData;
     }
 
     public boolean isEmpty() {

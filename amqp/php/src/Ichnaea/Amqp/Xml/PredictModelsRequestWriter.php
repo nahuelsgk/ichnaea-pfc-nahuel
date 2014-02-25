@@ -2,15 +2,15 @@
 
 namespace Ichnaea\Amqp\Xml;
 
-use Ichnaea\Amqp\Model\TestModelsRequest;
+use Ichnaea\Amqp\Model\PredictModelsRequest;
 
 /**
- * An XML writer that writes TestModelsRequest objects to xml
+ * An XML writer that writes PredictModelsRequest objects to xml
  *
- * @see Ichnaea\Amqp\Model\TestModelsRequest
+ * @see Ichnaea\Amqp\Model\PredictModelsRequest
  * @author Miguel Ibero <miguel@ibero.me>
  */
-class TestModelsRequestWriter extends Writer
+class PredictModelsRequestWriter extends Writer
 {
     /**
      * Constructor
@@ -28,11 +28,11 @@ class TestModelsRequestWriter extends Writer
      *
      * @param BuildModelsRequest the request object
      */
-    public function build(TestModelsRequest $req)
+    public function build(PredictModelsRequest $req)
     {
         $xmlRoot = $this->getRoot();
         $xmlRoot->setAttribute("id", $req->getId());
-        $xmlRoot->setAttribute("type", "test_models");
+        $xmlRoot->setAttribute("type", "predict_models");
 
         // write dataset
         if (!$req->getDataset()->isEmpty()) {
