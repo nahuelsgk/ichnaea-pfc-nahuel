@@ -30,7 +30,7 @@ public class BuildModelsCommand extends IchnaeaCommand {
     }
 
     public String getParameters() {
-        String params = "";
+        String params = "build";
 
         if (mOutputPath != null) {
             params += " --output=" + mOutputPath + "";

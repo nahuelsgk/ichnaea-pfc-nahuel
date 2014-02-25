@@ -9,8 +9,13 @@ namespace Ichnaea\Amqp\Model;
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
-class BuildModelsFakeRequest extends BuildModelsRequest
+class FakeRequest
 {
+    /**
+     * @var string
+     */
+    private $id;
+
     /**
      * The duration of the request in seconds
      *
@@ -24,6 +29,29 @@ class BuildModelsFakeRequest extends BuildModelsRequest
      * @var float
      */
     private $interval;
+
+    /**
+     * Constructor for the fake request
+     *
+     * @param string $id identifier for the request
+     */
+    public function __construct($id=null)
+    {
+        if (!$id) {
+            $id = uniqid();
+        }
+        $this->id = $id;
+    }
+
+    /**
+     * Get the request id
+     *
+     * @return string the request id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }    
 
     /**
      * Set the duration
@@ -74,9 +102,8 @@ class BuildModelsFakeRequest extends BuildModelsRequest
     {
         return array(
             "id"            => $this->getId(),
-            "fake"          => true,
-            "fake_duration" => $this->duration,
-            "fake_interval" => $this->interval,
+            "duration"      => $this->duration,
+            "interval"      => $this->interval,
         );
     }
 
@@ -87,11 +114,11 @@ class BuildModelsFakeRequest extends BuildModelsRequest
      */
     public function update(array $data)
     {
-        if (array_key_exists('fake_duration', $data)) {
-            $this->setDuration($data['fake_duration']);
+        if (array_key_exists('duration', $data)) {
+            $this->setDuration($data['duration']);
         }
-        if (array_key_exists('fake_interval', $data)) {
-            $this->setInterval($data['fake_interval']);
+        if (array_key_exists('interval', $data)) {
+            $this->setInterval($data['interval']);
         }
     }
 

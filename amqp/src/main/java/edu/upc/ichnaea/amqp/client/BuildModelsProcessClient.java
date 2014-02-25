@@ -6,22 +6,18 @@ import java.io.OutputStreamWriter;
 import java.util.Calendar;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.xml.sax.SAXException;
-
 import com.rabbitmq.client.AMQP;
 
 import edu.upc.ichnaea.amqp.FileUtils;
 import edu.upc.ichnaea.amqp.IOUtils;
 import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
 import edu.upc.ichnaea.amqp.data.AgingFolderWriter;
-import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsRequestReader;
 import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseWriter;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
 import edu.upc.ichnaea.shell.CommandResultInterface;
-import edu.upc.ichnaea.shell.FakeBuildModelsCommand;
 import edu.upc.ichnaea.shell.ShellInterface;
 
 public class BuildModelsProcessClient extends AbstractProcessClient {
@@ -46,9 +42,28 @@ public class BuildModelsProcessClient extends AbstractProcessClient {
                 responseXml.getBytes());
     }
 
-    protected void processRealRequest(BuildModelsRequest req,
-            final String replyTo) throws IOException, InterruptedException,
-            ParserConfigurationException {
+    protected void sendRequestUpdate(String replyTo, Calendar start, Calendar end,
+            float percent) throws IOException {
+        
+        try {
+            sendResponse(new BuildModelsResponse(replyTo, start, end,
+                    percent), replyTo);
+        } catch (ParserConfigurationException e) {
+            throw new IOException(e);
+        }
+    }
+    
+    protected void processRequest(String replyTo, byte[] body)
+            throws Exception {
+        getLogger().info("received a request");
+        getLogger().info(new String(body));
+
+        getLogger().info("parsing the request");
+        BuildModelsRequest req = new XmlBuildModelsRequestReader()
+                .read(new String(body));
+
+        getLogger().info("opening shell");
+        mShell.open();
 
         Calendar start = Calendar.getInstance();
 
@@ -123,63 +138,6 @@ public class BuildModelsProcessClient extends AbstractProcessClient {
         }
         getLogger().info("sending result");
         sendResponse(resp, replyTo);
-    }
-
-    protected void processFakeRequest(BuildModelsFakeRequest req,
-            final String replyTo) throws IOException, InterruptedException,
-            ParserConfigurationException {
-
-        Calendar start = Calendar.getInstance();
-        getLogger().info("calling fake build models command");
-        FakeBuildModelsCommand cmd = new FakeBuildModelsCommand(req.toString());
-
-        cmd.setScriptPath(mScriptPath);
-        getLogger().info(cmd.toString());
-        CommandResultInterface result = mShell.run(cmd);
-
-        getLogger().info("reading command result");
-        try {
-            sendRequestUpdates(result, start, replyTo);
-        } catch (IOException e) {
-            String err = "failed command result: " + e.getMessage();
-            getLogger().warning(err);
-            Calendar end = Calendar.getInstance();
-            BuildModelsResponse resp = new BuildModelsResponse(replyTo, start,
-                    end, err);
-            getLogger().info("sending result");
-            sendResponse(resp, replyTo);
-            return;
-        }
-    }
-    
-    protected void sendRequestUpdate(String replyTo, Calendar start, Calendar end,
-            float percent) throws IOException {
-        
-        try {
-            sendResponse(new BuildModelsResponse(replyTo, start, end,
-                    percent), replyTo);
-        } catch (ParserConfigurationException e) {
-            throw new IOException(e);
-        }
-    }
-    
-    protected void processRequest(String replyTo, byte[] body)
-            throws Exception {
-        getLogger().info("received a request");
-        getLogger().info(new String(body));
-
-        getLogger().info("parsing the request");
-        BuildModelsRequest req = new XmlBuildModelsRequestReader()
-                .read(new String(body));
-
-        getLogger().info("opening shell");
-        mShell.open();
-
-        if (req instanceof BuildModelsFakeRequest) {
-            processFakeRequest((BuildModelsFakeRequest) req, replyTo);
-        } else {
-            processRealRequest(req, replyTo);
-        }
 
         getLogger().info("closing shell");
         mShell.close();

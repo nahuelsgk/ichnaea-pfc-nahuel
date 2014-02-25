@@ -7,10 +7,13 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
 use Ichnaea\Amqp\Model\TestingRequest;
+use Ichnaea\Amqp\Model\FakeRequest;
 use Ichnaea\Amqp\Xml\BuildModelsRequestWriter;
 use Ichnaea\Amqp\Xml\BuildModelsResponseReader;
-use Ichnaea\Amqp\Xml\TestingRequestWriter;
-use Ichnaea\Amqp\Xml\TestingResponseReader;
+use Ichnaea\Amqp\Xml\PredictModelsRequestWriter;
+use Ichnaea\Amqp\Xml\PredictModelsResponseReader;
+use Ichnaea\Amqp\Xml\FakeRequestWriter;
+use Ichnaea\Amqp\Xml\FakeResponseReader;
 use Ichnaea\Amqp\Mime\MimeMultipart;
 
 /**
@@ -23,6 +26,9 @@ use Ichnaea\Amqp\Mime\MimeMultipart;
  * * `predict-models.request.queue`: the name of the predict models request queue
  * * `predict-models.request.exchange`: the name of the predict models request exchange
  * * `predict-models.response.queue`: the name of the predict models response queue 
+ * * `fake.request.queue`: the name of the fake request queue
+ * * `fake.request.exchange`: the name of the fake request exchange
+ * * `fake.response.queue`: the name of the fake response queue
  *
  * Sending requests can be done in the http server, but listening for responses
  * should be done in a script, since it will block the main thread.
@@ -34,6 +40,9 @@ use Ichnaea\Amqp\Mime\MimeMultipart;
  * $amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($db) {
  *     print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
  * });
+* $amqp->listenForFakeResponse(function (FakeResponse $resp) use ($db) {
+ *     print "Received fake response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
+ * }); 
  * $amqp->listenForPredictModelsResponse(function (PredictModelsResponse $resp) use ($db) {
  *     print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
  * }); 
@@ -101,7 +110,10 @@ class Connection
             "build-models.response.queue"	    => "ichnaea.build-models.response",
             "predict-models.request.queue"      => "ichnaea.predict-models.request",
             "predict-models.request.exchange"   => "ichnaea.predict-models.request",
-            "predict-models.response.queue"     => "ichnaea.predict-models.response",            
+            "predict-models.response.queue"     => "ichnaea.predict-models.response",
+            "fake.request.queue"                => "ichnaea.fake.request",
+            "fake.request.exchange"             => "ichnaea.fake.request",
+            "fake.response.queue"               => "ichnaea.fake.response",            
         ), $this->opts, $options);
     }
 
@@ -148,6 +160,11 @@ class Connection
         $this->ch->exchange_declare($this->opts['predict-models.request.exchange'], "direct", true);
         $this->ch->queue_bind($this->opts['predict-models.request.queue'], $this->opts['predict-models.request.exchange'], "");
         $this->ch->queue_declare($this->opts['predict-models.response.queue'], false, false, false, null);        
+    
+        $this->ch->queue_declare($this->opts['fake.request.queue'], false, false, false, null);
+        $this->ch->exchange_declare($this->opts['fake.request.exchange'], "direct", true);
+        $this->ch->queue_bind($this->opts['fake.request.queue'], $this->opts['fake.request.exchange'], "");
+        $this->ch->queue_declare($this->opts['fake.response.queue'], false, false, false, null);        
     }
 
     /**
@@ -188,7 +205,25 @@ class Connection
         $this->ch->basic_publish($msg, $this->opts['predict-models.request.exchange']);
 
         return $xml;
-    }    
+    }   
+
+    /**
+     * Sends a fake request to the server
+     *
+     * @param FakeRequest $req the request
+     */
+    public function sendFakeRequest(FakeRequest $req)
+    {
+        if (!$this->ch) {
+            throw new \UnexpectedValueException("Connection is not open");
+        }
+        $xml = new FakeRequestWriter();
+        $xml->build($req);
+        $msg = new AMQPMessage($xml, array('content_type' => 'text/xml'));
+        $msg->set("reply_to", $req->getId());
+        $this->ch->basic_publish($msg, $this->opts['fake.request.exchange']);
+        return $xml;
+    }     
 
     /**
      * Sends a request to the server
@@ -201,11 +236,13 @@ class Connection
             return $this->sendBuildModelsRequest($model);
         } else if($model instanceof PredictModelsRequest) {
             return $this->sendPredictModelsRequest($model);
+        } else if($model instanceof FakeRequest) {
+            return $this->sendFakeRequest($model);
         }
     }
 
     /**
-     * Listens for build model responses from the server. The callback will recieve
+     * Listens for build model responses from the server. The callback will receive
      * the response object as a parameter
      *
      * @param \Closure $callback the callback called when a response arrives
@@ -225,7 +262,7 @@ class Connection
     }
 
     /**
-     * Listens for predict models responses from the server. The callback will recieve
+     * Listens for predict models responses from the server. The callback will receive
      * the response object as a parameter
      *
      * @param \Closure $callback the callback called when a response arrives
@@ -242,7 +279,28 @@ class Connection
                         basic_ack($msg->delivery_info['delivery_tag']);
                 }
         });
-    }    
+    }
+
+
+    /**
+     * Listens for fake responses from the server. The callback will receive
+     * the response object as a parameter
+     *
+     * @param \Closure $callback the callback called when a response arrives
+     */
+    public function listenForFakeResponse(\Closure $callback)
+    {
+        $this->ch->basic_consume($this->opts['fake.response.queue'], "",
+            false, false, false, false, function (AMQPMessage $msg) use ($callback) {
+                $reader = new FakeResponseReader();
+                $resp = $reader->read($msg->body);
+                if ($resp) {
+                    call_user_func($callback, $resp);
+                     $msg->delivery_info['channel']->
+                        basic_ack($msg->delivery_info['delivery_tag']);
+                }
+        });
+    }         
 
     /**
      * Closes the connection

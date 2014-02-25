@@ -52,6 +52,24 @@ public class Main {
                 return "Sends a predict-models request and waits for the response";
             }
         });
+        actions.put("fake:process", new Action() {
+            public void run(String[] args) {
+                FakeProcessApp.main(args);
+            }
+
+            public String description() {
+                return "Process incoming fake requests";
+            }
+        });
+        actions.put("fake:request", new Action() {
+            public void run(String[] args) {
+                FakeRequestApp.main(args);
+            }
+
+            public String description() {
+                return "Sends a fake request and waits for the response";
+            }
+        });        
         return actions;
     }
 

@@ -2,8 +2,6 @@
 
 namespace Ichnaea\Amqp\Model;
 
-use Ichnaea\Amqp\Model\AbstractProgressResponse;
-
 /**
  * This class represents a build models response.
  *
@@ -12,7 +10,7 @@ use Ichnaea\Amqp\Model\AbstractProgressResponse;
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
-class BuildModelsResponse : public AbstractProgressResponse
+class BuildModelsResponse extends ProgressResponse
 {
     /**
      * The data

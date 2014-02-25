@@ -43,21 +43,27 @@ Build a self contained jar file with all the dependencies
 This will build an executable file in `target/ichnaea-amqp.jar`.
 Use the `-h` command line argument to get all the available options.
 
-##### Build models
+##### Fake request
+
+To run the basic fake:process client:
+
+    ./target/ichnaea-amqp.jar fake:process -i ../r/files/ichnaea.sh --verbose
+
+To run the basic fake:request client:
+
+    ./target/ichnaea-amqp.jar fake:request --duration=10 --interval=1
+
+##### Build models request
 
 To run the basic build-models:process client:
 
     ./target/ichnaea-amqp.jar build-models:process -i ../r/files/ichnaea.sh --verbose
 
-To run the basic build-models:request client with a fake request:
-
-    ./target/ichnaea-amqp.jar build-models:request -f 10:1
-
-To run the basic build-models:request client with a real request:
+To run the basic build-models:request client:
 
     ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv --output=/tmp/cryprus_models.zip
 
-##### Predict models
+##### Predict models request
 
 To run the basic predict-models:process client:
 

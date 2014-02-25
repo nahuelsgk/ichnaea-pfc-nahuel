@@ -11,7 +11,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
-import edu.upc.ichnaea.amqp.model.AbstractProgressResponse;
+import edu.upc.ichnaea.amqp.model.ProgressResponse;
 public abstract class AbstractRequestClient extends Client {
 
     String mRequestExchange;
@@ -52,7 +52,7 @@ public abstract class AbstractRequestClient extends Client {
         }
     }
     
-    protected void processResponse(AbstractProgressResponse resp) {
+    protected void processResponse(ProgressResponse resp) {
         if (resp.hasError()) {
             getLogger().warning("got error: " + resp.getError());
             setFinished(true);

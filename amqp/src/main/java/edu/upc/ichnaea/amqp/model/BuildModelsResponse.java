@@ -2,7 +2,7 @@ package edu.upc.ichnaea.amqp.model;
 
 import java.util.Calendar;
 
-public class BuildModelsResponse extends AbstractProgressResponse {
+public class BuildModelsResponse extends ProgressResponse {
 
     protected byte[] mData;
 

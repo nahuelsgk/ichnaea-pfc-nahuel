@@ -1,50 +1,43 @@
 package edu.upc.ichnaea.amqp.client;
 
 import java.io.IOException;
-import java.io.OutputStream;
-
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
 import com.rabbitmq.client.AMQP;
 
-import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
-import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
-import edu.upc.ichnaea.amqp.xml.XmlPredictModelsRequestWriter;
-import edu.upc.ichnaea.amqp.xml.XmlPredictModelsResponseReader;
+import edu.upc.ichnaea.amqp.model.FakeRequest;
+import edu.upc.ichnaea.amqp.model.FakeResponse;
+import edu.upc.ichnaea.amqp.xml.XmlFakeRequestWriter;
+import edu.upc.ichnaea.amqp.xml.XmlFakeResponseReader;
 import edu.upc.ichnaea.amqp.xml.XmlPrettyFormatter;
 
-public class PredictModelsRequestClient extends AbstractRequestClient {
-
-    PredictModelsRequest mRequest;
-    OutputStream mResponseOutput;
+public class FakeRequestClient extends AbstractRequestClient {
     
-    boolean mDebug = false;
+    FakeRequest mRequest;
 
-    public PredictModelsRequestClient(PredictModelsRequest request,
-            String requestQueue, String requestExchange, String responseQueue,
-            OutputStream output) {
+    public FakeRequestClient(FakeRequest request, String requestQueue,
+            String requestExchange, String responseQueue) {
         super(requestQueue, requestExchange, responseQueue);
         mRequest = request;
-        mResponseOutput = output;
     }
-    
+
     @Override
     protected String setupRequest(AMQP.BasicProperties.Builder builder) throws IOException {
         builder.contentType("text/xml");
         try {
-            return new XmlPredictModelsRequestWriter().build(mRequest)
+            return new XmlFakeRequestWriter().build(mRequest)
             .toString();
         } catch (ParserConfigurationException e) {
             throw new IOException(e);
         }
     }
     
-    @Override
+    @Override    
     protected void debugRequest() throws IOException {
         try {
-            String xml = new XmlPredictModelsRequestWriter().build(mRequest).toString();
+            String xml = new XmlFakeRequestWriter().build(mRequest).toString();
             getLogger().info(new XmlPrettyFormatter().format(xml));
         } catch (ParserConfigurationException e) {
             throw new IOException(e);
@@ -56,21 +49,22 @@ public class PredictModelsRequestClient extends AbstractRequestClient {
         return mRequest.getId();
     }
     
-    @Override
+    @Override    
     protected void sendRequest(String routingKey)
             throws ParserConfigurationException, IOException {
         getLogger().info(
-                "sending predict models request to exchange \""
+                "sending fake request to exchange \""
                         + mRequestExchange + "\"...");
-        super.sendRequest(routingKey);
-    }    
 
-    @Override
+        super.sendRequest(routingKey);
+    }
+
+    @Override    
     protected void processResponse(byte[] body) throws IOException {
         try {
-            PredictModelsResponse resp = new XmlPredictModelsResponseReader()
+            FakeResponse resp = new XmlFakeResponseReader()
                     .read(new String(body));
-            processResponse(resp);
+            super.processResponse(resp);
         } catch (SAXException e) {
             throw new IOException(e);
         }
@@ -80,7 +74,7 @@ public class PredictModelsRequestClient extends AbstractRequestClient {
     public void run() throws IOException {
         super.run();
         getLogger().info(
-                "waiting for predict models response on queue \""
+                "waiting for fake response on queue \""
                         + mResponseQueue + "\"...");
     }
 

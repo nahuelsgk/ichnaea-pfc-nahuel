@@ -3,7 +3,7 @@
 namespace Ichnaea\Amqp\Model;
 
 /**
- * This class represents a abstract response that
+ * This class represents a response that
  * contains progress data.
  *
  * This response contains:
@@ -16,7 +16,7 @@ namespace Ichnaea\Amqp\Model;
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
-abstract class AbstractProgressResponse
+class ProgressResponse
 {
     /**
      * Format for converting times to string

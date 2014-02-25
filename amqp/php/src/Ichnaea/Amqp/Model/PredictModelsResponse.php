@@ -9,9 +9,8 @@ namespace Ichnaea\Amqp\Model;
  *
  * @author Miguel Ibero <miguel@ibero.me>
  */
-class PredictModelsResponse : public AbstractProgressResponse
+class PredictModelsResponse extends ProgressResponse
 {
-
     /**
      * Export the response to an array
      *
@@ -37,7 +36,7 @@ class PredictModelsResponse : public AbstractProgressResponse
      * Create the response from an array
      *
      * @param array the response data
-     * @return BuildModelsResponse the response
+     * @return PredictModelsResponse the response
      */
     public static function fromArray(array $data)
     {

@@ -2,7 +2,6 @@ package edu.upc.ichnaea.amqp.client;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 
 import javax.mail.MessagingException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -10,10 +9,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import com.rabbitmq.client.AMQP;
-import com.rabbitmq.client.AMQP.BasicProperties;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.DefaultConsumer;
-import com.rabbitmq.client.Envelope;
 
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
@@ -44,6 +39,7 @@ public class BuildModelsRequestClient extends AbstractRequestClient {
         }
     }
     
+    @Override    
     protected void debugRequest() throws IOException {
         try {
             String xml = new XmlBuildModelsRequestWriter().build(mRequest).toString();
@@ -57,6 +53,8 @@ public class BuildModelsRequestClient extends AbstractRequestClient {
     protected String getRequestId() {
         return mRequest.getId();
     }
+    
+    @Override    
     protected void sendRequest(String routingKey)
             throws ParserConfigurationException, IOException {
         getLogger().info(
@@ -66,20 +64,21 @@ public class BuildModelsRequestClient extends AbstractRequestClient {
         super.sendRequest(routingKey);
     }
 
+    @Override    
     protected void processResponse(byte[] body) throws IOException {
         try {
             BuildModelsResponse resp = new XmlBuildModelsResponseReader()
                     .read(new String(body));
+            super.processResponse(resp);
             if (mResponseOutput != null && resp.hasData()) {
                 getLogger().info("writing build models response to a file ...");
                 mResponseOutput.write(resp.getData());
                 mResponseOutput.close();
-            }            
+            }
         } catch (SAXException | MessagingException e) {
             throw new IOException(e);
         }
     }
-
 
     @Override
     public void run() throws IOException {

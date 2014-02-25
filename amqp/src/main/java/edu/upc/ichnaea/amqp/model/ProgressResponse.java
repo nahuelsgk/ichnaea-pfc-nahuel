@@ -2,7 +2,7 @@ package edu.upc.ichnaea.amqp.model;
 
 import java.util.Calendar;
 
-public abstract class AbstractProgressResponse {
+public class ProgressResponse {
 
     protected String mId;
     protected float mProgress;
@@ -10,20 +10,20 @@ public abstract class AbstractProgressResponse {
     protected Calendar mEnd;
     protected String mError;
 
-    public AbstractProgressResponse(String id, Calendar start, Calendar end,
+    public ProgressResponse(String id, Calendar start, Calendar end,
             String error) {
         this(id, start, end);
         mError = error;
         mProgress = 1;
     }
 
-    public AbstractProgressResponse(String id, Calendar start, Calendar end,
+    public ProgressResponse(String id, Calendar start, Calendar end,
             float progress) {
         this(id, start, end);
         mProgress = progress;
     }
 
-    public AbstractProgressResponse(String id, Calendar start, Calendar end) {
+    public ProgressResponse(String id, Calendar start, Calendar end) {
         mId = id;
         mStart = start;
         mEnd = end;

@@ -5,7 +5,6 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetAging;
@@ -18,7 +17,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
     final static String ATTR_AGING = "aging";
     final static String ATTR_ID = "id";
     final static String ATTR_REQUEST_TYPE = "type";
-    final static String ATTR_FAKE = "fake";
 
     BuildModelsRequest mRequest;
     DatasetHandler mDatasetHandler;
@@ -26,7 +24,6 @@ public class BuildModelsRequestHandler implements ContentHandler {
     DatasetAging mAging;
     Dataset mDataset;
     String mId;
-    String mFake;
 
     public BuildModelsRequest getData() {
         return mRequest;
@@ -44,16 +41,11 @@ public class BuildModelsRequestHandler implements ContentHandler {
         mDataset = null;
         mAging = null;
         mId = null;
-        mFake = null;
     }
 
     @Override
     public void endDocument() throws SAXException {
-        if (mFake != null) {
-            mRequest = new BuildModelsFakeRequest(mId, mFake);
-        } else {
-            mRequest = new BuildModelsRequest(mId, mDataset, mAging);
-        }
+        mRequest = new BuildModelsRequest(mId, mDataset, mAging);
     }
 
     @Override
@@ -86,12 +78,8 @@ public class BuildModelsRequestHandler implements ContentHandler {
             mAgingHandler.startElement(uri, localName, qName, atts);
         } else if (localName.equalsIgnoreCase(TAG_REQUEST)) {
             mId = atts.getValue(ATTR_ID);
-            if (atts.getValue(ATTR_FAKE) != null) {
-                mFake = atts.getValue(ATTR_FAKE);
-            } else {
-                if (!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
-                    throw new SAXException("Invalid message type");
-                }
+            if (!atts.getValue(ATTR_REQUEST_TYPE).equalsIgnoreCase(TYPE)) {
+                throw new SAXException("Invalid message type");
             }
         }
     }

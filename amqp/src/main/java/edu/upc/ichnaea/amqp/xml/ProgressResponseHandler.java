@@ -9,9 +9,7 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
-
-public class AbstractProgressResponseHandler implements ContentHandler {
+public class ProgressResponseHandler implements ContentHandler {
 
     final static String CALENDAR_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     final static String TYPE = "build_models";

@@ -2,7 +2,7 @@ package edu.upc.ichnaea.amqp.model;
 
 import java.util.Calendar;
 
-public class PredictModelsResponse extends AbstractProgressResponse {
+public class PredictModelsResponse extends ProgressResponse {
 
     public PredictModelsResponse(String id, Calendar start, Calendar end,
             String error) {

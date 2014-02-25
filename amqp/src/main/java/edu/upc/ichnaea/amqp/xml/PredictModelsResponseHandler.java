@@ -5,7 +5,7 @@ import org.xml.sax.SAXException;
 import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
 
 public class PredictModelsResponseHandler extends
-        AbstractProgressResponseHandler {
+        ProgressResponseHandler {
 
     byte[] mData;
     PredictModelsResponse mResponse;

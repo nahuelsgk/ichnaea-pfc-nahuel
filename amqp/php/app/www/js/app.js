@@ -3,8 +3,7 @@
 function BuildModelsTaskFormCtrl($scope, $routeParams, $http) {
 
   $scope.task = {
-    fake_duration: 10,
-    fake_interval: 1,
+    type: 'build-models',
     dataset_format: 'csv',
     aging_format: 'tab',
     aging_filename_format: 'env%column%-%aging%.txt'
@@ -28,23 +27,70 @@ function BuildModelsTaskFormCtrl($scope, $routeParams, $http) {
 
   $scope.addTask = function(task) {
     var params = {
-      "build-models-task": task
+      "task": task
     };
-    $http.post("build-models-tasks", params).success(function(data){
-      $scope.$emit('buildModelsTaskAdded', data["build-models-task"]);
+    $http.post("tasks", params).success(function(data){
+      $scope.$emit('taskAdded', data["task"]);
     }).error(function(data){
-      $scope.error = "There was an error sending the request.";
+      $scope.error = "There was an error sending the build-models request.";
     });
   };
 
-  $scope.addFakeTask = function(data) {
-    var task = angular.copy(data);
-    task.fake = true;
-    this.addTask(task);
-  };
 }
 
-function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
+function PredictModelsTaskFormCtrl($scope, $routeParams, $http) {
+
+  $scope.task = {
+    type: 'predict-models',
+    dataset_format: 'csv',
+  };
+
+  $scope.$on('filesSelected', function(ev, files, contents, name) {
+    var reader = new FileReader()
+    if(name === "dataset") {
+      if(files.length > 0) {
+        $scope.task.dataset = contents[0];
+      } else {
+        delete $scope.task.dataset;
+      }
+    }
+  });
+
+  $scope.addTask = function(task) {
+    var params = {
+      "task": task
+    };
+    $http.post("tasks", params).success(function(data){
+      $scope.$emit('taskAdded', data["task"]);
+    }).error(function(data){
+      $scope.error = "There was an error sending the predict-models request.";
+    });
+  };
+
+}
+
+function FakeTaskFormCtrl($scope, $routeParams, $http) {
+
+  $scope.task = {
+    type: 'fake',
+    duration: 10,
+    interval: 1,
+  };
+
+  $scope.addTask = function(task) {
+    var params = {
+      "task": task
+    };
+    $http.post("tasks", params).success(function(data){
+      $scope.$emit('taskAdded', data["task"]);
+    }).error(function(data){
+      $scope.error = "There was an error sending the fake request.";
+    });
+  };
+
+}
+
+function TaskListCtrl($scope, $routeParams, $http) {
   
   $scope.tasks = {};
   $scope.updating = true;  
@@ -53,8 +99,8 @@ function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
     if(!$scope.updating) {
       return;
     }
-    $http.get('build-models-tasks').success(function(data) {
-      var tasks = data["build-models-tasks"];
+    $http.get('tasks').success(function(data) {
+      var tasks = data["tasks"];
       for(var i in tasks) {
         var task = tasks[i];
         if($scope.tasks[task.id] !== undefined) {
@@ -85,11 +131,11 @@ function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
   }, 1000);
   updateTasks();
 
-  $scope.$on('buildModelsTaskAdded', function() {
+  $scope.$on('TaskAdded', function() {
     updateTasks();
   });
 
-  $scope.$on('buildModelsTaskRemoved', function() {
+  $scope.$on('TaskRemoved', function() {
     updateTasks();
   });
   
@@ -98,8 +144,8 @@ function BuildModelsTaskListCtrl($scope, $routeParams, $http) {
   };  
 
   $scope.deleteTask = function(id) {
-    $http.delete('build-models-tasks/'+id).success(function(data) {
-      $scope.$emit('buildModelsTaskRemoved', id);
+    $http.delete('tasks/'+id).success(function(data) {
+      $scope.$emit('TaskRemoved', id);
     }).error(function(data){
       $scope.error = "There was an error deleting the task.";
     });

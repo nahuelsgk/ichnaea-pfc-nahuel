@@ -28,7 +28,7 @@ public class PredictModelsCommand extends IchnaeaCommand {
     }
 
     public String getParameters() {
-        String params = "";
+        String params = "predict";
 
         if (mOutputPath != null) {
             params += " --output=" + mOutputPath + "";

@@ -7,6 +7,7 @@ use \Doctrine\DBAL\DriverManager as DbDriverManader;
 
 use \Ichnaea\Amqp\Connection as AmqpConnection;
 use \Ichnaea\Amqp\Model\BuildModelsResponse;
+use \Ichnaea\Amqp\Model\FakeResponse;
 
 // define('AMQP_DEBUG', true);
 
@@ -23,12 +24,29 @@ $db = DbDriverManader::getConnection($dbParams, $dbConfig);
 $amqp = new AmqpConnection(ICHNAEA_AMQP_URL);
 $amqp->open();
 
+function updateTask($type, array $data) {
+    global $db;
+	$data['type'] = 'build-models';
+    if(array_key_exists('id', $data)) {
+        if (!$db->update('tasks', $data, array('id'=> $data['id']))) {
+            $db->insert('tasks', $data);
+        }
+    }
+}
+
 $amqp->listenForBuildModelResponse(function(BuildModelsResponse $resp) use ($db) {
     print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
-    $data = $resp->toArray();
-    if (!$db->update('build_models_tasks', $data, array('id'=>$resp->getId()))) {
-        $db->insert('build_models_tasks', $data);
-    }
+    updateTask('build-models', $resp->toArray());
+});
+
+$amqp->listenForPredictModelsResponse(function(FakeResponse $resp) use ($db) {
+    print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
+    updateTask('predict-models', $resp->toArray());
+});
+
+$amqp->listenForFakeResponse(function(FakeResponse $resp) use ($db) {
+    print "Received fake response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
+    updateTask('fake', $resp->toArray());
 });
 
 $amqp->wait();

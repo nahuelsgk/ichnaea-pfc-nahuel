@@ -4,7 +4,7 @@ import org.xml.sax.SAXException;
 
 import edu.upc.ichnaea.amqp.model.BuildModelsResponse;
 
-public class BuildModelsResponseHandler extends AbstractProgressResponseHandler {
+public class BuildModelsResponseHandler extends ProgressResponseHandler {
 
     byte[] mData;
     BuildModelsResponse mResponse;
