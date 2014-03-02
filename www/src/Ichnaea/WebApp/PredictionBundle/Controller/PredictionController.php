@@ -71,4 +71,17 @@ class PredictionController extends Controller
 		);
 	}
 	
+	public function downloadMatrixTemplateAction($matrix_id, $training_id)
+	{
+        $predictionService = $this->get('ichnaea_web_app_prediction.service');
+        $predictionService->downloadMatrixTemplate($matrix_id);
+        
+        $response = new Response();
+        $response->setContent($file_content);
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="template.csv"');
+        return $response;
+        
+	}
+	
 }

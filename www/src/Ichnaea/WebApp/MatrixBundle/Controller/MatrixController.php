@@ -10,10 +10,13 @@ class MatrixController extends Controller
 {	
 	public function getMatrixFormAction()
 	{
-		return $this->render('MatrixBundle:Matrix:form.html.twig');
+		return $this->render('MatrixBundle:Matrix:form.html.twig', array(
+				'update'    => 'n',
+		));
 	}
 		
-	public function createMatrixAction(){
+	public function createMatrixAction()
+	{
 		$request = $this->getRequest();
 		$name = $request->request->get("name");
 		$csvContent = $request->request->get("content");
@@ -24,6 +27,32 @@ class MatrixController extends Controller
 		$ichnaeaService = $this->get('ichnaea.service');
 		$matrix_id = $ichnaeaService->createMatrixFromCSVContent($name, $csvContent, $owner_id);
 		return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id'=>$matrix_id)));
+	}
+	
+	public function updateDataSetFormAction($matrix_id)
+	{
+		$request = $this->getRequest();
+		$ichnaeaService = $this->get('ichnaea.service');
+		
+		if ($request->getMethod() == 'POST'){
+			$csvContent = $request->request->get("content");
+			$name = $request->request->get("name");
+			$matrix_id = $ichnaeaService->updateMatrixFromCSVContent($matrix_id, $name, $csvContent);
+			return $this->redirect(
+					$this->generateUrl('matrix_ui_edit', 
+							array(
+									'matrix_id'=>$matrix_id)
+							)
+					);
+		}
+		$matrix = $ichnaeaService->getMatrix($matrix_id);
+		return $this->render('MatrixBundle:Matrix:form.html.twig', 
+				array(
+						'update'    => 'y',
+						'matrix_id' => $matrix->getId(),
+						'name'      => $matrix->getName()   
+				)
+		);
 	}
 	
 	public function listSystemsMatrixAction(){
@@ -47,7 +76,8 @@ class MatrixController extends Controller
 		if ($request->getMethod() == 'POST'){
 			$visible = $request->get('visible');
 			$matrix = $ichnaeaService->updateMatrixConfiguration($user_id, $matrix_id, $visible == 'yes' ? TRUE : FALSE );
-			return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id' => $matrix->getId())));;
+			return $this->redirect($this->generateUrl('matrix_ui_edit', 
+					array('matrix_id' => $matrix->getId())));;
 	   	}
 	   	
 		$availableVars = $ichnaeaService->getAllVariables();
@@ -121,7 +151,7 @@ class MatrixController extends Controller
 	    $response = new Response();
 	    $response->setContent($file_content);
 	    $response->headers->set('Content-Type', 'text/csv');
-	    
+	    $response->headers->set('Content-Disposition', 'attachment; filename="matrix.csv"');
 	    return $response;
 	}
 	
@@ -159,6 +189,23 @@ class MatrixController extends Controller
 		
 		return $this->redirect($this->generateUrl('matrix_ui_view', array('matrix_id' => $matrix->getId())));
 	}
+	
+	public function downloadDataSet($matrix_id)
+	{
+		
+		$file_content = $ichnaeaService->getMatrixAs('csv', $type, $matrix_id);
+		
+		$response = new Response();
+		$response->setContent($file_content);
+		$file_content = $ichnaeaService->getMatrixAs('csv', $type, $matrix_id);
+		
+	    $response = new Response();
+	    $response->setContent($file_content);
+	    $response->headers->set('Content-Type', 'text/csv');
+	    $response->headers->set('Content-Disposition', 'attachment; filename="matrix.csv"');
+	    return $response;
+	}
+	
 	
 }
 ?>

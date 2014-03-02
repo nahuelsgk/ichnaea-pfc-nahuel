@@ -123,6 +123,14 @@ td.inner-head
     padding: 3px;
     height: 155px;
 }
+
+td.inner-head-first-tr-first-td
+{
+    border-left: 1px solid #666;
+    border-bottom: 1px solid #666;
+    padding: 3px;
+    height: 118px;
+}
 td.frozencol
 {
     border-right: 1px double #666;

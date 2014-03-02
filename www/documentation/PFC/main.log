@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  12 FEB 2014 20:39
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  28 FEB 2014 19:58
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -395,77 +395,65 @@ Package tocbibind Note: The document has chapter divisions.
 
 Package tocbibind Note: Using chapter style headings, unless overridden.
 
-)
+) (./usecases.sty (/usr/share/texmf-texlive/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen137
+\lightrulewidth=\dimen138
+\cmidrulewidth=\dimen139
+\belowrulesep=\dimen140
+\belowbottomsep=\dimen141
+\aboverulesep=\dimen142
+\abovetopsep=\dimen143
+\cmidrulesep=\dimen144
+\cmidrulekern=\dimen145
+\defaultaddspace=\dimen146
+\@cmidla=\count125
+\@cmidlb=\count126
+\@aboverulesep=\dimen147
+\@belowrulesep=\dimen148
+\@thisruleclass=\count127
+\@lastruleclass=\count128
+\@thisrulewidth=\dimen149
+))
 \glo@main@file=\write4
 \openout4 = `main.glo'.
 
-Package glossaries Info: Writing glossary file main.glo on input line 42.
- (./glossary.tex
-! Too many }'s.
-l.1 ...presentan un envelliment de una variable.}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+Package glossaries Info: Writing glossary file main.glo on input line 43.
 
-! Too many }'s.
-l.2 ...Set,description=Es un conjunt de seasons.}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-! Too many }'s.
-l.3 ...on=Es una variable de sistema de Ichnaea.}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-! Too many }'s.
-l.4 ...ion=Es una fila de la matriu. Cont\Â´{e}.}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-) (./main.aux (./title.aux) (./prologue.aux) (./preface.aux) (./glossary.aux)
-(./especification.aux) (./dessign.aux) (./userguide.aux
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-) (./adminguide.aux))
+(./glossary.tex)
+No file main.aux.
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Info: Redefining \l on input line 47.
-LaTeX Info: Redefining \L on input line 47.
- (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Info: Redefining \l on input line 48.
+LaTeX Info: Redefining \L on input line 48.
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count125
-\scratchdimen=\dimen137
+\scratchcounter=\count129
+\scratchdimen=\dimen150
 \scratchbox=\box36
-\nofMPsegments=\count126
-\nofMParguments=\count127
+\nofMPsegments=\count130
+\nofMParguments=\count131
 \everyMPshowfont=\toks34
-\MPscratchCnt=\count128
-\MPscratchDim=\dimen138
-\MPnumerator=\count129
+\MPscratchCnt=\count132
+\MPscratchDim=\dimen151
+\MPnumerator=\count133
 \everyMPtoPDFconversion=\toks35
 )
-\c@lstlisting=\count130
+\c@lstlisting=\count134
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
@@ -474,7 +462,7 @@ Package: ltcaption 2008/03/28 v1.2 longtable captions (AR)
 )
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 47.
+Package hyperref Info: Link coloring OFF on input line 48.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -482,10 +470,10 @@ Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count131
+\c@section@level=\count135
 )
-LaTeX Info: Redefining \ref on input line 47.
-LaTeX Info: Redefining \pageref on input line 47.
+LaTeX Info: Redefining \ref on input line 48.
+LaTeX Info: Redefining \pageref on input line 48.
  (./main.out)
 (./main.out)
 \@outlinefile=\write5
@@ -499,7 +487,10 @@ Dictionary: glossaries-dictionary, Language: English
 )
 \openout2 = `title.aux'.
 
- (./title.tex <upc.png, id=187, 252.945pt x 56.21pt>
+ (./title.tex
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no ± in font cmr12!
+ <upc.png, id=299, 252.945pt x 56.21pt>
 File: upc.png Graphic file (type png)
  <use upc.png>
 [1
@@ -554,7 +545,7 @@ Overfull \hbox (9.4534pt too wide) in paragraph at lines 55--63
 
  (./preface.tex
 ! Undefined control sequence.
-l.5 .... Actualment Ichnaea es troba en la versi\Â
+l.4 .... Actualment Ichnaea es troba en la versi\Â
                                                   ´{o} 2.0, desenvolupat per...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -564,7 +555,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.5 ...upat per Aitor APELLIDO. La primera versi\Â
+l.4 ...z P\'{e}erez P\'{e}erez. La primera versi\Â
                                                   ´{o} va ser desenvolupada ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -573,9 +564,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
 ! Undefined control sequence.
-l.5 ...ntar aquest sistema en un entorn distribu\Â
-                                                  ¨{i}t en xarxa.
+l.6 ...ntar aquest sistema en un entorn distribu\Â
+                                                  ¨{i}t en xarxa. \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -583,66 +579,44 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ¨ in font cmr12!
-! Undefined control sequence.
-l.7 El document seg\Â
-                     ¨{u}ent cont\Â´{e}:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-Missing character: There is no ¨ in font cmr12!
-! Undefined control sequence.
-l.7 El document seg\Â¨{u}ent cont\Â
-                                   ´{e}:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
-Missing character: There is no ´ in font cmr12!
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
-
-! Undefined control sequence.
-l.9 \item En el capitol \reg
-                            {cha:glossary} s'especifica el vocabulari emprat...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
 
 
-LaTeX Warning: Reference `cha:especification' on page v undefined on input line
- 10.
+LaTeX Warning: Reference `cha:background' on page v undefined on input line 10.
 
-! Undefined control sequence.
-l.12 ...ual de usuari per fer servir la aplicaci\Â
-                                                  ´{o}.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-Missing character: There is no ´ in font cmr12!
-! Undefined control sequence.
-l.13 ...ual de usuari per fer servir la aplicaci\Â
-                                                  ´{o}.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-Missing character: There is no ´ in font cmr12!
+LaTeX Warning: Reference `cha:background' on page v undefined on input line 11.
+
+
+
+LaTeX Warning: Reference `cha:specification' on page v undefined on input line 
+12.
+
+
+LaTeX Warning: Reference `cha:dessign' on page v undefined on input line 13.
+
+
+LaTeX Warning: Reference `cha:userguide' on page v undefined on input line 14.
+
+
+LaTeX Warning: Reference `cha:adminguide' on page v undefined on input line 15.
+
+
+
+LaTeX Warning: Reference `cha:developguide' on page v undefined on input line 1
+6.
+
 [5
 
 
@@ -661,17 +635,11 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.1 ...epresentan un envelliment de una variable.}
-                                                  }
+                                                  
 This error message was generated by an \errmessage
 command, so I can't give any explicit help.
 Pretend that you're Hercule Poirot: Examine all clues,
 and deduce the truth by order and method.
-
-! Too many }'s.
-l.1 ...presentan un envelliment de una variable.}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
 
 
 ! Package glossaries Error: Glossary entry `seasonSet' has already been defined
@@ -682,14 +650,8 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.2 ... Set,description=Es un conjunt de seasons.}
-                                                  }
-(That was another \errmessage.)
-
-! Too many }'s.
-l.2 ...Set,description=Es un conjunt de seasons.}}
                                                   
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+(That was another \errmessage.)
 
 
 ! Package glossaries Error: Glossary entry `variable' has already been defined.
@@ -700,14 +662,8 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.3 ...ion=Es una variable de sistema de Ichnaea.}
-                                                  }
-(That was another \errmessage.)
-
-! Too many }'s.
-l.3 ...on=Es una variable de sistema de Ichnaea.}}
                                                   
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+(That was another \errmessage.)
 
 
 ! Package glossaries Error: Glossary entry `sample' has already been defined.
@@ -717,22 +673,70 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.4 ...tion=Es una fila de la matriu. Cont\Â´{e}.}
-                                                  }
+                                                  
 (That was another \errmessage.)
 
-! Too many }'s.
-l.4 ...ion=Es una fila de la matriu. Cont\Â´{e}.}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
 )
+\openout2 = `background.aux'.
+
+ (./background.tex
+Cap\'{\i }tol 1.
+! Undefined control sequence.
+l.5 En el seg\Â
+               ¨{u}ent cap\'{i}tol es descriu breument l'univers Ichnaea, ne...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ¨ in font cmr12!
+
+Overfull \hbox (2.18065pt too wide) in paragraph at lines 8--9
+\OT1/cmr/m/n/12 Ichnaea ^^Ses un pro-jecte que de-sen-volu-pa un fo-cus d'apre-
+nen-tatge de la m^^Raquina
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7
+
+
+
+
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+Missing character: There is no Â in font cmr12!
+Missing character: There is no ¿ in font cmr12!
+) [8]
 \openout2 = `especification.aux'.
 
  (./especification.tex
-Cap\'{\i }tol 1.
+Cap\'{\i }tol 2.
 ! Undefined control sequence.
-l.5 En aquest cap\Â
+l.6 En aquest cap\Â
                    ´{i}tol es descriu els requeriments i les operatives que ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -741,9 +745,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
 ! Undefined control sequence.
-l.8 La aplicaci\Â
-                 ´{o} ha de estar protegida i autoritzada pels usuaris. Els ...
+l.12 La aplicaci\Â
+                  ´{o} ha de estar protegida i autoritzada pels usuaris. Els...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -752,7 +761,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.8 ...s per fer certes accions. Es una aplicaci\Â
+l.12 ... per fer certes accions. Es una aplicaci\Â
                                                   ´{o} distribuida per tant ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -762,7 +771,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.17 La aplicaci\Â
+l.21 La aplicaci\Â
                   ´{o} ha de poder crear variables al sistema per poder util...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -772,35 +781,69 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 
-LaTeX Warning: Reference `glossary' on page vii undefined on input line 17.
+LaTeX Warning: Reference `glossary' on page ix undefined on input line 21.
 
 Missing character: There is no Ã in font cmr12!
 Missing character: There is no § in font cmr12!
-[7
 
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
+ []
 
+[9
 
 
 
 
 ]
-Overfull \hbox (1.30789pt too wide) in paragraph at lines 47--47
+! Undefined control sequence.
+l.40 ...documentaci\'{o} s'utilitzar\`{a} la seg\Â
+                                                  ¨{u}ent estructura:\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ¨ in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 55
+ []
+
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no § in font cmr12!
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no § in font cmr12!
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no § in font cmr12!
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no § in font cmr12!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]
+Underfull \vbox (badness 10000) detected at line 73
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 85
+ []
+
+[11]
+Overfull \hbox (1.30789pt too wide) in paragraph at lines 115--115
 []\OT1/cmr/bx/n/14.4 Executar una predic-ci^^So de una ma-triu de predic-
  []
 
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8]
-[9] [10
-
-
-]
+) [12]
 \openout2 = `dessign.aux'.
 
  (./dessign.tex
-Cap\'{\i }tol 2.
+Cap\'{\i }tol 3.
 ! Undefined control sequence.
 l.8 ...i\`{o} del sistema web s'han usat els seg\Â
                                                   ¨{u}ents patrons de disseny:
@@ -844,7 +887,9 @@ Missing character: There is no ´ in font cmr12!
 
 Underfull \vbox (badness 1968) has occurred while \output is active []
 
- [11
+ [13
+
+
 
 
 ]
@@ -907,24 +952,28 @@ Overfull \hbox (7.54384pt too wide) in paragraph at lines 45--45
 []\OT1/cmr/bx/n/17.28 Esquema gen-er-al ar-qui-tect^^Sonic del sis-tema 
  []
 
-) [12] [13] [14
+) [14] [15] [16
 
 
 ]
 \openout2 = `userguide.aux'.
 
  (./userguide.tex
+Cap\'{\i }tol 4.
 
-LaTeX Warning: Reference `sec:clone_matrix' on page xv undefined on input line 
-14.
+LaTeX Warning: Reference `sec:clone_matrix' on page xvii undefined on input lin
+e 14.
 
 
-<img/userguide/dashboard_complete_trainings.png, id=263, 1371.1225pt x 770.88pt
+<img/userguide/dashboard_complete_trainings.png, id=393, 1371.1225pt x 770.88pt
 >
 File: img/userguide/dashboard_complete_trainings.png Graphic file (type png)
  <use img/userguide/dashboard_complete_trainings.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 ! Undefined control sequence.
-l.23 ...ue ets propietari. Amb la icona de edici\Â
+l.24 ...ue ets propietari. Amb la icona de edici\Â
                                                   ´{o} pots anar a la pantal...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -934,7 +983,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.23 ...} pots anar a la pantalla de configuraci\Â
+l.24 ...} pots anar a la pantalla de configuraci\Â
                                                   ´{o}. Per configurar la ma...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -943,12 +992,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-[15
 
+LaTeX Warning: Reference `sec:configure_matrix' on page xvii undefined on input
+ line 24.
 
- <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
 ! Undefined control sequence.
-l.30 ...s per anar a la pantalla de visualitzaci\Â
+l.31 ...s per anar a la pantalla de visualitzaci\Â
                                                   ´{o} del training.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -958,7 +1007,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.31  \item La icona de la creu, \Â
+l.32  \item La icona de la creu, \Â
                                    ´{e}s per esborrar el training.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -967,8 +1016,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
+[17
+
+
+]
 ! Undefined control sequence.
-l.37 \item Status. Actualment \Â
+l.38 \item Status. Actualment \Â
                                 ´{e}s 0 o 1. Es a dir, acabada de entrenar o...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -978,7 +1031,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.49 ...e amb les programaris de ofim\`{a}tica m\Â
+l.50 ...e amb les programaris de ofim\`{a}tica m\Â
                                                   ´{e}s habituals como Micro...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -988,7 +1041,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.50 El format de la matriu \Â
+l.51 El format de la matriu \Â
                               ´{e}s important que sigui el seg\Â¨{u}ent.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -998,7 +1051,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.50 ...atriu \Â´{e}s important que sigui el seg\Â
+l.51 ...atriu \Â´{e}s important que sigui el seg\Â
                                                   ¨{u}ent.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1007,9 +1060,9 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ¨ in font cmr12!
-[16]
+[18 <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
 ! Undefined control sequence.
-l.54     Cel.la bu\Â
+l.55     Cel.la bu\Â
                     ¨{i}da & Alias de la columna & .... & ORIGIN \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1019,12 +1072,12 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ¨ in font cmr12!
 
-Overfull \hbox (7.31445pt too wide) in paragraph at lines 52--59
+Overfull \hbox (7.31445pt too wide) in paragraph at lines 53--60
  [] 
  []
 
 ! Undefined control sequence.
-l.62 \item Alias de la columna: \Â
+l.63 \item Alias de la columna: \Â
                                   ´{e}s un nom qualsevol per identificar la ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1034,7 +1087,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.63 \item Valor de la sample: \Â
+l.64 \item Valor de la sample: \Â
                                  ´{e}s el valor de la mostra per la columna(...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1046,7 +1099,7 @@ Missing character: There is no ´ in font cmr12!
 Missing character: There is no Ã in font cmr12!
 Missing character: There is no § in font cmr12!
 ! Undefined control sequence.
-l.67 ...idament, es podr\`{a} establir la relaci\Â
+l.68 ...idament, es podr\`{a} establir la relaci\Â
                                                   ´{o} de la variable real d...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1055,8 +1108,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
+
+LaTeX Warning: Reference `sec:configure_matrix' on page xix undefined on input 
+line 68.
+
+
+LaTeX Warning: Reference `sec:home' on page xix undefined on input line 72.
+
 ! Undefined control sequence.
-l.72 Desde la interficie de configuraci\Â
+l.73 Desde la interficie de configuraci\Â
                                          ´{o} es pot configurar:
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1065,7 +1125,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-<img/userguide/matrix_configure.png, id=279, 1371.1225pt x 770.88pt>
+<img/userguide/matrix_configure.png, id=404, 1371.1225pt x 770.88pt>
 File: img/userguide/matrix_configure.png Graphic file (type png)
 
 <use img/userguide/matrix_configure.png>
@@ -1074,20 +1134,20 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Missing character: There is no Ã in font cmr12!
 Missing character: There is no § in font cmr12!
-[17]
+[19]
 Missing character: There is no Ã in font cmr12!
 Missing character: There is no § in font cmr12!
- [18 <./img/userguide/matrix_configure.png (PNG copy)>]
-<img/userguide/clone_matrix.png, id=293, 1371.1225pt x 770.88pt>
+ [20 <./img/userguide/matrix_configure.png (PNG copy)>]
+<img/userguide/clone_matrix.png, id=415, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix.png Graphic file (type png)
 
 <use img/userguide/clone_matrix.png>
-<img/userguide/clone_matrix-2.png, id=294, 1371.1225pt x 770.88pt>
+<img/userguide/clone_matrix-2.png, id=416, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix-2.png Graphic file (type png)
 
 <use img/userguide/clone_matrix-2.png>
 ! Undefined control sequence.
-l.120 ...u i anem a la interficie de configuraci\Â
+l.121 ...u i anem a la interficie de configuraci\Â
                                                   ´{o}. Mirar \ref{sec:confi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1096,44 +1156,26 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-[19 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
+
+LaTeX Warning: Reference `sec:configure_matrix' on page xxi undefined on input 
+line 121.
+
+[21 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
 -2.png (PNG copy)>]
-! Undefined control sequence.
-<argument> Modificar o afegir m\Â
-                                 ´{e}s season a una variable
-l.125 ... o afegir m\Â´{e}s season a una variable}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+<img/userguide/variable_configuration.png, id=423, 1371.1225pt x 770.88pt>
+File: img/userguide/variable_configuration.png Graphic file (type png)
 
-Missing character: There is no ´ in font cmbx12!
-! Undefined control sequence.
-<argument> ...ndcsname }\fi Modificar o afegir m\Â
-                                                  ´{e}s season a una variable
-l.125 ... o afegir m\Â´{e}s season a una variable}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+<use img/userguide/variable_configuration.png>
+<img/userguide/season_set_edition.png, id=424, 1371.1225pt x 770.88pt>
+File: img/userguide/season_set_edition.png Graphic file (type png)
 
-! Undefined control sequence.
-<argument> ...ndcsname }\fi Modificar o afegir m\Â
-                                                  ´{e}s season a una variabl...
-l.125 ... o afegir m\Â´{e}s season a una variable}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+<use img/userguide/season_set_edition.png>
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[22 <./img/userguide/variable_configuration.png (PNG copy)>]
 ! Undefined control sequence.
-l.129 ..., es pot accedir al formulari de creaci\Â
+l.162 ..., es pot accedir al formulari de creaci\Â
                                                   ´{o} de trainings.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1142,24 +1184,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
+<img/userguide/training_create.png, id=430, 1371.1225pt x 770.88pt>
+File: img/userguide/training_create.png Graphic file (type png)
 
-LaTeX Warning: File `img/userguide/create_.png' not found on input line 132.
+<use img/userguide/training_create.png>
 
-
-! Package pdftex.def Error: File `img/userguide/create_.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.132 ...ics[scale=0.2]{img/userguide/create_.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ! Undefined control sequence.
-l.137 ...art esquerra superior: El training cont\Â
+l.170 ...art esquerra superior: El training cont\Â
                                                   ´{e} un nom i una descripc...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1169,7 +1202,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.137 ...ining cont\Â´{e} un nom i una descripci\Â
+l.170 ...ining cont\Â´{e} un nom i una descripci\Â
                                                   ´{o}. Es poden seleccionar...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1179,7 +1212,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.138 ...valor "All versus all", el training ser\Â
+l.171 ...valor "All versus all", el training ser\Â
                                                   ´{a} tots contra tots. Si ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1189,7 +1222,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.138 ...raining ser\Â´{a} tots contra tots. Si \Â
+l.171 ...raining ser\Â´{a} tots contra tots. Si \Â
                                                   ´{e}s selecciona un origen...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1198,24 +1231,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-! Undefined control sequence.
-l.138 ...a un origen concret, el training es far\Â
-                                                  ´{a} aquest origen contra ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-Missing character: There is no ´ in font cmr12!
-
-Overfull \hbox (19.7402pt too wide) in paragraph at lines 138--139
+Overfull \hbox (19.7402pt too wide) in paragraph at lines 171--172
 []\OT1/cmr/m/n/12 Part dreta su-pe-ri-or: De-sple-gable per se-lec-cionar un de
 ls ori-gens disponibles.
  []
 
 ! Undefined control sequence.
-l.142 Si la creaci\Â
+l.175 Si la creaci\Â
                     ´{o} \Â´e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1225,7 +1248,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.142 Si la creaci\Â´{o} \Â
+l.175 Si la creaci\Â´{o} \Â
                            ´e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1235,7 +1258,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.142 ...aran a la cua de procesos i la aplicaci\Â
+l.175 ...aran a la cua de procesos i la aplicaci\Â
                                                   ´{o} es redirigir\Â´{a} la...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1245,7 +1268,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.142 ...ocesos i la aplicaci\Â´{o} es redirigir\Â
+l.175 ...ocesos i la aplicaci\Â´{o} es redirigir\Â
                                                   ´{a} la pantalla de visual...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1255,7 +1278,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.142 ...rigir\Â´{a} la pantalla de visualitzaci\Â
+l.175 ...rigir\Â´{a} la pantalla de visualitzaci\Â
                                                   ´{o} de trainings.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1264,8 +1287,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
+[23 <./img/userguide/season_set_edition.png (PNG copy)>]
+
+LaTeX Warning: Reference `sec:home' on page xxiv undefined on input line 181.
+
 ! Undefined control sequence.
-l.148 ...pots accedir a visualitzar la informaci\Â
+l.181 ...pots accedir a visualitzar la informaci\Â
                                                   ´{o} del training.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1274,26 +1301,23 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-[20]
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.151 \end{itemize}
-                   
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-<img/userguide/view_training_pending.png, id=311, 1371.1225pt x 770.88pt>
+<img/userguide/view_training_pending.png, id=436, 1371.1225pt x 770.88pt>
 File: img/userguide/view_training_pending.png Graphic file (type png)
 
 <use img/userguide/view_training_pending.png>
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 1038) has occurred while \output is active []
+
+ [24 <./img/userguide/training_create.png (PNG copy)>]
+
+LaTeX Warning: Reference `sec:home' on page xxv undefined on input line 199.
+
+
 LaTeX Warning: File `img/userguide/create_prediction.png' not found on input li
-ne 172.
+ne 202.
 
 
 ! Package pdftex.def Error: File `img/userguide/create_prediction.png' not foun
@@ -1303,18 +1327,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.172 ...0.2]{img/userguide/create_prediction.png}
+l.202 ...0.2]{img/userguide/create_prediction.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[21 <./img/userguide/view_training_pending.png (PNG copy)>]
 ! Undefined control sequence.
-l.181     Cel.la bu\Â
+l.211     Cel.la bu\Â
                      ¨{i}da & Columna del training 0          & Columna del ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1326,7 +1346,7 @@ Missing character: There is no ¨ in font cmr12!
 ! Extra alignment tab has been changed to \cr.
 <recently read> \endtemplate 
                              
-l.181 ...umna del training 1              & .... &
+l.211 ...umna del training 1              & .... &
                                                    Columna del training n   ...
 You have given more \span or & marks than there were
 in the preamble to the \halign or \valign now in progress.
@@ -1335,7 +1355,7 @@ So I'll assume that you meant to type \cr instead.
 ! Extra alignment tab has been changed to \cr.
 <recently read> \endtemplate 
                              
-l.182 ...or de la sample(opcional)        & .....&
+l.212 ...or de la sample(opcional)        & .....&
                                                    Valor de la sample(opcion...
 You have given more \span or & marks than there were
 in the preamble to the \halign or \valign now in progress.
@@ -1344,33 +1364,33 @@ So I'll assume that you meant to type \cr instead.
 ! Extra alignment tab has been changed to \cr.
 <recently read> \endtemplate 
                              
-l.183 ...                                 & .... &
+l.213 ...                                 & .... &
                                                    <10                      ...
 You have given more \span or & marks than there were
 in the preamble to the \halign or \valign now in progress.
 So I'll assume that you meant to type \cr instead.
 
 
-Overfull \hbox (249.23138pt too wide) in paragraph at lines 179--186
+Overfull \hbox (249.23138pt too wide) in paragraph at lines 209--216
  [] 
  []
 
-
-Overfull \hbox (1.30789pt too wide) in paragraph at lines 197--197
+[25 <./img/userguide/view_training_pending.png (PNG copy)>]
+Overfull \hbox (1.30789pt too wide) in paragraph at lines 227--227
 []\OT1/cmr/bx/n/14.4 Executar una predic-ci^^So de una ma-triu de predic-
  []
 
-) [22]
+) [26]
 \openout2 = `adminguide.aux'.
 
- (./adminguide.tex) [23
+ (./adminguide.tex) [27
 
 
 
 
 ]
 ! Undefined control sequence.
-l.72 \cleardouplepage
+l.76 \cleardouplepage
                      
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1378,53 +1398,52 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-(./main.toc [1
-
-
-]
-Missing character: There is no ´ in font cmr12!
-Missing character: There is no ´ in font cmr12!
-)
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
+[1
+
+
+]pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.76 \cleardoublepage
-                      [2]
+l.80 \cleardoublepage
+                      [2
+
+]
 No file main.bbl.
 
 Package glossaries Warning: No \printglossary or \printglossaries found.
 This document will not have a glossary.
 
 (./main.aux (./title.aux) (./prologue.aux) (./preface.aux) (./glossary.aux)
-(./especification.aux) (./dessign.aux) (./userguide.aux) (./adminguide.aux))
+(./background.aux) (./especification.aux) (./dessign.aux) (./userguide.aux)
+(./adminguide.aux))
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 9487 strings out of 495061
- 141834 string characters out of 1182622
- 327508 words of memory out of 3000000
- 12324 multiletter control sequences out of 15000+50000
+ 9619 strings out of 495061
+ 143935 string characters out of 1182622
+ 325405 words of memory out of 3000000
+ 12427 multiletter control sequences out of 15000+50000
  9363 words of font info for 33 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,9n,75p,1083b,423s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,9n,75p,1083b,523s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
 m/cmtt12.pfb>
-Output written on main.pdf (25 pages, 710198 bytes).
+Output written on main.pdf (29 pages, 882381 bytes).
 PDF statistics:
- 436 PDF objects out of 1000 (max. 8388607)
- 103 named destinations out of 1000 (max. 500000)
- 399 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 521 PDF objects out of 1000 (max. 8388607)
+ 138 named destinations out of 1000 (max. 500000)
+ 638 words of extra memory for PDF output out of 10000 (max. 10000000)
 

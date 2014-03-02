@@ -223,5 +223,28 @@ class TrainingService{
 		}
 		return $result;
 	}
+	
+	public function getRdataContent($training_id)
+	{
+		$file = $this->buildTrainingDataPathRdata($training_id);
+		return file_get_contents($file);
+	}
+	
+	public function getTrainableTrainingList()
+	{
+		$query = $this->em
+		->createQueryBuilder()
+		->select('t, m, u')
+		->from('IchnaeaWebAppTrainingBundle:Training','t')
+		->join('t.matrix', 'm')
+		->join('t.trainer', 'u')
+		->where('t.progress = :prog')
+		->andwhere('t.error = :error ')
+		->setParameters(array('prog' => '1.00', 'error' => ''))
+		->getQuery();
+		
+		return $query->getResult();
+		
+	}
 }
 ?>

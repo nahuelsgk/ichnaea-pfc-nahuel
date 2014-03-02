@@ -1,0 +1,8 @@
+\select@language {catalan}
+\contentsline {section}{\numberline {0.1}Abast}{1}{section.0.1}
+\contentsline {section}{\numberline {0.2}Escenari, entitats i l'univers Ichnaea}{1}{section.0.2}
+\contentsline {subsection}{\numberline {0.2.1}Matrius}{1}{subsection.0.2.1}
+\contentsline {subsubsection}{Variable de la matriu i conjunts de envelliments: Season Set i Seasons}{1}{section*.2}
+\contentsline {subsection}{\numberline {0.2.2}Trainings: els entrenaments}{2}{subsection.0.2.2}
+\contentsline {subsection}{\numberline {0.2.3}Matrius de prediccions}{2}{subsection.0.2.3}
+\contentsline {section}{\numberline {0.3}Objectius i estat}{2}{section.0.3}

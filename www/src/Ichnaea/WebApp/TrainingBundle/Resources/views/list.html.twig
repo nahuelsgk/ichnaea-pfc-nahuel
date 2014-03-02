@@ -1,0 +1,42 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Trainable training list{% endblock %}
+
+{% block body %}
+<div class="container">
+<div style="width: 100%;">
+<table class="table table-striped">
+<thead>
+  <th>&nbsp;</th>
+  <th>Name</th>
+  <th>Matrix</th>
+  <th>Description</th>
+  <th>Origin</th>
+  <th>Create by</th>
+  <th>Date</th>
+  <th>&nbsp;<th>
+</thead>
+<tbody>
+{% for training in trainings %}
+<tr>
+  <td>{{ loop.index }}</td>
+  <td>{{ training.name }}</td>
+  <td>{{ training.matrix.name }}</td>
+  <td>{{ training.description }}</td>
+  <td>{{ training.originVersus }}</td>
+  <td>{{ training.trainer.username}}</td>
+  <td>{{ training.created|date('d-m-Y')}}</td>
+  <td>
+  	<a class="btn btn-mini view_training_link" 
+       href="{{ path('training_view', {matrix_id: training.matrix.id, training_id: training.id}) }}" name="create prediction" title="View training">
+       <i class="icon-eye-open"></i></a>
+    <a class="btn btn-mini create_prediction_link" 
+       href="{{ path('create_prediction_matrix_form',{matrix_id: training.matrix.id, training_id: training.id}) }}" name="create prediction" title="Create prediction from this training">
+       <i class="icon-signal"></i></a>
+  <td>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}

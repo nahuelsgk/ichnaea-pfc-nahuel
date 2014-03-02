@@ -1,62 +1,74 @@
 \BOOKMARK [1][-]{section.0.1}{Abast}{}
 \BOOKMARK [1][-]{section.0.2}{Objectius}{}
-\BOOKMARK [0][-]{chapter.1}{Especificaci\363}{}
-\BOOKMARK [1][-]{section.1.1}{Introducci\363}{chapter.1}
-\BOOKMARK [1][-]{section.1.2}{Requeriments funcionals}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.2.1}{Administraci\363 d'usuaris}{section.1.2}
-\BOOKMARK [2][-]{subsection.1.2.2}{Administracio de variables}{section.1.2}
-\BOOKMARK [2][-]{subsection.1.2.3}{Administraci\363 de matrius}{section.1.2}
-\BOOKMARK [2][-]{subsection.1.2.4}{Administracio de trainings}{section.1.2}
-\BOOKMARK [2][-]{subsection.1.2.5}{Administracio de matrius de prediccio}{section.1.2}
-\BOOKMARK [1][-]{section.1.3}{Requeriments no funcionals}{chapter.1}
-\BOOKMARK [1][-]{section.1.4}{Casos d'us i fluxos}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.4.1}{Crear un usuari}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.2}{Canviar un usuari de grup}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.3}{Crear un matriu desde un csv}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.4}{Crear una variable}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.5}{Crear una season set}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.6}{Clonar una matriu}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.7}{Configurar un columna de la matriu}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.8}{Afegir una season a una season set}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.9}{Configurar un sample}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.10}{Crear un training}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.11}{Reenviar un training}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.12}{Esborrar un training}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.13}{Visualitzar un training}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.14}{Crear una matriu de predicci\363}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.15}{Actualitzar una matriu de predicci\363}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.16}{Executar una predicci\363 de una matriu de predicci\363}{section.1.4}
-\BOOKMARK [1][-]{section.1.5}{Model de dades}{chapter.1}
-\BOOKMARK [0][-]{chapter.2}{Disseny e implementaci\363}{}
-\BOOKMARK [1][-]{section.2.1}{Introduccio}{chapter.2}
-\BOOKMARK [1][-]{section.2.2}{Patro de disseny}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.2.1}{Esquema del disseny}{section.2.2}
-\BOOKMARK [1][-]{section.2.3}{Implementaci\363 i tecnologies}{chapter.2}
-\BOOKMARK [1][-]{section.2.4}{Symfony}{chapter.2}
-\BOOKMARK [1][-]{section.2.5}{Recursos}{chapter.2}
-\BOOKMARK [1][-]{section.2.6}{Servei web}{chapter.2}
-\BOOKMARK [1][-]{section.2.7}{Capa de serveis}{chapter.2}
-\BOOKMARK [1][-]{section.2.8}{Integraci´o amb el sistema de cues RabbitMQP}{chapter.2}
-\BOOKMARK [1][-]{section.2.9}{Esquema general arquitect\363nic del sistema}{chapter.2}
-\BOOKMARK [1][-]{section.2.10}{Casa de l'usuari}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.10.1}{Llistat de les meves matrius}{section.2.10}
-\BOOKMARK [2][-]{subsection.2.10.2}{Llistat dels meus trainings}{section.2.10}
-\BOOKMARK [1][-]{section.2.11}{Crear una matriu desde un csv}{chapter.2}
-\BOOKMARK [1][-]{section.2.12}{Configurar una matriu}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.12.1}{Alias de una columna}{section.2.12}
-\BOOKMARK [2][-]{subsection.2.12.2}{Especificar una columna a una variable i la season set}{section.2.12}
-\BOOKMARK [2][-]{subsection.2.12.3}{Cambiar la visualitzaci\363}{section.2.12}
-\BOOKMARK [2][-]{subsection.2.12.4}{Visualitzar missatges}{section.2.12}
-\BOOKMARK [1][-]{section.2.13}{Clonar una matriu}{chapter.2}
-\BOOKMARK [1][-]{section.2.14}{Crear un conjunt de season}{chapter.2}
-\BOOKMARK [1][-]{section.2.15}{Modificar o afegir m´es season a una variable}{chapter.2}
-\BOOKMARK [1][-]{section.2.16}{Crear un training}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.16.1}{Simular un training de la matriu Cyprus}{section.2.16}
-\BOOKMARK [1][-]{section.2.17}{Visualitzar un training}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.17.1}{Problem\341tiques de la creaci\363 de trainings}{section.2.17}
-\BOOKMARK [1][-]{section.2.18}{Crear una matriu de predicci\363}{chapter.2}
-\BOOKMARK [1][-]{section.2.19}{Crear una predicci\363}{chapter.2}
-\BOOKMARK [1][-]{section.2.20}{Llistar les meves prediccions}{chapter.2}
-\BOOKMARK [1][-]{section.2.21}{Visualitzar una matriu de predicci\363}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.21.1}{Actualitzar una matriu de predicci\363}{section.2.21}
-\BOOKMARK [2][-]{subsection.2.21.2}{Executar una predicci\363 de una matriu de predicci\363}{section.2.21}
+\BOOKMARK [0][-]{chapter.1}{Introducci\363 a Ichnaea}{}
+\BOOKMARK [1][-]{section.1.1}{Ichnaea Software}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{Univers d\315chnaea}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.2.1}{Matrius}{section.1.2}
+\BOOKMARK [2][-]{subsection.1.2.2}{Trainings: els entrenaments}{section.1.2}
+\BOOKMARK [2][-]{subsection.1.2.3}{Matrius de prediccions}{section.1.2}
+\BOOKMARK [0][-]{chapter.2}{Especificaci\363}{}
+\BOOKMARK [1][-]{section.2.1}{Introducci\363}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Requeriments funcionals}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{Administraci\363 d'usuaris}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{Administracio de variables}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.3}{Administraci\363 de matrius}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.4}{Administracio de trainings}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.5}{Administracio de matrius de prediccio}{section.2.2}
+\BOOKMARK [1][-]{section.2.3}{Requeriments no funcionals}{chapter.2}
+\BOOKMARK [1][-]{section.2.4}{Casos d'us i fluxos}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.4.1}{Crear un usuari}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.2}{Crear un usuari}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.3}{Canviar un usuari de grup}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.4}{Crear un matriu desde un csv}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.5}{Crear una variable}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.6}{Crear una season set}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.7}{Clonar una matriu}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.8}{Configurar un columna de la matriu}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.9}{Afegir una season a una season set}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.10}{Configurar un sample}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.11}{Crear un training}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.12}{Reenviar un training}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.13}{Esborrar un training}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.14}{Descarregar un training}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.15}{Visualitzar un training}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.16}{Crear una matriu de predicci\363}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.17}{Actualitzar una matriu de predicci\363}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.18}{Executar una predicci\363 de una matriu de predicci\363}{section.2.4}
+\BOOKMARK [1][-]{section.2.5}{Model de dades}{chapter.2}
+\BOOKMARK [0][-]{chapter.3}{Disseny e implementaci\363}{}
+\BOOKMARK [1][-]{section.3.1}{Introduccio}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Patro de disseny}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{Esquema del disseny}{section.3.2}
+\BOOKMARK [1][-]{section.3.3}{Implementaci\363 i tecnologies}{chapter.3}
+\BOOKMARK [1][-]{section.3.4}{Symfony}{chapter.3}
+\BOOKMARK [1][-]{section.3.5}{Recursos}{chapter.3}
+\BOOKMARK [1][-]{section.3.6}{Servei web}{chapter.3}
+\BOOKMARK [1][-]{section.3.7}{Capa de serveis}{chapter.3}
+\BOOKMARK [1][-]{section.3.8}{Integraci´o amb el sistema de cues RabbitMQP}{chapter.3}
+\BOOKMARK [1][-]{section.3.9}{Esquema general arquitect\363nic del sistema}{chapter.3}
+\BOOKMARK [0][-]{chapter.4}{Manual d'usuari}{}
+\BOOKMARK [1][-]{section.4.1}{Casa de l'usuari}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.1.1}{Llistat de les meves matrius}{section.4.1}
+\BOOKMARK [2][-]{subsection.4.1.2}{Llistat dels meus trainings}{section.4.1}
+\BOOKMARK [1][-]{section.4.2}{Crear una matriu desde un csv}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Configurar una matriu}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.3.1}{Alias de una columna}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.2}{Especificar una columna a una variable i la season set}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.3}{Cambiar la visualitzaci\363}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.4}{Visualitzar missatges}{section.4.3}
+\BOOKMARK [1][-]{section.4.4}{Clonar una matriu}{chapter.4}
+\BOOKMARK [1][-]{section.4.5}{Veure les variables del sistema}{chapter.4}
+\BOOKMARK [1][-]{section.4.6}{Variables}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.6.1}{Formulari de edici\363}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.2}{Editar una ''Season Set''}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.3}{Crear una ''season set''}{section.4.6}
+\BOOKMARK [1][-]{section.4.7}{Crear un training}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.7.1}{Simular un training de la matriu Cyprus}{section.4.7}
+\BOOKMARK [1][-]{section.4.8}{Visualitzar un training}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.8.1}{Problem\341tiques de la creaci\363 de trainings}{section.4.8}
+\BOOKMARK [1][-]{section.4.9}{Crear una matriu de predicci\363}{chapter.4}
+\BOOKMARK [1][-]{section.4.10}{Crear una predicci\363}{chapter.4}
+\BOOKMARK [1][-]{section.4.11}{Llistar les meves prediccions}{chapter.4}
+\BOOKMARK [1][-]{section.4.12}{Visualitzar una matriu de predicci\363}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.12.1}{Actualitzar una matriu de predicci\363}{section.4.12}
+\BOOKMARK [2][-]{subsection.4.12.2}{Executar una predicci\363 de una matriu de predicci\363}{section.4.12}

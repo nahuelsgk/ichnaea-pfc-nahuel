@@ -46,13 +46,27 @@ class PredictionService
 		}
 		
 		$index=0;
-		$m_columns  = count($training->getColumnsSelected());
+		
+		//@TODO: Depends on requirements
+		//$m_columns  = count($training->getColumnsSelected());
+		$m_columns = count($training->getMatrix()->getColumns());
+		$origin = FALSE;
 		
 		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
 			$max_colums=0;
 			//On headers, init indexs counters
 			if($index == 0) {
 				$columns    = explode(";", $line);
+				
+				//m_columns is the number of columns of the matrix
+				//if index m_columns(that should be a variable name) is written "ORIGIN",
+				//means that matrix has the ORIGIN COLUMN
+				if (isset($columns[$m_columns+1])){
+					if (strpos($columns[$m_columns+1], "ORIGIN") !== false ){
+						$origin = TRUE;
+						$m_columns++;
+					}
+				}
 			}
 			else{
 			//Check empty lines
@@ -66,9 +80,13 @@ class PredictionService
 					foreach($columns as $key => $string) {
 						$columns[$key] = $this->cleanStringCSV($string);
 					}
-					$sample->setSamples(array_slice($columns, 1, $m_columns, TRUE));
-					$predictionMatrix->addRow($sample);
-					if(isset($columns[$m_columns+1])) $sample->setOrigin($this->cleanStringCSV($columns[$m_columns+1]));
+					if ($origin == TRUE){
+						$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
+						if(isset($columns[$m_columns])) $sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
+					}
+					else{
+						$sample->setSamples(array_slice($columns, 1, null, TRUE));
+					}
 					$predictionMatrix->addRow($sample);
 				}	
 			}
@@ -82,7 +100,6 @@ class PredictionService
 		
 		$this->em->persist($predictionMatrix);
 		$this->em->flush();
-		
 		return $predictionMatrix->getId();
 	}
 	

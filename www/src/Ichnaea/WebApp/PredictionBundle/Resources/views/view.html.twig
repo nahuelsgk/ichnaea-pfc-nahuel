@@ -42,7 +42,7 @@ Prediction matrix: "{{ matrix.name }}"
                     <div id='headscroll' class='divhead'>
                         <table border="0" cellpadding="0" cellspacing="0" class='head'>
                             <tr>
-                                {% for column in matrix.training.columnsSelected %}
+                                {% for column in matrix.training.matrix.columns %}
 								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
 								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 								   
 								    {% if column.variable is not null and column.seasonSet is not null%} {{column.seasonSet.name}} {% endif %}

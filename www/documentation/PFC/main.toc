@@ -1,63 +1,76 @@
 \select@language {catalan}
 \contentsline {section}{\numberline {0.1}Abast}{v}{section.0.1}
-\contentsline {section}{\numberline {0.2}Objectius}{v}{section.0.2}
-\contentsline {chapter}{\numberline {1}Especificaci\'{o}}{vii}{chapter.1}
-\contentsline {section}{\numberline {1.1}Introducci\'{o}}{vii}{section.1.1}
-\contentsline {section}{\numberline {1.2}Requeriments funcionals}{vii}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Administraci\'{o} d'usuaris}{vii}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Administracio de variables}{vii}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}Administraci\'{o} de matrius}{viii}{subsection.1.2.3}
-\contentsline {subsection}{\numberline {1.2.4}Administracio de trainings}{ix}{subsection.1.2.4}
-\contentsline {subsection}{\numberline {1.2.5}Administracio de matrius de prediccio}{ix}{subsection.1.2.5}
-\contentsline {section}{\numberline {1.3}Requeriments no funcionals}{ix}{section.1.3}
-\contentsline {section}{\numberline {1.4}Casos d'us i fluxos}{ix}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Crear un usuari}{ix}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Canviar un usuari de grup}{ix}{subsection.1.4.2}
-\contentsline {subsection}{\numberline {1.4.3}Crear un matriu desde un csv}{ix}{subsection.1.4.3}
-\contentsline {subsection}{\numberline {1.4.4}Crear una variable}{ix}{subsection.1.4.4}
-\contentsline {subsection}{\numberline {1.4.5}Crear una season set}{ix}{subsection.1.4.5}
-\contentsline {subsection}{\numberline {1.4.6}Clonar una matriu}{ix}{subsection.1.4.6}
-\contentsline {subsection}{\numberline {1.4.7}Configurar un columna de la matriu}{ix}{subsection.1.4.7}
-\contentsline {subsection}{\numberline {1.4.8}Afegir una season a una season set}{ix}{subsection.1.4.8}
-\contentsline {subsection}{\numberline {1.4.9}Configurar un sample}{ix}{subsection.1.4.9}
-\contentsline {subsection}{\numberline {1.4.10}Crear un training}{ix}{subsection.1.4.10}
-\contentsline {subsection}{\numberline {1.4.11}Reenviar un training}{ix}{subsection.1.4.11}
-\contentsline {subsection}{\numberline {1.4.12}Esborrar un training}{ix}{subsection.1.4.12}
-\contentsline {subsection}{\numberline {1.4.13}Visualitzar un training}{ix}{subsection.1.4.13}
-\contentsline {subsection}{\numberline {1.4.14}Crear una matriu de predicci\'{o}}{ix}{subsection.1.4.14}
-\contentsline {subsection}{\numberline {1.4.15}Actualitzar una matriu de predicci\'{o}}{ix}{subsection.1.4.15}
-\contentsline {subsection}{\numberline {1.4.16}Executar una predicci\'{o} de una matriu de predicci\'{o}}{ix}{subsection.1.4.16}
-\contentsline {section}{\numberline {1.5}Model de dades}{ix}{section.1.5}
-\contentsline {chapter}{\numberline {2}Disseny e implementaci\'{o}}{xi}{chapter.2}
-\contentsline {section}{\numberline {2.1}Introduccio}{xi}{section.2.1}
-\contentsline {section}{\numberline {2.2}Patro de disseny}{xi}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Esquema del disseny}{xii}{subsection.2.2.1}
-\contentsline {section}{\numberline {2.3}Implementaci\'{o} i tecnologies}{xii}{section.2.3}
-\contentsline {section}{\numberline {2.4}Symfony}{xii}{section.2.4}
-\contentsline {section}{\numberline {2.5}Recursos}{xii}{section.2.5}
-\contentsline {section}{\numberline {2.6}Servei web}{xii}{section.2.6}
-\contentsline {section}{\numberline {2.7}Capa de serveis}{xiii}{section.2.7}
-\contentsline {section}{\numberline {2.8}Integraci´{o} amb el sistema de cues RabbitMQP}{xiii}{section.2.8}
-\contentsline {section}{\numberline {2.9}Esquema general arquitect\'{o}nic del sistema}{xiii}{section.2.9}
-\contentsline {section}{\numberline {2.10}Casa de l'usuari}{xv}{section.2.10}
-\contentsline {subsection}{\numberline {2.10.1}Llistat de les meves matrius}{xvi}{subsection.2.10.1}
-\contentsline {subsection}{\numberline {2.10.2}Llistat dels meus trainings}{xvi}{subsection.2.10.2}
-\contentsline {section}{\numberline {2.11}Crear una matriu desde un csv}{xvii}{section.2.11}
-\contentsline {section}{\numberline {2.12}Configurar una matriu}{xvii}{section.2.12}
-\contentsline {subsection}{\numberline {2.12.1}Alias de una columna}{xviii}{subsection.2.12.1}
-\contentsline {subsection}{\numberline {2.12.2}Especificar una columna a una variable i la season set}{xviii}{subsection.2.12.2}
-\contentsline {subsection}{\numberline {2.12.3}Cambiar la visualitzaci\'{o}}{xviii}{subsection.2.12.3}
-\contentsline {subsection}{\numberline {2.12.4}Visualitzar missatges}{xviii}{subsection.2.12.4}
-\contentsline {section}{\numberline {2.13}Clonar una matriu}{xix}{section.2.13}
-\contentsline {section}{\numberline {2.14}Crear un conjunt de season}{xx}{section.2.14}
-\contentsline {section}{\numberline {2.15}Modificar o afegir m´{e}s season a una variable}{xx}{section.2.15}
-\contentsline {section}{\numberline {2.16}Crear un training}{xx}{section.2.16}
-\contentsline {subsection}{\numberline {2.16.1}Simular un training de la matriu Cyprus}{xx}{subsection.2.16.1}
-\contentsline {section}{\numberline {2.17}Visualitzar un training}{xxi}{section.2.17}
-\contentsline {subsection}{\numberline {2.17.1}Problem\'{a}tiques de la creaci\'{o} de trainings}{xxi}{subsection.2.17.1}
-\contentsline {section}{\numberline {2.18}Crear una matriu de predicci\'{o}}{xxi}{section.2.18}
-\contentsline {section}{\numberline {2.19}Crear una predicci\'{o}}{xxi}{section.2.19}
-\contentsline {section}{\numberline {2.20}Llistar les meves prediccions}{xxii}{section.2.20}
-\contentsline {section}{\numberline {2.21}Visualitzar una matriu de predicci\'{o}}{xxii}{section.2.21}
-\contentsline {subsection}{\numberline {2.21.1}Actualitzar una matriu de predicci\'{o}}{xxii}{subsection.2.21.1}
-\contentsline {subsection}{\numberline {2.21.2}Executar una predicci\'{o} de una matriu de predicci\'{o}}{xxii}{subsection.2.21.2}
+\contentsline {section}{\numberline {0.2}Objectius}{vi}{section.0.2}
+\contentsline {chapter}{\numberline {1}Introducci\'{o} a Ichnaea}{vii}{chapter.1}
+\contentsline {section}{\numberline {1.1}Ichnaea Software}{vii}{section.1.1}
+\contentsline {section}{\numberline {1.2}Univers d\'Ichnaea}{viii}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Matrius}{viii}{subsection.1.2.1}
+\contentsline {subsubsection}{Variable de la matriu i conjunts de envelliments: Season Set i Seasons}{viii}{section*.3}
+\contentsline {subsection}{\numberline {1.2.2}Trainings: els entrenaments}{viii}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Matrius de prediccions}{viii}{subsection.1.2.3}
+\contentsline {chapter}{\numberline {2}Especificaci\'{o}}{ix}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introducci\'{o}}{ix}{section.2.1}
+\contentsline {section}{\numberline {2.2}Requeriments funcionals}{ix}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Administraci\'{o} d'usuaris}{ix}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Administracio de variables}{ix}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Administraci\'{o} de matrius}{x}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Administracio de trainings}{x}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Administracio de matrius de prediccio}{x}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Requeriments no funcionals}{x}{section.2.3}
+\contentsline {section}{\numberline {2.4}Casos d'us i fluxos}{x}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Crear un usuari}{x}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Crear un usuari}{xi}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Canviar un usuari de grup}{xi}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Crear un matriu desde un csv}{xii}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}Crear una variable}{xii}{subsection.2.4.5}
+\contentsline {subsection}{\numberline {2.4.6}Crear una season set}{xii}{subsection.2.4.6}
+\contentsline {subsection}{\numberline {2.4.7}Clonar una matriu}{xii}{subsection.2.4.7}
+\contentsline {subsection}{\numberline {2.4.8}Configurar un columna de la matriu}{xii}{subsection.2.4.8}
+\contentsline {subsection}{\numberline {2.4.9}Afegir una season a una season set}{xii}{subsection.2.4.9}
+\contentsline {subsection}{\numberline {2.4.10}Configurar un sample}{xii}{subsection.2.4.10}
+\contentsline {subsection}{\numberline {2.4.11}Crear un training}{xii}{subsection.2.4.11}
+\contentsline {subsection}{\numberline {2.4.12}Reenviar un training}{xii}{subsection.2.4.12}
+\contentsline {subsection}{\numberline {2.4.13}Esborrar un training}{xii}{subsection.2.4.13}
+\contentsline {subsection}{\numberline {2.4.14}Descarregar un training}{xii}{subsection.2.4.14}
+\contentsline {subsection}{\numberline {2.4.15}Visualitzar un training}{xii}{subsection.2.4.15}
+\contentsline {subsection}{\numberline {2.4.16}Crear una matriu de predicci\'{o}}{xii}{subsection.2.4.16}
+\contentsline {subsection}{\numberline {2.4.17}Actualitzar una matriu de predicci\'{o}}{xii}{subsection.2.4.17}
+\contentsline {subsection}{\numberline {2.4.18}Executar una predicci\'{o} de una matriu de predicci\'{o}}{xii}{subsection.2.4.18}
+\contentsline {section}{\numberline {2.5}Model de dades}{xii}{section.2.5}
+\contentsline {chapter}{\numberline {3}Disseny e implementaci\'{o}}{xiii}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduccio}{xiii}{section.3.1}
+\contentsline {section}{\numberline {3.2}Patro de disseny}{xiii}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Esquema del disseny}{xiv}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.3}Implementaci\'{o} i tecnologies}{xiv}{section.3.3}
+\contentsline {section}{\numberline {3.4}Symfony}{xiv}{section.3.4}
+\contentsline {section}{\numberline {3.5}Recursos}{xiv}{section.3.5}
+\contentsline {section}{\numberline {3.6}Servei web}{xiv}{section.3.6}
+\contentsline {section}{\numberline {3.7}Capa de serveis}{xv}{section.3.7}
+\contentsline {section}{\numberline {3.8}Integraci´{o} amb el sistema de cues RabbitMQP}{xv}{section.3.8}
+\contentsline {section}{\numberline {3.9}Esquema general arquitect\'{o}nic del sistema}{xv}{section.3.9}
+\contentsline {chapter}{\numberline {4}Manual d'usuari}{xvii}{chapter.4}
+\contentsline {section}{\numberline {4.1}Casa de l'usuari}{xvii}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Llistat de les meves matrius}{xvii}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Llistat dels meus trainings}{xvii}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Crear una matriu desde un csv}{xix}{section.4.2}
+\contentsline {section}{\numberline {4.3}Configurar una matriu}{xix}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Alias de una columna}{xx}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Especificar una columna a una variable i la season set}{xx}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Cambiar la visualitzaci\'{o}}{xx}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Visualitzar missatges}{xx}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Clonar una matriu}{xxi}{section.4.4}
+\contentsline {section}{\numberline {4.5}Veure les variables del sistema}{xxii}{section.4.5}
+\contentsline {section}{\numberline {4.6}Variables}{xxii}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Formulari de edici\'{o}}{xxii}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Editar una ''Season Set''}{xxii}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}Crear una ''season set''}{xxiii}{subsection.4.6.3}
+\contentsline {section}{\numberline {4.7}Crear un training}{xxiii}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Simular un training de la matriu Cyprus}{xxiv}{subsection.4.7.1}
+\contentsline {section}{\numberline {4.8}Visualitzar un training}{xxiv}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}Problem\'{a}tiques de la creaci\'{o} de trainings}{xxiv}{subsection.4.8.1}
+\contentsline {section}{\numberline {4.9}Crear una matriu de predicci\'{o}}{xxv}{section.4.9}
+\contentsline {section}{\numberline {4.10}Crear una predicci\'{o}}{xxv}{section.4.10}
+\contentsline {section}{\numberline {4.11}Llistar les meves prediccions}{xxvi}{section.4.11}
+\contentsline {section}{\numberline {4.12}Visualitzar una matriu de predicci\'{o}}{xxvi}{section.4.12}
+\contentsline {subsection}{\numberline {4.12.1}Actualitzar una matriu de predicci\'{o}}{xxvi}{subsection.4.12.1}
+\contentsline {subsection}{\numberline {4.12.2}Executar una predicci\'{o} de una matriu de predicci\'{o}}{xxvi}{subsection.4.12.2}

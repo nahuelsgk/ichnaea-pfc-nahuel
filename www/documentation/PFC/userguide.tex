@@ -1,4 +1,4 @@
-\chapter*{Manual d'usuari}
+\chapter{Manual d'usuari}
 \label{cha:userguide}
 
 \section{Casa de l'usuari}
@@ -6,11 +6,11 @@
 Per accedir al home pots:
 \begin{itemize}
 \item accedir nom\'{e}s loguejan-te 
-\item desde "My matrixs" 
-\item desde "Trainings > My Trainings" o al logo de "Ichnaea".
+\item desde ''My matrixs''
+\item desde ''Trainings - My Trainings'' o al logo de ''Ichnaea''.
 \end{itemize}
 
-En el dashboard es poden veure dues seccions. Les matrius(part esquerra) i els trainings(part dreta) creats per l'usuari. 
+En el dashboard es poden veure dues seccions. Les matrius(part esquerra) i els trainings(part dreta) creats per l'usuari.\\
 Nota: Actualment no es poden compartir propietat de matrius. Es a dir, una sola persona(el propietari/creador) solament pot editar la matriu. Per poder solventar aquest trau, existeix la possibilitat de clonar una matriu. Mirar \ref{sec:clone_matrix}.
 \begin{figure}[h!]
   \centering
@@ -18,7 +18,8 @@ Nota: Actualment no es poden compartir propietat de matrius. Es a dir, una sola 
   \caption{Casa de l'usuari}
   \label{fig:placement}
 \end{figure}
- 
+A continuaci\'{o} descriurem cadascuna de les parts.
+
 \subsection{Llistat de les meves matrius}
 Al llistat de la esquerra pots veure les matrius que ets propietari. Amb la icona de edici\´{o} pots anar a la pantalla de configuraci\´{o}. Per configurar la matriu, mirar \ref{sec:configure_matrix}.
 
@@ -46,7 +47,7 @@ En la figura es contempla els estats possibles:
 
 \section{Crear una matriu desde un csv}
 \label{sec:create_matrix}
-Desde el menu superior "IchnaeaData > New matrix", es pot pujat una nova matriu en format csv. El format csv es compatible amb les programaris de ofim\`{a}tica m\´{e}s habituals como Microsoft Excel o Libreoffice.
+Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv. El format csv es compatible amb les programaris de ofim\`{a}tica m\´{e}s habituals como Microsoft Excel o Libreoffice.
 El format de la matriu \´{e}s important que sigui el seg\¨{u}ent.
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
@@ -103,7 +104,7 @@ Existeixen diverses restriccions i missatges:
 
 \section{Clonar una matriu}
 \label{sec:clone_matrix}
-Desde el llistat menu "Ichnaea Data > View Matrix", podem accedir al llistat de variables del sistema. Amb la icona etiquetada com "Clone the matrix", podem clonar una matriu sencera configurada. No es copien els trainings.
+Desde el menu ''Ichnaea Data - View Matrix'', podem accedir al llistat de variables del sistema. Amb la icona etiquetada com "Clone the matrix", podem clonar una matriu sencera configurada. No es copien els trainings.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/clone_matrix.png}
@@ -119,36 +120,66 @@ Fent click a la icona de reload, anem al formulari que suggereix un nom per iden
 \end{figure}
 Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}. Mirar \ref{sec:configure_matrix}.
 
-\section{Crear un conjunt de season}
-Pendent de escriure.
+\section{Veure les variables del sistema}
+Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les variables del sistema. Fent click a la icona de edici\'{o}, es pot accedir a la interficie de configuraci\'{o} de la variable seleccionada.
 
-\section{Modificar o afegir m\´{e}s season a una variable}
-Pendent de escriure.
-
-\section{Crear un training}
-Per crear un training s'ha de accedir al menu superior "Trainings > Create a training". Desde el llistat de matrius del sistema, amb la icona de la "carretera", es pot accedir al formulari de creaci\´{o} de trainings.
+\section{Variables}
+\subsection{Formulari de edici\'{o}}
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/create_.png}
+  \includegraphics[scale=0.2]{img/userguide/variable_configuration.png}
+  \caption{Configuraci\'{o} de variable}
+  \label{fig:placement}
+\end{figure}
+Desde la interf\'{i}cie de configuraci\'{o} es pot:
+\begin{itemize}
+\item Modificar la descripci\'{o}
+\item Accedir a la vista per afegir una ''Season set'', amb la icona del signe de suma.
+\item Editar una ''Season Set'',amb la icona de edici\'{o}.
+\item Esborrar una ''Season Set'', amb la icona de la brossa.
+\end{itemize}
+
+\subsection{Editar una ''Season Set''}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/season_set_edition.png}
+  \caption{Edici\'{o} de una ''Season Set''}
+  \label{fig:placement}
+\end{figure}
+Desde aquesta vista es pot:
+\begin{itemize}
+\item Editar el nom de la season set
+\item Eliminar simplement la relaci\'{o} amb una season amb la icona de la brossa.
+\item Eliminar un fitxer de la ''Season Set'' i la relaci\'{o}, amb la icona de la creu
+\item Afegir fitxer com una estaci\'{o} o com tot l'any.
+\end{itemize}
+Es poden afegir tants fitxers com es vulguin. S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern.
+
+\subsection{Crear una ''season set''}
+
+\section{Llistar trainings}
+
+\section{Crear un training}
+Per crear un training s'ha de accedir al menu superior ''Trainings - Create a training''. Desde el llistat de matrius del sistema, amb la icona de la ''carretera'', es pot accedir al formulari de creaci\´{o} de trainings.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/training_create.png}
   \caption{Llistat de matrius}
   \label{fig:placement}
 \end{figure}
 \begin{itemize}
 \item Part esquerra superior: El training cont\´{e} un nom i una descripci\´{o}. Es poden seleccionar quines columnes vols entrenar de la matriu. 
-\item Part dreta superior: Desplegable per seleccionar un dels origens disponibles.  El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\´{a} tots contra tots. Si \´{e}s selecciona un origen concret, el training es far\´{a} aquest origen contra els altres. Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}.
+\item Part dreta superior: Desplegable per seleccionar un dels origens disponibles.  El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\´{a} tots contra tots. Si \´{e}s selecciona un origen concret, el training es far\`{a} aquest origen contra els altres. Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}.
 \item Selecci\'{o} de columnes. Selecci\'{o} de columnes que vols entrenar.
 \end{itemize}
 
 Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i la aplicaci\´{o} es redirigir\´{a} la pantalla de visualitzaci\´{o} de trainings.
 
 \subsection{Simular un training de la matriu Cyprus}
-Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions. PENDENT DE CONFIRMAR REQUERIMENT.
+Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions. 
 
 \section{Visualitzar un training}
 Desde la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus trainings i en quin estadi es troben. Amb la icona "ull", pots accedir a visualitzar la informaci\´{o} del training.
-
-\begin{itemize}
-\end{itemize}
 
 \subsection{Problem\'{a}tiques de la creaci\'{o} de trainings}
 \subsubsection*{Error en el enviament}
@@ -166,15 +197,16 @@ A banda d'aix\'{o}, tenim predifinits un conjunt de situacions que a continuaci\
 Desde la casa de l'usuari, es pot veure els teus trainings i en quin estadi es troben. Amb la icona "Quadradets"
 
 \section{Crear una predicci\'{o}}
-Desde la casa de l'usuari(mirar \ref{sec:home}) es pot crear una predicci\'{o} d'un training. Seleccionant la icona "quadricules" de un trainig correcte(en color verd), es pot crear un matriu de predicci\'{o}.
+Desde la casa de l'usuari(mirar \ref{sec:home}) es pot crear una predicci\'{o} d'un training. Seleccionant la icona ''quadricules'' de un trainig correcte(en color verd), es pot crear un matriu de predicci\'{o}.
+
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/create_prediction.png}
+  \includegraphics[scale=0.2]{img/userguide/prediction_create.png}
   \caption{Exemple de creaci\'{o} de predicci\'{o}}
   \label{fig:placement}
 \end{figure}
-A part superior \'{e}s pot seleccionar un fitxer per pujar la matriu per predir.
-A la part inferior es pot veure les columnes que el training t\'{e} seleccionades. La matrius en format csv ha de tenir el format indicat per la part inferior. En breu es podr\'{a} descarregar una template per tenir el template i poder simplement omplir els valors:
+
+A part superior \'{e}s pot seleccionar un fitxer per pujar la matriu per predir. A la part inferior es pot veure les columnes que el training t\'{e} seleccionades. La matrius en format csv ha de tenir el format indicat per la part inferior. En breu es podr\'{a} descarregar una template per tenir el template i poder simplement omplir els valors:
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
     \hline
@@ -186,11 +218,12 @@ A la part inferior es pot veure les columnes que el training t\'{e} seleccionade
 \end{center}
 Seguidament es pot visualitzar
 
+\section{Actualitzar una matriu de predicci\'{o}}
+
 \section{Llistar les meves prediccions}
-Cas d'us pendent d'especificar
 
 \section{Visualitzar una matriu de predicci\'{o}}
-Cas d'us pendent d'especificar.
+
 
 \subsection{Actualitzar una matriu de predicci\'{o}}
 

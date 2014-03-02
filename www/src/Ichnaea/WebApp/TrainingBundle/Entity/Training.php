@@ -22,12 +22,12 @@ class Training
     private $id;
 
    /**
-     * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\UserBundle\Entity\User", inversedBy="trainers") 
+     * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\UserBundle\Entity\User", inversedBy="trainings") 
      */
     protected $trainer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Matrix", inversedBy="trainings")
+     * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Matrix", inversedBy="training")
      * @ORM\JoinColumn(name="matrix_id", referencedColumnName="id", nullable=false)
      */
     protected $matrix;

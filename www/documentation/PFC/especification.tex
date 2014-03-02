@@ -1,9 +1,13 @@
 \chapter{Especificaci\'{o}}
-\label{cha:background}
+\label{cha:specification}
+
 
 \section{Introducci\'{o}}
-En aquest cap\´{i}tol es descriu els requeriments i les operatives que es necessiten.
+En aquest cap\´{i}tol es descriu els requeriments i les operatives que es necessiten.\\
+
+
 \section{Requeriments funcionals}
+
 \subsection{Administraci\'{o} d'usuaris}
 La aplicaci\´{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertanyer a grups amb roles autoritzats per fer certes accions. Es una aplicaci\´{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
 \begin{itemize}
@@ -14,7 +18,7 @@ La aplicaci\´{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris 
 \end{itemize}
 
 \subsection{Administracio de variables}
-La aplicaci\´{o} ha de poder crear variables al sistema per poder utilitzar-les al software Ichnaea. Les variables han de tenir asociades de conjunt seasons. Com s'explica al cap\'{i}tol \ref{glossary}, les season es un contingut en format texte que descriu els envelliments de les variables. Per tant s'ha de poder crear afegir conjunts de seasons mitjançant les season sets.
+La aplicaci\´{o} ha de poder crear variables al sistema per poder utilitzar-les al software Ichnaea. Les variables han de tenir asociades de conjunt seasons. Com s'explica al cap\'{i}tol \ref{glossary}, les season es un contingut en format texte que descriu els envelliments de les variables. Per tant s'ha de poder crear afegir conjunts de seasons mitjançant les season sets.\\
 
 \subsection{Administraci\'{o} de matrius}
 La aplicaci\'{o} ha de poder crear i configurar matrius de dades. Aquestes matrius contenen dades que relaciona una variable amb una mostra.
@@ -26,24 +30,90 @@ La aplicaci\'{o} ha de poder crear i configurar matrius de dades. Aquestes matri
 
 \subsection{Administracio de matrius de prediccio}
 
+
+
 \section{Requeriments no funcionals}
 
+
+
 \section{Casos d'us i fluxos}
+En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura:\\
 \subsection{Crear un usuari}
+\begin{usecase}
+\addtitle{Identificador}{Nom cas d'us}
+\addfield{Actors:}{Llista de actors}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item Esdeveniment
+	\item Esdeveniment
+ validada.
+	\item ...
+	
+}
+\addscenario{Cursos alternatius:}{
+\item Esdeveniment Alternatiu
+}
+\end{usecase}
+
+
+
+\subsection{Crear un usuari}
+\begin{usecase}
+\addtitle{Cas d'us 001}{Crear un usuari}
+\addfield{Actors:}{Anonim}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item Usuari accedeix a la plataforma i pot accedir al formulari de registraci\'{o}
+	\item Usuari introdueix nom d'usuari, correu electr\`{o}nic i contrasenya.
+	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enllaç de confirmaci\'{o} i crea un compte no validada.
+	\item L'usuari rep el correu electr\'{o}nic amb l'enllaç de confirmaci\'{o} i accedeix al l'enllaç de confirmaci\'{o}.
+	\item El sistema comprova que \'{e}s un enllaç de confirmaci\'{o} v\`{a}lid i d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
+}
+\addscenario{Cursos alternatius:}{
+\item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu, que el correu sigui v\`{a}lid. Sino es correcte li informa a l'usuari al mateix formulari.
+}
+\end{usecase}
+
 \subsection{Canviar un usuari de grup}
+\begin{usecase}
+\addtitle{Cas d'us 002}{Canviar un usuari de grup}
+\addfield{Actors:}{Anonim}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item L'administrador llista tots els usuaris del sistema i selecciona un.
+	\item L'administrador veu el formulari de edici\'{o} de permisos.
+	\item L'administrador selecciona el nou perm\'{s} i salva el perfil.
+	\item El sistema guarda el nou perm\'{i}s
+}
+\end{usecase}
+
 \subsection{Crear un matriu desde un csv}
+
 \subsection{Crear una variable}
+
 \subsection{Crear una season set}
+
 \subsection{Clonar una matriu}
+
 \subsection{Configurar un columna de la matriu}
+
 \subsection{Afegir una season a una season set}
+
 \subsection{Configurar un sample}
+
+\subsection{Llistar trainings}
+
 \subsection{Crear un training}
+
 \subsection{Reenviar un training}
+
 \subsection{Esborrar un training}
+
+\subsection{Descarregar un training}
+
 \subsection{Visualitzar un training}
+
 \subsection{Crear una matriu de predicci\'{o}}
+
 \subsection{Actualitzar una matriu de predicci\'{o}}
+
 \subsection{Executar una predicci\'{o} de una matriu de predicci\'{o}}
 
 \section{Model de dades}

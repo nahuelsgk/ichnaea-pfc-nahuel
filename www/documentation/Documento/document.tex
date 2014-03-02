@@ -1,0 +1,51 @@
+\section{Abast}
+L'objectiu del projecte es desenvolupar un conjunts de serveis webs per manegar l'algoritme de Backtracking bacteriol\`{o}gic Ichnaea. Actualment Ichnaea es troba en la versi\'{o} 2.0, desenvolupat per Aitor P\'{e}rez P\'{e}rez. La primera versi\'{o} va ser desenvolupada per David Sanchez.\\
+
+La complexitat de les entrades i configuracions dels parametres de entrada de Ichnaea, requereixen de unes interf\'{i}cies i d'un model de dades per poder executar l'algoritme de forma m\'{e}s amigable i comprensible. El prop\`{o}sit del projecte es dissenyar e implementar aquest sistema en un entorn distribu\¨{i}t en xarxa.\\
+
+En col.laboraci\'{o} amb Miguel Ibero, que desenvolupa com a Projecte de Final de Carrera un sistema de cues per manegar les execucions de Ichnaea, integrarem una primera versi\'{o}.\\
+
+
+\section{Escenari, entitats i l'univers Ichnaea}
+Per tal de poder entendre els objectius del projecte farem una visi\'{o} global de Ichnaea i els seus elements.\\
+
+\subsection{Matrius}
+Ichnaea processa inicialment les dades a partir de unes matrius on \'e{s} defineixen les dades per variables i per mostres. Aquest conjunt de valors, a partir de ara en tota la documentaci\'{o} seran anomenades "matrius", son els valors per a:\\
+\begin{itemize}
+\item Variables: son les columnes de la matriu. 
+\item Mostres: son les files de la matriu. A partir d'ara en tota la documentaci\'{o} s'anomenaran "samples".
+\end{itemize}
+
+\subsubsection{Variable de la matriu i conjunts de envelliments: Season Set i Seasons}
+Una variable de la matriu pot ser una:\\
+\begin{itemize}
+\item Una variable, per exemple, de una bacteria: "variable single"
+\item Una variable derivada de un calcul entre dos "variables single"
+\item Una variable de origen. Obligatoria per cada "sample".
+\end{itemize}
+Les "variables single" tenen associades unes regresions, representat en un fitxer, on s'especifica els envelliments. Un conjunt de regresions els anomenem "Season Sets". A un component d'aquest conjunt de regressions l'anomenarem "Season".\\
+
+Les variables de origen representen una etiqueta de la mostra per identificar l'origen de la mostra.\\
+
+\subsection{Trainings: els entrenaments}
+Ichnaea utilitza aquestes matrius per calcular una bossa de models. Aquesta sortida de dades les anomenem "Trainings". Per obtenir aquesta bossa de models, Ichnaea utilitza com a entrada aquestes matrius, uns parametres inicials i les "seasons". Ichnaea retorna una bossa de models que s'utilitza per fer prediccions.
+
+\subsection{Matrius de prediccions}
+Ichnaea prediu matrius amb els trainings. Aquestes matrius a difer\`{e}ncia de les originals poden estar incompletes o sense origens. Retornen una taula de valors.
+
+
+
+\section{Objectius i estat}
+\begin{itemize}
+\item Especificar e implementar les interf\'{i}cies de usuari per poder configurar les entrades i execuci\'{o} del software Ichnaea. S'han especificat e implementat quasi totes les interf\'{i}cies de entrada. Falten especificar e implementar les interf\'{i}cies de les entrades predicci\'{o}.
+\item Especificar e implementar interficies de usuari per poder veure els resultats de la execuci\'{o} del software Ichnaea. S'han especificat e implementat quasi totes les interf\'{i}cies de sortida. Falten especificar e implementar les interf\'{i}cies de les sortides de predicci\'{o}.
+\item Interf\'{i}cies usables, comprensibles i enriquides per tenir una bona experiencia de usuari. La configuraci\'{o} de les matrius \'{e}s la m\'{e}s complexe. S'ha acomplert aquest objectiu mitjançant una API JSON Restful amb la interficies enriquida amb Javascript i Jquery, juntament amb una proto-llibreria propia pel software.
+\item Prototipus de llibreria API per en un futur escalar-la i poder integrar el projecte amb qualsevol periferic o tecnologia. Objectiu assolit ja que era requeriment de l'objectiu anterior. Aquesta API es probable que creixi en funcionalitats.
+\item Implementar tots aquests objectius en una tecnologia distribuida en xarxa. S'ha aplicat desde el principi tecnologia web.
+\item Dissenyar un model de dades flexible que permiti relacionar els objectes per a futures versions de Ichnaea i noves funcionalitats que es poguin desenvolupar mitjançant modificacions o millores de les interficies. S'est\`{a} dissenyant de base un model de dades molt flexible amb un motor de base de dades relacional. Per\'{o} actualment s'est\`{a} limitant la flexibilitat a nivell de interficie per obtenir una millor experi\`{e}ncia de usuari.
+\item Integrar la aplicaci\'{o} web amb el projecte "Sistemes de cues per Ichnaea Software" de Miguel Ibero. El projecte est\`{a} integrat per\`{o} encara es troba en desenvolupament. 
+\item Estudi de tecnologies per la implementaci\'{o}. El per\'{i}ode de investigaci\'{o} ja s'ha portat a terme. Finalment s'est\'{a} implementant en Symfony2 amb Data Mapper Doctrine per a MySQL i motor de templating TWIG. Totes han sigut tecnologies que s'han apr\'{e}s desde 0.
+\item Implementar el prototipus en un entorn real. Actualment el desenvolupament es troba actualitzat al RdLab. Cada dos setmanas es puja la ultima versi\'{o}.
+\item Dissenyar un sistema i emprar unes tecnologies escalables i mantenibles. El projecte \'{e}s un prototipus i ofereix m\'{e}s funcionalitat que les que oficialment ofereix Ichnaea. A mesura que Ichnaea ofereixi m\'{e}s funcionalitats, el sistema web s'est\`{a} dissenynat per que sigui mantenible en el futur amb documentacions per a desenvolupadors acurades.
+\end{itemize}
+

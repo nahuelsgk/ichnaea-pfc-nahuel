@@ -241,66 +241,8 @@ class IchnaeaService{
 		$matrix = new Matrix();
 		$matrix->setName($name);
 
-		$index=0;
-		$origin = FALSE;
-		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
-			$max_colums=0;
 		
-			//First row: variables alias
-			if($index == 0){
-				$columns    = explode(";", $line);
-		  		$m_columns  = count($columns);
-		  	
-		  		//resolve if the last column is ORIGIN
-		  		if (strpos($columns[$m_columns-1], "ORIGIN") !== false ){
-		  			$origin = TRUE;
-		  			//Just to avoid the last column
-		  			$m_columns --;
-		  		}
-		  	
-		  		//Exclude first column
-		  		for($i=1; $i<$m_columns; $i++){
-		  			//print("Variable alias: ".$columns[$i]."<br>");
-		  			$variableConfiguration = new VariableMatrixConfig();
-		  			$variableConfiguration->setName($columns[$i]);
-		  			$variableConfiguration->setMatrix($matrix);
-		  			$matrix->addColumn($variableConfiguration);
-		  			$max_columns = $i-1;
-		  		}
-			}
 		
-			//lLater are all the samples
-			else{
-				//Check empty lines
-				if($line != ''){
-					$columns    = explode(";", $line);
-								
-					//First Column: Definition of sample	
-					$sample = new Sample();
-					$sample->setName($columns[0]);
-					$sample->setMatrix($matrix);
-					//$m_columns-2 because we want only from the position 1 to $m_columns-1 
-					if ($origin == TRUE){
-						foreach($columns as $key => $string) {
-							$columns[$key] = $this->cleanStringCSV($string);
-						}
-				  		$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
-					}
-					//We want all the values until the end
-					else{
-				  		$sample->setSamples(array_slice($columns, 1, null, TRUE));
-					}
-					$matrix->addRow($sample);
-					if(isset($columns[$m_columns]) && $origin)
-					{
-						$sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
-					}
-				}			
-			}
-		
-			$index++;
-		}
-	
 		#Attach to the user
 		$userRepository = $this->em->getRepository('UserBundle:User');
 		$user = $userRepository->find($owner_id);
@@ -312,6 +254,85 @@ class IchnaeaService{
 		return $matrix->getId();
 	}
 
+	private function buildMatrixFromCSV(&$matrix, $content){
+		$index=0;
+		$origin = FALSE;
+		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
+			$max_colums=0;
+		
+			//First row: variables alias
+			if($index == 0){
+				$columns    = explode(";", $line);
+				$m_columns  = count($columns);
+					
+				//resolve if the last column is ORIGIN
+				if (strpos($columns[$m_columns-1], "ORIGIN") !== false ){
+					$origin = TRUE;
+					//Just to avoid the last column
+					$m_columns --;
+				}
+					
+				//Exclude first column
+				for($i=1; $i<$m_columns; $i++){
+					//print("Variable alias: ".$columns[$i]."<br>");
+					$variableConfiguration = new VariableMatrixConfig();
+					$variableConfiguration->setName($columns[$i]);
+					$variableConfiguration->setMatrix($matrix);
+					$matrix->addColumn($variableConfiguration);
+					$max_columns = $i-1;
+				}
+			}
+		
+			//lLater are all the samples
+			else{
+				//Check empty lines
+				if($line != ''){
+					$columns    = explode(";", $line);
+		
+					//First Column: Definition of sample
+					$sample = new Sample();
+					$sample->setName($columns[0]);
+					$sample->setMatrix($matrix);
+		
+					foreach($columns as $key => $string) {
+						$columns[$key] = $this->cleanStringCSV($string);
+					}
+		
+					if ($origin == TRUE){
+						$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
+						if(isset($columns[$m_columns]) && $origin)
+						{
+							$sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
+						}
+					}
+		
+					//We want all the values until the end
+					else{
+						$sample->setSamples(array_slice($columns, 1, null, TRUE));
+					}
+					$matrix->addRow($sample);
+		
+				}
+			}
+		
+			$index++;
+		}
+	}
+	
+	public function updateMatrixFromCSVContent($matrix_id, $name, $content)
+	{
+		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
+		$matrix = $matrixRepository->find($matrix_id);
+		foreach ($matrix->getRows() as $sample){
+			$matrix->removeRow($sample);
+		}
+		
+		$this->buildMatrixFromCSV($matrix, $content);
+		$this->em->persist($matrix);
+		$this->em->flush();
+		return $matrix_id;
+	}
+	
 	private function cleanStringCSV($string){
 		$invalid_chars = array('\'','"');
 		return str_replace($invalid_chars, "", $string);	

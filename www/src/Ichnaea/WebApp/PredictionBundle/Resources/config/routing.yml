@@ -44,3 +44,11 @@ view_matrix_prediction:
         matrix_id: "\d+"
         training_id: "\d+"
         prediction_id: "\d+"
+
+download_training_template:
+    pattern: /matrix/{matrix_id}/training/{training_id}/download_template
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:downloadMatrixTemplate}
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"

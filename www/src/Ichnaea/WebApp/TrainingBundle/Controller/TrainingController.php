@@ -3,9 +3,28 @@
 namespace Ichnaea\WebApp\TrainingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class TrainingController extends Controller
 {
+	
+	/**
+	 * Controller to list all trainable trainings
+	 * 
+	 */
+	public function trainingListAction()
+	{
+		$trainingService       = $this->get('ichnaea.trainingService');
+		$trainableTrainingList = $trainingService->getTrainableTrainingList();
+		//echo '<pre>';\Doctrine\Common\Util\Debug::dump($trainableTrainingList);echo '</pre>';
+		return $this->render(
+				'IchnaeaWebAppTrainingBundle::list.html.twig', 
+				array(
+					'trainings' => $trainableTrainingList
+				)
+		);
+	}
 	/**
 	 * Controller for render and validations for creating a training
 	 * 
@@ -177,5 +196,19 @@ class TrainingController extends Controller
 		$result_queue = $trainingService->queueTest();
 		return $this->render('IchnaeaWebAppTrainingBundle::queue_checklist.html.twig', 
 				array("result_queue_status" => $result_queue["status"], "result_queue_message" => $result_queue["message"]));
+	}
+
+	public function downloadTrainingDataAction($matrix_id, $training_id)
+	{
+		$trainingService = $this->get('ichnaea.training_service');
+		$file = $trainingService->getRdataContent($training_id);
+		$response = new Response();
+		$response->headers->set('Content-Type', "application/octet-stream");
+		$response->headers->set('Content-Disposition', 'attachment; filename="rdata.zip"');
+		$response->headers->set('Pragma', "no-cache");
+		$response->headers->set('Expires', "0");
+		$response->headers->set('Content-Transfer-Encoding', "binary");
+		$response->setContent($file);
+		return $response;
 	}
 }

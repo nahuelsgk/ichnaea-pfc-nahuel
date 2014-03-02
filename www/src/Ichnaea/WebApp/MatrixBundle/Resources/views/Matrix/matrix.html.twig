@@ -29,7 +29,9 @@
  </div>
 
  <legend class="container">Matrix Data 
-  <a class="btn btn-mini" href="{{path('matrix_download_form', {'matrix_id': matrix.id})}}" name="download_matrix" title="Download matrix"><i class="icon-arrow-down"></i></a>
+  <!--  <a class="btn btn-mini" href="{{path('matrix_download_form', {'matrix_id': matrix.id})}}" name="download_matrix" title="Download matrix"><i class="icon-arrow-down"></i></a>-->
+  <a class="btn btn-mini" href="{{path('matrix_download_data', {'matrix_id': matrix.id})}}" name="download_matrix_template" title="Download matrix only data, for update any value"><i class="icon-download-alt"></i></a>
+  <a class="btn btn-mini" href="{{path('matrix_update_data_form', {'matrix_id': matrix.id})}}" name="download_matrix_template" title="Reload only data, previously download"><i class="icon-retweet"></i></a>
   <div id="submit_info" style="display: inline;">
     <button id="save_all_changes" class="btn btn-danger" style="visibility: hidden;" onclick="save_all_pending_action();">Save all changes</button>
   </div>
@@ -43,9 +45,25 @@
                     <div id='divroot' class='root'>
                         <table border="0" cellpadding="0" cellspacing="0" width="100%" class='root'>
                             <tr>
-                                <td class='inner-head frozencol colwidth head' align="center">
+                                <td class='inner-head-first-tr-first-td frozencol colwidth head' align="center">
                                   {{matrix.name}}
                                 </td>
+                            </tr>
+                            <tr>
+                              <td>
+                              <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                              <tr>
+                              <td width="58px" style="text-align:center;">Id</td>
+                              <td>
+                              	<table width="100%" cellpadding="0">
+   									<td width="30%" style="text-align:center;">Name</td>
+   									<td width="30%" style="text-align:center;">Date</td>
+   									<td width="40%" style="text-align:center;">Origin</td>
+   								</table>
+                              </td>
+                              </tr>
+                              </table>
+                              </td>
                             </tr>
                         </table>
                     </div>
@@ -56,9 +74,16 @@
    							<tr id="sample-{{sample.id}}">
    							    <td align="center" class='frozen-index'>{{loop.index}}</td>
    								<td class='inner-frozen frozencol'>
-   									<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action')" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
-   									<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
-   									<input 
+   								    <table width="100%" cellpadding="0">
+   								    <tr>
+   								    	<td width="30%">
+   								    	<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action')" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
+   								    	</td>
+   										<td width="30%">
+   										<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
+   										</td>
+   										<td width="40%">
+   										<input 
    										class="input-small origin_input" 
    										onchange="displayHiddenElement('sample-{{sample.id}}-action');
    											  	  displayHiddenElement('save_all_changes');" 
@@ -75,6 +100,9 @@
    													$('#sampleOrigin-{{sample.id}}').val(),
    													'sample-{{sample.id}}-action');">
    									<i class="icon-edit"></i></a>
+   									</td>
+   									<tr>
+   									</table>
    								</td>
    							</tr>	
    							{% endfor %}

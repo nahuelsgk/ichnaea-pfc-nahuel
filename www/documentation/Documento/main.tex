@@ -20,7 +20,6 @@
 \ifpdf \usepackage{hyperref} \fi
 \usepackage[toc]{glossaries}
 \usepackage[nottoc]{tocbibind}
-\usepackage{usecases}
 
 \renewcommand*{\glsclearpage}{\clearpage}
 
@@ -42,52 +41,20 @@
 }
 \makeglossaries
 
-\pagenumbering{roman}
-\input{glossary}
-
 \begin{document}
 \pagestyle{empty}
 
 \include{title}
 \cleardoublepage
 
-\include{prologue}
-\cleardoublepage
-
-\include{preface}
-\cleardoublepage
-
-\include{glossary}
-\cleardoublepage
-
-\include{background}
-\cleardoublepage
-
-\include{especification}
-\cleardoublepage
-
-\include{dessign}
-\cleardoublepage
-
-\include{userguide}
-\cleardoublepage
-
-\include{adminguide}
-\cleardouplepage
-
 \pagenumbering{gobble}
 \tableofcontents
+\makeindex
 \cleardoublepage
 \pagenumbering{arabic}
 
 \pagestyle{headings}
 
-
-\bibliographystyle{unsrt}
-\bibliography{biblio}
-%\printglossaries
-
-\appendix
-%\include{appendix}
-
+\include{document}
+	
 \end{document}

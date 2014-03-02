@@ -182,3 +182,32 @@ perform_clone_matrix:
     requirements: 
        _method: POST
        matrix_id: "\d+"
+
+matrix_download_data:
+    pattern: /matrix/{matrix_id}/download_data
+    defaults: { _controller: MatrixBundle:Matrix:downloadDataSet }
+    requirements: 
+       _method: GET
+       matrix_id: "\d+"
+
+matrix_update_data_form:
+    pattern: /matrix/{matrix_id}/update_data_form
+    defaults: { _controller: MatrixBundle:Matrix:updateDataSetForm }
+    requirements: 
+       _method: GET
+       matrix_id: "\d+"
+
+matrix_update_data_action:
+    pattern: /matrix/{matrix_id}/update_data
+    defaults: { _controller: MatrixBundle:Matrix:updateDataSetForm }
+    requirements:
+        _method: POST
+        matrix_id: "\d+"
+ 
+perform_matrix_update_data:
+    pattern: /matrix/{matrix_id}/update_data_form
+    defaults: { _controller: MatrixBundle:Matrix:performUpdateDataSet }
+    requirements: 
+       _method: POST
+       matrix_id: "\d+"
+       

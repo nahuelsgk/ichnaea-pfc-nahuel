@@ -1,0 +1,38 @@
+\chapter{Introducci\'{o} a Ichnaea}
+\label{cha:background}
+
+\section*{Introducci\'{o}}
+En el seg\¨{u}ent cap\'{i}tol es descriu breument l'univers Ichnaea, necessari per entendre el requeriments. No es dona visi\'{o} completa del software de com funciona, sino una visi\'{o} global del seu objectiu i quins elements utilitza.
+
+\section{Ichnaea Software}
+Ichnaea \'{e}s un projecte que desenvolupa un focus d'aprenentatge de la m\`{a}quina al problema de MST (Microbial Source Tracking). El problema MST \'{e}s un problema obert en la actualitat. L'objectiu principal \'{e}s determinar l'origen de la contaminaci\'{o} fecal, tant animal o hum\`{a} en els cossos aqu\`{a}tics tenint en compte dades procedents de diferents an\`{a}lisis, el medi ambien o recreat en un laboratori. \\
+
+Actualment es troba en la versi\'{o} 2.0. La primera versi\'{o} va ser desenvolupada, com a Master Thesis per David Sanchez, va donar un primer enfoc al problema MST. La segona versi\'{o} desenvolupara com a Projecte de Final de Carrera per Aitor P\'{e}rez P\'{e}rez \'{e}s una millora i es sobre aquesta que la que s'ha desenvolupat les proves d'aquest projecte. Ambdues versions han sigut supervisades per Llu\'{i} Belanche.\\
+
+\section{Univers d\'Ichnaea}
+
+\subsection{Matrius}
+Ichnaea processa inicialment les dades a partir de unes matrius on \'e{s} defineixen les dades per variables i les mostres. Aquest conjunt de valors, a partir de ara en tota la documentaci\'{o}, anomenades "matrius" son els valors per a:
+\begin{itemize}
+\item Variables: son les columnes de la matriu. 
+\item Mostres: son les files de la matriu. A partir d'ara en tota la documentaci\'{o} s'anomenaran "samples".
+\end{itemize}
+
+\subsubsection{Variable de la matriu i conjunts de envelliments: Season Set i Seasons}
+Una variable de la matriu pot ser una:
+\begin{itemize}
+\item Una variable de un bacteria: "variable single"
+\item Una variable derivada de dos "variables single"
+\item Una variable de origen. Obligatoria per cada sample.
+\end{itemize}
+Les "variables single" tener asociats unes regresions, representat en un fitxer, on s'especifica els envelliments. Un conjunt de regresions els anomenem "Season Sets". A una envelliment l'anomenem "Season".\\
+
+Les variables de origen representa un etiqueta de l'origen de la mostra.\\
+
+\subsection{Trainings: els entrenaments}
+Ichnaea utilitza aquestes matrius per calcular una bossa de models. Aquesta sortida de dades les anomenem "Trainings". Per obtenir aquesta bossa de models, Ichnaea utilitza com a entrada aquestes matrius, uns parametres inicials i les "seasons". Ichnaea retorna una bossa de models que s'utilitza per fer prediccions.
+
+\subsection{Matrius de prediccions}
+Ichnaea prediu matrius amb els trainings. Aquestes matrius a difer\`{e}ncia de les originals poden estar incompletes o sense origens. ¿Que retorna les prediccions?
+
+

@@ -85,8 +85,12 @@
    {% endif %}
    <button type="submit" class="btn btn-danger">Resend training</button>
    </form>
+ {% else %}
+   {% if training.progress*100 == 100 %}
+     <a href="{{path('training_download_rdata',{matrix_id: training.matrix.id, training_id: training.id})}}">Download r data</a>
+   {% endif %}
  {% endif %} 
- <legend>Predictions </legend>
+ <legend>Predictions<a class="btn btn-mini" href="{{path('create_prediction_matrix_action', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="create_training" title="Create training"><i class="icon-plus"></i></a></legend>
  <ul>
  {% for prediction in predictions %}
  <li>{{ prediction.name }} 
