@@ -54,6 +54,13 @@ function PredictModelsTaskFormCtrl($scope, $routeParams, $http) {
         delete $scope.task.dataset;
       }
     }
+    if(name === "data") {
+      if(files.length > 0) {
+        $scope.task.data = btoa(unescape(encodeURIComponent(contents[0])));
+      } else {
+        delete $scope.task.data;
+      }
+    }
   });
 
   $scope.addTask = function(task) {

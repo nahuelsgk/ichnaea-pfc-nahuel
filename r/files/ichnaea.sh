@@ -6,7 +6,7 @@ SCRIPTPATH=`pwd -P`
 popd > /dev/null
 
 AGING=""
-OBJECTS=""
+MODELS=""
 ICHNAEADIR=""
 FAKE=""
 MEGAVALIDATION=""
@@ -20,7 +20,7 @@ RBIN=`which R`
 
 function USAGE {
 	echo "Ichnaea wrapper by Miguel Ibero <miguel@ibero.me>"
-	echo "usage: $0 --debug --verbose --aging=path/to/aging [--objects=file.zip] [intall|build data.csv|predict data_test.csv|fake duration:interval]"
+	echo "usage: $0 --debug --verbose --aging=path/to/aging [--models=file.zip] [intall|build data.csv|predict data_test.csv|fake duration:interval]"
 	exit 0
 }
 
@@ -28,7 +28,7 @@ function PRINT_LOG {
 	echo -e "$1" 
 }
 
-OPTS=`getopt -o scfoidvm -l "aging:,objects:,fake:,install,debug,verbose,megavalidation" -- "$@"`
+OPTS=`getopt -o dvgam -l "aging:,models:,fake:,install,debug,verbose,megavalidation" -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -41,9 +41,9 @@ do
     case "$1" in
     	-d|--debug) DEBUG="1"; shift 1;;
 		-v|--verbose) VERBOSE="1"; shift 1;;
-		-m|--megavalidation) MEGAVALIDATION="1"; shift 1;;
+		-g|--megavalidation) MEGAVALIDATION="1"; shift 1;;
         -a|--aging) AGING="$2"; shift 2;;
-        -o|--objects) OBJECTS="$2"; shift 2;;
+        -m|--models) MODELS="$2"; shift 2;;
         --) shift; break;;
 		-*) PRINT_LOG "invalid option $1"; USAGE; shift; break;;
 		\?) PRINT_LOG "unknown option: -$OPTARG"; USAGE; shift; break;;
@@ -188,11 +188,11 @@ then
 	ZIPFILE=$TMPDIR/build_models.zip
 	zip -j $ZIPFILE $TMPDIR/data_objects/*
 
-	if [ "$OUTFILE" == "" ]
+	if [ "$MODELS" == "" ]
 	then
 		cat $ZIPFILE
 	else
-		cp $ZIPFILE $OUTFILE
+		cp $ZIPFILE $MODELS
 	fi
 
 	popd > /dev/null

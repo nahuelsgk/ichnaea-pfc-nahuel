@@ -29,13 +29,13 @@
                 </div>                     
 
               <ul class="nav nav-tabs">
-                <li class="active"><a href="#build-models-task-form" data-toggle="tab">Build Models</a></li>
-                <li><a href="#predict-models-form" data-toggle="tab">Predict Models</a></li>
-                <li><a href="#build-models-task-form-fake" data-toggle="tab">Fake</a></li>
+                <li class="active"><a href="#build-models-task-form-pane" data-toggle="tab">Build Models</a></li>
+                <li><a href="#predict-models-task-form-pane" data-toggle="tab">Predict Models</a></li>
+                <li><a href="#fake-task-form-pane" data-toggle="tab">Fake</a></li>
               </ul>
 
               <div class="tab-content">
-                <div class="tab-pane active" id="build-models-task-form">
+                <div class="tab-pane active" id="build-models-task-form-pane">
                   <form id="build-models-task-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl">
                     <div class="form-group">
                       <label class="control-label col-lg-2" for="build-models-task-form-dataset">Dataset</label>
@@ -98,7 +98,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="tab-pane" id="predict-models-task-form">
+                <div class="tab-pane" id="predict-models-task-form-pane">
                   <form id="predict-models-task-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="PredictModelsTaskFormCtrl">
                     <div class="form-group">
                       <label class="control-label col-lg-2" for="predict-models-task-form-dataset">Dataset</label>
@@ -122,16 +122,23 @@
                           </label>
                         </div>
                       </div>
-                    </form>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                      <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
                     </div>
-                  </div>
-                </div>                  
-                <div class="tab-pane" id="build-models-task-form-fake">
-                  <form id="fake-models-task-form" class="form-horizontal" method="POST" ng-controller="FakeTaskFormCtrl">
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="predict-models-task-form-data">Data</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" type="file" name="data" ng-model="task.data" file-upload/>
+                        <p class="help-block">Data returned by the build-models task in zip format.</p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
+                      </div>
+                    </div>                    
+                  </form>
+                </div>
+                <div class="tab-pane" id="fake-task-form-pane">
+                  <form id="fake-task-form" class="form-horizontal" method="POST" ng-controller="FakeTaskFormCtrl">
                     <p class="lead">
                       A fake request sends the data to the amqp server but the server does not process anything,
                       it only waits for a given time. It is useful to test server responses.

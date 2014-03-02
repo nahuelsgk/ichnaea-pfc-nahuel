@@ -123,12 +123,12 @@ public class BuildModelsProcessClient extends AbstractProcessClient {
         mShell.removePath(agingPath);
 
         if (resp == null) {
-            getLogger().info("reading output file in " + cmd.getOutputPath());
+            getLogger().info("reading output file in " + cmd.getModelsPath());
             Calendar end = Calendar.getInstance();
 
             try {
                 byte[] data = IOUtils
-                        .read(mShell.readFile(cmd.getOutputPath()));
+                        .read(mShell.readFile(cmd.getModelsPath()));
                 resp = new BuildModelsResponse(replyTo, start, end, data);
             } catch (IOException e) {
                 err = "failed to read output file: " + e.getMessage();

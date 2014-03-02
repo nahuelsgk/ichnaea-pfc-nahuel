@@ -6,7 +6,7 @@ use PhpAmqpLib\Connection\AMQPConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
-use Ichnaea\Amqp\Model\TestingRequest;
+use Ichnaea\Amqp\Model\PredictModelsRequest;
 use Ichnaea\Amqp\Model\FakeRequest;
 use Ichnaea\Amqp\Xml\BuildModelsRequestWriter;
 use Ichnaea\Amqp\Xml\BuildModelsResponseReader;
@@ -15,6 +15,7 @@ use Ichnaea\Amqp\Xml\PredictModelsResponseReader;
 use Ichnaea\Amqp\Xml\FakeRequestWriter;
 use Ichnaea\Amqp\Xml\FakeResponseReader;
 use Ichnaea\Amqp\Mime\MimeMultipart;
+use Ichnaea\Amqp\Mime\MimePart;
 
 /**
  * The Ichnaea Amqp connection
@@ -195,12 +196,20 @@ class Connection
         if (!$this->ch) {
             throw new \UnexpectedValueException("Connection is not open");
         }
+        if(!is_string($req->getData())) {
+            throw new \UnexpectedValueException("Request needs to have the build-models data.");   
+        }
         $xml = new PredictModelsRequestWriter();
         $xml->build($req);
         $mime = new MimeMultipart();
-        $mime->addPart($xml);
-        $mime->addPart($req->getData());
-        $msg = new AMQPMessage($mime, array('content_type' => 'text/xml'));
+        $xmlPart = new MimePart($xml->__toString());
+        $xmlPart->setHeader("Content-Type", "text/xml");
+        $mime->addPart($xmlPart);
+        $dataPart = new MimePart(base64_encode($req->getData()));
+        $dataPart->setHeader("Content-Type", "application/zip");
+        $dataPart->setHeader("Content-Transfer-Encoding", "base64");
+        $mime->addPart($dataPart);
+        $msg = new AMQPMessage($mime, array('content_type' => 'mime/multipart'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['predict-models.request.exchange']);
 

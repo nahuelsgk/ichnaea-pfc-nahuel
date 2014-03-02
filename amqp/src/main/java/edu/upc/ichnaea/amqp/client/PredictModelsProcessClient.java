@@ -71,13 +71,13 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
         new CsvDatasetWriter(new OutputStreamWriter(out)).write(
                 req.getDataset()).close();
         
-        String dataPath = FileUtils.tempPath(mShell.getTempPath());
-        getLogger().info("writing data to " + dataPath);
-        out = mShell.writeFile(dataPath);
+        String modelsPath = FileUtils.tempPath(mShell.getTempPath());
+        getLogger().info("writing models data to " + modelsPath);
+        out = mShell.writeFile(modelsPath);
         new OutputStreamWriter(out).write(new String(req.getData()));
 
         getLogger().info("calling predict models command");
-        PredictModelsCommand cmd = new PredictModelsCommand(datasetPath, mVerbose);
+        PredictModelsCommand cmd = new PredictModelsCommand(datasetPath, modelsPath, mVerbose);
 
         cmd.setScriptPath(mScriptPath);
         getLogger().info(cmd.toString());
@@ -96,19 +96,12 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
         getLogger().info("deleting temporary dataset file");
         mShell.removePath(datasetPath);
         
+        getLogger().info("deleting temporary models data file");
+        mShell.removePath(modelsPath);
+        
         if (resp == null) {
-            getLogger().info("reading output file in " + cmd.getOutputPath());
             Calendar end = Calendar.getInstance();
-
-            try {
-                byte[] data = IOUtils
-                        .read(mShell.readFile(cmd.getOutputPath()));
-                resp = new PredictModelsResponse(replyTo, start, end);
-            } catch (IOException e) {
-                err = "failed to read output file: " + e.getMessage();
-                getLogger().warning(err);
-                resp = new PredictModelsResponse(replyTo, start, end, err);
-            }
+            resp = new PredictModelsResponse(replyTo, start, end);
         }
         getLogger().info("sending result");
         sendResponse(resp, replyTo);

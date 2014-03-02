@@ -81,6 +81,9 @@ $app->post('/tasks', function (Request $req) use ($app) {
         $model = new BuildModelsResponse($model->getId());
         $data = $model->toArray();
     } else if($type == 'predict-models') {
+        if(array_key_exists('data', $data)) {
+            $data['data'] = base64_decode($data['data']);
+        }
         $model = PredictModelsRequest::fromArray($data);
         $app['ichnaea_amqp']->send($model);
         $model = new PredictModelsResponse($model->getId());
