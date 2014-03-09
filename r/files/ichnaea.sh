@@ -182,17 +182,53 @@ then
 	then
 		PRINT_LOG "error building models:"
 		PRINT_LOG "$ERR"
-		exit -1
 	fi
 
 	ZIPFILE=$TMPDIR/build_models.zip
-	zip -j $ZIPFILE $TMPDIR/data_objects/*
+	zip -j -r $ZIPFILE $TMPDIR/data_objects
 
 	if [ "$MODELS" == "" ]
 	then
 		cat $ZIPFILE
 	else
 		cp $ZIPFILE $MODELS
+	fi
+
+	popd > /dev/null
+
+	if [ "$DEBUG" == "" ]
+	then
+		rm -rf $TMPDIR
+	fi
+
+elif [ "$SECTION" == "predict" ]
+then
+	RCHECK
+
+	DATAFILE="$ARGUMENT"
+
+	TMPDIR=`mktemp -d`
+	mkdir -p $TMPDIR/data_objects
+	if [ "$DEBUG" == "1" ]
+	then
+		PRINT_LOG "working in temp directory $TMPDIR"
+	fi
+	cp -r $ICHNAEADIR/* $TMPDIR
+	mkdir -p $TMPDIR/data
+	mkdir -p $TMPDIR/data_objects
+	cp $DATAFILE $TMPDIR/data/cyprus_test.csv
+	unzip $MODELS -d $TMPDIR/data_objects
+
+	pushd $TMPDIR/src > /dev/null
+
+	PRINT_LOG "predicting models..."
+
+	REXEC section_testing.R
+	
+	if [ "$ERR" != "" ]
+	then
+		PRINT_LOG "error predicting models:"
+		PRINT_LOG "$ERR"
 	fi
 
 	popd > /dev/null
@@ -237,6 +273,7 @@ then
 		PRINT_LOG "finish: $FAKE_ENDTIME"
 		PRINT_LOG "----"
 	done
+
 else
 
 	PRINT_LOG "unknown section '$SECTION'"

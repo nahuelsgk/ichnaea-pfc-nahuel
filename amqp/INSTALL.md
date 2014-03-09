@@ -19,7 +19,17 @@ main jar once.
 
 * test ichnaea running it from the command line
 
-    ../r/files/ichnaea.sh --debug --aging ../r/fixtures/aging --output /tmp/cryprus_models.zip ../r/fixtures/cyprus.csv
+##### Fake request
+
+    ../r/files/ichnaea.sh --debug fake 10:1
+
+##### Build models request
+
+    ../r/files/ichnaea.sh --debug --aging ../r/fixtures/aging --models /tmp/cryprus_models.zip build ../r/fixtures/cyprus.csv
+
+##### Predict models request
+
+    ../r/files/ichnaea.sh --debug --models ../r/fixtures/cyprus_models.zip predict ../r/fixtures/cyprus_test.csv
 
 #### Setup required programms and libraries
 
