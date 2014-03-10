@@ -38,7 +38,7 @@ create_prediction_matrix_action:
 
 view_matrix_prediction:
     pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}
-    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionMatrixForm}
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:predictionMatrixView}
     requirements:
         _method: GET
         matrix_id: "\d+"
@@ -52,3 +52,27 @@ download_training_template:
         _method: GET
         matrix_id: "\d+"
         training_id: "\d+"
+
+predictions_user:
+     pattern: /my_predictions
+     defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:getUserPredictions}
+     requirements:
+         _method: GET
+
+prediction_send:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/send
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:sendPrediction }
+    requirements:
+        _method: GET
+        matrix_id : "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"
+
+prediction_resend:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/resend
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:resendPrediction }
+    requirements:
+        _method: GET
+        matrix_id : "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"

@@ -61,12 +61,19 @@ class PredictionController extends Controller
 				));
 	}
 	
-	public function predictionMatrixFormAction($matrix_id, $training_id, $prediction_id){
+	public function predictionMatrixViewAction($matrix_id, $training_id, $prediction_id){
 		$predictionService = $this->get('ichnaea_web_app_prediction.service');
 		$matrixPrediction = $predictionService->getPredictionMatrix($matrix_id, $training_id, $prediction_id);
 		return $this->render('IchnaeaWebAppPredictionBundle::view.html.twig',
 			array(
-				'matrix' => $matrixPrediction
+				'matrix_name'        => $matrixPrediction->getName(),
+				'samples'	         => $matrixPrediction->getRows(),
+				'columns'	         => $matrixPrediction->getTraining()->getMatrix()->getColumns(),
+				'matrix_id'          => $matrixPrediction->getId(),
+				'matrix_status'	     => $matrixPrediction->getStatus(),
+				'training_id'	     => $matrixPrediction->getTraining()->getId(),
+				'matrix_trained_id'  => $matrixPrediction->getTraining()->getMatrix()->getId(),
+				#'matrix' => $matrixPrediction
 			)
 		);
 	}
@@ -82,6 +89,34 @@ class PredictionController extends Controller
         $response->headers->set('Content-Disposition', 'attachment; filename="template.csv"');
         return $response;
         
+	}
+	
+	public function getUserPredictionsAction(){
+		$user = $this->getUser();
+		$owner_id = $user->getId();
+		$predictionService = $this->get('ichnaea_web_app_prediction.service');
+		$predictions = $predictionService->getPredictionsByUser($owner_id);
+		return $this->render(
+				'IchnaeaWebAppPredictionBundle::list.html.twig',
+				array(
+					'predictions' => $predictions
+		)
+		);
+	}
+	
+	public function sendPredictionAction($matrix_id, $training_id, $prediction_id)
+	{
+		$predictionService = $this->get('ichnaea_web_app_prediction.service');
+		$prediction = $predictionService->sendPrediction($matrix_id, $training_id, $prediction_id);
+		return $this->redirect(
+				$this->generateUrl('view_matrix_prediction', 
+					array(
+							'matrix_id' => $matrix_id, 
+							'training_id' => $training_id, 
+							'prediction_id' => $prediction->getId()
+					)
+				)
+			);
 	}
 	
 }

@@ -59,7 +59,11 @@ class MatrixController extends Controller
 		$request = $this->getRequest();
 		$ichnaeaService = $this->get('ichnaea.service');
 		$listMatrixs = $ichnaeaService->getAllMatrixs();
-		return $this->render('MatrixBundle:Matrix:list.html.twig', array('matrixs' => $listMatrixs));
+		return $this->render('MatrixBundle:Matrix:list.html.twig', 
+				array(
+					'matrixs' => $listMatrixs
+				)
+		);
 	}
 	
 	public function guiMatrixAction($matrix_id){
@@ -71,11 +75,14 @@ class MatrixController extends Controller
 			throw new HttpException(403, 'You are not the owner of this matrix.');
 		}
 		
-		$request = $this->getRequest();
 		$user_id = $this->getUser()->getId();
+		
+		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST'){
 			$visible = $request->get('visible');
-			$matrix = $ichnaeaService->updateMatrixConfiguration($user_id, $matrix_id, $visible == 'yes' ? TRUE : FALSE );
+			$matrix = $ichnaeaService->updateMatrixConfiguration(
+					$user_id, $matrix_id, $visible == 'yes' ? TRUE : FALSE );
+			
 			return $this->redirect($this->generateUrl('matrix_ui_edit', 
 					array('matrix_id' => $matrix->getId())));;
 	   	}
@@ -84,7 +91,6 @@ class MatrixController extends Controller
 		$visible       = $matrix->getVisible();
 		$isTrained     = $ichnaeaService->matrixIsTrained($matrix_id);
 		$complete      = $matrix->isComplete();
-		//echo '<pre>';\Doctrine\Common\Util\Debug::dump($matrix);echo '</pre>';
 		return $this->render(
 				'MatrixBundle:Matrix:matrix.html.twig', 
 				array(
@@ -118,7 +124,16 @@ class MatrixController extends Controller
 	public function viewMatrixAction($matrix_id){
 		$ichnaeaService = $this->get('ichnaea.service');
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
-		return $this->render('MatrixBundle:Matrix:view.html.twig', array('matrix' => $matrix));
+		return $this->render(
+				'MatrixBundle:Matrix:view.html.twig', 
+				array(
+						'matrix_name' => $matrix->getName(),
+						'samples'	  => $matrix->getRows(),
+						'columns'	  => $matrix->getColumns(),
+						'matrix_id'   => $matrix->getId(),
+						#'matrix' => $matrix
+				)	
+		);
 	}
 	
 	public function buildFilesAction($matrix_id)
@@ -190,22 +205,29 @@ class MatrixController extends Controller
 		return $this->redirect($this->generateUrl('matrix_ui_view', array('matrix_id' => $matrix->getId())));
 	}
 	
-	public function downloadDataSet($matrix_id)
+	public function downloadDataSetAction($matrix_id)
 	{
-		
-		$file_content = $ichnaeaService->getMatrixAs('csv', $type, $matrix_id);
+		$ichnaeaService = $this->get('ichnaea.service');
+		$file_content = $ichnaeaService->getMatrixAs('csv', 'simple', $matrix_id);
 		
 		$response = new Response();
 		$response->setContent($file_content);
-		$file_content = $ichnaeaService->getMatrixAs('csv', $type, $matrix_id);
-		
-	    $response = new Response();
-	    $response->setContent($file_content);
 	    $response->headers->set('Content-Type', 'text/csv');
 	    $response->headers->set('Content-Disposition', 'attachment; filename="matrix.csv"');
 	    return $response;
 	}
 	
-	
+	public function listTrainableMatrixAction()
+	{
+		$request = $this->getRequest();
+		$ichnaeaService = $this->get('ichnaea.service');
+		$listMatrixs = $ichnaeaService->getTrainableMatrixs();
+		return $this->render('MatrixBundle:Matrix:list.html.twig',
+				array(
+						'trainable' => 'y',  
+						'matrixs'   => $listMatrixs
+				)
+		);
+	}
 }
 ?>

@@ -47,12 +47,12 @@ En la figura es contempla els estats possibles:
 
 \section{Crear una matriu desde un csv}
 \label{sec:create_matrix}
-Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv. El format csv es compatible amb les programaris de ofim\`{a}tica m\´{e}s habituals como Microsoft Excel o Libreoffice.
+Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv. El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
 El format de la matriu \´{e}s important que sigui el seg\¨{u}ent.
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
     \hline
-    Cel.la bu\¨{i}da & Alias de la columna & .... & ORIGIN \\ \hline
+    Cel.la bu\�{i}da & Alias de la columna & .... & ORIGIN \\ \hline
     Nom de la sample & Valor de la sample  & .... & Origen de la sample \\ \hline
     S01-10-20        & 0,000145            & .... & Human \\ \hline
     \hline
@@ -124,7 +124,7 @@ Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}. Mirar
 Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les variables del sistema. Fent click a la icona de edici\'{o}, es pot accedir a la interficie de configuraci\'{o} de la variable seleccionada.
 
 \section{Variables}
-\subsection{Formulari de edici\'{o}}
+\subsection{Formulari de edici\'{o} d'una variable}
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/variable_configuration.png}
@@ -139,7 +139,19 @@ Desde la interf\'{i}cie de configuraci\'{o} es pot:
 \item Esborrar una ''Season Set'', amb la icona de la brossa.
 \end{itemize}
 
-\subsection{Editar una ''Season Set''}
+
+\subsection{Crear una ''season set'' d'una variable}
+\label{season_set:variable}
+Per tal de crear un conjunt de seasons per una variable:
+\begin{itemize}
+\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
+\item Editar la variable a la que es vol afegir la variable
+\item Al apartat inferior ''List of season set'', clickar a la icona de suma
+\end{itemize}
+Es poden donar un nom i afegir tants fitxers com es vulguin. S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern. Per m\'{e}s descripci\'{o} d' aquesta interf\'{i}cie anar al punt \ref{season_set:edit}
+
+\subsection{Editar una ''Season Set'' d'una variable}
+\label{season_set:edit}
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/season_set_edition.png}
@@ -148,18 +160,25 @@ Desde la interf\'{i}cie de configuraci\'{o} es pot:
 \end{figure}
 Desde aquesta vista es pot:
 \begin{itemize}
-\item Editar el nom de la season set
-\item Eliminar simplement la relaci\'{o} amb una season amb la icona de la brossa.
-\item Eliminar un fitxer de la ''Season Set'' i la relaci\'{o}, amb la icona de la creu
-\item Afegir fitxer com una estaci\'{o} o com tot l'any.
+	\item Editar el nom de la season set
+	\item Eliminar simplement la relaci\'{o} amb una season amb la icona de la brossa.	
+	\item Eliminar un fitxer de la ''Season Set'' i la relaci\'{o}, amb la icona de la creu	
 \end{itemize}
-Es poden afegir tants fitxers com es vulguin. S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern.
+S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern.
 
-\subsection{Crear una ''season set''}
 
-\section{Llistar trainings}
+\subsection{Afegir una ''season'' a una ''season set'' existent d'una variable}
+Per tal de crear un conjunt de seasons per una variable:
+\begin{itemize}
+\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
+\item Editar la variable a la que es vol afegir la variable
+\item Editar, amb la icona d'edici\'{o}, la ''season set'' del llistat ''List of season set''.
+Llegir el punt \ref{season_set:edit}
 
-\section{Crear un training}
+\section{Llistar trainings d'una matriu}
+Pendent de implementaci\'{o}
+
+\section{Crear un training d'una matriu}
 Per crear un training s'ha de accedir al menu superior ''Trainings - Create a training''. Desde el llistat de matrius del sistema, amb la icona de la ''carretera'', es pot accedir al formulari de creaci\´{o} de trainings.
 \begin{figure}[h!]
   \centering
@@ -176,7 +195,7 @@ Per crear un training s'ha de accedir al menu superior ''Trainings - Create a tr
 Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i la aplicaci\´{o} es redirigir\´{a} la pantalla de visualitzaci\´{o} de trainings.
 
 \subsection{Simular un training de la matriu Cyprus}
-Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions. 
+Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions. Pendent d'implementaci\'{o}.
 
 \section{Visualitzar un training}
 Desde la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus trainings i en quin estadi es troben. Amb la icona "ull", pots accedir a visualitzar la informaci\´{o} del training.
@@ -210,9 +229,9 @@ A part superior \'{e}s pot seleccionar un fitxer per pujar la matriu per predir.
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
     \hline
-    Cel.la bu\¨{i}da & Columna del training 0          & Columna del training 1              & .... & Columna del training n       & ORIGIN \\ \hline
-    Nom de la sample & Valor de la sample(opcional)    & Valor de la sample(opcional)        & .....& Valor de la sample(opcional) & Origen de la sample(opcional) \\ \hline
-    S01-10-20        & 0,000145                        &                                     & .... & <10                                                 & Human \\ \hline
+    Cel.la bu\�{i}da & Alias de la columna & .... & ORIGIN \\ \hline
+    Nom de la sample & Valor de la sample  & .... & Origen de la sample \\ \hline
+    S01-10-20        & 0,000145            & .... & Human \\ \hline
     \hline
     \end{tabular}
 \end{center}
@@ -221,9 +240,9 @@ Seguidament es pot visualitzar
 \section{Actualitzar una matriu de predicci\'{o}}
 
 \section{Llistar les meves prediccions}
+Desde el menu superior "Prediction - My predictions" pots llistar les teves prediccions.
 
 \section{Visualitzar una matriu de predicci\'{o}}
-
 
 \subsection{Actualitzar una matriu de predicci\'{o}}
 

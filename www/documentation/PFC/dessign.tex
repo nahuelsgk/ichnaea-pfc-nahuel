@@ -4,6 +4,8 @@
 \section{Introduccio}
 En aquest capitol veurem els patrons de dissenys emprats i les tecnologies implementades.
 
+\section{Esquema general arquitect\'{o}nic del sistema}
+
 \section{Patro de disseny}
 Per la implementaci\`{o} del sistema web s'han usat els seg\¨{u}ents patrons de disseny:
   \begin{itemize}
@@ -19,7 +21,7 @@ Per la implementaci\`{o} del sistema web s'han usat els seg\¨{u}ents patrons de
 
 \section{Implementaci\'{o} i tecnologies}
 \section{Symfony}
-Symfony2 \´{e}s un framework que implementa Model-Vista-Controlador amb controlador frontal amb injecci\´{o} de depencies a la capa de serveis. Les entitats(model de dades) s'han implementat directament amb l'ORM Doctrine contra una base de dades MySQL.
+Symfony2 \'{e}s un framework que implementa Model-Vista-Controlador amb controlador frontal amb injecci\'{o} de depencies a la capa de serveis. Les entitats(model de dades) s'han implementat directament amb l'ORM Doctrine contra una base de dades MySQL.
 Arquitectonicament, Symfony2 estructura el codi en Bundle. Els "bundles" son un conjunt de serveis, entitats i recursos html independents entre si. Els bundles implementats son
 \begin{itemize}
 \item{Bundle de usuaris: UserBundle}
@@ -30,7 +32,7 @@ Arquitectonicament, Symfony2 estructura el codi en Bundle. Els "bundles" son un 
 \end{itemize}
 
 \section{Recursos}
-La estructura de recursos \´{e}s la seg\¨{u}ent:
+La estructura de recursos \�{e}s la seg\�{u}ent:
 
 matrix/{id}/training
 
@@ -38,11 +40,63 @@ matrix/{id}/training
 S'ha emprat un API JSON Restful per enriquir les interficies. S'ha emprat aquesta tecnologia per la escalabilitat que aporta i perque en un futur es pogui aprofitar el desenvolupament d'aquesta.
 Les operacions, els recursos i el parametres son:
 
+season_content:
+    pattern: /api/season/{id}
+    requirements:
+        _method: GET
+        id: "\d+"
+
+season_search_by_name:
+    pattern: /api/season/searchByName
+    requirements:
+        _method: POST
+
+season_set_api:
+     pattern: /api/variable/{variable_id}/seasonSet/
+     requirements:
+         variable_id: "\d+"
+         _method: GET
+
+season_set_delete:
+    pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}
+    requirements:
+        _method: DELETE
+
+season_set_component_delete:
+    pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}/component/{component_id}
+    requirements:
+        _method: DELETE
+
+season_set_component_delete_complete:
+    pattern: /api/variable/{variable_id}/seasonSet/{seasonSet_id}/component/{component_id}/complete
+    requirements:
+        _method: DELETE
+
+
+matrix_column:
+    pattern: /api/matrix/{matrix_id}/column/{column_id}
+    requirements:
+        _method: PUT
+        matrix_id: "\d+"
+        column_id: "\d+"
+
+sample_update:
+    pattern: /api/matrix/{matrix_id}/sample/{sample_id}
+    requirements:
+        _method: PUT
+        matrix_id: "\d+"
+        sample_id: "\d+"
+
+
 \section{Capa de serveis}
 
-\section{Integraci\´{o} amb el sistema de cues RabbitMQP}
+\section{Integraci\'{o} amb el sistema de cues RabbitMQP}
+\subsection{Introducci\'{o} a l'arquitectura de cues}
+\subsection{Consumidors}
+\subsubsection{Consumidor ''trainings''}
+\subsubsection{Consumidor de prediccions}
 
-\section{Esquema general arquitect\'{o}nic del sistema}
+
 
 
 

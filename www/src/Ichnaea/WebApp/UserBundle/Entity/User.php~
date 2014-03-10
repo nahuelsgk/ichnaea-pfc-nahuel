@@ -29,6 +29,11 @@ class User extends BaseUser
     protected $matrixs;
     
     /**
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix", mappedBy="owner")
+     */
+    protected $predictions;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="trainer")  
      */
     protected $trainings;

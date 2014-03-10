@@ -211,3 +211,9 @@ perform_matrix_update_data:
        _method: POST
        matrix_id: "\d+"
        
+create_training:
+    pattern: /matrix/traininable
+    defaults: { _controller: MatrixBundle:Matrix:listTrainableMatrix }
+    requirements: 
+        _method: GET
+        

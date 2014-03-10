@@ -4,7 +4,10 @@ namespace Ichnaea\WebApp\PredictionBundle\Services;
 use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample;
+use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
+use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
 use Doctrine\ORM\EntityManager;
+
 
 class PredictionService
 {
@@ -16,28 +19,26 @@ class PredictionService
 	
 	/**
 	 * 
-	 * @param unknown $training_id
-	 * @param unknown $name
-	 * @param unknown $content
-	 * @param unknown $owner_id
+	 * @param integer $training_id
+	 * @param string $name
+	 * @param string $content
+	 * @param integer $owner_id
 	 * @param integer $prediction_id: if not null, will update 
 	 */
 	public function createMatrixPredictionFromCSV($training_id, $name, $content, $owner_id, $prediction_id = NULL) 
 	{
 		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
-		error_log('Creating a prediction '.$prediction_id);
 		$predictionMatrix;
 		if ( is_null($prediction_id) === TRUE)
 		{
-		  error_log("New prediction");
 		  $predictionMatrix = new PredictionMatrix();		
 		  $predictionMatrix->setName($name);
 		  $predictionMatrix->setTraining($training);
 		}
 		else 
 		{
-			error_log("Updating prediction");
 			$predictionMatrix = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
+			
 			//Delete all samples
 			foreach ($predictionMatrix->getRows() as $sample){
 				$predictionMatrix->removeRow($sample);
@@ -105,12 +106,55 @@ class PredictionService
 	
 	public function getPredictionMatrix($matrix_id, $training_id, $prediction_id)
 	{
-		return $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);;
+		return $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
 	}
 	
 	public function getPredictionsFromTraining($training_id)
 	{
 		return $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->findBy(array('training'=>$training_id));
+	}
+	
+	public function getPredictionsByUser($user_id)
+	{
+		return $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->findByOwner($user_id);
+	}
+	
+	//@TODO only temporaly until meet with Miguel
+	public function sendPrediction($matrix_id, $training_id, $prediction_id)
+	{
+		$matrix = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
+		
+		//Just prepare the data and the cue
+		$data = MatrixUtils::buildDatasetFromMatrix(
+				NULL,
+				'simple',
+				$matrix->getTraining()->getMatrix()->getColumns(),
+				$matrix->getRows()
+		);
+		
+		//build the data array for the dataset
+		$model = BuildModelsRequest::fromArray($data);
+		
+		//... set the new request id for the cue...
+		$matrix->setRequestId($model->getId());
+		//... prepare a connection and send the data
+		try {
+			$this->con->open();
+			$this->con->send($model);
+			$this->con->close();
+			//set status as sent
+			$matrix->setStatusAsSent();
+		}
+		catch (\Exception $e)
+		{
+			//if any connection problem... set the status as pending
+			$matrix->setStatusAsPending();
+		}
+		
+		//Persist the entity
+		$this->em->persist($matrix);
+		$this->em->flush();
+		return $matrix;
 	}
 	
 	private function cleanStringCSV($string){

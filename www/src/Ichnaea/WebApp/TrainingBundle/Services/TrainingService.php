@@ -33,7 +33,13 @@ class TrainingService{
 		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
 		
 		//Just prepare the data and the cue
-		$data = MatrixUtils::buildDatasetFromMatrix($training->getMatrix());
+		$data = MatrixUtils::buildDatasetFromMatrix(
+				$training->getMatrix(),
+				'simple',
+				$training->getMatrix()->getColumns(),
+				$training->getMatrix()->getRows()
+		);
+		
 		//build the data array for the dataset
 		$model = BuildModelsRequest::fromArray($data);
 		//... set the new request id for the cue...
@@ -85,7 +91,12 @@ class TrainingService{
 		$matrix  = $this->em->getRepository('MatrixBundle:Matrix')->find($matrix_id);
 		
 		//Prepare data for the queue
-		$data = MatrixUtils::buildDatasetFromMatrix($matrix);
+		$data = MatrixUtils::buildDatasetFromMatrix(
+				$matrix,
+				'simple',
+				$matrix->getColumns(),
+				$matrix->getRows()
+		);
   
         //build the data array for the dataset
         $model = BuildModelsRequest::fromArray($data);

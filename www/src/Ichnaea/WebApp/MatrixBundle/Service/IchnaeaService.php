@@ -229,19 +229,14 @@ class IchnaeaService{
 	}
 	
 	/*
-	 * The content of the file: must be ; separated
-	 * NO_MATTER_WHAT ; COLUMN_ALIAS ; COLUMN ALIAS ; .....; "ORIGIN"(OPTIONAL BUT SHOULD BE MANDATORY)
-	 * SAMPLE_NAME    ; VALUES       ; VALUES       ; .....; "STRING"(MANDATORY IF "ORIGIN" IS PRESENT )
-	 * 
-	 * @TODO/ Must validate the csv format also...
-	 * @TODO/ Must be move into Utils 
+	  
 	 */
 	public function createMatrixFromCSVContent($name, $content, $owner_id)
 	{
 		$matrix = new Matrix();
 		$matrix->setName($name);
 
-		
+		$this->buildMatrixFromCSV($matrix, $content);
 		
 		#Attach to the user
 		$userRepository = $this->em->getRepository('UserBundle:User');
@@ -254,6 +249,16 @@ class IchnaeaService{
 		return $matrix->getId();
 	}
 
+	/**
+	 * Builds a matrix entity from the content. Content is a csv with concrete pattern. Must be ; separated
+	 * NO_MATTER_WHAT ; COLUMN_ALIAS ; COLUMN ALIAS ; .....; "ORIGIN"(OPTIONAL BUT SHOULD BE MANDATORY)
+	 * SAMPLE_NAME    ; VALUES       ; VALUES       ; .....; "STRING"(MANDATORY IF "ORIGIN" IS PRESENT )
+	 * 
+	 * @TODO/ Must validate the csv format also...
+	 * @TODO/ Must be move into Utils 
+	 * @param Refence Matrix $matrix
+	 * @param String $content
+	 */
 	private function buildMatrixFromCSV(&$matrix, $content){
 		$index=0;
 		$origin = FALSE;
@@ -326,7 +331,7 @@ class IchnaeaService{
 		foreach ($matrix->getRows() as $sample){
 			$matrix->removeRow($sample);
 		}
-		
+		$matrix->setName($name);
 		$this->buildMatrixFromCSV($matrix, $content);
 		$this->em->persist($matrix);
 		$this->em->flush();
@@ -440,7 +445,12 @@ class IchnaeaService{
 	public function getMatrixAs($format = 'csv', $type='simple', $matrix_id)
 	{
 		$matrix = $this->getMatrix($matrix_id);
-		$dataSet = Utils::buildDatasetFromMatrix($matrix, $type);
+		$dataSet = Utils::buildDatasetFromMatrix(
+				$matrix, 
+				$type,
+				$matrix->getColumns(),
+				$matrix->getRows()
+		);
 		return $dataSet['dataset'];
 	}
 	
@@ -483,10 +493,10 @@ class IchnaeaService{
 		return $clone;
 	}
 	
-	public function echoTest(){
-		print("Container loaded success");
+	public function getTrainableMatrixs()
+	{
+			
 	}
-
 }
 
 ?>

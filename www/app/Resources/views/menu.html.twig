@@ -15,7 +15,14 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainings<b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="{{path('user_dashboard')}}">My trainings</a></li>
-        <li><a href="{{path('matrix_list')}}">Create a training</a></li>
+        <li><a href="{{path('create_training')}}">Create a training</a></li>
+      </ul>	
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Predictions<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="{{path('predictions_user')}}">My predictions</a></li>
+        <li><a href="{{ path('training_list') }}">Create a prediction</a></li>
       </ul>	
     </li>
     <li class="dropdown">

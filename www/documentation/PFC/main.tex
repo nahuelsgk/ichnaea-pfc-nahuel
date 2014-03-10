@@ -1,5 +1,6 @@
 \documentclass[a4paper,twoside,12pt,catalan,openright]{report}
 
+\usepackage[utf8]{inputenc}
 \usepackage{babel}
 \usepackage{graphicx}
 \usepackage{verbatim}
@@ -42,7 +43,7 @@
 }
 \makeglossaries
 
-\pagenumbering{roman}
+\pagenumbering{arabic}
 \input{glossary}
 
 \begin{document}
@@ -68,6 +69,10 @@
 
 \include{dessign}
 \cleardoublepage
+
+\include{economics}
+\cleardoublepage
+
 
 \include{userguide}
 \cleardoublepage

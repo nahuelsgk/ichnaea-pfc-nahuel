@@ -35,14 +35,32 @@ class PredictionMatrix
 	private $training;
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\UserBundle\Entity\User", inversedBy="matrixs")
+	 * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\UserBundle\Entity\User", inversedBy="predictions")
 	 */
 	private $owner;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\Sample", mappedBy="matrix", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample", mappedBy="matrix", cascade={"persist"})
 	 */
 	private $rows;
+	
+	/**
+	 * @var string
+	 * @ORM\Column(name="status", type="string", columnDefinition="ENUM('new', 'pending', 'sent', 'finished')")
+	 */
+	private $status = 'new';
+	
+	/**
+	 * @var string
+	 * @ORM\Column(name="error", type="string", length=255, nullable = true	)
+	 */
+	private $error;
+	
+	/**
+	 * @var string
+	 * @ORM\Column(name="request_id", type="string", length=255, nullable = false)
+	 */
+	private $requestId;
 	
 	/**
 	 * Get id
@@ -111,10 +129,10 @@ class PredictionMatrix
     /**
      * Add rows
      *
-     * @param \Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows
+     * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample $rows
      * @return PredictionMatrix
      */
-    public function addRow(\Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows)
+    public function addRow(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample $rows)
     {
         $this->rows[] = $rows;
 
@@ -124,9 +142,9 @@ class PredictionMatrix
     /**
      * Remove rows
      *
-     * @param \Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows
+     * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample $rows
      */
-    public function removeRow(\Ichnaea\WebApp\MatrixBundle\Entity\Sample $rows)
+    public function removeRow(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample $rows)
     {
         $this->rows->removeElement($rows);
     }
@@ -153,7 +171,7 @@ class PredictionMatrix
 
         return $this;
     }
-
+	
     /**
      * Get owner
      *
@@ -162,5 +180,51 @@ class PredictionMatrix
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return PredictionMatrix
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set error
+     *
+     * @param string $error
+     * @return PredictionMatrix
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * Get error
+     *
+     * @return string 
+     */
+    public function getError()
+    {
+        return $this->error;
     }
 }

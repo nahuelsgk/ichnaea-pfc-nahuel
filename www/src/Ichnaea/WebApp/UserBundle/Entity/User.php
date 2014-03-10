@@ -29,6 +29,11 @@ class User extends BaseUser
     protected $matrixs;
     
     /**
+     * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix", mappedBy="owner")
+     */
+    protected $predictions;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training", mappedBy="trainer")  
      */
     protected $trainings;
@@ -122,4 +127,38 @@ class User extends BaseUser
     {
         return $this->trainings;
     }
+
+    /**
+     * Add predictions
+     *
+     * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $predictions
+     * @return User
+     */
+    public function addPrediction(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $predictions)
+    {
+        $this->predictions[] = $predictions;
+
+        return $this;
+    }
+
+    /**
+     * Remove predictions
+     *
+     * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $predictions
+     */
+    public function removePrediction(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $predictions)
+    {
+        $this->predictions->removeElement($predictions);
+    }
+
+    /**
+     * Get predictions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPredictions()
+    {
+        return $this->predictions;
+    }
+
 }

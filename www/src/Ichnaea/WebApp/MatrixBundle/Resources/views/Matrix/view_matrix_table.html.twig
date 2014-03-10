@@ -1,0 +1,134 @@
+<div class="container-full-width">
+<table border="0" cellpadding="0" cellspacing="0" class='main'>
+            <tr>
+                <td class='tablefrozencolumn'>
+                    <div id='divroot' class='root'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='root'>
+                            <tr>
+                                <td class='inner-head-first-tr-first-td frozencol colwidth head' align="center">
+                                  {{matrix_name}}
+                                </td>
+                            </tr>
+                            <tr>
+                              <td>
+                              <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                              <tr>
+                              <td width="58px" style="text-align:center;">Id</td>
+                              <td>
+                              	<table width="100%" cellpadding="0">
+   									<td width="40%" style="text-align:center;">Name</td>
+   									<td width="30%" style="text-align:center;">Date</td>
+   									<td width="30%" style="text-align:center;">Origin</td>
+   								</table>
+                              </td>
+                              </tr>
+                              </table>
+                              </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='divfrozen' class='frozen'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='frozen'>
+							{% for sample in samples %}
+   							<tr id="sample-{{sample.id}}">
+   							    <td align="center" class='frozen-index'>{{loop.index}}</td>
+   								<td class='{% if loop.last %}inner-frozen-last{% else %}inner-frozen{% endif %} frozencol'>
+   									<table width="100%" cellpadding="0">
+   									<td width="40%" style="text-align:center;">{{sample.name}}</td>
+   									<td width="30%" style="text-align:center;">{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% else %}&nbsp;{% endif %}</td>
+   									<td width="30%" style="text-align:center;">{{sample.origin}}</td>
+   									</table>
+   							    </td>
+   							</tr>	
+   							{% endfor %}
+                       </table>
+                    </div>
+                </td>
+                <td class='tablecontent'>
+                    <div id='headscroll' class='divhead'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='head'>
+                            <tr>
+                                {% for column in columns %}
+								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
+								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 								   
+								    {% if column.variable is not null and column.seasonSet is not null%} {{column.seasonSet.name}} {% endif %}
+								    <br/>
+								    <a title="Variable selection"><i class="icon-wrench"></i></a>
+								    {% if column.variable is not null %} {{column.variable.name}} {% endif %}
+								    <br/>
+								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a> {{column.name}}<br/>
+								   </td>
+								   {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='contentscroll' class='content' onscroll='reposHead(this);'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='content' id='innercontent'>
+                        {% for sample in samples %}
+						 <tr>
+						   {% for value in sample.samples %}
+						   <td class='inner col_content' align="center">{{value}}</td>
+						   {% endfor %}
+						 </tr>
+						 {% endfor %}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+<script type="text/javascript">
+function displaySuccessfulAction(elem)
+{
+  var previous_content = $('#'+elem).html(); 
+  console.log(previous_content);
+  var html_ok = ('<i class="icon-ok"></i>');
+  $('#'+elem).html(html_ok);
+  $('#'+elem).fadeOut(1500, function(){
+  	$('#'+elem).html(previous_content);
+  	$('#'+elem).css('display', 'inline');
+  	$('#'+elem).css('visibility', 'hidden');
+  });
+  
+}
+
+function displayHiddenElement(elem)
+{
+
+  $('#'+elem).css('visibility', 'visible');
+}
+
+function renderListSeasonSets(listData, toListId)
+{
+    $('#'+toListId).empty();
+    $.each(listData, function (index, value){
+        	$('#'+toListId).append($('<option>', {value: value.id, text: value.name}));
+    });
+}
+
+function updateVariableConfigurationAction(column_id, column_name, column_variable_id, season_set_id, column_button_action)
+{
+   sendEvent('{{path('matrix_api', {"matrix_id": matrix_id })}}/column/'+column_id, 'PUT', {name: column_name, variable: column_variable_id, season: season_set_id}, function (data){displaySuccessfulAction(column_button_action)});    
+}
+
+
+function updateSampleData(sample_id, sample_name, sample_date, sample_origin, sample_button_action)
+{
+   sendEvent('{{path('sample_api', {"matrix_id": matrix_id })}}'+sample_id, 'PUT', {name: sample_name, date: sample_date, origin:sample_origin }, function (data){displaySuccessfulAction(sample_button_action)});
+}
+
+function loadSeasonSetIntoSelectListAction(variable_id, idOptionList)
+{
+	sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
+}
+
+
+function init_datepicker(){
+    $('.sampleDate').datepicker({dateFormat: "dd-mm-yy"});
+}
+
+$(document).ready(function(){
+    init_datepicker();
+    dynamic_height(0);
+ });
+</script>
