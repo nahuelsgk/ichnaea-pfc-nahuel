@@ -116,11 +116,13 @@ public class BuildModelsProcessClient extends AbstractProcessClient {
             resp = new BuildModelsResponse(replyTo, start, end, err);
         }
 
+        /*
         getLogger().info("deleting temporary dataset file");
         mShell.removePath(datasetPath);
 
         getLogger().info("deleting temporary aging folder");
         mShell.removePath(agingPath);
+        */
 
         if (resp == null) {
             getLogger().info("reading output file in " + cmd.getModelsPath());

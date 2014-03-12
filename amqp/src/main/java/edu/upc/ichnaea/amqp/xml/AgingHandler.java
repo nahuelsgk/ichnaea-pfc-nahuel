@@ -10,6 +10,7 @@ import edu.upc.ichnaea.amqp.model.AgingTrial;
 
 public class AgingHandler implements ContentHandler {
 
+    final static String TAG_AGINGS = "agings";
     final static String TAG_AGING = "aging";
     final static String TAG_TRIAL = "trial";
     final static String TAG_VALUE = "value";

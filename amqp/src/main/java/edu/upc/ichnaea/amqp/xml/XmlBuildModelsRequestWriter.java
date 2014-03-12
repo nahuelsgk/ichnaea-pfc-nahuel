@@ -24,7 +24,7 @@ public class XmlBuildModelsRequestWriter extends XmlWriter {
                     .getDataset());
         }
         if (!data.getAging().isEmpty()) {
-            Element xmlAgings = appendChild(AgingHandler.TAG_AGING);
+            Element xmlAgings = appendChild(AgingHandler.TAG_AGINGS);
             new XmlDatasetAgingWriter(getDocument(), xmlAgings).build(data
                     .getAging());
         }

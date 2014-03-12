@@ -18,14 +18,21 @@ public class XmlPredictModelsRequestReaderTest {
 
     @Test
     public void testXML() throws SAXException, IOException, MessagingException {
-        String xml = "<request id=\"432\" type=\"predict_models\"><dataset>\n";
-        xml += "<column name=\"test\"><value>1.5</value><value>2</value><value>3</value></column>\n";
-        xml += "<column name=\"test2\"><value>3</value><value>4</value></column>\n";
-        xml += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";
-        xml += "</dataset></request>";
+        String data = "--frontier\n";
+        data += "Content-Type: text/xml\n\n";
+        data += "<request id=\"432\" type=\"predict_models\"><dataset>\n";
+        data += "<column name=\"test\"><value>1.5</value><value>2</value><value>3</value></column>\n";
+        data += "<column name=\"test2\"><value>3</value><value>4</value></column>\n";
+        data += "<column name=\"test3\"><value>5</value><value>6</value><value>7</value></column>\n";
+        data += "</dataset></request>\n";
+        data += "--frontier\n";
+        data += "Content-Type: application/zip\n";
+        data += "Content-Transfer-Encoding: base64\n\n";
+        data += "cGFjbw==\n";
+        data += "--frontier--\n";        
 
         PredictModelsRequest message = new XmlPredictModelsRequestReader()
-                .read(xml);
+                .read(data);
 
         Dataset dataset = message.getDataset();
 
