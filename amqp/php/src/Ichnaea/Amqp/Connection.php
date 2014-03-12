@@ -4,6 +4,7 @@ namespace Ichnaea\Amqp;
 
 use PhpAmqpLib\Connection\AMQPConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use PhpAmqpLib\Exception\AMQPExceptionInterface;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
 use Ichnaea\Amqp\Model\PredictModelsRequest;
@@ -16,6 +17,7 @@ use Ichnaea\Amqp\Xml\FakeRequestWriter;
 use Ichnaea\Amqp\Xml\FakeResponseReader;
 use Ichnaea\Amqp\Mime\MimeMultipart;
 use Ichnaea\Amqp\Mime\MimePart;
+use Ichnaea\Amqp\Exception\IchnaeaConnectionException;
 
 /**
  * The Ichnaea Amqp connection
@@ -149,23 +151,35 @@ class Connection
         if ($this->ch || $this->conn) {
             throw new \UnexpectedValueException("Connection is already open");
         }
-        $this->conn = new AMQPConnection($this->url['host'], $this->url['port'], $this->url['user'], $this->url['pass'], $this->url['path']);
-        $this->ch = $this->conn->channel();
-        
-        $this->ch->queue_declare($this->opts['build-models.request.queue'], false, false, false, null);
-        $this->ch->exchange_declare($this->opts['build-models.request.exchange'], "direct", true);
-        $this->ch->queue_bind($this->opts['build-models.request.queue'], $this->opts['build-models.request.exchange'], "");
-        $this->ch->queue_declare($this->opts['build-models.response.queue'], false, false, false, null);
+        try {
+            $this->conn = new AMQPConnection($this->url['host'], $this->url['port'], $this->url['user'], $this->url['pass'], $this->url['path']);
+            $this->ch = $this->conn->channel();
+            
+            $this->declareExchange(
+                $this->opts['build-models.request.queue'],
+                $this->opts['build-models.request.exchange'],
+                $this->opts['build-models.response.queue']);
 
-        $this->ch->queue_declare($this->opts['predict-models.request.queue'], false, false, false, null);
-        $this->ch->exchange_declare($this->opts['predict-models.request.exchange'], "direct", true);
-        $this->ch->queue_bind($this->opts['predict-models.request.queue'], $this->opts['predict-models.request.exchange'], "");
-        $this->ch->queue_declare($this->opts['predict-models.response.queue'], false, false, false, null);        
-    
-        $this->ch->queue_declare($this->opts['fake.request.queue'], false, false, false, null);
-        $this->ch->exchange_declare($this->opts['fake.request.exchange'], "direct", true);
-        $this->ch->queue_bind($this->opts['fake.request.queue'], $this->opts['fake.request.exchange'], "");
-        $this->ch->queue_declare($this->opts['fake.response.queue'], false, false, false, null);        
+            $this->declareExchange(
+                $this->opts['predict-models.request.queue'],
+                $this->opts['predict-models.request.exchange'],
+                $this->opts['predict-models.response.queue']);
+
+            $this->declareExchange(
+                $this->opts['fake.request.queue'],
+                $this->opts['fake.request.exchange'],
+                $this->opts['fake.response.queue']);
+        } catch(AMQPExceptionInterface $e) {
+            throw new IchnaeaConnectionException($e->getMessage());
+        }
+    }
+
+    private function declareExchange($reqQueue, $reqExchange, $respQueue)
+    {
+        $this->ch->queue_declare($reqQueue, false, false, false, null);
+        $this->ch->exchange_declare($reqExchange, "direct", true);      
+        $this->ch->queue_bind($reqQueue, $reqExchange, "");
+        $this->ch->queue_declare($respQueue, false, false, false, null);
     }
 
     /**

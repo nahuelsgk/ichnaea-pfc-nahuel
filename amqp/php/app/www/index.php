@@ -12,6 +12,7 @@ use Ichnaea\Amqp\Model\PredictModelsRequest;
 use Ichnaea\Amqp\Model\PredictModelsResponse;
 use Ichnaea\Amqp\Model\FakeRequest;
 use Ichnaea\Amqp\Model\FakeResponse;
+use Ichnaea\Amqp\Exception\IchnaeaExceptionInterface;
 
 
 // setup timezone to prevent error when using \DateTime
@@ -39,12 +40,20 @@ $app->before(function (Request $request) {
     }
 });
 
-$app->before(function () use ($app) {
+$app->before(function (Request $request) use ($app) {
     $app['ichnaea_amqp']->open();
 });
 
+$app->error(function (\Exception $e, $code) {
+    if($e instanceof IchnaeaExceptionInterface) {
+        $app['ichnaea_amqp'] = null;
+    }
+});
+
 $app->after(function () use ($app) {
-    $app['ichnaea_amqp']->close();
+    if($app['ichnaea-amqp']) {
+        $app['ichnaea_amqp']->close();
+    }
 });
 
 $app->get('/', function () use ($app) {

@@ -23,6 +23,7 @@ $dbParams = array(
 $db = DbDriverManader::getConnection($dbParams, $dbConfig);
 
 $amqp = new AmqpConnection(ICHNAEA_AMQP_URL);
+
 $amqp->open();
 
 function updateTask($type, array $data) {
