@@ -51,7 +51,7 @@ $app->error(function (\Exception $e, $code) {
 });
 
 $app->after(function () use ($app) {
-    if($app['ichnaea-amqp']) {
+    if(isset($app['ichnaea-amqp'])) {
         $app['ichnaea_amqp']->close();
     }
 });

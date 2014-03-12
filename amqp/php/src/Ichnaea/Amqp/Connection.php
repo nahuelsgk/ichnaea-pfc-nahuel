@@ -170,16 +170,17 @@ class Connection
                 $this->opts['fake.request.exchange'],
                 $this->opts['fake.response.queue']);
         } catch(AMQPExceptionInterface $e) {
+            throw $e;
             throw new IchnaeaConnectionException($e->getMessage());
         }
     }
 
     private function declareExchange($reqQueue, $reqExchange, $respQueue)
     {
-        $this->ch->queue_declare($reqQueue, false, false, false, null);
-        $this->ch->exchange_declare($reqExchange, "direct", true);      
+        $this->ch->queue_declare($reqQueue, false, false, false, false);
+        $this->ch->exchange_declare($reqExchange, "direct", false, true, false);      
         $this->ch->queue_bind($reqQueue, $reqExchange, "");
-        $this->ch->queue_declare($respQueue, false, false, false, null);
+        $this->ch->queue_declare($respQueue, false, false, false, false);
     }
 
     /**
@@ -194,7 +195,7 @@ class Connection
         }
         $xml = new BuildModelsRequestWriter();
         $xml->build($req);
-        $msg = new AMQPMessage($xml, array('content_type' => 'text/xml'));
+        $msg = new AMQPMessage($xml->__toString(), array('content_type' => 'text/xml'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['build-models.request.exchange']);
         return $xml;
@@ -226,7 +227,6 @@ class Connection
         $msg = new AMQPMessage($mime, array('content_type' => 'mime/multipart'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['predict-models.request.exchange']);
-
         return $xml;
     }   
 
@@ -242,7 +242,7 @@ class Connection
         }
         $xml = new FakeRequestWriter();
         $xml->build($req);
-        $msg = new AMQPMessage($xml, array('content_type' => 'text/xml'));
+        $msg = new AMQPMessage($xml->__toString(), array('content_type' => 'text/xml'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['fake.request.exchange']);
         return $xml;
