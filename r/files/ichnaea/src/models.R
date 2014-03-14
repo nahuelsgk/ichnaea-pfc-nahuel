@@ -117,11 +117,11 @@ predict_from_signature <- function( sample, signature , train_data ){
   
   # KNN building
   ##############################################################################
-  else if ( signature$alg == "knn" ){
-    m <- class::knn( train = train_data[ , signature$comb, drop=FALSE  ] , test = sample[ , signature$comb, drop=FALSE  ] , 
-                     cl = train_data[ , "CLASS" ] , k = signature$args[[ 1 ]] , prob = FALSE )
-    m_pred <- m
-  } 
+  #else if ( signature$alg == "knn" ){
+  #  m <- class::knn( train = train_data[ , signature$comb, drop=FALSE  ] , test = sample[ , signature$comb, drop=FALSE  ] , 
+  #                   cl = train_data[ , "CLASS" ] , k = signature$args[[ 1 ]] , prob = FALSE )
+  #  m_pred <- m
+  #} 
   ##############################################################################
   
   # LR building
@@ -179,13 +179,19 @@ predict_from_signature <- function( sample, signature , train_data ){
     sink()
     
     m_rvm_pred <- predict(m, sample[, signature$comb ])
-    if (m_rvm_pred < 0.5) {
+    if (is.na(m_rvm_pred)) {
+      m_pred <- UNKNOWN
+    }
+    else if (m_rvm_pred < 0.5) {
       m_pred <- HUMAN
     } else {
       m_pred <- ANIMAL
     }
     
-  } 
+  }
+  else {
+      m_pred <- UNKNOWN 
+  }
   ##############################################################################
   
   as.factor(m_pred)

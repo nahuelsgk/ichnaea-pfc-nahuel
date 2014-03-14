@@ -65,6 +65,7 @@ for(i in 1:N) {
     
     # finding aging section
     t_alpha <- age_dil(sample, season, class)
+
     age_time <- t_alpha[[1]]
     dil <- t_alpha[[2]]
     

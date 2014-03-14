@@ -25,7 +25,7 @@ main jar once.
 
 ##### Build models request
 
-    ../r/files/ichnaea.sh --debug --aging ../r/fixtures/aging --models /tmp/cryprus_models.zip build ../r/fixtures/cyprus.csv
+    ../r/files/ichnaea.sh --debug --aging ../r/fixtures/aging --models /tmp/cyprus_models.zip build ../r/fixtures/cyprus.csv
 
 ##### Predict models request
 

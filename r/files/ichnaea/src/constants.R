@@ -31,6 +31,8 @@ HUMAN = 1
 # ANIMAL constant: number used to represent animal instances
 ANIMAL = -1
 
+UNKNOWN = 0
+
 # NA label: constant used to represent temporally NA values
 NOT_AVAILABLE = "NOT AVAILABLE"
 

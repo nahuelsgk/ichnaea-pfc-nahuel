@@ -127,9 +127,8 @@ age_dataset <- function( dataset , times , age_lr  ){
 
 
 age_dil <- function(sample, season, class) {
-  load("../data_objects/aging_coefs.Rdata")
+  load("../data_objects/aging_coefs.Rdata", aging_coefs <- new.env())
   season_coefs <- aging_coefs[[season]]
-  
   attrs <- intersect(colnames(sample), AGEING_AVAILABLE_ATTRS)
   n <- length(attrs)
   
@@ -155,13 +154,17 @@ age_dil <- function(sample, season, class) {
     vj1 <- sample[1, attrs[j1]]
     vj2 <- sample[1, attrs[j2]]
     
-    for (i in 1:nrow(prepared_data)) {
-      uij1 <- prepared_data[i, attrs[j1]]
-      uij2 <- prepared_data[i, attrs[j2]]
+    if(!is.na(vj1) && !is.na(vj2)) {
+      for (i in 1:nrow(prepared_data)) {
+        uij1 <- prepared_data[i, attrs[j1]]
+        uij2 <- prepared_data[i, attrs[j2]]
 
-      if (vj1 != 0 && vj2 != 0 && uij1 != 0 && uij2 != 0) {
-        indep <- log10(vj1/vj2) - log10(uij1/uij2)
-        df <- rbind(df, c(coef, indep))
+        if(!is.na(uij1) && !is.na(uij2)) {
+          if (vj1 != 0 && vj2 != 0 && uij1 != 0 && uij2 != 0) {
+            indep <- log10(vj1/vj2) - log10(uij1/uij2)
+            df <- rbind(df, matrix(c(coef, indep), ncol=2, nrow=1))
+          }
+        }
       }
     }
   }
@@ -180,17 +183,18 @@ age_dil <- function(sample, season, class) {
     vj <- sample[1, attr]
     coef <- vj
     
-    for (i in 1:nrow(prepared_data)) {
-      uij <- prepared_data[i, attr]
-      
-      if (uij != 0) {
-        indep <- uij*10^(aj*t)
-        df <- rbind(df, c(coef, indep))
+    if(!is.na(coef)) {
+      for (i in 1:nrow(prepared_data)) {
+        uij <- prepared_data[i, attr]
+        
+        if (uij != 0) {
+          indep <- uij*10^(aj*t)
+          df <- rbind(df, matrix(c(coef, indep), ncol=2, nrow=1))
+        }
       }
     }
   }
   colnames(df) <- c("alpha", "ind")
-  
   if (nrow(df) > 0) {
     alpha <- lm(ind ~ alpha - 1, df)$coefficients[1]
   } else {
@@ -220,7 +224,7 @@ find_section <- function(time) {
 }
 
 deage <- function(sample, t, season) {
-  load("../data_objects/aging_coefs.Rdata")
+  load("../data_objects/aging_coefs.Rdata", aging_coefs <- new.env())
   season_coefs <- aging_coefs[[season]]
   
   attrs <- colnames(sample)
