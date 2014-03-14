@@ -13,7 +13,7 @@ load( "../data_objects/aged_processed_data_summer.Rdata" )
 load( "../data_objects/aged_processed_data_winter.Rdata" )
 
 test_pond_results <- NULL
-for(TEST_SET in c("cyprus_test", "cyprus_test2", "env_test", "data_MV")) {
+for(TEST_SET in c("cyprus_test")) {
   for(PONDERATION in c("MAJORITY_VOTE", "ERROR", "ERROR2")) {
 
 MEGAVALIDATION <- TEST_SET == "data_MV"
@@ -37,7 +37,7 @@ if (MEGAVALIDATION) {
 predicted_test_data <- NULL
 N <- nrow(prepared_test_data)
 for(i in 1:N) {
-  if(DEBUG) {cat(paste("***New sample, #", i, "\n"))}
+  if(DEBUG) {cat(paste("***New sample, #", i, "/", N, "\n"))}
   na.sample <- prepared_test_data[i,]
   sample <- na.sample[, !is.na(na.sample)]
   sample_variables <- colnames(sample)
@@ -65,6 +65,7 @@ for(i in 1:N) {
     
     # finding aging section
     t_alpha <- age_dil(sample, season, class)
+
     age_time <- t_alpha[[1]]
     dil <- t_alpha[[2]]
     
@@ -202,6 +203,7 @@ predicted_test_data$PRED <- factor(predicted_test_data$PRED, levels=c(ANIMAL, HU
 
 
 # Results
+cat("\nTable:\n")
 print (predicted_test_data)
 
 tab <- table(factor(predicted_test_data$CLASS, levels=c(-1,1)), predicted_test_data$PRED)
