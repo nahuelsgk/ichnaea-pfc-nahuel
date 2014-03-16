@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  28 FEB 2014 16:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  16 MAR 2014 18:28
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -533,15 +533,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--3
  []
 
 ! Undefined control sequence.
-l.4 ...ntar aquest sistema en un entorn distribu\Â
-                                                  ¨{i}t en xarxa.\\
+l.4 ...ntar aquest sistema en un entorn distribu\¨
+                                                  {i}t en xarxa.\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-Missing character: There is no ¨ in font cmr12!
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
@@ -558,18 +557,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--11
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--15
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 15.
-(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 15.
 
-Underfull \hbox (badness 10000) in paragraph at lines 20--22
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
@@ -577,54 +575,83 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.23 \item U
-            na variable derivada de un calcul entre dos "variables single"
-[1
+l.18 
+      [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
+Underfull \hbox (badness 10000) in paragraph at lines 20--22
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
+Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
 
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no § in font cmr12!
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 29.
+(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
+Missing character: There is no ç in font cmr12!
+
+! Extra }, or forgotten \endgroup.
+l.33 ...tats que es poguin desenvolupar mitjan\{ç}
+                                                  ant modificacions o millor...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.43 \item P
-            rototipus de llibreria API per en un futur escalar-la i poder in...
-[2]
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no § in font cmr12!
-) [3]
+l.34 
+      [2] [3]
+! Undefined control sequence.
+l.58 ...de les taquest per assolir \'{e}s la seg\¨
+                                                  {u}ent, on cada columna re...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<gant.png, id=90, 871.255pt x 152.57pt>
+File: gant.png Graphic file (type png)
+ <use gant.png>
+Overfull \hbox (45.62643pt too wide) in paragraph at lines 61--62
+ [][] 
+ []
+
+[4 <./gant.png (PNG copy)>]) [5
+
+]
 
 Package glossaries Warning: No \printglossary or \printglossaries found.
 This document will not have a glossary.
 
 (./main.aux (./title.aux) (./document.aux)) ) 
 Here is how much of TeX's memory you used:
- 9181 strings out of 495061
- 136667 string characters out of 1182622
- 320945 words of memory out of 3000000
- 12150 multiletter control sequences out of 15000+50000
+ 9199 strings out of 495061
+ 136853 string characters out of 1182622
+ 321945 words of memory out of 3000000
+ 12159 multiletter control sequences out of 15000+50000
  9199 words of font info for 32 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,4n,39p,1083b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,7n,75p,1083b,427s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/
 amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
 cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl12.pfb><
 /usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (7 pages, 87112 bytes).
+Output written on main.pdf (9 pages, 108571 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 128 PDF objects out of 1000 (max. 8388607)
+ 21 named destinations out of 1000 (max. 500000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

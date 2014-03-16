@@ -1,20 +1,25 @@
 <?php 
 namespace Ichnaea\WebApp\PredictionBundle\Services;
 
+require_once __DIR__.'/../../../../../../amqp/php/vendor/autoload.php';
 use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample;
 use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
 use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
+use Ichnaea\Amqp\Model\PredictModelsRequest as PredictModelsRequest;
+use Ichnaea\Amqp\Model\PredictModelsResponse as PredictModelsResponse; 
+use Ichnaea\Amqp\Connection as Connection;
 use Doctrine\ORM\EntityManager;
-
+use Symfony\Component\Filesystem\Filesystem;
 
 class PredictionService
 {
 	protected $em;
 	
-	public function __construct(EntityManager $em){
+	public function __construct(EntityManager $em, $connection_user, $connection_pass, $connection_host){
 		$this->em   = $em;
+		$this->con  = new Connection($connection_user.':'.$connection_pass.'@'.$connection_host);
 	}
 	
 	/**
@@ -132,12 +137,22 @@ class PredictionService
 				$matrix->getRows()
 		);
 		
-		//build the data array for the dataset
-		$model = BuildModelsRequest::fromArray($data);
+		//@TODO: read training data zip
+		$training_file = "/opt/lampp/htdocs/ichnaea/ichnaea_data/trainings/".$training_id."/r_data.zip";
+		$fd            = fopen($training_file, "r");
+		$content       = fread($fd, filesize($training_file));
+		$data['data']  = base64_decode($content);
 		
+		//build the data array for the dataset
+		$model         = PredictModelsRequest::fromArray($data);
 		//... set the new request id for the cue...
 		$matrix->setRequestId($model->getId());
 		//... prepare a connection and send the data
+		
+		$model = new PredictModelsResponse($model->getId());
+		$data = $model->toArray();
+		
+		
 		try {
 			$this->con->open();
 			$this->con->send($model);

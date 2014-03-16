@@ -1,4 +1,10 @@
+parameters:
+    rabbitamqp_user: test
+    rabbitamqp_host: localhost
+    rabbitamqp_password: test
+
+
 services:
      ichnaea_web_app_prediction.service:
          class: Ichnaea\WebApp\PredictionBundle\Services\PredictionService
-         arguments: [ @doctrine.orm.entity_manager ]
+         arguments: [ @doctrine.orm.entity_manager, "%rabbitamqp_user%", "%rabbitamqp_password%","%rabbitamqp_host%", "%training_data_path%" ]

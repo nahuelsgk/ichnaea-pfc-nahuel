@@ -82,7 +82,8 @@ class TrainingService{
 	 * @param string $selection_columns OBSOLOTE
 	 * @return \Ichnaea\WebApp\TrainingBundle\Model\TrainingValidation
 	 */
-	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, $k1 = NULL, $k2 = NULL, 
+	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, 
+									$k1 = NULL, $k2 = NULL, 
 									$best_models = NULL, $min_size_var_set = NULL, $max_size_var_set = NULL, 
 									$type_of_search = NULL, $columns_selection = NULL, $origin = NULL)
 	{
@@ -92,7 +93,7 @@ class TrainingService{
 		
 		//Prepare data for the queue
 		$data = MatrixUtils::buildDatasetFromMatrix(
-				$matrix,
+				NULL,
 				'simple',
 				$matrix->getColumns(),
 				$matrix->getRows()
