@@ -3,6 +3,9 @@
 {% block page_title %}Create a new matrix{% endblock %}
 
 {% block main_content %}
+<legend>
+{% if update == 'y' %}Editing matrix "{{name}}"{% else %}New matrix form{% endif %}
+</legend>
 <form method="post" id="matrixForm" class="form-horizontal" 
 {% if update == 'y' %}
 action="{{path('matrix_update_data_action', {'matrix_id': matrix_id})}}">

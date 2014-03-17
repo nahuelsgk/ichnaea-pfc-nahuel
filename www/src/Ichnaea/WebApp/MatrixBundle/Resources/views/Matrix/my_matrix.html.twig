@@ -1,0 +1,31 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}My matrixs{% endblock %}
+
+{% block main_content %}
+<h1>My matrixs</h1>
+ <table class="table">
+ <thead>
+ <tr>
+  <th>&nbsp;</th>
+  <th>Name</th>
+  <th>&nbsp;</th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for matrix in app.user.matrixs %}
+ <tr>
+  <td>{{ loop.index }}</td>
+  <td>{{matrix.name}}</td>
+  <td>   
+    <a 	class="btn btn-mini" 
+    	href="{{path('matrix_ui_edit', {'matrix_id': matrix.id})}}" 
+    	name="view_matrix" 
+    	title="Configure columns and samples">
+    <i class="icon-edit"></i></a></td>
+ </tr>
+ {% endfor %}
+ </tbody>
+ </table>
+</div>
+{% endblock %}

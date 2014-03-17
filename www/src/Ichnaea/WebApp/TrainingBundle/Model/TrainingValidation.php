@@ -83,6 +83,7 @@ class TrainingValidation
 		$matrix  = $this->training->getMatrix();
 		$columns = $matrix->getColumns();
 		$size_m  = $columns->count();
+		/*
 		$minimum = $this->training->getMinSizeVariableSet();
 		$maximum = $this->training->getMaxSizeVariableSet();
 		
@@ -92,7 +93,7 @@ class TrainingValidation
 		if ($minimum > $maximum) $this->pushToErrors(self::ERROR_MINIMUM_VARIABLE_SET_BIGGER_THAN_MAXIMUM);
 		if ($maximum > $size_m)  $this->pushToErrors(self::ERROR_MAXIMUM_VARIABLE_SET_BIGGER_THAN_MATRIX);
 		if ($minimum > $size_m)  $this->pushToErrors(self::ERROR_MIMIMUM_VARIABLE_SET_BIGGER_THAN_MATRIX);
-		
+		*/
 	}
 	
 	private function pushToErrors($error)

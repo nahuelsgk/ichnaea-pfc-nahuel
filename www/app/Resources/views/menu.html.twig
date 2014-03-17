@@ -13,17 +13,19 @@
     <li class="dropdown">
     	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Matrix<b class="caret"></b></a>
     	<ul class="dropdown-menu">
-    	<li><a href="{{ path('user_dashboard') }}">My matrixs</a></li>
+    	<li><a href="{{ path('my_matrixs') }}">My matrixs</a></li>
     	<li><a href="{{ path('matrix_form') }}">New matrix</a></li>
     	</ul>
-     </li>
+    </li>
+     
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainings<b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="{{path('user_dashboard')}}">My trainings</a></li>
-        <li><a href="{{path('create_training')}}">Create a training</a></li>
+        <li><a href="{{path('my_trainings')}}">My trainings</a></li>
+        <li><a href="{{path('matrix_list')}}">Create a training</a></li>
       </ul>	
     </li>
+    
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Predictions<b class="caret"></b></a>
       <ul class="dropdown-menu">
@@ -31,45 +33,21 @@
         <li><a href="{{ path('training_list') }}">Create a prediction</a></li>
       </ul>	
     </li>
+    
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ichnaea data<b class="caret"></b></a>
       <ul class="dropdown-menu">
-      <li><a href="{{ path('variable_list') }}">View variables</a></li>
-      
+      	<li><a href="{{ path('variable_list') }}">View variables</a></li>
       <li class="divider"></li>
-      <li><a href="{{ path('season_list') }}">View seasons</a></li>
+      	<li><a href="{{ path('season_list') }}">View seasons</a></li>
       <li class="divider"></li>
-      <li><a href="{{ path('matrix_list') }}">View matrixs</a></li>
-      <li><a href="{{ path('matrix_form') }}">New matrix</a></li>
+      	<li><a href="{{ path('matrix_list') }}">View matrixs</a></li>
+      	<li><a href="{{ path('matrix_form') }}">New matrix</a></li> 
       <li class="divider"></li>
-      <li><a href="{{ path('training_list') }}">List trainings</a></li>
+      	<li><a href="{{ path('training_list') }}">List trainings</a></li>
       </ul>
      </li>
     </ul>
-    <!-- @TODO: only for historic reason and recover quickly
-             
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matrixs <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-               <li><a href="{{path('matrix_form')}}">New matrix</a></li>
-               <li><a href="{{path('matrix_list')}}">Matrix list</a></li>
-              </ul>
-             </li>
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Variables <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-               <li><a href="{{path('variable_list')}}">System's variables</a></li>
-               <li><a href="{{path('variable_new')}}">New variable</a></li>
-              </ul>
-             </li>
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seasons <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-               <li><a href="{{path('season_list')}}">System's seasons</a></li>
-               <li><a href="{{path('season_form')}}">New season</a></li>
-              </ul>
-              </li>
-             -->
     <ul class="nav">
     {% if is_granted('ROLE_SUPER_ADMIN') %}
       <li class="dropdown">
@@ -85,6 +63,7 @@
       {% endif %}
       </ul>
     </div><!--/.nav-collapse -->
+    
     <ul class="nav" style="float:right;">
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi, {{ app.user.username }}<b class="caret"></b></a>
@@ -97,6 +76,7 @@
       </ul>
       </li>
      </ul>
+     
    </div>
   </div>
  </div>

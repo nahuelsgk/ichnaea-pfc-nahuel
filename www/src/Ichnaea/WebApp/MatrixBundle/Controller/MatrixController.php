@@ -229,5 +229,10 @@ class MatrixController extends Controller
 				)
 		);
 	}
+	
+	public function getMyMatrixsAction()
+	{
+		return $this->render('MatrixBundle:Matrix:my_matrix.html.twig');
+	}
 }
 ?>

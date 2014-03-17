@@ -86,46 +86,6 @@
   </table>
   </div>
   
-  <!-- BEGIN DISPLAY NONE: This is only was for Ichnaea 1.0 -->
-  <div style="display: none;">
-  <legend>Advanced options <a id="expand_action" class="btn btn-mini"><i class="icon-plus"></i></a></legend>
-  <div id="advanced_options">
-  <div class="control-group">
-   <label class="control-label" for="Name">K1 times K2</label>
-    <div class="controls">
-     K1 <input type="text" id="k1" name="k1" placeholder="Default value: 10" {% if k1 %}value="{{ k1 }}"{% endif %}>
-    </div>
-    <div class="controls">
-     K2 <input type="text" id="k2" name="k2" placeholder="Default value: 10" {% if k2 %}value="{{ k2 }}"{% endif %}>
-    </div>
-  </div>
-  <div class="control-group">
-   <label class="control-label" for="Name">Percentage best models</label>
-    <div class="controls">
-     <input type="text" id="best_models_percentage" name="best_models_percentage" placeholder="Default value: 0.25" {% if best_models %}value="{{ best_models }}"{% endif %}>
-    </div>
-  </div>
-  <div class="control-group">
-   <label class="control-label" for="min_max_size">Size of variable's set</label>
-    <div class="controls">
-     Min size <input type="text" id="min_size_variable_set" name="min_size_variable_set" placeholder="Default value: 1" {% if min_size %}value="{{ min_size }}"{% endif %}>
-    </div>
-    <div class="controls">
-     Max size <input type="text" id="max_size_variable_set" name="max_size_variable_set" placeholder="Default value: 5" {% if max_size %}value="{{ max_size }}"{% endif %}>
-    </div>
-  </div>
-  <div class="control-group">
-   <label class="control-label" for="type_of_search">Type of search</label>
-    <div class="controls">
-     <select id="type_of_search" name="type_of_search">
-       <option value="backward"   {% if type_of_search == 'backward' %} selected {% endif %}>Backward</option>
-       <option value="fordward"   {% if type_of_search == 'fordward' %} selected {% endif %}>Fordward</option>
-       <option value="exhaustive" {% if type_of_search == 'exhaustive' %} selected {% endif %}>Exhaustive</option>
-     </select>
-    </div>
-  </div>
-  </div>
-  <!-- END DISPLAY NONE: This is only was for Ichnaea 1.0 -->
   
   </div>
   <div class="form-actions">

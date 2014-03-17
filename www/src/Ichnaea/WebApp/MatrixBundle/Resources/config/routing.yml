@@ -216,4 +216,9 @@ create_training:
     defaults: { _controller: MatrixBundle:Matrix:listTrainableMatrix }
     requirements: 
         _method: GET
-        
+
+my_matrixs:
+    pattern: /my_matrixs
+    defaults: { _controller: MatrixBundle:Matrix:getMyMatrixs }
+    requirements:
+        _method: GET

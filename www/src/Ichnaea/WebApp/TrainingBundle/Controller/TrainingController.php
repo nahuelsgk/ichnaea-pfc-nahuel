@@ -41,33 +41,21 @@ class TrainingController extends Controller
     	if ($request->getMethod() == 'POST'){
     		$user             = $this->getUser();
     		$coach_id         = $user->getId();//who perfoms the training
+    		
+    		//Read form values
     		$name             = $request->request->get("name");
     		$description      = $request->request->get("description");
     		$this->get('logger')->info($description);
-    		
-    		/*BEGIN OLD CODE for ICHNAEA 1.0*/
-    		$k1			      = $request->request->get("k1");
-    		$this->get('logger')->info($k1);
-    		$k2			      = $request->request->get("k2");
-    		$this->get('logger')->info($k2);
-    		$best_models      = $request->request->get("best_models_percentage");
-    		$this->get('logger')->info($best_models);
-    		$min_size_var_set = $request->request->get("min_size_variable_set");
-    		$this->get('logger')->info($best_models);
-    		$max_size_var_set = $request->request->get("max_size_variable_set");
-    		$type_of_search   = $request->request->get("type_of_search");
-    		/*END OLD CODE for ICHNAEA 1.0*/
-    		
-    		//Select columns
     		$columns_selection = $request->request->get("select_column");
     		$origin            = $request->request->get("origin_versus");
     		if ($origin == "all") $origin = NULL;
+    		
+    		//Call the service
     		$trainingService = $this->get('ichnaea.training_service');
-    		$validation = $trainingService->createTraining($matrix_id, $coach_id, $name, $description, $k1, $k2,
-    				$best_models, $min_size_var_set,
-    				$max_size_var_set, $type_of_search, 
-    				$columns_selection, $origin);
-    		 
+    		$validation = $trainingService->createTraining(
+    				$matrix_id, $coach_id, $name, $description, $columns_selection, $origin
+			); 
+		    		
     		if ($validation->valid() == FALSE){
     			$errors = $validation->getErrorsAsArrayOfStrings();
     			return $this->render(
@@ -87,10 +75,10 @@ class TrainingController extends Controller
     						
     					)
     			);
-    		} 
-    		
+    		} 	
   			$training_id = $validation->getTraining()->getId();
-    		return $this->redirect($this->generateUrl('training_view', array('matrix_id' => $matrix_id, 'training_id' => $training_id)));
+    		return $this->redirect($this->generateUrl('training_view', 
+    				array('matrix_id' => $matrix_id, 'training_id' => $training_id)));
     	}
     	
         return $this->render(
@@ -210,5 +198,12 @@ class TrainingController extends Controller
 		$response->headers->set('Content-Transfer-Encoding', "binary");
 		$response->setContent($file);
 		return $response;
+	}
+	
+	public function getMyTrainingsAction()
+	{
+		$user = $this->get('security.context')->getToken()->getUser();
+		$trainingService = $this->get('ichnaea.training_service');
+		return $this->render('IchnaeaWebAppTrainingBundle::my_trainings.html.twig');
 	}
 }

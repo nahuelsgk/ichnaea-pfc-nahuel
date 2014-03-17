@@ -24,7 +24,12 @@ class PredictionController extends Controller
 			
 			$predictionService = $this->get('ichnaea_web_app_prediction.service');
 			$predictionMatrix = $predictionService->createMatrixPredictionFromCSV($training_id, $name, $csvContent,$owner_id);
-			return $this->redirect($this->generateUrl('view_matrix_prediction', array('matrix_id' => $matrix_id, 'training_id' => $training_id, 'prediction_id' => $predictionMatrix)));	
+			return $this->redirect($this->generateUrl('view_matrix_prediction', array(
+					'matrix_id' => $matrix_id, 
+					'training_id' => $training_id, 
+					'prediction_id' => $predictionMatrix)
+			)
+			);	
 		}
 		
 		return $this->render('IchnaeaWebAppPredictionBundle::form.html.twig', 

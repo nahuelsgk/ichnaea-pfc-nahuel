@@ -73,3 +73,9 @@ training_download_rdata:
     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:downloadTrainingData}
     requirements:
         _method: GET
+
+my_trainings:
+    pattern: /my_trainings
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:getMyTrainings}
+    requirements:
+        _method: GET

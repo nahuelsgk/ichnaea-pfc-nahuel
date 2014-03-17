@@ -57,49 +57,7 @@ class Training
      * @var string
      * @ORM\Column(name="status", type="string", columnDefinition="ENUM('pending', 'sent', 'finished')") 
      */
-    private $status = 'pending';
-    
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="k1", type="integer", nullable=false)
-     */
-    private $k1 = 10;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="k2", type="integer", nullable=false)
-     */
-    private $k2 = 10;
-	
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="best_models", type="decimal", nullable=false, scale=5, precision=10)
-     */
-    private $bestModels = 0.25;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="min_size_variable_set", type="integer", nullable=false)
-     */
-    private $minSizeVariableSet = 1;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="max_size_variable_set", type="integer", nullable=false)
-     */
-    private $maxSizeVariableSet = 5;
-    
-    /**
-     * @var string
-     * @ORM\Column(name="type_of_search", type="string", columnDefinition="ENUM('fordward', 'backward', 'exhaustive')", nullable=false)
-     */
-    private $typeOfSearch = "backward";
-    
+    private $status = 'pending';    
     
     /**
      * @var string
@@ -203,121 +161,6 @@ class Training
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set k1
-     *
-     * @param integer $k1
-     * @return Training
-     */
-    public function setK1($k1)
-    {
-        $this->k1 = $k1;
-
-        return $this;
-    }
-
-    /**
-     * Get k1
-     *
-     * @return integer 
-     */
-    public function getK1()
-    {
-        return $this->k1;
-    }
-
-    /**
-     * Set k2
-     *
-     * @param integer $k2
-     * @return Training
-     */
-    public function setK2($k2)
-    {
-        $this->k2 = $k2;
-
-        return $this;
-    }
-
-    /**
-     * Get k2
-     *
-     * @return integer 
-     */
-    public function getK2()
-    {
-        return $this->k2;
-    }
-
-    /**
-     * Set bestModels
-     *
-     * @param float $bestModels
-     * @return Training
-     */
-    public function setBestModels($bestModels)
-    {
-        $this->bestModels = $bestModels;
-
-        return $this;
-    }
-
-    /**
-     * Get bestModels
-     *
-     * @return float 
-     */
-    public function getBestModels()
-    {
-        return $this->bestModels;
-    }
-
-    /**
-     * Set minSizeVariableSet
-     *
-     * @param integer $minSizeVariableSet
-     * @return Training
-     */
-    public function setMinSizeVariableSet($minSizeVariableSet)
-    {
-        $this->minSizeVariableSet = $minSizeVariableSet;
-
-        return $this;
-    }
-
-    /**
-     * Get minSizeVariableSet
-     *
-     * @return integer 
-     */
-    public function getMinSizeVariableSet()
-    {
-        return $this->minSizeVariableSet;
-    }
-
-    /**
-     * Set maxSizeVariableSet
-     *
-     * @param integer $maxSizeVariableSet
-     * @return Training
-     */
-    public function setMaxSizeVariableSet($maxSizeVariableSet)
-    {
-        $this->maxSizeVariableSet = $maxSizeVariableSet;
-
-        return $this;
-    }
-
-    /**
-     * Get maxSizeVariableSet
-     *
-     * @return integer 
-     */
-    public function getMaxSizeVariableSet()
-    {
-        return $this->maxSizeVariableSet;
     }
 
     /**
@@ -429,10 +272,12 @@ class Training
     {
     	$this->setStatus("pending");
     }
+    
     public function setStatusAsSent()
     {
     	 $this->setStatus("sent");
     }
+    
     public function setStatusAsFinished()
     {
     	 $this->setStatus("finished");
@@ -448,28 +293,6 @@ class Training
         return $this->status;
     }
 
-    /**
-     * Set typeOfSearch
-     *
-     * @param string $typeOfSearch
-     * @return Training
-     */
-    public function setTypeOfSearch($typeOfSearch)
-    {
-        $this->typeOfSearch = $typeOfSearch;
-
-        return $this;
-    }
-
-    /**
-     * Get typeOfSearch
-     *
-     * @return string 
-     */
-    public function getTypeOfSearch()
-    {
-        return $this->typeOfSearch;
-    }
     
     /** 
     *  @ORM\PrePersist 
