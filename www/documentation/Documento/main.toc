@@ -1,0 +1,11 @@
+\select@language {catalan}
+\contentsline {section}{\numberline {0.1}Abast}{1}{section.0.1}
+\contentsline {section}{\numberline {0.2}L'univers Ichnaea}{1}{section.0.2}
+\contentsline {subsection}{\numberline {0.2.1}MST: Microbial Source Tracking}{1}{subsection.0.2.1}
+\contentsline {subsection}{\numberline {0.2.2}Ichnaea 2.0}{2}{subsection.0.2.2}
+\contentsline {section}{\numberline {0.3}Objectius}{2}{section.0.3}
+\contentsline {subsection}{\numberline {0.3.1}Visi\'{o}}{2}{subsection.0.3.1}
+\contentsline {subsection}{\numberline {0.3.2}Objectius assolits}{2}{subsection.0.3.2}
+\contentsline {subsection}{\numberline {0.3.3}Objectius per assolir}{3}{subsection.0.3.3}
+\contentsline {section}{\numberline {0.4}Planificaci\'{o}}{4}{section.0.4}
+\contentsline {chapter}{Bibliografia}{5}{section*.4}

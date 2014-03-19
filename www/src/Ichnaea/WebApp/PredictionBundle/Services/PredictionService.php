@@ -143,16 +143,14 @@ class PredictionService
 		$fd            = fopen($training_file, "r");
 		$content       = fread($fd, filesize($training_file));
 		$data['data']  = base64_decode($content);
+		//Still preparing the dataset	
+		$data['type']  = 'predict-models';
 		
 		//build the data array for the dataset
-		$model         = PredictModelsRequest::fromArray($data);
+		$model         = PredictModelsRequest::fromArray($data);		
 		//... set the new request id for the cue...
 		$matrix->setRequestId($model->getId());
-		//... prepare a connection and send the data
-		
-		$model = new PredictModelsResponse($model->getId());
-		$data = $model->toArray();
-		
+		 
 		try {
 			$this->con->open();
 			$this->con->send($model);
@@ -165,7 +163,7 @@ class PredictionService
 			//if any connection problem... set the status as pending
 			$matrix->setStatusAsPending();
 		}
-		
+				
 		//Persist the entity
 		$this->em->persist($matrix);
 		$this->em->flush();
