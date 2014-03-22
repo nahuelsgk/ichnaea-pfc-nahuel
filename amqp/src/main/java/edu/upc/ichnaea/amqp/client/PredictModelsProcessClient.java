@@ -18,11 +18,13 @@ import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
 import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
+import edu.upc.ichnaea.amqp.model.PredictModelsResult;
 import edu.upc.ichnaea.amqp.xml.XmlPredictModelsRequestReader;
 import edu.upc.ichnaea.amqp.xml.XmlPredictModelsResponseWriter;
 import edu.upc.ichnaea.shell.CommandResultInterface;
 import edu.upc.ichnaea.shell.PredictModelsCommand;
 import edu.upc.ichnaea.shell.ShellInterface;
+import edu.upc.ichnaea.shell.PredictModelsCommandReader;
 
 public class PredictModelsProcessClient extends AbstractProcessClient {
 
@@ -44,6 +46,33 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
                 .toString();
         getChannel().basicPublish(mResponseExchange, replyTo, properties,
                 responseXml.getBytes());
+    }
+
+    protected void sendRequestUpdates(CommandResultInterface result,
+            final Calendar start, final String replyTo) throws IOException {
+        new PredictModelsCommandReader(result, mVerbose) {
+            @Override
+            protected void onUpdate(float percent, Calendar end, PredictModelsResult result){
+                getLogger().info("sending status update");
+                try {
+                    sendRequestUpdate(replyTo, start, end, percent, result);
+                } catch (IOException e) {
+                    getLogger().warning(
+                            "error sending status update: "
+                                    + e.getLocalizedMessage());
+                }
+            }
+        }.read();
+    }
+
+    protected void sendRequestUpdate(String replyTo, Calendar start, Calendar end,
+            float percent, PredictModelsResult result) throws IOException {
+        try {
+            sendResponse(new PredictModelsResponse(replyTo, start, end,
+                    percent, result), replyTo);
+        } catch (ParserConfigurationException e) {
+            throw new IOException(e);
+        }
     }
 
     protected void processRequest(PredictModelsRequest req,
@@ -74,7 +103,7 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
         String modelsPath = FileUtils.tempPath(mShell.getTempPath());
         getLogger().info("writing models data to " + modelsPath);
         out = mShell.writeFile(modelsPath);
-        new OutputStreamWriter(out).write(new String(req.getData()));
+        IOUtils.write(out, req.getData());
 
         getLogger().info("calling predict models command");
         PredictModelsCommand cmd = new PredictModelsCommand(datasetPath, modelsPath, mVerbose);
@@ -93,11 +122,13 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
             resp = new PredictModelsResponse(replyTo, start, end, err);
         }
 
+        /*
         getLogger().info("deleting temporary dataset file");
         mShell.removePath(datasetPath);
         
         getLogger().info("deleting temporary models data file");
         mShell.removePath(modelsPath);
+        */
         
         if (resp == null) {
             Calendar end = Calendar.getInstance();

@@ -3,6 +3,7 @@ package edu.upc.ichnaea.amqp;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 public class IOUtils {
 
@@ -14,6 +15,13 @@ public class IOUtils {
             return ((String) in).getBytes();
         }
         throw new IOException("Could not read object");
+    }
+
+    public static void write(OutputStream out, byte[] data) throws IOException {
+        for (int i = 0; i < data.length; i++)
+        {
+            out.write(data[i]);
+        }
     }
 
     public static byte[] read(InputStream in) throws IOException {

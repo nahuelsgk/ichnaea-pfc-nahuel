@@ -19,6 +19,7 @@ import edu.upc.ichnaea.amqp.xml.XmlBuildModelsResponseWriter;
 import edu.upc.ichnaea.shell.BuildModelsCommand;
 import edu.upc.ichnaea.shell.CommandResultInterface;
 import edu.upc.ichnaea.shell.ShellInterface;
+import edu.upc.ichnaea.shell.UpdateProgressCommandReader;
 
 public class BuildModelsProcessClient extends AbstractProcessClient {
 
@@ -40,6 +41,23 @@ public class BuildModelsProcessClient extends AbstractProcessClient {
                 .toString();
         getChannel().basicPublish(mResponseExchange, replyTo, properties,
                 responseXml.getBytes());
+    }
+
+    protected void sendRequestUpdates(CommandResultInterface result,
+            final Calendar start, final String replyTo) throws IOException {
+        new UpdateProgressCommandReader(result, mVerbose) {
+            @Override
+            protected void onUpdate(float percent, Calendar end) {
+                getLogger().info("sending status update");
+                try {
+                    sendRequestUpdate(replyTo, start, end, percent);
+                } catch (IOException e) {
+                    getLogger().warning(
+                            "error sending status update: "
+                                    + e.getLocalizedMessage());
+                }
+            }
+        }.read();
     }
 
     protected void sendRequestUpdate(String replyTo, Calendar start, Calendar end,
@@ -116,13 +134,11 @@ public class BuildModelsProcessClient extends AbstractProcessClient {
             resp = new BuildModelsResponse(replyTo, start, end, err);
         }
 
-        /*
         getLogger().info("deleting temporary dataset file");
         mShell.removePath(datasetPath);
 
         getLogger().info("deleting temporary aging folder");
         mShell.removePath(agingPath);
-        */
 
         if (resp == null) {
             getLogger().info("reading output file in " + cmd.getModelsPath());
@@ -144,8 +160,6 @@ public class BuildModelsProcessClient extends AbstractProcessClient {
         getLogger().info("closing shell");
         mShell.close();
     }
-
-   
 
     @Override
     public void run() throws IOException {

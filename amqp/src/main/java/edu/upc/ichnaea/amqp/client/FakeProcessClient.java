@@ -13,6 +13,7 @@ import edu.upc.ichnaea.amqp.xml.XmlFakeResponseWriter;
 import edu.upc.ichnaea.shell.CommandResultInterface;
 import edu.upc.ichnaea.shell.FakeCommand;
 import edu.upc.ichnaea.shell.ShellInterface;
+import edu.upc.ichnaea.shell.UpdateProgressCommandReader;
 
 public class FakeProcessClient extends AbstractProcessClient {
 
@@ -35,6 +36,23 @@ public class FakeProcessClient extends AbstractProcessClient {
         getChannel().basicPublish(mResponseExchange, replyTo, properties,
                 responseXml.getBytes());
     }
+
+    protected void sendRequestUpdates(CommandResultInterface result,
+            final Calendar start, final String replyTo) throws IOException {
+        new UpdateProgressCommandReader(result, mVerbose) {
+            @Override
+            protected void onUpdate(float percent, Calendar end) {
+                getLogger().info("sending status update");
+                try {
+                    sendRequestUpdate(replyTo, start, end, percent);
+                } catch (IOException e) {
+                    getLogger().warning(
+                            "error sending status update: "
+                                    + e.getLocalizedMessage());
+                }
+            }
+        }.read();
+    }    
     
     protected void sendRequestUpdate(String replyTo, Calendar start, Calendar end,
             float percent) throws IOException {

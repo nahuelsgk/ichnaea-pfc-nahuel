@@ -14,7 +14,7 @@ public class ProgressResponse {
             String error) {
         this(id, start, end);
         mError = error;
-        mProgress = 1;
+        mProgress = 1.0f;
     }
 
     public ProgressResponse(String id, Calendar start, Calendar end,
@@ -27,6 +27,7 @@ public class ProgressResponse {
         mId = id;
         mStart = start;
         mEnd = end;
+        mProgress = 1.0f;
     }
 
     public boolean isEmpty() {
