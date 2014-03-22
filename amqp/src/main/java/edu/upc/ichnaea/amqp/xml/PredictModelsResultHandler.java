@@ -13,7 +13,7 @@ public class PredictModelsResultHandler implements ContentHandler {
 
     final static String TAG_RESULT = "result";
     final static String TAG_CONF_MATRIX = "confusionMatrix";
-    final static String TAG_CONF_CELL = "cell";
+    final static String TAG_VALUE = "value";
     final static String ATTR_NAME = "name";
     final static String ATTR_TEST_ERROR = "testError";
     final static String ATTR_TOTAL_SAMPLES = "totalSamples";
@@ -121,7 +121,7 @@ public class PredictModelsResultHandler implements ContentHandler {
                 mDatasetHandler = null;
             }
         } else if(mConfusionMatrixRow >= 0 && mConfusionMatrixCol >= 0) {
-            if(localName.equalsIgnoreCase(TAG_CONF_CELL)) {
+            if(localName.equalsIgnoreCase(TAG_VALUE)) {
                 float v = 0.0f;
                 try {
                     v = Float.parseFloat(mCharacters.toString());

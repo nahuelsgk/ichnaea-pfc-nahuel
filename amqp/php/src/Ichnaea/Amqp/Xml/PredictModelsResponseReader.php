@@ -4,8 +4,6 @@ namespace Ichnaea\Amqp\Xml;
 
 use Ichnaea\Amqp\Model\PredictModelsResponse;
 use Ichnaea\Amqp\Model\ProgressResponse;
-use Ichnaea\Amqp\Mime\MimeMultipart;
-use Ichnaea\Amqp\Mime\MimePart;
 
 /**
  * Xml reader that reads PredictModelsResponse objects

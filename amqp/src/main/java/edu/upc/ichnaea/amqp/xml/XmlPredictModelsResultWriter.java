@@ -46,7 +46,7 @@ public class XmlPredictModelsResultWriter extends XmlWriter {
             float[][] confMatrix = result.getConfusionMatrix();
             for(int i = 0; i < confMatrix.length; i++) {
             	for(int j = 0; j < confMatrix[i].length; j++) {
-                    Element xmlCell = createElement(PredictModelsResultHandler.TAG_CONF_CELL);
+                    Element xmlCell = createElement(PredictModelsResultHandler.TAG_VALUE);
                     xmlCell.setTextContent(String.valueOf(confMatrix[i][j]));
                     xmlConf.appendChild(xmlCell);
             	}
