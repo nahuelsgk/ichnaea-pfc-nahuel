@@ -42,8 +42,12 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
         }
         AMQP.BasicProperties properties = new AMQP.BasicProperties().builder()
                 .contentType("multipart/mixed").build();
+        getLogger().info("writing response xml");
         String responseXml = new XmlPredictModelsResponseWriter().build(response)
                 .toString();
+        if(mVerbose) {
+            getLogger().info(responseXml);
+        }
         getChannel().basicPublish(mResponseExchange, replyTo, properties,
                 responseXml.getBytes());
     }
@@ -122,14 +126,12 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
             resp = new PredictModelsResponse(replyTo, start, end, err);
         }
 
-        /*
         getLogger().info("deleting temporary dataset file");
         mShell.removePath(datasetPath);
         
         getLogger().info("deleting temporary models data file");
         mShell.removePath(modelsPath);
-        */
-        
+
         if (resp == null) {
             Calendar end = Calendar.getInstance();
             resp = new PredictModelsResponse(replyTo, start, end);

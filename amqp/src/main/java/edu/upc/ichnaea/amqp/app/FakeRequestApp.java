@@ -76,7 +76,7 @@ public class FakeRequestApp extends App {
     @Override
     protected void setup() throws IOException {
         super.setup();
-        String id = "java.BuildModelsRequestClient";
+        String id = "java.FakeRequestApp."+getRandom();
         FakeRequest request = new FakeRequest(id, mDuration, mInterval);
         
         mClient = new FakeRequestClient(request, mRequestQueue,

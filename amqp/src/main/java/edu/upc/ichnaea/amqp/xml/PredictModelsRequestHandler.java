@@ -16,11 +16,11 @@ public class PredictModelsRequestHandler implements ContentHandler {
     final static String ATTR_ID = "id";
     final static String ATTR_REQUEST_TYPE = "type";
 
-    PredictModelsRequest mRequest;
-    DatasetHandler mDatasetHandler;
-    Dataset mDataset;
-    byte[] mData;    
-    String mId;
+    protected PredictModelsRequest mRequest;
+    protected DatasetHandler mDatasetHandler;
+    protected Dataset mDataset;
+    protected byte[] mData;    
+    protected String mId;
 
     public PredictModelsRequest getData() {
         return mRequest;

@@ -121,7 +121,7 @@ public class PredictModelsRequestApp extends App {
     @Override
     protected void setup() throws IOException {
         super.setup();
-        String id = "java.BuildModelsRequestClient";
+        String id = "jav.PredictModelsRequestClient."+getRandom();
         if (mDatasetReader == null) {
             throw new InvalidOptionException("No dataset specified");
         }

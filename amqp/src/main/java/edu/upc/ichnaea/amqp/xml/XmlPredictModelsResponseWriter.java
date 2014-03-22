@@ -2,6 +2,8 @@ package edu.upc.ichnaea.amqp.xml;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.Element;
+
 import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
 
 public class XmlPredictModelsResponseWriter extends XmlProgressResponseWriter {
@@ -10,8 +12,16 @@ public class XmlPredictModelsResponseWriter extends XmlProgressResponseWriter {
         super();
     }
     
-    public XmlProgressResponseWriter build(PredictModelsResponse resp) {
-        return super.build(resp);
+    public XmlPredictModelsResponseWriter build(PredictModelsResponse resp) {
+        super.build(resp);
+
+        if (!resp.getResult().isEmpty()) {
+            Element xmlResult = appendChild(PredictModelsResultHandler.TAG_RESULT);
+            new XmlPredictModelsResultWriter(getDocument(), xmlResult).build(resp
+                    .getResult());
+        }
+
+        return this;
     }
 
 }

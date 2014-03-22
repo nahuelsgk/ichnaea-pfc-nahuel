@@ -12,11 +12,11 @@ import java.util.regex.Pattern;
 
 public abstract class UpdateProgressCommandReader extends CommandReader {
 
-    SimpleDateFormat mTimeFormat;
-    Pattern mRegexPercent;
-    Pattern mRegexEndTime;
-    float mPercent = 0;
-    Calendar mEnd = null;
+    protected SimpleDateFormat mTimeFormat;
+    protected Pattern mRegexPercent;
+    protected Pattern mRegexEndTime;
+    protected float mPercent = 0;
+    protected Calendar mEnd = null;
 
     public UpdateProgressCommandReader(CommandResultInterface result, boolean verbose) {
         this(result, "EEE MMM dd HH:mm:ss z yyyy", "(\\d*)%", "^ *finish: *(.*) *$", verbose);

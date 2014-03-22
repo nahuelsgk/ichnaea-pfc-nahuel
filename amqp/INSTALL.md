@@ -81,7 +81,7 @@ To run the basic predict-models:process client:
     
 To run the basic predict-models:request client with a real request:
 
-    ./target/ichnaea-amqp.jar predict-models:request --data=../r/fixtures/cyprus_models.zip --dataset=../r/fixtures/cyprus_test.csv --output=/tmp/cryprus_result.txt
+    ./target/ichnaea-amqp.jar predict-models:request --data=../r/fixtures/cyprus_models.zip --dataset=../r/fixtures/cyprus_test.csv --output=/tmp/cyprus_result.txt
     
 ### For Development
 

@@ -52,7 +52,7 @@ public abstract class AbstractRequestClient extends Client {
         }
     }
     
-    protected void processResponse(ProgressResponse resp) {
+    protected void processProgressResponse(ProgressResponse resp) {
         if (resp.hasError()) {
             getLogger().warning("got error: " + resp.getError());
             setFinished(true);

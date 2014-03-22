@@ -66,4 +66,8 @@ public class ProgressResponse {
         return mError != null && !mError.isEmpty();
     }
 
+    public boolean isFinished() {
+        return mProgress >= 1.0f;
+    }
+
 }

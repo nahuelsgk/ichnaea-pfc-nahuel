@@ -161,7 +161,7 @@ public class BuildModelsRequestApp extends App {
     @Override
     protected void setup() throws IOException {
         super.setup();
-        String id = "java.BuildModelsRequestClient";
+        String id = "java.BuildModelsRequestApp."+getRandom();
         BuildModelsRequest request;
         if (mDatasetReader != null) {
             request = new BuildModelsRequest(id, readDataset(), readAging());

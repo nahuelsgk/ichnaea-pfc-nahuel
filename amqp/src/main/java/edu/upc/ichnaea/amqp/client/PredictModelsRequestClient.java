@@ -11,6 +11,7 @@ import com.rabbitmq.client.AMQP;
 
 import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
 import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
+import edu.upc.ichnaea.amqp.model.PredictModelsResult;
 import edu.upc.ichnaea.amqp.xml.XmlPredictModelsRequestWriter;
 import edu.upc.ichnaea.amqp.xml.XmlPredictModelsResponseReader;
 import edu.upc.ichnaea.amqp.xml.XmlPrettyFormatter;
@@ -70,7 +71,22 @@ public class PredictModelsRequestClient extends AbstractRequestClient {
         try {
             PredictModelsResponse resp = new XmlPredictModelsResponseReader()
                     .read(new String(body));
-            processResponse(resp);
+            processProgressResponse(resp);
+            PredictModelsResult result = resp.getResult();                    
+            if(!result.isEmpty()) {
+                getLogger().info("result: samples " + result.getPredictedSamples()
+                    + "/" + result.getTotalSamples());
+            }
+            if(result.isFinished()) {
+                getLogger().info("result: finished with " + 100*result.getTestError()+"% error");
+                String str = result.toString();
+                str += "\n----\n";
+                if(mResponseOutput != null) {
+                    mResponseOutput.write(str.getBytes());
+                } else {
+                    getLogger().info(str);
+                }
+            }
         } catch (SAXException e) {
             throw new IOException(e);
         }

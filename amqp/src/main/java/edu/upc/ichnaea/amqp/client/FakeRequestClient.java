@@ -64,7 +64,7 @@ public class FakeRequestClient extends AbstractRequestClient {
         try {
             FakeResponse resp = new XmlFakeResponseReader()
                     .read(new String(body));
-            super.processResponse(resp);
+            super.processProgressResponse(resp);
         } catch (SAXException e) {
             throw new IOException(e);
         }

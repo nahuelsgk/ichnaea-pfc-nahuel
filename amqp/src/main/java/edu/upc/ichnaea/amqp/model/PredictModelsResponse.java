@@ -9,15 +9,18 @@ public class PredictModelsResponse extends ProgressResponse {
     public PredictModelsResponse(String id, Calendar start, Calendar end,
             String error) {
         super(id, start, end, error);
+        mResult = new PredictModelsResult();
     }
 
     public PredictModelsResponse(String id, Calendar start, Calendar end) {
         super(id, start, end);
+        mResult = new PredictModelsResult();
     }
 
     public PredictModelsResponse(String id, Calendar start, Calendar end,
             float progress) {
         super(id, start, end, progress);
+        mResult = new PredictModelsResult();
     }
 
     public PredictModelsResponse(String id, Calendar start, Calendar end, float progress, PredictModelsResult result) {

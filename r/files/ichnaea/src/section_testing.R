@@ -219,7 +219,7 @@ print(tab)
 cat(paste("Test error: ", test_error*100, "%", sep=""))
 
 cat("\n")
-info <- paste(TEST_SET, "-", PONDERATION, ": ", dim(predicted_test_data)[1], "/", N, ", ", tab[1,1], " ", tab[1,2], " ", tab[2,1], " ", tab[2,2], ", ", test_error*100, "%", sep="")
+info <- paste(TEST_SET, "-", PONDERATION, ": ", dim(predicted_test_data)[1], "/", N, ", ", tab[1,1], " ", tab[1,2], " ", tab[2,1], " ", tab[2,2], ", ", test_error*100, "%", "\n", sep="")
 cat(info)
 test_pond_results <- c(test_pond_results, info)
 }

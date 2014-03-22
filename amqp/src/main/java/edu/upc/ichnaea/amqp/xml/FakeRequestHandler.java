@@ -61,10 +61,16 @@ public class FakeRequestHandler implements ContentHandler {
                 throw new SAXException("Invalid message type");
             }
             if (atts.getValue(ATTR_DURATION) != null) {
-                mDuration = Float.parseFloat(atts.getValue(ATTR_DURATION));
+                try {
+                    mDuration = Float.parseFloat(atts.getValue(ATTR_DURATION));
+                } catch(Exception e) {
+                }
             }
             if (atts.getValue(ATTR_INTERVAL) != null) {
-                mInterval = Float.parseFloat(atts.getValue(ATTR_INTERVAL));
+                try {
+                    mInterval = Float.parseFloat(atts.getValue(ATTR_INTERVAL));
+                } catch(Exception e) {
+                }
             }
         }
     }

@@ -12,8 +12,8 @@ import edu.upc.ichnaea.amqp.IOUtils;
 
 public abstract class CommandReader {
 
-    CommandResultInterface mResult;
-    boolean mVerbose;
+    protected CommandResultInterface mResult;
+    protected boolean mVerbose;
 
     public CommandReader(CommandResultInterface result, boolean verbose) {
        mResult = result;

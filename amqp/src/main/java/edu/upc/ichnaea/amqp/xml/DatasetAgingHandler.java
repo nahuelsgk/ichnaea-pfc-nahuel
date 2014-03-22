@@ -67,8 +67,11 @@ public class DatasetAgingHandler implements ContentHandler {
             }
             mAgingHandler = new AgingHandler();
             mAgingHandler.startElement(uri, localName, qName, atts);
-            mAgingPosition = Float.parseFloat(atts
+            try {
+                mAgingPosition = Float.parseFloat(atts
                     .getValue(ATTR_AGING_POSITION));
+            } catch(Exception e) {
+            }
         } else if (mAgings != null) {
             if (!localName.equalsIgnoreCase(TAG_COLUMN)) {
                 throw new SAXException(

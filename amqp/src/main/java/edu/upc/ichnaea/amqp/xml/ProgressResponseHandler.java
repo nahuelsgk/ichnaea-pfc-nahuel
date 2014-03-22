@@ -52,7 +52,7 @@ public class ProgressResponseHandler implements ContentHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName,
-            Attributes atts) throws SAXException {
+            Attributes atts) throws SAXException {       
         if (localName.equalsIgnoreCase(TAG_RESPONSE)) {
             if (!atts.getValue(ATTR_TYPE).equalsIgnoreCase(TYPE)) {
                 throw new SAXException("Invalid response type");
@@ -61,7 +61,10 @@ public class ProgressResponseHandler implements ContentHandler {
             if (atts.getValue(ATTR_PROGRESS) == null) {
                 mProgress = 1;
             } else {
-                mProgress = Float.parseFloat(atts.getValue(ATTR_PROGRESS));
+                try {
+                    mProgress = Float.parseFloat(atts.getValue(ATTR_PROGRESS));
+                }catch(Exception e) {
+                }
             }
             if (atts.getValue(ATTR_ERROR) != null) {
                 mError = atts.getValue(ATTR_ERROR);
@@ -75,7 +78,7 @@ public class ProgressResponseHandler implements ContentHandler {
                     mEnd = Calendar.getInstance();
                     mEnd.setTime(mDateFormat.parse(atts.getValue(ATTR_END)));
                 }
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 throw new SAXException(e);
             }
         }
