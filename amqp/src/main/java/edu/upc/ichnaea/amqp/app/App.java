@@ -2,9 +2,13 @@ package edu.upc.ichnaea.amqp.app;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.logging.Logger;
+import java.math.BigInteger;
+
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Logger;
+import java.security.SecureRandom;
+
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -16,8 +20,9 @@ import edu.upc.ichnaea.amqp.client.ClientInterface;
 
 public abstract class App {
     protected Connection mConnection;
-    protected String mUri = "amqp://localhost";
-    protected static Logger LOGGER = Logger.getLogger(App.class.getName());
+    private String mUri = "amqp://localhost";
+    private static Logger LOGGER = Logger.getLogger(App.class.getName());
+    private SecureRandom random = new SecureRandom();
 
     public static void main(String[] args, App app) {
         try {
@@ -99,5 +104,9 @@ public abstract class App {
             }
         } catch (InterruptedException e) {
         }
+    }
+
+    protected String getRandom() {
+        return new BigInteger(130, random).toString(32);
     }
 }

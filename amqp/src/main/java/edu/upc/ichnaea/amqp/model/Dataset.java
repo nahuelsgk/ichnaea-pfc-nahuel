@@ -5,6 +5,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import java.io.StringWriter;
+
+import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
+
 public class Dataset implements Iterable<DatasetColumn>, Comparable<Dataset> {
 
     protected Collection<DatasetColumn> mColumns;
@@ -26,6 +30,17 @@ public class Dataset implements Iterable<DatasetColumn>, Comparable<Dataset> {
             if (name.equals(col.getName())) {
                 return col;
             }
+        }
+        return null;
+    }
+
+    public DatasetColumn get(int k) {
+        int i = 0;
+        for (DatasetColumn col : mColumns) {
+            if (i == k) {
+                return col;
+            }
+            i++;
         }
         return null;
     }
@@ -94,5 +109,15 @@ public class Dataset implements Iterable<DatasetColumn>, Comparable<Dataset> {
             }
         }
         return true;
+    }
+
+    public String toString() {
+        try {
+            StringWriter writer = new StringWriter();
+            new CsvDatasetWriter(writer).write(this).close();
+            return writer.toString();
+        } catch(Exception e) {
+            return "";
+        }
     }
 }

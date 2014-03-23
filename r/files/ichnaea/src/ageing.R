@@ -83,41 +83,21 @@ aged_samples_lr <- function( attributes , season , orig_data , correction , mean
 }
 ###############################################################################################################################################################
 
-
-##### FUNCTION: 
-##### age_instance( instance , time , age_lr )  :  1-row data.frame
-##### Ages an instance according to each attribute's ageing samples linear regression
-##### Params:
-##### 	- instance: 1-row data.frame instance of attributes that will be diluted
-#####	- time: time by which instance will be aged
-#####	- age_lr: list containing the slope and increment coefficients for the ageing regression line for each attribute, each element in the list is expected
-#####			  to have just ONE slope and ONE increment
-##### Returns 1-row data.frame that contains the diluted instance
-age_instance <- function( instance , time , age_lr ){
-  
-	# setting which are the attributes that will be aged, they are the intersection of sets AVAILABLE_ATTRS, AGEING_AVAILABLE_ATTRS and colnames( instance )
+age_instance <- function(instance, time, age_lr) {
 	aging_related_attrs <- intersect( intersect( AVAILABLE_ATTRS , AGEING_AVAILABLE_ATTRS ) , colnames( instance ) )
   
-	# applying log10 to the ageing related attributes since ageing information (age_lr) is in logarithmic scale
-	instance[ , aging_related_attrs ] = log10(instance[ , aging_related_attrs ] + EPSILON )
-  
-	# for each one of the available attributes from which ageing data is available
-	for ( attr in aging_related_attrs){
-		# computing new value for the current attribute attr
-		new_value <- instance[ , attr ] + ( age_lr[[ attr ]][ SLOPE ] * time )
-		# if new value is greater than log10( EPSILON ) (quasi-zero on non-log scale) we set it as is, otherwise is set as zero.
-		if ( new_value > log10( EPSILON ) ){
-			instance[ , attr ] <- new_value
-		} else {
-			instance[ , attr ] <- log10( EPSILON )
-		}
-		
+	for (attr in aging_related_attrs){
+    val <- instance[, attr]
+    if (val < 0) {
+      cat(paste("Error: Reading a negative value of", val, "for attribute", attr))
+    } else if (val > 0) {
+      aged_val <- max(10^(log10(val) + age_lr[[attr]][SLOPE]*time), 0)
+      instance[, attr] <- aged_val
+    }
 	}
-	
-	# returning the de-logarithmized aged instance
-	instance[ , aging_related_attrs ] = 10 ^ instance[ , aging_related_attrs ]
 	instance
 }
+
 ###############################################################################################################################################################
 
 ##### FUNCTION: 
@@ -146,23 +126,24 @@ age_dataset <- function( dataset , times , age_lr  ){
 }
 
 
-age <- function(sample, season) {
-  load("../data_objects/aging_coefs.Rdata")
+age_dil <- function(sample, season, class) {
+  load("../data_objects/aging_coefs.Rdata", aging_coefs <- new.env())
   season_coefs <- aging_coefs[[season]]
-  
   attrs <- intersect(colnames(sample), AGEING_AVAILABLE_ATTRS)
   n <- length(attrs)
   
   load("../data_objects/prepared_original_data.Rdata")
   
   prepared_data <- keep_season(prepared_data, season)
+  prepared_data <- keep_class(prepared_data, class)
   prepared_data <- prepared_data[, attrs]
   
+  # estimation of t*
   combs <- combn(1:n, 2)
   
   df <- data.frame(matrix(ncol=2, nrow=0))
   for (k in 1:ncol(combs)) {
-    # Adding equations like: log(uij/uij') - (aj - aj')t = log(v~j/v~j')
+    # Adding equations like: log(uij/uij') + (aj - aj')t = log(v~j/v~j')
     j1 <- combs[1,k]
     j2 <- combs[2,k]
     
@@ -170,48 +151,89 @@ age <- function(sample, season) {
     a2 <- season_coefs[[attrs[j2]]][2]
     coef <- a1 - a2
     
-    for (i in 1:nrow(prepared_data)) {
-      uij1 <- prepared_data[i, attrs[j1]]
-      uij2 <- prepared_data[i, attrs[j2]]
-      vj1 <- sample[1, attrs[j1]]
-      vj2 <- sample[1, attrs[j2]]
-      
-      if (vj1 != 0 && vj2 != 0 && uij1 != 0 && uij2 != 0) {
-        indep <- -(log10(vj1/vj2) - log10(uij1/uij2))
-        if (is.nan(indep)) {
-          print(sample)
-          print(a2)
-          print(vj2)
-          skdjskdjsdj
+    vj1 <- sample[1, attrs[j1]]
+    vj2 <- sample[1, attrs[j2]]
+    
+    if(!is.na(vj1) && !is.na(vj2)) {
+      for (i in 1:nrow(prepared_data)) {
+        uij1 <- prepared_data[i, attrs[j1]]
+        uij2 <- prepared_data[i, attrs[j2]]
+
+        if(!is.na(uij1) && !is.na(uij2)) {
+          if (vj1 != 0 && vj2 != 0 && uij1 != 0 && uij2 != 0) {
+            indep <- log10(vj1/vj2) - log10(uij1/uij2)
+            df <- rbind(df, matrix(c(coef, indep), ncol=2, nrow=1))
+          }
         }
-        df <- rbind(df, c(coef, indep))
       }
     }
   }
   colnames(df) <- c("t", "ind")
+
+  if (nrow(df) > 0) {
+    t <- as.numeric(lm(ind ~ t - 1, df)$coefficients[1])
+  } else {
+    t <- 0
+  }
   
-  a <- tapply(df$ind, df$t, mean)
-  b <- as.numeric(names(a))
-  c <- a/b
+  # estimation of alpha
+  df <- data.frame(matrix(ncol=2, nrow=0))
+  for (attr in attrs) {
+    aj <- season_coefs[[attr]][2]
+    vj <- sample[1, attr]
+    coef <- vj
+    
+    if(!is.na(coef)) {
+      for (i in 1:nrow(prepared_data)) {
+        uij <- prepared_data[i, attr]
+        
+        if (uij != 0) {
+          indep <- uij*10^(aj*t)
+          df <- rbind(df, matrix(c(coef, indep), ncol=2, nrow=1))
+        }
+      }
+    }
+  }
+  colnames(df) <- c("alpha", "ind")
+  if (nrow(df) > 0) {
+    alpha <- lm(ind ~ alpha - 1, df)$coefficients[1]
+  } else {
+    alpha <- 1
+  }
   
-  d1 <- mean(c)
-  d2 <- mean(c, trim = 0.1)
-  d3 <- median(c)
+  if (!is.finite(alpha)) {
+    alpha <- 1
+  }
   
-  lsq <- lm(ind ~ t, df)
-  
-  cat(paste("Least squares únic. t* =", as.numeric(lsq$coefficients[2]), "\n"))
-  cat(paste("Least squares per segments, mean. t* =", d1, "\n"))
-  cat(paste("Least squares per segments, trimmed mean 0.1. t* =", d2, "\n"))
-  cat(paste("Least squares per segments, median. t* =", d3, "\n"))
-  
-  cat(paste("\nTemps envelliment real. t*=", sample$age, "\n"))
+  list(t, alpha)
 }
 
 keep_season <- function(data, season) {
   data
 }
 
+keep_class <- function(data, class) {
+  data[as.character(data$CLASS) == as.character(class),]
+}
 
+find_section <- function(time) {
+  diffs <- abs(AGE_SECTIONS - time)
+  section <- which(diffs == min(diffs))
+  
+  min(section)
+}
+
+deage <- function(sample, t, season) {
+  load("../data_objects/aging_coefs.Rdata", aging_coefs <- new.env())
+  season_coefs <- aging_coefs[[season]]
+  
+  attrs <- colnames(sample)
+  for (attr in attrs) {
+    a <- season_coefs[[attr]][2]
+    sample[,attr] <- sample[,attr]/(10^(a*t))
+  }
+  
+  sample
+}
 
 ###############################################################################################################################################################

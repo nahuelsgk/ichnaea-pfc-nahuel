@@ -81,29 +81,13 @@ prepare <- function ( data ){
   }
   
 	# converting FRNAPH.X from percentages to values given that FRNAPH.I + FRNAPH.II + FRNAPH.III + FRNAPH.IV = FRNAPH
-	data$FRNAPH.I = data$FRNAPH * data$FRNAPH.I / 100
-	data$FRNAPH.II = data$FRNAPH * data$FRNAPH.II / 100
-	data$FRNAPH.III = data$FRNAPH * data$FRNAPH.III / 100
-	data$FRNAPH.IV = data$FRNAPH * data$FRNAPH.IV / 100
+	if ( "FRNAPH" %in% colnames( data ) && "FRNAPH.I" %in% colnames( data ) ) { data$FRNAPH.I <- data$FRNAPH * data$FRNAPH.I / 100 }
+	if ( "FRNAPH" %in% colnames( data ) && "FRNAPH.II" %in% colnames( data ) ) { data$FRNAPH.II <- data$FRNAPH * data$FRNAPH.II / 100 }
+	if ( "FRNAPH" %in% colnames( data ) && "FRNAPH.III" %in% colnames( data ) ) { data$FRNAPH.III <- data$FRNAPH * data$FRNAPH.III / 100 }
+	if ( "FRNAPH" %in% colnames( data ) && "FRNAPH.IV" %in% colnames( data ) ) { data$FRNAPH.IV <- data$FRNAPH * data$FRNAPH.IV / 100 }
 	
-  
-  #data$FC[ data$FC == 50 ] 				 <- DETECT_THRESHOLD
-	#data$FE[ data$FE == 50 ] 				 <- DETECT_THRESHOLD
-	#data$CL[ data$CL == 50 ] 				 <- DETECT_THRESHOLD
-	#data$SOMCPH[ data$SOMCPH == 50 ] 		 <- DETECT_THRESHOLD
-	#data$FTOTAL[ data$FTOTAL == 50 ] 		 <- DETECT_THRESHOLD
-	#data$FRNAPH[ data$FRNAPH == 50 ] 		 <- DETECT_THRESHOLD
-	#data$RYC2056[ data$RYC2056 == 50 ]		 <- DETECT_THRESHOLD
-	#data$GA17[ data$GA17 == 50 ] 			 <- DETECT_THRESHOLD
-	#data$HBSA.Y[ data$HBSA.Y == 50 ] 		 <- DETECT_THRESHOLD
-	#data$HBSA.T[ data$HBSA.T == 50 ] 		 <- DETECT_THRESHOLD
-	#data$FRNAPH.I[ data$FRNAPH.I == 50 ] 	 <- DETECT_THRESHOLD
-	#data$FRNAPH.II[ data$FRNAPH.II == 50 ] 	 <- DETECT_THRESHOLD
-	#data$FRNAPH.III[ data$FRNAPH.III == 50 ] <- DETECT_THRESHOLD
-	#data$FRNAPH.IV[ data$FRNAPH.IV == 50 ] 	 <- DETECT_THRESHOLD
-  
 	# returning data object with just the available attributes (plus the CLASS)
-	data[ , c( AVAILABLE_ATTRS , "CLASS" ) ]
+	data[ , c( intersect(colnames(data), AVAILABLE_ATTRS) , "CLASS" ) ]
  
 }
 ###############################################################################################################################################################

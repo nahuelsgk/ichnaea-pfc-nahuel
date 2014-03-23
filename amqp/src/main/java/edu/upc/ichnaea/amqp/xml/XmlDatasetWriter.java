@@ -12,7 +12,7 @@ import edu.upc.ichnaea.amqp.model.DatasetColumn;
 public class XmlDatasetWriter extends XmlWriter {
 
     XmlDatasetWriter() throws ParserConfigurationException {
-        super("dataset");
+        super(DatasetHandler.TAG_DATASET);
     }
 
     XmlDatasetWriter(Document parent, Element root) {
@@ -24,10 +24,10 @@ public class XmlDatasetWriter extends XmlWriter {
 
         for (DatasetColumn col : dataset) {
             if (!col.isEmpty()) {
-                Element xmlCol = createElement("column");
-                xmlCol.setAttribute("name", col.getName());
+                Element xmlCol = createElement(DatasetHandler.TAG_COLUMN);
+                xmlCol.setAttribute(DatasetHandler.ATTR_COLUMN_NAME, col.getName());
                 for (DatasetCell cell : col) {
-                    Element xmlRow = createElement("value");
+                    Element xmlRow = createElement(DatasetHandler.TAG_VALUE);
                     xmlRow.setTextContent(cell.toString());
                     xmlCol.appendChild(xmlRow);
                 }

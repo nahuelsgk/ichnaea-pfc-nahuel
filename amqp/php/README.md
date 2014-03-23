@@ -14,6 +14,10 @@ This command will install the dependent libraries
 
     php composer.phar install --no-dev
 
+This command will run the tests
+
+	./vendor/phpunit/phpunit/phpunit.php ./src/
+
 ### Create a RabbitMQ user
 
 The Java library does not need a rabbitmq user, but the php does.

@@ -26,6 +26,9 @@ custom_predict_slda <- function( object, newdata, ... ) {
 ##### - real: factor with the actual class labels
 ##### - pred: factor with the predicted class labels
 accuracy <- function(real, pred) {
+  real <- factor(real, levels=c(1,-1))
+  pred <- factor(pred, levels=c(1,-1))
+  
   if (length(real) == length(pred)) {
     sum(pred == real) / length(pred)
   }
@@ -114,11 +117,11 @@ predict_from_signature <- function( sample, signature , train_data ){
   
   # KNN building
   ##############################################################################
-  else if ( signature$alg == "knn" ){
-    m <- class::knn( train = train_data[ , signature$comb, drop=FALSE  ] , test = sample[ , signature$comb, drop=FALSE  ] , 
-                     cl = train_data[ , "CLASS" ] , k = signature$args[[ 1 ]] , prob = FALSE )
-    m_pred <- m
-  } 
+  #else if ( signature$alg == "knn" ){
+  #  m <- class::knn( train = train_data[ , signature$comb, drop=FALSE  ] , test = sample[ , signature$comb, drop=FALSE  ] , 
+  #                   cl = train_data[ , "CLASS" ] , k = signature$args[[ 1 ]] , prob = FALSE )
+  #  m_pred <- m
+  #} 
   ##############################################################################
   
   # LR building
@@ -176,13 +179,19 @@ predict_from_signature <- function( sample, signature , train_data ){
     sink()
     
     m_rvm_pred <- predict(m, sample[, signature$comb ])
-    if (m_rvm_pred < 0.5) {
+    if (is.na(m_rvm_pred)) {
+      m_pred <- UNKNOWN
+    }
+    else if (m_rvm_pred < 0.5) {
       m_pred <- HUMAN
     } else {
       m_pred <- ANIMAL
     }
     
-  } 
+  }
+  else {
+      m_pred <- UNKNOWN 
+  }
   ##############################################################################
   
   as.factor(m_pred)
@@ -465,11 +474,11 @@ build_all_section_models <- function(sections_train_data , active_sections){
 
 feature_selection <- function(available_attrs, data, folds) {
   models <- c()
-  
+
   # SLDA building
   if (DEBUG) { cat(paste(">>>SLDA", "\n")) }
   models <- rbind(models, search(available_attrs, data, folds, build_slda))
-  
+
   # SVM with linear, polynomic and radial kernels building
   for (c in SVM_C_VALUES) {
     if (DEBUG) { cat(paste(">>>SVM lin c=", c, "\n")) }
@@ -539,40 +548,58 @@ blind_search <- function(available_attrs, data, folds, build, ...) {
 
 forward_search <- function(available_attrs, data, folds, build, ...) {
   models <- list()
+  total_attributes <- available_attrs
   
-  selected_attrs <- NULL
-  selected_perfs <- NULL
-  
-  # Iterating until no available attributes remain
-  while (length(available_attrs) > 0) {
-    performances <- data.frame(available_attrs, rep(1, length(available_attrs)), stringsAsFactors=FALSE)
-    colnames(performances) <- c("attr", "perf")
-
-    attr_models <- NULL
-    # Looking for the best attribute to include
-    for (attr in available_attrs) {
-      attr_models[[attr]] <- build(union(selected_attrs, attr), data, folds, ...)
-      performances$perf[performances$attr == attr] <- attr_models[[attr]]$perf
+  for (i in 1:MODELS_GUIDED_SEARCH_REPETITIONS) {
+    selected_attrs <- NULL
+    selected_perfs <- NULL
+    
+    first <- TRUE
+    
+    n <- length(available_attrs)
+    
+    # Iterating until max number of attributes reached
+    while (length(available_attrs) > max(n - MODELS_ATTRS_SIZE_LIMIT, 0)) {
+      performances <- data.frame(available_attrs, rep(1, length(available_attrs)), stringsAsFactors=FALSE)
+      colnames(performances) <- c("attr", "perf")
+      
+      attr_models <- NULL
+      # Looking for the best attribute to include
+      for (attr in available_attrs) {
+        attr_models[[attr]] <- build(union(selected_attrs, attr), data, folds, ...)
+        performances$perf[performances$attr == attr] <- attr_models[[attr]]$perf
+      }
+      
+      best_perf <- max(performances$perf)
+      best_attr <- performances$attr[performances$perf == best_perf]
+      
+      # Ties are broken at random
+      if(length(best_attr) > 1) {
+        best_attr <- sample(best_attr, 1)
+      }
+      
+      if ( DEBUG ){ cat( paste( "Chosen attribute", best_attr, "with a performance of", best_perf, "\n")) }
+      
+      # Updating with the best models
+      models[[length(models) + 1]] <- attr_models[[best_attr]]
+     
+      if (first) {
+        attr_to_remove <- best_attr
+        if (DEBUG) {cat(paste("Marked to remove:", attr_to_remove, "\n"))}
+        first <- FALSE
+      }
+      
+      selected_perfs <- c(selected_perfs, best_perf)
+      selected_attrs <- union(selected_attrs, best_attr)
+      available_attrs <- setdiff(available_attrs, best_attr)
+      if(DEBUG) { print(selected_attrs) }
     }
     
-    best_perf <- max(performances$perf)
-    best_attr <- performances$attr[performances$perf == best_perf]
-    
-    # Ties are broken at random
-    if(length(best_attr) > 1) {
-      best_attr <- sample(best_attr, 1)
-    }
-    
-    if ( DEBUG ){ cat( paste( "Chosen attribute", best_attr, "with a performance of", best_perf, "\n")) }
-    
-    # Updating with the best models
-    models[[length(models) + 1]] <- attr_models[[best_attr]]
-    
-    selected_perfs <- c(selected_perfs, best_perf)
-    selected_attrs <- union(selected_attrs, best_attr)
-    available_attrs <- setdiff(available_attrs, best_attr)
+    total_attributes <- setdiff(total_attributes, attr_to_remove)
+    available_attrs <- total_attributes
+    if (DEBUG) {cat(paste("Removed attribute", attr_to_remove, "\n"))}
   }
-
+  
   models
 }
 

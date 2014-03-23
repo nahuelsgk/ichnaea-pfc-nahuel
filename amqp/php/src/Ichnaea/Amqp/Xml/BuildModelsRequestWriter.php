@@ -3,7 +3,6 @@
 namespace Ichnaea\Amqp\Xml;
 
 use Ichnaea\Amqp\Model\BuildModelsRequest;
-use Ichnaea\Amqp\Model\BuildModelsFakeRequest;
 
 /**
  * An XML writer that writes BuildModelsRequest objects to xml
@@ -34,12 +33,6 @@ class BuildModelsRequestWriter extends Writer
         $xmlRoot = $this->getRoot();
         $xmlRoot->setAttribute("id", $req->getId());
         $xmlRoot->setAttribute("type", "build_models");
-
-        if ($req instanceof BuildModelsFakeRequest) {
-            $xmlRoot->setAttribute("fake", $req->getDuration().":".$req->getInterval());
-
-            return;
-        }
 
         // write dataset
         if (!$req->getDataset()->isEmpty()) {

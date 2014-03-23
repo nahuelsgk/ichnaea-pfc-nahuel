@@ -12,7 +12,7 @@ import edu.upc.ichnaea.amqp.model.AgingValue;
 public class XmlAgingWriter extends XmlWriter {
 
     XmlAgingWriter() throws ParserConfigurationException {
-        super("aging");
+        super(AgingHandler.TAG_AGING);
     }
 
     XmlAgingWriter(Document parent, Element root) {
@@ -23,10 +23,10 @@ public class XmlAgingWriter extends XmlWriter {
         Element root = getRoot();
 
         for (AgingTrial trial : aging) {
-            Element xmlTrial = createElement("trial");
+            Element xmlTrial = createElement(AgingHandler.TAG_TRIAL);
             for (AgingValue value : trial) {
-                Element xmlValue = createElement("value");
-                xmlValue.setAttribute("key", value.stringKey());
+                Element xmlValue = createElement(AgingHandler.TAG_VALUE);
+                xmlValue.setAttribute(AgingHandler.ATTR_KEY, value.stringKey());
                 xmlValue.setTextContent(value.stringValue());
                 xmlTrial.appendChild(xmlValue);
             }

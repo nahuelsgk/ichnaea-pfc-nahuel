@@ -6,21 +6,21 @@ SCRIPTPATH=`pwd -P`
 popd > /dev/null
 
 AGING=""
-DATAFILE=""
-OUTFILE=""
+MODELS=""
 ICHNAEADIR=""
 FAKE=""
-INSTALL=""
 MEGAVALIDATION=""
-SECTION="1"
+SECTION=""
+ARGUMENT=""
 SEASON="Hivern"
 DEBUG=""
 VERBOSE=""
+SECTION="build"
 RBIN=`which R`
 
 function USAGE {
 	echo "Ichnaea wrapper by Miguel Ibero <miguel@ibero.me>"
-	echo "usage: $0 --install --debug --aging=path/to/aging [--output=file.zip] [--fake=duration:interval] data.csv"
+	echo "usage: $0 --debug --verbose --aging=path/to/aging [--models=file.zip] [intall|build data.csv|predict data_test.csv|fake duration:interval]"
 	exit 0
 }
 
@@ -28,7 +28,7 @@ function PRINT_LOG {
 	echo -e "$1" 
 }
 
-OPTS=`getopt -o scfoid -l "aging:,output:,fake:,install,debug,verbose,megavalidation" -- "$@"`
+OPTS=`getopt -o dvgam -l "aging:,models:,fake:,install,debug,verbose,megavalidation" -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -39,13 +39,11 @@ eval set -- "$OPTS"
 while true
 do
     case "$1" in
-    	-i|--install) INSTALL="1"; shift 1;;
     	-d|--debug) DEBUG="1"; shift 1;;
 		-v|--verbose) VERBOSE="1"; shift 1;;
-		-m|--megavalidation) MEGAVALIDATION="1"; shift 1;;
+		-g|--megavalidation) MEGAVALIDATION="1"; shift 1;;
         -a|--aging) AGING="$2"; shift 2;;
-        -o|--output) OUTFILE="$2"; shift 2;;
-        -f|--fake) FAKE="$2"; shift 2;;
+        -m|--models) MODELS="$2"; shift 2;;
         --) shift; break;;
 		-*) PRINT_LOG "invalid option $1"; USAGE; shift; break;;
 		\?) PRINT_LOG "unknown option: -$OPTARG"; USAGE; shift; break;;
@@ -56,11 +54,17 @@ done
 
 shift $(($OPTIND - 1))
 
-DATAFILE="$1"
+SECTION="$1"
+ARGUMENT="$2"
 
 if [ "$DEBUG" == "1" ]
 then
 	VERBOSE="1"
+fi
+
+if [ "$ICHNAEADIR" == "" ]
+then
+	ICHNAEADIR="$SCRIPTPATH/ichnaea"
 fi
 
 function TIME_START {
@@ -105,109 +109,150 @@ function CALC {
 	echo "$1" | bc
 }
 
-TIME_START
-
-if [ "$FAKE" == "" ]
-then
-
-	if [ "$ICHNAEADIR" == "" ]
-	then
-		ICHNAEADIR="$SCRIPTPATH/ichnaea"
-	fi
+function RCHECK {
 
 	if [ "$RBIN" == "" ]
 	then
 		PRINT_LOG "binary R executable was not found on the path"
 		exit
 	fi
+}
 
-	if [ "$INSTALL" == "1" ]
+TIME_START
+
+if [ "$SECTION" == "build" ]
+then
+	RCHECK
+
+	DATAFILE="$ARGUMENT"
+
+	if [ "$DATAFILE" == "" ]
 	then
-		PRINT_LOG "installing required R modules"
-		pushd $ICHNAEADIR/src > /dev/null
-		REXEC install.R
-		popd > /dev/null
-	else
-
-		if [ "$DATAFILE" == "" ]
-		then
-			PRINT_LOG "no input file specified"
-			USAGE
-		fi
-
-		if [ "$AGING" == "" ]
-		then
-			PRINT_LOG "no aging specified"
-			USAGE
-		fi
-		if [ ! -d "$AGING" ]
-		then
-			PRINT_LOG "aging '$AGING' is not a directory"
-			USAGE	
-		fi
-
-		if [ ! -f "$DATAFILE" ]
-		then
-			PRINT_LOG "could not read data file $DATAFILE"
-			USAGE
-		fi
-
-		TMPDIR=`mktemp -d`
-		mkdir -p $TMPDIR
-		if [ "$DEBUG" == "1" ]
-		then
-			PRINT_LOG "working in temp directory $TMPDIR"
-		fi
-		cp -r $ICHNAEADIR/* $TMPDIR
-		mkdir -p $TMPDIR/data
-		mkdir -p $TMPDIR/data_objects
-		cp -r $AGING $TMPDIR/data/aging
-		cp $DATAFILE $TMPDIR/data/cyprus.csv
-		pushd $TMPDIR/src > /dev/null	
-
-		PRINT_LOG "building dataset..."
-		REXEC section_dataset_building.R
-		if [ "$ERR" != "" ]
-		then
-			PRINT_LOG "error building dataset:"
-			PRINT_LOG "$ERR"
-			exit -1
-		fi
-		PRINT_LOG "building models..."
-
-		if [ "$MEGAVALIDATION" == "" ]
-		then
-			REXEC section_models_building.R $SEASON
-		else
-			REXEC megavalidation.R
-		fi
-		if [ "$ERR" != "" ]
-		then
-			PRINT_LOG "error building models:"
-			PRINT_LOG "$ERR"
-			exit -1
-		fi
-
-		ZIPFILE=$TMPDIR/build_models.zip
-		zip -j $ZIPFILE $TMPDIR/data_objects/*
-
-		if [ "$OUTFILE" == "" ]
-		then
-			cat $ZIPFILE
-		else
-			cp $ZIPFILE $OUTFILE
-		fi
-
-		popd > /dev/null
-
-		if [ "$DEBUG" == "" ]
-		then
-			rm -rf $TMPDIR
-		fi
+		PRINT_LOG "no input file specified"
+		USAGE
 	fi
-else
-	FAKE_DURATION=`echo $FAKE | sed -e "s/\(.*\):.*/\1/g"`
-	FAKE_INTERVAL=`echo $FAKE | sed -e "s/.*:\(.*\)/\1/g"`
+
+	if [ "$AGING" == "" ]
+	then
+		PRINT_LOG "no aging specified"
+		USAGE
+	fi
+	if [ ! -d "$AGING" ]
+	then
+		PRINT_LOG "aging '$AGING' is not a directory"
+		USAGE	
+	fi
+
+	if [ ! -f "$DATAFILE" ]
+	then
+		PRINT_LOG "could not read data file $DATAFILE"
+		USAGE
+	fi
+
+	TMPDIR=`mktemp -d`
+	mkdir -p $TMPDIR
+	if [ "$DEBUG" == "1" ]
+	then
+		PRINT_LOG "working in temp directory $TMPDIR"
+	fi
+	cp -r $ICHNAEADIR/* $TMPDIR
+	mkdir -p $TMPDIR/data
+	mkdir -p $TMPDIR/data_objects
+	cp -r $AGING $TMPDIR/data/aging
+	cp $DATAFILE $TMPDIR/data/cyprus.csv
+	pushd $TMPDIR/src > /dev/null	
+
+	PRINT_LOG "building dataset..."
+	REXEC section_dataset_building.R
+	if [ "$ERR" != "" ]
+	then
+		PRINT_LOG "error building dataset:"
+		PRINT_LOG "$ERR"
+		exit -1
+	fi
+	PRINT_LOG "building models..."
+
+	if [ "$MEGAVALIDATION" == "" ]
+	then
+		REXEC section_models_building.R $SEASON
+	else
+		REXEC megavalidation.R
+	fi
+	if [ "$ERR" != "" ]
+	then
+		PRINT_LOG "error building models:"
+		PRINT_LOG "$ERR"
+	fi
+
+	ZIPFILE=$TMPDIR/build_models.zip
+	zip -j -r $ZIPFILE $TMPDIR/data_objects
+
+	if [ "$MODELS" == "" ]
+	then
+		cat $ZIPFILE
+	else
+		cp $ZIPFILE $MODELS
+	fi
+
+	popd > /dev/null
+
+	if [ "$DEBUG" == "" ]
+	then
+		rm -rf $TMPDIR
+	fi
+
+elif [ "$SECTION" == "predict" ]
+then
+	RCHECK
+
+	DATAFILE="$ARGUMENT"
+
+	TMPDIR=`mktemp -d`
+	mkdir -p $TMPDIR/data_objects
+	if [ "$DEBUG" == "1" ]
+	then
+		PRINT_LOG "working in temp directory $TMPDIR"
+	fi
+	cp -r $ICHNAEADIR/* $TMPDIR
+	mkdir -p $TMPDIR/data
+	mkdir -p $TMPDIR/data_objects
+	cp $DATAFILE $TMPDIR/data/cyprus_test.csv
+	unzip $MODELS -d $TMPDIR/data_objects
+
+	pushd $TMPDIR/src > /dev/null
+
+	PRINT_LOG "predicting models..."
+
+	REXEC section_testing.R
+	
+	if [ "$ERR" != "" ]
+	then
+		PRINT_LOG "error predicting models:"
+		PRINT_LOG "$ERR"
+	fi
+
+	popd > /dev/null
+
+	if [ "$DEBUG" == "" ]
+	then
+		rm -rf $TMPDIR
+	fi
+
+elif [ "$SECTION" == "install" ]
+then
+
+	RCHECK
+
+	PRINT_LOG "installing required R modules"
+	pushd $ICHNAEADIR/src > /dev/null
+	REXEC install.R
+	popd > /dev/null
+
+elif [ "$SECTION" == "fake" ]
+then
+
+	FAKE_DURATION=`echo $ARGUMENT | sed -e "s/\(.*\):.*/\1/g"`
+	FAKE_INTERVAL=`echo $ARGUMENT | sed -e "s/.*:\(.*\)/\1/g"`
 	
 	if ! [[ "$FAKE_DURATION" =~ ^[0-9.]+$ || "$FAKE_INTERVAL" =~ ^[0-9.]+$ ]]
 	then
@@ -228,6 +273,11 @@ else
 		PRINT_LOG "finish: $FAKE_ENDTIME"
 		PRINT_LOG "----"
 	done
+
+else
+
+	PRINT_LOG "unknown section '$SECTION'"
+
 fi
 
 TIME_END

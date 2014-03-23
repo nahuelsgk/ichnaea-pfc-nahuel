@@ -10,10 +10,10 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "videlalvaro/php-amqplib": "2.0.*@dev"
+        "videlalvaro/php-amqplib": "2.2.5"
     },
     "require-dev": {
-        "ex-sqlite": "*",
+        "ext-sqlite3": "*",
         "silex/silex": "1.1.*@dev",
         "doctrine/dbal": "2.3.*",
         "phpunit/phpunit": "3.7.*"        

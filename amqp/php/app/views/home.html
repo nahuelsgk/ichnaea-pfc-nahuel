@@ -22,69 +22,70 @@
           <div class="panel">
             <div class="panel-heading">Add task</div>
 
-              <form id="build-models-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl">
-                <fieldset>
-                  <div class="alert alert-danger" ng-show="error">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{error}}
-                  </div>                     
+              <fieldset>
+                <div class="alert alert-danger" ng-show="error">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  {{error}}
+                </div>                     
 
-                <ul class="nav nav-tabs">
-                  <li class="active"><a href="#build-models-form-real" data-toggle="tab">Real</a></li>
-                  <li><a href="#build-models-form-fake" data-toggle="tab">Fake</a></li>
-                </ul>
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#build-models-task-form-pane" data-toggle="tab">Build Models</a></li>
+                <li><a href="#predict-models-task-form-pane" data-toggle="tab">Predict Models</a></li>
+                <li><a href="#fake-task-form-pane" data-toggle="tab">Fake</a></li>
+              </ul>
 
-                <div class="tab-content">
-                  <div class="tab-pane active" id="build-models-form-real">
+              <div class="tab-content">
+                <div class="tab-pane active" id="build-models-task-form-pane">
+                  <form id="build-models-task-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="BuildModelsTaskFormCtrl">
                     <div class="form-group">
-                      <label class="control-label col-lg-2" for="build-models-form-dataset">Dataset</label>
+                      <label class="control-label col-lg-2" for="build-models-task-form-dataset">Dataset</label>
                       <div class="col-lg-10">
                         <input class="form-control" type="file" name="dataset" ng-model="task.dataset" file-upload/>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-lg-2" for="build-models-form-dataset">Dataset format</label>
+                      <label class="control-label col-lg-2" for="build-models-task-form-dataset">Dataset format</label>
                       <div class="col-lg-10">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" ng-model="task.dataset_format" value="csv" checked>
+                            <input type="radio" name="dataset-format" id="build-models-task-form-dataset-format" ng-model="task.dataset_format" value="csv" checked>
                             CSV
                           </label>
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="dataset-format" id="build-models-form-dataset-format" ng-model="task.dataset_format" value="xml">
+                            <input type="radio" name="dataset-format" id="build-models-task-form-dataset-format" ng-model="task.dataset_format" value="xml">
                             XML
                           </label>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-lg-2" for="build-models-form-aging">Aging</label>
+                      <label class="control-label col-lg-2" for="build-models-task-form-aging">Aging</label>
                       <div class="col-lg-10">
                         <input class="form-control" type="file" name="aging" ng-model="task.aging" file-upload multiple/>
                         <p class="help-block">You can select multiple files.</p>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-lg-2" for="build-models-form-aging">Aging format</label>
+                      <label class="control-label col-lg-2" for="build-models-task-form-aging">Aging format</label>
                       <div class="col-lg-10">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="aging-format" id="build-models-form-aging-format" value="tab" ng-model="task.aging_format" checked>
+                            <input type="radio" name="aging-format" id="build-models-task-form-aging-format" value="tab" ng-model="task.aging_format" checked>
                             tabbed data
                           </label>
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="aging-format" id="build-models-form-aging-format" ng-model="task.aging_format" value="xml">
+                            <input type="radio" name="aging-format" id="build-models-task-form-aging-format" ng-model="task.aging_format" value="xml">
                             XML
                           </label>
                         </div>
                       </div>
                     </div>
                     <div class="form-group" ng-show="task.aging_format=='tab'">
-                      <label class="control-label col-lg-2" for="build-models-form-aging">Aging filename format</label>
+                      <label class="control-label col-lg-2" for="build-models-task-form-aging">Aging filename format</label>
                       <div class="col-lg-10">
                         <input type="text" class="form-control" name="aging-filename-format" ng-model="task.aging_filename_format" />
                         <p class="help-block">How the aging file names are related to the dataset columns.</p>
@@ -95,40 +96,81 @@
                         <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
                       </div>
                     </div>
-                  </div>
-                  <div class="tab-pane" id="build-models-form-fake">
+                  </form>
+                </div>
+                <div class="tab-pane" id="predict-models-task-form-pane">
+                  <form id="predict-models-task-form" class="form-horizontal" method="POST" enctype="multipart/form-data" ng-controller="PredictModelsTaskFormCtrl">
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="predict-models-task-form-dataset">Dataset</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" type="file" name="dataset" ng-model="task.dataset" file-upload/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="predict-models-task-form-dataset">Dataset format</label>
+                      <div class="col-lg-10">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="dataset-format" id="predict-models-task-form-dataset-format" ng-model="task.dataset_format" value="csv" checked>
+                            CSV
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="dataset-format" id="predict-models-task-form-dataset-format" ng-model="task.dataset_format" value="xml">
+                            XML
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2" for="predict-models-task-form-data">Data</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" type="file" name="data" ng-model="task.data" file-upload/>
+                        <p class="help-block">Data returned by the build-models task in zip format.</p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" name="submit-real" class="btn btn-default" ng-click="addTask(task)">Submit</button>
+                      </div>
+                    </div>                    
+                  </form>
+                </div>
+                <div class="tab-pane" id="fake-task-form-pane">
+                  <form id="fake-task-form" class="form-horizontal" method="POST" ng-controller="FakeTaskFormCtrl">
                     <p class="lead">
                       A fake request sends the data to the amqp server but the server does not process anything,
                       it only waits for a given time. It is useful to test server responses.
                     </p>
                     <div class="form-group">
-                      <label class="control-label col-lg-2" for="build-models-form-fake-duration">Duration</label>
+                      <label class="control-label col-lg-2" for="fake-task-form-duration">Duration</label>
                       <div class="col-lg-2">
                         <div class="input-group">
-                          <input type="number" class="form-control" name="fake_duration" ng-model="task.fake_duration" id="build-models-form-fake-duration" />
+                          <input type="number" class="form-control" name="duration" ng-model="task.duration" id="fake-task-form-duration" />
                           <span class="input-group-addon">seconds</span>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-lg-2" for="build-models-form-fake-interval">Interval</label>
+                      <label class="control-label col-lg-2" for="fake-task-form-interval">Interval</label>
                       <div class="col-lg-2">
                         <div class="input-group">
-                          <input type="number" class="form-control" name="fake_interval" ng-model="task.fake_interval" id="build-models-form-fake-interval" />
+                          <input type="number" class="form-control" name="interval" ng-model="task.interval" id="fake-task-form-intervall" />
                           <span class="input-group-addon">seconds</span>
                         </div>
                       </div>
-                      </div>
+                    </div>
                     <div class="form-group">
                       <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" name="submit-fake" class="btn btn-default" ng-click="addFakeTask(task)">Submit</button>
+                        <button type="submit" name="submit-fake" class="btn btn-default" ng-click="addTask(task)">Submit</button>
                       </div>
                     </div>
-                  </div>
+                  </form>
                 </div>
-              </form>
+              </div>
             </div>
-          <div class="panel" ng-controller="BuildModelsTaskListCtrl">
+          <div class="panel" ng-controller="TaskListCtrl">
             <div class="panel-heading">Current tasks</div>
             <div class="alert alert-danger" ng-hide="updating">
               The task list stopped being updated because there was an error.
@@ -138,7 +180,7 @@
             </div> 
             <table class="table table-striped table-hover">
               <thead>
-                <tr><th style="width:20px;"></th><th>Id</th><th>Start</th><th>End</th><th>Progress</th><th style="width:110px"></th></tr>
+                <tr><th style="width:20px;"></th><th>Id</th><th>Type</th><th>Start</th><th>End</th><th>Progress</th><th style="width:110px"></th></tr>
               </thead>
               <tbody>
                 <tr ng-repeat="task in tasks" ng-class="{danger: task.error, success: task.progress == 1}">
@@ -147,6 +189,8 @@
                   </span>
                   </td>
                   <td>{{task.id}}
+                  </td>
+                  <td>{{task.type}}
                   </td>
                   <td>{{task.start | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                   <td>{{task.end | date:'yyyy-MM-dd HH:mm:ss'}}</td>

@@ -8,12 +8,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Ichnaea\Amqp\Connection;
 use Ichnaea\Amqp\Model\BuildModelsRequest;
 use Ichnaea\Amqp\Model\BuildModelsResponse;
+use Ichnaea\Amqp\Model\PredictModelsRequest;
+use Ichnaea\Amqp\Model\PredictModelsResponse;
+use Ichnaea\Amqp\Model\FakeRequest;
+use Ichnaea\Amqp\Model\FakeResponse;
+use Ichnaea\Amqp\Exception\IchnaeaExceptionInterface;
+
 
 // setup timezone to prevent error when using \DateTime
 date_default_timezone_set(@date_default_timezone_get());
 
-function getView($name)
-{
+function getView($name) {
     return file_get_contents(__DIR__.'/../views/'.$name);
 }
 
@@ -35,28 +40,33 @@ $app->before(function (Request $request) {
     }
 });
 
-$app->before(function () use ($app) {
+$app->before(function (Request $request) use ($app) {
     $app['ichnaea_amqp']->open();
 });
 
+$app->error(function (\Exception $e, $code) {
+    if($e instanceof IchnaeaExceptionInterface) {
+        $app['ichnaea_amqp'] = null;
+    }
+});
+
 $app->after(function () use ($app) {
-    $app['ichnaea_amqp']->close();
+    if(isset($app['ichnaea-amqp'])) {
+        $app['ichnaea_amqp']->close();
+    }
 });
 
 $app->get('/', function () use ($app) {
     return getView("home.html");
 });
 
-$app->get('/build-models-tasks', function (Request $req) use ($app) {
-    $sql = "SELECT * FROM build_models_tasks";
+$app->get('/tasks', function (Request $req) use ($app) {
+    $sql = "SELECT * FROM tasks";
     $data = $app['db']->fetchAll($sql);
-    foreach ($data as $k=>$v) {
-        $data[$k] = BuildModelsResponse::fromArray($v)->toArray();
-    }
-
-    return json_encode(array('build-models-tasks'=>$data));
+    return json_encode(array('tasks'=>$data));
 });
 
+<<<<<<< HEAD
 $app->post('/build-models-tasks', function (Request $req) use ($app) {
     echo "POST";
     $data = $req->request->get("build-models-task");
@@ -67,27 +77,61 @@ $app->post('/build-models-tasks', function (Request $req) use ($app) {
             'Summer'    => '0.5',
             'Winter'    => '0.0'
         );
+=======
+$app->post('/tasks', function (Request $req) use ($app) {
+    $data = $req->request->get("task");
+    if(is_string(($data))) {
+        $data = json_decode($data);
+    }
+    $type = '';
+    if(array_key_exists('type', $data)) {
+        $type = $data['type'];
+>>>>>>> feature/amqp
     }
 
-    $model = BuildModelsRequest::fromArray($data);
-    $app['ichnaea_amqp']->send($model);
-    $model = new BuildModelsResponse($model->getId());
-    $app['db']->insert('build_models_tasks', $model->toArray());
+    if($type == 'build-models') {
+        if(!array_key_exists('aging_positions', $data)) {
+            $data['aging_positions'] = array(
+                'Estiu'     => '0.5',
+                'Hivern'    => '0.0',
+                'Summer'    => '0.5',
+                'Winter'    => '0.0'
+            );
+        }
+        $model = BuildModelsRequest::fromArray($data);
+        $app['ichnaea_amqp']->send($model);
+        $model = new BuildModelsResponse($model->getId());
+        $data = $model->toArray();
+    } else if($type == 'predict-models') {
+        if(array_key_exists('data', $data)) {
+            $data['data'] = base64_decode($data['data']);
+        }
+        $model = PredictModelsRequest::fromArray($data);
+        $app['ichnaea_amqp']->send($model);
+        $model = new PredictModelsResponse($model->getId());
+        $data = $model->toArray();
+    } else if($type == 'fake') {
+        $model = FakeRequest::fromArray($data);
+        $app['ichnaea_amqp']->send($model);
+        $model = new FakeResponse($model->getId());
+        $data = $model->toArray();
+    } else {
+        return json_encode(array());
+    }
 
-    return json_encode(array('build-models-task'=>$model->toArray()));
+    $data['type'] = $type;
+    $app['db']->insert('tasks', $data);
+    return json_encode(array('task'=>$data));
 });
 
-$app->get('/build-models-tasks/{id}', function ($id) use ($app) {
-    $sql = "SELECT * FROM build_models_tasks WHERE id = ?";
+$app->get('/tasks/{id}', function ($id) use ($app) {
+    $sql = "SELECT * FROM tasks WHERE id = ?";
     $data = $app['db']->fetchAssoc($sql, array($id));
-    $data = BuildModelsResponse::fromArray($data)->toArray();
-
-    return json_encode(array('build-models-task'=>$data));
+    return json_encode(array('task'=>$data));
 });
 
-$app->delete('/build-models-tasks/{id}', function ($id) use ($app) {
-    $app['db']->delete('build_models_tasks', array('id' => $id));
-
+$app->delete('/tasks/{id}', function ($id) use ($app) {
+    $app['db']->delete('tasks', array('id' => $id));
     return json_encode(array());
 });
 

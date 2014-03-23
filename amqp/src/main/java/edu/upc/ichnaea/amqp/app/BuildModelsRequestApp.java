@@ -20,7 +20,6 @@ import edu.upc.ichnaea.amqp.cli.WriteFileOption;
 import edu.upc.ichnaea.amqp.client.BuildModelsRequestClient;
 import edu.upc.ichnaea.amqp.data.CsvDatasetReader;
 import edu.upc.ichnaea.amqp.data.AgingFolderReader;
-import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetAging;
@@ -42,7 +41,6 @@ public class BuildModelsRequestApp extends App {
     String mResponseQueue = "ichnaea.build-models.response";
     String mRequestQueue = "ichnaea.build-models.request";
     String mRequestExchange = "ichnaea.build-models.request";
-    String mFake = null;
     boolean mDebug = false;
 
     public static void main(String[] args) {
@@ -105,14 +103,6 @@ public class BuildModelsRequestApp extends App {
             }
         }.setDefaultValue(mResponseQueue).setDescription(
                 "The queue to listen for responses."));
-        options.add(new StringOption("fake") {
-            @Override
-            public void setValue(String value) {
-                mFake = value;
-            }
-        }.setDefaultValue(mFake)
-                .setDescription(
-                        "Do a fake request. Format should be T:I where T are the total seconds and I are the update seconds."));
         options.add(new BooleanOption("debug") {
             @Override
             public void setValue(boolean value) {
@@ -171,11 +161,9 @@ public class BuildModelsRequestApp extends App {
     @Override
     protected void setup() throws IOException {
         super.setup();
-        String id = "java.BuildModelsRequestClient";
+        String id = "java.BuildModelsRequestApp."+getRandom();
         BuildModelsRequest request;
-        if (mFake != null) {
-            request = new BuildModelsFakeRequest(id, mFake);
-        } else if (mDatasetReader != null) {
+        if (mDatasetReader != null) {
             request = new BuildModelsRequest(id, readDataset(), readAging());
         } else {
             throw new InvalidOptionException("No dataset specified");

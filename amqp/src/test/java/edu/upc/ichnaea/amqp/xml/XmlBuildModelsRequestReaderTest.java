@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import edu.upc.ichnaea.amqp.IOUtils;
-import edu.upc.ichnaea.amqp.model.BuildModelsFakeRequest;
 import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.DatasetColumn;
@@ -40,18 +39,6 @@ public class XmlBuildModelsRequestReaderTest {
 
         column = dataset.get("test2");
         assertEquals(2, column.size());
-    }
-
-    @Test
-    public void testFakeXML() throws SAXException, IOException {
-        String xml = "<request id=\"432\" type=\"build_models\" fake=\"10:1\" />";
-
-        BuildModelsRequest message = new XmlBuildModelsRequestReader()
-                .read(xml);
-        assertTrue(message instanceof BuildModelsFakeRequest);
-        BuildModelsFakeRequest fake = (BuildModelsFakeRequest) message;
-        assertEquals(10, fake.getDuration(), 0.000001);
-        assertEquals(1, fake.getInterval(), 0.000001);
     }
 
     @Test

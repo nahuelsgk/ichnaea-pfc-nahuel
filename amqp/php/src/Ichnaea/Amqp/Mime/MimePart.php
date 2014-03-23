@@ -48,8 +48,9 @@ class MimePart
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($body="")
     {
+        $this->body = $body;
     }
 
     /**

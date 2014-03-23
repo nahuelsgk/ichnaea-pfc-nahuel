@@ -20,32 +20,32 @@ public class XmlBuildModelsResponseWriter extends XmlWriter {
     private byte[] mData;
 
     public XmlBuildModelsResponseWriter() throws ParserConfigurationException {
-        super("response");
+        super(ProgressResponseHandler.TAG_RESPONSE);
     }
 
     public XmlBuildModelsResponseWriter build(BuildModelsResponse resp) {
         Element root = getRoot();
 
-        root.setAttribute(BuildModelsResponseHandler.ATTR_ID,
+        root.setAttribute(ProgressResponseHandler.ATTR_ID,
                 String.valueOf(resp.getId()));
-        root.setAttribute(BuildModelsResponseHandler.ATTR_TYPE,
-                BuildModelsResponseHandler.TYPE);
+        root.setAttribute(ProgressResponseHandler.ATTR_TYPE,
+                ProgressResponseHandler.TYPE);
 
         if (resp.hasError()) {
-            root.setAttribute(BuildModelsResponseHandler.ATTR_ERROR,
+            root.setAttribute(ProgressResponseHandler.ATTR_ERROR,
                     resp.getError());
         }
-        root.setAttribute(BuildModelsResponseHandler.ATTR_PROGRESS,
+        root.setAttribute(ProgressResponseHandler.ATTR_PROGRESS,
                 String.valueOf(resp.getProgress()));
 
         SimpleDateFormat f = new SimpleDateFormat(
-                BuildModelsResponseHandler.CALENDAR_FORMAT);
+                ProgressResponseHandler.CALENDAR_FORMAT);
         if (resp.hasStart()) {
-            root.setAttribute(BuildModelsResponseHandler.ATTR_START,
+            root.setAttribute(ProgressResponseHandler.ATTR_START,
                     f.format(resp.getStart().getTime()));
         }
         if (resp.hasEnd()) {
-            root.setAttribute(BuildModelsResponseHandler.ATTR_END,
+            root.setAttribute(ProgressResponseHandler.ATTR_END,
                     f.format(resp.getEnd().getTime()));
         }
         mData = resp.getData();

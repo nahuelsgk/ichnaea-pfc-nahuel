@@ -30,6 +30,20 @@ standardize <- function( vector ){
 	# returning the standardized vector, its mean and its standard deviation
 	list( std_vector = vector , mean = m , sd = s )
 }
+
+capalog10 <- function(x){
+  for (i in 1:length(x)) {
+    if (!is.na(x[i])) {
+      if (x[i] <= 0) {
+        x[i] <- 0
+      } else {
+        x[i] <- log10(x[i])
+      }
+    }
+  }
+  x
+}
+
 ###############################################################################################################################################################
 
 
@@ -44,11 +58,13 @@ standardize <- function( vector ){
 ##### Params:
 ##### 	- data: data.frame containing the data that wants to be processed
 #####	- standardize: if TRUE data will be standardized
-process <- function( data , standardize=FALSE ){
-	# applying log10 only to scientific notation attributes
-	# an EPSILON is added to avoid log10(1) = 0 since the detection threshold is 1 and maybe this attribute will be used as a denominator in a ratio
-	log10_attrs <- intersect( colnames( data ) , LOG_10_ATTRS )
-	data[ , log10_attrs ] <- log10( data[ , log10_attrs ] + EPSILON )
+process <- function(data, standardize=FALSE){
+	log10_attrs <- intersect(colnames(data), LOG_10_ATTRS)
+	
+	for (attr in log10_attrs) {
+	  data[, attr] <- capalog10(data[, attr])
+	}
+  
 	###########################################################
 	
 	# creating derived variables, added as new columns on the data.frame data
@@ -63,18 +79,18 @@ process <- function( data , standardize=FALSE ){
 	if ( "FC" %in% colnames( data ) && "FE" %in% colnames( data ) )				data$FC_FE 			<- data$FC - data$FE
 	if ( "SOMCPH" %in% colnames( data ) && "RYC2056" %in% colnames( data ) )	data$SOMCPH_RYC2056 <- data$SOMCPH - data$RYC2056
 	if ( "FC" %in% colnames( data ) && "RYC2056" %in% colnames( data ) )		data$FC_RYC2056 	<- data$FC - data$RYC2056
-	#exception: creating ratio before applying log10 only on HBSA type variables
+	
+  #exception: creating ratio before applying log10 only on HBSA type variables
 	if ( "HBSA.Y" %in% colnames( data ) && "HBSA.T" %in% colnames( data ) ){
-		data$HBSAY_HBSAT <- data$HBSA.Y / data$HBSA.T
-		data$HBSAY_HBSAT <- log10( data$HBSAY_HBSAT + EPSILON )
-	}	
-	if ( "HBSA.Y" %in% colnames( data ) ) data$HBSA.Y <- log10( data$HBSA.Y + EPSILON )
-	if ( "HBSA.T" %in% colnames( data ) ) data$HBSA.T <- log10( data$HBSA.T + EPSILON )
+	  data$HBSAY_HBSAT <- data$HBSA.Y / data$HBSA.T
+    data$HBSAY_HBSAT <- log10(data$HBSAY_HBSAT)
+	}
+	if ( "HBSA.Y" %in% colnames( data ) ) data$HBSA.Y <- capalog10(data$HBSA.Y)  
+	if ( "HBSA.T" %in% colnames( data ) ) data$HBSA.T <- capalog10(data$HBSA.T)
 	###########################################################
-
-  
+	
 	# standardization
-	if ( standardize == TRUE ){
+	if ( standardize ){
 		# attributes to be standardized, notice names(data) contains recent created ratios
 		attrs_std <- setdiff( colnames( data ) , NON_STD_ATTRS )
 		# storing variables for the mean and standard deviation of each attribute
