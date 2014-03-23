@@ -13,7 +13,7 @@ class TrainingController extends Controller
 	 * Controller to list all trainable trainings
 	 * 
 	 */
-	public function trainingListAction()
+	public function predictableTrainingListAction()
 	{
 		$trainingService       = $this->get('ichnaea.trainingService');
 		$trainableTrainingList = $trainingService->getTrainableTrainingList();
@@ -23,6 +23,16 @@ class TrainingController extends Controller
 				array(
 					'trainings' => $trainableTrainingList
 				)
+		);
+	}
+	
+	public function listTrainableMatrixsAction()
+	{
+		$ichnaeaService = $this->get('ichnaea.service');
+		$matrixs = $ichnaeaService->getTrainableMatrixs();
+		return $this->render(
+				'IchnaeaWebAppTrainingBundle::trainable_matrixs.html.twig',
+				array('matrixs' => $matrixs)
 		);
 	}
 	/**

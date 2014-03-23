@@ -110,14 +110,6 @@ class TrainingService{
 			$training->setDescription($description);
 		}
 		
-		/*
-		if(!empty($k1))               $training->setK1($k1);
-		if(!empty($k2))               $training->setK2($k2);
-		if(!empty($best_models))      $training->setBestModels($best_models);
-		if(!empty($min_size_var_set)) $training->setMinSizeVariableSet($min_size_var_set);
-		if(!empty($max_size_var_set)) $training->setMaxSizeVariableSet($max_size_var_set);
-		if(!empty($type_of_search))   $training->setTypeOfSearch($type_of_search);
-		*/
 	    if(!empty($columns_selection))	{
 	    	foreach($columns_selection as $k => $v){
 	    		$column = $this->em->getRepository("MatrixBundle:VariableMatrixConfig")->find($v);
@@ -179,11 +171,9 @@ class TrainingService{
 		{
 			$training->setProgress($progress);
 			$training->setError($status);
-			//Save the data
-			var_dump($progress);
-			if ($progress == '1.0'){
-				$training->setStatusAsFinished();
-			}
+			
+			if ($progress == '1.0') $training->setStatusAsFinished();
+			
 			$this->saveDataToFile($training->getId(), base64_decode($data));
 			$this->em->flush();
 		}

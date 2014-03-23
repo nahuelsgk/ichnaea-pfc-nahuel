@@ -2,6 +2,12 @@ ichnaea_web_app_training_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: IchnaeaWebAppTrainingBundle:Default:index }
 
+list_trainable_matrixs:
+    pattern: /trainable_matrixs
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:listTrainableMatrixs }
+    requirements:
+        _method: GET
+    
 create_training_form:
     pattern: /matrix/{matrix_id}/training
     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:trainingForm }
@@ -18,7 +24,7 @@ submit_training:
 
 training_list:
     pattern: /trainings/
-    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:trainingList }
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:predictableTrainingList }
     requirements:
         _method: GET
         

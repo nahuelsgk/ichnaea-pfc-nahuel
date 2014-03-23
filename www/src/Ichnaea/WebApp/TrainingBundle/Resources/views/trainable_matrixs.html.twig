@@ -1,0 +1,13 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Trainable matrixs{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1>Trainable matrixs</h1>
+  <legend>
+    Here you can select a matrix to train
+  </legend>
+  {% include 'MatrixBundle:Matrix:template_listing.html.twig' %}
+</div>
+{% endblock %}

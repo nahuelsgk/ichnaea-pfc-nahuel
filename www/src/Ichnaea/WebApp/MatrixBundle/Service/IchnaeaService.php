@@ -493,9 +493,18 @@ class IchnaeaService{
 		return $clone;
 	}
 	
+	
 	public function getTrainableMatrixs()
 	{
+			$query = $this->em
+			->createQueryBuilder()
+			->select('m')
+			->from('MatrixBundle:Matrix', 'm')
+			->where('m.visible = :vis')	
+			->setParameter('vis', '1')
+			->getQuery();
 			
+			return $query->getResult();
 	}
 }
 

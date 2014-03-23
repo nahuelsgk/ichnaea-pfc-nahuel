@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  9 MAR 2014 19:37
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  21 MAR 2014 18:39
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -729,7 +729,7 @@ Dictionary: glossaries-dictionary, Language: English
 )
 \openout2 = `title.aux'.
 
- (./title.tex <upc.png, id=339, 252.945pt x 56.21pt>
+ (./title.tex <upc.png, id=363, 252.945pt x 56.21pt>
 File: upc.png Graphic file (type png)
  <use upc.png>
 [1
@@ -780,29 +780,6 @@ Overfull \hbox (9.4534pt too wide) in paragraph at lines 55--63
 
  (./preface.tex
 ! Undefined control sequence.
-l.4 .... Actualment Ichnaea es troba en la versi\Â
-                                                  ´{o} 2.0, desenvolupat per...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4 ... Actualment Ichnaea es troba en la versi\Â´
-                                                  {o} 2.0, desenvolupat per ...
-
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
-
-! Undefined control sequence.
 l.4 ...z P\'{e}erez P\'{e}erez. La primera versi\Â
                                                   ´{o} va ser desenvolupada ...
 The control sequence at the end of the top line
@@ -831,26 +808,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
  []
 
 ! Undefined control sequence.
-l.6 ...ntar aquest sistema en un entorn distribu\Â
-                                                  ¨{i}t en xarxa. \\
+l.6 ...ntar aquest sistema en un entorn distribu\¨
+                                                  {i}t en xarxa. \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ...tar aquest sistema en un entorn distribu\Â¨
-                                                  {i}t en xarxa. \\
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
@@ -866,7 +830,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 
 LaTeX Warning: Reference `cha:developguide' on page 5 undefined on input line 1
-6.
+5.
 
 [5
 
@@ -930,8 +894,8 @@ l.4 ...tion=Es una fila de la matriu. Cont\Â´{e}.}
  (./background.tex
 Cap\'{\i }tol 1.
 ! Undefined control sequence.
-l.5 En el seg\Â
-               ¨{u}ent cap\'{i}tol es descriu breument l'univers Ichnaea, ne...
+l.5 En el seg\¨
+               {u}ent cap\'{i}tol es descriu breument l'univers MST e Ichnae...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -939,24 +903,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.5 En el seg\Â¨
-                {u}ent cap\'{i}tol es descriu breument l'univers Ichnaea, ne...
-
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 7.
 
 
-Overfull \hbox (2.18065pt too wide) in paragraph at lines 8--9
-\OT1/cmr/m/n/12 Ichnaea ^^Ses un pro-jecte que de-sen-volu-pa un fo-cus d'apre-
-nen-tatge de la m^^Raquina
- []
+LaTeX Warning: Citation `paper' on page 7 undefined on input line 8.
+
+
+LaTeX Warning: Citation `pfc' on page 7 undefined on input line 8.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
@@ -964,7 +918,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
  []
 
 
+LaTeX Warning: Citation `pfc' on page 7 undefined on input line 10.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+LaTeX Warning: Citation `pfc' on page 7 undefined on input line 12.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+
+ []
+
+
+Overfull \hbox (2.18065pt too wide) in paragraph at lines 15--16
+\OT1/cmr/m/n/12 Ichnaea ^^Ses un pro-jecte que de-sen-volu-pa un fo-cus d'apre-
+nen-tatge de la m^^Raquina
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
@@ -980,62 +956,55 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
 
  []
 
-) [8]
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+
+ []
+
+)
+Underfull \hbox (badness 10000) in paragraph at lines 44--64
+
+ []
+
+[9] [10
+
+
+]
 \openout2 = `especification.aux'.
 
  (./especification.tex
 Cap\'{\i }tol 2.
-! Undefined control sequence.
-l.6 En aquest cap\Â
-                   ´{i}tol es descriu els requeriments i les operatives que ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 En aquest cap\Â´
-                    {i}tol es descriu els requeriments i les operatives que ...
-
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
 
-LaTeX Warning: Reference `glossary' on page 9 undefined on input line 21.
+LaTeX Warning: Reference `glossary' on page 11 undefined on input line 21.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
 
-[9
+[11
 
 
-
-
-] [10]
+] [12]
 ! Undefined control sequence.
 l.61 ...documentaci\'{o} s'utilitzar\`{a} la seg\Â
                                                   ¨{u}ent estructura:\\
@@ -1071,11 +1040,11 @@ Underfull \vbox (badness 10000) detected at line 76
 Underfull \vbox (badness 10000) detected at line 94
  []
 
-[11]
+[13]
 Underfull \vbox (badness 10000) detected at line 106
  []
 
-[12]
+[14]
 Underfull \vbox (badness 10000) detected at line 116
  []
 
@@ -1083,7 +1052,7 @@ Underfull \vbox (badness 10000) detected at line 116
 Underfull \vbox (badness 10000) detected at line 126
  []
 
-[13]
+[15]
 Underfull \vbox (badness 10000) detected at line 136
  []
 
@@ -1091,14 +1060,14 @@ Underfull \vbox (badness 10000) detected at line 136
 Underfull \vbox (badness 10000) detected at line 156
  []
 
-[14]
+[16]
 Underfull \vbox (badness 10000) detected at line 169
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15]
+ [17]
 Underfull \vbox (badness 10000) detected at line 186
  []
 
@@ -1106,7 +1075,7 @@ Underfull \vbox (badness 10000) detected at line 186
 Underfull \vbox (badness 10000) detected at line 198
  []
 
-[16]
+[18]
 Underfull \vbox (badness 10000) detected at line 210
  []
 
@@ -1114,7 +1083,7 @@ Underfull \vbox (badness 10000) detected at line 210
 Underfull \vbox (badness 10000) detected at line 222
  []
 
-[17]
+[19]
 Underfull \vbox (badness 10000) detected at line 232
  []
 
@@ -1122,7 +1091,7 @@ Underfull \vbox (badness 10000) detected at line 232
 Underfull \vbox (badness 10000) detected at line 243
  []
 
-[18]
+[20]
 Underfull \vbox (badness 10000) detected at line 254
  []
 
@@ -1130,7 +1099,7 @@ Underfull \vbox (badness 10000) detected at line 254
 Underfull \vbox (badness 10000) detected at line 265
  []
 
-[19]
+[21]
 Underfull \vbox (badness 10000) detected at line 274
  []
 
@@ -1139,7 +1108,7 @@ Overfull \hbox (1.30789pt too wide) in paragraph at lines 285--285
 []\OT1/cmr/bx/n/14.4 Executar una predic-ci^^So de una ma-triu de predic-
  []
 
-) [20]
+) [22]
 \openout2 = `dessign.aux'.
 
  (./dessign.tex
@@ -1193,7 +1162,7 @@ l.13   \item Capa de Servei amb injecci\Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-[21
+[23
 
 
 
@@ -1339,7 +1308,7 @@ Overfull \hbox (291.86528pt too wide) in paragraph at lines 65--69
 =seasonSet=[]=component=[]requirements \OT1/cmr/m/n/12 :[]
  []
 
-[22]
+[24]
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -1421,7 +1390,7 @@ it/12 pattern \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 =api=matrix=[]=sample=[]requir
 ements \OT1/cmr/m/n/12 :[]
  []
 
-) [23] [24
+) [25] [26
 
 
 ]
@@ -1429,10 +1398,16 @@ ements \OT1/cmr/m/n/12 :[]
 
  (./economics.tex
 Cap\'{\i }tol 4.
-) [25
+! Too many }'s.
+l.4 ...criu la evoluci\'{o} temporal, la gesti\{o}
+                                                   del projecte i la estimac...
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+) [27
 
 
-] [26
+] [28
 
 
 ]
@@ -1441,7 +1416,7 @@ Cap\'{\i }tol 4.
  (./userguide.tex
 Cap\'{\i }tol 5.
 
-<img/userguide/dashboard_complete_trainings.png, id=550, 1371.1225pt x 770.88pt
+<img/userguide/dashboard_complete_trainings.png, id=581, 1371.1225pt x 770.88pt
 >
 File: img/userguide/dashboard_complete_trainings.png Graphic file (type png)
  <use img/userguide/dashboard_complete_trainings.png>
@@ -1538,7 +1513,7 @@ l.32  \item La icona de la creu, \Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-[27
+[29
 
 
 ]
@@ -1609,7 +1584,7 @@ l.51 ...triu \Â´{e}s important que sigui el seg\Â¨
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-[28 <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
+[30 <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
 ! Undefined control sequence.
 l.55     Cel.la bu\¨
                     {i}da & Alias de la columna & .... & ORIGIN \\ \hline
@@ -1715,19 +1690,19 @@ l.73 Desde la interficie de configuraci\Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-<img/userguide/matrix_configure.png, id=564, 1371.1225pt x 770.88pt>
+<img/userguide/matrix_configure.png, id=595, 1371.1225pt x 770.88pt>
 File: img/userguide/matrix_configure.png Graphic file (type png)
 
 <use img/userguide/matrix_configure.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[29] [30 <./img/userguide/matrix_configure.png (PNG copy)>]
-<img/userguide/clone_matrix.png, id=574, 1371.1225pt x 770.88pt>
+[31] [32 <./img/userguide/matrix_configure.png (PNG copy)>]
+<img/userguide/clone_matrix.png, id=606, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix.png Graphic file (type png)
 
 <use img/userguide/clone_matrix.png>
-<img/userguide/clone_matrix-2.png, id=575, 1371.1225pt x 770.88pt>
+<img/userguide/clone_matrix-2.png, id=607, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix-2.png Graphic file (type png)
 
 <use img/userguide/clone_matrix-2.png>
@@ -1754,17 +1729,17 @@ l.121 ... i anem a la interficie de configuraci\Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-[31 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
+[33 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
 -2.png (PNG copy)>]
-<img/userguide/variable_configuration.png, id=584, 1371.1225pt x 770.88pt>
+<img/userguide/variable_configuration.png, id=615, 1371.1225pt x 770.88pt>
 File: img/userguide/variable_configuration.png Graphic file (type png)
 
-<use img/userguide/variable_configuration.png> [32 <./img/userguide/variable_co
+<use img/userguide/variable_configuration.png> [34 <./img/userguide/variable_co
 nfiguration.png (PNG copy)>]
-<img/userguide/season_set_edition.png, id=591, 1371.1225pt x 770.88pt>
+<img/userguide/season_set_edition.png, id=622, 1371.1225pt x 770.88pt>
 File: img/userguide/season_set_edition.png Graphic file (type png)
 
-<use img/userguide/season_set_edition.png> [33 <./img/userguide/season_set_edit
+<use img/userguide/season_set_edition.png> [35 <./img/userguide/season_set_edit
 ion.png (PNG copy)>]
 ! Undefined control sequence.
 l.182 ..., es pot accedir al formulari de creaci\Â
@@ -1788,7 +1763,7 @@ l.182 ... es pot accedir al formulari de creaci\Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-<img/userguide/training_create.png, id=598, 1371.1225pt x 770.88pt>
+<img/userguide/training_create.png, id=629, 1371.1225pt x 770.88pt>
 File: img/userguide/training_create.png Graphic file (type png)
 
 <use img/userguide/training_create.png>
@@ -1998,7 +1973,7 @@ l.195 ...igir\Â´{a} la pantalla de visualitzaci\Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-[34 <./img/userguide/training_create.png (PNG copy)>]
+[36 <./img/userguide/training_create.png (PNG copy)>]
 ! Undefined control sequence.
 l.201 ...pots accedir a visualitzar la informaci\Â
                                                   ´{o} del training.
@@ -2021,12 +1996,12 @@ l.201 ...ots accedir a visualitzar la informaci\Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-<img/userguide/view_training_pending.png, id=605, 1371.1225pt x 770.88pt>
+<img/userguide/view_training_pending.png, id=636, 1371.1225pt x 770.88pt>
 File: img/userguide/view_training_pending.png Graphic file (type png)
 
-<use img/userguide/view_training_pending.png> [35 <./img/userguide/view_trainin
+<use img/userguide/view_training_pending.png> [37 <./img/userguide/view_trainin
 g_pending.png (PNG copy)>]
-<img/userguide/prediction_create.png, id=613, 1371.1225pt x 770.88pt>
+<img/userguide/prediction_create.png, id=645, 1371.1225pt x 770.88pt>
 File: img/userguide/prediction_create.png Graphic file (type png)
 
 <use img/userguide/prediction_create.png>
@@ -2044,7 +2019,7 @@ Overfull \hbox (36.68915pt too wide) in paragraph at lines 230--237
  [] 
  []
 
-[36 <./img/userguide/prediction_create.png (PNG copy)>]) [37] [38
+[38 <./img/userguide/prediction_create.png (PNG copy)>]) [39] [40
 
 
 ]
@@ -2053,7 +2028,7 @@ Overfull \hbox (36.68915pt too wide) in paragraph at lines 230--237
 
 (./adminguide.tex
 Cap\'{\i }tol 6.
-) [39
+) [41
 
 
 ]
@@ -2069,221 +2044,17 @@ and I'll forget about whatever was undefined.
 (./main.toc [1
 
 
-]
-Overfull \hbox (0.71802pt too wide) detected at line 31
- \OT1/cmr/m/n/12 xvii
- []
-
-
-Overfull \hbox (0.71802pt too wide) detected at line 32
- \OT1/cmr/m/n/12 xvii
- []
-
-
-Overfull \hbox (3.98187pt too wide) detected at line 33
- \OT1/cmr/m/n/12 xviii
- []
-
-
-Overfull \hbox (3.98187pt too wide) detected at line 34
- \OT1/cmr/m/n/12 xviii
- []
-
-
-Overfull \hbox (0.71802pt too wide) detected at line 47
- \OT1/cmr/m/n/12 xxii
- []
-
-
-Overfull \hbox (0.71802pt too wide) detected at line 48
- \OT1/cmr/m/n/12 xxii
- []
-
-
-Overfull \hbox (0.71802pt too wide) detected at line 49
- \OT1/cmr/m/n/12 xxii
- []
-
-
-Overfull \hbox (0.71802pt too wide) detected at line 50
- \OT1/cmr/m/n/12 xxii
- []
-
-
-Overfull \hbox (0.71802pt too wide) detected at line 51
- \OT1/cmr/m/n/12 xxii
- []
-
-
-Overfull \hbox (3.98187pt too wide) detected at line 52
- \OT1/cmr/m/n/12 xxiii
- []
-
-
-Overfull \hbox (3.98187pt too wide) detected at line 53
- \OT1/cmr/m/n/12 xxiii
- []
-
-
-Overfull \hbox (3.98187pt too wide) detected at line 54
- \OT1/cmr/m/n/12 xxiii
- []
-
-
-Overfull \hbox (3.98187pt too wide) detected at line 55
- \OT1/cmr/m/n/12 xxiii
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
+]pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.58 ...mporals i econ\'{o}miques}{xxv}{chapter.4}
-                                                   [2]
-Overfull \hbox (6.91934pt too wide) detected at line 60
- \OT1/cmr/m/n/12 xxvii
- []
-
-
-Overfull \hbox (6.91934pt too wide) detected at line 61
- \OT1/cmr/m/n/12 xxvii
- []
-
-
-Overfull \hbox (6.91934pt too wide) detected at line 62
- \OT1/cmr/m/n/12 xxvii
- []
-
-
-Overfull \hbox (3.65549pt too wide) detected at line 63
- \OT1/cmr/m/n/12 xxix
- []
-
-
-Overfull \hbox (3.65549pt too wide) detected at line 64
- \OT1/cmr/m/n/12 xxix
- []
-
-
-Overfull \hbox (0.39163pt too wide) detected at line 65
- \OT1/cmr/m/n/12 xxx
- []
-
-
-Overfull \hbox (0.39163pt too wide) detected at line 66
- \OT1/cmr/m/n/12 xxx
- []
-
-
-Overfull \hbox (0.39163pt too wide) detected at line 67
- \OT1/cmr/m/n/12 xxx
- []
-
-
-Overfull \hbox (0.39163pt too wide) detected at line 68
- \OT1/cmr/m/n/12 xxx
- []
-
-
-Overfull \hbox (3.65549pt too wide) detected at line 69
- \OT1/cmr/m/n/12 xxxi
- []
-
-
-Overfull \hbox (6.91934pt too wide) detected at line 70
- \OT1/cmr/m/n/12 xxxii
- []
-
-
-Overfull \hbox (6.91934pt too wide) detected at line 71
- \OT1/cmr/m/n/12 xxxii
- []
-
-
-Overfull \hbox (6.91934pt too wide) detected at line 72
- \OT1/cmr/m/n/12 xxxii
- []
-
-
-Overfull \hbox (6.91934pt too wide) detected at line 73
- \OT1/cmr/m/n/12 xxxii
- []
-
-
-Overfull \hbox (10.1832pt too wide) detected at line 74
- \OT1/cmr/m/n/12 xxxiii
- []
-
-
-Overfull \hbox (10.1832pt too wide) detected at line 75
- \OT1/cmr/m/n/12 xxxiii
- []
-
-
-Overfull \hbox (9.85681pt too wide) detected at line 76
- \OT1/cmr/m/n/12 xxxiv
- []
-
-
-Overfull \hbox (9.85681pt too wide) detected at line 77
- \OT1/cmr/m/n/12 xxxiv
- []
-
-
-Overfull \hbox (6.59296pt too wide) detected at line 78
- \OT1/cmr/m/n/12 xxxv
- []
-
-
-Overfull \hbox (6.59296pt too wide) detected at line 79
- \OT1/cmr/m/n/12 xxxv
- []
-
-
-Overfull \hbox (6.59296pt too wide) detected at line 80
- \OT1/cmr/m/n/12 xxxv
- []
-
-
-Overfull \hbox (9.85681pt too wide) detected at line 81
- \OT1/cmr/m/n/12 xxxvi
- []
-
-
-Overfull \hbox (9.85681pt too wide) detected at line 82
- \OT1/cmr/m/n/12 xxxvi
- []
-
-
-Overfull \hbox (13.12067pt too wide) detected at line 83
- \OT1/cmr/m/n/12 xxxvii
- []
-
-
-Overfull \hbox (13.12067pt too wide) detected at line 84
- \OT1/cmr/m/n/12 xxxvii
- []
-
-
-Overfull \hbox (13.12067pt too wide) detected at line 85
- \OT1/cmr/m/n/12 xxxvii
- []
-
-
-Overfull \hbox (13.12067pt too wide) detected at line 86
- \OT1/cmr/m/n/12 xxxvii
- []
-
-
-Overfull \hbox (13.12067pt too wide) detected at line 87
- \OT1/cmr/m/n/12 xxxvii
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
+l.59 ...emporals i econ\'{o}miques}{27}{chapter.4}
+                                                   [2]pdfTeX warning (ext4): de
+stination with the same identifier (name{page.}) has been already used, duplica
+te ignored
 <to be read again> 
                    \relax 
-l.88 ...}Manual d'administrador}{xxxix}{chapter.6}
+l.87 ...r les meves prediccions}{39}{section.5.13}
                                                    [3])
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -2327,13 +2098,13 @@ LaTeX Warning: There were multiply-defined labels.
 ### semi simple group (level 1) entered at line 172 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 10133 strings out of 495061
- 148833 string characters out of 1182622
- 335220 words of memory out of 3000000
- 12812 multiletter control sequences out of 15000+50000
+ 10147 strings out of 495061
+ 148998 string characters out of 1182622
+ 335311 words of memory out of 3000000
+ 12821 multiletter control sequences out of 15000+50000
  9194 words of font info for 32 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,9n,75p,1083b,555s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,9n,75p,1083b,551s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12
 .pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/
 share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-
@@ -2342,9 +2113,9 @@ s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.p
 fb>
-Output written on main.pdf (43 pages, 1012850 bytes).
+Output written on main.pdf (45 pages, 1019620 bytes).
 PDF statistics:
- 814 PDF objects out of 1000 (max. 8388607)
- 224 named destinations out of 1000 (max. 500000)
- 723 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 850 PDF objects out of 1000 (max. 8388607)
+ 229 named destinations out of 1000 (max. 500000)
+ 771 words of extra memory for PDF output out of 10000 (max. 10000000)
 

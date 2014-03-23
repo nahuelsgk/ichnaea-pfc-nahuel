@@ -3,7 +3,7 @@ namespace Ichnaea\WebApp\PredictionBundle\Services;
 
 require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload.php';
 use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
-use Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix;
+use Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix as PredictionMatrix;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample;
 use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
 use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
@@ -145,7 +145,7 @@ class PredictionService
 		$data['data']  = base64_decode($content);
 		//Still preparing the dataset	
 		$data['type']  = 'predict-models';
-		
+			
 		//build the data array for the dataset
 		$model         = PredictModelsRequest::fromArray($data);		
 		//... set the new request id for the cue...
@@ -168,6 +168,18 @@ class PredictionService
 		$this->em->persist($matrix);
 		$this->em->flush();
 		return $matrix;
+	}
+	
+	public function updatePrediction($requestId, $progress, $status, $data)
+	{
+		$prediction = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->findOneBy(array('requestId'=>$requestId));
+		if ($prediction instanceof PredictionMatrix)
+		{
+			$training->setProgress($progress);
+			$training->setError($status);
+			if ($progress == '1.0')	$training->setStatusAsFinished();
+		}
+		
 	}
 	
 	private function cleanStringCSV($string){

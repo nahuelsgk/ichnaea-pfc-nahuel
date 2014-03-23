@@ -2,7 +2,14 @@
 \label{cha:background}
 
 \section*{Introducci\'{o}}
-En el seg\¨{u}ent cap\'{i}tol es descriu breument l'univers Ichnaea, necessari per entendre el requeriments. No es dona visi\'{o} completa del software de com funciona, sino una visi\'{o} global del seu objectiu i quins elements utilitza.
+En el seg\�{u}ent cap\'{i}tol es descriu breument l'univers MST e Ichnaea, necessari per entendre el requeriments. No es dona visi\'{o} completa del software de com funciona, sino una visi\'{o} global del seu objectiu i quins elements utilitza.
+
+\subsection{MST: Microbial Source Tracking}
+MST \'{e}s un problema obert en l'actualitat. Consisteix en determinar l'origen biol\`{o}gic dels residus fecals en cossos aquosos mitjan\c{c}ant l'\'{u}s d'indicadors qu\'{i}mics i microbiol\`{o}gics \cite{paper}. Per fer aix\'{o} es prenen mostres i s'analitzen en un laboratori, i segons els resultats, es decideix si contenen residus fecals d'origen hum\`{a} o de quina familia de animals \cite{pfc}.\\
+
+Pendre aquesta decisi\'{o} \'{e}s molt dif\'{i}cil. Fins i tot, els microbi\`{o}legs no estan completament segurs de determinar la font d'infecci\'{o} de les mostres d'aigues contaminades. La ra\'{o} \'e{s} que les mostres son extretes directament de l'entorn i per aix\'{o} estan diluides i envellides \cite{pfc}.\\
+
+L'estudi de l'origen de la pol.luci\'{o} en cossos aquasos \'{e}s un problema gran i pot ajudar a assegurar la protecci\'{o} de les poblacions humanes, mostrant una varietat d'enfermetats, especialment en paisos subdesenvolupats \cite{pfc}.\\
 
 \section{Ichnaea Software}
 Ichnaea \'{e}s un projecte que desenvolupa un focus d'aprenentatge de la m\`{a}quina al problema de MST (Microbial Source Tracking). El problema MST \'{e}s un problema obert en la actualitat. L'objectiu principal \'{e}s determinar l'origen de la contaminaci\'{o} fecal, tant animal o hum\`{a} en els cossos aqu\`{a}tics tenint en compte dades procedents de diferents an\`{a}lisis, el medi ambien o recreat en un laboratori. \\
@@ -10,6 +17,7 @@ Ichnaea \'{e}s un projecte que desenvolupa un focus d'aprenentatge de la m\`{a}q
 Actualment es troba en la versi\'{o} 2.0. La primera versi\'{o} va ser desenvolupada, com a Master Thesis per David Sanchez, va donar un primer enfoc al problema MST. La segona versi\'{o} desenvolupara com a Projecte de Final de Carrera per Aitor P\'{e}rez P\'{e}rez \'{e}s una millora i es sobre aquesta que la que s'ha desenvolupat les proves d'aquest projecte. Ambdues versions han sigut supervisades per Llu\'{i} Belanche.\\
 
 \section{L'univers d'Ichnaea}
+A continuaci\'{o} veurem les entitats amb les que treballa Ichnaea.
 
 \subsection{Matrius}
 Ichnaea processa inicialment les dades a partir de unes matrius on \'e{s} defineixen les dades per variables i les mostres. Aquest conjunt de valors, a partir de ara en tota la documentaci\'{o}, anomenades "matrius" son els valors per a:
@@ -25,14 +33,12 @@ Una variable de la matriu pot ser una:
 \item Una variable derivada de dos "variables single"
 \item Una variable de origen. Obligatoria per cada sample.
 \end{itemize}
-Les "variables single" tener asociats unes regresions, representat en un fitxer, on s'especifica els envelliments. Un conjunt de regresions els anomenem "Season Sets". A una envelliment l'anomenem "Season".\\
+Les "variables single" tenen asociades uns fitxers. En aquest fitxers s'especifiquen els envelliments d'una variable. Un conjunt de regresions els anomenem "Season Sets" i a un envelliment l'anomenem "Season".\\
 
 Les variables de origen representa un etiqueta de l'origen de la mostra.\\
 
 \subsection{Trainings: els entrenaments}
-Ichnaea utilitza aquestes matrius per calcular una bossa de models. Aquesta sortida de dades les anomenem "Trainings". Per obtenir aquesta bossa de models, Ichnaea utilitza com a entrada aquestes matrius, uns parametres inicials i les "seasons". Ichnaea retorna una bossa de models que s'utilitza per fer prediccions.
+Ichnaea utilitza aquestes matrius per calcular una bossa de models. Aquesta sortida de dades les anomenem "Trainings". Per obtenir aquesta bossa de models, Ichnaea utilitza com a entrada aquestes matrius, uns parametres inicials i les "seasons". Ichnaea retorna una bossa de models que s'utilitza per fer prediccions.\\
 
 \subsection{Matrius de prediccions}
-Ichnaea prediu matrius amb els trainings. Aquestes matrius a difer\`{e}ncia de les originals poden estar incompletes o sense origens. ¿Que retorna les prediccions?
-
-
+Ichnaea prediu matrius amb els trainings. Aquestes matrius a difer\`{e}ncia de les originals poden estar incompletes o sense origens.\\

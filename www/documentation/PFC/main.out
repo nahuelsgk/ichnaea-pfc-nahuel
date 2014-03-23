@@ -1,6 +1,7 @@
 \BOOKMARK [1][-]{section.0.1}{Abast}{}
 \BOOKMARK [1][-]{section.0.2}{Objectius}{}
 \BOOKMARK [0][-]{chapter.1}{Introducci\363 a Ichnaea}{}
+\BOOKMARK [1][-]{subsection.1.0.1}{MST: Microbial Source Tracking}{chapter.1}
 \BOOKMARK [1][-]{section.1.1}{Ichnaea Software}{chapter.1}
 \BOOKMARK [1][-]{section.1.2}{L'univers d'Ichnaea}{chapter.1}
 \BOOKMARK [2][-]{subsection.1.2.1}{Matrius}{section.1.2}
@@ -52,6 +53,8 @@
 \BOOKMARK [2][-]{subsection.3.9.1}{Introducci\363 a l'arquitectura de cues}{section.3.9}
 \BOOKMARK [2][-]{subsection.3.9.2}{Consumidors}{section.3.9}
 \BOOKMARK [0][-]{chapter.4}{Estimacions temporals i econ\363miques}{}
+\BOOKMARK [1][-]{section.4.1}{Desenvolupament del projecte}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Estimaci\363 econ\363mica}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.5.1}{Casa de l'usuari}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.1.1}{Llistat de les meves matrius}{section.5.1}
@@ -82,3 +85,6 @@
 \BOOKMARK [2][-]{subsection.5.14.1}{Actualitzar una matriu de predicci\363}{section.5.14}
 \BOOKMARK [2][-]{subsection.5.14.2}{Executar una predicci\363 de una matriu de predicci\363}{section.5.14}
 \BOOKMARK [0][-]{chapter.6}{Manual d'administrador}{}
+\BOOKMARK [1][-]{section.6.1}{Llistar usuaris del sistema}{chapter.6}
+\BOOKMARK [1][-]{section.6.2}{Canviar el grup de l'usuari}{chapter.6}
+\BOOKMARK [1][-]{section.6.3}{Comprovar cua}{chapter.6}
