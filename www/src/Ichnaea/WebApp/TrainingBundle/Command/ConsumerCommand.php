@@ -1,9 +1,9 @@
 <?php
 namespace Ichnaea\WebApp\TrainingBundle\Command;
 
-require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload.php';
+#require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload.php';
 //@TODO: do it by composer
-//require_once __DIR__.'/../../../../../../amqp/php/vendor/autoload.php';
+require_once __DIR__.'/../../../../../../amqp/php/vendor/autoload.php';
 
 use Ichnaea\WebApp\TrainingBundle\Entity\Training as Training;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
