@@ -2,16 +2,11 @@ package edu.upc.ichnaea.amqp.client;
 
 import java.io.IOException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
-import edu.upc.ichnaea.shell.CommandResultInterface;
 import edu.upc.ichnaea.shell.ShellInterface;
 
 public class AbstractProcessClient extends Client {

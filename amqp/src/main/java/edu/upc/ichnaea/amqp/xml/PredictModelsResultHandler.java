@@ -4,7 +4,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
-import org.xml.sax.SAXException;
 
 import edu.upc.ichnaea.amqp.model.Dataset;
 import edu.upc.ichnaea.amqp.model.PredictModelsResult;
@@ -21,12 +20,9 @@ public class PredictModelsResultHandler implements ContentHandler {
 
     protected DatasetHandler mDatasetHandler;
     protected Dataset mDataset;
-    protected StringBuilder mCharacters;
     protected PredictModelsResult mResult;
     protected String mName;
-    protected float[][] mConfusionMatrix;
-    protected int mConfusionMatrixRow;
-    protected int mConfusionMatrixCol;
+    protected Dataset mConfMatrix;
     protected float mTestError;
     protected int mTotalSamples;
     protected int mPredictedSamples;
@@ -46,13 +42,10 @@ public class PredictModelsResultHandler implements ContentHandler {
         mDatasetHandler = null;
         mResult = null;
         mDataset = null;
-        mConfusionMatrix = null;
-        mConfusionMatrixRow = -1;
-        mConfusionMatrixCol = -1;
+        mConfMatrix = null;
         mTestError = 0.0f;
         mTotalSamples = 0;
         mPredictedSamples = 0;
-        mCharacters = null;
     }
 
     @Override
@@ -67,7 +60,8 @@ public class PredictModelsResultHandler implements ContentHandler {
     @Override
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException {
-        if (localName.equalsIgnoreCase(DatasetHandler.TAG_DATASET)) {
+        if(localName.equalsIgnoreCase(DatasetHandler.TAG_DATASET) ||
+            localName.equalsIgnoreCase(TAG_CONF_MATRIX)) {
             if (mDatasetHandler != null) {
                 throw new SAXException(
                         "A dataset cannot be inside another one.");
@@ -75,11 +69,9 @@ public class PredictModelsResultHandler implements ContentHandler {
             mDatasetHandler = new DatasetHandler();
             mDatasetHandler.startDocument();
         }
+
         if (mDatasetHandler != null) {
             mDatasetHandler.startElement(uri, localName, qName, atts);
-        }
-        else if(mConfusionMatrixRow >= 0) {
-            mCharacters = new StringBuilder();
         } else if (localName.equalsIgnoreCase(TAG_RESULT)) {
             if(atts.getValue(ATTR_NAME) != null) {
                 mName = atts.getValue(ATTR_NAME);
@@ -103,10 +95,6 @@ public class PredictModelsResultHandler implements ContentHandler {
                 catch(Exception e) {
                 }
             }
-        } else if(localName.equalsIgnoreCase(TAG_CONF_MATRIX)) {
-            mConfusionMatrix = new float[2][2];
-            mConfusionMatrixRow = 0;
-            mConfusionMatrixCol = 0;
         }
     }
 
@@ -119,28 +107,11 @@ public class PredictModelsResultHandler implements ContentHandler {
                 mDatasetHandler.endDocument();
                 mDataset = mDatasetHandler.getDataset();
                 mDatasetHandler = null;
+            } else if (localName.equalsIgnoreCase(TAG_CONF_MATRIX)) {
+                mDatasetHandler.endDocument();
+                mConfMatrix = mDatasetHandler.getDataset();
+                mDatasetHandler = null;
             }
-        } else if(mConfusionMatrixRow >= 0 && mConfusionMatrixCol >= 0) {
-            if(localName.equalsIgnoreCase(TAG_VALUE)) {
-                float v = 0.0f;
-                try {
-                    v = Float.parseFloat(mCharacters.toString());
-                }catch(NumberFormatException e) {
-                }
-                if(mConfusionMatrixRow < mConfusionMatrix.length &&
-                    mConfusionMatrixCol < mConfusionMatrix[mConfusionMatrixRow].length) {
-                    mConfusionMatrix[mConfusionMatrixRow][mConfusionMatrixCol] = v;
-                }             
-                mCharacters = null;
-                mConfusionMatrixCol++;
-                if(mConfusionMatrixCol >= mConfusionMatrix.length) {
-                    mConfusionMatrixCol = 0;
-                    mConfusionMatrixRow++;
-                }
-            }
-        }
-        if(localName.equalsIgnoreCase(TAG_CONF_MATRIX)) {
-            mConfusionMatrixRow = -1;
         }
     }
 
@@ -149,8 +120,6 @@ public class PredictModelsResultHandler implements ContentHandler {
             throws SAXException {
         if (mDatasetHandler != null) {
             mDatasetHandler.characters(ch, start, length);
-        } else if (mCharacters != null) {
-            mCharacters.append(ch, start, length);
         }                
     }
 
@@ -180,7 +149,7 @@ public class PredictModelsResultHandler implements ContentHandler {
     @Override
     public void endDocument() throws SAXException {
         if(mDataset != null) {
-            mResult = new PredictModelsResult(mName, mDataset, mTotalSamples, mConfusionMatrix, mTestError);
+            mResult = new PredictModelsResult(mName, mDataset, mTotalSamples, mConfMatrix, mTestError);
         } else {
             mResult = new PredictModelsResult(mPredictedSamples, mTotalSamples);
         }

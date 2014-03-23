@@ -20,6 +20,17 @@ public abstract class CommandReader {
        mVerbose = verbose;
     }
 
+    public CommandReader(boolean verbose) {
+       mResult = null;
+       mVerbose = verbose;
+    }    
+
+
+    public CommandReader() {
+       mResult = null;
+       mVerbose = false;
+    }    
+
     public void read() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(mResult.getInputStream()));
         String line;

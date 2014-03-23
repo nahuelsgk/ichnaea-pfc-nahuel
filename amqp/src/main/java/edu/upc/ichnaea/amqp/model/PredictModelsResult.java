@@ -1,12 +1,10 @@
 package edu.upc.ichnaea.amqp.model;
 
-import java.util.Calendar;
-
 public class PredictModelsResult {
 
     protected String mName;
     protected Dataset mDataset;
-    protected float[][] mConfusionMatrix;
+    protected Dataset mConfusionMatrix;
     protected float mTestError;
     protected int mTotalSamples;
     protected int mPredictedSamples;
@@ -20,10 +18,10 @@ public class PredictModelsResult {
         mTotalSamples = totalSamples;
         mTestError = 0.0f;
         mDataset = new Dataset();
-        mConfusionMatrix = new float[0][0];
+        mConfusionMatrix = new Dataset();
     }
 
-    public PredictModelsResult(String name, Dataset dataset, int totalSamples, float[][] confMatrix, float testError) {
+    public PredictModelsResult(String name, Dataset dataset, int totalSamples, Dataset confMatrix, float testError) {
         mName = name;
         mDataset = dataset;
         mConfusionMatrix = confMatrix;
@@ -32,7 +30,7 @@ public class PredictModelsResult {
         mTestError = testError;
     }
 
-    public float[][] getConfusionMatrix() {
+    public Dataset getConfusionMatrix() {
         return mConfusionMatrix;
     }
 
@@ -78,15 +76,9 @@ public class PredictModelsResult {
 
         str += mPredictedSamples + "/" + mTotalSamples + " samples\n";
         str += mTestError*100.0f + "% error\n";
-        str += "Confusion matrix\n";
-        for(int i=0; i<mConfusionMatrix.length; i++) {
-            for(int j=0; j<mConfusionMatrix[i].length; j++) {
-                str += mConfusionMatrix[i][j];
-                if(j<mConfusionMatrix[i].length-1) {
-                    str += ", ";
-                }
-            }
-            str += "\n";
+        if(mConfusionMatrix != null) {
+            str += "Confusion matrix\n";
+            str += mConfusionMatrix.toString() + "\n";
         }
         return str;
     }

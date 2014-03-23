@@ -18,12 +18,8 @@ public class DatasetHandler implements ContentHandler {
     DatasetColumn mColumn;
     StringBuilder mCharacters;
     Dataset mDataset;
-    boolean mFinished;
 
     public Dataset getDataset() {
-        if (!mFinished) {
-            return null;
-        }
         return mDataset;
     }
 
@@ -33,10 +29,9 @@ public class DatasetHandler implements ContentHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        mDataset = null;
+        mDataset = new Dataset();
         mColumn = null;
-        mCharacters = null;
-        mFinished = false;
+        mCharacters = new StringBuilder();
     }
 
     @Override
@@ -55,21 +50,10 @@ public class DatasetHandler implements ContentHandler {
     @Override
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException {
-        if (mColumn != null) {
-            if (!localName.equalsIgnoreCase(TAG_VALUE)) {
-                throw new SAXException(
-                        "Only value tags are accepted inside a column.");
-            }
-            mCharacters = new StringBuilder();
-        } else if (mDataset != null) {
-            if (!localName.equalsIgnoreCase(TAG_COLUMN)) {
-                throw new SAXException(
-                        "Only column tags are accepted inside a dataset.");
-            }
+        if (localName.equalsIgnoreCase(TAG_COLUMN)) {
             mColumn = new DatasetColumn(atts.getValue(ATTR_COLUMN_NAME));
-        } else if (localName.equalsIgnoreCase(TAG_DATASET)) {
-            mDataset = new Dataset();
         }
+        mCharacters = new StringBuilder();
     }
 
     @Override
@@ -81,7 +65,7 @@ public class DatasetHandler implements ContentHandler {
                         "Value tags can only be inside column tags.");
             }
             mColumn.add(mCharacters.toString());
-            mCharacters = null;
+            mCharacters = new StringBuilder();
         } else if (localName.equalsIgnoreCase(TAG_COLUMN)) {
             if (mDataset == null) {
                 throw new SAXException(
@@ -89,17 +73,13 @@ public class DatasetHandler implements ContentHandler {
             }
             mDataset.add(mColumn);
             mColumn = null;
-        } else if (localName.equalsIgnoreCase(TAG_DATASET)) {
-            mFinished = true;
         }
     }
 
     @Override
     public void characters(char[] ch, int start, int length)
             throws SAXException {
-        if (mCharacters != null) {
-            mCharacters.append(ch, start, length);
-        }
+        mCharacters.append(ch, start, length);
     }
 
     @Override

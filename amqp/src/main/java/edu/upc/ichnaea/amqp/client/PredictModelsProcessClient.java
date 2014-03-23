@@ -5,17 +5,13 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
-import javax.mail.MessagingException;
 import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
 
 import com.rabbitmq.client.AMQP;
 
 import edu.upc.ichnaea.amqp.FileUtils;
 import edu.upc.ichnaea.amqp.IOUtils;
 import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
-import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
 import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
 import edu.upc.ichnaea.amqp.model.PredictModelsResult;

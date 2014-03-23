@@ -66,6 +66,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
                         "A dataset cannot be inside another one.");
             }
             mDatasetHandler = new DatasetHandler();
+            mDatasetHandler.startDocument();
         } else if (localName.equalsIgnoreCase(DatasetAgingHandler.TAG_AGINGS)) {
             if (mAgingHandler != null) {
                 throw new SAXException("Agings cannot be inside another.");
@@ -90,6 +91,7 @@ public class BuildModelsRequestHandler implements ContentHandler {
         if (mDatasetHandler != null) {
             mDatasetHandler.endElement(uri, localName, qName);
             if (localName.equalsIgnoreCase(DatasetHandler.TAG_DATASET)) {
+                mDatasetHandler.endDocument();
                 mDataset = mDatasetHandler.getDataset();
                 mDatasetHandler = null;
             }

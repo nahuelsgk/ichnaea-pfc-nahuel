@@ -69,7 +69,7 @@ public class BuildModelsRequestClient extends AbstractRequestClient {
         try {
             BuildModelsResponse resp = new XmlBuildModelsResponseReader()
                     .read(new String(body));
-            super.processResponse(resp);
+            super.processProgressResponse(resp);
             if (mResponseOutput != null && resp.hasData()) {
                 getLogger().info("writing build models response to a file ...");
                 mResponseOutput.write(resp.getData());
