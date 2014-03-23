@@ -1,6 +1,6 @@
 <?php
 
-namespace Ichnaea\Amqp\Tests\Model;
+namespace Ichnaea\Amqp\Tests\Xml;
 
 use Ichnaea\Amqp\Model\Dataset;
 use Ichnaea\Amqp\Xml\PredictModelsResultReader;
@@ -38,9 +38,9 @@ class PredictModelsResultReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("ERROR", $result->getName(), "PredictModelsResultReader reads the name correctly.");
         $this->assertEquals(10, $result->getPredictedSamples(), "PredictModelsResultReader reads the predicted samples correctly.");
         $this->assertEquals(15, $result->getTotalSamples(), "PredictModelsResultReader reads the total samples correctly.");
-        $this->assertEquals(0.08, $result->getTestError(), "PredictModelsResultReader reads the test error correctly.");        
+        $this->assertEquals(0.08, $result->getTestError(), "PredictModelsResultReader reads the test error correctly.");
         $dataset = $result->getDataset();
-		$this->assertEquals(15, count($dataset->getRows()), "PredictModelsResultReader reads the dataset cols correctly.");                
-        $this->assertEquals(array(array("0","0"),array("7","8")), $result->getConfusionMatrix()->getRows(), "PredictModelsResultReader reads the confusion matrix correctly.");                
+        $this->assertEquals(15, count($dataset->getRows()), "PredictModelsResultReader reads the dataset cols correctly.");
+        $this->assertEquals(array(array("0","0"),array("7","8")), $result->getConfusionMatrix()->getRows(), "PredictModelsResultReader reads the confusion matrix correctly.");
     }
 }

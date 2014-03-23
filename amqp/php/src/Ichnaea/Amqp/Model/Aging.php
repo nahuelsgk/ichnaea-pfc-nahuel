@@ -142,7 +142,7 @@ class Aging implements \IteratorAggregate
      *
      * @param  int   $trial position of the trial
      * @param  float $key   key for the trial value
-     *                      @param mixed default value to return if the key or trial are not found
+     * @param mixed default value to return if the key or trial are not found
      * @return array the trials data
      */
     public function getValue($trial, $key, $default=null)

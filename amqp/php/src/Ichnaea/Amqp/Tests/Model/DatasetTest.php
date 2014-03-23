@@ -50,7 +50,7 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
             "CNFC"  => array(1, 2, 4),
         ));
         $rows = $data->getRows();
-        $this->assertEquals(array(array(1, 1), array(2, 2), array(3, 4)), $rows, "Dataset returns rows correctly.");   
+        $this->assertEquals(array(array(1, 1), array(2, 2), array(3, 4)), $rows, "Dataset returns rows correctly.");
     }
 
     public function testToString()

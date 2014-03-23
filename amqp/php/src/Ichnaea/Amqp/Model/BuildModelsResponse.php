@@ -27,7 +27,7 @@ class BuildModelsResponse extends ProgressResponse
     public function setData($data)
     {
         $this->data = $data;
-    }    
+    }
 
     /**
      * Gets the data
@@ -48,6 +48,7 @@ class BuildModelsResponse extends ProgressResponse
     {
         $a = parent::toArray();
         $a['data'] = $this->data;
+
         return $a;
     }
 

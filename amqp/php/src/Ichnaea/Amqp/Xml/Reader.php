@@ -25,10 +25,10 @@ abstract class Reader
      */
     protected function getRootNode($data, $name)
     {
-    	$rootNode = null;
-        if($data instanceof \DomElement) {
+        $rootNode = null;
+        if ($data instanceof \DomElement) {
             $rootNode = $data;
-        } else if(is_string($data)) {
+        } elseif (is_string($data)) {
             $xml = new \DOMDocument();
             $xml->loadXML($data);
             foreach ($xml->childNodes as $node) {
@@ -38,8 +38,8 @@ abstract class Reader
                 }
             }
         }
-        if($rootNode == null) {
-        	throw new \InvalidArgumentException("Could not find root node with name ".$name.".");
+        if ($rootNode == null) {
+            throw new \InvalidArgumentException("Could not find root node with name ".$name.".");
         }
 
         return $rootNode;

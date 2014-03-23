@@ -84,7 +84,7 @@ class PredictModelsResult
 
     /**
      * Set the name of the result
-     * 
+     *
      * @param string $name the name of the result
      */
     public function setName($name)
@@ -105,7 +105,7 @@ class PredictModelsResult
     /**
      * Set the test error the result
      * 1.0f means 100%
-     * 
+     *
      * @param float $error the error value
      */
     public function setTestError($error)
@@ -121,11 +121,11 @@ class PredictModelsResult
     public function getTestError()
     {
         return $this->testError;
-    }    
+    }
 
     /**
      * Set the predicted samples the result
-     * 
+     *
      * @param int $samples the amount of samples predicted
      */
     public function setPredictedSamples($samples)
@@ -145,7 +145,7 @@ class PredictModelsResult
 
     /**
      * Set the total samples the result
-     * 
+     *
      * @param int $samples the total amount of samples
      */
     public function setTotalSamples($samples)
@@ -165,7 +165,7 @@ class PredictModelsResult
 
     /**
      * Set the confusion matrix of the result
-     * 
+     *
      * @param \Dataset $matrix the confusion matrix
      */
     public function setConfusionMatrix($matrix)
@@ -184,7 +184,7 @@ class PredictModelsResult
     public function getConfusionMatrix()
     {
         return $this->confusionMatrix;
-    }            
+    }
 
     /**
      * Export the response to an array
@@ -201,6 +201,7 @@ class PredictModelsResult
             'totalSamples'      => $this->getTotalSamples(),
             'confusionMatrix'   => $this->getConfusionMatrix()->toArray(),
         );
+
         return $a;
     }
 
@@ -211,24 +212,24 @@ class PredictModelsResult
      */
     public function update(array $data)
     {
-        if(array_key_exists('name', $data)) {
+        if (array_key_exists('name', $data)) {
             $this->setName($data['name']);
         }
-        if(array_key_exists('dataset', $data)) {
+        if (array_key_exists('dataset', $data)) {
             $this->setDataset($data['dataset']);
         }
-        if(array_key_exists('testError', $data)) {
+        if (array_key_exists('testError', $data)) {
             $this->setTestError($data['testError']);
-        }        
-        if(array_key_exists('predictedSamples', $data)) {
+        }
+        if (array_key_exists('predictedSamples', $data)) {
             $this->setPredictedSamples($data['predictedSamples']);
         }
-        if(array_key_exists('totalSamples', $data)) {
+        if (array_key_exists('totalSamples', $data)) {
             $this->setTotalSamples($data['totalSamples']);
-        }        
-        if(array_key_exists('confusionMatrix', $data)) {
+        }
+        if (array_key_exists('confusionMatrix', $data)) {
             $this->setConfusionMatrix($data['confusionMatrix']);
-        }                
+        }
     }
 
     /**
@@ -263,6 +264,7 @@ class PredictModelsResult
         $html .= "<li>". $this->getTestError()*100 ."% error</li>\n";
         $html .= "</ul>\n";
         $html .= "</div>\n";
+
         return $html;
     }
 
@@ -284,5 +286,5 @@ class PredictModelsResult
         return !$this->isEmpty() &&
             $this->getPredictedSamples() == $this->getTotalSamples() &&
             !$this->getDataset()->isEmpty();
-    }    
+    }
 }

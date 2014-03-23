@@ -14,7 +14,7 @@ class ProgressResponseReader extends Reader
     /**
      * Read a response object
      *
-     * @param  string $data the response data
+     * @param  string           $data the response data
      * @return ProgressResponse a response object
      */
     public function read($data)
@@ -25,6 +25,7 @@ class ProgressResponseReader extends Reader
         $resp->setStart($rootNode->getAttribute('start'));
         $resp->setEnd($rootNode->getAttribute('end'));
         $resp->setError($rootNode->getAttribute('error'));
+
         return $resp;
     }
 }

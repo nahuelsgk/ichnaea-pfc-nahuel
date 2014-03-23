@@ -14,24 +14,25 @@ class DatasetReader extends Reader
     /**
      * Read a dataset object
      *
-     * @param  mixed $data the response data string or a \DomElement
+     * @param  mixed   $data the response data string or a \DomElement
      * @return Dataset a dataset object
      */
     public function read($data)
-    {       
+    {
         $rootNode = $this->getRootNode($data, 'dataset');
         $cols = array();
-        foreach($rootNode->childNodes as $node) {
-            if($node->nodeName === 'column') {
+        foreach ($rootNode->childNodes as $node) {
+            if ($node->nodeName === 'column') {
                 $name = $node->getAttribute('name');
                 $cols[$name] = array();
-                foreach($node->childNodes as $node) {
-                    if($node->nodeName === 'value') {
+                foreach ($node->childNodes as $node) {
+                    if ($node->nodeName === 'value') {
                         $cols[$name][] = $node->nodeValue;
                     }
                 }
             }
         }
+
         return new Dataset($cols);
     }
 }

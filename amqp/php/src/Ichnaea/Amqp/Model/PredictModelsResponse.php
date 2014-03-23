@@ -47,10 +47,10 @@ class PredictModelsResponse extends ProgressResponse
      */
     public function setResult($result)
     {
-        if(is_array($result)) {
+        if (is_array($result)) {
             $result = PredictModelsResult::fromArray($result);
         }
-        if(!$result instanceof PredictModelsResult) {
+        if (!$result instanceof PredictModelsResult) {
             throw new \InvalidArgumentException("Invalid result.");
         }
         $this->result = $result;
@@ -64,9 +64,10 @@ class PredictModelsResponse extends ProgressResponse
     public function toArray()
     {
         $a = parent::toArray();
-        if(!$this->getResult()->isEmpty()) {
+        if (!$this->getResult()->isEmpty()) {
             $a['result'] = $this->getResult()->toArray();
         }
+
         return $a;
     }
 
@@ -78,7 +79,7 @@ class PredictModelsResponse extends ProgressResponse
     public function update(array $data)
     {
         parent::update($data);
-        if(array_key_exists('result', $data)) {
+        if (array_key_exists('result', $data)) {
             $this->setResult($data['result']);
         }
     }

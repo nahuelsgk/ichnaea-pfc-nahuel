@@ -1,6 +1,6 @@
 <?php
 
-namespace Ichnaea\Amqp\Tests\Model;
+namespace Ichnaea\Amqp\Tests\Xml;
 
 use Ichnaea\Amqp\Model\FakeRequest;
 use Ichnaea\Amqp\Xml\FakeRequestWriter;

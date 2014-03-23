@@ -50,7 +50,7 @@ class Dataset implements \IteratorAggregate
         }
         if (is_string($data)) {
             $rows = preg_split("/\r?\n/", $data);
-            $rows = array_filter($rows, function($row) {
+            $rows = array_filter($rows, function ($row) {
                 return !empty($row);
             });
             foreach ($rows as &$row) {
@@ -160,18 +160,19 @@ class Dataset implements \IteratorAggregate
     {
         $rows = array();
         $j = 0;
-        foreach($this->columns as $column) {
-            foreach($column as $i=>$cell) {
-                if(!array_key_exists($i, $rows)) {
+        foreach ($this->columns as $column) {
+            foreach ($column as $i=>$cell) {
+                if (!array_key_exists($i, $rows)) {
                     $rows[$i] = array();
                 }
-                while(count($rows[$i])<$j) {
+                while (count($rows[$i])<$j) {
                     $rows[$i][] = "";
                 }
                 $rows[$i][$j] = $cell;
             }
             $j++;
         }
+
         return $rows;
     }
 
@@ -200,9 +201,9 @@ class Dataset implements \IteratorAggregate
     /**
      * Return the dataset data as a string
      *
-     * @param string $sep the separatow between columns
-     * @param string $qt the quote string
-     * @param string $nl the newline between rows     
+     * @param  string $sep the separatow between columns
+     * @param  string $qt  the quote string
+     * @param  string $nl  the newline between rows
      * @return string the string
      */
     public function toString($sep=", ", $qt='"', $nl="\n")
@@ -211,11 +212,12 @@ class Dataset implements \IteratorAggregate
         $rows = $this->getRows();
         array_unshift($rows, $this->getColumnNames());
         foreach ($rows as $row) {
-            foreach($row as $k=>$cell) {
+            foreach ($row as $k=>$cell) {
                 $row[$k] = $qt.addslashes($cell).$qt;
             }
             $str .= join($sep, $row).$nl;
         }
+
         return trim($str);
     }
 
@@ -233,21 +235,22 @@ class Dataset implements \IteratorAggregate
         $html = "<table>\n";
         $cols = $this->getColumnNames();
         $html .= "<thead><tr>";
-        foreach($cols as $col) {
+        foreach ($cols as $col) {
             $html .= "<th>".$col."<th>";
         }
         $html .= "</tr></thead>\n";
         $rows = $this->getRows();
         $html .= "<tbody>\n";
-        foreach($rows as $row) {
+        foreach ($rows as $row) {
             $html .= "<tr>";
-            foreach($row as $cel) {
-                $html .= "<td>".$cel."<td>";       
+            foreach ($row as $cel) {
+                $html .= "<td>".$cel."<td>";
             }
             $html .= "</tr>\n";
         }
         $html .= "</tbody>\n";
         $html .= "</table>\n";
+
         return $html;
     }
 
