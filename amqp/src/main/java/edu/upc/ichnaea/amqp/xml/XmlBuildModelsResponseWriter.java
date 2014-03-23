@@ -29,7 +29,7 @@ public class XmlBuildModelsResponseWriter extends XmlWriter {
         root.setAttribute(ProgressResponseHandler.ATTR_ID,
                 String.valueOf(resp.getId()));
         root.setAttribute(ProgressResponseHandler.ATTR_TYPE,
-                ProgressResponseHandler.TYPE);
+                BuildModelsRequestHandler.TYPE);
 
         if (resp.hasError()) {
             root.setAttribute(ProgressResponseHandler.ATTR_ERROR,

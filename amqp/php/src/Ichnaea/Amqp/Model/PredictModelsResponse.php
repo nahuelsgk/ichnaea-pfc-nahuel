@@ -64,7 +64,9 @@ class PredictModelsResponse extends ProgressResponse
     public function toArray()
     {
         $a = parent::toArray();
-        $a['result'] = $this->getResult()->toArray();
+        if(!$this->getResult()->isEmpty()) {
+            $a['result'] = $this->getResult()->toArray();
+        }
         return $a;
     }
 

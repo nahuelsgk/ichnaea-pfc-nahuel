@@ -34,16 +34,19 @@ function updateTask($type, array $data) {
     }
 }
 
+print "listening to build-models responses...\n";
 $amqp->listenForBuildModelResponse(function(BuildModelsResponse $resp) use ($db) {
     print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
     updateTask('build-models', $resp->toArray());
 });
 
+print "listening to predict-models responses...\n";
 $amqp->listenForPredictModelsResponse(function(PredictModelsResponse $resp) use ($db) {
     print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
     updateTask('predict-models', $resp->toArray());
 });
 
+print "listening to fake responses...\n";
 $amqp->listenForFakeResponse(function(FakeResponse $resp) use ($db) {
     print "Received fake response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
     updateTask('fake', $resp->toArray());

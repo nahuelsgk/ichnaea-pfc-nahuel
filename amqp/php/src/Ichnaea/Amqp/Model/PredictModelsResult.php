@@ -256,4 +256,13 @@ class PredictModelsResult
         $html .= $this->dataset->toHtml();
         return $html;
     }
+
+    /**
+     * Return true if there is no data in the result
+     * @return bool true if empty
+     */
+    public function isEmpty()
+    {
+        return $this->getPredictedSamples() == 0;
+    }
 }

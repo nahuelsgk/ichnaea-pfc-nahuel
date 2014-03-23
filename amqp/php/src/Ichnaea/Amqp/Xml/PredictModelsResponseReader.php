@@ -22,7 +22,16 @@ class PredictModelsResponseReader extends ProgressResponseReader
     {
         $resp = parent::read($data);
         if($resp instanceof ProgressResponse) {
-            return PredictModelsResponse::fromArray($resp->toArray());
+            $resp = PredictModelsResponse::fromArray($resp->toArray());
+            $xml = new \DOMDocument();
+            $xml->loadXML($data);
+            foreach ($xml->childNodes as $node) {
+                if ($node->nodeName === 'result') {
+                    $reader = new PredictModelsResultReader();
+                    $result->setResult($reader->read($node));
+                }
+            }
+            return $resp;
         }
         return null;
     }
