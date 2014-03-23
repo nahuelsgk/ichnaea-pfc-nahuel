@@ -1,8 +1,6 @@
  
 package edu.upc.ichnaea.shell;
 
-import java.io.IOException;
-
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 

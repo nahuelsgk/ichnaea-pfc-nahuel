@@ -201,6 +201,11 @@ then
 		rm -rf $TMPDIR
 	fi
 
+	if [ "$ERR" != "" ]
+	then
+		exit -1
+	fi
+
 elif [ "$SECTION" == "predict" ]
 then
 	RCHECK
@@ -236,6 +241,11 @@ then
 	if [ "$DEBUG" == "" ]
 	then
 		rm -rf $TMPDIR
+	fi
+
+	if [ "$ERR" != "" ]
+	then
+		exit -1
 	fi
 
 elif [ "$SECTION" == "install" ]

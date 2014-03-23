@@ -65,6 +65,7 @@ public class PredictModelsRequestHandler implements ContentHandler {
                         "A dataset cannot be inside another one.");
             }
             mDatasetHandler = new DatasetHandler();
+            mDatasetHandler.startDocument();
         }
         if (mDatasetHandler != null) {
             mDatasetHandler.startElement(uri, localName, qName, atts);
@@ -82,6 +83,7 @@ public class PredictModelsRequestHandler implements ContentHandler {
         if (mDatasetHandler != null) {
             mDatasetHandler.endElement(uri, localName, qName);
             if (localName.equalsIgnoreCase(DatasetHandler.TAG_DATASET)) {
+                mDatasetHandler.endDocument();
                 mDataset = mDatasetHandler.getDataset();
                 mDatasetHandler = null;
             }

@@ -29,7 +29,7 @@ class BuildModelsResponseReader extends ProgressResponseReader
         $xmlPart = $multi->getPart(0);
         if ($xmlPart instanceof MimePart) {
             $progResp = parent::read($xmlPart->getBody());
-            if($progResp instanceof ProgressResponse) {
+            if ($progResp instanceof ProgressResponse) {
                 $resp = BuildModelsResponse::fromArray($progResp->toArray());
             }
         }

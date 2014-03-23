@@ -30,20 +30,35 @@ function updateTask($type, array $data) {
     global $db;
 	$data['type'] = $type;
     if(array_key_exists('id', $data)) {
+        if(array_key_exists('result', $data)) {
+            // concat result string
+            $stmt = $db->executeQuery("SELECT result FROM tasks WHERE id = ?", array($data['id']));
+            $row = $stmt->fetch();
+            $data['result'] = $row['result']."\n<hr/>\n".$data['result'];
+        }
         $db->update('tasks', $data, array('id'=> $data['id']));
     }
 }
 
+print "listening to build-models responses...\n";
 $amqp->listenForBuildModelResponse(function(BuildModelsResponse $resp) use ($db) {
     print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
     updateTask('build-models', $resp->toArray());
 });
 
+print "listening to predict-models responses...\n";
 $amqp->listenForPredictModelsResponse(function(PredictModelsResponse $resp) use ($db) {
     print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
-    updateTask('predict-models', $resp->toArray());
+    $data = $resp->toArray();
+    if($resp->getResult()->isFinished()) {
+        $data['result'] = $resp->getResult()->toHtml();
+    } else {
+        unset($data['result']);
+    }
+    updateTask('predict-models', $data);
 });
 
+print "listening to fake responses...\n";
 $amqp->listenForFakeResponse(function(FakeResponse $resp) use ($db) {
     print "Received fake response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
     updateTask('fake', $resp->toArray());

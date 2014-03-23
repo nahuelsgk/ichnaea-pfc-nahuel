@@ -22,6 +22,7 @@ $table->addColumn("end", "string", array('notnull'=>false));
 $table->addColumn("progress", "float");
 $table->addColumn("error", "text", array('notnull'=>false));
 $table->addColumn("data", "blob", array('notnull'=>false));
+$table->addColumn("result", "text", array('notnull'=>false));
 $table->setPrimaryKey(array("id"));
 $sm->dropAndCreateTable($table);
 
@@ -31,5 +32,6 @@ $conn->insert('tasks', array(
     'start'		=> '01/04/2013 22:00',
     'end'		=> '02/04/2013 16:00',
     'progress'	=> 0.5,
-    'error'		=> 'Test request'
+    'error'		=> 'Test request',
+    'result'	=> 'Test result text can be <strong>html</strong>.'
 ));

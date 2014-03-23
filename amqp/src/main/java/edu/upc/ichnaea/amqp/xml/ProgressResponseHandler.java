@@ -1,6 +1,5 @@
 package edu.upc.ichnaea.amqp.xml;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -12,7 +11,6 @@ import org.xml.sax.SAXException;
 public class ProgressResponseHandler implements ContentHandler {
 
     final static String CALENDAR_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    final static String TYPE = "build_models";
 
     final static String TAG_RESPONSE = "response";
     final static String ATTR_ID = "id";
@@ -54,9 +52,6 @@ public class ProgressResponseHandler implements ContentHandler {
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException {       
         if (localName.equalsIgnoreCase(TAG_RESPONSE)) {
-            if (!atts.getValue(ATTR_TYPE).equalsIgnoreCase(TYPE)) {
-                throw new SAXException("Invalid response type");
-            }
             mId = atts.getValue(ATTR_ID);
             if (atts.getValue(ATTR_PROGRESS) == null) {
                 mProgress = 1;

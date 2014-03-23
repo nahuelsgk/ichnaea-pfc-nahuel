@@ -10,8 +10,11 @@ import edu.upc.ichnaea.amqp.model.ProgressResponse;
 
 public class XmlProgressResponseWriter extends XmlWriter {
 
-    public XmlProgressResponseWriter() throws ParserConfigurationException {
+    private String mType;
+
+    public XmlProgressResponseWriter(String type) throws ParserConfigurationException {
         super(ProgressResponseHandler.TAG_RESPONSE);
+        mType = type;
     }
 
     public XmlProgressResponseWriter build(ProgressResponse resp) {
@@ -20,7 +23,7 @@ public class XmlProgressResponseWriter extends XmlWriter {
         root.setAttribute(ProgressResponseHandler.ATTR_ID,
                 String.valueOf(resp.getId()));
         root.setAttribute(ProgressResponseHandler.ATTR_TYPE,
-                ProgressResponseHandler.TYPE);
+                mType);
 
         if (resp.hasError()) {
             root.setAttribute(ProgressResponseHandler.ATTR_ERROR,

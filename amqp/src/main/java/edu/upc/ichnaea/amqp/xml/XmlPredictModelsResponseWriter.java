@@ -9,7 +9,7 @@ import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
 public class XmlPredictModelsResponseWriter extends XmlProgressResponseWriter {
 
     public XmlPredictModelsResponseWriter() throws ParserConfigurationException {
-        super();
+        super(PredictModelsRequestHandler.TYPE);
     }
     
     public XmlPredictModelsResponseWriter build(PredictModelsResponse resp) {

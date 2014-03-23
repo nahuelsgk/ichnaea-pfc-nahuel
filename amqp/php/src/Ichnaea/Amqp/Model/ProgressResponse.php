@@ -61,7 +61,7 @@ class ProgressResponse
     private $error = null;
 
     /**
-     * Constructor for the build_models response
+     * Constructor for the progress response
      *
      * @param string $id identifier for the request
      */

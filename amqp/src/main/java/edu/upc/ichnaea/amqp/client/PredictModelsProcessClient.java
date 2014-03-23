@@ -5,17 +5,13 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
-import javax.mail.MessagingException;
 import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
 
 import com.rabbitmq.client.AMQP;
 
 import edu.upc.ichnaea.amqp.FileUtils;
 import edu.upc.ichnaea.amqp.IOUtils;
 import edu.upc.ichnaea.amqp.data.CsvDatasetWriter;
-import edu.upc.ichnaea.amqp.model.BuildModelsRequest;
 import edu.upc.ichnaea.amqp.model.PredictModelsRequest;
 import edu.upc.ichnaea.amqp.model.PredictModelsResponse;
 import edu.upc.ichnaea.amqp.model.PredictModelsResult;
@@ -126,11 +122,13 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
             resp = new PredictModelsResponse(replyTo, start, end, err);
         }
 
+        /*
         getLogger().info("deleting temporary dataset file");
         mShell.removePath(datasetPath);
         
         getLogger().info("deleting temporary models data file");
         mShell.removePath(modelsPath);
+        */
 
         if (resp == null) {
             Calendar end = Calendar.getInstance();

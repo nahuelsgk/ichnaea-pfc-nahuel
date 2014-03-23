@@ -41,15 +41,10 @@ public class XmlPredictModelsResultWriter extends XmlWriter {
                 new XmlDatasetWriter(getDocument(), xmlDataset).build(result
                         .getDataset());
             }
-
-    		Element xmlConf = appendChild(PredictModelsResultHandler.TAG_CONF_MATRIX);
-            float[][] confMatrix = result.getConfusionMatrix();
-            for(int i = 0; i < confMatrix.length; i++) {
-            	for(int j = 0; j < confMatrix[i].length; j++) {
-                    Element xmlCell = createElement(PredictModelsResultHandler.TAG_CONF_CELL);
-                    xmlCell.setTextContent(String.valueOf(confMatrix[i][j]));
-                    xmlConf.appendChild(xmlCell);
-            	}
+            if (!result.getConfusionMatrix().isEmpty()) {
+                Element xmlConfMatrix = appendChild(PredictModelsResultHandler.TAG_CONF_MATRIX);
+                new XmlDatasetWriter(getDocument(), xmlConfMatrix).build(result
+                        .getConfusionMatrix());
             }
         }
 

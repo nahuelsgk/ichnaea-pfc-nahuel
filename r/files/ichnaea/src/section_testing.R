@@ -216,6 +216,7 @@ cat("Confusion matrix (real\\pred):")
 
 print(tab)
 
+cat("\n")
 cat(paste("Test error: ", test_error*100, "%", sep=""))
 
 cat("\n")

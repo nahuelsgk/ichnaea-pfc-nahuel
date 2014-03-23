@@ -8,7 +8,7 @@ namespace Ichnaea\Amqp\Model;
  * This request contains:
  * * an unique identifier
  * * the data returned from a predict models response
- * * a test dataset 
+ * * a test dataset
  *
  * @see PredictModelsResponse
  * @author Miguel Ibero <miguel@ibero.me>
@@ -45,7 +45,7 @@ class PredictModelsRequest
             $id = uniqid();
         }
         $this->id = $id;
-        $this->dataset = new Dataset();        
+        $this->dataset = new Dataset();
     }
 
     /**
@@ -114,7 +114,7 @@ class PredictModelsRequest
         return array(
             "id"		=> $this->id,
             "data"	    => $this->data,
-            "dataset"   => $this->dataset->toArray()            
+            "dataset"   => $this->dataset->toArray()
         );
     }
 
@@ -130,7 +130,7 @@ class PredictModelsRequest
         }
         if (array_key_exists('dataset', $data)) {
             $this->setDataset($data['dataset']);
-        }        
+        }
     }
 
     /**

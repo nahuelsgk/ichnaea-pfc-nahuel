@@ -65,12 +65,12 @@ class Aging implements \IteratorAggregate
             // remove comments
             $data = preg_replace("/^\s*#.*$\n?/m", "", $data);
             // split by trials
-            $trials = preg_split("/(\t?\n){2,}/", $data);
+            $trials = preg_split("/(\r?\n){2,}/", $data);
             $data = array();
             foreach ($trials as $trial) {
                 $trial = trim($trial);
                 if (!empty($trial)) {
-                    $lines = preg_split("/(\t?\n)/", $trial);
+                    $lines = preg_split("/(\r?\n)/", $trial);
                     $trial = array();
                     foreach ($lines as $line) {
                         $line = trim($line);
@@ -142,7 +142,7 @@ class Aging implements \IteratorAggregate
      *
      * @param  int   $trial position of the trial
      * @param  float $key   key for the trial value
-     *                      @param mixed default value to return if the key or trial are not found
+     * @param mixed default value to return if the key or trial are not found
      * @return array the trials data
      */
     public function getValue($trial, $key, $default=null)

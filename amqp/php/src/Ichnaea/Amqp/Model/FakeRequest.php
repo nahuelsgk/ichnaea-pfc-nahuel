@@ -51,7 +51,7 @@ class FakeRequest
     public function getId()
     {
         return $this->id;
-    }    
+    }
 
     /**
      * Set the duration

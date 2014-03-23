@@ -28,7 +28,7 @@ use Ichnaea\Amqp\Exception\IchnaeaConnectionException;
  * * `build-models.response.queue`: the name of the build models response queue
  * * `predict-models.request.queue`: the name of the predict models request queue
  * * `predict-models.request.exchange`: the name of the predict models request exchange
- * * `predict-models.response.queue`: the name of the predict models response queue 
+ * * `predict-models.response.queue`: the name of the predict models response queue
  * * `fake.request.queue`: the name of the fake request queue
  * * `fake.request.exchange`: the name of the fake request exchange
  * * `fake.response.queue`: the name of the fake response queue
@@ -45,10 +45,10 @@ use Ichnaea\Amqp\Exception\IchnaeaConnectionException;
  * });
 * $amqp->listenForFakeResponse(function (FakeResponse $resp) use ($db) {
  *     print "Received fake response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
- * }); 
+ * });
  * $amqp->listenForPredictModelsResponse(function (PredictModelsResponse $resp) use ($db) {
  *     print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
- * }); 
+ * });
  * $amqp->wait();
  * $amqp->close();
  * ```
@@ -116,7 +116,7 @@ class Connection
             "predict-models.response.queue"     => "ichnaea.predict-models.response",
             "fake.request.queue"                => "ichnaea.fake.request",
             "fake.request.exchange"             => "ichnaea.fake.request",
-            "fake.response.queue"               => "ichnaea.fake.response",            
+            "fake.response.queue"               => "ichnaea.fake.response",
         ), $this->opts, $options);
     }
 
@@ -154,7 +154,7 @@ class Connection
         try {
             $this->conn = new AMQPConnection($this->url['host'], $this->url['port'], $this->url['user'], $this->url['pass'], $this->url['path']);
             $this->ch = $this->conn->channel();
-            
+
             $this->declareExchange(
                 $this->opts['build-models.request.queue'],
                 $this->opts['build-models.request.exchange'],
@@ -169,7 +169,7 @@ class Connection
                 $this->opts['fake.request.queue'],
                 $this->opts['fake.request.exchange'],
                 $this->opts['fake.response.queue']);
-        } catch(AMQPExceptionInterface $e) {
+        } catch (AMQPExceptionInterface $e) {
             throw $e;
             throw new IchnaeaConnectionException($e->getMessage());
         }
@@ -178,7 +178,7 @@ class Connection
     private function declareExchange($reqQueue, $reqExchange, $respQueue)
     {
         $this->ch->queue_declare($reqQueue, false, false, false, false);
-        $this->ch->exchange_declare($reqExchange, "direct", false, true, false);      
+        $this->ch->exchange_declare($reqExchange, "direct", false, true, false);
         $this->ch->queue_bind($reqQueue, $reqExchange, "");
         $this->ch->queue_declare($respQueue, false, false, false, false);
     }
@@ -198,6 +198,7 @@ class Connection
         $msg = new AMQPMessage($xml->__toString(), array('content_type' => 'text/xml'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['build-models.request.exchange']);
+
         return $xml;
     }
 
@@ -211,8 +212,8 @@ class Connection
         if (!$this->ch) {
             throw new \UnexpectedValueException("Connection is not open");
         }
-        if(!is_string($req->getData())) {
-            throw new \UnexpectedValueException("Request needs to have the build-models data.");   
+        if (!is_string($req->getData())) {
+            throw new \UnexpectedValueException("Request needs to have the build-models data.");
         }
         $xml = new PredictModelsRequestWriter();
         $xml->build($req);
@@ -227,8 +228,9 @@ class Connection
         $msg = new AMQPMessage($mime, array('content_type' => 'mime/multipart'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['predict-models.request.exchange']);
+
         return $xml;
-    }   
+    }
 
     /**
      * Sends a fake request to the server
@@ -245,8 +247,9 @@ class Connection
         $msg = new AMQPMessage($xml->__toString(), array('content_type' => 'text/xml'));
         $msg->set("reply_to", $req->getId());
         $this->ch->basic_publish($msg, $this->opts['fake.request.exchange']);
+
         return $xml;
-    }     
+    }
 
     /**
      * Sends a request to the server
@@ -257,9 +260,9 @@ class Connection
     {
         if ($model instanceof BuildModelsRequest) {
             return $this->sendBuildModelsRequest($model);
-        } else if($model instanceof PredictModelsRequest) {
+        } elseif ($model instanceof PredictModelsRequest) {
             return $this->sendPredictModelsRequest($model);
-        } else if($model instanceof FakeRequest) {
+        } elseif ($model instanceof FakeRequest) {
             return $this->sendFakeRequest($model);
         }
     }
@@ -304,7 +307,6 @@ class Connection
         });
     }
 
-
     /**
      * Listens for fake responses from the server. The callback will receive
      * the response object as a parameter
@@ -323,7 +325,7 @@ class Connection
                         basic_ack($msg->delivery_info['delivery_tag']);
                 }
         });
-    }         
+    }
 
     /**
      * Closes the connection

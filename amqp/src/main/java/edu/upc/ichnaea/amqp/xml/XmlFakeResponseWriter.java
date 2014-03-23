@@ -7,7 +7,7 @@ import edu.upc.ichnaea.amqp.model.FakeResponse;
 public class XmlFakeResponseWriter extends XmlProgressResponseWriter {
 
     public XmlFakeResponseWriter() throws ParserConfigurationException {
-        super();
+        super(FakeRequestHandler.TYPE);
     }
 
     public XmlProgressResponseWriter build(FakeResponse resp) {
