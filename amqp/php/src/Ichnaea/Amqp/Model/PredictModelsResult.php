@@ -252,8 +252,17 @@ class PredictModelsResult
      **/
     public function toHtml()
     {
-        $html = "";
-        $html .= $this->dataset->toHtml();
+        $html = "<div class=\"ichnaea_predict_models_result\">";
+        $html .= "<h3>".$this->getName()."</h3>\n";
+        $html .= "<h4>Dataset</h4>\n";
+        $html .= $this->getDataset()->toHtml()."\n";
+        $html .= "<h4>Confusion Matrix</h4>\n";
+        $html .= $this->getConfusionMatrix()->toHtml()."\n";
+        $html .= "<ul>\n";
+        $html .= "<li>".$this->getPredictedSamples() . "/" . $this->getTotalSamples() . " samples</li>\n";
+        $html .= "<li>". $this->getTestError()*100 ."% error</li>\n";
+        $html .= "</ul>\n";
+        $html .= "</div>\n";
         return $html;
     }
 
@@ -265,4 +274,15 @@ class PredictModelsResult
     {
         return $this->getPredictedSamples() == 0;
     }
+
+    /**
+     * Return true if the result is finished
+     * @return bool true if finished
+     */
+    public function isFinished()
+    {
+        return !$this->isEmpty() &&
+            $this->getPredictedSamples() == $this->getTotalSamples() &&
+            !$this->getDataset()->isEmpty();
+    }    
 }

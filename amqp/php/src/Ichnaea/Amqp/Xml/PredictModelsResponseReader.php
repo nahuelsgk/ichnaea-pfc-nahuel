@@ -20,15 +20,14 @@ class PredictModelsResponseReader extends ProgressResponseReader
      */
     public function read($data)
     {
-        $resp = parent::read($data);
+        $rootNode = $this->getRootNode($data, 'response');
+        $resp = parent::read($rootNode);
         if($resp instanceof ProgressResponse) {
             $resp = PredictModelsResponse::fromArray($resp->toArray());
-            $xml = new \DOMDocument();
-            $xml->loadXML($data);
-            foreach ($xml->childNodes as $node) {
+            foreach ($rootNode->childNodes as $node) {
                 if ($node->nodeName === 'result') {
                     $reader = new PredictModelsResultReader();
-                    $result->setResult($reader->read($node));
+                    $resp->setResult($reader->read($node));
                 }
             }
             return $resp;

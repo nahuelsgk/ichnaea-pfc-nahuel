@@ -122,11 +122,13 @@ public class PredictModelsProcessClient extends AbstractProcessClient {
             resp = new PredictModelsResponse(replyTo, start, end, err);
         }
 
+        /*
         getLogger().info("deleting temporary dataset file");
         mShell.removePath(datasetPath);
         
         getLogger().info("deleting temporary models data file");
         mShell.removePath(modelsPath);
+        */
 
         if (resp == null) {
             Calendar end = Calendar.getInstance();

@@ -35,8 +35,8 @@ if (MEGAVALIDATION) {
 }
 
 predicted_test_data <- NULL
-N <- nrow(prepared_test_data)
-#N <- 1
+#N <- nrow(prepared_test_data)
+N <- 1
 for(i in 1:N) {
   if(DEBUG) {cat(paste("***New sample, #", i, "/", N, "\n"))}
   na.sample <- prepared_test_data[i,]

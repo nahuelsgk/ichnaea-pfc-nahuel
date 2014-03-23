@@ -56,7 +56,7 @@ function PredictModelsTaskFormCtrl($scope, $routeParams, $http) {
     }
     if(name === "data") {
       if(files.length > 0) {
-        $scope.task.data = btoa(unescape(encodeURIComponent(contents[0])));
+        $scope.task.data = btoa(contents[0]);
       } else {
         delete $scope.task.data;
       }
@@ -157,9 +157,14 @@ function TaskListCtrl($scope, $routeParams, $http) {
       $scope.error = "There was an error deleting the task.";
     });
   };
+
+   $scope.viewResult = function(id) {
+    console.log("lalala");
+    $(this).find(".task-result").modal("show");
+   }
 }
 
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngSanitize']);
 app.directive('fileUpload', function () {
   return {
     scope: true,
@@ -179,7 +184,8 @@ app.directive('fileUpload', function () {
               }
             };
           })(i);
-          reader.readAsText(files[i]);
+          // reader.readAsText(files[i]);
+          reader.readAsBinaryString(files[i]);
         }
       });
     }

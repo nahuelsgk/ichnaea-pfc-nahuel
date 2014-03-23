@@ -19,24 +19,7 @@ class DatasetReader extends Reader
      */
     public function read($data)
     {       
-        $rootNode = null;
-        if($data instanceof \DomElement) {
-            $rootNode = $data;
-        } else {
-            $xml = new \DOMDocument();
-            $xml->loadXML($data);
-            foreach ($xml->childNodes as $node) {
-                if ($node->nodeName === 'dataset') {
-                    $rootNode = $node;
-                    break;
-                }
-            }
-        }
-
-        if($rootNode == null) {
-            return null;
-        }
-
+        $rootNode = $this->getRootNode($data, 'dataset');
         $cols = array();
         foreach($rootNode->childNodes as $node) {
             if($node->nodeName === 'column') {

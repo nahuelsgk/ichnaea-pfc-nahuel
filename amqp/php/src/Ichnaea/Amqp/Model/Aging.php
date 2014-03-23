@@ -65,12 +65,12 @@ class Aging implements \IteratorAggregate
             // remove comments
             $data = preg_replace("/^\s*#.*$\n?/m", "", $data);
             // split by trials
-            $trials = preg_split("/(\t?\n){2,}/", $data);
+            $trials = preg_split("/(\r?\n){2,}/", $data);
             $data = array();
             foreach ($trials as $trial) {
                 $trial = trim($trial);
                 if (!empty($trial)) {
-                    $lines = preg_split("/(\t?\n)/", $trial);
+                    $lines = preg_split("/(\r?\n)/", $trial);
                     $trial = array();
                     foreach ($lines as $line) {
                         $line = trim($line);

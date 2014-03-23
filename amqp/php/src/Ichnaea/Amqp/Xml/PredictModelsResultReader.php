@@ -21,24 +21,7 @@ class PredictModelsResultReader extends Reader
      */
     public function read($data)
     {
-        $rootNode = null;
-        if($data instanceof \DomElement) {
-            $rootNode = $data;
-        } else {
-            $xml = new \DOMDocument();
-            $xml->loadXML($data);
-            foreach ($xml->childNodes as $node) {
-                if ($node->nodeName === 'result') {
-                    $rootNode = $node;
-                    break;
-                }
-            }
-        }
-
-        if($rootNode == null) {
-            return null;
-        }
-
+        $rootNode = $this->getRootNode($data, 'result');
         $result = new PredictModelsResult();
         $result->setName($rootNode->getAttribute('name'));
         $result->setTestError($rootNode->getAttribute('testError'));

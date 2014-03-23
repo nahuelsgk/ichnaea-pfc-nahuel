@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/angular.min.js" type="text/javascript"></script>   
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/angular-sanitize.min.js" type="text/javascript"></script>   
     <script src="js/app.js" type="text/javascript"></script>
   </head>
   <body>
@@ -199,6 +200,22 @@
                   <div class="progress-bar" style="width:{{task.progress*100}}%;">{{task.progress*100}}%</div>
                   </div></td>
                   <td>
+                  <div class="modal fade" id="task-result-{{task.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Task Result</h4>
+                        </div>
+                        <div class="modal-body" ng-bind-html="task.result">
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="btn-group">
                     <a class="btn btn-primary btn-sm" href="#" data-toggle="dropdown" >Actions</a>
                     <a class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
@@ -206,6 +223,8 @@
                     <ul class="dropdown-menu">
                       <li><a class="delete-task" ng-click="deleteTask(task.id)">
                       <span class="glyphicon glyphicon-trash"></span> Delete</a></li>
+                      <li><a class="view-result" data-toggle="modal" data-target="#task-result-{{task.id}}">
+                      <span class="glyphicon glyphicon-zoom-in"></span> View Result</a></li>
                     </ul>
                   </div>
                   </td>

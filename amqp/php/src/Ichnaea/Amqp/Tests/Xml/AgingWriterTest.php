@@ -9,26 +9,31 @@ class AgingWriterTest extends \PHPUnit_Framework_TestCase
 {
     public function testWritingXml()
     {
-        $aging = new Aging();
-        $aging->setTrials(array(
+        $aging = new Aging(array(
             array(
-                0   => 4.4,
-                10  => 40,
-                50  => 120.6
+                0   => 6.91,
+                24  => 6.05,
+                48  => 5.99,
+                72  => 4.60,
             ),
             array(
-                0   => 5.4,
-                10  => 43,
-                50  => 123.6
+                0   => 6.91,
+                24  => 6.05,
+                48  => 5.99,
+                72  => 4.52,
             )
         ));
 
-        $xml = new AgingWriter();
-        $xml->build($aging);
+        $writer = new AgingWriter();
+        $writer->build($aging);
 
-        $expectedXml  = '<aging><trial><value key="0">4.4</value><value key="10">40</value>';
-        $expectedXml .= '<value key="50">120.6</value></trial><trial><value key="0">5.4</value>';
-        $expectedXml .= '<value key="10">43</value><value key="50">123.6</value></trial></aging>';
+        $expectedXml = '<aging><trial><value key="0">6.91</value><value key="24">6.05</value>';
+        $expectedXml .= '<value key="48">5.99</value><value key="72">4.6</value></trial><trial>';
+        $expectedXml .= '<value key="0">6.91</value><value key="24">6.05</value><value key="48">5.99</value>';
+        $expectedXml .= '<value key="72">4.52</value></trial></aging>';
+        $xml = $writer->__toString();
+
         $this->assertXmlStringEqualsXmlString($expectedXml, $xml, "Aging xml writer exports aging data.");
+
     }
 }

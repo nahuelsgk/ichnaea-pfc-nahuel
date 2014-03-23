@@ -19,19 +19,12 @@ class ProgressResponseReader extends Reader
      */
     public function read($data)
     {
-        $resp = null;        
-        $xml = new \DOMDocument();
-        $xml->loadXML($data);
-
-        foreach ($xml->childNodes as $node) {
-            if ($node->nodeName === 'response') {
-                $resp = new ProgressResponse($node->getAttribute('id'));
-                $resp->setProgress($node->getAttribute('progress'));
-                $resp->setStart($node->getAttribute('start'));
-                $resp->setEnd($node->getAttribute('end'));
-                $resp->setError($node->getAttribute('error'));
-            }
-        }
+        $rootNode = $this->getRootNode($data, 'response');
+        $resp = new ProgressResponse($rootNode->getAttribute('id'));
+        $resp->setProgress($rootNode->getAttribute('progress'));
+        $resp->setStart($rootNode->getAttribute('start'));
+        $resp->setEnd($rootNode->getAttribute('end'));
+        $resp->setError($rootNode->getAttribute('error'));
         return $resp;
     }
 }

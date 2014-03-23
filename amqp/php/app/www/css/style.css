@@ -3,3 +3,9 @@
 .tab-content > .tab-pane {
 	margin-top: 15px;
 }
+
+.modal .modal-body {
+    max-width: 600px;
+    max-height: 420px;
+    overflow: auto;
+}

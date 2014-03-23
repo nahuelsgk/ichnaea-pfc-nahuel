@@ -49,7 +49,10 @@ class Dataset implements \IteratorAggregate
             }
         }
         if (is_string($data)) {
-            $rows = explode("\n", $data);
+            $rows = preg_split("/\r?\n/", $data);
+            $rows = array_filter($rows, function($row) {
+                return !empty($row);
+            });
             foreach ($rows as &$row) {
                 $row = str_getcsv($row, self::CsvDelimiter);
                 array_walk($row, function (&$value) {
@@ -239,12 +242,12 @@ class Dataset implements \IteratorAggregate
         foreach($rows as $row) {
             $html .= "<tr>";
             foreach($row as $cel) {
-                $html .= "<td>".$col."<td>";       
+                $html .= "<td>".$cel."<td>";       
             }
             $html .= "</tr>\n";
         }
-        $html = "</tbody>\n";
-        $html = "</table>\n";
+        $html .= "</tbody>\n";
+        $html .= "</table>\n";
         return $html;
     }
 
