@@ -233,6 +233,40 @@ class TrainingService{
 		return file_get_contents($file);
 	}
 	
+	public function getTrainingsByUser($user_id)
+	{
+		$user = $this->em->getRepository('UserBundle:User')->find($user_id);
+		return $user->getTrainings();
+	}
+	
+	public function getPendingOrErrorTrainingsByUser($user_id)
+	{
+		$qb = $this->em->createQueryBuilder();
+		
+		$query = $qb->select('t')
+		->from('IchnaeaWebAppTrainingBundle:Training','t')
+		->where('t.trainer = :user_id')
+		->andwhere(
+			$qb->expr()->orx(
+				't.status = :sent',
+				$qb->expr()->andx(
+					"t.status = :finished",
+					"t.error <> :null"
+				)
+			)
+		)
+		->setParameters(array(
+				'user_id'  => $user_id,
+				':sent'    => 'sent',
+				'finished' => 'finished',
+				':null' => 'NULL'
+				)
+		)
+		->getQuery();
+		
+		return $query->getResult();
+	}
+	
 	public function getTrainableTrainingList()
 	{
 		$query = $this->em

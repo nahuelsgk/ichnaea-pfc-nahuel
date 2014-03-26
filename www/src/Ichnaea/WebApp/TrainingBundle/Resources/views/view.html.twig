@@ -84,11 +84,11 @@
      <a href="{{path('training_download_rdata',{matrix_id: training.matrix.id, training_id: training.id})}}">Download r data</a>
    {% endif %}
  {% endif %} 
- <legend>Predictions<a class="btn btn-mini" href="{{path('create_prediction_matrix_action', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="create_training" title="Create training"><i class="icon-plus"></i></a></legend>
+ <legend>Predictions<a class="btn btn-mini" href="{{path('create_prediction_matrix_action', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="create_training" title="Create a training from this matrix"><i class="icon-plus"></i></a></legend>
  <ul>
  {% for prediction in predictions %}
  <li>{{ prediction.name }} 
- <a class="btn btn-mini" href="{{path('view_matrix_prediction', {'matrix_id': training.matrix.id, 'prediction_id': prediction.id, 'training_id': training.id})}}" name="create_training" title="Create training"><i class="icon-eye-open"></i></a></li>
+ <a class="btn btn-mini" href="{{path('view_matrix_prediction', {'matrix_id': training.matrix.id, 'prediction_id': prediction.id, 'training_id': training.id})}}" name="create_training" title="View matrix prediction"><i class="icon-eye-open"></i></a></li>
  {% endfor %}
  </ul>
 {% endblock %}

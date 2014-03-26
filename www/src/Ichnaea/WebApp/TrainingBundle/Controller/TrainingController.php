@@ -214,6 +214,7 @@ class TrainingController extends Controller
 	{
 		$user = $this->get('security.context')->getToken()->getUser();
 		$trainingService = $this->get('ichnaea.training_service');
-		return $this->render('IchnaeaWebAppTrainingBundle::my_trainings.html.twig');
+		$trainings = $trainingService->getTrainingsByUser($user->getId());
+		return $this->render('IchnaeaWebAppTrainingBundle::my_trainings.html.twig', array('trainings'=>$trainings));
 	}
 }

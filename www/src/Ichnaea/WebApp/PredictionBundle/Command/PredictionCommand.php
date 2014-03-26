@@ -1,5 +1,5 @@
 <?php
-namespace Ichnaea\WebApp\PredictionBundle/Command;
+namespace Ichnaea\WebApp\PredictionBundle\Command;
 
 
 #require_once __DIR__.'/../../../../../../../ichnaea.alt/amqp/php/vendor/autoload.php';
@@ -15,9 +15,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Ichnaea\Amqp\Model\BuildModelsResponse as BuildModelsResponse;
 use Ichnaea\Amqp\Connection as AmqpConnection;
 
-define('ICHNAEA_AMQP_URL', 'test:test@localhost');
+#define('ICHNAEA_AMQP_URL', 'test:test@localhost');
 
-class ConsumerCommand extends ContainerAwareCommand
+class PredictionCommand extends ContainerAwareCommand
 {
 			
 	protected function configure()

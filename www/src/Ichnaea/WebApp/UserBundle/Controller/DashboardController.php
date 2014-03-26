@@ -9,7 +9,10 @@ class DashboardController extends Controller{
 	
 	public function getDashboardAction()
 	{
-		return $this->render('UserBundle::dashboard.html.twig');	
+		$user = $this->get('security.context')->getToken()->getUser();
+		$trainingService = $this->get('ichnaea.training_service');
+		$trainings = $trainingService->getPendingOrErrorTrainingsByUser($user->getId());
+		return $this->render('UserBundle::dashboard.html.twig',array('trainings'=>$trainings));	
 	}
 	
 }

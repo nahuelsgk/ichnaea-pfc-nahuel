@@ -8,6 +8,6 @@
   <legend>
     Here you can select a matrix to train
   </legend>
-  {% include 'MatrixBundle:Matrix:template_listing.html.twig' %}
+  {% include 'MatrixBundle:Matrix:template_listing.html.twig' with {'view_enable': 'true', 'train_enable': 'true', 'clone_enable': 'false'} %}
 </div>
 {% endblock %}

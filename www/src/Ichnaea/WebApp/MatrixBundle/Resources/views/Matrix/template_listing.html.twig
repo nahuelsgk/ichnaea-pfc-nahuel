@@ -11,21 +11,27 @@
    </td>
    <td>
    {% if is_granted('ROLE_SUPER_ADMIN') %}
-   <a class="btn btn-mini" href="{{path('matrix_ui_edit', {'matrix_id': matrix.id})}}" name="view_matrix" title="For Admins: Configure columns and samples">
-   <i class="icon-edit"></i>
+     <a class="btn btn-mini" href="{{path('matrix_ui_edit', {'matrix_id': matrix.id})}}" name="edit_matrix" title="For Admins: Configure columns and samples">
+     <i class="icon-edit"></i>
    {%  endif %}
-    <a class="btn btn-mini" href="{{path('matrix_ui_view', {'matrix_id': matrix.id})}}" name="view_matrix" title="View matrix">
+   {% if view_enable == 'true' %}
+     <a class="btn btn-mini" href="{{path('matrix_ui_view', {'matrix_id': matrix.id})}}" name="view_matrix" title="View this matrix">
        <i class="icon-eye-open"></i>
      </a>
-     {% if matrix.visible == '0' %}
-     {% else %}
-     <a class="btn btn-mini" href="{{path('create_training_form', {'matrix_id': matrix.id})}}" name="create_training" title="Create training">
+   {% endif %}
+   {% if matrix.visible == '0' %}
+   {% else %}
+     {% if train_enable == 'true' %}
+       <a class="btn btn-mini" href="{{path('create_training_form', {'matrix_id': matrix.id})}}" name="create_training" title="Create training from this matrix">
        <i class="icon-road"></i>
-     </a>
      {% endif %}
-     <a class="btn btn-mini" href="{{path('clone_matrix_form', {'matrix_id': matrix.id})}}" name="clone_matrix" title="Clone the matrix">
-       <i class="icon-repeat"></i>
      </a>
+   {% endif %}
+   {% if clone_enable == 'true' %}
+     <a class="btn btn-mini" href="{{path('clone_matrix_form', {'matrix_id': matrix.id})}}" name="clone_matrix" title="Clone this matrix">
+     <i class="icon-repeat"></i>
+     </a>
+   {% endif %}
    </td>
    </tr>
  {% endfor %}
