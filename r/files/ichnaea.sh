@@ -201,11 +201,6 @@ then
 		rm -rf $TMPDIR
 	fi
 
-	if [ "$ERR" != "" ]
-	then
-		exit -1
-	fi
-
 elif [ "$SECTION" == "predict" ]
 then
 	RCHECK
@@ -241,11 +236,6 @@ then
 	if [ "$DEBUG" == "" ]
 	then
 		rm -rf $TMPDIR
-	fi
-
-	if [ "$ERR" != "" ]
-	then
-		exit -1
 	fi
 
 elif [ "$SECTION" == "install" ]
@@ -291,3 +281,9 @@ else
 fi
 
 TIME_END
+
+# commented since the R code spits out warnings through stderr
+#	if [ "$ERR" != "" ]
+#	then
+#		exit -1
+#	fi

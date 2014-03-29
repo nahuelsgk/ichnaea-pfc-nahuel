@@ -71,7 +71,7 @@ To run the basic build-models:process client:
 
 To run the basic build-models:request client:
 
-    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv --output=/tmp/cryprus_models.zip
+    ./target/ichnaea-amqp.jar build-models:request --aging=../r/fixtures/aging/env%column%-%aging%.txt --dataset=../r/fixtures/cyprus.csv --output=/tmp/cyprus_models.zip
 
 ##### Predict models request
 
