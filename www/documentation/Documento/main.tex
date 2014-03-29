@@ -39,7 +39,9 @@
 	breaklines=true,
 	breakatwhitespace=true
 }
+\renewcommand*\thesection{\arabic{section}}
 \makeglossaries
+
 
 \begin{document}
 \pagestyle{empty}
@@ -50,7 +52,6 @@
 \pagenumbering{gobble}
 \tableofcontents
 \makeindex
-\cleardoublepage
 \pagenumbering{arabic}
 
 \pagestyle{headings}
