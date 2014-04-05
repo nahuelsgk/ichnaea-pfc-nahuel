@@ -5,40 +5,59 @@
 {% block main_content %}
 
 <div class="container">
-<legend>
-Prediction matrix: "{{ matrix_name }}"
 
-{% if matrix_status == 'pending' or matrix_status == '' %}
-	<a class="btn btn-mini" 
-		href="{{
-			path('update_prediction_matrix_form', 
-			{'prediction_id': matrix_id, 'training_id': training_id, 'matrix_id': matrix_trained_id })}}" 
-		name="download_matrix" title="Update matrix">
-		<i class="icon-refresh"></i>
-	</a>
-{% endif %}
+<div id="header_prediction_matrix">
 
-{% if matrix_status == 'pending' %}
-	<a href="{{ 
-		path('prediction_resend', 
-			{	
-				matrix_id: matrix_trained_id, 
-				training_id: training_id, 
-				prediction_id: matrix_id
-			}
-		)}}" 
-		class="btn btn-mini btn-warning">Resend prediction</a>
-{% else %}
-    <a href="{{ 
-    	path('prediction_send', 
-    	{
-    		matrix_id: matrix_trained_id, 
-    		training_id: training_id, 
-    		prediction_id: matrix_id
-		}) }}" class="btn btn-mini btn-success">Perform prediction</a>
-{% endif %}
+<div id="left_prediction_matrix_IU" style="width: 45%; height: 100px; float: left;">
+	<legend>
+		Prediction matrix
+		<!-- ACTIONS -->
+		{% if matrix_status == 'pending' or matrix_status == 'NULL' or matrix_status == 'new' %}
+		<a class="btn btn-mini" 
+			href="{{
+				path('update_prediction_matrix_form', 
+				{'prediction_id': matrix_id, 'training_id': training_id, 'matrix_id': matrix_trained_id })}}" 
+				name="update_matrix" title="Update matrix">
+			<i class="icon-refresh"></i>
+		</a>
+		{% endif %}
+		{% if matrix_status == 'pending'  %}
+			<a href="{{ 
+				path('prediction_resend', 
+					{	
+						matrix_id: matrix_trained_id, 
+						training_id: training_id, 
+						prediction_id: matrix_id
+					}
+				)}}" 
+				class="btn btn-mini btn-warning">Resend prediction</a>
+		{% elseif matrix_status == 'sent' %}
+			<a href="" class="btn btn-mini btn-info">Pending results</a>
+		{% elseif matrix_status == 'finished' %}
+			<a href="{{  path('prediction_view_results',
+					{	
+						matrix_id: matrix_trained_id, 
+						training_id: training_id, 
+						prediction_id: matrix_id
+					})}}" 
+			class="btn btn-mini btn-success">View results</a>
+		{% elseif matrix_status == 'NULL' or matrix_status == 'new' %}
+		    <a href="{{ 
+		    	path('prediction_send', 
+		    	{
+		    		matrix_id: matrix_trained_id, 
+		    		training_id: training_id, 
+		    		prediction_id: matrix_id
+				}) }}" class="btn btn-mini btn-success">Perform prediction</a>
+		{% endif %}
+	</legend> 
+	Name: "{{ matrix_name }}"<br>
+</div>
 
-</legend>
+<div id="left_prediction_matrix_IU" style="width: 45%; height: 100px; float: left;">
+	<legend>Messaging</legend>
+</div>
+</div>
 </div>
 
 {%  include 'MatrixBundle:Matrix:view_matrix_table.html.twig' %}

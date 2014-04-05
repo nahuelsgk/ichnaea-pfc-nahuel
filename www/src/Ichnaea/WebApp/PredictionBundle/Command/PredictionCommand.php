@@ -11,8 +11,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use Ichnaea\Amqp\Model\BuildModelsResponse as BuildModelsResponse;
+use Ichnaea\Amqp\Model\PredictModelsResponse as PredictModelsResponse;
 use Ichnaea\Amqp\Connection as AmqpConnection;
 
 #define('ICHNAEA_AMQP_URL', 'test:test@localhost');
@@ -44,7 +43,18 @@ class PredictionCommand extends ContainerAwareCommand
 		$amqp-> listenForPredictModelsResponse(function (PredictModelsResponse $resp) use ($predictionService){
 			print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
 			$data = $resp->toArray();
-			$predictionService->updatePrediction($resp->getId(), $data['progress'], $data['error'], $data['data'] );
+			
+			$data['result'] = $resp->getResult();
+			var_dump($data['result']);
+			if($resp->getResult()->isFinished()) {
+				echo "****Consumer: Was finished ****";
+				$data['result'] = $resp->getResult();
+				
+			} else {
+				echo "****Consumer continue ***";
+				unset($data['result']);
+			}
+			$predictionService->updatePrediction($resp->getId(), $data['progress'], $data['error'], isset($data['result']) ? $data['result'] : 'NULL');
 		});
 		$amqp->wait();
 	}

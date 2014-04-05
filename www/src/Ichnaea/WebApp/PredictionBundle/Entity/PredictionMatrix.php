@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="prediction_matrix")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 
 class PredictionMatrix
@@ -27,6 +28,13 @@ class PredictionMatrix
 	 * @ORM\Column(name="name", type="string", length=255)
 	 */
 	private $name;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="description", type="string", length=255, nullable=true)
+	 */
+	private $description;
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\TrainingBundle\Entity\Training")
@@ -43,6 +51,13 @@ class PredictionMatrix
 	 * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample", mappedBy="matrix", cascade={"persist"})
 	 */
 	private $rows;
+
+	/**
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="created", type="datetime", nullable=false)
+	 */
+	private $created;
 	
 	/**
 	 * @var string
@@ -62,6 +77,18 @@ class PredictionMatrix
 	 */
 	private $requestId;
 	
+	/**
+	 * @var decimal
+	 * @ORM\Column(name="progress", type="decimal", precision=5, scale=2)
+	 */
+	private $progress = 0;
+	
+	/**
+     * @var array
+     *
+     * @ORM\Column(name="results", type="array", nullable = true)
+     */
+    private $predictions_result;
 	/**
 	 * Get id
 	 *
@@ -103,6 +130,29 @@ class PredictionMatrix
         return $this->name;
     }
 
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Training
+     */
+    public function setDescription($description)
+    {
+    	$this->description = $description;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+    	return $this->description;
+    }
+    
     /**
      * Set training
      *
@@ -182,6 +232,29 @@ class PredictionMatrix
         return $this->owner;
     }
 
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Training
+     */
+    public function setCreated($created)
+    {
+    	$this->created = $created;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+    	return $this->created;
+    }
+    
     /**
      * Set status
      *
@@ -263,4 +336,60 @@ class PredictionMatrix
     {
         return $this->requestId;
     }
+
+    /**
+     * Set predictions_result
+     *
+     * @param array $predictionsResult
+     * @return PredictionMatrix
+     */
+    public function setPredictionsResult($predictionsResult)
+    {
+        $this->predictions_result = $predictionsResult;
+
+        return $this;
+    }
+
+    /**
+     * Get predictions_result
+     *
+     * @return array 
+     */
+    public function getPredictionsResult()
+    {
+        return $this->predictions_result;
+    }
+
+    /**
+     * Set progress
+     *
+     * @param string $progress
+     * @return PredictionMatrix
+     */
+    public function setProgress($progress)
+    {
+        $this->progress = $progress;
+
+        return $this;
+    }
+
+    /**
+     * Get progress
+     *
+     * @return string 
+     */
+    public function getProgress()
+    {
+        return $this->progress;
+    }
+    
+    /**
+     *  @ORM\PrePersist
+     */
+    public function createdDefault()
+    {
+    	$date = new \DateTime("now");
+    	$this->created = $date;
+    }
+    
 }

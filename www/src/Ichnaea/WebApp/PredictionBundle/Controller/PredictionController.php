@@ -3,27 +3,40 @@
 namespace Ichnaea\WebApp\PredictionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ichnaea\Amqp\Model\PredictModelsResult;
 
 class PredictionController extends Controller
 {
+	/**
+	 * Just a demo function
+	 * 
+	 * @param string $name
+	 */
     public function indexAction($name)
     {
         return $this->render('IchnaeaWebAppPredictionBundle:Default:index.html.twig', array('name' => $name));
     }
 
+    /**
+     * Render the form for create a prediction matrix and submits the form
+     *  
+     * @param int $matrix_id
+     * @param int $training_id
+     */
  	public function predictionFormAction($matrix_id, $training_id)
 	{
 		$trainingService = $this->get('ichnaea.trainingService');
 		$training = $trainingService->getTraining($training_id);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST'){
-			$name       = $request->request->get("name");
-			$csvContent = $request->request->get("content");
-			$user       = $this->getUser();
-			$owner_id   = $user->getId();
+			$name        = $request->request->get("name");
+			$description = $request->request->get('description');
+			$csvContent  = $request->request->get("content");
+			$user        = $this->getUser();
+			$owner_id    = $user->getId();
 			
 			$predictionService = $this->get('ichnaea_web_app_prediction.service');
-			$predictionMatrix = $predictionService->createMatrixPredictionFromCSV($training_id, $name, $csvContent,$owner_id);
+			$predictionMatrix = $predictionService->createMatrixPredictionFromCSV($training_id, $name, $description, $csvContent,$owner_id);
 			return $this->redirect($this->generateUrl('view_matrix_prediction', array(
 					'matrix_id' => $matrix_id, 
 					'training_id' => $training_id, 
@@ -40,18 +53,26 @@ class PredictionController extends Controller
 		));
 	}
 
+	/**
+	 * Render the form to update a prediction matrix and submits the form
+	 * 
+	 * @param int $matrix_id
+	 * @param int $training_id
+	 * @param int $prediction_id
+	 */
 	public function predictionUpdateFormAction($matrix_id, $training_id, $prediction_id)
 	{
 		$predictionService = $this->get('ichnaea_web_app_prediction.service');
 		$predictionMatrix = $predictionService->getPredictionMatrix($matrix_id, $training_id, $prediction_id);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST'){
-			$name       = $request->request->get("name");
-			$csvContent = $request->request->get("content");
-			$user       = $this->getUser();
-			$owner_id   = $user->getId();
+			$name        = $request->request->get("name");
+			$description = $request->request->get("description"); 
+			$csvContent  = $request->request->get("content");
+			$user        = $this->getUser();
+			$owner_id    = $user->getId();
 				
-			$predictionMatrix = $predictionService->createMatrixPredictionFromCSV($training_id, $name, $csvContent,$owner_id, $prediction_id);
+			$predictionMatrix = $predictionService->createMatrixPredictionFromCSV($training_id, $name, $description, $csvContent,$owner_id, $prediction_id);
 			return $this->redirect($this->generateUrl('view_matrix_prediction', array('matrix_id' => $matrix_id, 'training_id' => $training_id, 'prediction_id' => $predictionMatrix)));
 		}
 	
@@ -62,10 +83,18 @@ class PredictionController extends Controller
 						'prediction_id' => $prediction_id,
 						'columns'	    => $predictionMatrix->getTraining()->getColumnsSelected(),
 						'name'		    => $predictionMatrix->getName(),
+						'description' 	=> $predictionMatrix->getDescription(),
 						'update'	    => true
 				));
 	}
 	
+	/**
+	 * Render a page to view the matrix with useful information
+	 * 
+	 * @param int $matrix_id
+	 * @param int $training_id
+	 * @param int $prediction_id
+	 */
 	public function predictionMatrixViewAction($matrix_id, $training_id, $prediction_id){
 		$predictionService = $this->get('ichnaea_web_app_prediction.service');
 		$matrixPrediction = $predictionService->getPredictionMatrix($matrix_id, $training_id, $prediction_id);
@@ -83,6 +112,13 @@ class PredictionController extends Controller
 		);
 	}
 	
+	/**
+	 * Action to download a prediction matrix template in csv. Actually is not working
+	 * 
+	 * @param int $matrix_id
+	 * @param int $training_id
+	 * @return \Ichnaea\WebApp\PredictionBundle\Controller\Response
+	 */
 	public function downloadMatrixTemplateAction($matrix_id, $training_id)
 	{
         $predictionService = $this->get('ichnaea_web_app_prediction.service');
@@ -96,6 +132,11 @@ class PredictionController extends Controller
         
 	}
 	
+	/**
+	 * Render a list of the predictions created by the user
+	 * 
+	 * @return \Ichnaea\WebApp\PredictionBundle\Controller\Response
+	 */
 	public function getUserPredictionsAction(){
 		$user = $this->getUser();
 		$owner_id = $user->getId();
@@ -109,6 +150,29 @@ class PredictionController extends Controller
 		);
 	}
 	
+	/**
+	 * Renders the systems complete prediction list with a pagination parameter
+	 * 
+	 * @param int page - number of the pagination 
+	 */
+	
+	public function listSystemPredictionsAction($page)
+	{
+		$predictions = $this->get('ichnaea_web_app_prediction.service')->getSystemPredictions($page);
+		return $this->render('IchnaeaWebAppPredictionBundle::list.html.twig',
+				array(
+					'predictions'   => $predictions,
+					'previous_page' => ($page-1) < 0 ? 0 : $page-1 ,
+					'next_page' => $page+1,
+				));
+	}
+	/**
+	 * Action to send the prediction to queue
+	 * 
+	 * @param int $matrix_id
+	 * @param int $training_id
+	 * @param int $prediction_id
+	 */
 	public function sendPredictionAction($matrix_id, $training_id, $prediction_id)
 	{
 		$predictionService = $this->get('ichnaea_web_app_prediction.service');
@@ -123,5 +187,27 @@ class PredictionController extends Controller
 				)
 			);
 	}
+	
+	/**
+	 * Renders the results of a prediction batch finished
+	 * 
+	 * @param int $matrix_id
+	 * @param int $training_id
+	 * @param int $prediction_id
+	 */
+	public function viewPredictionResultsAction($matrix_id, $training_id, $prediction_id)
+	{
+		$results = $this->get('ichnaea_web_app_prediction.service')->getPredictionResults($matrix_id, $training_id, $prediction_id, 'asHTMLTables');
+		return $this->render(
+				'IchnaeaWebAppPredictionBundle::results.html.twig', 
+				array(
+					'results'       => $results,
+					'matrix_id'     => $matrix_id,
+					'training_id'   => $training_id,
+					'prediction_id' => $prediction_id  
+				));
+	}
+	
+	
 	
 }

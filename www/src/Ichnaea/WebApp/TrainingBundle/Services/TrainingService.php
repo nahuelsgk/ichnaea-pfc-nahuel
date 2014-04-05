@@ -22,13 +22,27 @@ class TrainingService{
 	protected $con;
 	protected $data_path;
 	
+	/**
+	 * Constructor service
+	 * 
+	 * @param SymfonyEM $em
+	 * @param String $connection_user
+	 * @param String $connection_pass
+	 * @param String $connection_host
+	 * @param int $data_path
+	 */
 	public function __construct(SymfonyEM $em, $connection_user, $connection_pass, $connection_host, $data_path)
 	{
 		$this->em         = $em;
 		$this->con        = new Connection($connection_user.':'.$connection_pass.'@'.$connection_host); 
 		$this->data_path = $data_path;
 	}
-	
+
+	/**
+	 * Resend a training to the queue
+	 * 
+	 * @param int $training_id
+	 */
 	public function resendTraining($training_id) 
 	{
 		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
@@ -69,22 +83,16 @@ class TrainingService{
 	}
 	
 	/**
+	 * Creates a training and send it to the queue
 	 * 
 	 * @param integer $matrix_id
 	 * @param integer $trainer_id
 	 * @param string $name
 	 * @param string $description
-	 * @param string $k1 OBSOLETE
-	 * @param string $k2 OBSOLETE
-	 * @param string $best_models OBSOLETE
-	 * @param string $min_size_var_set OBSOLETE
-	 * @param string $max_size_var_set OBSOLETE
-	 * @param string $type_of_search OBSOLETE
-	 * @param string $selection_columns OBSOLOTE
+	 * @param Array(\Columns) $columns_selection
 	 * @return \Ichnaea\WebApp\TrainingBundle\Model\TrainingValidation
 	 */
-	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, 
-									 $columns_selection = NULL, $origin = NULL)
+	public function createTraining($matrix_id, $trainer_id, $name, $description = NULL, $columns_selection = NULL, $origin = NULL)
 	{
 										
 		$trainer = $this->em->getRepository('UserBundle:User')->find($trainer_id);
@@ -117,7 +125,7 @@ class TrainingService{
 	    		$training->addColumnsSelected($column);
 	    	}
 	    }
-	    if($origin != NULL)			$training->setOrigin($origin);
+	    if($origin != NULL)	$training->setOrigin($origin);
 	    
 		//... set the request id for the cue...
 		$training->setRequestId($model->getId());
@@ -147,15 +155,36 @@ class TrainingService{
 		return $validation;
 	}
 
-	public function sendTrainingToQueue($training_id){
-		
-	}
 	
-	public function getTraining($training_id){
+	/*** GETTERS ***/
+	
+	/**
+	 * Gets one training
+	 *  
+	 * @param int $training_id
+	 */
+	public function getTraining($training_id)
+	{
 		return $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
 	}
 	
-	public function deleteTraining($training_id){
+	/**
+	 * 
+	 */
+	public function getTrainingList()
+	{
+		return $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->findAll();
+	}
+	
+	/**
+	 * Delete one training
+	 * 
+	 * @TODO: We must test and apply cascade. For do it, we have to test if the user has privileges
+	 * 
+	 * @param int $training_id
+	 */
+	public function deleteTraining($training_id)
+	{
 		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
 		$this->em->remove($training);
 		$this->em->flush();
@@ -163,7 +192,12 @@ class TrainingService{
 
 	
 	/**
-	 * Only called by command and cli 
+	 * Updates a training. Only called by command and cli
+	 * 
+	 * @param int $requestId
+	 * @param decimal $progress
+	 * @param string(enum) $status
+	 * @param binary $data
 	 */
 	public function updateTraining($requestId, $progress, $status, $data)
 	{
@@ -181,36 +215,8 @@ class TrainingService{
 	}
 	
 	/**
-	 * @TODO: probably will be moved to separate service
-	 */
-	private function saveDataToFile($training_id, $data)
-	{
-		$folder = $this->buildTrainingDataPathFolder($training_id);
-		$fs = new Filesystem();
-		if ($fs->exists($folder) == FALSE){
-			$fs->mkdir($folder);
-		}	
-		$abs_path = $this->buildTrainingDataPathRdata($training_id);
-		$fp = fopen($abs_path, 'w');
-		//$fp = fopen('/tmp/'.$training_id, 'w');
-		fwrite($fp, $data);
-		fclose($fp);
-		echo "Success!: Saved r_data into $abs_path\n";
-	}
-	
-	/* FUNCTION TO BUILD PATHES */
-	private function buildTrainingDataPathFolder($training_id)
-	{
-		return $this->data_path.'/trainings/'.$training_id.'/';
-	}
-	
-	private function buildTrainingDataPathRdata($training_id)
-	{
-		return $this->buildTrainingDataPathFolder($training_id).'r_data.zip';
-	}
-	
-	/**
 	 * Simple test to check if the queue is available
+	 * 
 	 * @return boolean
 	 */
 	public function queueTest(){
@@ -227,18 +233,23 @@ class TrainingService{
 		return $result;
 	}
 	
-	public function getRdataContent($training_id)
-	{
-		$file = $this->buildTrainingDataPathRdata($training_id);
-		return file_get_contents($file);
-	}
 	
+	/**
+	 * List of trainings of a user
+	 * 
+	 * @param int $user_id
+	 */
 	public function getTrainingsByUser($user_id)
 	{
 		$user = $this->em->getRepository('UserBundle:User')->find($user_id);
 		return $user->getTrainings();
 	}
 	
+	/**
+	 * Get trainings of a user which has errors or are pending
+	 * 
+	 * @param int $user_id
+	 */
 	public function getPendingOrErrorTrainingsByUser($user_id)
 	{
 		$qb = $this->em->createQueryBuilder();
@@ -267,6 +278,9 @@ class TrainingService{
 		return $query->getResult();
 	}
 	
+	/**
+	 * Return a list of predictable training list 
+	 */
 	public function getTrainableTrainingList()
 	{
 		$query = $this->em
@@ -282,6 +296,62 @@ class TrainingService{
 		
 		return $query->getResult();
 		
+	}
+	
+	
+	/**
+	 * Function that save the data param in a file
+	 * 
+	 * @param int $training_id
+	 * @param binary $data
+	 */
+	private function saveDataToFile($training_id, $data)
+	{
+		$folder = $this->buildTrainingDataPathFolder($training_id);
+		$fs = new Filesystem();
+		if ($fs->exists($folder) == FALSE){
+			$fs->mkdir($folder);
+		}
+		$abs_path = $this->buildTrainingDataPathRdata($training_id);
+		$fp = fopen($abs_path, 'w');
+		//$fp = fopen('/tmp/'.$training_id, 'w');
+		fwrite($fp, $data);
+		fclose($fp);
+		echo "Success!: Saved r_data into $abs_path\n";
+	}
+	
+	/**
+	 * Builds a filesystem path where the Rdata binary result is stored
+	 *
+	 * @param int $training_id
+	 * @return string
+	 */
+	public function getRdataContent($training_id)
+	{
+		$file = $this->buildTrainingDataPathRdata($training_id);
+		return file_get_contents($file);
+	}
+	
+	/**
+	 * Function that builds the path folder for a training
+	 * 
+	 * @param int $training_id
+	 * @return string
+	 */
+	private function buildTrainingDataPathFolder($training_id)
+	{
+		return $this->data_path.'/trainings/'.$training_id.'/';
+	}
+	
+	/**
+	 * Function that builds the path of the file for a training
+	 * 
+	 * @param int $training_id
+	 * @return string
+	 */
+	private function buildTrainingDataPathRdata($training_id)
+	{
+		return $this->buildTrainingDataPathFolder($training_id).'r_data.zip';
 	}
 }
 ?>

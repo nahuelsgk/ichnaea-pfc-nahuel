@@ -10,8 +10,7 @@ class TrainingController extends Controller
 {
 	
 	/**
-	 * Controller to list all trainable trainings
-	 * 
+	 * Controller to list all trainable trainings 
 	 */
 	public function predictableTrainingListAction()
 	{
@@ -26,6 +25,25 @@ class TrainingController extends Controller
 		);
 	}
 	
+	/**
+	 * Controller to render all the system's trainings
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function trainingListAction()
+	{
+		$trainings = $trainingService = $this->get('ichnaea.trainingService')->getTrainingList();
+		return $this->render(
+			'IchnaeaWebAppTrainingBundle::list.html.twig',
+			array(
+				'trainings' => $trainings
+			)
+		);
+	}
+	
+	/**
+	 * Controller to list all the trainable matrixs
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function listTrainableMatrixsAction()
 	{
 		$ichnaeaService = $this->get('ichnaea.service');

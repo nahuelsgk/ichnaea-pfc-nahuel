@@ -5,48 +5,7 @@
 {% block body %}
 <div class="container">
 <h1>My predictions</h1>
-<table class="table">
-<thead>
-  <th>&nbsp;</th>
-  <th>Name</th>
-  <th>Matrix</th>
-  <th>Training</th>
-  <th>Training description</th>
-  <th>Origin</th>
-  <th>Status</th>
-  <th>&nbsp;</th>
-</thead>
-<tbody>
-{% for prediction in predictions %}
-  <tr 
-  	{% if prediction.status == 'new' or prediction.status == '' %}
-  	  class="warning"
-  	{% endif %}
-  >
-  <td>{{ loop.index }}</td>
-  <td>{{ prediction.name }}</td>
-  <td>{{ prediction.training.matrix.name }}</td>
-  <td>{{ prediction.training.name }}</td>
-  <td>{{ prediction.training.description }}</td>
-  <td>{{ prediction.training.originVersus }}</td>
-  <td>{{ prediction.status }}</td>
-  <td>
-    <a class="btn btn-mini view_training_link" 
-       href="{{ 
-         path('view_matrix_prediction', 
-         {
-         	matrix_id: prediction.training.matrix.id, 
-         	training_id: prediction.training.id, 
-         	prediction_id: prediction.id}) 
-		}}" 
-		name="view prediction" 
-		title="View prediction">
-       <i class="icon-eye-open"></i>
-    </a>
-  </td>
-  </tr>
-{% endfor %}
-</tbody>
-</table>
-</div>
+
+{% include 'IchnaeaWebAppPredictionBundle::template_predictions.html.twig'  %}
+
 {% endblock %}

@@ -41,10 +41,9 @@
       <li class="divider"></li>
       	<li><a href="{{ path('season_list') }}">View seasons</a></li>
       <li class="divider"></li>
-      	<li><a href="{{ path('matrix_list') }}">View matrixs</a></li>
-      	<li><a href="{{ path('matrix_form') }}">New matrix</a></li> 
+      	<li><a href="{{ path('matrix_list') }}">View matrixs</a></li> 
       <li class="divider"></li>
-      	<li><a href="{{ path('training_list') }}">List trainings</a></li>
+      	<li><a href="{{ path('training_list') }}">List predictable trainings</a></li>
       </ul>
      </li>
     </ul>
@@ -56,6 +55,8 @@
          <li><a href="{{path('user_list')}}">Users</a></li>
          <li><a href="{{path('variable_new')}}">Create a variable</a></li>
          <li><a href="{{path('training_queue_test')}}">Check queue</a></li>
+         <li><a href="{{ path('list_training_systems') }}">List trainings</a></li>
+         <li><a href="{{ path('list_predictions_system', {'page': 0}) }}">List predictions</a></li>
          <!--  <li><a>Matrix administration</a></li> -->
          <!--  <li><a>Training administration</a></li> -->
         </ul>

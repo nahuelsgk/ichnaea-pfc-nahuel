@@ -4,7 +4,9 @@
  <th>&nbsp;</th>
   <th>Name</th>
   <th>Matrix</th>
+  <th>Description</th>
   <th>Created on</th>
+  <th>by</th>
   <th>Progress</th>
   <th>Error</th>
   <th>&nbsp;</th>
@@ -30,19 +32,24 @@
  	{% endif %}
  ">
    <td>{{ loop.index }}</td>
-   <td>{{training.name}}</td>
-   <td>{{training.matrix.name}}</td>
-   <td>{{training.created | date('d-m-Y')}}</td>
-   <td>{{training.progress}}</td>
-   <td>{{training.error}}</td>
+   <td>{{ training.name }}</td>
+   <td><a href="{{ path('matrix_ui_view', {'matrix_id' : training.matrix.id}) }}">{{ training.matrix.name }}</td>
+   <td>{{ training.description }}</td>
+   <td>{{ training.created | date('d-m-Y') }}</td>
+   <td>{{ training.trainer.username }}</td>
+   <td>{{ training.progress }}</td>
+   <td>{{ training.error }}</td>
    <td>
      <a class="btn btn-mini" href="{{path('training_view', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
-     <i class="icon-eye-open"></i>
-     <a class="btn btn-mini" href="{{path('training_delete', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
+       <i class="icon-eye-open"></i>
+     </a>
+     <!--  <a class="btn btn-mini" href="{{path('training_delete', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training"> --> 
      <i class="icon-remove"></i>
+     
      {% if training.status == 'finished' and training.progress == '1.0' %}
      <a class="btn btn-mini" href="{{path('create_prediction_matrix_form', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="Create a matrix prediction">
      <i class="icon-th"></i>
+     </a>
      {% endif %}
    </td>
  </tr>

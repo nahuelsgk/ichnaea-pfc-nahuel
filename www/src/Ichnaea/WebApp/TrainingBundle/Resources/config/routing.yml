@@ -23,11 +23,17 @@ submit_training:
         matrix_id: "\d+"
 
 training_list:
-    pattern: /trainings/
+    pattern: /predictable_trainings/
     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:predictableTrainingList }
     requirements:
         _method: GET
         
+list_training_systems:
+    pattern: /system/trainings/
+    defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:trainingList }
+    requirements:
+        _method: GET
+
 training_view:
     pattern: /matrix/{matrix_id}/training/{training_id}
     defaults: {_controller: IchnaeaWebAppTrainingBundle:Training:viewTraining, check: false }

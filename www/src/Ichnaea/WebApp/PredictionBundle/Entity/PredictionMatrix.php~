@@ -58,10 +58,22 @@ class PredictionMatrix
 	
 	/**
 	 * @var string
-	 * @ORM\Column(name="request_id", type="string", length=255, nullable = false)
+	 * @ORM\Column(name="request_id", type="string", length=255, nullable = true)
 	 */
 	private $requestId;
 	
+	/**
+	 * @var decimal
+	 * @ORM\Column(name="progress", type="decimal", precision=5, scale=2)
+	 */
+	private $progress = 0;
+	
+	/**
+     * @var array
+     *
+     * @ORM\Column(name="results", type="array")
+     */
+    private $predictions_result;
 	/**
 	 * Get id
 	 *
@@ -195,6 +207,19 @@ class PredictionMatrix
         return $this;
     }
 
+    public function setStatusAsPending()
+    {
+    	$this->setStatus("pending");
+    }
+    public function setStatusAsSent()
+    {
+    	$this->setStatus("sent");
+    }
+    public function setStatusAsFinished()
+    {
+    	$this->setStatus("finished");
+    }
+    
     /**
      * Get status
      *
@@ -226,5 +251,51 @@ class PredictionMatrix
     public function getError()
     {
         return $this->error;
+    }
+
+    /**
+     * Set requestId
+     *
+     * @param string $requestId
+     * @return PredictionMatrix
+     */
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
+
+        return $this;
+    }
+
+    /**
+     * Get requestId
+     *
+     * @return string 
+     */
+    public function getRequestId()
+    {
+        return $this->requestId;
+    }
+
+    /**
+     * Set predictions_result
+     *
+     * @param array $predictionsResult
+     * @return PredictionMatrix
+     */
+    public function setPredictionsResult($predictionsResult)
+    {
+        $this->predictions_result = $predictionsResult;
+
+        return $this;
+    }
+
+    /**
+     * Get predictions_result
+     *
+     * @return array 
+     */
+    public function getPredictionsResult()
+    {
+        return $this->predictions_result;
     }
 }

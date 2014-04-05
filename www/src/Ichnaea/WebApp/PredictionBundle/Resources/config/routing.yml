@@ -76,3 +76,30 @@ prediction_resend:
         matrix_id : "\d+"
         training_id: "\d+"
         prediction_id: "\d+"
+ 
+prediction_view_results:
+     pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/results
+     defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:viewPredictionResults }
+     requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"
+
+prediction_download_n_result:
+    pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/results/{index}
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:downloadPredictionResult }
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"
+        index: "\d+"
+
+list_predictions_system:
+    pattern: /system/predictions/{page}
+    defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:listSystemPredictions }
+    requirements: 
+        _method: GET
+        page: "\d+"
+    

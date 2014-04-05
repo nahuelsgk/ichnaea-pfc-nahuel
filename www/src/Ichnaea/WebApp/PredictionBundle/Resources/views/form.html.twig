@@ -12,10 +12,17 @@
 {{path('create_prediction_matrix_action',{matrix_id: matrix_id, training_id: training_id})}}
 {% endif %}
 ">
-<div class="control-group">
-  <label class="control-label" for="seasonName">Prediction matrix name</label>
+<p>Here you can upload your new matrix for make predictions</p>
+ <div class="control-group">
+  <label class="control-label" for="name">Prediction matrix name</label>
   <div class="controls">
    <input type="text" id="name" name="name" placeholder="Prediction matrix's name" {% if update is defined %}value="{{ name }}"{% else %}value=""{% endif %}>
+  </div>
+ </div>
+ <div class="control-group">
+  <label class="control-label" for="description">Description</label>
+  <div class="controls">
+   <input type="text" id="description" name="description" placeholder="Prediction matrix's description" {% if update is defined %}value="{{ description }}"{% else %}value=""{% endif %}>
   </div>
  </div>
  <div class="control-group">

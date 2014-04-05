@@ -1,0 +1,67 @@
+<table class="table">
+<thead>
+  <th>&nbsp;</th>
+  <th>Name</th>
+  <th>Matrix</th>
+  <th>Training</th>
+  <th>Training description</th>
+  <th>Origin</th>
+  <th>Created on</th>
+  <th>by</th>
+  <th>Status</th>
+  <th>&nbsp;</th>
+</thead>
+<tbody>
+{% for prediction in predictions %}
+  <tr 
+  	{% if prediction.status == 'new' or prediction.status == '' %}
+  	  class="warning"
+  	{% elseif prediction.status == 'finished' %}
+  	  class="success"
+  	{% endif %}
+  	
+  >
+  <td>{{ loop.index }}</td>
+  <td>{{ prediction.name }}</td>
+  <td><a href="{{ path('matrix_ui_view', {matrix_id: prediction.training.matrix.id }) }}" title="View this matrix">{{ prediction.training.matrix.name }}</a></td>
+  <td><a href="{{ path('training_view', {matrix_id: prediction.training.matrix.id, training_id: prediction.training.id }) }}" title="View this training"> {{ prediction.training.name }}</a></td>
+  <td>{{ prediction.training.description }}</td>
+  <td>{{ prediction.training.originVersus }}</td>
+  <td>{{ prediction.created | date('d-m-y') }}
+  <td>{% if prediction.owner.username is defined %} {{ prediction.owner.username }}{% endif %}</td>
+  <td>{{ prediction.status }}</td>
+  <td>
+    <a class="btn btn-mini view_training_link" 
+       href="{{ 
+         path('view_matrix_prediction', 
+         {
+         	matrix_id: prediction.training.matrix.id, 
+         	training_id: prediction.training.id, 
+         	prediction_id: prediction.id}) 
+		}}" 
+		name="view prediction" 
+		title="View prediction">
+       <i class="icon-eye-open"></i>
+    </a>
+    {% if prediction.status == 'finished' %}
+    <a class="btn btn-mini view_prediction_results_link" 
+       href="{{ 
+         path('prediction_view_results', 
+         {
+         	matrix_id: prediction.training.matrix.id, 
+         	training_id: prediction.training.id, 
+         	prediction_id: prediction.id}) 
+		}}" 
+		name="view prediction" 
+		title="View results">
+       	<i class="icon-folder-open"></i>
+    </a>
+    {% endif %}
+  </td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% if previous_page is defined and next_page is defined %}<center><a href="{{ path('list_predictions_system', {'page': previous_page}) }}"> Previous </a>| <a href="{{ path('list_predictions_system', {'page': next_page}) }}">Next</a></center>{% endif %}
+</div>

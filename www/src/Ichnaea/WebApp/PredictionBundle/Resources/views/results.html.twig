@@ -1,0 +1,25 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}My predictions{% endblock %}
+
+{% block body %} 
+<div class="container">
+{% for result in results%}
+ <legend>
+ 	Result {{ loop.index }}
+ 	<a href="
+ 	{{ path('prediction_download_n_result',
+ 	{
+		matrix_id: matrix_id, 
+		training_id: training_id, 
+		prediction_id: matrix_id,
+		index: loop.index 
+	}) }}
+ 	">Download this table</a>
+ </legend>
+ <div class="container-full-width" style="overflow-y: scroll; overflow-x: scroll; height: 300px;">
+ {{ result | raw }}
+ </div>
+{% endfor %}
+</div>
+{% endblock %}
