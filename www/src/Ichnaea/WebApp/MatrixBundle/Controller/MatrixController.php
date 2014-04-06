@@ -15,6 +15,10 @@ class MatrixController extends Controller
 		));
 	}
 		
+	/**
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function createMatrixAction()
 	{
 		$request = $this->getRequest();
@@ -29,6 +33,11 @@ class MatrixController extends Controller
 		return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id'=>$matrix_id)));
 	}
 	
+	/**
+	 * 
+	 * @param unknown $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function updateDataSetFormAction($matrix_id)
 	{
 		$request = $this->getRequest();
@@ -55,6 +64,10 @@ class MatrixController extends Controller
 		);
 	}
 	
+	/**
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function listSystemsMatrixAction(){
 		$request = $this->getRequest();
 		$ichnaeaService = $this->get('ichnaea.service');
@@ -66,6 +79,12 @@ class MatrixController extends Controller
 		);
 	}
 	
+	/**
+	 * 
+	 * @param unknown $matrix_id
+	 * @throws HttpException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function guiMatrixAction($matrix_id){
 		$ichnaeaService = $this->get('ichnaea.service');
 		
@@ -94,11 +113,15 @@ class MatrixController extends Controller
 		return $this->render(
 				'MatrixBundle:Matrix:matrix.html.twig', 
 				array(
-						'visible'   => $visible,
-						'is_trained'=> $isTrained,
-						'complete'  => $complete,
-						'matrix'    => $matrix, 
-						'availableVars' => $availableVars
+						'visible'       => $visible,
+						'is_trained'    => $isTrained,
+						'complete'      => $complete,
+						//'matrix'    => $matrix,
+						'matrix_name'   => $matrix->getName(), 
+						'samples'	    => $matrix->getRows(),
+						'columns'	    => $matrix->getColumns(), 
+						'availableVars' => $availableVars,
+						'matrix_id'		=> $matrix->getId(),
 				)
 		);
 	}
@@ -121,6 +144,11 @@ class MatrixController extends Controller
 		return $this->resolveMatrixGUI($matrix);
 	}
 	
+	/**
+	 * 
+	 * @param unknown $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function viewMatrixAction($matrix_id){
 		$ichnaeaService = $this->get('ichnaea.service');
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
@@ -154,9 +182,15 @@ class MatrixController extends Controller
 	    ));	
 	}
 	
+	/**
+	 * Downloads a matrix as CSV string
+	 * 
+	 * @param int $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function downloadAction($matrix_id) 
 	{
-		$request = $this->getRequest();
+		/*$request = $this->getRequest();
 		$type    = $request->request->get("type_download");
 		
 		
@@ -167,9 +201,15 @@ class MatrixController extends Controller
 	    $response->setContent($file_content);
 	    $response->headers->set('Content-Type', 'text/csv');
 	    $response->headers->set('Content-Disposition', 'attachment; filename="matrix.csv"');
-	    return $response;
+	    return $response;*/
 	}
-	
+
+	/**
+	 * Renders a form to clone a matrix
+	 * 
+	 * @param int $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function cloneFormAction($matrix_id)
 	{
 		$ichnaeaService = $this->get("ichnaea.service");
@@ -184,6 +224,12 @@ class MatrixController extends Controller
 		));
 	}
 	
+	/**
+	 * Submits and perform a clone matrix
+	 * 
+	 * @param int $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function performCloneAction($matrix_id)
 	{
 	    
@@ -198,6 +244,11 @@ class MatrixController extends Controller
 	    return $this->redirect($this->generateUrl('matrix_ui_edit',array("matrix_id" => $matrix_id)));
 	}
 	
+	/**
+	 * Private function that resolves the action to make. Depends on visibility redirects to a edit or only-display view.
+	 * 
+	 * @param Matrix $matrix
+	 */
 	private function resolveMatrixGUI($matrix){
 		if($matrix->getVisible() == TRUE)
 				return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id' => $matrix->getId())));
@@ -205,6 +256,11 @@ class MatrixController extends Controller
 		return $this->redirect($this->generateUrl('matrix_ui_view', array('matrix_id' => $matrix->getId())));
 	}
 	
+	/**
+	 * 
+	 * @param int $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function downloadDataSetAction($matrix_id)
 	{
 		$ichnaeaService = $this->get('ichnaea.service');
@@ -217,6 +273,10 @@ class MatrixController extends Controller
 	    return $response;
 	}
 	
+	/**
+	 * Renders a list with matrixs that can be trained
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function listTrainableMatrixAction()
 	{
 		$request = $this->getRequest();
@@ -230,6 +290,11 @@ class MatrixController extends Controller
 		);
 	}
 	
+	/** 
+	 * Renders a view that simple access to the loged user and its matrixs
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getMyMatrixsAction()
 	{
 		return $this->render('MatrixBundle:Matrix:my_matrix.html.twig');

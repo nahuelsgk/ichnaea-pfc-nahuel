@@ -51,6 +51,7 @@ class PredictionService
 		//new prediction matrix
 		if ( is_null($prediction_id) === TRUE)
 		{
+			die("prediction_id is null");
 		  $predictionMatrix = new PredictionMatrix();		
 		  $predictionMatrix->setName($name);
 		  $predictionMatrix->setDescription($description);
@@ -61,62 +62,75 @@ class PredictionService
 		else 
 		{
 			$predictionMatrix = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
+			//Reset the basic info
+			$predictionMatrix->setName($name);
+			$predictionMatrix->setDescription($description);
 			
-			//Delete all samples
-			foreach ($predictionMatrix->getRows() as $sample){
-				$predictionMatrix->removeRow($sample);
-				$this->em->remove($sample);
-			}	
+			var_dump($content);
+		
+			//If we need to update de content, reset the samples 
+			if ($content != '')
+			{
+				//Delete all samples
+				foreach ($predictionMatrix->getRows() as $sample){
+					$predictionMatrix->removeRow($sample);
+					$this->em->remove($sample);
+				}		
+			}
 		}
 		
-		$index=0;
-		
-		//m_columns: the number of columns of the matrix
-		$m_columns = count($training->getMatrix()->getColumns());
-		$origin = FALSE;
-		
-		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
-			$max_colums=0;
-			//On headers, init indexs counters
-			if($index == 0) {
-				$columns    = explode(";", $line);
-				
-				//IF in the columns[m_columns+1] is written "ORIGIN" instead of a variable name means that matrix has the ORIGIN COLUMN
-				if (isset($columns[$m_columns+1])){
-					if (strpos($columns[$m_columns+1], "ORIGIN") !== false ){
-						$origin = TRUE;
-						$m_columns++;
+		//If we need to update the content
+		if ($content != '')
+		{
+			$index=0;
+			
+			//m_columns: the number of columns of the matrix
+			$m_columns = count($training->getMatrix()->getColumns());
+			$origin = FALSE;
+			
+			foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
+				$max_colums=0;
+				//On headers, init indexs counters
+				if($index == 0) {
+					$columns    = explode(";", $line);
+					
+					//IF in the columns[m_columns+1] is written "ORIGIN" instead of a variable name means that matrix has the ORIGIN COLUMN
+					if (isset($columns[$m_columns+1])){
+						if (strpos($columns[$m_columns+1], "ORIGIN") !== false ){
+							$origin = TRUE;
+							$m_columns++;
+						}
 					}
+					
 				}
-				
+				else{
+					//If not an empty line
+					if($line != ''){
+						$columns = explode(";", $line);
+			
+						//First Column: Definition of sample
+						$sample = new PredictionSample();
+						$sample->setName($this->cleanStringCSV($columns[0]));
+						$sample->setMatrix($predictionMatrix);
+						foreach($columns as $key => $string) {
+							$columns[$key] = $this->cleanStringCSV($string);
+						}
+						
+						//manage origin column
+						if ($origin == TRUE){
+							$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
+							if(isset($columns[$m_columns])) $sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
+						}
+						else{
+							$sample->setSamples(array_slice($columns, 1, null, TRUE));
+						}
+						
+						//set as sample
+						$predictionMatrix->addRow($sample);
+					}	
+				}
+				$index++;
 			}
-			else{
-				//If not an empty line
-				if($line != ''){
-					$columns = explode(";", $line);
-		
-					//First Column: Definition of sample
-					$sample = new PredictionSample();
-					$sample->setName($this->cleanStringCSV($columns[0]));
-					$sample->setMatrix($predictionMatrix);
-					foreach($columns as $key => $string) {
-						$columns[$key] = $this->cleanStringCSV($string);
-					}
-					
-					//manage origin column
-					if ($origin == TRUE){
-						$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
-						if(isset($columns[$m_columns])) $sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
-					}
-					else{
-						$sample->setSamples(array_slice($columns, 1, null, TRUE));
-					}
-					
-					//set as sample
-					$predictionMatrix->addRow($sample);
-				}	
-			}
-			$index++;
 		}
 		
 		#Attach to the user

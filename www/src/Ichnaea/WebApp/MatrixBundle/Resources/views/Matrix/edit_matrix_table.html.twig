@@ -1,0 +1,254 @@
+<div id="container_matrix" style="width: 98%; margin-left: auto; margin-right: auto;">
+<table border="0" cellpadding="0" cellspacing="0" class='main'>
+            <tr>
+                <td class='tablefrozencolumn'>
+                    <div id='divroot' class='root'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='root'>
+                            <tr>
+                                <td class='inner-head-first-tr-first-td frozencol colwidth head' align="center">
+                                  {{matrix_name}}
+                                </td>
+                            </tr>
+                            <tr>
+                              <td>
+                              <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                              <tr>
+                              <td width="58px" style="text-align:center;">Id</td>
+                              <td>
+                              	<table width="100%" cellpadding="0">
+   									<td width="30%" style="text-align:center;">Name</td>
+   									<td width="30%" style="text-align:center;">Date</td>
+   									<td width="40%" style="text-align:center;">Origin</td>
+   								</table>
+                              </td>
+                              </tr>
+                              </table>
+                              </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div id='divfrozen' class='frozen'>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class='frozen'>
+							{% for sample in samples %}
+   							<tr id="sample-{{sample.id}}">
+   							    <td align="center" class='frozen-index'>{{loop.index}}</td>
+   								<td class='inner-frozen frozencol'>
+   								    <table width="100%" cellpadding="0">
+   								    <tr>
+   								    	<td width="30%">
+   								    		<input class="input-small" onchange="displayHiddenElement('sample-{{sample.id}}-action')" id="sampleName-{{sample.id}}" value="{{sample.name}}" placeholder="Sample name"></input>
+   								    	</td>
+   										<td width="30%">
+   											<input class="input-small sampleDate" onchange="displayHiddenElement('sample-{{sample.id}}-action');" id="sampleDate-{{sample.id}}" value="{% if sample.date is not null %}{{sample.date|date("d-m-Y")}}{% endif %}" placeholder="Data sample"></input>
+   										</td>
+   										<td width="40%">
+	   										<input 
+	   											class="input-small origin_input" 
+	   											onchange="displayHiddenElement('sample-{{sample.id}}-action');
+	   											  	  displayHiddenElement('save_all_changes');" 
+	   											id="sampleOrigin-{{sample.id}}" 
+	   											value="{{sample.origin}}" 
+	   											placeholder="Sample origin"></input>
+	   										<a class="btn btn-mini save_button_action_row" style="visibility: hidden;" 
+	   											id="sample-{{sample.id}}-action" 
+	   											title="Update sample info" 
+	   											onclick="updateSampleData(
+	   													{{sample.id}}, 
+	   													$('#sampleName-{{sample.id}}').val(), 
+	   													$('#sampleDate-{{sample.id}}').val(),
+	   													$('#sampleOrigin-{{sample.id}}').val(),
+	   													'sample-{{sample.id}}-action');">
+	   											<i class="icon-edit"></i>
+	   										</a>
+   										</td>
+   									<tr>
+   									</table>
+   								</td>
+   							</tr>	
+   							{% endfor %}
+   							<td class='inner-frozen-last frozencol'>&nbsp;</td>
+                        </table>
+                    </div>
+                </td>
+                <td class='tablecontent'>
+                    <div id='headscroll' class='divhead'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='head'>
+                            <tr>
+                                {% for column in columns %}
+								   <td class='inner-head col_header head'>
+								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 
+								    <select id="seasonSetListVariable-{{column.id}}" class="input-medium" 
+								      onchange="displayHiddenElement('column-{{column.id}}-action');">
+								    {% if column.variable is not null and column.seasonSet is not null%} 
+								     <option value="{{column.seasonSet.id}}">{{column.seasonSet.name}}</option>
+								    {% endif %}
+								    </select>
+								    <br/>
+								    <a title="Variable selection"><i class="icon-wrench"></i></a>
+								    <select placeholder="Select the variable" class="input-medium" id="selectedSingleVariable-{{column.id}}" onChange="loadSeasonSetIntoSelectListAction(this.value, 'seasonSetListVariable-{{column.id}}');displayHiddenElement('column-{{column.id}}-action');"">
+								        <option value="0">None</option>
+								      	{% for availableVar in availableVars %}
+								        	<option value="{{availableVar.id}}" {% if column.variable is not null and column.variable.id == availableVar.id%} selected="selected" {% endif %}>{{availableVar.name}} </option>
+								      	{% endfor %}
+								    </select>
+								    <br/>
+								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a>
+								   	<input 
+								   		type="text" 
+								   		class="input-medium" 
+								   		id="column-name-{{column.id}}" 
+								   		value="{{column.name}}" 
+								   		onchange="
+								   			displayHiddenElement('column-{{column.id}}-action'); 
+								   			displayHiddenElement('save_all_changes');">
+								    <br/>
+								    <a class="btn btn-mini save_button_action_column" 
+								    style="visibility: hidden;" id="column-{{column.id}}-action" 
+								    onclick="updateVariableConfigurationAction(
+								   			'{{column.id}}',
+								   			$('#column-name-{{column.id}}').val(),
+								   			$('#selectedSingleVariable-{{column.id}}').val(),
+								   			$('#seasonSetListVariable-{{column.id}}').val(),
+								   			'column-{{column.id}}-action'
+								   		);"><i class="icon-edit"></i></a>
+								   </td>
+								   {% endfor %}
+								   <td class='inner-head col_header_last head'>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='contentscroll' class='content' onscroll='reposHead(this);'>
+                        <table border="0" cellpadding="0" cellspacing="0" class='content' id='innercontent'>
+                        {% for sample in samples %}
+						 <tr>
+						   {% for value in sample.samples %}
+						   <td class='inner col_content value_of_samples' id="samplevalue_{{ sample.id }}_{{ loop.index0 }}"align="center">{{value}}</td>
+						   {% endfor %}
+						 </tr>
+						 {% endfor %}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+</div>
+
+<script type="text/javascript">
+function displaySuccessfulAction(elem)
+{
+  var previous_content = $('#'+elem).html(); 
+  console.log(previous_content);
+  var html_ok = ('<i class="icon-ok"></i>');
+  $('#'+elem).html(html_ok);
+  $('#'+elem).fadeOut(1500, function(){
+  	$('#'+elem).html(previous_content);
+  	$('#'+elem).css('display', 'inline');
+  	$('#'+elem).css('visibility', 'hidden');
+  });
+  
+}
+
+function confirm_build_matrix_files()
+{
+  confirmMessage("You are about to rebuild matrix files. Are you sure do you want to continue?", function(){return true;});
+}
+
+function displayHiddenElement(elem)
+{
+  $('#'+elem).css('visibility', 'visible');
+}
+
+function renderListSeasonSets(listData, toListId)
+{
+    $('#'+toListId).empty();
+    $.each(listData, function (index, value){
+        	$('#'+toListId).append($('<option>', {value: value.id, text: value.name}));
+    });
+}
+
+function updateVariableConfigurationAction(column_id, column_name, column_variable_id, season_set_id, column_button_action)
+{
+   console.log("We will submit alias "+column_name);
+   sendEvent('{{path('matrix_api', {"matrix_id": matrix_id })}}/column/'+column_id, 'PUT', {name: column_name, variable: column_variable_id, season: season_set_id}, function (data){displaySuccessfulAction(column_button_action)});    
+}
+
+
+function updateSampleData(sample_id, sample_name, sample_date, sample_origin, sample_button_action)
+{
+   sendEvent('{{path('sample_api', {"matrix_id": matrix_id })}}'+sample_id, 'PUT', {name: sample_name, date: sample_date, origin:sample_origin }, function (data){displaySuccessfulAction(sample_button_action)});
+}
+
+function loadSeasonSetIntoSelectListAction(variable_id, idOptionList)
+{
+	sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
+}
+
+
+function init_datepicker(){
+    $('.sampleDate').datepicker({dateFormat: "dd-mm-yy"});
+}
+
+function fullfillOriginsInput(idToFulFill)
+{
+  var availableOrigins = [
+    "Human",
+    "Cow",
+    "Pig"
+  ];
+  
+  $('.origin_input').each(function (index, element){
+      if (jQuery.inArray($(element).val(), availableOrigins) == -1 && $(element).attr('id') != idToFulFill) availableOrigins.push($(element).val());
+  });
+  
+  $('#' + idToFulFill).autocomplete({
+    source: availableOrigins
+  });
+}
+
+function init_inputOrigins()
+{
+	$('.origin_input').on('input', function(){	  
+	  fullfillOriginsInput($(this).attr('id'));
+	  
+	});
+}
+
+function save_all_pending_action() {
+    //Save all columns
+	var pendings = $('.save_button_action_column').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	$(pendings).each(function(index, element){$(element).trigger('click');});
+	$('#save_all_changes').css('visibility', 'hidden');
+	
+	//Save all rows
+	var pendings = $('.save_button_action_row').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	$(pendings).each(function(index, element){$(element).trigger('click');});
+	$('#save_all_changes').css('visibility', 'hidden');
+	  
+}
+
+function submit_sample_value_change(input, td_id){
+	var new_value = (input.value);
+	var element = $('#' + td_id);		
+	element.html(new_value);
+}
+
+function init_editable_cells() {
+	$('.value_of_samples').dblclick(function(value){
+		 	var id = value.target.id;
+			var element = $('#' + id);
+			var value = element.html();
+			var input = $('<input type="text" class="input-mini" onchange="submit_sample_value_change(this,\''+id+'\');" />');
+	        input.val(value);
+	        element.html(input);
+		}
+	);	
+}
+
+$(document).ready(function(){
+    init_datepicker();
+    init_inputOrigins();
+    init_editable_cells();
+ 	dynamic_height($('#menu_info_block').height()); 	   
+ });
+</script>

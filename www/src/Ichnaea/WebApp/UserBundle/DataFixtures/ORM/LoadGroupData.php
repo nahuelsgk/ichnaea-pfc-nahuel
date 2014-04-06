@@ -8,6 +8,10 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ichnaea\WebApp\UserBundle\Entity\Group;
 use Ichnaea\WebApp\UserBundle\Entity\User;
+use Ichnaea\WebApp\MatrixBundle\Entity\Variable;
+use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSet;
+use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSetComponent;
+use Ichnaea\WebApp\MatrixBundle\Entity\Season;
 
 class LoadGroupData implements FixtureInterface, ContainerAwareInterface 
 {
@@ -75,5 +79,88 @@ class LoadGroupData implements FixtureInterface, ContainerAwareInterface
 			}
 		}
 		
+		
+		$variable = array(
+		'FC'        => $this->build_variable('FC','envFC-Estiu.txt', 'envFC-Hivern.txt'),
+		'FE'        => $this->build_variable('FE','envFE-Estiu.txt', 'envFE-Hivern.txt'),
+		'CL'        => $this->build_variable('CL','envCL-Estiu.txt', 'envCL-Hivern.txt'),
+		'SOMCPH'    => $this->build_variable('SOMCPH','envSOMCPH-Estiu.txt', 'envSOMCPH-Hivern.txt'), 
+		'FRNAPH'    => $this->build_variable('FRNAPH','envFRNAPH-Estiu.txt', 'envFRNAPH-Hivern.txt'), 
+		'FRNAPH.I'  => $this->build_variable('FRNAPH.I','envFRNAPH.I-Estiu.txt', 'envFRNAPH.I-Hivern.txt'), 
+		'FRNAPH.II' => $this->build_variable('FRNAPH.II','envFRNAPH.II-Estiu.txt', 'envFRNAPH.II-Hivern.txt'), 
+		'FRNAPH.III'=> $this->build_variable('FRNAPH.III','envFRNAPH.III-Estiu.txt', 'envFRNAPH.III-Hivern.txt'), 
+		'FRNAPH.IV' => $this->build_variable('FRNAPH.IV','envFRNAPH.IV-Estiu.txt', 'envFRNAPH.IV-Hivern.txt'), 
+		'RYC2056'   => $this->build_variable('RYC2056','envRYC2056-Estiu.txt', 'envRYC2056-Hivern.txt'),
+		'DiE'       => $this->build_variable('DiE','envDiE-Estiu.txt', 'envDiE-Hivern.txt'),
+		'FM-FS'     => $this->build_variable('FM-FS','envFMFS-Estiu.txt', 'envFMFS-Hivern.txt'),
+		'Hir'       => $this->build_variable('Hir','envHiR-Estiu.txt', 'envHiR-Hivern.txt'),
+		'DiC'       => $this->build_variable('DiC','envDiC-Estiu.txt', 'envDiC-Hivern.txt'),
+		'ECP'       => $this->build_variable('ECP','envECP-Estiu.txt', 'envECP-Hivern.txt'),
+		'GA17'      => $this->build_variable('GA17','envGA17-Estiu.txt', 'envGA17-Hivern.txt'),
+		'HBSA.Y'    => $this->build_variable('HBSA.Y','envHBSA.Y-Estiu.txt', 'envHBSA.Y-Hivern.txt'),
+		'HBSA.T'    => $this->build_variable('HBSA.T','envHBSA.T-Estiu.txt', 'envHBSA.T-Hivern.txt'),
+		);
+		
+		foreach ($variable as $k => $v){
+			$variable = new Variable();
+			$variable->setName($k);
+			$variable->setDescription($k);
+			$manager->persist($variable);
+			
+			$seasonSet = new SeasonSet();
+			$seasonSet->setName($v['season_set_name']);
+			$seasonSet->setVariable($variable);
+			$manager->persist($seasonSet);
+			
+			$season_a = new Season();
+			$season_a->setName($v['summer']);
+			$season_a->setContent($this->read_file($v['summer']));
+			$manager->persist($season_a);
+			
+			$seasonSetComponent = new SeasonSetComponent();
+			$seasonSetComponent->setSeason($season_a);
+			$seasonSetComponent->setSeasonSet($seasonSet);
+			$seasonSetComponent->setSeasonType('summer');
+			$manager->persist($seasonSetComponent);
+			
+			$season_b = new Season();
+			$season_b->setName($v['winter']);
+			$season_b->setContent($this->read_file($v['winter']));
+			$manager->persist($season_b);
+			
+			$seasonSetComponent = new SeasonSetComponent();
+			$seasonSetComponent->setSeason($season_b);
+			$seasonSetComponent->setSeasonSet($seasonSet);
+			$seasonSetComponent->setSeasonType('winter');
+			$manager->persist($seasonSetComponent);
+			$manager->flush();
+		}
+		
+		$serviceMatrix = $this->container->get('ichnaea.service');
+		$content = $this->read_matrix_file();
+		$serviceMatrix->createMatrixFromCSVContent('cyprus',$content, $user->getId());
+		
+	}
+	
+	private function build_variable($name, $summer_file, $winter_file)
+	{
+		return array(
+			"season_set_name" => "$name default season set",
+			"summer" => $summer_file,
+			"winter" => $winter_file
+		);
+	}
+	
+	private function read_matrix_file()
+	{
+		return file_get_contents($this->container->get('kernel')->getRootDir().'/../../r/fixtures/cyprus.csv');
+	}
+	
+	private function read_file($file_name)
+	{
+		
+		$content = file_get_contents($this->container->get('kernel')->getRootDir().'/../../r/fixtures/aging/'.$file_name);
+		return mb_convert_encoding($content, 'UTF-8',
+          mb_detect_encoding($content, 'UTF-8, ISO-8859-1', true));
 	}
 }

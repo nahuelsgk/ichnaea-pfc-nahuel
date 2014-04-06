@@ -20,8 +20,7 @@ app/console doctrine:schema:update --dump-sql
 app/console doctrine:schema:update --force
 
 b) First execute to have a user into the web app with admin
-php app/console doctrine:fixtures:load --append
+php app/console doctrine:fixtures:load
 
-c) Extra: Insert the data into dabatase. The file to insert into the database: www/documentation/Installation/DefaultData/raw_fixtures.sql
-Warning: The owner of the matrix is admin
+c) Extra: Needs to configure the matrix from the beginnig
 
