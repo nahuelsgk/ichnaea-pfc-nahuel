@@ -102,4 +102,22 @@ list_predictions_system:
     requirements: 
         _method: GET
         page: "\d+"
-    
+
+prediction_delete_confirmation_form:
+     pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/delete_confirmation
+     defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:deleteConfirmation }
+     requirements: 
+        _method: GET
+        matrix_id: "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"
+
+prediction_delete_submit:
+     pattern: /matrix/{matrix_id}/training/{training_id}/prediction/{prediction_id}/delete
+     defaults: { _controller: IchnaeaWebAppPredictionBundle:Prediction:delete }
+     requirements: 
+        _method: POST
+        matrix_id: "\d+"
+        training_id: "\d+"
+        prediction_id: "\d+"
+

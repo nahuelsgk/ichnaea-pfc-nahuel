@@ -8,6 +8,11 @@ use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
 
 class MatrixController extends Controller
 {	
+	/**
+	 * Renders the form to create a matrix
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getMatrixFormAction()
 	{
 		return $this->render('MatrixBundle:Matrix:form.html.twig', array(
@@ -34,8 +39,9 @@ class MatrixController extends Controller
 	}
 	
 	/**
+	 * Renders and submits a form to update a matrix content
 	 * 
-	 * @param unknown $matrix_id
+	 * @param int $matrix_id
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
 	 */
 	public function updateDataSetFormAction($matrix_id)
@@ -65,6 +71,7 @@ class MatrixController extends Controller
 	}
 	
 	/**
+	 * Renders a lists of all matrixs in the system
 	 * 
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
@@ -126,6 +133,12 @@ class MatrixController extends Controller
 		);
 	}
 	
+	/**
+	 * 
+	 * @param unknown $matrix_id
+	 * @throws HttpException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function saveConfigurationAction($matrix_id) {
 		$ichnaeaService = $this->get('ichnaea.service');
 		
@@ -164,6 +177,11 @@ class MatrixController extends Controller
 		);
 	}
 	
+	/**
+	 * 
+	 * @param unknown $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function buildFilesAction($matrix_id)
 	{
 		$ichnaeaService = $this->get('ichnaea.service');
@@ -171,6 +189,11 @@ class MatrixController extends Controller
 		return $this->redirect($this->generateUrl('matrix_ui_edit',array("matrix_id" => $matrix_id)));
 	}
 	
+	/**
+	 * 
+	 * @param unknown $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function downloadFormAction($matrix_id)
 	{
 		$ichnaeaService = $this->get('ichnaea.service');
@@ -298,6 +321,16 @@ class MatrixController extends Controller
 	public function getMyMatrixsAction()
 	{
 		return $this->render('MatrixBundle:Matrix:my_matrix.html.twig');
+	}
+	
+	public function deleteConfirmationAction()
+	{
+		
+	}
+	
+	public function deleteMatrixAction()
+	{
+		
 	}
 }
 ?>

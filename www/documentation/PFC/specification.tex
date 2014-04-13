@@ -1,32 +1,31 @@
 \chapter{Especificaci\'{o}}
 \label{cha:specification}
-
-
-\section{Introducci\'{o}}
 En aquest cap\'{i}tol es descriu els requeriments i les operatives que es necessiten.\\
 
 
 \section{Requeriments funcionals}
 
 \subsection{Administraci\'{o} d'usuaris}
-La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertanyer a grups amb roles autoritzats per fer certes accions. Es una aplicaci\'{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
+La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertanyer a grups amb roles autoritzats per fer certes accions. \'{E}s una aplicaci\'{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
 \begin{itemize}
-\item Crear comptes
-\item Atendre peticions de resetejar contrasenyes
-\item Enviar mails de confirmacions de accions
-\item Canviar permisos a usuaris
+\item Crear comptes d'usuari.
+\item Atendre peticions de resetejar contrasenyes.
+\item Enviar mails de confirmacions de accions.
+\item Canviar permisos a usuaris.
 \end{itemize}
 
-\subsection{Administraci\'{o} de variables}
-La aplicaci\'{o} ha de gestionar variables al sistema per poder utilitzar-les al software Ichnaea. Les variables han de tenir asociades de conjunt ''seasons''. Com s'explica al cap\'{i}tol \ref{glossary}, les ''seasons'' son un contingut en format texte que descriu els envelliments de les variables. Per tant s'ha de poder gestionar conjunts de seasons de les season sets.\\
+\subsection{Administraci\'{o} de variables de sistema}
+La aplicaci\'{o} ha de gestionar les variables que Ichnaea al sistema per poder utilitzar-les amb el software. Les variables han de tenir asociades un o varis conjunt ''seasons''. Com s'explica al cap\'{i}tol \ref{glossary}, les ''seasons'' son un contingut en format texte que descriu els envelliments de les variables. 
 
 \subsection{Administraci\'{o} de matrius}
-La aplicaci\'{o} ha de poder gestionar i configurar matrius de dades. Per la creaci\'{o} de matrius ha de poder llegir un fitxer csv i crear una matriu a partir de les dades proporicionades.
-La configuraci\'{o} de matrius ha:
+La aplicaci\'{o} ha de poder gestionar i configurar matrius de dades. Per la creaci\'{o} de matrius ha de poder llegir un fitxer csv o excel i crear un model de dades que representi una matriu a partir de les dades proporcionades.\\
+
+La aplicaci\'{o} permet la configuraci\'{o} de matrius:
 \begin{itemize}
 \item Configurar les columnes com una variable i una ''season set''
 \item Configurar l'origen de un ''sample''
 \item Configurar la data de un ''sample''
+\item Configurar o actualitzar dades
 \end{itemize}
 
 \subsection{Administraci\'{o} de trainings}
@@ -38,7 +37,7 @@ La aplicaci\'{o} ha de:
 	\item Llegir els resultats dels ''trainings''
 \end{itemize}
 
-\subsection{Administracio de matrius de prediccio}
+\subsection{Administraci\'{o} de matrius de predicci\'{o}}
 La aplicaci\'{o} ha de:
 \begin{itemize}
 	\item Gestionar les matrius de prediccions 
@@ -48,9 +47,9 @@ La aplicaci\'{o} ha de:
 \end{itemize}
 
 \section{Requeriments no funcionals}
-Els requeriments funcionals son:
+Els requeriments no funcionals son:
 \begin{itemize}
-\item Bon rendiment. La operaci\'{o} m\'{e}s pessada que es la de crear una matriu a partir de un fitxer.
+\item Bon rendiment
 \item Escalabilitat
 \item Mantenible
 \item Flexibilitat
@@ -58,7 +57,7 @@ Els requeriments funcionals son:
 
 
 \section{Casos d'us i fluxos}
-En la documentaci\'{o} s'utilitzar\`{a} la seg\Â¨{u}ent estructura:\\
+En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir els casos d'\'{u}s:\\
 \subsection{Crear un usuari}
 \begin{usecase}
 \addtitle{Identificador}{Nom cas d'us}

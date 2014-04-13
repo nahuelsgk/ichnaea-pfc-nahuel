@@ -1,6 +1,5 @@
-\documentclass[a4paper,twoside,12pt,catalan,openright]{report}
+\documentclass[a4paper,twoside,12pt,english,openright]{report}
 
-\usepackage[utf8]{inputenc}
 \usepackage{babel}
 \usepackage{graphicx}
 \usepackage{verbatim}
@@ -25,8 +24,8 @@
 
 \renewcommand*{\glsclearpage}{\clearpage}
 
-\title{Ichnaea Web Services}
-\author{Nahuel Velazco}
+\title{A Divide-and-Conquer Approach for Cell Routing using Litho-friendly Layouts}
+\author{Alexandre Vidal Obiols}
 \date{\today}
 
 \lstset{basicstyle=\footnotesize,
@@ -43,7 +42,7 @@
 }
 \makeglossaries
 
-\pagenumbering{arabic}
+\pagenumbering{roman}
 \input{glossary}
 
 \begin{document}
@@ -51,48 +50,39 @@
 
 \include{title}
 \cleardoublepage
-
 \include{prologue}
 \cleardoublepage
-
-\include{preface}
-\cleardoublepage
-
-\include{glossary}
-\cleardoublepage
-
-\include{background}
-\cleardoublepage
-
-\include{especification}
-\cleardoublepage
-
-\include{dessign}
-\cleardoublepage
-
-\include{economics}
-\cleardoublepage
-
-
-\include{userguide}
-\cleardoublepage
-
-\include{adminguide}
-\cleardouplepage
-
 \pagenumbering{gobble}
 \tableofcontents
+\makeindex
+\pagenumbering{arabic}
+
 \cleardoublepage
 \pagenumbering{arabic}
 
 \pagestyle{headings}
 
-
-\bibliographystyle{unsrt}
-\bibliography{biblio}
-%\printglossaries
+\include{preface}
+\include{background}
+\cleardoublepage
+\include{specification}
+\cleardoublepage
+\include{dessign}
+\cleardoublepage
+\include{economics}
+\cleardoublepage
 
 \appendix
-%\include{appendix}
+\include{userguide}
+\cleardoublepage
+\include{adminguide}
+\cleardouplepage
+
+\pagenumbering{arabic}
+\pagestyle{headings}
+
+\cleardouplepage
+\include{bibliography}
+
 
 \end{document}

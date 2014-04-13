@@ -8,6 +8,7 @@
   <th>Created on</th>
   <th>by</th>
   <th>Progress</th>
+  <th>Status</th>
   <th>Error</th>
   <th>&nbsp;</th>
  </tr>
@@ -18,8 +19,7 @@
     {% if training.error != '' %}
     warning
     {% else %}
- 	  {% if training.status == 'finished' %}
- 	    {% if training.progress == '1.0' and training.error == "" %}
+ 	  {% if training.progress == '1.0' and training.error == "" %}
  	    success
  	    {% endif %}
  	  {% endif %}
@@ -29,7 +29,6 @@
  	  {% if training.status == 'pending' %}
  	     warning
  	  {% endif %}
- 	{% endif %}
  ">
    <td>{{ loop.index }}</td>
    <td>{{ training.name }}</td>
@@ -38,15 +37,14 @@
    <td>{{ training.created | date('d-m-Y') }}</td>
    <td>{{ training.trainer.username }}</td>
    <td>{{ training.progress }}</td>
+   <td>{{ training.status }}</td>
    <td>{{ training.error }}</td>
    <td>
      <a class="btn btn-mini" href="{{path('training_view', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training">
        <i class="icon-eye-open"></i>
      </a>
-     <!--  <a class="btn btn-mini" href="{{path('training_delete', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training"> --> 
-     <i class="icon-remove"></i>
      
-     {% if training.status == 'finished' and training.progress == '1.0' %}
+     {% if training.error == '' and training.progress == '1.0' %}
      <a class="btn btn-mini" href="{{path('create_prediction_matrix_form', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="Create a matrix prediction">
      <i class="icon-th"></i>
      </a>

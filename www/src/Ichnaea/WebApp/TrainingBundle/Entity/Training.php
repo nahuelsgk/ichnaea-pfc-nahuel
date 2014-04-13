@@ -61,20 +61,6 @@ class Training
     
     /**
      * @var string
-     *
-     * @ORM\Column(name="pathHeatMap", type="string", length=255, nullable = true)
-     */
-    private $pathHeatMap;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pathTable", type="string", length=255, nullable = true)
-     */
-    private $pathTable;
-
-    /**
-     * @var string
      * @ORM\Column(name="request_id", type="string", length=255, nullable = false) 
      */
     private $requestId;
@@ -161,52 +147,6 @@ class Training
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set pathHeatMap
-     *
-     * @param string $pathHeatMap
-     * @return Training
-     */
-    public function setPathHeatMap($pathHeatMap)
-    {
-        $this->pathHeatMap = $pathHeatMap;
-
-        return $this;
-    }
-
-    /**
-     * Get pathHeatMap
-     *
-     * @return string 
-     */
-    public function getPathHeatMap()
-    {
-        return $this->pathHeatMap;
-    }
-
-    /**
-     * Set pathTable
-     *
-     * @param string $pathTable
-     * @return Training
-     */
-    public function setPathTable($pathTable)
-    {
-        $this->pathTable = $pathTable;
-
-        return $this;
-    }
-
-    /**
-     * Get pathTable
-     *
-     * @return string 
-     */
-    public function getPathTable()
-    {
-        return $this->pathTable;
     }
 
     /**

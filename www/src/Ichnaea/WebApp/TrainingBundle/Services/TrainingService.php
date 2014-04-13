@@ -12,8 +12,10 @@ use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
 use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
 use Ichnaea\Amqp\Model\BuildModelsResponse as BuildModelsResponse;
 use Ichnaea\Amqp\Connection as Connection;
+use Ichnaea\WebApp\PredictionBundle\Services\PredictionService as PredictionService;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+ 
 
 class TrainingService{
 	
@@ -57,6 +59,7 @@ class TrainingService{
 		
 		//build the data array for the dataset
 		$model = BuildModelsRequest::fromArray($data);
+		
 		//... set the new request id for the cue...
 		$training->setRequestId($model->getId());
 		
@@ -169,7 +172,7 @@ class TrainingService{
 	}
 	
 	/**
-	 * 
+	 * Get a list of all trainings in the systems
 	 */
 	public function getTrainingList()
 	{
@@ -177,15 +180,20 @@ class TrainingService{
 	}
 	
 	/**
-	 * Delete one training
-	 * 
-	 * @TODO: We must test and apply cascade. For do it, we have to test if the user has privileges
-	 * 
-	 * @param int $training_id
+	 * Delete one training and all its predictions 
 	 */
-	public function deleteTraining($training_id)
+	public function deleteTraining($matrix_id, $training_id, $user_id)
 	{
 		$training = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->find($training_id);
+		
+		//delete all predictions
+		$predictionService = new PredictionService($this->em);
+		$predictions       = $predictionService->getPredictionsFromTraining($training_id);
+		foreach($predictions as $prediction)
+		{
+			$predictionService->deletePrediction($matrix_id, $training_id, $prediction->getId(), $user_id);
+		}
+		
 		$this->em->remove($training);
 		$this->em->flush();
 	}
@@ -197,7 +205,7 @@ class TrainingService{
 	 * @param int $requestId
 	 * @param decimal $progress
 	 * @param string(enum) $status
-	 * @param binary $data
+	 * @param binary $data - binary encoded in base64
 	 */
 	public function updateTraining($requestId, $progress, $status, $data)
 	{
@@ -207,6 +215,7 @@ class TrainingService{
 			$training->setProgress($progress);
 			$training->setError($status);
 			
+			//@TODO: in some situations do no change its state
 			if ($progress == '1.0') $training->setStatusAsFinished();
 			
 			$this->saveDataToFile($training->getId(), base64_decode($data));
@@ -297,7 +306,6 @@ class TrainingService{
 		return $query->getResult();
 		
 	}
-	
 	
 	/**
 	 * Function that save the data param in a file

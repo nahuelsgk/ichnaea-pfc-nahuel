@@ -179,7 +179,7 @@ class PredictionController extends Controller
 	 */
 	public function sendPredictionAction($matrix_id, $training_id, $prediction_id)
 	{
-		$predictionService = $this->get('ichnaea_web_app_prediction.service');
+		$predictionService = $this->get('ichnaea_web_app_prediction.queue_manager.service');
 		$prediction = $predictionService->sendPrediction($matrix_id, $training_id, $prediction_id);
 		return $this->redirect(
 				$this->generateUrl('view_matrix_prediction', 
@@ -211,7 +211,66 @@ class PredictionController extends Controller
 					'prediction_id' => $prediction_id  
 				));
 	}
+
+	/**
+	 * Renders the delete confirmation page
+	 * 
+	 * @param int $matrix_id
+	 * @param int $training_id
+	 * @param int $prediction_id
+	 * @throws AccessDeniedHttpException
+	 */
+	public function deleteConfirmationAction($matrix_id, $training_id, $prediction_id)
+	{
+		$predictionService = $this->get('ichnaea_web_app_prediction.service');
+		
+		//Get all necessary data: users, owner, prediction
+		$prediction = $predictionService->getPredictionMatrix($matrix_id, $training_id, $prediction_id);
+		$user = $this->get('security.context')->getToken()->getUser();
+		$owner = $prediction->getOwner();
+		
+		//requeriments: owner or superadmin can do that
+		if ($user != $owner) {
+			if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
+				throw new AccessDeniedHttpException();
+		}
+		
+		return $this->render(
+			'IchnaeaWebAppPredictionBundle:Prediction:Page/delete_confirmation_form.html.twig',
+			array(
+				'name'        => $prediction->getName(), 
+				'description' => $prediction->getDescription(),	
+				'matrix_id'     => $prediction->getTraining()->getMatrix()->getId(),
+				'training_id'   => $prediction->getTraining()->getId(),
+				'prediction_id' => $prediction->getId()
+			)
+		);
+	}
 	
+	/**
+	 * Performs a removing of a prediction
+	 * 
+	 * @param int $matrix_id
+	 * @param int $training_id
+	 * @param int $prediction_id
+	 * @throws AccessDeniedHttpException
+	 */
+	public function deleteAction($matrix_id, $training_id, $prediction_id)
+	{
+		$predictionService = $this->get('ichnaea_web_app_prediction.service');
+		
+		//Get all necessary data: users, owner, prediction
+		$prediction = $predictionService->getPredictionMatrix($matrix_id, $training_id, $prediction_id);
+		$user = $this->get('security.context')->getToken()->getUser();
+		$owner = $prediction->getOwner();
 	
+		//requeriments: owner or superadmin can do that
+		if ($user != $owner) {
+			if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
+				throw new AccessDeniedHttpException();
+		}
+		$predictionService = $predictionService->deletePrediction($matrix_id, $training_id, $prediction_id, $user->getId());
+		return $this->redirect($this->generateUrl('predictions_user'));
+	}
 	
 }

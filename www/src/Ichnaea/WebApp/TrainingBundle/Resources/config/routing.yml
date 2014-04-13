@@ -67,10 +67,10 @@ training_delete:
          training_id: "\d+"
 
 training_delete_submit:
-     pattern: /matrix/{matrix_id}/training/{training_id}/delete/submit
+     pattern: /matrix/{matrix_id}/training/{training_id}/delete_submit
      defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:submitDeleteTraining}
      requirements:
-         _method: GET
+         _method: POST
          matrix_id: "\d+"
          training_id: "\d+"
 

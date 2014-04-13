@@ -9,12 +9,6 @@
  <legend>Configuration</legend>
  <table class="table">
  <tr>
-   <!--  <th>K1</th>
-   <th>K2</th>
-   <th>Best models</th>
-   <th>Minimum size variable set</th>
-   <th>Maximum size variable set</th>
-   <th>Type of search</th>-->
    <th>Name</th>
    <th>Origin selected</th>
    <th>Cue id</th>
@@ -25,6 +19,11 @@
    <td>{{training.requestId}}</td>
  </tr>
  </table>
+ {% if show_delete_button %}
+ <form name="delete" action="{{path('training_delete', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="view_training" title="View training"> 
+ <button type="submit" class="btn btn-danger">Delete</button>
+ </form>
+ {% endif %}
  <legend>Columns selected for this training</legend>
  <div style="overflow-x: auto;">
   <table class="table table-bordered">
@@ -60,15 +59,20 @@
   </tr>
   </table>
   </div>
+  
+ {# DELETE BUTTON #}
  <form name="check_trainig" action="{{path('training_check', {matrix_id: training.matrix.id, training_id: training.id})}}">
  <button type="submit" class="btn btn-primary">Check training</button>
  </form>
+ 
+ {# RESULTS #}
  <legend>Results</legend>
  Status: 
     <div class="progress progress-striped ">
     <div class="bar" style="width: {{ training.progress * 100 }}%;"></div>
 </div>
  
+ {# ERROR ON TRAINING#}
  {% if training.error or training.status == 'pending'%}
  <form name="resend_training" action="{{path('resend_training', {matrix_id: training.matrix.id, training_id: training.id})}}">
    {% if training.error %}
@@ -80,10 +84,12 @@
    <button type="submit" class="btn btn-danger">Resend training</button>
    </form>
  {% else %}
+   {# NONE ERROR#}
    {% if training.progress*100 == 100 %}
      <a href="{{path('training_download_rdata',{matrix_id: training.matrix.id, training_id: training.id})}}">Download r data</a>
    {% endif %}
  {% endif %} 
+ 
  <legend>Predictions<a class="btn btn-mini" href="{{path('create_prediction_matrix_action', {'matrix_id': training.matrix.id, 'training_id': training.id})}}" name="create_training" title="Create a training from this matrix"><i class="icon-plus"></i></a></legend>
  <ul>
  {% for prediction in predictions %}

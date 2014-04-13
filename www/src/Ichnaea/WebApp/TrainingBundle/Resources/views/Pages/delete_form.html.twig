@@ -1,0 +1,16 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Delete training{% endblock %}
+
+{% block body %}
+<div class="container">
+<legend>Delete training</legend>
+You're a about to delete the training:<br>
+<b>Name</b>: {{name}}<br>
+<b>Description</b>: {{description}}<br>
+Consider that deleting this training you will delete all predictions performed by you and other users.
+Are you sure?
+<form method="POST" id="trainingDeleteForm" class="form-horizontal" action="{{path('training_delete_submit', {matrix_id: matrix_id, training_id: training_id})}}">
+<button type="submit" class="btn btn-danger">Delete</button>
+</div>
+{% endblock %}

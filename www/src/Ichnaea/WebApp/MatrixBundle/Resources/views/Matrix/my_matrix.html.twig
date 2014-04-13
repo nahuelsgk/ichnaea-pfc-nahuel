@@ -16,7 +16,7 @@
  {% for matrix in app.user.matrixs %}
  <tr>
   <td>{{ loop.index }}</td>
-  <td>{{matrix.name}}</td>
+  <td>{{ matrix.name }}</td>
   <td>   
     <a 	class="btn btn-mini" 
     	href="{{path('matrix_ui_edit', {'matrix_id': matrix.id})}}" 

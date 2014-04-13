@@ -130,7 +130,8 @@ class TrainingController extends Controller
     }
     
     /**
-     * 
+     * Renders a training view
+     *  
      * @param integer $matrix_id
      * @param integer $training_id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -140,6 +141,7 @@ class TrainingController extends Controller
 		$trainingService = $this->get('ichnaea.trainingService');
 		$training = $trainingService->getTraining($training_id);
 		
+		
 		$predictionService = $this->get('ichnaea_web_app_prediction.service');
 		$predictions       = $predictionService->getPredictionsFromTraining($training_id);
 		
@@ -147,10 +149,18 @@ class TrainingController extends Controller
 			$status = $trainingService->checkTraining($training_id);
 		}
 		
+		//only show the delete button to owners or superadmin
+		$show_delete_button = FALSE; 
+		$user = $this->get('security.context')->getToken()->getUser();
+		$owner = $training->getTrainer();
+		//requeriments: owner or superadmin can do that
+		if ($user == $owner || in_array("ROLE_SUPER_ADMIN", $user->getRoles())) $show_delete_button = TRUE;
+		
 		return $this->render('IchnaeaWebAppTrainingBundle::view.html.twig', 
 			array(
-				'training'   => $training,
-				'predictions' => $predictions
+				'training'           => $training,
+				'predictions'        => $predictions,
+				'show_delete_button' => $show_delete_button
 			)
 		);
     }
@@ -164,12 +174,28 @@ class TrainingController extends Controller
      */
 	public function deleteTrainingAction($matrix_id, $training_id)
 	{
-		//@TODO: only can do it the trainer or the admin
 		$trainingService = $this->get('ichnaea.trainingService');
 		$training = $trainingService->getTraining($training_id);
-		return $this->render('IchnaeaWebAppTrainingBundle::delete_form.html.twig', array('training' => $training));
+
+		$user = $this->get('security.context')->getToken()->getUser();
+		$owner = $training->getTrainer();
+		
+		//requeriments: owner or superadmin can do that
+		if ($user != $owner) {
+			if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
+				throw new AccessDeniedHttpException();
+		}
+		
+		return $this->render('IchnaeaWebAppTrainingBundle::Pages/delete_form.html.twig', 
+				array(
+						'training_id' => $training_id, 
+						'matrix_id'   => $matrix_id,
+						'name'		  => $training->getName(),
+						'description' => $training->getDescription(),
+				)
+			);
 	}
-	
+		
 	/**
 	 * Resend a training.
 	 * @TODO: maybe performs some validation. Only available when there are errors
@@ -191,10 +217,20 @@ class TrainingController extends Controller
 	 * @param integer $training_id
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
 	 */
-	public function submitDeleteTrainingAction($matrix_id, $training_id){
-		//@TODO: only can do it the trainer or the admin
+	public function submitDeleteTrainingAction($matrix_id, $training_id)
+	{
 		$trainingService = $this->get('ichnaea.trainingService');
-		$trainingService->deleteTraining($training_id);
+		$training = $trainingService->getTraining($training_id);
+		
+		$user = $this->get('security.context')->getToken()->getUser();
+		$owner = $training->getTrainer();
+		
+		if ($user != $owner) {
+			if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
+				throw new AccessDeniedHttpException();
+		}
+		
+		$trainingService->deleteTraining($matrix_id, $training_id, $user->getId());
 		return $this->redirect($this->generateUrl('user_dashboard'));
 	}
 
@@ -214,6 +250,12 @@ class TrainingController extends Controller
 				array("result_queue_status" => $result_queue["status"], "result_queue_message" => $result_queue["message"]));
 	}
 
+	/**
+	 * 
+	 * @param unknown $matrix_id
+	 * @param unknown $training_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function downloadTrainingDataAction($matrix_id, $training_id)
 	{
 		$trainingService = $this->get('ichnaea.training_service');
@@ -228,6 +270,10 @@ class TrainingController extends Controller
 		return $response;
 	}
 	
+	/**
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getMyTrainingsAction()
 	{
 		$user = $this->get('security.context')->getToken()->getUser();

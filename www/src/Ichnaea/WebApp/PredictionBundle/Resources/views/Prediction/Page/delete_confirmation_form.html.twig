@@ -1,0 +1,19 @@
+{% extends '::IchnaeaBase.html.twig' %}
+
+
+{% block page_title %}Delete prediction{% endblock %}
+
+{% block header_page_title %}Delete prediction{% endblock %}
+
+{% block body %}
+<div class="container">
+<legend>Delete a prediction</legend>
+You are about to delete a prediction and its results. You must understand this action and it's behaviour into the system. 
+Please be caution with this action. If you know are completely sure of what you are about to do, please confirm the action.
+<br><b>Prediction name</b>: {{name}}
+<br><b>Prediction descriptcion</b>: {{description}} 
+<form method="POST" action="{{ path('prediction_delete_submit', {'matrix_id': matrix_id, 'prediction_id': prediction_id, 'training_id': training_id}) }}">
+<button type="submit" class="btn btn-warning">Delete prediction</button>
+</form>
+{% endblock %}
+

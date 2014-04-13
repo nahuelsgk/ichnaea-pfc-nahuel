@@ -5,7 +5,7 @@ namespace Ichnaea\WebApp\MatrixBundle\Service;
 use Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig;
 use Doctrine\ORM\EntityManager;
 use Ichnaea\WebApp\MatrixBundle\Entity\Season;
-use Ichnaea\WebApp\MatrixBundle\Entity\Variable;
+use Ichnaea\WebApp\MatrixBundle\Entity\Variable as Variable;
 use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSet;
 use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSetComponent;
 use Ichnaea\WebApp\MatrixBundle\Entity\Matrix;
@@ -14,12 +14,26 @@ use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as Utils;
 
 class IchnaeaService{
     
-	protected $em;
 	
+	protected $em;
+	/**
+	 * 
+	 * @param EntityManager $em
+	 */
 	public function __construct(EntityManager $em){
 		$this->em = $em;
 	} 	
 	
+	/**
+	 * Creates a season  
+	 * 
+	 * @param string $name
+	 * @param string $notes
+	 * @param Date $start_date
+	 * @param Date $end_date
+	 * @param string $content
+	 * @return \Ichnaea\WebApp\MatrixBundle\Entity\Season
+	 */
 	public function createSeason($name, $notes, $start_date, $end_date, $content)
 	{
 		$season = new Season();
@@ -33,6 +47,16 @@ class IchnaeaService{
 		return $season;
 	}
 	
+	/**
+	 * Updates a season data
+	 * 
+	 * @param int $id
+	 * @param string $name
+	 * @param string $notes
+	 * @param Date $start_date
+	 * @param Date $end_date
+	 * @param string $content
+	 */
 	public function updateSeason($id, $name, $notes, $start_date, $end_date, $content)
 	{
 		$season = $this->em->getRepository('MatrixBundle:Season')->find($id);
@@ -45,17 +69,31 @@ class IchnaeaService{
 		return $season->getId();
 	}
 	
+	/**
+	 * Get all seasons in the system
+	 */
 	public function getAllSeasons()
 	{
 		return $this->em->getRepository('MatrixBundle:Season')->findAll();
 	}
 	
+	/**
+	 * Get a season with id $id
+	 * 
+	 * @param unknown $id
+	 * @return unknown
+	 */
 	public function getSeasonById($id)
 	{
     	$season = $this->em->getRepository('MatrixBundle:Season')->find($id);
         return $season;
 	}
 	
+	/**
+	 * Get a list of seasons that contains $pattern in the name
+	 * 
+	 * @param unknown $pattern
+	 */
 	public function getSeasonByPatterName($pattern)
 	{
 		//@TODO move to the repository
@@ -69,10 +107,20 @@ class IchnaeaService{
         return 	$query->getArrayResult();
 	}
 	
-	public function getAllVariables(){
+	/**
+	 * Get all variables in the system
+	 */
+	public function getAllVariables()
+	{
 		return $this->em->getRepository('MatrixBundle:Variable')->findAll();
 	}
 	
+	/**
+	 * Creates a variable in the system
+	 * 
+	 * @param string $name
+	 * @param string $description
+	 */
 	public function createVariable($name, $description){
 		$variable = new Variable();
 		$variable->setName($name);
@@ -81,7 +129,16 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
-	public function updateVariable($id, $name, $description){
+	/**
+	 * Updates a variables basic data 
+	 * 
+	 * @param int $id
+	 * @param string $name
+	 * @param string $description
+	 * @return Variable
+	 */
+	public function updateVariable($id, $name, $description)
+	{
 		$variable = $this->em->getRepository('MatrixBundle:Variable')->find($id);
 		$variable->setName($name);
 		$variable->setDescription($description);
@@ -89,20 +146,29 @@ class IchnaeaService{
 		return $variable;
 	}
 	
+	/**
+	 * Return a variables with the id $variable_id
+	 * 
+	 * @param int $variable_id
+	 */
 	function getVariableById($variable_id){
 		return $this->em->getRepository('MatrixBundle:Variable')->find($variable_id);	
 	}
 	
-	/*
-	 * seasonIds: array of ids already in the systems
-	 * components: array to create new seasons for the system. The array structure
-	 * 	[0][filename]
-	 *  [0][type] = 'all_year | summer | spring | autumn | winter'
-	 *  [0][content]
+	/**
+	 * Creates a season set with a set of season components
 	 * 
-	 * Result: A season set created with components(new or already in the system)
+	 * @param intr $variable_id
+	 * @param string $name
+	 * @param array[int] $seasonIds - array of ids already in the systems
+	 * @param array $components - array to create new seasons for the system. The array structure
+	 * 	[0][filename] - name of the season
+	 *  [0][type] = 'all_year | summer | spring | autumn | winter'
+	 *  [0][content] - content of the season
+	 * @return number - A season set created with components(new or already in the system)
 	 */
-	public function createSeasonSet($variable_id, $name, $seasonIds = NULL, $components){
+	public function createSeasonSet($variable_id, $name, $seasonIds = NULL, $components)
+	{
 		//basic info setting
 		$seasonSet = new SeasonSet();
 		$seasonSet->setName($name);
@@ -139,7 +205,15 @@ class IchnaeaService{
 		return $seasonSet->getId();
 	}
 	
-    public function updateSeasonSet($seasonSet_id, $name, $seasonIds = NULL, $components = NULL){
+	/**
+	 * 
+	 * @param unknown $seasonSet_id
+	 * @param unknown $name
+	 * @param string $seasonIds
+	 * @param string $components
+	 */
+    public function updateSeasonSet($seasonSet_id, $name, $seasonIds = NULL, $components = NULL)
+    {
 		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
 		$seasonSet->setName($name);
 		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
@@ -169,17 +243,32 @@ class IchnaeaService{
 		return $seasonSet->getId();
 	}
 
-	public function getVariableSeasonSets($variable_id){
+	/**
+	 * Returns an array of season set of a variable
+	 * @param id $variable_id
+	 */
+	public function getVariableSeasonSets($variable_id)
+	{
 		$variable = $this->em->getRepository('MatrixBundle:Variable')->find($variable_id);
 		return $variable->getSeasonSet();
 	}
 
+	/**
+	 * 
+	 * @param int $id
+	 * @return seasonSet
+	 */
 	public function getSeasonSet($id){
 		$season_set = $this->em->getRepository('MatrixBundle:SeasonSet')->find($id);
 		return $season_set;
 	}
 	
-	public function getSeasonSetComponents($id)
+	/**
+	 * 
+	 * @param id $id - seasonSet id
+	 * @return Array[season]
+	 */
+	/*public function getSeasonSetComponents($id)
 	{
 		$repository = $this->em->getRepository('MatrixBundle:SeasonSetComponent');
 		$season_components = $repository->findBySeasonSetId($id);
@@ -193,15 +282,25 @@ class IchnaeaService{
 			$index++;
 		}
 		return $components;
-	}
+	}*/
 	
-	public function deleteSeasonSet($seasonSet_id){
+	/**
+	 * 
+	 * @param int $seasonSet_id
+	 */
+	public function deleteSeasonSet($seasonSet_id)
+	{
 		$season = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
 		$this->em->remove($season);
 		$this->em->flush();
 	}
 	
-	public function deleteSeasonSetCascade($season_set_id){
+	/**
+	 * 
+	 * @param int $season_set_id
+	 */
+	public function deleteSeasonSetCascade($season_set_id)
+	{
 		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($season_set_id);
 		
 		$components = $seasonSet->getComponents();
@@ -213,6 +312,12 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
+	/**
+	 * 
+	 * @param unknown $variable_id
+	 * @param unknown $season_set_id
+	 * @param unknown $component_id
+	 */
 	public function deleteSeasonSetComponent($variable_id, $season_set_id, $component_id)
 	{
 		$seasonSetComponent = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->find($component_id);
@@ -220,6 +325,12 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
+	/**
+	 * 
+	 * @param int $variable_id
+	 * @param int $season_set_id
+	 * @param int $component_id
+	 */
 	public function deleteCompleteSeasonSetComponent($variable_id, $season_set_id, $component_id)
 	{
 		$seasonSetComponent = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->find($component_id);
@@ -228,8 +339,12 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
-	/*
-	  
+	/**
+	 * 
+	 * @param unknown $name
+	 * @param unknown $content
+	 * @param unknown $owner_id
+	 * @return number
 	 */
 	public function createMatrixFromCSVContent($name, $content, $owner_id)
 	{
@@ -279,10 +394,19 @@ class IchnaeaService{
 					
 				//Exclude first column
 				for($i=1; $i<$m_columns; $i++){
-					//print("Variable alias: ".$columns[$i]."<br>");
+					$variable_name = MatrixUtils::cleanStringCSV($columns[$i]);
 					$variableConfiguration = new VariableMatrixConfig();
-					$variableConfiguration->setName($columns[$i]);
+					$variableConfiguration->setName($variable_name);
 					$variableConfiguration->setMatrix($matrix);
+					
+					//if the name of the column is the same as a variable in the system => get the variable, add it and assign the first season set of this variable
+					$variable = $this->em->getRepository('MatrixBundle:Variable')->findOneBy(array('name' => $variable_name));
+					if ($variable instanceof Variable)
+					{
+						$variableConfiguration->setVariable($variable);
+						if ($variable->getSeasonSet()->first() instanceof SeasonSet) $variableConfiguration->setSeasonSet($variable->getSeasonSet()->first());	
+					}
+					
 					$matrix->addColumn($variableConfiguration);
 					$max_columns = $i-1;
 				}
@@ -300,20 +424,20 @@ class IchnaeaService{
 					$sample->setMatrix($matrix);
 		
 					foreach($columns as $key => $string) {
-						$columns[$key] = $this->cleanStringCSV($string);
+						$columns[$key] = Utils::cleanStringCSV($string);
 					}
 		
 					if ($origin == TRUE){
 						$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
 						if(isset($columns[$m_columns]) && $origin)
 						{
-							$sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
+							$sample->setOrigin(Utils::cleanStringCSV($columns[$m_columns]));
 						}
 					}
-		
 					//We want all the values until the end
 					else{
 						$sample->setSamples(array_slice($columns, 1, null, TRUE));
+						$sample->setOrigin(Utils::resolveOriginInSampleName($columns[0]));
 					}
 					$matrix->addRow($sample);
 		
@@ -324,6 +448,14 @@ class IchnaeaService{
 		}
 	}
 	
+	/**
+	 * Updates the matrix content
+	 * 
+	 * @param int $matrix_id - id of the matrix
+	 * @param string $name - matrix's name
+	 * @param string $content - matrix in csv format
+	 * @return unknown
+	 */
 	public function updateMatrixFromCSVContent($matrix_id, $name, $content)
 	{
 		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
@@ -338,19 +470,28 @@ class IchnaeaService{
 		return $matrix_id;
 	}
 	
-	private function cleanStringCSV($string){
-		$invalid_chars = array('\'','"');
-		return str_replace($invalid_chars, "", $string);	
-	}
-	
+	/**
+	 * Get all matrixs in the database
+	 */
 	public function getAllMatrixs(){
 		return $this->em->getRepository('MatrixBundle:Matrix')->findAll();
 	}
 	
+	/**
+	 * Get a Matrix Entity with an id
+	 * 
+	 * @param int $id - matrix id
+	 */
 	public function getMatrix($id){
 		return $this->em->getRepository('MatrixBundle:Matrix')->find($id);
 	}
 	
+	/**
+	 * Returns the number of samples(rows) of a matrix
+	 * 
+	 * @param int $id - matrix id
+	 * @return number
+	 */
 	public function getM($id)
 	{
 		$matrix = $this->em->getRepository('MatrixBundle:Matrix')->find($id);
@@ -361,6 +502,14 @@ class IchnaeaService{
 		return count($sample_data); 
 	}
 	
+	/**
+	 * Updates matrixs basic configuration
+	 * 
+	 * @param int $user_id - an user_id that performs the 
+	 * @param int $matrix_id - the matrix id
+	 * @param string $visibility - visibility
+	 * @return unknown
+	 */
 	public function updateMatrixConfiguration($user_id, $matrix_id, $visibility = TRUE){
 		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
 		$matrix = $matrixRepository->find($matrix_id);
@@ -370,12 +519,20 @@ class IchnaeaService{
 		return $matrix;
 	}
 
+	/**
+	 * Update matrix's column configuration
+	 * 
+	 * @param int $matrix_id
+	 * @param int $column_id
+	 * @param string $new_name - 
+	 * @param string $new_variable - id of the variable that is updated
+	 * @param int $new_seasonSet - id of the new season set used
+	 */
 	public function updateMatrixVariable($matrix_id, $column_id, $new_name, $new_variable, $new_seasonSet = NULL){
 		$variableConfigurationRepository = $this->em->getRepository('MatrixBundle:VariableMatrixConfig');
 		$variableRepository 			 = $this->em->getRepository('MatrixBundle:Variable');
 		$seasonSetRepository			 = $this->em->getRepository('MatrixBundle:SeasonSet');
 		 
-		//@TODO Dont know how to get the matrix and update 
 		$column  = $variableConfigurationRepository->find($column_id);
 		$column->setName($new_name);
 		
@@ -393,7 +550,10 @@ class IchnaeaService{
 		$this->em->flush();
 	}
 	
-	
+	/**
+	 * Returns if the matrix is updatable
+	 * @param int $matrix_id
+	 */
 	public function matrixIsUpdateable($matrix_id)
 	{
 		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
@@ -401,6 +561,11 @@ class IchnaeaService{
 		return $matrix->isUpdatable();
 	}
 	
+	/**
+	 * Return if the matrix is complete configurated
+	 * 
+	 * @param int $matrix_id
+	 */
 	public function matrixIsComplete($matrix_id)
 	{
 		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
@@ -409,6 +574,10 @@ class IchnaeaService{
 		
 	}
 	
+	/**
+	 * Check if the matrix had trainings
+	 * @param int $matrix_id
+	 */
 	public function matrixIsTrained($matrix_id)
 	{
 		$matrixRepository = $this->em->getRepository('MatrixBundle:Matrix');
@@ -417,6 +586,15 @@ class IchnaeaService{
 	
 	}
 	
+	/**
+	 * Update a sample configuration
+	 * 
+	 * @param unknown $matrix_id
+	 * @param unknown $sample_id
+	 * @param unknown $new_name
+	 * @param string $new_date
+	 * @param string $new_origin
+	 */
 	public function updateSample($matrix_id, $sample_id, $new_name, $new_date = NULL, $new_origin = NULL)
 	{
 		$sampleRepository = $this->em->getRepository('MatrixBundle:Sample');
@@ -493,7 +671,9 @@ class IchnaeaService{
 		return $clone;
 	}
 	
-	
+	/**
+	 * Get matrixs that can be trainables
+	 */
 	public function getTrainableMatrixs()
 	{
 			$query = $this->em
@@ -506,6 +686,14 @@ class IchnaeaService{
 			
 			return $query->getResult();
 	}
+	
+	public function deleteMatrix($user_id, $matrix_id)
+	{
+		//Delete all predictions. Use the service to delete predictions
+		//Delete all trainings. Use the service to delete trainings
+		//Delete the matrixs. Delete matrixs
+	}
+	
 }
 
 ?>

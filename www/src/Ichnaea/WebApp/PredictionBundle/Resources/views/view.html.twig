@@ -12,6 +12,7 @@
 	<legend>
 		Prediction matrix
 		<!-- ACTIONS -->
+		{# ACTION UPDATE #}
 		{% if matrix_status == 'pending' or matrix_status == 'NULL' or matrix_status == 'new' %}
 		<a class="btn btn-mini" 
 			href="{{
@@ -21,6 +22,17 @@
 			<i class="icon-refresh"></i>
 		</a>
 		{% endif %}
+		
+		{# ACTION DELETE #}
+		{% if matrix_status == 'pending' or matrix_status == 'NULL' or matrix_status == 'new' %}
+		<a class="btn btn-mini"
+			href="{{ path('prediction_delete_confirmation_form',{'prediction_id': matrix_id, 'training_id': training_id, 'matrix_id': matrix_trained_id }) }}" 
+			>
+			<i class="icon-remove"></i>
+		</a>
+		{% endif %}
+		
+		{# ACTION RESEND #}
 		{% if matrix_status == 'pending'  %}
 			<a href="{{ 
 				path('prediction_resend', 
@@ -61,6 +73,6 @@
 </div>
 </div>
 
-{%  include 'MatrixBundle:Matrix:view_matrix_table.html.twig' %}
+{%  include 'MatrixBundle:Matrix:View/matrix_table_configurable.html.twig' with {'configurable_colums': 'disable', 'configurable_samples':'enable', 'api': 'prediction'} %}
 
 {% endblock %}

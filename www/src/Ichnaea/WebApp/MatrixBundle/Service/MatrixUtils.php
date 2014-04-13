@@ -39,8 +39,8 @@ static public function buildDatasetFromMatrix(
 		$matrix,
 		$type = 'simple',
 		\Doctrine\Common\Collections\Collection $columns,
-		\Doctrine\Common\Collections\Collection $samples
-	){	
+		\Doctrine\Common\Collections\Collection $samples)
+	{	
     $dataSet = array();
     $dataSet["fake_duration"]         = 10;
     $dataSet["fake_interval"]         = 1; 
@@ -69,10 +69,13 @@ static public function buildDatasetFromMatrix(
     //@GENERIC $columns = $matrix->getColumns();
     
     //BEGIN CSV @1 - ROWS with the var name/alias if simple; if complete only var name
-    foreach($columns as $column){
+    foreach($columns as $column)
+    {
+    	echo "Column: $i<br>";
     	//Column with variable associated
     	if ($column->getVariable() instanceof Variable){
     		$var_name    = $column->getVariable()->getName();
+    		echo "** $var_name<br>";
 	    	$seasonSet = $column->getSeasonSet();
 	    	
 	    	if ($seasonSet instanceof SeasonSet){
@@ -101,6 +104,7 @@ static public function buildDatasetFromMatrix(
    		}
    		$i++;
    	}	
+   	
    	//First row, joins all the columns name with ;
    	$csv_content[] = implode($columns_name,";");
    	//END CSV @1
@@ -174,7 +178,7 @@ static public function buildDatasetFromMatrix(
    			'Winter'    => '0.0'
    	);
    	
-	   	
+		   	
    	return $dataSet;	
 }
 
@@ -317,7 +321,7 @@ static public function buildDatasetFromMatrixPrediction($matrix, $type = 'simple
 	return $dataSet;
 }
 
-static 	private function resolveSeasonName($season_name){
+static private function resolveSeasonName($season_name){
    	$seasons = array(
    		'summer'   => 'Estiu',
    		'winter'   => 'Hivern',
@@ -327,7 +331,27 @@ static 	private function resolveSeasonName($season_name){
   	);
   	return $seasons[$season_name];
 }
-    
+
+static public function resolveOriginInSampleName($sample_name){
+	$ret = '';
+	if(strpos($sample_name, 'HM')>0) return 'HUMAN';
+	elseif (strpos($sample_name, 'PG')>0) return 'PIG';
+	elseif (strpos($sample_name, 'CW')>0) return 'COW';
+	elseif (strpos($sample_name, 'PL')>0) return 'POULTRY';
+	return $ret;
+}
+
+/**
+ * Cleans string 
+ * 
+ * @param string $string
+ * @return mixed
+ */
+static public function cleanStringCSV($string){
+	$invalid_chars = array('\'','"');
+	return str_replace($invalid_chars, "", $string);
+}
+
 private function dumpIntoErrorLog($data){
    	ob_start();
    	var_dump($data);

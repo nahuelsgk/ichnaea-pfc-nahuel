@@ -8,18 +8,12 @@ use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix as PredictionMatrix;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample;
 use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
-use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
-use Ichnaea\Amqp\Model\PredictModelsRequest as PredictModelsRequest;
-use Ichnaea\Amqp\Model\PredictModelsResponse as PredictModelsResponse; 
-use Ichnaea\Amqp\Model\PredictModelsResult as PredictModelsResult;
-use Ichnaea\Amqp\Connection as Connection;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Filesystem\Filesystem;
 
 class PredictionService
 {
 	protected $em;
-	protected $con;
 	
 	/**
 	 * Service constructor
@@ -29,9 +23,8 @@ class PredictionService
 	 * @param String $connection_pass
 	 * @param integer $connection_host
 	 */
-	public function __construct(EntityManager $em, $connection_user, $connection_pass, $connection_host){
+	public function __construct(EntityManager $em){
 		$this->em   = $em;
-		$this->con  = new Connection($connection_user.':'.$connection_pass.'@'.$connection_host);
 	}
 	
 	/**
@@ -51,7 +44,7 @@ class PredictionService
 		//new prediction matrix
 		if ( is_null($prediction_id) === TRUE)
 		{
-			die("prediction_id is null");
+		  //die("prediction_id is null");
 		  $predictionMatrix = new PredictionMatrix();		
 		  $predictionMatrix->setName($name);
 		  $predictionMatrix->setDescription($description);
@@ -66,7 +59,6 @@ class PredictionService
 			$predictionMatrix->setName($name);
 			$predictionMatrix->setDescription($description);
 			
-			var_dump($content);
 		
 			//If we need to update de content, reset the samples 
 			if ($content != '')
@@ -110,16 +102,16 @@ class PredictionService
 			
 						//First Column: Definition of sample
 						$sample = new PredictionSample();
-						$sample->setName($this->cleanStringCSV($columns[0]));
+						$sample->setName(MatrixUtils::cleanStringCSV($columns[0]));
 						$sample->setMatrix($predictionMatrix);
 						foreach($columns as $key => $string) {
-							$columns[$key] = $this->cleanStringCSV($string);
+							$columns[$key] = MatrixUtils::cleanStringCSV($string);
 						}
 						
 						//manage origin column
 						if ($origin == TRUE){
 							$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
-							if(isset($columns[$m_columns])) $sample->setOrigin($this->cleanStringCSV($columns[$m_columns]));
+							if(isset($columns[$m_columns])) $sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$m_columns]));
 						}
 						else{
 							$sample->setSamples(array_slice($columns, 1, null, TRUE));
@@ -185,58 +177,6 @@ class PredictionService
 		return $predictions;
 	}
 	
-	/**
-	 * Builds a dataset and sends it to the queue. If it couldn't be sent, it will marked as pending 
-	 * 
-	 * @param unknown $matrix_id
-	 * @param unknown $training_id
-	 * @param unknown $prediction_id
-	 * @return unknown
-	 */
-	public function sendPrediction($matrix_id, $training_id, $prediction_id)
-	{
-		$predict_matrix = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
-		
-		//Just prepare the data and the cue
-		$data = MatrixUtils::buildDatasetFromMatrix(
-				NULL,
-				'simple',
-				$predict_matrix->getTraining()->getMatrix()->getColumns(),
-				$predict_matrix->getRows()
-		);
-		
-		//@TODO: read training data zip
-		$training_file = "/opt/lampp/htdocs/ichnaea/ichnaea_data/trainings/".$training_id."/r_data.zip";
-		$fd            = fopen($training_file, "r");
-		$content       = fread($fd, filesize($training_file));
-		$data['data']  = $content;
-		
-		//Still preparing the dataset	
-		$data['type']  = 'predict-models';
-			
-		//build the data array for the dataset
-		$model         = PredictModelsRequest::fromArray($data);		
-		//... set the new request id for the cue...
-		$predict_matrix->setRequestId($model->getId());
-		 
-		try {
-			$this->con->open();
-			$this->con->send($model);
-			$this->con->close();
-			//set status as sent
-			$predict_matrix->setStatusAsSent();
-		}
-		catch (\Exception $e)
-		{
-			//if any connection problem... set the status as pending
-			$predict_matrix->setStatusAsPending();
-		}
-				
-		//Persist the entity
-		$this->em->persist($predict_matrix);
-		$this->em->flush();
-		return $predict_matrix;
-	}
 	
 	/**
 	 * Updates a training. Only called by the consumer. 
@@ -303,15 +243,28 @@ class PredictionService
 	}
 	
 	/**
-	 * We must put it into a Utils beacuse is duplicated code
+	 * Deletes a prediction
 	 * 
-	 * @param string $string
-	 * @return mixed
+	 * @param int $matrix_id - useless
+	 * @param int $training_id - useless
+	 * @param int $prediction_id - prediction id
+	 * @param int $user_id - user who performs the action
+	 * @return boolean
 	 */
-	private function cleanStringCSV($string){
-		$invalid_chars = array('\'','"');
-		return str_replace($invalid_chars, "", $string);
+	public function deletePrediction($matrix_id, $training_id, $prediction_id, $user_id)
+	{
+		$prediction = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
+		//delete all samples
+		foreach ($prediction->getRows() as $sample){
+			$prediction->removeRow($sample);
+			$this->em->remove($sample);
+		}
+		//delete matrix
+		$this->em->remove($prediction);
+		$this->em->flush();
+		return true;
 	}
+	
 }
 
 ?>
