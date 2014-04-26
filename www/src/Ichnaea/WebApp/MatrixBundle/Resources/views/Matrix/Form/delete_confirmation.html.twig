@@ -1,0 +1,12 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}Delete matrix{% endblock %}
+
+{% block main_content %}
+<legend>Delete '<i>{{matrix_name}}</i>'</legend>
+<p>You are about to delete the matrix {{ matrix_name }}. Consider that deleting this matrix you will delete all trainings and predictions performed by you and other users. </p>
+<form method="POST" id="deleteMatrixForm" class="form-horizontal" action="{{ path('matrix_delete', {matrix_id: matrix_id})}}">
+<button type="submit" class="btn btn-primary">Delete</button>
+</div>
+</form>
+{% endblock %}

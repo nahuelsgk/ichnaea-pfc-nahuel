@@ -5,13 +5,8 @@
 \label{sec:home}
 Per accedir al home pots:
 \begin{itemize}
-\item accedir nom\'{e}s loguejan-te 
-\item desde ''My matrixs''
-\item desde ''Trainings - My Trainings'' o al logo de ''Ichnaea''.
 \end{itemize}
 
-En el dashboard es poden veure dues seccions. Les matrius(part esquerra) i els trainings(part dreta) creats per l'usuari.\\
-Nota: Actualment no es poden compartir propietat de matrius. Es a dir, una sola persona(el propietari/creador) solament pot editar la matriu. Per poder solventar aquest trau, existeix la possibilitat de clonar una matriu. Mirar \ref{sec:clone_matrix}.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/dashboard_complete_trainings.png}
@@ -20,29 +15,27 @@ Nota: Actualment no es poden compartir propietat de matrius. Es a dir, una sola 
 \end{figure}
 A continuaci\'{o} descriurem cadascuna de les parts.
 
-\subsection{Llistat de les meves matrius}
-Al llistat de la esquerra pots veure les matrius que ets propietari. Amb la icona de edici\´{o} pots anar a la pantalla de configuraci\´{o}. Per configurar la matriu, mirar \ref{sec:configure_matrix}.
-
-\subsection{Llistat dels meus trainings}
-Al llistat de la dreta pots veure els trainings que has creat on::
+\subsection{Llistat dels meus trainings pendents}
+Al llistat superior pots veure els trainings que has creat on::
 \begin{itemize}
+\item Nom de la matriu com a enlla� per veure la matriu
+\item Descripci\'{o} del ''training''
+\item Data de creaci\'{o}
+\item Nom de l'usuari que la creat
+\item Progres: actualment Ichnaea no retorna estat del proces- Solament ens diu si ha acabat o no.  Per tant els \'{u}nics valors son 0.00 i 1.00.
+\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua) i ''finished''(ha terminat)
+\item 
 \item Operacions
  \begin{itemize}
- \item La icona de l'ull es per anar a la pantalla de visualitzaci\´{o} del training.
- \item La icona de la creu, \´{e}s per esborrar el training.
- \item La icona de la quadricula, \'{e}s per crear prediccions i matrius de prediccions.
+ \item ICON_EYE_OPEN es per anar a la pantalla de visualitzaci\'{o} del training.
  \end{itemize}
-\item Nom del training
-\item Nom de la matriu entrenada
-\item Progres: actualment Ichnaea no retorna estat del proces- Solament ens diu si ha acabat o no.  Per tant els \'{u}nics valors son 0.00 i 1.00.
-\item Status. Actualment \´{e}s 0 o 1. Es a dir, acabada de entrenar o no. Ichnaea encara no dona status parcials de quan temps li queda per acabar o quan porta.
 \end{itemize}
 \subsubsection*{Estat del trainings}
 En la figura es contempla els estats possibles:
 \begin{itemize}
 \item Color verd: training sense errors i predectible
 \item Color gris: training actualment corrent
-\item Color salm\'{o}: training no enviat per algun problema amb la cua o amb errors.
+\item Color salm\'{o}: ''training'' no s'ha enviat per algun problema amb la cua o amb errors.
 \end{itemize}
 
 \section{Crear una matriu desde un csv}

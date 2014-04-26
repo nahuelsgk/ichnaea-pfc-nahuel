@@ -314,7 +314,7 @@ class MatrixController extends Controller
 	}
 	
 	/** 
-	 * Renders a view that simple access to the loged user and its matrixs
+	 * Renders a view that access to the logged user and list its matrixs
 	 * 
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
@@ -323,14 +323,56 @@ class MatrixController extends Controller
 		return $this->render('MatrixBundle:Matrix:my_matrix.html.twig');
 	}
 	
-	public function deleteConfirmationAction()
+	/**
+	 * Renders a view with confirmation for perform a delete
+	 *  
+	 * @param int $matrix_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function getMatrixDeleteConfirmationAction($matrix_id)
 	{
+		$ichnaeaService = $this->get("ichnaea.service");
+		$matrix = $ichnaeaService->getMatrix($matrix_id);
 		
+		$user = $this->get('security.context')->getToken()->getUser();
+		$owner = $matrix->getOwner();
+		
+		//requeriments: owner or superadmin can do that
+		if ($user != $owner) {
+			if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
+				throw new AccessDeniedHttpException();
+		}
+		
+		return $this->render('MatrixBundle:Matrix:Form/delete_confirmation.html.twig',
+			array(
+				'matrix_name' => $matrix->getName(),
+				'matrix_id'   => $matrix->getId(),
+			)
+		);
 	}
 	
-	public function deleteMatrixAction()
+	/**
+	 * Performs a matrix remove
+	 * @param int $matrix_id
+	 * @throws AccessDeniedHttpException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
+	public function matrixDeleteAction($matrix_id)
 	{
+		$ichnaeaService = $this->get("ichnaea.service");
+		$matrix = $ichnaeaService->getMatrix($matrix_id);
 		
+		$user = $this->get('security.context')->getToken()->getUser();
+		$owner = $matrix->getOwner();
+		
+		//requeriments: owner or superadmin can do that
+		if ($user != $owner) {
+			if (!in_array("ROLE_SUPER_ADMIN", $user->getRoles()))
+				throw new AccessDeniedHttpException();
+		}
+		
+		$ichnaeaService->deleteMatrix($user->getId(), $matrix_id);
+		return $this->redirect($this->generateUrl('matrix_list'));
 	}
 }
 ?>

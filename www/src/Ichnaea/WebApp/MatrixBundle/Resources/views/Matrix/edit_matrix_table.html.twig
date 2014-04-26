@@ -123,7 +123,7 @@
                         {% for sample in samples %}
 						 <tr>
 						   {% for value in sample.samples %}
-						   <td class='inner col_content value_of_samples' id="samplevalue_{{ sample.id }}_{{ loop.index0 }}"align="center">{{value}}</td>
+						   <td class='inner col_content value_of_samples' id="samplevalue_{{ sample.id }}_{{ loop.index }}"align="center">{{value}}</td>
 						   {% endfor %}
 						 </tr>
 						 {% endfor %}
@@ -214,7 +214,8 @@ function init_inputOrigins()
 	});
 }
 
-function save_all_pending_action() {
+function save_all_pending_action() 
+{
     //Save all columns
 	var pendings = $('.save_button_action_column').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
 	$(pendings).each(function(index, element){$(element).trigger('click');});
@@ -227,20 +228,33 @@ function save_all_pending_action() {
 	  
 }
 
-function submit_sample_value_change(input, td_id){
-	var new_value = (input.value);
-	var element = $('#' + td_id);		
-	element.html(new_value);
+function displaySampleValueChanged(td_id, value)
+{
+	console.log("Response");
+	console.log(td_id);
+	var element = $('#' + td_id);
+	element.html(value);
+	
 }
 
-function init_editable_cells() {
+function submit_sample_value_change(input, td_id)
+{
+	var new_value = (input.value);
+	var data = td_id.split("_");
+	console.log(data);
+	console.log("TD_ID: "+td_id);
+	sendEvent('{{path('sample_api', {"matrix_id": matrix_id })}}'+data[1]+'/index/'+data[2],'PUT', { data: new_value },	function (data){console.log(td_id);displaySampleValueChanged(td_id, new_value)});
+}
+
+function init_editable_cells() 
+{	
 	$('.value_of_samples').dblclick(function(value){
-		 	var id = value.target.id;
-			var element = $('#' + id);
-			var value = element.html();
-			var input = $('<input type="text" class="input-mini" onchange="submit_sample_value_change(this,\''+id+'\');" />');
-	        input.val(value);
-	        element.html(input);
+	 	var id = value.target.id;
+		var element = $('#' + id);
+		var value = element.html();
+		var input = $('<input type="text" class="input-mini sample_cell_edit" onchange="submit_sample_value_change(this,\''+id+'\');" />');
+        input.val(value);
+        element.html(input);
 		}
 	);	
 }

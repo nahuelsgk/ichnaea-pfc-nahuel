@@ -71,11 +71,9 @@ static public function buildDatasetFromMatrix(
     //BEGIN CSV @1 - ROWS with the var name/alias if simple; if complete only var name
     foreach($columns as $column)
     {
-    	echo "Column: $i<br>";
     	//Column with variable associated
     	if ($column->getVariable() instanceof Variable){
     		$var_name    = $column->getVariable()->getName();
-    		echo "** $var_name<br>";
 	    	$seasonSet = $column->getSeasonSet();
 	    	
 	    	if ($seasonSet instanceof SeasonSet){

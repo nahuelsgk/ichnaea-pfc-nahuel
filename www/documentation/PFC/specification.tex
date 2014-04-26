@@ -1,12 +1,11 @@
 \chapter{Especificaci\'{o}}
 \label{cha:specification}
-En aquest cap\'{i}tol es descriu els requeriments i les operatives que es necessiten.\\
-
+En aquest cap\'{i}tol es descriuen els requeriments, les operatives que es necessiten i el model de dades.
 
 \section{Requeriments funcionals}
 
 \subsection{Administraci\'{o} d'usuaris}
-La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertanyer a grups amb roles autoritzats per fer certes accions. \'{E}s una aplicaci\'{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
+La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertanyer a grups amb rols autoritzats per fer certes accions. \'{E}s una aplicaci\'{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
 \begin{itemize}
 \item Crear comptes d'usuari.
 \item Atendre peticions de resetejar contrasenyes.
@@ -15,26 +14,26 @@ La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris a
 \end{itemize}
 
 \subsection{Administraci\'{o} de variables de sistema}
-La aplicaci\'{o} ha de gestionar les variables que Ichnaea al sistema per poder utilitzar-les amb el software. Les variables han de tenir asociades un o varis conjunt ''seasons''. Com s'explica al cap\'{i}tol \ref{glossary}, les ''seasons'' son un contingut en format texte que descriu els envelliments de les variables. 
+La aplicaci\'{o} ha de gestionar les variables que Ichnaea al sistema per poder utilitzar-les amb el software. Les variables han de tenir asociades un o varis conjunt ''seasons''\ref{cha:backgroud:univers:matrius:variables_seasons}. La aplicaci\'{o} ha de poder gestionar les variables, els continguts de les ''seasons'' i les associacions entre les variables i els conjunts de ''season''.
 
 \subsection{Administraci\'{o} de matrius}
 La aplicaci\'{o} ha de poder gestionar i configurar matrius de dades. Per la creaci\'{o} de matrius ha de poder llegir un fitxer csv o excel i crear un model de dades que representi una matriu a partir de les dades proporcionades.\\
 
-La aplicaci\'{o} permet la configuraci\'{o} de matrius:
+La aplicaci\'{o} permet la configuraci\'{o} de matrius\ref{cha:backgroud:univers:matrius}:
 \begin{itemize}
-\item Configurar les columnes com una variable i una ''season set''
-\item Configurar l'origen de un ''sample''
-\item Configurar la data de un ''sample''
-\item Configurar o actualitzar dades
+\item Configurar les columnes com una variable i una ''season set''.
+\item Configurar l'origen d'un ''sample''.
+\item Configurar la data d'un ''sample''.
+\item Configurar o actualitzar dades.
 \end{itemize}
 
 \subsection{Administraci\'{o} de trainings}
 La aplicaci\'{o} ha de:
 \begin{itemize}
-	\item Gestionar ''trainings'' 
-	\item Enviar a processar-los a la cua de processos
-	\item Llegir e interpretar el estat del proc\'{e}s 
-	\item Llegir els resultats dels ''trainings''
+	\item Gestionar ''trainings''.
+	\item Enviar a processar-los a la cua de processos.
+	\item Llegir e interpretar el estat del proc\'{e}s.
+	\item Llegir els resultats dels ''trainings''.
 \end{itemize}
 
 \subsection{Administraci\'{o} de matrius de predicci\'{o}}
@@ -55,19 +54,16 @@ Els requeriments no funcionals son:
 \item Flexibilitat
 \end{itemize}
 
-
 \section{Casos d'us i fluxos}
 En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir els casos d'\'{u}s:\\
-\subsection{Crear un usuari}
+
 \begin{usecase}
 \addtitle{Identificador}{Nom cas d'us}
 \addfield{Actors:}{Llista de actors}
 \addscenario{Curs tipic d'esdeveniments:}{
 	\item Esdeveniment
 	\item Esdeveniment
- validada.
 	\item ...
-	
 }
 \addscenario{Cursos alternatius:}{
 \item Esdeveniment Alternatiu
@@ -75,17 +71,16 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 \end{usecase}
 
 
-
 \subsection{Crear un usuari}
 \begin{usecase}
 \addtitle{Usuari 001}{Crear un usuari}
 \addfield{Actors:}{Anonim}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item Usuari accedeix a la plataforma i pot accedir al formulari de registraci\'{o}
+	\item Usuari accedeix a la plataforma i pot accedir al formulari de registraci\'{o}.
 	\item Usuari introdueix nom d'usuari, correu electr\`{o}nic i contrasenya.
 	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enlla√ß de confirmaci\'{o} i crea un compte no validada.
-	\item L'usuari rep el correu electr\'{o}nic amb l'enlla√ß de confirmaci\'{o} i accedeix al l'enlla√ß de confirmaci\'{o}.
-	\item El sistema comprova que \'{e}s un enlla√ß de confirmaci\'{o} v\`{a}lid i d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
+	\item L'usuari rep el correu electr\'{o}nic amb l'enllaÁ de confirmaci\'{o} i accedeix al l'enllaÁ de confirmaci\'{o}.
+	\item El sistema comprova que \'{e}s un enllaÁ de confirmaci\'{o} v\`{a}lid i d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
 }
 \addscenario{Cursos alternatius:}{
 \item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu, que el correu sigui v\`{a}lid. Sino es correcte li informa a l'usuari al mateix formulari.
@@ -104,26 +99,6 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsection{Crear un matriu desde un fitxer}
-\begin{usecase}
-\addtitle{Matriu 001}{Crear una matrius desde fitxer}
-\addfield{Actors:}{Usuari registrat}
-\addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari visualitza el formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv. L'usuari accepta el formulari.
-	\item El sistema crear la matriu amb tots els "samples" identificats, les columnes identificades i els origens especificats en el cas que estiguin especificats en el fitxer.
-}
-\end{usecase}
-
-\subsection{Actualitzar una matriu desde un fitxer}
-\begin{usecase}
-\addtitle{Matriu 002}{Actualitzar una matriu desde fitxer}
-\addfield{Actors:}{Usuari registrat}
-\addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari visualitza el formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv. L'usuari accepta el formulari.
-	\item El sistema crear la matriu amb tots els "samples" identificats, les columnes identificades i els origens especificats en el cas que estiguin especificats en el fitxer.
-}
-\end{usecase}
-
 \subsection{Crear una variable}
 \begin{usecase}
 \addtitle{Variable 001}{Crear una variable}
@@ -134,9 +109,17 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 }
 \end{usecase}
 
+\subsection{Actualitzar una variable}
+\begin{usecase}
+\addtitle{Variable 002}{Actualitzar una variable}
+\addfield{Actors:}{Usuari administrador}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
 \subsection{Crear una season set}
 \begin{usecase}
-\addtitle{Variable 002}{Crear una ''season set''}
+\addtitle{Variable 003}{Crear una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
 	\item L'usuari selecciona una variable. 
@@ -154,10 +137,62 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 }
 \end{usecase}
 
+\subsection{Actualitzar una ''season set''}
+\begin{usecase}
+\addtitle{Variable 004}{Actualitzar una ''season set''}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Esborrar una ''season set''}
+\begin{usecase}
+\addtitle{Variable 005}{Crear una ''season set''}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Crear una ''season'' d'una ''season set''}
+\begin{usecase}
+\addtitle{Variable 006}{Crear una ''season'' d'una ''season set''}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Esborrar una ''season'' d'una ''season set''}
+\begin{usecase}
+\addtitle{Variable 007}{Esborrar una ''season'' d'una ''season set''}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+
+\subsection{Crear un matriu des d'un fitxer}
+\begin{usecase}
+\addtitle{Matriu 001}{Crear una matrius des d'un fitxer}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari visualitza el formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv. L'usuari accepta el formulari.
+	\item El sistema crear la matriu amb tots els "samples" identificats, les columnes identificades i els origens especificats en el cas que estiguin especificats en el fitxer.
+}
+\end{usecase}
+
+\subsection{Actualitzar una matriu}
+\begin{usecase}
+\addtitle{Matriu 002}{Actualitzar una matriu}
+\addfield{Actors:}{Propietari de la matriu}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari visualitza el formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv. L'usuari accepta el formulari.
+	\item El sistema crear la matriu amb tots els "samples" identificats, les columnes identificades i els origens especificats en el cas que estiguin especificats en el fitxer.
+}
+\end{usecase}
 
 \subsection{Clonar una matriu}
 \begin{usecase}
-\addtitle{Matriu 002}{Clonar una matriu}
+\addtitle{Matriu 003}{Clonar una matriu}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
 	\item L'usuari visualitza un llistat de matrius del sistema i selecciona una matriu per clonar
@@ -167,7 +202,19 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsection{Configurar un columna de la matriu}
+\subsection{Esborra una matriu}
+\begin{usecase}
+\addtitle{Matriu 004}{Esborrar una matriu}
+\addfield{Actors:}{Propietari de la matriu}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari visualitza un llistat de matrius del sistema i selecciona una matriu per clonar
+	\item El sistema renderitza un formulari amb un nom suggerit.
+	\item L'usuari pot canviar el nom i acceptar la clonaci\'{o}
+	\item El sistema clona la matriu i la seva configuraci\'{o} sense copiar trainigs ni prediccions. El propietari de la matriu \'{e}s l'usuari que ha realitzat la clonaci\'{o}.
+}
+\end{usecase}
+
+\subsection{Configurar una columna de la matriu}
 \begin{usecase}
 \addtitle{Matriu 003}{Configurar la columna de una matriu}
 \addfield{Actors:}{Usuari propietari de la matriu}
@@ -184,55 +231,65 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsection{Afegir una season a una season set}
-\begin{usecase}
-\addtitle{Matriu 003}{Configurar la columna de una matriu}
-\addfield{Actors:}{Administradors?}
-\addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari selecciona una variable i una season set
-	\item El sistema renderitza un formulari per gestionar les seasons de la variable i de la season set
-	\item L'usuari pot seleccionar un fitxer on cont\'{e} les dades. Pot configurar el fitxer com estiu, primavera, tardor, hivern o unic per tot l'any. L'usuari confirma el fitxer
-	\item El sistema guarda el contingut del fitxer i li mostra a l'usuari el llistat actulitzat de seasons
-}
-\end{usecase}
 
-\subsection{Configurar la data del sample de una matriu}
+\subsection{Configurar la data del ''sample'' d'una matriu}
 \begin{usecase}
-\addtitle{Sample 001}{Configurar la data del sample de una matriu}
+\addtitle{Matriu 004}{Configurar la data del ''sample'' de una matriu}
 \addfield{Actors:}{Usuari propietari de una matriu}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari selecciona un matriu i un sample
+	\item L'usuari selecciona un matriu i un ''sample''
 	\item El sistema mostra un calendari per donar una data.
 	\item L'usuari pot seleccionar una data o pot escriure la data. L'usuari confirma la data.
 	\item El sistema guarda la data.
 }
 \end{usecase}
 
-\subsection{Configurar l'origen de una sample}
+\subsection{Configurar l'origen de una ''sample''}
 \begin{usecase}
-\addtitle{Sample 001}{Configurar la data del sample de una matriu}
+\addtitle{Sample 001}{Configurar la data del ''sample'' de una matriu}
 \addfield{Actors:}{Usuari propietari de una matriu}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari selecciona un matriu i un sample
+	\item L'usuari selecciona un matriu i un ''sample''
 	\item El sistema mostra un camp per poder escriure.
 	\item L'usuari escriu un origen o selecciona un que li suggerireix el sistema. L'usuari confirma la dada.
 	\item El sistema guarda la dada.
 }
 \end{usecase}
 
-\subsection{Llistar trainings}
+\subsection{Llistar ''trainings'' del sistema}
 \begin{usecase}
-\addtitle{Training 001}{Llistar trainings}
-\addfield{Actors:}{Usuari registrats}
+\addtitle{Training 001}{Llistar ''trainings''}
+\addfield{Actors:}{Usuari administrador}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari accedeix a la vista del llistat de ''trainings''
+	\item El sistema llista els trainings amb dades b\`{a}siques. Matriu entrenada, estat del training i descripci\'{o} del training.
+}
+\end{usecase}
+
+\subsection{Llistar els meus ''trainings''}
+\begin{usecase}
+\addtitle{Training 002}{Llistar trainings}
+\addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de trainings
 	\item El sistema llista els trainings amb dades b\`{a}siques. Matriu entrenada, estat del training i descripci\'{o} del training.
 }
 \end{usecase}
 
-\subsection{Crear un training}
+\subsection{Llistar ''trainings'' entrenables}
 \begin{usecase}
-\addtitle{Training 002}{Crear un training}
+\addtitle{Training 003}{Llistar ''trainings'' entrenables}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari accedeix a la vista del llistat de trainings
+	\item El sistema llista els trainings amb dades b\`{a}siques. Matriu entrenada, estat del training i descripci\'{o} del training.
+}
+\end{usecase}
+
+\subsection{Crear un ''training''}
+\begin{usecase}
+\addtitle{Training 004}{Crear un training}
+\addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
 	\item L'usuari selecciona una matriu per entrenar
 	\item El sistema li mostra un formulari per crear trainings
@@ -241,9 +298,10 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsection{Reenviar un training}
+\subsection{Reenviar un training al sistema de cues}
 \begin{usecase}
-\addtitle{Training 002}{Reenviar un training}
+\addtitle{Training 005}{Reenviar un training}
+\addfield{Actors:}{Usuari propietari d'un ''training''}
 \addscenario{Curs tipic d'esdeveniments:}{
     \item L'usuari selecciona un training que ha tingut problemes de enviament.
     \item El sistema renderitza una vista de visualitzaci\'{o} del training.
@@ -252,35 +310,128 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\®{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsection{Descarregar els resultats de un training}
-\begin{usecase}
-\addtitle{Training 003}{Descarregar els resultats de un training}
-\addscenario{Curs tipic d'esdeveniments:}{
-    \item L'usuari selecciona un training finalitzat
-    \item El sistema renderitza una vista de visualitzaci\'{o} del training. Si el resultat es correcte, el sistema mostra una operaci\'{o} de descarrega dels resultats de un training.
-    \item L'usuari accedeix a la descarrega.
-    \item El sistema envia a l'usuari els resultats.
-}
-\end{usecase}
-
 \subsection{Visualitzar un training}
 \begin{usecase}
-\addtitle{Training 004}{Visualitzar un training}
+\addtitle{Training 006}{Visualitzar un training}
+\addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
     \item L'usuari selecciona d'un llistat un training.
     \item El sistema renderitza una vista de visualitzaci\'{o} del training amb el nom, descripci\'{o}, data de creaci\'{o} i  errors o resultats segons el cas.
 }
 \end{usecase}
 
-\subsection{Esborrar un training}
-Implementat 50%.
-
-\subsection{Crear una matriu de predicci\'{o}}
+\subsection{Esborrar un ''training''}
 \begin{usecase}
+\addtitle{Training 007}{Esborrar un ''training''}
+\addfield{Actors:}{Usuari superadministrador, usuari propietari d'un ''training''}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
 \end{usecase}
 
-\subsection{Actualitzar una matriu de predicci\'{o}}
+\subsection{Descarregar els resultats d'un ''training''}
+\begin{usecase}
+\addtitle{Training 008}{Descarregar els resultats d'un ''training''}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs tipic d'esdeveniments:}{
+    \item L'usuari selecciona un training finalitzat
+    \item El sistema renderitza una vista de visualitzaci\'{o} del ''training''. Si el resultat es correcte, el sistema mostra una operaci\'{o} de descarrega dels resultats de un training.
+    \item L'usuari accedeix a la descarrega.
+    \item El sistema envia a l'usuari els resultats.
+}
+\end{usecase}
 
-\subsection{Executar una predicci\'{o} de una matriu de predicci\'{o}}
+\subsection{Actualitzar l'estat d'un ''training''}
+\begin{usecase}
+\addtitle{Training 009}{Actualitzar l'estat d'un ''training''}
+\addfield{Actors:}{Sistema}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Llistar prediccions del sistema}
+\begin{usecase}
+\addtitle{Prediction 001}{Llistar prediccions del sistema}
+\addfield{Actors:}{Usuari administrador}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Llistar les meves prediccions}
+\begin{usecase}
+\addtitle{Prediction 002}{Llistar les meves prediccions}
+\addfield{Actors:}{Usuari registrats}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Esborrar una predicci\'{o}}
+\begin{usecase}
+\addtitle{Prediction 003}{Esborrar una predicci\'{o}}
+\addfield{Actors:}{Usuari registrats}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Crear una matriu de predicci\'{o} desde un fitxer}
+\begin{usecase}
+\addtitle{Prediction 004}{Crear una matriu de predicci\'{o} desde un fitxer}
+\addfield{Actors:}{Usuari registrats}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Actualitzar una matriu de predicci\'{o} desde un fitxer}
+\begin{usecase}
+\addtitle{Prediction 005}{Actualitzar una matriu de predicci\'{o} desde un fitxer}
+\addfield{Actors:}{Usuari propietari de la predicci\'{o}}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Configurar un ''sample'' d'una matriu de predicci\'{o}}
+\begin{usecase}
+\addtitle{Prediction 006}{Configurar un ''sample'' d'una matriu de predicci\'{o}}
+\addfield{Actors:}{Usuari propietari de la predicci\'{o}}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Enviar una predicci\'{o} al sistema de cues}
+\begin{usecase}
+\addtitle{Prediction 007}{Enviar una predicci\'{o} al sistema de cues}
+\addfield{Actors:}{Usuari propietari de la predicci\'{o}}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Veure una predicci\'{o}}
+\begin{usecase}
+\addtitle{Prediction 007}{Enviar una predicci\'{o} al sistema de cues}
+\addfield{Actors:}{Usuari propietari de la predicci\'{o}}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Veure els resultats d'una predicci\'{o}}
+\begin{usecase}
+\addtitle{Prediction 008}{Veure els resultats d'una predicci\'{o}}
+\addfield{Actors:}{Usuari propietari de la predicci\'{o}}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
+
+\subsection{Actualitzar l'estat d'una predicci\'{o}}
+\begin{usecase}
+\addtitle{Prediction 009}{Actualitzar l'estat d'una predicci\'{o}}
+\addfield{Actors:}{Sistema}
+\addscenario{Curs tipic d'esdeveniments:}{
+}
+\end{usecase}
 
 \section{Model de dades}
+En el seg\®{u}ent gr\`{a}fic veuem  el diagrama UML del modelatge de dades.
+\begin{sidewaysfigure}[h]
+  \includegraphics[scale=0.5]{img/specification/ModelClass.png}
+  \caption{Model de dades}
+  \label{specification:datamodel}
+\end{sidewaysfigure}

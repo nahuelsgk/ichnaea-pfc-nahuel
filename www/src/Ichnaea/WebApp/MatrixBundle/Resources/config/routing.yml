@@ -203,7 +203,21 @@ matrix_update_data_action:
     requirements:
         _method: POST
         matrix_id: "\d+"
- 
+
+matrix_delete_confirmation:
+    pattern: /matrix/{matrix_id}/delete_confirmation
+    defaults: { _controller: MatrixBundle:Matrix:getMatrixDeleteConfirmation }
+    requirements: 
+       _method: GET
+       matrix_id: "\d+"
+
+matrix_delete:
+    pattern: /matrix/{matrix_id}/delete
+    defaults: { _controller: MatrixBundle:Matrix:matrixDelete }
+    requirements: 
+       _method: POST
+       matrix_id: "\d+"
+
 perform_matrix_update_data:
     pattern: /matrix/{matrix_id}/update_data_form
     defaults: { _controller: MatrixBundle:Matrix:performUpdateDataSet }

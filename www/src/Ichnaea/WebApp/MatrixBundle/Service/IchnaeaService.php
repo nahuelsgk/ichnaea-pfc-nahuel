@@ -11,11 +11,20 @@ use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSetComponent;
 use Ichnaea\WebApp\MatrixBundle\Entity\Matrix;
 use Ichnaea\WebApp\MatrixBundle\Entity\Sample;
 use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as Utils;
-
+use Ichnaea\WebApp\TrainingBundle\Services\TrainingService as TrainingService;
+/**
+ * 
+ * @author Nahuel Velazco
+ *
+ */
 class IchnaeaService{
     
-	
+	/**
+	 *  
+	 * @var EntityManager
+	 */
 	protected $em;
+	
 	/**
 	 * 
 	 * @param EntityManager $em
@@ -609,6 +618,27 @@ class IchnaeaService{
 	}
 	
 	/**
+	 * Updates a data value in the samples array
+	 * 
+	 * @param int $matrix_id
+	 * @param int $sample_id
+	 * @param int $index - position in the array to update
+	 * @param int $new_data
+	 * @return boolean
+	 */
+	public function updateSampleData($matrix_id, $sample_id, $index, $new_data)
+	{
+		$sampleRepository = $this->em->getRepository('MatrixBundle:Sample');
+		$sample = $sampleRepository->find($sample_id);
+		$samples_data = $sample->getSamples();
+		$samples_data[$index] = $new_data;
+		$sample->setSamples($samples_data);
+		$this->em->persist($sample);
+		$this->em->flush();
+		return true;
+	}
+	
+	/**
 	 * 
 	 * @param string $format
 	 * @param string $type
@@ -687,11 +717,43 @@ class IchnaeaService{
 			return $query->getResult();
 	}
 	
+	/**
+	 * 
+	 * @param unknown $user_id
+	 * @param unknown $matrix_id
+	 * @return boolean
+	 */
 	public function deleteMatrix($user_id, $matrix_id)
 	{
-		//Delete all predictions. Use the service to delete predictions
-		//Delete all trainings. Use the service to delete trainings
-		//Delete the matrixs. Delete matrixs
+		$matrix = $this->getMatrix($matrix_id);
+		$trainings = $matrix->getTraining();
+		
+		$trainingService = new TrainingService($this->em, NULL, NULL, NULL, NULL);
+		foreach($trainings as $training){
+		  $trainingService->deleteTraining($matrix_id, $training->getId(), $user_id);
+		}
+		
+		//Delete all samples
+		$samples = $matrix->getRows();
+		foreach($samples as $sample)
+		{
+			$matrix->removeRow($sample);
+			$this->em->remove($sample);
+		}
+		
+		//Delete all variable configuration
+		$columns = $matrix->getColumns();
+		foreach($columns as $column)
+		{
+			$matrix->removeColumn($column);
+			$this->em->remove($column);
+		}
+		
+		//Delete matrix
+		$this->em->remove($matrix);
+		$this->em->flush();
+		
+		return true;
 	}
 	
 }

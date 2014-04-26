@@ -1,6 +1,6 @@
 \chapter{Introducci\'{o} a Ichnaea}
 \label{cha:background}
-En el seg\¨{u}ent cap\'{i}tol es descriu breument l'univers MST e Ichnaea, necessari per entendre el requeriments. No es dona visi\'{o} completa del software de com funciona, sino una visi\'{o} global del seu objectiu i quins elements utilitza.
+En el seg\¨{u}ent cap\'{i}tol es descriu breument l'univers MST e Ichnaea, necessari per entendre el requeriments. No es dona una visi\'{o} completa del software de com funciona, sino una visi\'{o} global del seu objectiu i quins elements utilitza. 
 
 \section{MST: Microbial Source Tracking}
 \label{sec:mst}
@@ -20,23 +20,27 @@ Actualment es troba en la versi\'{o} 2.0. La primera versi\'{o} va ser desenvolu
 A continuaci\'{o} veurem les entitats amb les que treballa Ichnaea per tal poder donar una visi\'{o} de les dades.
 
 \subsection{Matrius}
-Ichnaea processa inicialment unes matrius on \'e{s} defineixen les mostres de dades extretes. Cada columna representa una variable.
+\label{cha:backgroud:univers:matrius}
+Ichnaea processa inicialment unes matrius on \'e{s} defineixen les mostres de dades extretes, on cada columna representa una variable i cada fila representa una mostra. 
 
 \subsubsection{Variables de la matriu i conjunts de envelliments: Season Set i Seasons}
+\label{cha:backgroud:univers:matrius:variables_seasons}
 Cada columna d'aquesta matriu, representa una variable. Aquesta variable pot ser:\\
 
 \begin{itemize}
 \item Una variable de una bacteria: "variable single"
 \item Una variable derivada de dos "variables single"
-\item Una variable de origen. Obligatoria per cada mostra.
+\item Una variable de origen, obligatoria per cada mostra. \'{E}s una etiqueta que identifica l'origen de la mostra.
 \end{itemize}
 
-Les ''variables single'' tenen asociades uns fitxers. En aquest fitxers s'especifiquen dades mesurades que representen els envelliments de les mostres d'aquestes variables. A un fitxer, un envelliment, l'anomenem ''Season'' i al conjunt de envelliments de una variable els anomenem ''Season Sets''.\\
+Les ''variables single'' tenen asociades uns fitxers. En aquest fitxers s'especifiquen dades mesurades que representen els envelliments de les mostres d'aquestes variables. A un fitxer, un envelliment, l'anomenem ''Season'' i al conjunt de envelliments d'una variable els anomenem ''Season Sets''.\\
 
 Les variables d'origen representa una etiqueta de la mostra per tal de identificar origen de pol.luci\'{o}.\\
+
+Les mostres han de ser completes. Es a dir, per cada variable ha tenir un valor definit.
 
 \subsection{Trainings: els entrenaments}
 Ichnaea processa aquestes matrius amb els conjunts d'envelliments per calcular una bossa de models. Aquesta sortida de dades les anomenem entrenaments o "Trainings". 
 
 \subsection{Matrius de prediccions}
-Les dades que necessita Ichnaea per fer prediccions son un conjunt de noves mostres en forma de matriu. A partir d'un entrenament, pot fer prediccions d'origens de contaminaci\'{o}.
+Les dades que necessita Ichnaea per fer prediccions son un conjunt de noves mostres en forma de matriu. A partir d'un entrenament, pot fer prediccions d'origens de contaminaci\'{o}. Aquestes matrius son molt similars descrites a la secci\'{o} \ref{cha:backgroud:univers:matrius}. La difer\'{e}ncia \'{e}s que les mostres no han de ser completes.

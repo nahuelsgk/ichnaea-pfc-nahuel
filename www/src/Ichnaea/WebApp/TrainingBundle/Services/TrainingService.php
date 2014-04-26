@@ -16,7 +16,11 @@ use Ichnaea\WebApp\PredictionBundle\Services\PredictionService as PredictionServ
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
  
-
+/**
+ * 
+ * @author Nahuel Velazco
+ *
+ */
 class TrainingService{
 	
 	protected $em;
@@ -36,8 +40,10 @@ class TrainingService{
 	public function __construct(SymfonyEM $em, $connection_user, $connection_pass, $connection_host, $data_path)
 	{
 		$this->em         = $em;
-		$this->con        = new Connection($connection_user.':'.$connection_pass.'@'.$connection_host); 
-		$this->data_path = $data_path;
+		if(!is_null($connection_user)){
+		  $this->con        = new Connection($connection_user.':'.$connection_pass.'@'.$connection_host); 
+		  $this->data_path = $data_path;
+		}
 	}
 
 	/**
@@ -196,6 +202,7 @@ class TrainingService{
 		
 		$this->em->remove($training);
 		$this->em->flush();
+		return true;
 	}
 
 	

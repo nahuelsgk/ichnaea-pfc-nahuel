@@ -242,3 +242,9 @@ td.tablecontent
     width: 100%;
 }
 
+#innercontent td.col_content input.sample_cell_edit
+{
+	padding-top: 1px;
+	padding-bottom: 3px;	
+	margin-bottom: 0px;
+}

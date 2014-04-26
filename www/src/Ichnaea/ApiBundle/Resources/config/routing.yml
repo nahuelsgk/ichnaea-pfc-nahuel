@@ -68,3 +68,13 @@ sample_update:
         matrix_id: "\d+"
         sample_id: "\d+"
 
+sample_update_data:
+    pattern: /api/matrix/{matrix_id}/sample/{sample_id}/index/{index}
+    defaults: { _controller: IchnaeaApiBundle:Api:updateSampleData, _format: json }
+    requirements:
+        _method: PUT
+        matrix_id: "\d+"
+        sample_id: "\d+"
+        index:     "\d+"
+
+        

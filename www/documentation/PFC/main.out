@@ -18,47 +18,61 @@
 \BOOKMARK [1][-]{section.3.2}{Requeriments no funcionals}{chapter.3}
 \BOOKMARK [1][-]{section.3.3}{Casos d'us i fluxos}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.3.1}{Crear un usuari}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.2}{Crear un usuari}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.3}{Canviar un usuari de grup}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.4}{Crear un matriu desde un fitxer}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.5}{Actualitzar una matriu desde un fitxer}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.6}{Crear una variable}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.7}{Crear una season set}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.8}{Clonar una matriu}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.9}{Configurar un columna de la matriu}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.10}{Afegir una season a una season set}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.11}{Configurar la data del sample de una matriu}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.12}{Configurar l'origen de una sample}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.13}{Llistar trainings}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.14}{Crear un training}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.15}{Reenviar un training}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.16}{Descarregar els resultats de un training}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.17}{Visualitzar un training}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.18}{Esborrar un training}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.19}{Crear una matriu de predicci\363}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.20}{Actualitzar una matriu de predicci\363}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.21}{Executar una predicci\363 de una matriu de predicci\363}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.2}{Canviar un usuari de grup}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.3}{Crear una variable}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.4}{Actualitzar una variable}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.5}{Crear una season set}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.6}{Actualitzar una ''season set''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.7}{Esborrar una ''season set''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.8}{Crear una ''season'' d'una ''season set''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.9}{Esborrar una ''season'' d'una ''season set''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.10}{Crear un matriu des d'un fitxer}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.11}{Actualitzar una matriu}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.12}{Clonar una matriu}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.13}{Esborra una matriu}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.14}{Configurar una columna de la matriu}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.15}{Configurar la data del ''sample'' d'una matriu}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.16}{Configurar l'origen de una ''sample''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.17}{Llistar ''trainings'' del sistema}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.18}{Llistar els meus ''trainings''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.19}{Llistar ''trainings'' entrenables}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.20}{Crear un ''training''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.21}{Reenviar un training al sistema de cues}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.22}{Visualitzar un training}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.23}{Esborrar un ''training''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.24}{Descarregar els resultats d'un ''training''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.25}{Actualitzar l'estat d'un ''training''}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.26}{Llistar prediccions del sistema}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.27}{Llistar les meves prediccions}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.28}{Esborrar una predicci\363}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.29}{Crear una matriu de predicci\363 desde un fitxer}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.30}{Actualitzar una matriu de predicci\363 desde un fitxer}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.31}{Configurar un ''sample'' d'una matriu de predicci\363}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.32}{Enviar una predicci\363 al sistema de cues}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.33}{Veure una predicci\363}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.34}{Veure els resultats d'una predicci\363}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.35}{Actualitzar l'estat d'una predicci\363}{section.3.3}
 \BOOKMARK [1][-]{section.3.4}{Model de dades}{chapter.3}
 \BOOKMARK [0][-]{chapter.4}{Disseny e implementaci\363}{}
-\BOOKMARK [1][-]{section.4.1}{Introduccio}{chapter.4}
-\BOOKMARK [1][-]{section.4.2}{Esquema general arquitect\363nic del sistema}{chapter.4}
-\BOOKMARK [1][-]{section.4.3}{Patro de disseny}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.3.1}{Esquema del disseny}{section.4.3}
-\BOOKMARK [1][-]{section.4.4}{Implementaci\363 i tecnologies}{chapter.4}
-\BOOKMARK [1][-]{section.4.5}{Symfony}{chapter.4}
-\BOOKMARK [1][-]{section.4.6}{Recursos}{chapter.4}
-\BOOKMARK [1][-]{section.4.7}{Servei web}{chapter.4}
-\BOOKMARK [1][-]{section.4.8}{Capa de serveis}{chapter.4}
-\BOOKMARK [1][-]{section.4.9}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.9.1}{Introducci\363 a l'arquitectura de cues}{section.4.9}
-\BOOKMARK [2][-]{subsection.4.9.2}{Consumidors}{section.4.9}
+\BOOKMARK [1][-]{section.4.1}{Esquema general arquitect\363nic del sistema}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Patr\363 de disseny}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.2.1}{Esquema del disseny}{section.4.2}
+\BOOKMARK [1][-]{section.4.3}{Implementaci\363 i tecnologies}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.3.1}{Symfony}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.2}{Recursos}{section.4.3}
+\BOOKMARK [1][-]{section.4.4}{Servei web}{chapter.4}
+\BOOKMARK [1][-]{section.4.5}{Capa de serveis}{chapter.4}
+\BOOKMARK [1][-]{section.4.6}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.6.1}{Introducci\363 a l'arquitectura de cues}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.2}{Consumidors}{section.4.6}
+\BOOKMARK [1][-]{section.4.7}{Interf\355cies}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.7.1}{Interf\355cie de configuraci\363 de matrius}{section.4.7}
 \BOOKMARK [0][-]{chapter.5}{Estimacions temporals i econ\363miques}{}
 \BOOKMARK [1][-]{section.5.1}{Desenvolupament del projecte}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{Estimaci\363 econ\363mica}{chapter.5}
 \BOOKMARK [0][-]{appendix.A}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.A.1}{Casa de l'usuari}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.1.1}{Llistat de les meves matrius}{section.A.1}
-\BOOKMARK [2][-]{subsection.A.1.2}{Llistat dels meus trainings}{section.A.1}
+\BOOKMARK [2][-]{subsection.A.1.1}{Llistat dels meus trainings pendents}{section.A.1}
 \BOOKMARK [1][-]{section.A.2}{Crear una matriu desde un csv}{appendix.A}
 \BOOKMARK [1][-]{section.A.3}{Configurar una matriu}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.3.1}{Alias de una columna}{section.A.3}
@@ -89,4 +103,4 @@
 \BOOKMARK [1][-]{section.B.2}{Canviar el grup de l'usuari}{appendix.B}
 \BOOKMARK [1][-]{section.B.3}{Comprovar cua}{appendix.B}
 \BOOKMARK [0][-]{appendix.C}{Bibliografia}{}
-\BOOKMARK [0][-]{section*.17}{Bibliography}{}
+\BOOKMARK [0][-]{section*.18}{Bibliography}{}
