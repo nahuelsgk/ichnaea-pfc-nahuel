@@ -631,7 +631,10 @@ class IchnaeaService{
 		$sampleRepository = $this->em->getRepository('MatrixBundle:Sample');
 		$sample = $sampleRepository->find($sample_id);
 		$samples_data = $sample->getSamples();
+		
+		//@TODO: throw exception if is out of limits
 		$samples_data[$index] = $new_data;
+		
 		$sample->setSamples($samples_data);
 		$this->em->persist($sample);
 		$this->em->flush();
@@ -718,9 +721,10 @@ class IchnaeaService{
 	}
 	
 	/**
+	 * Delete a matrix, trainings, services
 	 * 
-	 * @param unknown $user_id
-	 * @param unknown $matrix_id
+	 * @param int $user_id: user that performs the action
+	 * @param int $matrix_id: matrix to delete
 	 * @return boolean
 	 */
 	public function deleteMatrix($user_id, $matrix_id)

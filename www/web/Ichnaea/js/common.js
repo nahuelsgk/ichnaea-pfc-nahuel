@@ -135,8 +135,10 @@ function decode_result_event(data){
 //Matrix js functions
 
 //Autoresize the matrix table
-function dynamic_height(reduce_height) {
-    var dyn_h = (($(window).height())-300-reduce_height);
+function dynamic_height() {
+	var frozen_position = $('#divfrozen').position();
+	//window.height - top_x_table + 50px before ending
+    var dyn_h = (($(window).height())-frozen_position.top - 50);
  	$('#divfrozen').css({'height':dyn_h+'px'});
  	$('#contentscroll').css({'height':dyn_h+'px'});
 }

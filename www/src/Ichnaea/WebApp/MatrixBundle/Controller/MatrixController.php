@@ -15,7 +15,7 @@ class MatrixController extends Controller
 	 */
 	public function getMatrixFormAction()
 	{
-		return $this->render('MatrixBundle:Matrix:form.html.twig', array(
+		return $this->render('MatrixBundle:Matrix:Pages/matrix_form.html.twig', array(
 				'update'    => 'n',
 		));
 	}
@@ -61,7 +61,7 @@ class MatrixController extends Controller
 					);
 		}
 		$matrix = $ichnaeaService->getMatrix($matrix_id);
-		return $this->render('MatrixBundle:Matrix:form.html.twig', 
+		return $this->render('MatrixBundle:Matrix:Pages/matrix_form.html.twig', 
 				array(
 						'update'    => 'y',
 						'matrix_id' => $matrix->getId(),
@@ -79,7 +79,7 @@ class MatrixController extends Controller
 		$request = $this->getRequest();
 		$ichnaeaService = $this->get('ichnaea.service');
 		$listMatrixs = $ichnaeaService->getAllMatrixs();
-		return $this->render('MatrixBundle:Matrix:list.html.twig', 
+		return $this->render('MatrixBundle:Matrix:Pages/matrixs_list.html.twig', 
 				array(
 					'matrixs' => $listMatrixs
 				)
@@ -198,7 +198,7 @@ class MatrixController extends Controller
 	{
 		$ichnaeaService = $this->get('ichnaea.service');
 		$matrix = $ichnaeaService->getMatrix($matrix_id);
-	    return $this->render('MatrixBundle:Matrix:download_form.html.twig', 
+	    return $this->render('MatrixBundle:Matrix:Pages/download_form.html.twig', 
 	    		array(
 	    				'matrix_id'   => $matrix->getId(),
 	    				'matrix_name' => $matrix->getName(),
@@ -239,7 +239,7 @@ class MatrixController extends Controller
 		$matrix = $ichnaeaService->getMatrix($matrix_id);
 		$today = date_create();
 		
-		return $this->render('MatrixBundle:Matrix:clone_form.html.twig',
+		return $this->render('MatrixBundle:Matrix:Pages/clone_form.html.twig',
 	    	array(
 			'matrix_name'     => $matrix->getName(),
 	        'matrix_id'       => $matrix->getId(),
@@ -305,7 +305,7 @@ class MatrixController extends Controller
 		$request = $this->getRequest();
 		$ichnaeaService = $this->get('ichnaea.service');
 		$listMatrixs = $ichnaeaService->getTrainableMatrixs();
-		return $this->render('MatrixBundle:Matrix:list.html.twig',
+		return $this->render('MatrixBundle:Matrix:Pages/matrixs_list.html.twig',
 				array(
 						'trainable' => 'y',  
 						'matrixs'   => $listMatrixs
@@ -343,7 +343,7 @@ class MatrixController extends Controller
 				throw new AccessDeniedHttpException();
 		}
 		
-		return $this->render('MatrixBundle:Matrix:Form/delete_confirmation.html.twig',
+		return $this->render('MatrixBundle:Matrix:Pages/delete_confirmation.html.twig',
 			array(
 				'matrix_name' => $matrix->getName(),
 				'matrix_id'   => $matrix->getId(),

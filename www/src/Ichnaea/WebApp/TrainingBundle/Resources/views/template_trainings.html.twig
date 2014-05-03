@@ -17,18 +17,18 @@
  {% for training in trainings %}
  <tr class="
     {% if training.error != '' %}
-    warning
+    error
     {% else %}
  	  {% if training.progress == '1.0' and training.error == "" %}
  	    success
- 	    {% endif %}
  	  {% endif %}
- 	  {% if training.status == 'sent' %}
+ 	{% endif %}
+ 	{% if training.status == 'sent' %}
  		  active
- 	  {% endif %}
- 	  {% if training.status == 'pending' %}
- 	     warning
- 	  {% endif %}
+ 	{% endif %}
+ 	{% if training.status == 'pending' %}
+ 	    warning
+ 	{% endif %}
  ">
    <td>{{ loop.index }}</td>
    <td>{{ training.name }}</td>

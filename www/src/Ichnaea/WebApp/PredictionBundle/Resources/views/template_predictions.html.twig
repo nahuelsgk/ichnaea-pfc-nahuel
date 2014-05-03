@@ -14,12 +14,13 @@
 <tbody>
 {% for prediction in predictions %}
   <tr 
-  	{% if prediction.status == 'new' or prediction.status == '' %}
+  	{% if prediction.status == 'sent' or prediction.status == '' %}
   	  class="warning"
   	{% elseif prediction.status == 'finished' %}
   	  class="success"
+  	{% elseif prediction.status == 'finished' and prediction.error != '' %}
+  	  class="error"
   	{% endif %}
-  	
   >
   <td>{{ loop.index }}</td>
   <td>{{ prediction.name }}</td>

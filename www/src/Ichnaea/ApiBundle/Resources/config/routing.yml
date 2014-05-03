@@ -77,4 +77,24 @@ sample_update_data:
         sample_id: "\d+"
         index:     "\d+"
 
-        
+sample_prediction_api:
+     pattern: /api/prediction/{prediction_id}/sample/
+     requirements:
+         matrix_id: "\d+"
+ 
+sample_prediction_update:
+     pattern: /api/prediction/{prediction_id}/sample/{sample_id}
+     defaults: { _controller: IchnaeaApiBundle:Api:updateSamplePrediction, _format: json }
+     requirements:
+         _method: PUT
+         matrix_id: "\d+"
+         sample_id: "\d+"
+
+sample_prediction_update_data:
+    pattern: /api/prediction/{prediction_id}/sample/{sample_id}/index/{index}
+    defaults: { _controller: IchnaeaApiBundle:Api:updateSamplePredictionData, _format: json }
+    requirements:
+         _method: PUT
+         matrix_id: "\d+"
+         sample_id: "\d+"
+         index: "\d+"

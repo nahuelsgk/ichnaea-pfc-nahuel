@@ -120,7 +120,24 @@ class ApiController extends FosRestController{
      * 
      * @param int $matrix_id
      * @param int $sample_id
-     * @param int $column_index
+     */
+    public function updateSamplePredictionAction($prediction_id, $sample_id)
+    {
+        $request    = $this->getRequest();
+        $new_name   = $request->get('name');
+        $new_date   = $request->get('date');
+        $new_origin = $request->get('origin');
+        $predictionService = $this->get('ichnaea_web_app_prediction.service');
+        $predictionService->updateSample($prediction_id, $sample_id, $new_name, $new_date, $new_origin);
+        return $this->view(null, 200);
+        	
+    }
+    
+    /**
+     * 
+     * @param int $matrix_id
+     * @param int $sample_id
+     * @param int $index
      */
     public function updateSampleDataAction($matrix_id, $sample_id, $index)
     {
@@ -128,6 +145,20 @@ class ApiController extends FosRestController{
     	$new_data   = $this->getRequest()->get('data');
     	error_log("HELLO".$new_data);
     	$ichnaeaService->updateSampleData($matrix_id, $sample_id, $index, $new_data);
+    	return $this->view(null, 200);
+    }
+    
+    /**
+     *
+     * @param int $matrix_id
+     * @param int $sample_id
+     * @param int $index
+     */
+    public function updateSamplePredictionDataAction($prediction_id, $sample_id, $index)
+    {
+    	$predictionService = $this->get('ichnaea_web_app_prediction.service');
+    	$new_data   = $this->getRequest()->get('data');
+    	$predictionService->updateSamplePredictionData($prediction_id, $sample_id, $index, $new_data);
     	return $this->view(null, 200);
     }
 }

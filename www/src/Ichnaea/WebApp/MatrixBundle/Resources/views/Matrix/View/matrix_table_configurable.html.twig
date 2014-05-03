@@ -1,9 +1,10 @@
 {# 
   Parameters of this view:
-    - 'configurable_colums': 'disable' 
+    - 'configurable_columns': 'disable' 
     - 'configurable_samples':'enable'
     - 'api': 'prediction'
 #}
+
 <div class="container-full-width">
 <table border="0" cellpadding="0" cellspacing="0" class='main'>
             <tr>
@@ -94,7 +95,49 @@
                     <div id='headscroll' class='divhead'>
                         <table border="0" cellpadding="0" cellspacing="0" class='head'>
                             <tr>
-                                {% for column in columns %}
+                            	{% if configurable_columns == 'enable' %}
+                            	           {% for column in columns %}
+										   <td class='inner-head col_header head'>
+										    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 
+										    <select id="seasonSetListVariable-{{column.id}}" class="input-medium" 
+										      onchange="displayHiddenElement('column-{{column.id}}-action');">
+										    {% if column.variable is not null and column.seasonSet is not null%} 
+										     <option value="{{column.seasonSet.id}}">{{column.seasonSet.name}}</option>
+										    {% endif %}
+										    </select>
+										    <br/>
+										    <a title="Variable selection"><i class="icon-wrench"></i></a>
+										    <select placeholder="Select the variable" class="input-medium" id="selectedSingleVariable-{{column.id}}" onChange="loadSeasonSetIntoSelectListAction(this.value, 'seasonSetListVariable-{{column.id}}');displayHiddenElement('column-{{column.id}}-action');"">
+										        <option value="0">None</option>
+										      	{% for availableVar in availableVars %}
+										        	<option value="{{availableVar.id}}" {% if column.variable is not null and column.variable.id == availableVar.id%} selected="selected" {% endif %}>{{availableVar.name}} </option>
+										      	{% endfor %}
+										    </select>
+										    <br/>
+										   	<a title="Alias of the variable"><i class="icon-pencil"></i></a>
+										   	<input 
+										   		type="text" 
+										   		class="input-medium" 
+										   		id="column-name-{{column.id}}" 
+										   		value="{{column.name}}" 
+										   		onchange="
+										   			displayHiddenElement('column-{{column.id}}-action'); 
+										   			displayHiddenElement('save_all_changes');">
+										    <br/>
+										    <a class="btn btn-mini save_button_action_column" 
+										    style="visibility: hidden;" id="column-{{column.id}}-action" 
+										    onclick="updateVariableConfigurationAction(
+										   			'{{column.id}}',
+										   			$('#column-name-{{column.id}}').val(),
+										   			$('#selectedSingleVariable-{{column.id}}').val(),
+										   			$('#seasonSetListVariable-{{column.id}}').val(),
+										   			'column-{{column.id}}-action'
+										   		);"><i class="icon-edit"></i></a>
+										   </td>
+										   {% endfor %}
+										   <td class='inner-head col_header_last head'>&nbsp;</td>
+                            	{% else %}
+                                	{% for column in columns %}
 								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
 								    <a title="Season set of the variable selected"><i class="icon-certificate"></i></a> 								   
 								    {% if column.variable is not null and column.seasonSet is not null%} {{column.seasonSet.name}} {% endif %}
@@ -105,6 +148,8 @@
 								   	<a title="Alias of the variable"><i class="icon-pencil"></i></a> {{column.name}}<br/>
 								   </td>
 								   {% endfor %}
+								   <td class='inner-head col_header_last head'>&nbsp;</td>
+							    {% endif %}
                             </tr>
                         </table>
                     </div>
@@ -114,7 +159,7 @@
 						 <tr>
 						   {% for value in sample.samples %}
 						   {%  if configurable_samples == 'enable' %}
-						   <td class='inner col_content' align="center">{{value}}</td>
+						   <td class='inner col_content value_of_samples' id="samplevalue_{{ sample.id }}_{{ loop.index }}" align="center">{{value}}</td>
 						   {% else %}
 						   <td class='inner col_content' align="center">{{value}}</td>
 						   {% endif %}
@@ -159,11 +204,15 @@ function renderListSeasonSets(listData, toListId)
 /* 
  * BEGIN API LIBRARY
  */
-{% if api == 'predictions' %}
+{% if api == 'prediction' %}
+function updateSampleData(sample_id, sample_name, sample_date, sample_origin, sample_button_action)
+{
+  sendEvent('{{ path('sample_prediction_api',{'prediction_id': matrix_id}) }}'+sample_id, 'PUT', {name: sample_name, date: sample_date, origin:sample_origin }, function (data){displaySuccessfulAction(sample_button_action)});
+}
 {% else %}
 function updateVariableConfigurationAction(column_id, column_name, column_variable_id, season_set_id, column_button_action)
 {
-   sendEvent('{{path('matrix_api', {"matrix_id": matrix_id })}}/column/'+column_id, 'PUT', {name: column_name, variable: column_variable_id, season: season_set_id}, function (data){displaySuccessfulAction(column_button_action)});    
+   sendEvent('{{ path('matrix_api', {"matrix_id": matrix_id }) }}/column/'+column_id, 'PUT', {name: column_name, variable: column_variable_id, season: season_set_id}, function (data){displaySuccessfulAction(column_button_action)});    
 }
 
 
@@ -210,15 +259,64 @@ function init_inputOrigins()
 	  
 	});
 }
+
+function displaySampleValueChanged(td_id, value)
+{
+	console.log("Response");
+	console.log(td_id);
+	var element = $('#' + td_id);
+	element.html(value);
+	
+}
+
+{% if api == 'prediction' %}
+function submit_sample_value_change(input, td_id)
+{
+	var new_value = (input.value);
+	var data = td_id.split("_");
+	console.log(data);
+	console.log("TD_ID: "+td_id);
+	sendEvent('{{path('sample_prediction_api', {"prediction_id": matrix_id })}}'+data[1]+'/index/'+data[2],'PUT', { data: new_value },	function (data){console.log(td_id);displaySampleValueChanged(td_id, new_value)});
+}
+{% else %}
+function submit_sample_value_change(input, td_id)
+{
+	var new_value = (input.value);
+	var data = td_id.split("_");
+	console.log(data);
+	console.log("TD_ID: "+td_id);
+	sendEvent('{{path('sample_api', {"matrix_id": matrix_id })}}'+data[1]+'/index/'+data[2],'PUT', { data: new_value },	function (data){console.log(td_id);displaySampleValueChanged(td_id, new_value)});
+}
 {% endif %}
+
+{% endif %}
+
+function init_editable_cells() 
+{
+	$('.value_of_samples').dblclick(function(value){
+	 	var id = value.target.id;
+		var element = $('#' + id);
+		var value = element.html();
+		var input = $('<input type="text" class="input-mini sample_cell_edit" onchange="submit_sample_value_change(this,\''+id+'\');" />');
+        input.val(value);
+        element.html(input);
+		}
+	);	
+}
 
 function init_datepicker(){
     $('.sampleDate').datepicker({dateFormat: "dd-mm-yy"});
 }
 
 $(document).ready(function(){
+	{% if configurable_samples == 'enable' %}
     init_datepicker();
     init_inputOrigins();
-    dynamic_height(0);
+    init_editable_cells();
+    {% endif %}
+    dynamic_height();
+    $( window ).resize(function() {
+    	dynamic_height();
+    });
  });
 </script>

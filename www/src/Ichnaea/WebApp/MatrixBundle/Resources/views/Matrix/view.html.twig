@@ -4,6 +4,7 @@
 
 {% block main_content %}
 
-{%  include 'MatrixBundle:Matrix:view_matrix_table.html.twig' %}
+{#  include 'MatrixBundle:Matrix:view_matrix_table.html.twig' #}
+{%  include 'MatrixBundle:Matrix:View/matrix_table_configurable.html.twig' with {'configurable_columns': 'disable', 'configurable_samples':'disable', 'api': 'none'} %}
 
 {% endblock %}

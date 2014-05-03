@@ -13,6 +13,7 @@ use Ichnaea\Amqp\Model\BuildModelsRequest as BuildModelsRequest;
 use Ichnaea\Amqp\Model\BuildModelsResponse as BuildModelsResponse;
 use Ichnaea\Amqp\Connection as Connection;
 use Ichnaea\WebApp\PredictionBundle\Services\PredictionService as PredictionService;
+use Ichnaea\WebApp\PredictionBundle\Services\TrainingQueueService as TrainingQueueService;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
  
@@ -286,7 +287,7 @@ class TrainingService{
 				'user_id'  => $user_id,
 				':sent'    => 'sent',
 				'finished' => 'finished',
-				':null' => 'NULL'
+				':null' => ''
 				)
 		)
 		->getQuery();

@@ -115,6 +115,7 @@ class PredictionService
 						}
 						else{
 							$sample->setSamples(array_slice($columns, 1, null, TRUE));
+							$sample->setOrigin(MatrixUtils::resolveOriginInSampleName($columns[0]));
 						}
 						
 						//set as sample
@@ -193,16 +194,10 @@ class PredictionService
 		{
 			$prediction->setProgress($progress);
 			$prediction->setError($status);
-			echo "*** Service updating data: ***\n";
-			echo "*BEGIN INCREMENTAL*";
-			var_dump($data);
-			echo "*END INCREMENTAL*";
 			//Saving all incremental results
 			$inc_result = $prediction->getPredictionsResult();
 			if ( $data !== 'NULL' ){
 				array_push($inc_result,$data);
-				echo "*** TOTAL **\n";
-				var_dump($inc_result);
 			}
 			$prediction->setPredictionsResult($inc_result);			
 			if ($progress == '1.0')	$prediction->setStatusAsFinished();
@@ -265,6 +260,86 @@ class PredictionService
 		return true;
 	}
 	
+	/**
+	 * Get predictions of a user which has errors or are pending
+	 * 
+	 * @param int $user_id
+	 */
+	public function getPendingOrErrorPredictionsByUser($user_id)
+	{
+		$qb = $this->em->createQueryBuilder();
+		
+		$query = $qb->select('p')
+		->from('IchnaeaWebAppPredictionBundle:PredictionMatrix','p')
+		->where('p.owner = :user_id')
+		->andwhere(
+				$qb->expr()->orx(
+						'p.status = :sent',
+						$qb->expr()->andx(
+								"p.status = :finished",
+								"p.error <> :null"
+						)
+				)
+		)
+		->setParameters(
+			array(
+					'user_id'  => $user_id,
+					':sent'    => 'sent',
+					'finished' => 'finished',
+					':null' => ''
+		 	)
+		)
+		->getQuery();
+		
+		return $query->getResult();
+		
+	}
+	
+	/**
+	 * Update a prediction sample configuration
+	 *
+	 * @param unknown $matrix_id
+	 * @param unknown $sample_id
+	 * @param unknown $new_name
+	 * @param string $new_date
+	 * @param string $new_origin
+	 */
+	public function updateSample($matrix_id, $sample_id, $new_name, $new_date = NULL, $new_origin = NULL)
+	{
+		$sampleRepository = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionSample');
+		$sample = $sampleRepository->find($sample_id);
+	
+		$sample->setName($new_name);
+		if(!is_null($new_date)) $sample->setDate(new \DateTime($new_date));
+		if(!is_null($new_origin)) $sample->setOrigin($new_origin);
+	
+		$this->em->persist($sample);
+		$this->em->flush();
+	}
+	
+	/**
+	 * Updates a data value in the prediction samples array 
+	 *
+	 * @param int $matrix_id
+	 * @param int $sample_id
+	 * @param int $index - position in the array to update
+	 * @param int $new_data
+	 * @return boolean
+	 */
+	public function updateSamplePredictionData($matrix_id, $sample_id, $index, $new_data)
+	{
+		$sampleRepository = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionSample');
+		$sample = $sampleRepository->find($sample_id);
+		$samples_data = $sample->getSamples();
+	
+		//@TODO: throw exception if is out of limits
+		$samples_data[$index] = $new_data;
+	
+		$sample->setSamples($samples_data);
+		$this->em->persist($sample);
+		$this->em->flush();
+		return true;
+	}
 }
 
 ?>

@@ -73,14 +73,13 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 
 \subsection{Crear un usuari}
 \begin{usecase}
-\addtitle{Usuari 001}{Crear un usuari}
+\addtitle{Usuari001}{Crear un usuari}
 \addfield{Actors:}{Anonim}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item Usuari accedeix a la plataforma i pot accedir al formulari de registraci\'{o}.
-	\item Usuari introdueix nom d'usuari, correu electr\`{o}nic i contrasenya.
-	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enllaÃ§ de confirmaci\'{o} i crea un compte no validada.
-	\item L'usuari rep el correu electr\'{o}nic amb l'enllaç de confirmaci\'{o} i accedeix al l'enllaç de confirmaci\'{o}.
-	\item El sistema comprova que \'{e}s un enllaç de confirmaci\'{o} v\`{a}lid i d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
+	\item Usuari accedeix al formulari de registraci\'{o}. L'usuari introdueix un nom d'usuari, un correu electr\`{o}nic i una contrasenya per duplicat
+	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enllaç de confirmaci\'{o} i crea un compte no validada.
+	\item L'usuari accedeix mitjançant l'enllaç de confirmaci\'{o}.
+	\item El sistema comprova que \'{e}s un enllaç de confirmaci\'{o} v\`{a}lid d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
 }
 \addscenario{Cursos alternatius:}{
 \item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu, que el correu sigui v\`{a}lid. Sino es correcte li informa a l'usuari al mateix formulari.
@@ -89,7 +88,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 
 \subsection{Canviar un usuari de grup}
 \begin{usecase}
-\addtitle{Usuari 002}{Canviar un usuari de grup}
+\addtitle{Usuari002}{Canviar un usuari de grup}
 \addfield{Actors:}{Anonim}
 \addscenario{Curs tipic d'esdeveniments:}{
 	\item L'administrador llista tots els usuaris del sistema i selecciona un.
@@ -101,32 +100,36 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 
 \subsection{Crear una variable}
 \begin{usecase}
-\addtitle{Variable 001}{Crear una variable}
+\addtitle{Variable001}{Crear una variable}
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari visualitza el formulari on pot donar un identificador que ha de \'{u}nic i una descripci\'{o} .
+	\item L'usuari visualitza el formulari on pot donar un identificador que ha de ser \'{u}nic en el sistema i una descripci\'{o} .
 	\item El sistema crear la variable.
 }
 \end{usecase}
 
 \subsection{Actualitzar una variable}
 \begin{usecase}
-\addtitle{Variable 002}{Actualitzar una variable}
+\addtitle{Variable002}{Actualitzar una variable}
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs tipic d'esdeveniments:}{
+    \item L'admininistrador seleccion un variable d'un llistat de variables.
+    \item El sistema li mostra un formulari d'edici\'{o} on pot veure, les ''season sets'' i els seus components(''seasons'') i pot actualitzar la descripci\'{o}.
+    \item L'usuari modifica la descripci\'{o} i salva els canvis.
+    \item El sistema guarda les modificacions.
 }
 \end{usecase}
 
 \subsection{Crear una season set}
 \begin{usecase}
-\addtitle{Variable 003}{Crear una ''season set''}
+\addtitle{Variable003}{Crear una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari selecciona una variable. 
-	\item El sistema renderitza un formulari d'edici\'{o}.
-	\item L'usuari accedeix a un formulari de creaci\'{o}
-	\item El sistema renderitza un formulari de creaci\'{o}
-	\item L'usuari pot donar un nom i seleccionar 0, 1 o 2 fitxers configurats com:
+	\item L'usuari selecciona una variable d'un llistat de variables.
+	\item El sistema li mostra un formulari d'edici\'{o} de la variable amb un enllaç a un formulari de creaci\'{o}.
+	\item L'usuari accedeix a un formulari de creaci\'{o} de ''season set''.
+	\item El sistema li mostra un formulari de creaci\'{o}.
+	\item L'usuari pot donar un nom i seleccionar 0, 1 o 2 fitxers amb el contingut dels ''seasons'', on cada fitxer pot ser configurat com:
 	\begin{itemize}
 		\item a unic per tot l'any
 		\item com estiu
@@ -134,14 +137,29 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 		\item com tardor
 		\item com estiu
 	\end{itemize}	
+	\item L'usuari salva els canvis.
+	\item El sistema guarda els canvis.
 }
 \end{usecase}
 
 \subsection{Actualitzar una ''season set''}
 \begin{usecase}
-\addtitle{Variable 004}{Actualitzar una ''season set''}
+\addtitle{Variable004}{Actualitzar una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
+    \item L'admininistrador selecciona una variable d'un llistat de variables.
+    \item El sistema li mostra un formulari d'edici\'{o} on pot veure les ''season sets'' i els seus components(''seasons'') i pot actualitzar la descripci\'{o}.
+    \item L'usuari selecciona una ''season set''.
+    \item El sistema li mostra un formulari on
+    \begin{itemize}
+    \item pot afegir fitxers i configurar-los com cadascun com estiu, hivern, primavera, tardor o tot l'any
+    \item esborrar componenents(''seasons'')
+    \item actualitzar el nom 
+    \end{itemize}
+    \item L'usuari actualiza el nom i/o esborra components i/o afegeix components i els configura i guarda els canvis.
+    \item El sistema guarda els canvis. 
+    \end{itemize}
+
 }
 \end{usecase}
 
@@ -150,6 +168,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \addtitle{Variable 005}{Crear una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
+    \item L'admininistrador selecciona una variable d'un llistat de variables per esborrar.
+    \item El sistema li mostra un vista de confirmaci\'{o} de la acci\'{o}
+    \item L'usuari confirma la acci\'{o}
 }
 \end{usecase}
 

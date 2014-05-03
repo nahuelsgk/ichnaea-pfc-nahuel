@@ -38,10 +38,65 @@ En la figura es contempla els estats possibles:
 \item Color salm\'{o}: ''training'' no s'ha enviat per algun problema amb la cua o amb errors.
 \end{itemize}
 
-\section{Crear una matriu desde un csv}
+\section{Variables}
+\subsection{Veure les variables del sistema}
+Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les variables del sistema. Fent click a la icona de edici\'{o}, es pot accedir a la interficie de configuraci\'{o} de la variable seleccionada.
+
+\subsection{Formulari de edici\'{o} d'una variable}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/variable_configuration.png}
+  \caption{Configuraci\'{o} de variable}
+  \label{fig:placement}
+\end{figure}
+Desde la interf\'{i}cie de configuraci\'{o} es pot:
+\begin{itemize}
+\item Modificar la descripci\'{o}
+\item Accedir a la vista per afegir una ''Season set'', amb la icona del signe de suma.
+\item Editar una ''Season Set'',amb la icona de edici\'{o}.
+\item Esborrar una ''Season Set'', amb la icona de la brossa.
+\end{itemize}
+
+\subsection{Crear una ''season set'' d'una variable}
+\label{season_set:variable}
+Per tal de crear un conjunt de seasons per una variable:
+\begin{itemize}
+\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
+\item Editar la variable a la que es vol afegir la variable
+\item Al apartat inferior ''List of season set'', clickar a la icona de suma
+\end{itemize}
+Es poden donar un nom i afegir tants fitxers com es vulguin. S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern. Per m\'{e}s descripci\'{o} d' aquesta interf\'{i}cie anar al punt \ref{season_set:edit}
+
+\subsection{Editar una ''Season Set'' d'una variable}
+\label{season_set:edit}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.2]{img/userguide/season_set_edition.png}
+  \caption{Edici\'{o} de una ''Season Set''}
+  \label{fig:placement}
+\end{figure}
+Desde aquesta vista es pot:
+\begin{itemize}
+	\item Editar el nom de la season set
+	\item Eliminar simplement la relaci\'{o} amb una season amb la icona de la brossa.	
+	\item Eliminar un fitxer de la ''Season Set'' i la relaci\'{o}, amb la icona de la creu	
+\end{itemize}
+S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern.
+
+\subsection{Afegir una ''season'' a una ''season set'' existent d'una variable}
+Per tal de crear un conjunt de seasons per una variable:
+\begin{itemize}
+\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
+\item Editar la variable a la que es vol afegir la variable
+\item Editar, amb la icona d'edici\'{o}, la ''season set'' del llistat ''List of season set''.
+Llegir el punt \ref{season_set:edit}
+
+
+\section{Matrius}
+\subsection{Crear una matriu desde un fitxer csv o excel}
 \label{sec:create_matrix}
 Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv. El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
-El format de la matriu \´{e}s important que sigui el seg\¨{u}ent.
+El format de la matriu \'{e}s important que sigui el seg\�{u}ent.
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
     \hline
@@ -53,9 +108,15 @@ El format de la matriu \´{e}s important que sigui el seg\¨{u}ent.
 \end{center}
 On:
 \begin{itemize}
-\item Alias de la columna: \´{e}s un nom qualsevol per identificar la columna
-\item Valor de la sample: \´{e}s el valor de la mostra per la columna(variable)
-\item Nom de la sample: \'{e}s un identificador de la mostra
+\item Alias de la columna: \'{e}s un nom qualsevol per identificar la columna. Si el sistema cont\'{e} una variable amb el mateix nom, autom\`{a}ticament li assignare aquesta variable amb una ''season set'' per defecte.
+\item Valor de la sample: \'{e}s el valor de la mostra per la columna(variable)
+\item Nom de la sample: \'{e}s un identificador de la mostra. La aplicaci\'{o} mapeja el contingut de subcadenas amb:
+\begin{itemize}
+\item PL - POULTRY
+\item HM - HUMAN
+\item PG - PIG
+\item CW - COW
+\end{itemize}
 \item Origen de la sample: \'{e}s una cadena de caracters que especifica l'origen de la mostra. Solament es distingir\'{a} si a les capçaleres a la ultima columna s'expecifica la paraula ORIGIN.
 \end{itemize}
 En la pantalla, es pot seleccionar un fitxer csv i pujar'ho. Seguidament, es podr\`{a} establir la relaci\´{o} de la variable real de la columna i quin conjunt de season per defecte usa. Mirar \ref{sec:configure_matrix}.
@@ -82,7 +143,7 @@ Desde la interficie de configuraci\´{o} es pot configurar:
 \end{figure}
 
 \subsection{Alias de una columna} 
-A la secci\'{o} de les capçaleres, a la icona del llapis, es pot especificar un alias a la columna. Si es prem "Enter" o es canvia el focus, s'activa el bot\'{o} de salvaguardat.
+A la secci\'{o} de les cap�aleres, a la icona del llapis, es pot especificar un alias a la columna. Si es prem "Enter" o es canvia el focus, s'activa el bot\'{o} de salvaguardat.
 \subsection{Especificar una columna a una variable i la season set}
 A la secci\'{o} de les capçaleres, a la icona de la clau anglesa, es pot seleccionar la variable del sistema. Autom\'{a}ticament, a la llista de dalt, es carrega la llista de "Seasons Set". Quan es selecciona un dels dos llistats, s'activa el bot\'{o} de salvaguardat. No \'{e}s obligatori donar-li una variable o una "Season Set".
 \subsection{Cambiar la visualitzaci\'{o}}
@@ -113,60 +174,9 @@ Fent click a la icona de reload, anem al formulari que suggereix un nom per iden
 \end{figure}
 Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}. Mirar \ref{sec:configure_matrix}.
 
-\section{Veure les variables del sistema}
-Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les variables del sistema. Fent click a la icona de edici\'{o}, es pot accedir a la interficie de configuraci\'{o} de la variable seleccionada.
-
-\section{Variables}
-\subsection{Formulari de edici\'{o} d'una variable}
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale=0.2]{img/userguide/variable_configuration.png}
-  \caption{Configuraci\'{o} de variable}
-  \label{fig:placement}
-\end{figure}
-Desde la interf\'{i}cie de configuraci\'{o} es pot:
-\begin{itemize}
-\item Modificar la descripci\'{o}
-\item Accedir a la vista per afegir una ''Season set'', amb la icona del signe de suma.
-\item Editar una ''Season Set'',amb la icona de edici\'{o}.
-\item Esborrar una ''Season Set'', amb la icona de la brossa.
-\end{itemize}
 
 
-\subsection{Crear una ''season set'' d'una variable}
-\label{season_set:variable}
-Per tal de crear un conjunt de seasons per una variable:
-\begin{itemize}
-\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable
-\item Al apartat inferior ''List of season set'', clickar a la icona de suma
-\end{itemize}
-Es poden donar un nom i afegir tants fitxers com es vulguin. S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern. Per m\'{e}s descripci\'{o} d' aquesta interf\'{i}cie anar al punt \ref{season_set:edit}
 
-\subsection{Editar una ''Season Set'' d'una variable}
-\label{season_set:edit}
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale=0.2]{img/userguide/season_set_edition.png}
-  \caption{Edici\'{o} de una ''Season Set''}
-  \label{fig:placement}
-\end{figure}
-Desde aquesta vista es pot:
-\begin{itemize}
-	\item Editar el nom de la season set
-	\item Eliminar simplement la relaci\'{o} amb una season amb la icona de la brossa.	
-	\item Eliminar un fitxer de la ''Season Set'' i la relaci\'{o}, amb la icona de la creu	
-\end{itemize}
-S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern.
-
-
-\subsection{Afegir una ''season'' a una ''season set'' existent d'una variable}
-Per tal de crear un conjunt de seasons per una variable:
-\begin{itemize}
-\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable
-\item Editar, amb la icona d'edici\'{o}, la ''season set'' del llistat ''List of season set''.
-Llegir el punt \ref{season_set:edit}
 
 \section{Llistar trainings d'una matriu}
 Pendent de implementaci\'{o}

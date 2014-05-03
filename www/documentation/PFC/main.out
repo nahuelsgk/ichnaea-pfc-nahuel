@@ -61,46 +61,47 @@
 \BOOKMARK [2][-]{subsection.4.3.1}{Symfony}{section.4.3}
 \BOOKMARK [2][-]{subsection.4.3.2}{Recursos}{section.4.3}
 \BOOKMARK [1][-]{section.4.4}{Servei web}{chapter.4}
-\BOOKMARK [1][-]{section.4.5}{Capa de serveis}{chapter.4}
-\BOOKMARK [1][-]{section.4.6}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.6.1}{Introducci\363 a l'arquitectura de cues}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.2}{Consumidors}{section.4.6}
-\BOOKMARK [1][-]{section.4.7}{Interf\355cies}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.7.1}{Interf\355cie de configuraci\363 de matrius}{section.4.7}
-\BOOKMARK [0][-]{chapter.5}{Estimacions temporals i econ\363miques}{}
+\BOOKMARK [1][-]{section.4.5}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.5.1}{Introducci\363 a l'arquitectura de cues}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.2}{Consumidors}{section.4.5}
+\BOOKMARK [1][-]{section.4.6}{Interf\355cies}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.6.1}{Interf\355cie de configuraci\363 de matrius}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.2}{Interficies de carrega de matrius per fitxers }{section.4.6}
+\BOOKMARK [0][-]{chapter.5}{Conclusions}{}
 \BOOKMARK [1][-]{section.5.1}{Desenvolupament del projecte}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{Estimaci\363 econ\363mica}{chapter.5}
 \BOOKMARK [0][-]{appendix.A}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.A.1}{Casa de l'usuari}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.1.1}{Llistat dels meus trainings pendents}{section.A.1}
-\BOOKMARK [1][-]{section.A.2}{Crear una matriu desde un csv}{appendix.A}
-\BOOKMARK [1][-]{section.A.3}{Configurar una matriu}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.3.1}{Alias de una columna}{section.A.3}
-\BOOKMARK [2][-]{subsection.A.3.2}{Especificar una columna a una variable i la season set}{section.A.3}
-\BOOKMARK [2][-]{subsection.A.3.3}{Cambiar la visualitzaci\363}{section.A.3}
-\BOOKMARK [2][-]{subsection.A.3.4}{Visualitzar missatges}{section.A.3}
-\BOOKMARK [1][-]{section.A.4}{Clonar una matriu}{appendix.A}
-\BOOKMARK [1][-]{section.A.5}{Veure les variables del sistema}{appendix.A}
-\BOOKMARK [1][-]{section.A.6}{Variables}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.6.1}{Formulari de edici\363 d'una variable}{section.A.6}
-\BOOKMARK [2][-]{subsection.A.6.2}{Crear una ''season set'' d'una variable}{section.A.6}
-\BOOKMARK [2][-]{subsection.A.6.3}{Editar una ''Season Set'' d'una variable}{section.A.6}
-\BOOKMARK [2][-]{subsection.A.6.4}{Afegir una ''season'' a una ''season set'' existent d'una variable}{section.A.6}
-\BOOKMARK [1][-]{section.A.7}{Llistar trainings d'una matriu}{appendix.A}
-\BOOKMARK [1][-]{section.A.8}{Crear un training d'una matriu}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.8.1}{Simular un training de la matriu Cyprus}{section.A.8}
-\BOOKMARK [1][-]{section.A.9}{Visualitzar un training}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.9.1}{Problem\341tiques de la creaci\363 de trainings}{section.A.9}
-\BOOKMARK [1][-]{section.A.10}{Crear una matriu de predicci\363}{appendix.A}
-\BOOKMARK [1][-]{section.A.11}{Crear una predicci\363}{appendix.A}
-\BOOKMARK [1][-]{section.A.12}{Actualitzar una matriu de predicci\363}{appendix.A}
-\BOOKMARK [1][-]{section.A.13}{Llistar les meves prediccions}{appendix.A}
-\BOOKMARK [1][-]{section.A.14}{Visualitzar una matriu de predicci\363}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.14.1}{Actualitzar una matriu de predicci\363}{section.A.14}
-\BOOKMARK [2][-]{subsection.A.14.2}{Executar una predicci\363 de una matriu de predicci\363}{section.A.14}
+\BOOKMARK [1][-]{section.A.2}{Variables}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.2.1}{Veure les variables del sistema}{section.A.2}
+\BOOKMARK [2][-]{subsection.A.2.2}{Formulari de edici\363 d'una variable}{section.A.2}
+\BOOKMARK [2][-]{subsection.A.2.3}{Crear una ''season set'' d'una variable}{section.A.2}
+\BOOKMARK [2][-]{subsection.A.2.4}{Editar una ''Season Set'' d'una variable}{section.A.2}
+\BOOKMARK [2][-]{subsection.A.2.5}{Afegir una ''season'' a una ''season set'' existent d'una variable}{section.A.2}
+\BOOKMARK [1][-]{section.A.3}{Matrius}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.3.1}{Crear una matriu desde un fitxer csv o excel}{section.A.3}
+\BOOKMARK [1][-]{section.A.4}{Configurar una matriu}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.4.1}{Alias de una columna}{section.A.4}
+\BOOKMARK [2][-]{subsection.A.4.2}{Especificar una columna a una variable i la season set}{section.A.4}
+\BOOKMARK [2][-]{subsection.A.4.3}{Cambiar la visualitzaci\363}{section.A.4}
+\BOOKMARK [2][-]{subsection.A.4.4}{Visualitzar missatges}{section.A.4}
+\BOOKMARK [1][-]{section.A.5}{Clonar una matriu}{appendix.A}
+\BOOKMARK [1][-]{section.A.6}{Llistar trainings d'una matriu}{appendix.A}
+\BOOKMARK [1][-]{section.A.7}{Crear un training d'una matriu}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.7.1}{Simular un training de la matriu Cyprus}{section.A.7}
+\BOOKMARK [1][-]{section.A.8}{Visualitzar un training}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.8.1}{Problem\341tiques de la creaci\363 de trainings}{section.A.8}
+\BOOKMARK [1][-]{section.A.9}{Crear una matriu de predicci\363}{appendix.A}
+\BOOKMARK [1][-]{section.A.10}{Crear una predicci\363}{appendix.A}
+\BOOKMARK [1][-]{section.A.11}{Actualitzar una matriu de predicci\363}{appendix.A}
+\BOOKMARK [1][-]{section.A.12}{Llistar les meves prediccions}{appendix.A}
+\BOOKMARK [1][-]{section.A.13}{Visualitzar una matriu de predicci\363}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.13.1}{Actualitzar una matriu de predicci\363}{section.A.13}
+\BOOKMARK [2][-]{subsection.A.13.2}{Executar una predicci\363 de una matriu de predicci\363}{section.A.13}
 \BOOKMARK [0][-]{appendix.B}{Manual d'administrador}{}
 \BOOKMARK [1][-]{section.B.1}{Llistar usuaris del sistema}{appendix.B}
 \BOOKMARK [1][-]{section.B.2}{Canviar el grup de l'usuari}{appendix.B}
 \BOOKMARK [1][-]{section.B.3}{Comprovar cua}{appendix.B}
 \BOOKMARK [0][-]{appendix.C}{Bibliografia}{}
-\BOOKMARK [0][-]{section*.18}{Bibliography}{}
+\BOOKMARK [0][-]{section*.20}{Bibliografia}{}

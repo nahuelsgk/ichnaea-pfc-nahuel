@@ -1,6 +1,7 @@
 <table class="table">
  <thead>
    <th>Name</th>
+   <th>Created by</th>
    <th>&nbsp;</th>
  </thead>
  <tbody>
@@ -8,6 +9,9 @@
    <tr>
    <td>
      {{matrix.name}}
+   </td>
+   <td>
+     {{ matrix.owner.username }}
    </td>
    <td>
    {% if is_granted('ROLE_SUPER_ADMIN') %}
