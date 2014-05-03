@@ -7,6 +7,7 @@
 <p>You are about to delete the matrix {{ matrix_name }}. Consider that deleting this matrix you will delete all trainings and predictions performed by you and other users. </p>
 <form method="POST" id="deleteMatrixForm" class="form-horizontal" action="{{ path('matrix_delete', {matrix_id: matrix_id})}}">
 <button type="submit" class="btn btn-primary">Delete</button>
+<a class="btn btn-warning" href="{{ app.request.headers.get('referer') }}">Cancel</a>
 </div>
 </form>
 {% endblock %}

@@ -147,46 +147,58 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \addtitle{Variable004}{Actualitzar una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
-    \item L'admininistrador selecciona una variable d'un llistat de variables.
-    \item El sistema li mostra un formulari d'edici\'{o} on pot veure les ''season sets'' i els seus components(''seasons'') i pot actualitzar la descripci\'{o}.
+    \item L'usuari selecciona una variable d'un llistat de variables.
+    \item El sistema li mostra un formulari d'edici\'{o} on pot editar el nom.
     \item L'usuari selecciona una ''season set''.
-    \item El sistema li mostra un formulari on
-    \begin{itemize}
-    \item pot afegir fitxers i configurar-los com cadascun com estiu, hivern, primavera, tardor o tot l'any
-    \item esborrar componenents(''seasons'')
-    \item actualitzar el nom 
-    \end{itemize}
-    \item L'usuari actualiza el nom i/o esborra components i/o afegeix components i els configura i guarda els canvis.
+    \item El sistema li mostra un formulari on pot actualitzar una ''season set''
+    \item L'usuari actualiza les dades i guarda els canvis.
     \item El sistema guarda els canvis. 
-    \end{itemize}
-
 }
 \end{usecase}
 
 \subsection{Esborrar una ''season set''}
 \begin{usecase}
-\addtitle{Variable 005}{Crear una ''season set''}
+\addtitle{Variable005}{Crear una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
-    \item L'admininistrador selecciona una variable d'un llistat de variables per esborrar.
-    \item El sistema li mostra un vista de confirmaci\'{o} de la acci\'{o}
-    \item L'usuari confirma la acci\'{o}
+    \item L'usuari selecciona una variable d'un llistat de variables per esborrar.
+    \item El sistema li mostra un vista de confirmaci\'{o} de la acci\'{o}.
+    \item L'usuari confirma la acci\'{o}.
+    \item El sistema esborra una ''season set'' i els seus components(''seasons'').
 }
 \end{usecase}
 
-\subsection{Crear una ''season'' d'una ''season set''}
+\subsection{Afegir una nova ''season'' a una ''season set''}
 \begin{usecase}
-\addtitle{Variable 006}{Crear una ''season'' d'una ''season set''}
+\addtitle{Variable006}{Afegir una nova ''season'' d'una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
+    \item L'usuari selecciona una variable d'un llistat de variables.
+    \item El sistema li mostra un formulari de edici\'{o} dels components(''seasons'').
+    \item L'usuari pot donar un nom i seleccionar 0, 1 o 2 fitxers amb el contingut dels ''seasons'', on cada fitxer pot ser configurat com:
+	\begin{itemize}
+		\item a unic per tot l'any
+		\item com estiu
+		\item com hivern
+		\item com tardor
+		\item com estiu
+	\end{itemize}
+	\item L'usuari salva els canvis.
+	\item El sistema guarda els canvis.
 }
 \end{usecase}
 
 \subsection{Esborrar una ''season'' d'una ''season set''}
 \begin{usecase}
-\addtitle{Variable 007}{Esborrar una ''season'' d'una ''season set''}
+\addtitle{Variable007}{Esborrar una ''season'' d'una ''season set''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
+    \item L'usuari selecciona una variable d'un llistat de variables.
+    \item El sistema li mostra un formulari de edici\'{o} dels components(''seasons'').
+	\item L'usuari selecciona una ''season'' per esborrar.
+	\item El sistema li demana confirmaci\'{o}.
+	\item L'usuari confirma l'acci\'{o}
+	\item El sistema esborra el component ''season''
 }
 \end{usecase}
 
@@ -196,8 +208,17 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \addtitle{Matriu 001}{Crear una matrius des d'un fitxer}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari visualitza el formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv. L'usuari accepta el formulari.
-	\item El sistema crear la matriu amb tots els "samples" identificats, les columnes identificades i els origens especificats en el cas que estiguin especificats en el fitxer.
+	\item L'usuari accedeix a un formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv o excel. L'usuari accepta el formulari.
+	\item El sistema crear la matriu on:
+	\begin{itemize}
+	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automaticament s'assigna a aquesta columna a aquesta variable i a un conjunt de ''seasons''(''season sets'') per defecte.
+	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
+	\begin{itemize}
+		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item Les columnes restants s'assignan com a valors de la mostra
+	\end{itemize}
+	\item L'usuari visualitza la matriu.
+	\end{itemize}
 }
 \end{usecase}
 
@@ -206,31 +227,32 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \addtitle{Matriu 002}{Actualitzar una matriu}
 \addfield{Actors:}{Propietari de la matriu}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari visualitza el formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv. L'usuari accepta el formulari.
-	\item El sistema crear la matriu amb tots els "samples" identificats, les columnes identificades i els origens especificats en el cas que estiguin especificats en el fitxer.
+	\item L'usuari accedeix a un formulari on pot actualitzar el nom a la matriu i/o seleccionar el fitxer de tipus de fulla de c\`{a}lcul. L'usuari confirma els canvis
+	\item El sistema esborra la matriu anterior i torna a crear la matriu seguint el cas d'us ''Matriu001''.
 }
 \end{usecase}
 
 \subsection{Clonar una matriu}
 \begin{usecase}
-\addtitle{Matriu 003}{Clonar una matriu}
+\addtitle{Matriu003}{Clonar una matriu}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari visualitza un llistat de matrius del sistema i selecciona una matriu per clonar
-	\item El sistema renderitza un formulari amb un nom suggerit.
-	\item L'usuari pot canviar el nom i acceptar la clonaci\'{o}
-	\item El sistema clona la matriu i la seva configuraci\'{o} sense copiar trainigs ni prediccions. El propietari de la matriu \'{e}s l'usuari que ha realitzat la clonaci\'{o}.
+	\item L'usuari selecciona una matriu per clonar.
+	\item El sistema renderitza un formulari amb un nom suggerit per la matriu.
+	\item L'usuari pot canviar el nom i acceptar la clonaci\'{o}.
+	\item El sistema clona la matriu i la seva configuraci\'{o} sense copiar ''trainings'' ni prediccions. El propietari de la matriu \'{e}s l'usuari que ha realitzat la clonaci\'{o}. 
+	\item L'usuari veu la matriu clonada.
 }
 \end{usecase}
 
 \subsection{Esborra una matriu}
 \begin{usecase}
-\addtitle{Matriu 004}{Esborrar una matriu}
+\addtitle{Matriu004}{Esborrar una matriu}
 \addfield{Actors:}{Propietari de la matriu}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari visualitza un llistat de matrius del sistema i selecciona una matriu per clonar
-	\item El sistema renderitza un formulari amb un nom suggerit.
-	\item L'usuari pot canviar el nom i acceptar la clonaci\'{o}
+	\item L'usuari selecciona una matriu del sistema per esborrara.
+	\item El sistema demana confirmaci\'{o} per esborrar la matriu.
+	\item L'usuari confirma la acci\'{o}.
 	\item El sistema clona la matriu i la seva configuraci\'{o} sense copiar trainigs ni prediccions. El propietari de la matriu \'{e}s l'usuari que ha realitzat la clonaci\'{o}.
 }
 \end{usecase}
