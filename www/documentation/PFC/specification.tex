@@ -54,6 +54,22 @@ Els requeriments no funcionals son:
 \item Flexibilitat
 \end{itemize}
 
+\section{Actors}
+Els usuaris de la aplicaci\'{o} son:
+\begin{itemize}
+\item Usuari an\`{o}nim
+\item Usuari registrat
+\begin{itemize}
+\item Propietari de una matriu
+\item Propietari de un training
+\item Propietari de una predicci\'{o}
+\end{itemize}
+\item Usuari administrador
+\item Cua
+\item Consumidor
+\item Sistema
+\end{itemize}
+
 \section{Casos d'us i fluxos}
 En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir els casos d'\'{u}s:\\
 
@@ -166,6 +182,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
     \item L'usuari confirma la acci\'{o}.
     \item El sistema esborra una ''season set'' i els seus components(''seasons'').
 }
+\addscenario{Cursos alternatius:}{
+\item[3] L'usuari cancela la acci\'{o}.
+}
 \end{usecase}
 
 \subsection{Afegir una nova ''season'' a una ''season set''}
@@ -200,6 +219,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 	\item L'usuari confirma l'acci\'{o}
 	\item El sistema esborra el component ''season''
 }
+\addscenario{Cursos alternatius:}{
+\item[5] L'usuari cancela la acci\'{o}.
+}
 \end{usecase}
 
 
@@ -227,8 +249,18 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \addtitle{Matriu 002}{Actualitzar una matriu}
 \addfield{Actors:}{Propietari de la matriu}
 \addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari seleccion una matriu per actualitzar.
+	\item El sistema li mostra un formulari d'edici\'{o} de la matriu.
 	\item L'usuari accedeix a un formulari on pot actualitzar el nom a la matriu i/o seleccionar el fitxer de tipus de fulla de c\`{a}lcul. L'usuari confirma els canvis
-	\item El sistema esborra la matriu anterior i torna a crear la matriu seguint el cas d'us ''Matriu001''.
+	\item El sistema esborra la matriu anterior i torna a crear la matriu on:
+		\begin{itemize}
+	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automaticament s'assigna a aquesta columna a aquesta variable i a un conjunt de ''seasons''(''season sets'') per defecte.
+	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
+	\begin{itemize}
+		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item Les columnes restants s'assignan com a valors de la mostra
+	\end{itemize}
+	\item L'usuari visualitza la matriu.
 }
 \end{usecase}
 
@@ -255,19 +287,22 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 	\item L'usuari confirma la acci\'{o}.
 	\item El sistema clona la matriu i la seva configuraci\'{o} sense copiar trainigs ni prediccions. El propietari de la matriu \'{e}s l'usuari que ha realitzat la clonaci\'{o}.
 }
+\addscenario{Cursos alternatius:}{
+	\item[3] L'usuari cancela la acci\'{o}.
+}
 \end{usecase}
 
 \subsection{Configurar una columna de la matriu}
 \begin{usecase}
-\addtitle{Matriu 003}{Configurar la columna de una matriu}
+\addtitle{Matriu005}{Configurar la columna de una matriu}
 \addfield{Actors:}{Usuari propietari de la matriu}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari selecciona una matrius d'un llistat per configurar-la
-	\item El sistema renderitza una vista per configurar les columnes de una matriu.
-	\item L'usuari pot canviar d'una columna:
+	\item L'usuari selecciona una matriu
+	\item El sistema mostra una vista per configurar les columnes de una matriu.
+	\item L'usuari selecciona una columna i pot:
 	\begin{itemize}
-		\item un alias
-		\item seleccionar una variable i una 'season set'
+		\item donar un nom a la columna
+		\item seleccionar una variable i una 'season set' de la variable
 	\end{itemize}
 	\item L'usuari accepta la configuraci\'{o}
 	\item El sistema salva la configuraci\'{o} de la columna
@@ -275,75 +310,70 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \end{usecase}
 
 
-\subsection{Configurar la data del ''sample'' d'una matriu}
+\subsection{Configurar el ''sample'' d'una matriu}
 \begin{usecase}
 \addtitle{Matriu 004}{Configurar la data del ''sample'' de una matriu}
 \addfield{Actors:}{Usuari propietari de una matriu}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari selecciona un matriu i un ''sample''
-	\item El sistema mostra un calendari per donar una data.
-	\item L'usuari pot seleccionar una data o pot escriure la data. L'usuari confirma la data.
-	\item El sistema guarda la data.
-}
-\end{usecase}
-
-\subsection{Configurar l'origen de una ''sample''}
-\begin{usecase}
-\addtitle{Sample 001}{Configurar la data del ''sample'' de una matriu}
-\addfield{Actors:}{Usuari propietari de una matriu}
-\addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari selecciona un matriu i un ''sample''
-	\item El sistema mostra un camp per poder escriure.
-	\item L'usuari escriu un origen o selecciona un que li suggerireix el sistema. L'usuari confirma la dada.
-	\item El sistema guarda la dada.
+	\item L'usuari selecciona un matriu.
+	\item El sistema mostra una vista per configurar les mostres(''samples'') de la matriu.
+	\item L'usuari selecciona una ''sample'' i pot:
+	\begin{itemize}
+	\item donar una data 
+	\item donar una nom a la mostra
+	\item donar un origen de la mostra
+	\end{itemize}
+	\item L'usuari accepta la configuraci\'{o}.
+	\item El sistema guarda la configuraci\'{o} del ''sample''.
 }
 \end{usecase}
 
 \subsection{Llistar ''trainings'' del sistema}
 \begin{usecase}
-\addtitle{Training 001}{Llistar ''trainings''}
+\addtitle{Training001}{Llistar ''trainings''}
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari accedeix a la vista del llistat de ''trainings''
-	\item El sistema llista els trainings amb dades b\`{a}siques. Matriu entrenada, estat del training i descripci\'{o} del training.
+	\item L'usuari accedeix a la vista del llistat de ''trainings'' del sistema.
+	\item El sistema llista els trainings amb les dades b\`{a}siques: matriu entrenada, estat del training, descripci\'{o} del training, creador, data de creaci\'{o}.
 }
 \end{usecase}
 
 \subsection{Llistar els meus ''trainings''}
 \begin{usecase}
-\addtitle{Training 002}{Llistar trainings}
+\addtitle{Training002}{Llistar els meus trainings}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari accedeix a la vista del llistat de trainings
-	\item El sistema llista els trainings amb dades b\`{a}siques. Matriu entrenada, estat del training i descripci\'{o} del training.
+	\item L'usuari accedeix a la vista del llistat de ''trainings'' que ha creat.
+	\item El sistema llista els trainings que ha creat amb dades b\`{a}siques: matriu entrenada, estat del training, descripci\'{o} del training, data de creaci\'{o}.
 }
 \end{usecase}
 
 \subsection{Llistar ''trainings'' entrenables}
 \begin{usecase}
-\addtitle{Training 003}{Llistar ''trainings'' entrenables}
+\addtitle{Training003}{Llistar ''trainings'' entrenables}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
-	\item L'usuari accedeix a la vista del llistat de trainings
-	\item El sistema llista els trainings amb dades b\`{a}siques. Matriu entrenada, estat del training i descripci\'{o} del training.
+	\item L'usuari accedeix a la vista del llistat de trainings entrenables.
+	\item El sistema llista els ''trainings'' amb un estat finalitzat i sense errors amb dades b\`{a}siques: matriu entrenada, estat del training, creador, descripci\'{o} del training, data de creaci\'{o}.
 }
 \end{usecase}
 
 \subsection{Crear un ''training''}
 \begin{usecase}
-\addtitle{Training 004}{Crear un training}
+\addtitle{Training004}{Crear un ''training''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
 	\item L'usuari selecciona una matriu per entrenar
 	\item El sistema li mostra un formulari per crear trainings
 	\item L'usuari pot donar un nom, una descripci\'{o}, seleccionar un origen i quines columnes vol entrenar. Confirma les dades.
-	\item El sistema guarda el training i envia al sistema de cues. El sistema evalua si ha pogut enviar el training al sistema de cues en cas que el servei estigui caigut. Renderitza la vista de visualitzaci\'{o} del training.
+	\item El sistema guarda el training i envia al sistema de cues les dades. El sistema evalua si ha pogut enviar el training al sistema de cues en cas que el servei estigui caigut. 
+	\item L'usuari veu el training creat.
 }
 \end{usecase}
 
 \subsection{Reenviar un training al sistema de cues}
 \begin{usecase}
-\addtitle{Training 005}{Reenviar un training}
+\addtitle{Training005}{Reenviar un training}
 \addfield{Actors:}{Usuari propietari d'un ''training''}
 \addscenario{Curs tipic d'esdeveniments:}{
     \item L'usuari selecciona un training que ha tingut problemes de enviament.
@@ -355,7 +385,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 
 \subsection{Visualitzar un training}
 \begin{usecase}
-\addtitle{Training 006}{Visualitzar un training}
+\addtitle{Training006}{Visualitzar un training}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
     \item L'usuari selecciona d'un llistat un training.
@@ -365,19 +395,23 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 
 \subsection{Esborrar un ''training''}
 \begin{usecase}
-\addtitle{Training 007}{Esborrar un ''training''}
+\addtitle{Training007}{Esborrar un ''training''}
 \addfield{Actors:}{Usuari superadministrador, usuari propietari d'un ''training''}
 \addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari selecciona un ''training'' per esborrar
+	\item El sistema demana confirmaci\'{o} per esborrar el training.
+	\item L'usuari confirma l'acci\'{o}
+	\item El sistema esborra el ''trainings'' i totes les prediccions que s'han fet a partir d'aquest ''training''.
 }
 \end{usecase}
 
 \subsection{Descarregar els resultats d'un ''training''}
 \begin{usecase}
-\addtitle{Training 008}{Descarregar els resultats d'un ''training''}
+\addtitle{Training008}{Descarregar els resultats d'un ''training''}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs tipic d'esdeveniments:}{
     \item L'usuari selecciona un training finalitzat
-    \item El sistema renderitza una vista de visualitzaci\'{o} del ''training''. Si el resultat es correcte, el sistema mostra una operaci\'{o} de descarrega dels resultats de un training.
+    \item El sistema visualitza un enllaç amb la possibilitat de descarregar el fitxer resultats d'un ''training''
     \item L'usuari accedeix a la descarrega.
     \item El sistema envia a l'usuari els resultats.
 }
@@ -385,49 +419,87 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 
 \subsection{Actualitzar l'estat d'un ''training''}
 \begin{usecase}
-\addtitle{Training 009}{Actualitzar l'estat d'un ''training''}
-\addfield{Actors:}{Sistema}
+\addtitle{Training009}{Actualitzar l'estat d'un ''training''}
+\addfield{Actors:}{Cua}
 \addscenario{Curs tipic d'esdeveniments:}{
+    \item La cua avisa al consumidor que ha finalitzat un ''training'' i li envia unes dades al consumidor
+    \item El consumidor rep les dades i li envia al sistema
+    \item El sistema les guarda i actulitza l'estat del ''training''
 }
 \end{usecase}
 
 \subsection{Llistar prediccions del sistema}
 \begin{usecase}
-\addtitle{Prediction 001}{Llistar prediccions del sistema}
+\addtitle{Prediction001}{Llistar prediccions del sistema}
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari accedeix a la vista del llistat de prediccions
+	\item El sistema llista totes les prediccions amb dades b\`{a}siques.
 }
 \end{usecase}
 
 \subsection{Llistar les meves prediccions}
 \begin{usecase}
-\addtitle{Prediction 002}{Llistar les meves prediccions}
+\addtitle{Prediction002}{Llistar les meves prediccions}
 \addfield{Actors:}{Usuari registrats}
 \addscenario{Curs tipic d'esdeveniments:}{
+	\item L'usuari accedeix a la vista del llistat de prediccions creades per ell.
+	\item EL sistema llista totes les prediccions creades per l'usuari amb dades b\`{a}siques.
 }
 \end{usecase}
 
 \subsection{Esborrar una predicci\'{o}}
 \begin{usecase}
-\addtitle{Prediction 003}{Esborrar una predicci\'{o}}
+\addtitle{Prediction003}{Esborrar una predicci\'{o}}
 \addfield{Actors:}{Usuari registrats}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+	\item L'usuari selecciona una predicci\'{o} per esborrar.
+	\item El sistema li demana confirmaci\'{o} per esborrar la predicci\'{o}.
+	\item L'usuari confirma la acci\'{o}.
+	\item El sistema esborra la predicci\'{o}.
+}
+\addscenario{Cursos alternatius:}{
+	\item[3] L'usuari cancela la acci\'{o}.
 }
 \end{usecase}
 
 \subsection{Crear una matriu de predicci\'{o} desde un fitxer}
 \begin{usecase}
-\addtitle{Prediction 004}{Crear una matriu de predicci\'{o} desde un fitxer}
+\addtitle{Prediction004}{Crear una matriu de predicci\'{o} desde un fitxer}
 \addfield{Actors:}{Usuari registrats}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+	\item L'usuari selecciona un entrenament(''training'') per crear una predicci\'{o}.
+	\item El sistema li mostra un formulari de creaci\'{o} de prediccions.
+	\item L'usuari accedeix a un formulari on pot donar nom a la matriu de predicci\'{o} i seleccionar una fulla de c\`{a}lcul. L'usuari accepta el formulari.
+	\item El sistema crear la matriu on:
+	\begin{itemize}
+	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
+	\begin{itemize}
+		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item Les columnes restants s'assignan com a valors de la mostra
+	\end{itemize}
+	\item L'usuari visualitza la matriu.
+	\end{itemize}
 }
 \end{usecase}
 
 \subsection{Actualitzar una matriu de predicci\'{o} desde un fitxer}
 \begin{usecase}
-\addtitle{Prediction 005}{Actualitzar una matriu de predicci\'{o} desde un fitxer}
+\addtitle{Prediction005}{Actualitzar una matriu de predicci\'{o} desde un fitxer}
 \addfield{Actors:}{Usuari propietari de la predicci\'{o}}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+    \item L'usuari seleccion un entrenament
+    \item El sistema li mostra un formulari d'edici\'{o} de prediccions.
+    \item L'usuari pot actualitzar el nom de la predicci\'{o} i seleccionar una fulla de c\'{a}lcul i guardar els canvis.
+    \item El sistema esborra la matrius de predicci\'{o}, actualitza les dades i crea la matriu on:
+    	\begin{itemize}
+	\item Cada fila de la fulla de calcul, despr\'{e}s de la primera fila:
+	\begin{itemize}
+		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item Les columnes restants s'assignan com a valors de la mostra
+	\end{itemize}
+	\item L'usuari visualitza la matriu.
+	\end{itemize}
 }
 \end{usecase}
 
@@ -435,44 +507,59 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \begin{usecase}
 \addtitle{Prediction 006}{Configurar un ''sample'' d'una matriu de predicci\'{o}}
 \addfield{Actors:}{Usuari propietari de la predicci\'{o}}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+	\item L'usuari selecciona una predicci\'{o} i una mostra.
+	\item El sistema mostra una vista de edici\'{o} de la matriu.
+	\item L'usuari pot donar un data, un nom i un origen a la mostra i guardar els canvis.
+	\item El sistema guarda les dades.
 }
 \end{usecase}
 
 \subsection{Enviar una predicci\'{o} al sistema de cues}
 \begin{usecase}
-\addtitle{Prediction 007}{Enviar una predicci\'{o} al sistema de cues}
+\addtitle{Prediction007}{Enviar una predicci\'{o} al sistema de cues}
 \addfield{Actors:}{Usuari propietari de la predicci\'{o}}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+    \item L'usuari selecciona una predicci\'{o}.
+    \item El sistema li mostra un formulari per enviar la matriu de predicci\'{o} al sistema de cues.
+    \item L'usuari confirma la acci\'{o}.
+    \item El sitema prepara les dades per enviar i li dona al sistema de cues.
 }
 \end{usecase}
 
 \subsection{Veure una predicci\'{o}}
 \begin{usecase}
-\addtitle{Prediction 007}{Enviar una predicci\'{o} al sistema de cues}
-\addfield{Actors:}{Usuari propietari de la predicci\'{o}}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addtitle{Prediction008}{Veure una predicci\'{o}}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+	\item L'usuari selecciona una predicci\'{o}.
+	\item El sistema li mostra les dades b\`{a}siques de la predicci\'{o} i la matriu.
 }
 \end{usecase}
 
 \subsection{Veure els resultats d'una predicci\'{o}}
 \begin{usecase}
 \addtitle{Prediction 008}{Veure els resultats d'una predicci\'{o}}
-\addfield{Actors:}{Usuari propietari de la predicci\'{o}}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+	\item L'usuari selecciona els resultats d'una predicci\'{o}.
+	\item El sistema li mostra les diferents sortides de la execuci\'{o}.
 }
 \end{usecase}
 
 \subsection{Actualitzar l'estat d'una predicci\'{o}}
 \begin{usecase}
-\addtitle{Prediction 009}{Actualitzar l'estat d'una predicci\'{o}}
-\addfield{Actors:}{Sistema}
-\addscenario{Curs tipic d'esdeveniments:}{
+\addtitle{Prediction009}{Actualitzar l'estat d'una predicci\'{o}}
+\addfield{Actors:}{Cua, Consumidor}
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+    \item La cua avisa al consumidor que ha finalitzat una predicci\'{o} i li envia les dades al consumidor
+    \item El consumidor rep les dades i li envia al sistema
+    \item El sistema les guarda i actulitza l'estat de la predicci\'{o}.
 }
 \end{usecase}
 
 \section{Model de dades}
-En el seg\¨{u}ent gr\`{a}fic veuem  el diagrama UML del modelatge de dades.
+En el seg\¨{u}ent diagrama UML est\`{a} implementat el modelatge de dades.
 \begin{sidewaysfigure}[h]
   \includegraphics[scale=0.5]{img/specification/ModelClass.png}
   \caption{Model de dades}

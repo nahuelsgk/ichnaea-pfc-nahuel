@@ -3,9 +3,7 @@
 
 \section{Casa de l'usuari}
 \label{sec:home}
-Per accedir al home pots:
-\begin{itemize}
-\end{itemize}
+Per accedir la casa del usuari es pot anar accedint mitjançant el logo del men\'{u} situat a l'esquerra del men\'{u}.
 
 \begin{figure}[h!]
   \centering
@@ -22,7 +20,7 @@ Al llistat superior pots veure els trainings que has creat on::
 \item Descripci\'{o} del ''training''
 \item Data de creaci\'{o}
 \item Nom de l'usuari que la creat
-\item Progres: actualment Ichnaea no retorna estat del proces- Solament ens diu si ha acabat o no.  Per tant els \'{u}nics valors son 0.00 i 1.00.
+\item Progr\'{e}s: actualment Ichnaea no retorna estat del proces. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors son 0.00 i 1.00.
 \item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua) i ''finished''(ha terminat)
 \item 
 \item Operacions
@@ -30,6 +28,7 @@ Al llistat superior pots veure els trainings que has creat on::
  \item ICON_EYE_OPEN es per anar a la pantalla de visualitzaci\'{o} del training.
  \end{itemize}
 \end{itemize}
+
 \subsubsection*{Estat del trainings}
 En la figura es contempla els estats possibles:
 \begin{itemize}
@@ -53,8 +52,8 @@ Desde la interf\'{i}cie de configuraci\'{o} es pot:
 \begin{itemize}
 \item Modificar la descripci\'{o}
 \item Accedir a la vista per afegir una ''Season set'', amb la icona del signe de suma.
-\item Editar una ''Season Set'',amb la icona de edici\'{o}.
-\item Esborrar una ''Season Set'', amb la icona de la brossa.
+\item Editar una ''Season Set'', amb ICON_EDIT.
+\item Esborrar una ''Season Set'', amb la ICON_TRASH.
 \end{itemize}
 
 \subsection{Crear una ''season set'' d'una variable}
@@ -62,10 +61,10 @@ Desde la interf\'{i}cie de configuraci\'{o} es pot:
 Per tal de crear un conjunt de seasons per una variable:
 \begin{itemize}
 \item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable
-\item Al apartat inferior ''List of season set'', clickar a la icona de suma
+\item Editar la variable a la que es vol afegir la variable, fent click ICON_EDIT
+\item Al apartat inferior ''List of season set'', clickar a la ICON_PLUS.
 \end{itemize}
-Es poden donar un nom i afegir tants fitxers com es vulguin. S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern. Per m\'{e}s descripci\'{o} d' aquesta interf\'{i}cie anar al punt \ref{season_set:edit}
+Es poden donar un nom i afegir tants fitxers com es vulguin. S'ha de tenir cura perque existeix la possibilitat de afegir varis fitxers amb una mateixa configuraci\'{o} (estaci\'{o}). Actualment Ichnaea solament processa estiu e hivern. Per m\'{e}s descripci\'{o} d'aquesta interf\'{i}cie anar al punt \ref{season_set:edit}
 
 \subsection{Editar una ''Season Set'' d'una variable}
 \label{season_set:edit}
@@ -87,15 +86,15 @@ S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una 
 Per tal de crear un conjunt de seasons per una variable:
 \begin{itemize}
 \item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable
-\item Editar, amb la icona d'edici\'{o}, la ''season set'' del llistat ''List of season set''.
+\item Editar la variable a la que es vol afegir la variable, amb ICON_EDIT
+\item Editar, amb ICON_EDIT, la ''season set'' del llistat ''List of season set''.
 Llegir el punt \ref{season_set:edit}
 
 
 \section{Matrius}
 \subsection{Crear una matriu desde un fitxer csv o excel}
 \label{sec:create_matrix}
-Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv. El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
+Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv o Microsoft Excel. El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
 El format de la matriu \'{e}s important que sigui el seg\¨{u}ent.
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
@@ -108,7 +107,7 @@ El format de la matriu \'{e}s important que sigui el seg\¨{u}ent.
 \end{center}
 On:
 \begin{itemize}
-\item Alias de la columna: \'{e}s un nom qualsevol per identificar la columna. Si el sistema cont\'{e} una variable amb el mateix nom, autom\`{a}ticament li assignare aquesta variable amb una ''season set'' per defecte.
+\item Alias de la columna: \'{e}s un nom qualsevol per identificar la columna. Si el sistema cont\'{e} una variable amb el mateix nom, autom\`{a}ticament li assignare aquesta variable amb una ''season set'' per defecte. Si l'alias de variable definit al full de c\`{a}lcul \'{e}s el mateix que el d'una variable del sistema, s'assigna a la variable i li assignar un conjunt de fitxers per defecte.
 \item Valor de la sample: \'{e}s el valor de la mostra per la columna(variable)
 \item Nom de la sample: \'{e}s un identificador de la mostra. La aplicaci\'{o} mapeja el contingut de subcadenas amb:
 \begin{itemize}
@@ -117,23 +116,23 @@ On:
 \item PG - PIG
 \item CW - COW
 \end{itemize}
-\item Origen de la sample: \'{e}s una cadena de caracters que especifica l'origen de la mostra. Solament es distingir\'{a} si a les capÃ§aleres a la ultima columna s'expecifica la paraula ORIGIN.
+\item Origen de la sample: \'{e}s una cadena de caracters que especifica l'origen de la mostra. Solament es distingir\'{a} si a les capçaleres a la ultima columna s'expecifica la paraula ORIGIN.
 \end{itemize}
-En la pantalla, es pot seleccionar un fitxer csv i pujar'ho. Seguidament, es podr\`{a} establir la relaci\Â´{o} de la variable real de la columna i quin conjunt de season per defecte usa. Mirar \ref{sec:configure_matrix}.
+En la pantalla, es pot seleccionar un fitxer csv i pujar'ho. Seguidament, es podr\`{a} establir la relaci\'{o} de la variable real de la columna i quin conjunt de fitxers per defecte usa. Mirar \ref{sec:configure_matrix}.
 
 \section{Configurar una matriu}
 \label{sec:configure_matrix}
 Per accedir a configurar una matriu, has d'anar a la teva pantalla de inici(mirar \ref{sec:home}). 
-Desde la interficie de configuraci\Â´{o} es pot configurar:
+Desde la interficie de configuraci\'{o} es pot configurar:
 \begin{itemize}
 \item Donar un alias a la columna
 \item Asociar una columna a una variable
-\item Seleccionar un conjunt de seasons de la variable
-\item Donar nom a un sample
-\item Donar una data a un sample
+\item Seleccionar un conjunt de fitxers de la variable
+\item Donar nom a una mostra
+\item Donar una data a una mostra
 \item Donar un origen a un sample
 \item Visualitzar missatges de validacions i notificacions
-\item Donar acces als usuaris per que puguin crear trainings.
+\item Donar acc\'{e}s als usuaris per que puguin crear trainings.
 \end{itemize}
 \begin{figure}[h!]
   \centering
@@ -144,16 +143,19 @@ Desde la interficie de configuraci\Â´{o} es pot configurar:
 
 \subsection{Alias de una columna} 
 A la secci\'{o} de les capçaleres, a la icona del llapis, es pot especificar un alias a la columna. Si es prem "Enter" o es canvia el focus, s'activa el bot\'{o} de salvaguardat.
+
 \subsection{Especificar una columna a una variable i la season set}
-A la secci\'{o} de les capÃ§aleres, a la icona de la clau anglesa, es pot seleccionar la variable del sistema. Autom\'{a}ticament, a la llista de dalt, es carrega la llista de "Seasons Set". Quan es selecciona un dels dos llistats, s'activa el bot\'{o} de salvaguardat. No \'{e}s obligatori donar-li una variable o una "Season Set".
+A la secci\'{o} de les capçaleres, a la icona de la clau anglesa, es pot seleccionar la variable del sistema. Autom\'{a}ticament, a la llista de dalt, es carrega la llista de "Seasons Set". Quan es selecciona un dels dos llistats, s'activa el bot\'{o} de salvaguardat. No \'{e}s obligatori donar-li una variable i una "Season Set".
+
 \subsection{Cambiar la visualitzaci\'{o}}
-A la secci\'{o} de configuraci\'{o}, es pot cambiar la visibilitat. Si la matriu \'{e}s invisible, els usuaris no poden crear trainings. Per guardar els canvis, s'ha de pitjar el but\'{o} "Save configuration".
+A la secci\'{o} de configuraci\'{o}, es pot cambiar la visibilitat. Si la matriu \'{e}s invisible, els usuaris no poden crear ''trainings''. Per guardar els canvis, s'ha de pitjar el but\'{o} "Save configuration".
+
 \subsection{Visualitzar missatges}
 Existeixen diverses restriccions i missatges:
 \begin{itemize}
 \item Notificaci\'{o} de visibilitat: una matriu visible es entrenable. 
 \item Notificaci\'{o} de matriu amb trainings creats. Una modificaci\'{o} crea una incoherencia amb aquests trainings ja que no ser\'{a} la mateixa matriu.
-\item Notificaci\'{o} origins. Les mostres necessiten obligatoriament uns origins.
+\item Notificaci\'{o} d'origens. Les mostres necessiten obligatoriament uns origins.
 \end{itemize}
 
 \section{Clonar una matriu}
@@ -174,15 +176,8 @@ Fent click a la icona de reload, anem al formulari que suggereix un nom per iden
 \end{figure}
 Acceptant, es clona la matriu i anem a la interficie de configuraci\Â´{o}. Mirar \ref{sec:configure_matrix}.
 
-
-
-
-
-\section{Llistar trainings d'una matriu}
-Pendent de implementaci\'{o}
-
 \section{Crear un training d'una matriu}
-Per crear un training s'ha de accedir al menu superior ''Trainings - Create a training''. Desde el llistat de matrius del sistema, amb la icona de la ''carretera'', es pot accedir al formulari de creaci\Â´{o} de trainings.
+Per crear un training s'ha de accedir al menu superior ''Trainings - Create a training''. Desde el llistat de matrius del sistema, amb la icona ICON_ROAD, es pot accedir al formulari de creaci\'{o} de trainings.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/training_create.png}
@@ -190,8 +185,8 @@ Per crear un training s'ha de accedir al menu superior ''Trainings - Create a tr
   \label{fig:placement}
 \end{figure}
 \begin{itemize}
-\item Part esquerra superior: El training cont\Â´{e} un nom i una descripci\Â´{o}. Es poden seleccionar quines columnes vols entrenar de la matriu. 
-\item Part dreta superior: Desplegable per seleccionar un dels origens disponibles.  El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\Â´{a} tots contra tots. Si \Â´{e}s selecciona un origen concret, el training es far\`{a} aquest origen contra els altres. Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}.
+\item Part esquerra superior: El training cont\'{e} un nom i una descripci\'{o}. Es poden seleccionar quines columnes vols entrenar de la matriu. 
+\item Part dreta superior: Desplegable per seleccionar un dels origens disponibles.  El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\'{a} tots contra tots. Si \'{e}s selecciona un origen concret, el training es far\`{a} aquest origen contra els altres. Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}.
 \item Selecci\'{o} de columnes. Selecci\'{o} de columnes que vols entrenar.
 \end{itemize}
 
