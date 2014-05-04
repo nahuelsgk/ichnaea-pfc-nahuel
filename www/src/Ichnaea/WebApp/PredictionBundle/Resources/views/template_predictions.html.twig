@@ -17,8 +17,12 @@
   	{% if prediction.status == 'sent' or prediction.status == '' %}
   	  class="warning"
   	{% elseif prediction.status == 'finished' %}
-  	  class="success"
-  	{% elseif prediction.status == 'finished' and prediction.error != '' %}
+  	  {% if prediction.error != '' %}
+  	    class="error"
+  	  {% elseif prediction.error == '' %}
+  	    class="success"
+  	  {% endif %}
+  	{% elseif prediction.status == 'pending' %}
   	  class="error"
   	{% endif %}
   >

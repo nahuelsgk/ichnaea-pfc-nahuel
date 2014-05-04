@@ -280,14 +280,16 @@ class TrainingService{
 				$qb->expr()->andx(
 					"t.status = :finished",
 					"t.error <> :null"
-				)
+				),
+				't.status = :pending'
 			)
 		)
 		->setParameters(array(
 				'user_id'  => $user_id,
 				':sent'    => 'sent',
 				'finished' => 'finished',
-				':null' => ''
+				':null'    => '',
+				':pending' => 'pending'
 				)
 		)
 		->getQuery();

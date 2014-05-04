@@ -15,19 +15,17 @@
  </thead>
  <tbody>
  {% for training in trainings %}
- <tr class="
+ <tr 
     {% if training.error != '' %}
-    error
+    class="error"
     {% else %}
  	  {% if training.progress == '1.0' and training.error == "" %}
- 	    success
+ 	    class="success"
+ 	  {% elseif training.status == 'sent' %}
+ 		  class="warning"
+ 	  {% elseif training.status == 'pending' %}
+ 	      class="error"
  	  {% endif %}
- 	{% endif %}
- 	{% if training.status == 'sent' %}
- 		  active
- 	{% endif %}
- 	{% if training.status == 'pending' %}
- 	    warning
  	{% endif %}
  ">
    <td>{{ loop.index }}</td>

@@ -12,5 +12,6 @@ Consider that deleting this training you will delete all predictions performed b
 Are you sure?
 <form method="POST" id="trainingDeleteForm" class="form-horizontal" action="{{path('training_delete_submit', {matrix_id: matrix_id, training_id: training_id})}}">
 <button type="submit" class="btn btn-danger">Delete</button>
+<a class="btn btn-warning" href="{{ app.request.headers.get('referer') }}">Cancel</a>
 </div>
 {% endblock %}

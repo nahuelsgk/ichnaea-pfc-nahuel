@@ -278,7 +278,8 @@ class PredictionService
 						$qb->expr()->andx(
 								"p.status = :finished",
 								"p.error <> :null"
-						)
+						),
+						'p.status = :pending'
 				)
 		)
 		->setParameters(
@@ -286,7 +287,8 @@ class PredictionService
 					'user_id'  => $user_id,
 					':sent'    => 'sent',
 					'finished' => 'finished',
-					':null' => ''
+					':null'    => '',
+					':pending' => 'pending',
 		 	)
 		)
 		->getQuery();
