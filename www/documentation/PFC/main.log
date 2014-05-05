@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  4 MAY 2014 19:12
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  5 MAY 2014 20:12
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -449,9 +449,6 @@ LaTeX Warning: Label `fig:placement' multiply defined.
 
 LaTeX Warning: Label `fig:placement' multiply defined.
 
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
 ) (./adminguide.aux))
 \openout1 = `main.aux'.
 
@@ -578,13 +575,13 @@ Overfull \hbox (9.4534pt too wide) in paragraph at lines 55--63
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.74 ...\numberline {5}Conclusions}{37}{chapter.5}
+l.74 ...\numberline {5}Conclusions}{39}{chapter.5}
                                                    [2]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.111 ...line {B.3}Comprovar cua}{17}{section.B.3}
+l.111 ...line {B.3}Comprovar cua}{15}{section.B.3}
                                                    [3])
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -721,9 +718,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 [7
 
 
-] [8]
+] [8] <img/specification/Actors.png, id=633, 577.15625pt x 436.63126pt>
+File: img/specification/Actors.png Graphic file (type png)
+
+<use img/specification/Actors.png> [9 <./img/specification/Actors.png>]
 ! Undefined control sequence.
-l.74 ...documentaci\'{o} s'utilitzar\`{a} la seg\¨
+l.83 ...documentaci\'{o} s'utilitzar\`{a} la seg\¨
                                                   {u}ent estructura per defi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -732,243 +732,183 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 87
+Underfull \vbox (badness 10000) detected at line 96
  []
 
-[9]
 Missing character: There is no ç in font cmr12!
 Missing character: There is no ç in font cmr12!
 Missing character: There is no ç in font cmr12!
 Missing character: There is no ç in font cmr12!
 
-Underfull \vbox (badness 10000) detected at line 103
+Underfull \vbox (badness 10000) detected at line 112
  []
 
 [10]
-Underfull \vbox (badness 10000) detected at line 115
+Underfull \vbox (badness 10000) detected at line 124
  []
 
 
-Underfull \vbox (badness 10000) detected at line 125
- []
-
-
-Underfull \vbox (badness 10000) detected at line 137
+Underfull \vbox (badness 10000) detected at line 134
  []
 
 [11]
+Underfull \vbox (badness 10000) detected at line 146
+ []
+
 Missing character: There is no ç in font cmr12!
 
-Underfull \vbox (badness 10000) detected at line 159
+Underfull \vbox (badness 10000) detected at line 168
  []
 
 [12]
-Underfull \vbox (badness 10000) detected at line 173
+Underfull \vbox (badness 10000) detected at line 182
  []
 
 [13]
-Underfull \hbox (badness 6608) in paragraph at lines 184--184
+Underfull \hbox (badness 6608) in paragraph at lines 193--193
 []\OT1/cmr/m/n/12 El sis-tema es-bor-ra una ''sea-son set'' i els seus com-po-
  []
 
 
-Underfull \vbox (badness 10000) detected at line 188
+Underfull \vbox (badness 10000) detected at line 197
  []
 
 
-Underfull \hbox (badness 4242) in paragraph at lines 207--207
+Underfull \hbox (badness 4242) in paragraph at lines 216--216
 []\OT1/cmr/m/n/12 El sis-tema li mostra un for-mu-la-ri de edi-ci^^So dels com-
 po-
  []
 
 
-Underfull \vbox (badness 10000) detected at line 208
+Underfull \vbox (badness 10000) detected at line 217
  []
 
 [14]
-Underfull \hbox (badness 4242) in paragraph at lines 221--221
+Underfull \hbox (badness 4242) in paragraph at lines 230--230
 []\OT1/cmr/m/n/12 El sis-tema li mostra un for-mu-la-ri de edi-ci^^So dels com-
 po-
  []
 
 
-Underfull \vbox (badness 10000) detected at line 225
+Underfull \vbox (badness 10000) detected at line 234
  []
 
 [15]
-Underfull \vbox (badness 10000) detected at line 245
+Underfull \vbox (badness 10000) detected at line 254
  []
 
 [16]
-
-! LaTeX Error: \begin{itemize} on input line 264 ended by \end{enumerate}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.264 }
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Extra }, or forgotten \endgroup.
-\endminipage ...pagefalse \color@endgroup \egroup 
-                                                  \expandafter \@iiiparbox \...
-l.264 }
-       
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-
-! LaTeX Error: \begin{enumerate} on input line 264 ended by \end{minipage}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.264 }
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.264 }
-       
-I've put in what seems to be necessary to fix
-the current column of the current alignment.
-Try to go on, since this might almost work.
-
-! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.264 }
-       
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Underfull \vbox (badness 10000) detected at line 265
- []
-
-
-Underfull \vbox (badness 10000) detected at line 278
+Underfull \vbox (badness 10000) detected at line 275
  []
 
 [17]
-Underfull \vbox (badness 10000) detected at line 293
- []
-
-
-Underfull \vbox (badness 10000) detected at line 310
+Underfull \vbox (badness 10000) detected at line 288
  []
 
 [18]
-Underfull \vbox (badness 10000) detected at line 329
+Underfull \vbox (badness 10000) detected at line 303
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 320
  []
 
 [19]
 Underfull \vbox (badness 10000) detected at line 339
  []
 
-
+[20]
 Underfull \vbox (badness 10000) detected at line 349
  []
 
-[20]
+
 Underfull \vbox (badness 10000) detected at line 359
  []
 
-
-Underfull \vbox (badness 10000) detected at line 372
- []
-
 [21]
-Underfull \vbox (badness 10000) detected at line 384
+Underfull \vbox (badness 10000) detected at line 369
  []
 
 
-Underfull \vbox (badness 10000) detected at line 394
+Underfull \vbox (badness 10000) detected at line 382
  []
 
 [22]
-Underfull \vbox (badness 10000) detected at line 406
+Underfull \vbox (badness 10000) detected at line 394
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 404
+ []
+
+[23]
+Underfull \vbox (badness 10000) detected at line 416
  []
 
 Missing character: There is no ç in font cmr12!
 
-Underfull \vbox (badness 10000) detected at line 418
+Underfull \vbox (badness 10000) detected at line 428
  []
 
-[23]
-Underfull \vbox (badness 10000) detected at line 429
- []
-
-
+[24]
 Underfull \vbox (badness 10000) detected at line 439
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 449
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [24]
-Underfull \vbox (badness 10000) detected at line 449
+ [25]
+Underfull \vbox (badness 10000) detected at line 459
  []
 
 
-Underfull \vbox (badness 10000) detected at line 464
+Underfull \vbox (badness 10000) detected at line 474
  []
 
 
-Underfull \vbox (badness 10000) detected at line 484
- []
-
-[25]
-Underfull \vbox (badness 10000) detected at line 504
+Underfull \vbox (badness 10000) detected at line 494
  []
 
 [26]
-Overfull \hbox (1.26456pt too wide) in paragraph at lines 506--506
+Underfull \vbox (badness 10000) detected at line 514
+ []
+
+[27]
+Overfull \hbox (1.26456pt too wide) in paragraph at lines 516--516
 []\OT1/cmr/bx/n/14.4 Configurar un ''sam-ple'' d'u-na ma-triu de predic-
  []
 
 
-Underfull \vbox (badness 10000) detected at line 516
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 
-Underfull \vbox (badness 10000) detected at line 528
- []
-
-[27]
 Underfull \vbox (badness 10000) detected at line 538
  []
 
-
+[28]
 Underfull \vbox (badness 10000) detected at line 548
  []
 
-[28]
-Underfull \vbox (badness 10000) detected at line 559
+
+Underfull \vbox (badness 10000) detected at line 558
+ []
+
+[29]
+Underfull \vbox (badness 10000) detected at line 569
  []
 
 ! Undefined control sequence.
-l.562 En el seg\¨
+l.572 En el seg\¨
                  {u}ent diagrama UML est\`{a} implementat el modelatge de da...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -976,14 +916,17 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<img/specification/ModelClass.png, id=872, 1105.12875pt x 747.79375pt>
+<img/specification/ModelClass.png, id=884, 1105.12875pt x 747.79375pt>
 File: img/specification/ModelClass.png Graphic file (type png)
 
 <use img/specification/ModelClass.png>)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29] [30 <./img/specification/ModelClass.png>]
+[30] [31 <./img/specification/ModelClass.png>] [32
+
+
+]
 \openout2 = `dessign.aux'.
 
  (./dessign.tex
@@ -993,7 +936,7 @@ Overfull \hbox (7.54384pt too wide) in paragraph at lines 6--6
 []\OT1/cmr/bx/n/17.28 Esquema gen-er-al ar-qui-tect^^Sonic del sis-tema 
  []
 
-<img/design/ArchitectureSoftware.png, id=889, 835.12pt x 461.725pt>
+<img/design/ArchitectureSoftware.png, id=905, 835.12pt x 461.725pt>
 File: img/design/ArchitectureSoftware.png Graphic file (type png)
 
 <use img/design/ArchitectureSoftware.png>
@@ -1001,9 +944,7 @@ Overfull \hbox (27.55898pt too wide) in paragraph at lines 10--11
 [][] 
  []
 
-[31
-
-
+[33
 
 
  <./img/design/ArchitectureSoftware.png>]
@@ -1032,7 +973,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<img/design/IchnaeaPatterns.png, id=897, 956.57375pt x 495.8525pt>
+<img/design/IchnaeaPatterns.png, id=913, 956.57375pt x 495.8525pt>
 File: img/design/IchnaeaPatterns.png Graphic file (type png)
 
 <use img/design/IchnaeaPatterns.png>
@@ -1041,7 +982,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Missing character: There is no ç in font cmr12!
 Missing character: There is no ç in font cmr12!
-[32] [33 <./img/design/IchnaeaPatterns.png>]
+[34] [35 <./img/design/IchnaeaPatterns.png>]
 ! Undefined control sequence.
 l.64 ...cursos de la aplicaci\'{o} \'{e}s la seg\¨
                                                   {u}ent:\\
@@ -1052,46 +993,24 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--66
-
+Overfull \hbox (6.95866pt too wide) in paragraph at lines 64--71
+[] \OT1/cmr/m/n/12 S'ha em-prat aque-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--75
-
- []
+LaTeX Warning: Citation `json' on page 36 undefined on input line 73.
 
 
-Overfull \hbox (5.06664pt too wide) in paragraph at lines 80--80
-[]\OT1/cmr/m/n/12 /api/variable/(id)/seasonSet| 
- []
-
-
-Overfull \hbox (29.87193pt too wide) in paragraph at lines 81--81
-[]\OT1/cmr/m/n/12 /api/variable/(id)/seasonSet/(id)| 
- []
-
-
-Overfull \hbox (29.87193pt too wide) in paragraph at lines 82--82
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
 []\OT1/cmr/m/n/12 /api/variable/(id)/seasonSet/(id)
  []
 
 
-Overfull \hbox (29.87193pt too wide) in paragraph at lines 83--83
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
 []\OT1/cmr/m/n/12 /api/variable/(id)/seasonSet/(id)
  []
 
-
-Overfull \hbox (12.11656pt too wide) in paragraph at lines 84--84
-[]\OT1/cmr/m/n/12 /api/matrix/(id)/column/(id)| 
- []
-
-
-Overfull \hbox (10.22353pt too wide) in paragraph at lines 85--85
-[]\OT1/cmr/m/n/12 /api/matrix/(id)/sample/(id)| 
- []
-
-[34]) [35] [36
+) [36] [37] [38
 
 
 ]
@@ -1132,10 +1051,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[37
+[39
 
 
-]) [38]
+]) [40]
 ! Undefined control sequence.
 l.80 \cleardouplepage
                      
@@ -1205,7 +1124,7 @@ l.1 \chapter
 Ap\`endix A.
 Missing character: There is no ç in font cmr12!
 
-<img/userguide/dashboard_complete_trainings.png, id=953, 1371.1225pt x 770.88pt
+<img/userguide/dashboard_complete_trainings.png, id=970, 1371.1225pt x 770.88pt
 >
 File: img/userguide/dashboard_complete_trainings.png Graphic file (type png)
  <use img/userguide/dashboard_complete_trainings.png>
@@ -1299,7 +1218,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 Missing character: There is no è in font cmex10!
-<img/userguide/variable_configuration.png, id=958, 1371.1225pt x 770.88pt>
+<img/userguide/variable_configuration.png, id=975, 1371.1225pt x 770.88pt>
 File: img/userguide/variable_configuration.png Graphic file (type png)
 
 <use img/userguide/variable_configuration.png>
@@ -1508,7 +1427,7 @@ t click ICON$[]\OML/cmm/m/it/12 DITAlapartatinferior[]Listofseasonset[]; clicka
 ralaICON[]LUS:$
  []
 
-<img/userguide/season_set_edition.png, id=967, 1371.1225pt x 770.88pt>
+<img/userguide/season_set_edition.png, id=985, 1371.1225pt x 770.88pt>
 File: img/userguide/season_set_edition.png Graphic file (type png)
 
 <use img/userguide/season_set_edition.png>pdfTeX warning (ext4): destination wi
@@ -1640,7 +1559,7 @@ l.112 \item N
              om de la sample: \'{e}s un identificador de la mostra. La aplic...
 [8]
 Missing character: There is no ç in font cmr12!
- <img/userguide/matrix_configure.png, id=980, 1371.1225pt x 770.88pt>
+ <img/userguide/matrix_configure.png, id=997, 1371.1225pt x 770.88pt>
 File: img/userguide/matrix_configure.png Graphic file (type png)
 
 <use img/userguide/matrix_configure.png>
@@ -1654,16 +1573,22 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.149 
-       [9] <img/userguide/clone_matrix.png, id=984, 1371.1225pt x 770.88pt>
+       [9]pdfTeX warning (ext4): destination with the same identifier (name{pag
+e.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.164 \section
+              {Clonar una matriu} [10 <./img/userguide/matrix_configure.png (PN
+G copy)>] <img/userguide/clone_matrix.png, id=1005, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix.png Graphic file (type png)
 
 <use img/userguide/clone_matrix.png>
-<img/userguide/clone_matrix-2.png, id=985, 1371.1225pt x 770.88pt>
+<img/userguide/clone_matrix-2.png, id=1006, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix-2.png Graphic file (type png)
 
 <use img/userguide/clone_matrix-2.png>
 ! Undefined control sequence.
-l.177 ...u i anem a la interficie de configuraci\Â
+l.180 ...u i anem a la interficie de configuraci\Â
                                                   ´{o}. Mirar \ref{sec:confi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1672,27 +1597,21 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.178 
-       [10 <./img/userguide/matrix_configure.png (PNG copy)>]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.180 ...e matrius del sistema, amb la icona ICON_
+l.183 ...e matrius del sistema, amb la icona ICON_
                                                   ROAD, es pot accedir al fo...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 180.
+LaTeX Warning: Command \' invalid in math mode on input line 183.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.180 ...s pot accedir al formulari de creaci\'{o}
+l.183 ...s pot accedir al formulari de creaci\'{o}
                                                    de trainings.
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -1700,7 +1619,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.180 ...s pot accedir al formulari de creaci\'{o}
+l.183 ...s pot accedir al formulari de creaci\'{o}
                                                    de trainings.
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -1714,7 +1633,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.181 \begin{figure}[h!]
+l.184 \begin{figure}[h!]
                         
 You've lost some text.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1722,7 +1641,7 @@ If that doesn't work, type  X <return>  to quit.
 ! Undefined control sequence.
 \@float@Hx ...ltovf \fi \global \setbox \@currbox 
                                                   \color@vbox \normalcolor \...
-l.181 \begin{figure}[h!]
+l.184 \begin{figure}[h!]
                         
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1733,20 +1652,20 @@ and I'll forget about whatever was undefined.
 ! Missing number, treated as zero.
 <to be read again> 
                    \vbox 
-l.181 \begin{figure}[h!]
+l.184 \begin{figure}[h!]
                         
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
 
-<img/userguide/training_create.png, id=991, 1371.1225pt x 770.88pt>
+<img/userguide/training_create.png, id=1008, 1371.1225pt x 770.88pt>
 File: img/userguide/training_create.png Graphic file (type png)
 
 <use img/userguide/training_create.png>
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.188 \item
+l.191 \item
             Part esquerra superior: El training cont\'{e} un nom i una descr...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1754,7 +1673,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.188 \item
+l.191 \item
             Part esquerra superior: El training cont\'{e} un nom i una descr...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1765,7 +1684,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing \endgroup inserted.
 <inserted text> 
                 \endgroup 
-l.188 \item
+l.191 \item
             Part esquerra superior: El training cont\'{e} un nom i una descr...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1775,7 +1694,7 @@ my insertion and my current dilemma will both disappear.
 
 Missing character: There is no è in font cmex10!
 
-Overfull \hbox (237.4543pt too wide) in paragraph at lines 180--188
+Overfull \hbox (237.4543pt too wide) in paragraph at lines 183--191
 \OT1/cmr/m/n/12 train-ing''. Des-de el lli-s-tat de ma-trius del sis-tema, amb 
 la icona ICON$[]\OML/cmm/m/it/12 OAD; espotaccediralformularidecreaci[]detraini
 ngs:[]$ 
@@ -1784,7 +1703,7 @@ ngs:[]$
 ! Extra }, or forgotten \endgroup.
 \@par ... \@noitemerr {\@@par }\fi \else {\@@par }
                                                   \fi 
-l.188 \item
+l.191 \item
             Part esquerra superior: El training cont\'{e} un nom i una descr...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1792,19 +1711,16 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-
-Underfull \vbox (badness 3312) has occurred while \output is active []
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.188 \item P
+l.191 \item P
              art esquerra superior: El training cont\'{e} un nom i una descr...
 [11 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
 -2.png (PNG copy)>]
 ! Undefined control sequence.
-l.193 Si la creaci\Â
+l.196 Si la creaci\Â
                     ´{o} \Â´e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1814,7 +1730,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.193 Si la creaci\Â´{o} \Â
+l.196 Si la creaci\Â´{o} \Â
                            ´e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1824,7 +1740,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.193 ...aran a la cua de procesos i la aplicaci\Â
+l.196 ...aran a la cua de procesos i la aplicaci\Â
                                                   ´{o} es redirigir\Â´{a} la...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1834,7 +1750,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.193 ...ocesos i la aplicaci\Â´{o} es redirigir\Â
+l.196 ...ocesos i la aplicaci\Â´{o} es redirigir\Â
                                                   ´{a} la pantalla de visual...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1844,7 +1760,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.193 ...rigir\Â´{a} la pantalla de visualitzaci\Â
+l.196 ...rigir\Â´{a} la pantalla de visualitzaci\Â
                                                   ´{o} de trainings.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1854,7 +1770,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
 ! Undefined control sequence.
-l.199 ...pots accedir a visualitzar la informaci\Â
+l.202 ...pots accedir a visualitzar la informaci\Â
                                                   ´{o} del training.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1863,7 +1779,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-<img/userguide/view_training_pending.png, id=998, 1371.1225pt x 770.88pt>
+<img/userguide/view_training_pending.png, id=1015, 1371.1225pt x 770.88pt>
 File: img/userguide/view_training_pending.png Graphic file (type png)
 
 <use img/userguide/view_training_pending.png>
@@ -1874,20 +1790,20 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.216 \section
+l.219 \section
               {Crear una predicci\'{o}} [12]
-<img/userguide/prediction_create.png, id=1005, 1371.1225pt x 770.88pt>
+<img/userguide/prediction_create.png, id=1022, 1371.1225pt x 770.88pt>
 File: img/userguide/prediction_create.png Graphic file (type png)
 
 <use img/userguide/prediction_create.png>pdfTeX warning (ext4): destination wit
 h the same identifier (name{page.13}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.227 \begin{center}
+l.230 \begin{center}
                      [13 <./img/userguide/view_training_pending.png (PNG copy)>
  <./img/userguide/prediction_create.png (PNG copy)>]
 ! Undefined control sequence.
-l.230     Cel.la bu\¨
+l.233     Cel.la bu\¨
                      {i}da & Alias de la columna & .... & ORIGIN \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1896,12 +1812,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (7.31445pt too wide) in paragraph at lines 228--235
+Overfull \hbox (7.31445pt too wide) in paragraph at lines 231--238
  [] 
  []
 
 
-Overfull \hbox (5.44124pt too wide) in paragraph at lines 247--247
+Overfull \hbox (5.44124pt too wide) in paragraph at lines 250--250
 []\OT1/cmr/bx/n/14.4 Executar una predic-ci^^So de una ma-triu de predic-
  []
 
@@ -1939,28 +1855,22 @@ and I'll forget about whatever was undefined.
 (./specification.aux) (./dessign.aux) (./conclussions.aux) (./bibliography.aux)
 (./userguide.aux) (./adminguide.aux))
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 10042 strings out of 495061
- 149143 string characters out of 1182622
- 337586 words of memory out of 3000000
- 12607 multiletter control sequences out of 15000+50000
+ 10054 strings out of 495061
+ 149317 string characters out of 1182622
+ 337629 words of memory out of 3000000
+ 12612 multiletter control sequences out of 15000+50000
  9546 words of font info for 33 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,10n,75p,1083b,586s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{subsection.A.13.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.13.1} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.A.13} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.8.1} has been referenced but does not 
-exist, replaced by a fixed one
+pdfTeX warning (dest): name{section*.11} has been referenced but does not exi
+st, replaced by a fixed one
 
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share
 /texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texl
@@ -1970,9 +1880,9 @@ msfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 msl12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 /usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
 exmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (62 pages, 1167567 bytes).
+Output written on main.pdf (64 pages, 1182906 bytes).
 PDF statistics:
- 1125 PDF objects out of 1200 (max. 8388607)
- 343 named destinations out of 1000 (max. 500000)
- 922 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1140 PDF objects out of 1200 (max. 8388607)
+ 349 named destinations out of 1000 (max. 500000)
+ 927 words of extra memory for PDF output out of 10000 (max. 10000000)
 

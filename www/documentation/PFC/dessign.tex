@@ -38,7 +38,7 @@ Per la implementaci\`{o} del sistema web s'han usat els seg\¨{u}ents patrons de 
   \label{dessign:dessignpatters}
 \end{figure}
 
-Els components MVC amb controlador frontal \'{e}s un disseny t\'{i}pic en les aplicacions webs on:
+Els components MVC,Model-Vista-Controlador, amb controlador frontal \'{e}s un disseny t\'{i}pic en les aplicacions webs on:
 \begin{itemize}
 \item el model \'{e}s una representaci\'{o} de les dades en les que treballa la aplicaci\'{o}
 \item la vista transforma el model a un format visible i llegible
@@ -62,18 +62,17 @@ Arquitectonicament, Symfony2 estructura el codi en Bundle, similar als paquets d
 
 \subsection{Recursos}
 La estructura de recursos de la aplicaci\'{o} \'{e}s la seg\¨{u}ent:\\
-\begin{itemize}
-\item Matrius: matrix/\{id\}/
-\item ''Trainings'': matrix/\{id\}/training/\{id\}
-\item ''Predctions'':matrix/\{id\}/training/\{id\}/prediction/\{id\}
-\end{itemize}
-S'ha emprat aquesta estructura de recursos degut a les depencies entre les diferentes entitats. Un training depen d'una matriu i una predicci\'{o} depen d'un ''training''.
+\begin{tabular}{| l | l |}
+\hline  Matrius       & matrix/(id) \\ \hline
+\hline ''Trainings''  & matrix/(id)/training/(id) \\ \hline
+\hline ''Predctions'' & matrix/(id)/training/(id)/prediction/(id) \\ \hline
+\end{tabular}
+S'ha emprat aquesta estructura de recursos degut a les depencies entre les diferentes entitats. Un ''training'' dep\'{e}n d'una matriu i una predicci\'{o} dep\'{e}n d'un ''training''.
 
 \section{Servei web}
-S'ha desenvolupat una llibreria API JSON Restful per enriquir les interficies. S'ha emprat aquesta tecnologia per la escalabilitat que aporta i perque en un futur es pogui aprofitar el desenvolupament d'aquesta.
+S'ha desenvolupat una llibreria API JSON Restful\cite{apijson} per enriquir les interficies. S'ha emprat aquesta tecnologia per la escalabilitat que aporta i perque en un futur es pogui aprofitar el desenvolupament d'aquesta.
 Les operacions, els recursos i el parametres son:\\
-
-\begin{tabular}{ | l | p{5cm} |}
+\begin{tabular}{ | l | p{7cm} |}
 \hline
 GET & /api/season/(id) \\ \hline
 POST & /api/season/searchByName \\ \hline
@@ -85,10 +84,20 @@ PUT & /api/matrix/(id)/column/(id)\\ \hline
 PUT & /api/matrix/(id)/sample/(id)\\ \hline
 \end{tabular}
 
+
 \section{Integraci\'{o} amb el sistema de cues RabbitMQP}
-\subsection{Introducci\'{o} a l'arquitectura de cues}
+\subsection{Introducci\'{o} a l'arquitectura de cues: AMQP}
 \label{dessign:queue_system_overview}
-PETIT DIAGRAMA I EXPLICACI\'{O} DE CONSUMIDORS I PRODUCTORS
+TRADUCIR\\
+El estándar AMQP (Advanced Message Queuing Protocol) es un protocolo de estándar abierto en la capa de aplicaciones de un sistema de comunicación. Las características que definen al protocolo AMQP son la orientación a mensajes, encolamiento ("queuing"), enrutamiento (tanto punto-a-punto como publicación-subscripción), exactitud y seguridad.
+AMQP define una serie de entidades. Desde la perspectiva de la interconexión las más relevantes son:
+El corredor de mensajes: un servidor al que los clientes AMQP se conectan usando el protocolo AMQP. Los corredores de mensajes pueden ejecutarse en un entorno distribuido, pero esta capacidad es específica de la implementación y no está cubierta por la especificación.
+\begin{itemize}
+    Usuario: un usuario es una entidad que, mediante la presentación de credenciales tales como una contraseña, puede ser autorizado (o puede no ser autorizado) a conectarse a un corredor.
+    Conexión: una conexión física usando por ejemplo TCP/IP o SCTP. Una conexión está ligada a un usuario.
+    Canal: una conexión lógica que está unida a una conexión. Así pues, la comunicación a través de un canal posee un estado. Aquellos clientes que realicen operaciones concurrentes mediante una misma conexión deben mantener un canal distinto para cada una de ellas. Aquellos clientes que usen un modelo basado en hilos para la concurrencia pueden, por ejemplo, encapsular la declaración del canal en una variable local de cada hebra.
+\end{itemize}
+
 \subsection{Consumidors}
 \subsubsection{Consumidor ''trainings''}
 \subsubsection{Consumidor de prediccions}
