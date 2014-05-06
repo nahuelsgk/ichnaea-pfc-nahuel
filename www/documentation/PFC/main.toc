@@ -59,23 +59,22 @@
 \contentsline {section}{\numberline {4.1}Esquema general arquitect\'{o}nic del sistema}{33}{section.4.1}
 \contentsline {section}{\numberline {4.2}Patr\'{o} de disseny}{34}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Esquema del disseny}{34}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Implementaci\'{o} i tecnologies}{35}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Symfony}{35}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.3}Implementaci\'{o} i tecnologies}{36}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Symfony}{36}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Recursos}{36}{subsection.4.3.2}
 \contentsline {section}{\numberline {4.4}Servei web}{36}{section.4.4}
-\contentsline {section}{\numberline {4.5}Integraci\'{o} amb el sistema de cues RabbitMQP}{36}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Introducci\'{o} a l'arquitectura de cues}{36}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Consumidors}{37}{subsection.4.5.2}
-\contentsline {subsubsection}{Consumidor ''trainings''}{37}{section*.7}
-\contentsline {subsubsection}{Consumidor de prediccions}{37}{section*.8}
-\contentsline {section}{\numberline {4.6}Interf\'{i}cies}{37}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Interf\'{i}cie de configuraci\'{o} de matrius}{37}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Interficies de carrega de matrius per fitxers }{37}{subsection.4.6.2}
-\contentsline {chapter}{\numberline {5}Conclusions}{39}{chapter.5}
-\contentsline {section}{\numberline {5.1}Estimaci\'{o} econ\'{o}mica}{39}{section.5.1}
-\contentsline {section}{\numberline {5.2}Millores en futures versions}{39}{section.5.2}
+\contentsline {section}{\numberline {4.5}Integraci\'{o} amb el sistema de cues RabbitMQP}{37}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Introducci\'{o} a l'arquitectura de cues: AMQP}{37}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Consumidors i gesti\'{o} de resultats}{38}{subsection.4.5.2}
+\contentsline {subsubsection}{Consumidor ''trainings''}{39}{section*.7}
+\contentsline {section}{\numberline {4.6}Interf\'{i}cies}{39}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Interf\'{i}cie de configuraci\'{o} de matrius}{39}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Interficies de carrega de matrius per fitxers }{39}{subsection.4.6.2}
+\contentsline {chapter}{\numberline {5}Conclusions}{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Estimaci\'{o} econ\'{o}mica}{41}{section.5.1}
+\contentsline {section}{\numberline {5.2}Millores en futures versions}{41}{section.5.2}
 \contentsline {chapter}{\numberline {6}Bibliografia}{1}{chapter.6}
-\contentsline {chapter}{Bibliografia}{3}{section*.10}
+\contentsline {chapter}{Bibliografia}{3}{section*.9}
 \contentsline {chapter}{\numberline {A}Manual d'usuari}{5}{appendix.A}
 \contentsline {section}{\numberline {A.1}Casa de l'usuari}{5}{section.A.1}
 \contentsline {subsection}{\numberline {A.1.1}Llistat dels meus trainings pendents}{5}{subsection.A.1.1}

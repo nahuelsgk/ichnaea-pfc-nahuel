@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  5 MAY 2014 20:12
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  6 MAY 2014 18:46
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -575,13 +575,13 @@ Overfull \hbox (9.4534pt too wide) in paragraph at lines 55--63
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.74 ...\numberline {5}Conclusions}{39}{chapter.5}
+l.73 ...\numberline {5}Conclusions}{41}{chapter.5}
                                                    [2]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.111 ...line {B.3}Comprovar cua}{15}{section.B.3}
+l.110 ...line {B.3}Comprovar cua}{15}{section.B.3}
                                                    [3])
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -965,7 +965,7 @@ m el paradig-
  []
 
 ! Undefined control sequence.
-l.23 ...\`{o} del sistema web s'han usat els seg\¨
+l.23 ...ini i persistencia de dades) amb els seg\¨
                                                   {u}ents patrons de disseny:
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -973,7 +973,13 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<img/design/IchnaeaPatterns.png, id=913, 956.57375pt x 495.8525pt>
+
+Overfull \hbox (21.43741pt too wide) in paragraph at lines 23--25
+\OT1/cmr/m/n/12 Per la im-ple-mentaci^^Ro del sis-tema web s'han us-at un dis-s
+e-ny per capes(Presentaci^^So,
+ []
+
+<img/design/IchnaeaPatterns.png, id=913, 911.405pt x 495.8525pt>
 File: img/design/IchnaeaPatterns.png Graphic file (type png)
 
 <use img/design/IchnaeaPatterns.png>
@@ -981,10 +987,15 @@ File: img/design/IchnaeaPatterns.png Graphic file (type png)
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Missing character: There is no ç in font cmr12!
+[34]
+Missing character: There is no ó in font cmr12!
 Missing character: There is no ç in font cmr12!
-[34] [35 <./img/design/IchnaeaPatterns.png>]
+ [35 <./img/design/IchnaeaPatterns.png>]
+
+LaTeX Warning: Citation `fosuserbundle' on page 36 undefined on input line 62.
+
 ! Undefined control sequence.
-l.64 ...cursos de la aplicaci\'{o} \'{e}s la seg\¨
+l.70 ...cursos de la aplicaci\'{o} \'{e}s la seg\¨
                                                   {u}ent:\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -993,24 +1004,57 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (6.95866pt too wide) in paragraph at lines 64--71
-[] \OT1/cmr/m/n/12 S'ha em-prat aque-
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+
  []
 
 
-LaTeX Warning: Citation `json' on page 36 undefined on input line 73.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
-[]\OT1/cmr/m/n/12 /api/variable/(id)/seasonSet/(id)
+Overfull \hbox (17.0336pt too wide) in paragraph at lines 82--98
+[] \OT1/cmr/m/n/12 Les
  []
 
+[36]
+Missing character: There is no ó in font cmr12!
+Missing character: There is no í in font cmr12!
+Missing character: There is no ó in font cmr12!
+Missing character: There is no ó in font cmr12!
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
-[]\OT1/cmr/m/n/12 /api/variable/(id)/seasonSet/(id)
+! Undefined control sequence.
+l.105 ...poden executar-se en un entorn distribu\¨
+                                                  {i}, pero aquesta capacita...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ó in font cmr12!
+Missing character: There is no ó in font cmr12!
+[37]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 119.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 124.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 124.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 124.
+
+ (/usr/share/texmf-texlive/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 124.
+
+Overfull \hbox (10.00354pt too wide) in paragraph at lines 144--145
+[][][][][][][][][][][]  
  []
 
-) [36] [37] [38
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+
+ []
+
+) [39] [40
 
 
 ]
@@ -1043,7 +1087,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.14 ...en un entorn m\'{e}s complexa i distribu\¨
+l.14 ...en un entorn m\'{e}s complexe i distribu\¨
                                                   {i}t.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1051,10 +1095,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[39
+[41
 
 
-]) [40]
+]) [42]
 ! Undefined control sequence.
 l.80 \cleardouplepage
                      
@@ -1102,30 +1146,127 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--23
 []\OT1/cmr/m/n/12 Fabien Po-tenci-er ''What is Sym-fony2?'' [On-line]
  []
 
-)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
- been already used, duplicate ignored
+! Missing $ inserted.
+<inserted text> 
+                $
+l.24 ...] ''http://es.wikipedia.org/wiki/Advanced_
+                                                  Message_Queuing_Protocol''
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.25 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.25 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+[]\OT1/cmr/m/n/12 ''Advanced Mes-sage Queu-ing Pro-to-col'' [On-line]
+ []
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.25 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no ó in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+[]\OT1/cmr/m/n/12 ''El pa-trn Repos-i-to-rio (Repos-i-to-ry Pat-tern)'' [On-lin
+e]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+\OT1/cmr/m/n/12 ''http://barradevblog.wordpress.com/2013/04/23/el-patron-reposi
+torio-
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.28 ...ine] ''http://es.wikipedia.org/wiki/Mapeo_
+                                                  objeto-relacional''
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.29 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.29 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (21.62105pt too wide) in paragraph at lines 28--29
+[]\OT1/cmr/m/n/12 ''Mapeo objeto-relacional'' [On-line] ''http://es.wikipedia.o
+rg/wiki/Mapeo$[]\OML/cmm/m/it/12 bjeto \OMS/cmsy/m/n/12 ^^@
+ []
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.29 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.30 \bibitem{dependency_injection}
+                                    Martin Fowler [Online] ''http://martinfo...
+[3])pdfTeX warning (ext4): destination with the same identifier (name{page.4}) 
+has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.81 \include{bibliography}
-                            [3]
+                            [4]
 No file main.gls.
 \openout2 = `userguide.aux'.
 
-(./userguide.texpdfTeX warning (ext4): destination with the same identifier (na
-me{page.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1 \chapter
-            {Manual d'usuari} [4
-
-
-
-]
+(./userguide.tex
 Ap\`endix A.
 Missing character: There is no ç in font cmr12!
 
-<img/userguide/dashboard_complete_trainings.png, id=970, 1371.1225pt x 770.88pt
->
+<img/userguide/dashboard_complete_trainings.png, id=1025, 1371.1225pt x 770.88p
+t>
 File: img/userguide/dashboard_complete_trainings.png Graphic file (type png)
  <use img/userguide/dashboard_complete_trainings.png>
 Missing character: There is no ç in font cmr12!
@@ -1135,7 +1276,11 @@ been already used, duplicate ignored
                    \relax 
 l.23 \item P
             rogr\'{e}s: actualment Ichnaea no retorna estat del proces. Sola...
-[5 <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
+[5
+
+
+
+ <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
 Overfull \hbox (22.99525pt too wide) in paragraph at lines 24--26
 []\OT1/cmr/m/n/12 Status. Els pos-si-bles sta-tus son ''pend-ing''(no s'ha pogu
 t en-viar),''sent''(s'ha
@@ -1218,7 +1363,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 Missing character: There is no è in font cmex10!
-<img/userguide/variable_configuration.png, id=975, 1371.1225pt x 770.88pt>
+<img/userguide/variable_configuration.png, id=1030, 1371.1225pt x 770.88pt>
 File: img/userguide/variable_configuration.png Graphic file (type png)
 
 <use img/userguide/variable_configuration.png>
@@ -1427,7 +1572,7 @@ t click ICON$[]\OML/cmm/m/it/12 DITAlapartatinferior[]Listofseasonset[]; clicka
 ralaICON[]LUS:$
  []
 
-<img/userguide/season_set_edition.png, id=985, 1371.1225pt x 770.88pt>
+<img/userguide/season_set_edition.png, id=1036, 1371.1225pt x 770.88pt>
 File: img/userguide/season_set_edition.png Graphic file (type png)
 
 <use img/userguide/season_set_edition.png>pdfTeX warning (ext4): destination wi
@@ -1559,7 +1704,7 @@ l.112 \item N
              om de la sample: \'{e}s un identificador de la mostra. La aplic...
 [8]
 Missing character: There is no ç in font cmr12!
- <img/userguide/matrix_configure.png, id=997, 1371.1225pt x 770.88pt>
+ <img/userguide/matrix_configure.png, id=1048, 1371.1225pt x 770.88pt>
 File: img/userguide/matrix_configure.png Graphic file (type png)
 
 <use img/userguide/matrix_configure.png>
@@ -1579,11 +1724,11 @@ e.10}) has been already used, duplicate ignored
                    \relax 
 l.164 \section
               {Clonar una matriu} [10 <./img/userguide/matrix_configure.png (PN
-G copy)>] <img/userguide/clone_matrix.png, id=1005, 1371.1225pt x 770.88pt>
+G copy)>] <img/userguide/clone_matrix.png, id=1057, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix.png Graphic file (type png)
 
 <use img/userguide/clone_matrix.png>
-<img/userguide/clone_matrix-2.png, id=1006, 1371.1225pt x 770.88pt>
+<img/userguide/clone_matrix-2.png, id=1058, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix-2.png Graphic file (type png)
 
 <use img/userguide/clone_matrix-2.png>
@@ -1658,7 +1803,7 @@ A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
 
-<img/userguide/training_create.png, id=1008, 1371.1225pt x 770.88pt>
+<img/userguide/training_create.png, id=1060, 1371.1225pt x 770.88pt>
 File: img/userguide/training_create.png Graphic file (type png)
 
 <use img/userguide/training_create.png>
@@ -1779,7 +1924,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 Missing character: There is no ´ in font cmr12!
-<img/userguide/view_training_pending.png, id=1015, 1371.1225pt x 770.88pt>
+<img/userguide/view_training_pending.png, id=1067, 1371.1225pt x 770.88pt>
 File: img/userguide/view_training_pending.png Graphic file (type png)
 
 <use img/userguide/view_training_pending.png>
@@ -1792,7 +1937,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has
                    \relax 
 l.219 \section
               {Crear una predicci\'{o}} [12]
-<img/userguide/prediction_create.png, id=1022, 1371.1225pt x 770.88pt>
+<img/userguide/prediction_create.png, id=1073, 1371.1225pt x 770.88pt>
 File: img/userguide/prediction_create.png Graphic file (type png)
 
 <use img/userguide/prediction_create.png>pdfTeX warning (ext4): destination wit
@@ -1862,27 +2007,26 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 10054 strings out of 495061
- 149317 string characters out of 1182622
- 337629 words of memory out of 3000000
- 12612 multiletter control sequences out of 15000+50000
+ 10119 strings out of 495061
+ 150288 string characters out of 1182622
+ 387796 words of memory out of 3000000
+ 12637 multiletter control sequences out of 15000+50000
  9546 words of font info for 33 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,10n,75p,1083b,586s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{section*.11} has been referenced but does not exi
-st, replaced by a fixed one
-
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-msl12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
-exmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (64 pages, 1182906 bytes).
+ 38i,10n,75p,1083b,1645s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (66 pages, 1227164 bytes).
 PDF statistics:
- 1140 PDF objects out of 1200 (max. 8388607)
- 349 named destinations out of 1000 (max. 500000)
+ 1204 PDF objects out of 1440 (max. 8388607)
+ 386 named destinations out of 1000 (max. 500000)
  927 words of extra memory for PDF output out of 10000 (max. 10000000)
 

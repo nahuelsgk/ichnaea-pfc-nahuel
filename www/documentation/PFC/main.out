@@ -62,8 +62,8 @@
 \BOOKMARK [2][-]{subsection.4.3.2}{Recursos}{section.4.3}
 \BOOKMARK [1][-]{section.4.4}{Servei web}{chapter.4}
 \BOOKMARK [1][-]{section.4.5}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.5.1}{Introducci\363 a l'arquitectura de cues}{section.4.5}
-\BOOKMARK [2][-]{subsection.4.5.2}{Consumidors}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.1}{Introducci\363 a l'arquitectura de cues: AMQP}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.2}{Consumidors i gesti\363 de resultats}{section.4.5}
 \BOOKMARK [1][-]{section.4.6}{Interf\355cies}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.6.1}{Interf\355cie de configuraci\363 de matrius}{section.4.6}
 \BOOKMARK [2][-]{subsection.4.6.2}{Interficies de carrega de matrius per fitxers }{section.4.6}
@@ -71,7 +71,7 @@
 \BOOKMARK [1][-]{section.5.1}{Estimaci\363 econ\363mica}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{Millores en futures versions}{chapter.5}
 \BOOKMARK [0][-]{chapter.6}{Bibliografia}{}
-\BOOKMARK [0][-]{section*.10}{Bibliografia}{}
+\BOOKMARK [0][-]{section*.9}{Bibliografia}{}
 \BOOKMARK [0][-]{appendix.A}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.A.1}{Casa de l'usuari}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.1.1}{Llistat dels meus trainings pendents}{section.A.1}
