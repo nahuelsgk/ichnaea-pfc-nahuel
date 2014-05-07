@@ -23,25 +23,27 @@ A continuaci\'{o} veurem les entitats amb les que treballa Ichnaea per tal poder
 \label{cha:backgroud:univers:matrius}
 Ichnaea processa inicialment unes matrius on \'e{s} defineixen les mostres de dades extretes, on cada columna representa una variable i cada fila representa una mostra. 
 
-\subsubsection{Variables de la matriu i conjunts de envelliments: Season Set i Seasons}
+\subsubsection{Variables i conjunts de envelliments}
 \label{cha:backgroud:univers:matrius:variables_seasons}
-Cada columna d'aquesta matriu, representa una variable. Aquesta variable pot ser:\\
+Les variables de Ichnaea tenen asociades uns fitxers. En aquest fitxers s'especifiquen dades mesurades que representen els envelliments de les mostres d'aquestes variables segons la estaci\'{o} de l'any. Aquests fitxers s'agrupen en un conjunt per formar un conjunt d'envelliments.\\
 
+L'objectiu de tenir diferents conjunts d'envelliments \'{e}s tenir agrupats segons les localitzacions. Per exemple, podem tenir la bacteria \textit{Fecal Coliform} amb dos conjunts de envelliments de dos localitzacions diferents del mon. Per exemple, un conjunt de envelliments pot correspondre a mesures fetes a Nairobi i unes altres a Mosc\'{u}. I cada fitxer representra una estaci\'{o} de l'any, ja que segons la estaci\'{o} i la localitzaci\'{o} els envelliments son diferents.\\
+
+\subsection{La matriu i les mostres}
+Cada columna d'aquesta matriu, representa una variable de la matriu. Aquesta variable pot ser:\\
 \begin{itemize}
-\item Una variable de una bacteria: "variable single"
-\item Una variable derivada de dos "variables single"
+\item Una variable que representa una variable de Ichnaea: "variable single"
+\item Una variable derivada. Son dos "variables single" relacionadas per una operaci\'{o}.
 \item Una variable d'origen, obligatoria per cada mostra. \'{E}s una etiqueta que identifica l'origen de la mostra.
 \end{itemize}
+Les variables d'origen representa una etiqueta de la mostra per tal de identificar origen de la pol.luci\'{o}. En aquestes matrius els origens son obligatoris i cada columna ha de tenir un valor definit.\\
 
-Les ''variables single'' tenen asociades uns fitxers. En aquest fitxers s'especifiquen dades mesurades que representen els envelliments de les mostres d'aquestes variables. A un fitxer, un envelliment, l'anomenem ''Season'' i al conjunt de envelliments d'una variable els anomenem ''Season Sets''.\\
-
-Les variables d'origen representa una etiqueta de la mostra per tal de identificar origen de pol.luci\'{o}.\\
-
-Les mostres han de ser completes. Es a dir, per cada variable ha tenir un valor definit.
-
-\subsection{''Trainings'': els entrenaments}
-Ichnaea processa aquestes matrius amb els conjunts d'envelliments per calcular una bossa de models. Aquesta proc\'{e}s s'anomena en anomenem entrenaments o "Trainings". \\
+\subsection{Entrenaments}
+Ichnaea processa aquestes matrius amb un conjunt d'envelliments per calcular una bossa de models. Aquesta proc\'{e}s s'anomena entrenaments. \\
 Aquestes bosses de m\`{o}dels resultants s'utilitzen per fer prediccions.
 
 \subsection{Matrius de prediccions}
 Les dades que necessita Ichnaea per fer prediccions son un conjunt de noves mostres en forma de matriu. A partir d'un entrenament, pot fer prediccions d'origens de contaminaci\'{o}. Aquestes matrius son molt similars descrites a la secci\'{o} \ref{cha:backgroud:univers:matrius}. La difer\'{e}ncia \'{e}s que les mostres no han de ser completes. Per exemple, les mostres no tenen perque tenir un origen o poden valors per variables sense definir.
+
+\subsection{Sistema de cues}
+Ichnaea Software requereix d'un cost alt de proc\'{e}s tant en rendiment com en temps. Aquest projecte s'ha desenvolupat en paral.lel amb el Projecte de Final de Carrera de Miguel Ibero que implementa un sistema de cues d'execuci\'{o} de Ichnaea. Aquest projecte s'ha de integrar amb aquest sistema seguint els requeriments del projecte ''Sistema de cues per a Ichnaea Software''.
