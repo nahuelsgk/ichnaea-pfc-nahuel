@@ -1,0 +1,165 @@
+\chapter{Implementaci\'{o}}
+\label{cha:implementation}
+
+\section{Estudi previ de les tecnologies}
+En aquesta secci'{o} es far\'{a} una descripci\'{o} de les tecnologies estudiades per tal de poder realitzar aquest projecte. 
+
+\subsection{\textit{Framework} a mida}
+En un principi \'{e}s va valorar la possibilitat de desenvolupar tot un nou \textit{framework} per la implementaci\'{o} del projecte. Les tecnologies empredades eran PHP com a llenguatge de programaci\'{o} i MySQL com a motor de bases de dades.
+\paragraph{Avantatges}
+\begin{itemize} 
+\item La principal avantatge \'{e}s el control total de la implantaci\'{o} de tots els procesos.
+\end{itemize} 
+
+\paragraph{Desavantatges}
+\begin{itemize} 
+\item Desenvolupament lentissim.
+\item Reinventar la roda quan no \'{e}s necessari.
+\end{itemize} 
+
+\subsection{\textit{Codeigniter}}
+Codeigniter \'{e}s un \textit{framework} per a desenvolupament web r\`{a}pid amb PHP. Usa el patr\'{o} ''active record' per la gesti\'{o} d'emmagazetmatge de dades. 
+\paragraph{Avantatges}
+\begin{itemize}
+\item Curva d'aprenentatge baixa
+\item Desenvolupament r\`{a}pid
+\item \'{E}s patr\'{o} MVC.
+\end{itemize}
+
+\paragraph{Desavantatges}
+\begin{itemize}
+\item No cumpleix tots el requisits de disseny de patrons especificat.
+\item No inclou \textit{templating}
+\item Dificultat en segregar la l\`{o}gica de la presentaci\'{o}.
+\end{itemize}
+
+\subsection{\textit{Symfony2}}
+Symfony2 \'{e}s un HTTP framework per a PHP. Nativament implementa una variaci\'{o} del Model-Vista-Controlador amb controlador frontal amb injecci\'{o} de depencies a la capa de serveis.\cite{symfony}
+
+\paragraph{Avantatges}
+\begin{itemize}
+\item Altament configurable.
+\item Cumpleix tots els requisists de dissenys de patrons especificat.
+\item Alt rendiment
+\end{itemize}
+
+\paragraph{Desavantatges}
+\begin{itemize}
+\item Corba d'aprenentatge alta.
+\end{itemize}
+
+\section{Implementaci\'{o}}
+El \itemit{framework} escollit ha sigut Symfony2. A continuaci\'{o} es dona una visi\'{o} general de les tecnologies.
+
+\subsection{Symfony}
+Arquitectonicament, Symfony2 estructura el codi en \textit{Bundles}, similar als paquets de JAVA. Els \textit{bundles} son un conjunt de serveis, entitats i recursos independents entre si. Els bundles implementats son:
+\begin{itemize}
+\item \textitBundle de usuaris: UserBundle. Paquet de serveis, vistes i recursos per usuaris. S'ha utilitzat un paquet de Symfony: FOSUserBundle.\cite{fosuserbundle}. S'ha fet una extensi\'{o} del paquet per implementar la gesti\'{o} de rols i grups.
+\item \textit{Bundle} de matrius: MatrixBundle. Paquet de serveis, vistes i recursos per les matrius.
+\item \textit{Bundle} de trainings: TrainingBundle. Paquet de serveis, vistes i recursos per els entrenaments.
+\item \textit{Bundle} de serveis webs: ApiBundle. Paquet de serveis,vistes i recursos per la API JSON Restful. 
+\item \textit{Bundle} de predicci\'{o}: PredictionBundle. Paquet de serveis, vistes i recursos per les matrius de prediccions.
+\end{itemize}
+
+\subsection{Gesti\'{o} de dependencies} 
+Symfony2 utilitza \textit{Composer} per la gesti\'{o} de depend\`{e}ncies. \textit{Composer} \'{e}s un gestor de dependencies a nivell d'aplicaci\'{o}. Les depend\`{e}ncies son:
+\begin{itemize}
+\item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interficies. Simplifica la manera de interactuar amb els documents HTML i la simplifica la manera de manipular l'arbre DOM.
+\item FOSUserBundle: paquet per a Symfony per la gesti\'{o} de 
+\item Bootstrap: \texit{framework} pel front-end desenvolupat per Twitter. Implementa nous estandards com HTML5 i CSS3. Permet el desenvolupament de manera r\`{a}pida i usable interf\'{i}cies soportades per multiples navegadors.
+\item RestBundle: paquet per Symfony per desenvolupar llibreries API JSON Restful.
+\item Symfony FS: paquet per gestionar sistema de fitxers.
+\item Doctrine Fixtures: paquet per gestionar la inserci\'{o} controlada de dades a la base de dades.
+\end{itemize}
+
+\subsubsection{Gesti\'{o} de la capa de dades: Doctrine }
+S'utilitza Doctrine com a eina ORM pel mapatge de dades, usant MySQL.
+
+\subsection{Recursos}
+La estructura de recursos de la aplicaci\'{o} \'{e}s la seg\¨{u}ent:\\
+
+\begin{tabular}{| l | l |}
+\hline
+Matrius       & matrix/(id) \\ \hline
+''Trainings''  & matrix/(id)/training/(id) \\ \hline
+''Predctions'' & matrix/(id)/training/(id)/prediction/(id) \\ \hline
+\end{tabular}
+
+S'ha emprat aquesta estructura de recursos degut a les depencies entre les diferentes entitats. Un ''training'' dep\'{e}n d'una matriu i una predicci\'{o} dep\'{e}n d'un ''training''.
+
+\section{Servei web}
+S'ha desenvolupat una llibreria API JSON Restful\cite{apijson} per enriquir les interficies. S'ha emprat aquesta tecnologia per la escalabilitat que aporta i perque en un futur es pogui aprofitar el desenvolupament d'aquesta.
+Les operacions, els recursos i el parametres son:\\
+\begin{tabular}{ | l | l |}
+\hline
+GET & /api/season/(id) \\ \hline
+POST & /api/season/searchByName \\ \hline
+     & INPUT: \{'pattern': string\} \\ \hline
+     & OUTPUT: ['string-match-1',...,'string-match-n'] \\ \hline
+GET & /api/variable/(id)/seasonSet \\ \hline
+DELETE & /api/variable/(id)/seasonSet/(id)\\ \hline
+DELETE & /api/variable/(id)/seasonSet/(id) /component/(id) \\ \hline
+DELETE & /api/variable/(id)/seasonSet/(id) /component/(id)/complete\\ \hline
+PUT & /api/matrix/(id)/column/(id)\\ \hline
+PUT & /api/matrix/(id)/sample/(id)\\ \hline
+\end{tabular}
+Les peticions estan seguritzades per ''cookies'' amb l'usuari. 
+
+\section{Integraci\'{o} amb el sistema de cues RabbitMQP}
+\subsection{Introducci\'{o} a l'arquitectura de cues: AMQP}
+\label{sec:queue_system_overview}
+L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicacions d'un sistema de comunicació. Les característiquess que definen al protocol AMQP son la orientació a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com,per exemple, la seguretat o les suscripcions.\cite{amqp}\\
+AMQP defineix una s\`{e}rie d'entitats. Desde la perspectiva de la interconnexió les m\'{e}s relevants son:
+\begin{itemize}
+\item El corredor de missatges: un servidor on els clients AMQP es conecten usant el protocol AMQP. Els corredores de missatges poden executar-se en un entorn distribu\¨{i}, pero aquesta capacitat \'{e}s espec\'{i}fica de la implementació.
+\item Usuari: un usuari \'{e}s una entitat amb credencial pot ser autoritzat a conectar-se a un corredor.
+\item Connexió: una connexi\'{o} f\'{i}sica, usant per exemple TCP/IP, entre el corredor i l'usuari.
+\item Clients: productors i consumidors. EXPLICAR PRODUCTORS I CONSUMIDORS.
+\end{itemize}
+
+RabbitMQ \'{e}s un software que implementa aquest protocol. El sistema de cues est\'{a} implementat per Miguel Ibero. I ofereix una ofereix una llibreria per la seva integraci\'{o}. 
+
+\subsection{Consumidors i gesti\'{o} de resultats}
+Les respostes de les execucions de Ichnaea enviades per la cua (mirar la figura \ref{dessign:archsoftware}), les rep el consumidor. \\
+Symfony2 permet crear comandes CLI per crear processos. Els consumidors necessiten ser processos ''stand-alone''(aut\'{o}noms) que escoltin les sortides, consumeixin, els resultats de la cua. \\
+L'esquelet d'una comanda per aquests consumidors actualment \'{e}s:
+\begin{lstlisting}
+class ConsumerCommand extends ContainerAwareCommand
+{
+	//Definicio de la comanda
+	protected function configure()
+	{
+		$this
+		->setName('nom_de_la_comanda')
+		->setDescription('Consumer server');
+	}
+	
+	//Execucio de la comanda
+	protected function execute(InputInterface $input, OutputInterface $output)
+	{
+		//Interficie per integrar el sistema de cues
+		$amqp = new AmqpConnection('URI_per_fer_la_connexio');
+		$amqp->open();
+		
+		//Crida al servei
+		$servei = $this->getContainer()->get('nom_de_servei');
+		
+		//Crear el consumidor, amb una 
+		//funcio que es crida quan la 
+		//cua estableix comunicacio amb 
+		//un objecte de la resposta esperada 
+		//i li passa el servei 
+		$amqp->listenForBuildModelResponse(function (ObjectResponse $resposta_de_la_cua) use ($servei){
+			$servei->actualitzaDades($resposta_de_la_cua);
+		});
+		$amqp->wait();
+	}
+}
+\end{lstlisting}
+
+\subsubsection{Consumidor d'entrenaments}
+El consumidor d'entrenaments es queda escoltant les respostes del servei de \\
+
+\subsubsection{Consumidor de prediccions}
+El consumidor de prediccions es queda escoltant les respostes del servei de \\
+

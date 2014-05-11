@@ -25,66 +25,80 @@
 \contentsline {subsection}{\numberline {3.2.1}Actors}{9}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Diagrama dels casos d'\'{u}s}{10}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Especificaci\'{o} dels casos d'\'{u}s}{10}{subsection.3.2.3}
-\contentsline {subsubsection}{Crear un usuari}{10}{section*.9}
-\contentsline {subsubsection}{Canviar un usuari de grup}{11}{section*.10}
-\contentsline {subsubsection}{Crear una variable}{12}{section*.11}
-\contentsline {subsubsection}{Actualitzar una variable}{12}{section*.12}
-\contentsline {subsubsection}{Crear una season set}{12}{section*.13}
-\contentsline {subsubsection}{Actualitzar un conjunt de fitxers d'envelliments}{13}{section*.14}
-\contentsline {subsubsection}{Esborrar un conjunt d'envelliments d'una variable}{14}{section*.15}
-\contentsline {subsubsection}{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}{14}{section*.16}
-\contentsline {subsubsection}{Esborrar un fitxer d'un conjunt de fitxers d'envelliments}{15}{section*.17}
-\contentsline {subsubsection}{Crear un matriu des d'un fitxer}{16}{section*.18}
-\contentsline {subsubsection}{Actualitzar una matriu}{17}{section*.19}
-\contentsline {subsubsection}{Clonar una matriu}{18}{section*.20}
-\contentsline {subsubsection}{Esborra una matriu}{19}{section*.21}
-\contentsline {subsubsection}{Configurar una columna de la matriu}{19}{section*.22}
-\contentsline {subsubsection}{Configurar la mostra d'una matriu}{20}{section*.23}
-\contentsline {subsubsection}{Llistar entrenaments del sistema}{21}{section*.24}
-\contentsline {subsubsection}{Llistar els meus entrenaments}{21}{section*.25}
-\contentsline {subsubsection}{Llistar entrenaments entrenables}{22}{section*.26}
-\contentsline {subsubsection}{Crear un entrenament}{22}{section*.27}
-\contentsline {subsubsection}{Reenviar un training al sistema de cues}{23}{section*.28}
-\contentsline {subsubsection}{Visualitzar un training}{23}{section*.29}
-\contentsline {subsubsection}{Esborrar un entrenament}{24}{section*.30}
-\contentsline {subsubsection}{Descarregar els resultats d'un entrenament}{24}{section*.31}
-\contentsline {subsubsection}{Actualitzar l'estat d'un entrenament}{25}{section*.32}
-\contentsline {subsubsection}{Llistar prediccions del sistema}{25}{section*.33}
-\contentsline {subsubsection}{Llistar les meves prediccions}{26}{section*.34}
-\contentsline {subsubsection}{Esborrar una predicci\'{o}}{26}{section*.35}
-\contentsline {subsubsection}{Crear una matriu de predicci\'{o} desde un fitxer}{26}{section*.36}
-\contentsline {subsubsection}{Actualitzar una matriu de predicci\'{o} desde un fitxer}{27}{section*.37}
-\contentsline {subsubsection}{Configurar una mostra d'una matriu de predicci\'{o}}{28}{section*.38}
-\contentsline {subsubsection}{Enviar una predicci\'{o} al sistema de cues}{28}{section*.39}
-\contentsline {subsubsection}{Veure una predicci\'{o}}{29}{section*.40}
-\contentsline {subsubsection}{Veure els resultats d'una predicci\'{o}}{29}{section*.41}
-\contentsline {subsubsection}{Actualitzar l'estat d'una predicci\'{o}}{30}{section*.42}
+\contentsline {subsubsection}{Crear un usuari}{11}{section*.10}
+\contentsline {subsubsection}{Canviar un usuari de grup}{11}{section*.11}
+\contentsline {subsubsection}{Crear una variable}{12}{section*.12}
+\contentsline {subsubsection}{Actualitzar una variable}{12}{section*.13}
+\contentsline {subsubsection}{Crear un conjunt de fitxers d'envelliment per una variable}{13}{section*.14}
+\contentsline {subsubsection}{Actualitzar un conjunt de fitxers d'envelliments}{13}{section*.15}
+\contentsline {subsubsection}{Esborrar un conjunt d'envelliments d'una variable}{14}{section*.16}
+\contentsline {subsubsection}{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}{14}{section*.17}
+\contentsline {subsubsection}{Esborrar un fitxer d'un conjunt de fitxers d'envelliments}{15}{section*.18}
+\contentsline {subsubsection}{Crear una matriu des d'un fitxer}{16}{section*.19}
+\contentsline {subsubsection}{Actualitzar una matriu}{17}{section*.20}
+\contentsline {subsubsection}{Clonar una matriu}{18}{section*.21}
+\contentsline {subsubsection}{Esborra una matriu}{19}{section*.22}
+\contentsline {subsubsection}{Configurar una columna d'una matriu}{19}{section*.23}
+\contentsline {subsubsection}{Configurar una mostra d'una matriu}{20}{section*.24}
+\contentsline {subsubsection}{Llistar els entrenaments del sistema}{21}{section*.25}
+\contentsline {subsubsection}{Llistar els meus entrenaments}{21}{section*.26}
+\contentsline {subsubsection}{Llistar matrius entrenables}{22}{section*.27}
+\contentsline {subsubsection}{Crear un entrenament}{22}{section*.28}
+\contentsline {subsubsection}{Reenviar un entrenament al sistema de cues}{23}{section*.29}
+\contentsline {subsubsection}{Visualitzar un entrenament}{23}{section*.30}
+\contentsline {subsubsection}{Esborrar un entrenament}{24}{section*.31}
+\contentsline {subsubsection}{Descarregar els resultats d'un entrenament}{24}{section*.32}
+\contentsline {subsubsection}{Actualitzar l'estat d'un entrenament}{25}{section*.33}
+\contentsline {subsubsection}{Llistar prediccions del sistema}{25}{section*.34}
+\contentsline {subsubsection}{Llistar les meves prediccions}{26}{section*.35}
+\contentsline {subsubsection}{Esborrar una predicci\'{o}}{26}{section*.36}
+\contentsline {subsubsection}{Crear una matriu de predicci\'{o} des d'un fitxer}{26}{section*.37}
+\contentsline {subsubsection}{Actualitzar una matriu de predicci\'{o} des d'un fitxer}{27}{section*.38}
+\contentsline {subsubsection}{Configurar una mostra d'una matriu de predicci\'{o}}{28}{section*.39}
+\contentsline {subsubsection}{Enviar una predicci\'{o} al sistema de cues}{28}{section*.40}
+\contentsline {subsubsection}{Veure una predicci\'{o}}{29}{section*.41}
+\contentsline {subsubsection}{Veure els resultats d'una predicci\'{o}}{29}{section*.42}
+\contentsline {subsubsection}{Actualitzar l'estat d'una predicci\'{o}}{30}{section*.43}
 \contentsline {section}{\numberline {3.3}Model Conceptual}{30}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Diagrama de classes}{30}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Explicaci\'{o} de les classes}{30}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Model d'estats}{32}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Estats dels entrenaments}{33}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Estats de les prediccions}{33}{subsection.3.4.2}
-\contentsline {chapter}{\numberline {4}Disseny e implementaci\'{o}}{35}{chapter.4}
-\contentsline {section}{\numberline {4.1}Esquema general arquitect\'{o}nic del sistema}{35}{section.4.1}
-\contentsline {section}{\numberline {4.2}Patr\'{o} de disseny}{36}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Esquema del disseny}{36}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Implementaci\'{o} i tecnologies}{38}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Symfony}{38}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Recursos}{38}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Servei web}{38}{section.4.4}
-\contentsline {section}{\numberline {4.5}Integraci\'{o} amb el sistema de cues RabbitMQP}{39}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Introducci\'{o} a l'arquitectura de cues: AMQP}{39}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Consumidors i gesti\'{o} de resultats}{40}{subsection.4.5.2}
-\contentsline {subsubsection}{Consumidor ''trainings''}{41}{section*.48}
-\contentsline {section}{\numberline {4.6}Interf\'{i}cies}{41}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Interf\'{i}cie de configuraci\'{o} de matrius}{41}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Interficies de carrega de matrius per fitxers }{41}{subsection.4.6.2}
-\contentsline {chapter}{\numberline {5}Conclusions}{43}{chapter.5}
-\contentsline {section}{\numberline {5.1}Estimaci\'{o} econ\'{o}mica}{43}{section.5.1}
-\contentsline {section}{\numberline {5.2}Millores en futures versions}{43}{section.5.2}
-\contentsline {chapter}{\numberline {6}Bibliografia}{1}{chapter.6}
-\contentsline {chapter}{Bibliografia}{3}{section*.50}
+\contentsline {section}{\numberline {3.4}Model d'estats}{31}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Estats dels entrenaments}{32}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Estats de les prediccions}{32}{subsection.3.4.2}
+\contentsline {chapter}{\numberline {4}Disseny}{37}{chapter.4}
+\contentsline {section}{\numberline {4.1}Esquema general l\`{o}gic arquitect\'{o}nic del sistema}{37}{section.4.1}
+\contentsline {section}{\numberline {4.2}Patr\'{o} de disseny}{37}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Esquema del disseny}{38}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Disseny d'interf\'{i}cies}{40}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Interf\'{i}cie de configuraci\'{o} de matrius}{40}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Interficies de carrega de matrius per fitxers }{40}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}Implementaci\'{o}}{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Estudi previ de les tecnologies}{41}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}\textit {Framework} a mida}{41}{subsection.5.1.1}
+\contentsline {paragraph}{Avantatges}{41}{section*.49}
+\contentsline {paragraph}{Desavantatges}{41}{section*.50}
+\contentsline {subsection}{\numberline {5.1.2}\textit {Codeigniter}}{41}{subsection.5.1.2}
+\contentsline {paragraph}{Avantatges}{42}{section*.51}
+\contentsline {paragraph}{Desavantatges}{42}{section*.52}
+\contentsline {subsection}{\numberline {5.1.3}\textit {Symfony2}}{42}{subsection.5.1.3}
+\contentsline {paragraph}{Avantatges}{42}{section*.53}
+\contentsline {paragraph}{Desavantatges}{42}{section*.54}
+\contentsline {section}{\numberline {5.2}Implementaci\'{o}}{42}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Symfony}{43}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Gesti\'{o} de dependencies}{43}{subsection.5.2.2}
+\contentsline {subsubsection}{Gesti\'{o} de la capa de dades: Doctrine }{44}{section*.55}
+\contentsline {subsection}{\numberline {5.2.3}Recursos}{44}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Servei web}{44}{section.5.3}
+\contentsline {section}{\numberline {5.4}Integraci\'{o} amb el sistema de cues RabbitMQP}{44}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Introducci\'{o} a l'arquitectura de cues: AMQP}{44}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Consumidors i gesti\'{o} de resultats}{45}{subsection.5.4.2}
+\contentsline {subsubsection}{Consumidor d'entrenaments}{46}{section*.56}
+\contentsline {subsubsection}{Consumidor de prediccions}{46}{section*.57}
+\contentsline {chapter}{\numberline {6}Conclusions}{47}{chapter.6}
+\contentsline {section}{\numberline {6.1}Estimaci\'{o} econ\'{o}mica}{47}{section.6.1}
+\contentsline {section}{\numberline {6.2}Millores en futures versions}{47}{section.6.2}
+\contentsline {chapter}{\numberline {7}Bibliografia}{1}{chapter.7}
+\contentsline {chapter}{Bibliografia}{3}{section*.59}
 \contentsline {chapter}{\numberline {A}Manual d'usuari}{5}{appendix.A}
 \contentsline {section}{\numberline {A.1}Casa de l'usuari}{5}{section.A.1}
 \contentsline {subsection}{\numberline {A.1.1}Llistat dels meus trainings pendents}{5}{subsection.A.1.1}

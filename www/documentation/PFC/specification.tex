@@ -78,12 +78,18 @@ Els usuaris del sistema son:
 \item Propietari d'una predicci\'{o}: usuair que ha creat una matriu de predicci\'{o}.
 \end{itemize}
 \item Usuari administrador: usuari amb permissos administratius.
-\item Cua: sistema que gestiona les execucions
-\item Consumidor: sistema que gestiona les sortides de les execucions.
+\item Cua: usuari l\'{o}gic(no \'{e}s una persona f\'{i}sica) dels sistema que gestiona les execucions.
+\item Consumidor: usuari l\'{o}gic(no \'{e}s una persona f\'{i}sica) del sistema que gestiona les sortides de les execucions.
 \item Sistema: sistema que rep les peticions i gestiona les sortides.
 \end{itemize}
 \subsection{Diagrama dels casos d'\'{u}s}
-DIAGRAMA D'ACTORS I CASOS D'US
+A la figura \ref{fig:usecases} es pot veure la el diagrama de casos d'\'{u}s.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.2]{img/specification/UsesCases.png}
+  \caption{Diagrama de casos d'\'{u}s}
+  \label{fig:usecases}
+\end{figure}
 
 \subsection{Especificaci\'{o} dels casos d'\'{u}s}
 En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir els casos d'\'{u}s:\\
@@ -119,7 +125,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \subsubsection{Canviar un usuari de grup}
 \begin{usecase}
 \addtitle{Usuari002}{Canviar un usuari de grup}
-\addfield{Actors:}{Anonim}
+\addfield{Actors:}{Administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'administrador llista tots els usuaris del sistema i selecciona un.
 	\item L'administrador veu el formulari de edici\'{o} de permisos.
@@ -239,9 +245,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \end{usecase}
 
 
-\subsubsection{Crear un matriu des d'un fitxer}
+\subsubsection{Crear una matriu des d'un fitxer}
 \begin{usecase}
-\addtitle{Matriu001}{Crear una matrius des d'un fitxer}
+\addtitle{Matriu001}{Crear una matriu des d'un fitxer}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a un formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv o excel. L'usuari accepta el formulari.
@@ -307,9 +313,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsubsection{Configurar una columna de la matriu}
+\subsubsection{Configurar una columna d'una matriu}
 \begin{usecase}
-\addtitle{Matriu005}{Configurar la columna de una matriu}
+\addtitle{Matriu005}{Configurar la columna d'una matriu}
 \addfield{Actors:}{Usuari propietari de la matriu}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una matriu
@@ -325,9 +331,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \end{usecase}
 
 
-\subsubsection{Configurar la mostra d'una matriu}
+\subsubsection{Configurar una mostra d'una matriu}
 \begin{usecase}
-\addtitle{Matriu 004}{Configurar la mostra d'una matriu}
+\addtitle{Matriu 004}{Configurar una mostra d'una matriu}
 \addfield{Actors:}{Usuari propietari de una matriu}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona un matriu.
@@ -343,9 +349,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsubsection{Llistar entrenaments del sistema}
+\subsubsection{Llistar els entrenaments del sistema}
 \begin{usecase}
-\addtitle{Training001}{Llistar entrenaments}
+\addtitle{Training001}{Llistar els entrenaments del sistema}
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de entrenaments del sistema.
@@ -363,12 +369,12 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsubsection{Llistar entrenaments entrenables}
+\subsubsection{Llistar matrius entrenables}
 \begin{usecase}
-\addtitle{Training003}{Llistar entrenaments entrenables}
+\addtitle{Training003}{Llistar matrius entrenables}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari accedeix a la vista del llistat de trainings entrenables.
+	\item L'usuari accedeix a la vista del llistat de matrius entrenables.
 	\item El sistema llista els entrenaments amb un estat finalitzat i sense errors amb dades b\`{a}siques: matriu entrenada, estat del training, creador, descripci\'{o} del training, data de creaci\'{o}.
 }
 \end{usecase}
@@ -386,24 +392,24 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsubsection{Reenviar un training al sistema de cues}
+\subsubsection{Reenviar un entrenament al sistema de cues}
 \begin{usecase}
-\addtitle{Training005}{Reenviar un training}
+\addtitle{Training005}{Reenviar un entrenament al sistema de cues}
 \addfield{Actors:}{Usuari propietari d'un entrenament}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item L'usuari selecciona un training que ha tingut problemes de enviament.
-    \item El sistema renderitza una vista de visualitzaci\'{o} del training.
-    \item L'usuari pot consultar quin possible error ha passat i pot confirmar el reenviament
+    \item L'usuari selecciona un entrenament que ha tingut problemes de enviament.
+    \item El sistema renderitza una vista de visualitzaci\'{o} del entrenament.
+    \item L'usuari pot consultar quin possible error ha passat i pot confirmar el reenviament.
     \item El sistema actulitza les dades i reenvia les dades al sistema de cues.
 }
 \end{usecase}
 
-\subsubsection{Visualitzar un training}
+\subsubsection{Visualitzar un entrenament}
 \begin{usecase}
-\addtitle{Training006}{Visualitzar un training}
+\addtitle{Training006}{Visualitzar un entrenament}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item L'usuari selecciona d'un llistat un training.
+    \item L'usuari selecciona d'un llistat un entrenament.
     \item El sistema renderitza una vista de visualitzaci\'{o} del training amb el nom, descripci\'{o}, data de creaci\'{o} i  errors o resultats segons el cas.
 }
 \end{usecase}
@@ -478,9 +484,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsubsection{Crear una matriu de predicci\'{o} desde un fitxer}
+\subsubsection{Crear una matriu de predicci\'{o} des d'un fitxer}
 \begin{usecase}
-\addtitle{Prediction004}{Crear una matriu de predicci\'{o} desde un fitxer}
+\addtitle{Prediction004}{Crear una matriu de predicci\'{o} des d'un fitxer}
 \addfield{Actors:}{Usuari registrats}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona un entrenament per crear una predicci\'{o}.
@@ -498,7 +504,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsubsection{Actualitzar una matriu de predicci\'{o} desde un fitxer}
+\subsubsection{Actualitzar una matriu de predicci\'{o} des d'un fitxer}
 \begin{usecase}
 \addtitle{Prediction005}{Actualitzar una matriu de predicci\'{o} desde un fitxer}
 \addfield{Actors:}{Usuari propietari de la predicci\'{o}}
