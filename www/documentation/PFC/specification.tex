@@ -298,7 +298,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 }
 \end{usecase}
 
-\subsubsection{Esborra una matriu}
+\subsubsection{Esborrar una matriu}
 \begin{usecase}
 \addtitle{Matriu004}{Esborrar una matriu}
 \addfield{Actors:}{Propietari de la matriu}
@@ -653,4 +653,46 @@ En el cas que estigui pendent, l'usuari podr\'{a} reintentar enviar l'entrenamen
 Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la predicci\'{o} estar\'{a} en un estat inicial(\textit{new}). Quan l'usuari confirmi l'enviament, primer es comproba que es pot establir connexi\'{o} amb la cua. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent(\textit{pending}). En el cas que es pugui establir connexi\'{o}, s'envia les dades. Es queda en aquest estat rebent multiples respostes fins que li arribi algun event de finalitzaci\'{o} amb els resultats o amb els errors.\\
 En el cas que estigui pendent, l'usuari podr\'{a} reintentar enviar la predicci\'{o} a la cua despr\'{e}s de comprovar l'error.
 
+\section{Model del comportament}
+En aquesta secci\'{o} donarem veurem els diagrames de seq\¨{u}encia de les operacions m\'{e}s complexes dels casos d'us.
+\subsection*{Crear un conjunt de fitxers d'envelliments per una variable}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{img/specification/SequenceNewSeasonSe.png}
+  \caption{Diagram de seq¨{u}encia \textit{Crear un conjunt de fitxers d'envelliments per una variable}}
+  \label{fig:sequencenewseasonset}
+\end{figure}
 
+\subsection*{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{img/specification/SequenceAddNewFilesToSeasonSet.png}
+  \caption{Diagram de seq¨{u}encia \textit{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}}
+  \label{fig:sequenceaddnewseason}
+\end{figure}
+
+\subsection*{Crear una matriu des d'un fitxer}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{img/specification/SequenceCreateMatrix.png}
+  \caption{Diagram de seq¨{u}encia \textit{Crear una matriu des d'un fitxer}}
+  \label{fig:sequencenewmatrixfromfile}
+\end{figure}
+
+\subsection*{Crear un entrenament}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{img/specification/SequenceCreateTraining.png}
+  \caption{Diagram de seq¨{u}encia \textit{Crear un entrenament}}
+  \label{fig:sequenceaddtraining}
+\end{figure}
+
+\subsection*{Configurar una columna d'una matriu}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{img/specification/SequenceConfigureColumn.png}
+  \caption{Diagrama de seq¨{u}encia \textit{Configurar una columna d'una matriu} }
+  \label{fig:sequenceconfigurecolumn}
+\end{figure}
+
+\subsection*{Actualitzar l'estat d'una predicci\'{o}}

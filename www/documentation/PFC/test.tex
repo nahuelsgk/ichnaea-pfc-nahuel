@@ -43,3 +43,29 @@ La predicci\'{o} de la matriu de test(mirar \ref{cypruss_test}) ha tingut difere
 35min, 57min i 1h 5min, aproximadament. Varia segons la carrega de la CPU, ja que requereix una alta carrega de CPU.
 
 \section{Prova en entorn distribu\¨{i}t}
+Les proves en un entorn distribu\¨{i}t s'han realitzat en un m\'{a}quina virtual proporcionada per RdLab amb la seg\¨{u}ent especificaci\'{o}.
+\begin{itemize}
+\item 2 processadors QEMU Virtual CPU version 1.0 a2659Mhz
+\item 2Gb RAM	
+\item Linux version 3.2.0-30-generic
+\end{itemize}
+En aquest entorn s'ha instal.lat:
+\begin{itemize}
+\item Sense Ichnaea Software.
+\item Sense gestor de cues RabbitMQ.
+\item Sense sistema de cues per Ichnaea Software.
+\item Servidor Web Apache.
+\item Motor de dades MySQL en un altre servidor
+\item SMTP habilitat.
+\item Memoria cau habilitada.
+\end{itemize}
+No s'han pogut executar prediccions ni llençar entrenaments.
+\subsubsection{Creaci\'{o} i administraci\'{o} d'usuaris}
+S'han provat satisfactoriament totes les proves sense cap tipus de incid\`{e}ncia. Les funcionalitats son extensions del paquet FOSUserBundle, que cont\'{e} totes les funcionalitats provades per la comunitat. 
+\subsubsection{Gesti\'{o} de matrius}
+\paragraph{Creaci\'{o} de matrius}
+\label{cypruss}
+Partim de la mateixa matriu de dades reals proporcionada. La importaci\'{o}(creaci\{'} del model de dades a partir d'un fitxer) triga 1826ms i la renderitzaci\'{o} 1466ms sense haver passat per mem\'{o}ria cau. Despr\'{e}s de la segona execuci\'{o} la renderitzaci\'{o} tria 627ms.
+\paragraph{Temps de resposta de les API JSON Restful}
+Les llibreries de les interficies enriquides son usades en les configuracions de matrius, tant de les normals com les de predicci\'{o}. El temps m\'{i}nim calculat ha sigut 216ms i el m\'{a}xim ha sigut 297ms.
+

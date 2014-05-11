@@ -24,10 +24,12 @@
 \BOOKMARK [1][-]{section.3.4}{Model d'estats}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.4.1}{Estats dels entrenaments}{section.3.4}
 \BOOKMARK [2][-]{subsection.3.4.2}{Estats de les prediccions}{section.3.4}
+\BOOKMARK [1][-]{section.3.5}{Model del comportament}{chapter.3}
 \BOOKMARK [0][-]{chapter.4}{Disseny}{}
 \BOOKMARK [1][-]{section.4.1}{Esquema general l\362gic arquitect\363nic del sistema}{chapter.4}
 \BOOKMARK [1][-]{section.4.2}{Patr\363 de disseny}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.2.1}{Esquema del disseny}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.2}{Explicaci\363 del m\362del}{section.4.2}
 \BOOKMARK [1][-]{section.4.3}{Disseny d'interf\355cies}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.3.1}{Interf\355cie de configuraci\363 de matrius}{section.4.3}
 \BOOKMARK [2][-]{subsection.4.3.2}{Interficies de carrega de matrius per fitxers }{section.4.3}
@@ -44,11 +46,14 @@
 \BOOKMARK [1][-]{section.5.4}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.4.1}{Introducci\363 a l'arquitectura de cues: AMQP}{section.5.4}
 \BOOKMARK [2][-]{subsection.5.4.2}{Consumidors i gesti\363 de resultats}{section.5.4}
-\BOOKMARK [0][-]{chapter.6}{Conclusions}{}
-\BOOKMARK [1][-]{section.6.1}{Estimaci\363 econ\363mica}{chapter.6}
-\BOOKMARK [1][-]{section.6.2}{Millores en futures versions}{chapter.6}
-\BOOKMARK [0][-]{chapter.7}{Bibliografia}{}
-\BOOKMARK [0][-]{section*.59}{Bibliografia}{}
+\BOOKMARK [0][-]{chapter.6}{Proves i tests}{}
+\BOOKMARK [1][-]{section.6.1}{Prova en PC local}{chapter.6}
+\BOOKMARK [1][-]{section.6.2}{Prova en entorn distribuit}{chapter.6}
+\BOOKMARK [0][-]{chapter.7}{Conclusions}{}
+\BOOKMARK [1][-]{section.7.1}{Estimaci\363 econ\363mica}{chapter.7}
+\BOOKMARK [1][-]{section.7.2}{Millores en futures versions}{chapter.7}
+\BOOKMARK [0][-]{chapter.8}{Bibliografia}{}
+\BOOKMARK [0][-]{section*.83}{Bibliografia}{}
 \BOOKMARK [0][-]{appendix.A}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.A.1}{Casa de l'usuari}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.1.1}{Llistat dels meus trainings pendents}{section.A.1}

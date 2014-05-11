@@ -5,11 +5,12 @@ This documentation is only for developers.
 Checkout the git project
 ------------------------
 To get the code execute a git clone:
-WRITE A GIT CLONE COMMAND
+git clone http://USER@git-rdlab.lsi.upc.edu/git/ichnaea.git
 
 Run composer
 ------------
-To download DEPENDENCIES run
+To download run:
+php composer.phar install
 
 Configuration ichnaea WebApp
 ----------------------------
@@ -21,6 +22,10 @@ Insert some basic dato to start operate
 a) Update the database schema
 app/console doctrine:schema:update --dump-sql
 app/console doctrine:schema:update --force
+
+a.alt) Regenerate database
+app/console doctrine:database:drop --force
+app/console doctrine:schema:create 
 
 b) First execute to have a user into the web app with admin
 php app/console doctrine:fixtures:load
