@@ -26,17 +26,17 @@
 <legend>List of season set
   <a class="btn btn-mini" name="edit_season_set" title="Add a season set" href="{{ path('season_set_form', {'variable_id': variable.id } )}}">
   <i class="icon-plus"></i></a></legend>
+<!-- 
 <ul>
 {% for season_set in variable.seasonSet %}
 <li id="item-{{season_set.id}}">
+  {{season_set.name}}
   <a class="btn btn-mini" name="edit_season_set" title="Edit Season Set or add season to the set" href="{{ path('season_set_edit', {'variable_id': variable.id, 'season_set_id': season_set.id } )}}">
   <i class="icon-edit"></i></a>
   <a class="btn btn-mini" name="delete_season_set" onclick="deleteSeasonSet('item-{{season_set.id}}', {{season_set.id}})" title="Delete Season Set">
   <i class="icon-trash" style=""></i></a>
   <a class="btn btn-mini" name="delete_season_set_complete" href="{{ path('season_set_delete_confirmation', {'variable_id': variable.id, 'season_set_id': season_set.id })}}" title="Becareful!: Delete Season Set and seasons files. This will be only for admins">
   <i class="icon-remove-sign"></i></a>
-  
-  {{season_set.name}}
   <ul>
   {% for component in season_set.components %}
     <li>{{component.season.name}}</li>
@@ -45,7 +45,33 @@
 </li>
 {% endfor %}
 </ul>
+ -->
+<table class="table"> 
+{% for season_set in variable.seasonSet %}
+<tr id="item-{{season_set.id}}">
+  <td>
+  {{season_set.name}}
+  </td>
+  <td>
+  <ul>
+  {% for component in season_set.components %}
+    <li><a href="{{ path('season_edit', {'season_id': component.season.id}) }}" target="_blank">{{component.season.name}}</li>
+  {% endfor %}
+  </ul>
+  </td>
+  <td>
+  <a class="btn btn-mini" name="edit_season_set" title="Edit Season Set or add season to the set" href="{{ path('season_set_edit', {'variable_id': variable.id, 'season_set_id': season_set.id } )}}">
+  <i class="icon-edit"></i></a>
+  <!--  <a class="btn btn-mini" name="delete_season_set" onclick="deleteSeasonSet('item-{{season_set.id}}', {{season_set.id}})" title="Delete Season Set">
+  <i class="icon-trash" style=""></i></a>-->
+  <a class="btn btn-mini" name="delete_season_set_complete" href="{{ path('season_set_delete_confirmation', {'variable_id': variable.id, 'season_set_id': season_set.id })}}" title="Becareful!: Delete Season Set and seasons files. This will be only for admins">
+  <i class="icon-trash"></i></a>
+  </td>  
+  </ul>
+</li>
 
+{% endfor %}
+</table>
 </div>
 {% endif %}
 {% endblock %}
@@ -61,19 +87,19 @@ function checkErrors(){
 }
 {% if action == 'update' %}
 
-function deleteLi(li)
+function deleteTr(tr)
 {
-    $('#'+li).remove();
+    $('#'+tr).remove();
 }
 
-function deleteSeasonSetAction(li, seasonSet_id)
+function deleteSeasonSetAction(tr, seasonSet_id)
 {
-    sendEvent('{{path('season_set_api', {'variable_id': variable.id})}}'+seasonSet_id, 'DELETE', {}, function (data) {deleteLi(li)})
+    sendEvent('{{path('season_set_api', {'variable_id': variable.id})}}'+seasonSet_id, 'DELETE', {}, function (data) {deleteTr(tr)})
 }
 
-function deleteSeasonSet(li, seasonSet_id)
+function deleteSeasonSet(tr, seasonSet_id)
 {
-    confirmMessage('You are about to delete a season set. This will no delete the season file. Only the sets.', function(){deleteSeasonSetAction(li, seasonSet_id)})
+    confirmMessage('You are about to delete a season set. This will no delete the season file. Only the sets.', function(){deleteSeasonSetAction(tr, seasonSet_id)})
 }
 
 {% endif %}

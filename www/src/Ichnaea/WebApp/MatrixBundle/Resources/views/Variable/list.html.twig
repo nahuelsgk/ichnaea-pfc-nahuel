@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container">
 <h1>Ichnaea Variables</h1>
-<table id="table_variables" class="table-striped">
+<table id="table_variables" class=" table table-striped">
 		<thead>
 		 <th align="center" style="padding-left: 10px;padding-right: 10px;">&nbsp;</th>
 		 <th align="center" style="padding-left: 10px;padding-right: 10px;">Name</th>
@@ -20,7 +20,7 @@
 		 <td>{{ variable.description }}</td>
 		 <td>
 		 	<a class="btn btn-mini" href="{{path('variable_edit', {'variable_id': variable.id})}}" name="edit_variable" title="Edit single variable or view season sets">
-     			<i class="icon-edit"></i></a>
+     			<i class="icon-eye-open"></i></a>
      		<!--  
      			<a class="btn btn-mini" 
      				href="{{path('season_set_form', {'variable_id': variable.id})}}" 

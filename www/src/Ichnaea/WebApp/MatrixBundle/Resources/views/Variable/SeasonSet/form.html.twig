@@ -32,7 +32,7 @@
 	
     <legend>
       {% if action == 'create' %}New season set
-      {% else %}Edit season set {% endif %} for <i>{{variable_name}}</i></a></i>  
+      {% else %}Edit season set {% endif %} for <a href="{{ path ('variable_edit', {'variable_id':variable_id}) }}"> {{ variable_name }}</a>  
     </legend>
 	<div class="control-group">
         <label class="control-label" for="seasonName">Name of the season set</label>
@@ -46,11 +46,11 @@
 	<ul>
 	{% for season_component in season_set_components %}
 		<li id="season_set_component-{{season_component.id}}">
-		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component" onclick='deleteSeasonSetComponent( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
-  		  <i class="icon-trash"></i></a>
+		  <!--  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component" onclick='deleteSeasonSetComponent( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
+  		  <i class="icon-trash"></i></a>-->
   		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component and file" onclick='deleteSeasonSetComponentComplete( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
-  		  <i class="icon-remove-sign"></i></a> </i> 
-  		  {{season_component.season.name}} is configured for this season set as <i>{{ season_component.seasonType }}</i>  		  
+  		  <i class="icon-trash"></i></a> </i> 
+  		  <a href="{{ path('season_edit', { 'season_id': season_component.season.id }) }}" target="_blank">{{season_component.season.name}}</a> is configured for this season set as <i>{{ season_component.seasonType }}</i>  		  
   		</li>
 	{% endfor %}
 	</ul>

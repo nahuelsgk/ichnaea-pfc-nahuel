@@ -18,6 +18,15 @@
         </div>
       </div>
       <div class="control-group">
+        <label class="control-label" for="end-date">Content season</label>
+        <div class="controls">
+           <input type="file" id="files" name="files[]" multiple />
+        </div>
+        <div class="controls">
+           <textarea style="width: 300px; height: 100px;" id="content" name="content">{% if season is not null %}{{season.content}}{% endif %}</textarea>
+        </div>
+      </div>
+      <div class="control-group">
         <label class="control-label" for="notes">Notes</label>
         <div class="controls">
           <input type="text" id="notes" name="notes" placeholder="Season's notes" value="{% if season is not null %}{{season.notes}}{% endif %}">
@@ -33,15 +42,6 @@
         <label class="control-label" for="end-date">End date</label>
         <div class="controls">
           <input type="date" id="end_date" name="end_date" placeholder="Season's end date" value="{% if season is not null %}{{season.endDate|date("d-m-Y")}}{% endif %}">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="end-date">Content season</label>
-        <div class="controls">
-           <input type="file" id="files" name="files[]" multiple />
-        </div>
-        <div class="controls">
-           <textarea id="content" name="content">{% if season is not null %}{{season.content}}{% endif %}</textarea>
         </div>
       </div>
       <div class="control-group">

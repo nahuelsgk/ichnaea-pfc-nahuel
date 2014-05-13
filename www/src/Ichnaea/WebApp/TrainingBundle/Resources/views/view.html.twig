@@ -9,14 +9,21 @@
  <legend>Configuration</legend>
  <table class="table">
  <tr>
+   <th>Matrix</th>
    <th>Name</th>
    <th>Origin selected</th>
    <th>Cue id</th>
  </tr>
  <tr>
-   <td>{{training.name}}</td>
+   <td>
+     {% if app.user.id == training.matrix.owner.id %}
+     <a href="{{ path('matrix_ui_edit', {matrix_id: training.matrix.id})}}">{{ training.matrix.name }}</a></td>
+     {% else %}
+     <a href="{{ path('matrix_ui_view', {matrix_id: training.matrix.id})}}">{{ training.matrix.name }}</a></td>
+     {% endif %}
+   <td>{{ training.name }}</td>
    <td>{% if training.originVersus == "" %} All versus all {% else %} {{ training.originVersus }} {% endif %}</td>
-   <td>{{training.requestId}}</td>
+   <td>{{ training.requestId }}</td>
  </tr>
  </table>
  {% if show_delete_button %}
