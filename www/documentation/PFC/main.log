@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  11 MAY 2014 19:45
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.8.1)  13 MAY 2014 18:26
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -24,6 +24,223 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+)
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+))
 (/usr/share/texmf-texlive/tex/generic/babel/babel.sty
 Package: babel 2008/07/06 v3.8l The Babel package
 
@@ -52,7 +269,7 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks14
+\KV@toks@=\toks16
 )
 (/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -63,39 +280,38 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/etc/texmf/tex/latex/config/graphics.cfg
 File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: dvips.def on input line 91.
 
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
-\Gread@gobject=\count89
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
 )
 (/usr/share/texmf-texlive/tex/latex/tools/verbatim.sty
 Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks15
-\verbatim@line=\toks16
+\every@verbatim=\toks17
+\verbatim@line=\toks18
 \verbatim@in@stream=\read1
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
-\lst@mode=\count90
+\lst@mode=\count89
 \lst@gtempboxa=\box26
-\lst@token=\toks17
-\lst@length=\count91
+\lst@token=\toks19
+\lst@length=\count90
 \lst@currlwidth=\dimen109
-\lst@column=\count92
-\lst@pos=\count93
+\lst@column=\count91
+\lst@pos=\count92
 \lst@lostspace=\dimen110
 \lst@width=\dimen111
-\lst@newlines=\count94
-\lst@lineno=\count95
+\lst@newlines=\count93
+\lst@lineno=\count94
 \lst@maxwidth=\dimen112
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count96
-\lst@skipnumbers=\count97
+\c@lstnumber=\count95
+\lst@skipnumbers=\count96
 \lst@framebox=\box27
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
@@ -105,14 +321,14 @@ Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in pdf mode detected.
+Package ifpdf Info: pdfTeX in pdf mode not detected.
 )
 (/usr/share/texmf-texlive/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count98
-\float@exts=\toks18
+\c@float@type=\count97
+\float@exts=\toks20
 \float@box=\box28
-\@float@everytoks=\toks19
+\@float@everytoks=\toks21
 \@floatcapt=\box29
 )
 (/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty
@@ -125,14 +341,14 @@ Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 (/usr/share/texmf-texlive/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2005/01/26 v1.0 150 paragraphs of Lorem Ipsum dummy text
 File: lipsum.dtx 2005/01/26 v1.0 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count99
+\c@lips@count=\count98
 )
 (/usr/share/texmf-texlive/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2009/05/18 v2.2 Customized lists
-\enit@toks=\toks20
+\enit@toks=\toks22
 \labelindent=\skip43
 \enit@outerparindent=\dimen114
-\enitdp@desc=\count100
+\enitdp@desc=\count99
 )
 (/usr/share/texmf-texlive/tex/latex/algorithms/algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
@@ -141,8 +357,8 @@ nment
 (/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks21
-\c@algorithm=\count101
+\@float@every@algorithm=\toks23
+\c@algorithm=\count100
 )
 (/usr/share/texmf-texlive/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
@@ -151,29 +367,29 @@ Package: algpseudocode
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count102
-\c@ALG@rem=\count103
-\c@ALG@nested=\count104
+\c@ALG@line=\count101
+\c@ALG@rem=\count102
+\c@ALG@nested=\count103
 \ALG@tlm=\skip44
 \ALG@thistlm=\skip45
-\c@ALG@Lnr=\count105
-\c@ALG@blocknr=\count106
-\c@ALG@storecount=\count107
-\c@ALG@tmpcounter=\count108
+\c@ALG@Lnr=\count104
+\c@ALG@blocknr=\count105
+\c@ALG@storecount=\count106
+\c@ALG@tmpcounter=\count107
 \ALG@tmplength=\skip46
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty
 Package: amsthm 2004/08/06 v2.20
-\thm@style=\toks22
-\thm@bodyfont=\toks23
-\thm@headfont=\toks24
-\thm@notefont=\toks25
-\thm@headpunct=\toks26
+\thm@style=\toks24
+\thm@bodyfont=\toks25
+\thm@headfont=\toks26
+\thm@notefont=\toks27
+\thm@headpunct=\toks28
 \thm@preskip=\skip47
 \thm@postskip=\skip48
 \thm@headsep=\skip49
-\dth@everypar=\toks27
+\dth@everypar=\toks29
 )
 (/usr/share/texmf-texlive/tex/latex/eurosym/eurosym.sty
 Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
@@ -191,112 +407,9 @@ Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
 \caption@parindent=\dimen119
 \caption@hangindent=\dimen120
 )
-\c@ContinuedFloat=\count109
+\c@ContinuedFloat=\count108
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
-)
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
-Package ifvtex Info: VTeX not detected.
-)
-(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
-)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
-O)
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
-Package: xcolor-patch 2009/10/02 xcolor patch
-))
-\@linkdim=\dimen121
-\Hy@linkcounter=\count110
-\Hy@pagecounter=\count111
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
-)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)
-(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
-)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
-t (HO)
-))
-Package hyperref Info: Hyper figures OFF on input line 2975.
-Package hyperref Info: Link nesting OFF on input line 2980.
-Package hyperref Info: Hyper index ON on input line 2983.
-Package hyperref Info: Plain pages OFF on input line 2990.
-Package hyperref Info: Backreferencing OFF on input line 2995.
-
-Implicit mode ON; LaTeX internals redefined
-Package hyperref Info: Bookmarks ON on input line 3191.
-LaTeX Info: Redefining \url on input line 3428.
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty
-Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
- (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
-)
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-)))
-\Fld@menulength=\count112
-\Field@Width=\dimen122
-\Fld@charsize=\dimen123
-\Field@toks=\toks28
-Package hyperref Info: Hyper figures OFF on input line 4377.
-Package hyperref Info: Link nesting OFF on input line 4382.
-Package hyperref Info: Hyper index ON on input line 4385.
-Package hyperref Info: backreferencing OFF on input line 4392.
-Package hyperref Info: Link coloring OFF on input line 4397.
-Package hyperref Info: Link coloring with OCG OFF on input line 4402.
-Package hyperref Info: PDF/A mode OFF on input line 4407.
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
-Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
-)
-\Hy@abspage=\count113
-\c@Item=\count114
-\c@Hfootnote=\count115
-)
-*hyperref using default driver hpdftex*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
-\Fld@listcount=\count116
 )
 (/usr/share/texmf-texlive/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2009/09/23 v2.03 (NLCT)
@@ -305,9 +418,9 @@ Package: glossaries 2009/09/23 v2.03 (NLCT)
 Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
 
 (/usr/share/texmf-texlive/tex/generic/xkeyval/xkeyval.tex
-\XKV@toks=\toks29
-\XKV@tempa@toks=\toks30
-\XKV@depth=\count117
+\XKV@toks=\toks30
+\XKV@tempa@toks=\toks31
+\XKV@depth=\count109
 File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
 ))
 (/usr/share/texmf-texlive/tex/latex/glossaries/base/mfirstuc.sty
@@ -318,16 +431,16 @@ Package: xfor 2009/02/05 v1.05 (NLCT)
 )
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks31
-\ex@=\dimen124
+\@emptytoks=\toks32
+\ex@=\dimen121
 )
 (/usr/share/texmf-texlive/tex/latex/translator/translator.sty
 Package: translator 2007/03/11 ver 1.00
 
 (/usr/share/texmf-texlive/tex/latex/translator/translator-language-mappings.tex
 ))
-\gls@level=\count118
-\@gls@tmpb=\toks32
+\gls@level=\count110
+\@gls@tmpb=\toks33
 \gls@tmplen=\skip50
 \istfile=\write3
  (/usr/share/texmf-texlive/tex/latex/glossaries/styles/glossary-hypernav.sty
@@ -345,17 +458,17 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTright=\skip53
 \LTpre=\skip54
 \LTpost=\skip55
-\LTchunksize=\count119
-\LTcapwidth=\dimen125
+\LTchunksize=\count111
+\LTcapwidth=\dimen122
 \LT@head=\box31
 \LT@firsthead=\box32
 \LT@foot=\box33
 \LT@lastfoot=\box34
-\LT@cols=\count120
-\LT@rows=\count121
-\c@LT@tables=\count122
-\c@LT@chunks=\count123
-\LT@p@ftn=\toks33
+\LT@cols=\count112
+\LT@rows=\count113
+\c@LT@tables=\count114
+\c@LT@chunks=\count115
+\LT@p@ftn=\toks34
 )
 \glsdescwidth=\skip56
 \glspagelistwidth=\skip57
@@ -365,21 +478,21 @@ Package: glossary-super 2009/05/30 v2.01 (NLCT)
 
 (/usr/share/texmf-texlive/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
-\c@tracingst=\count124
-\ST@wd=\dimen126
+\c@tracingst=\count116
+\ST@wd=\dimen123
 \ST@rightskip=\skip58
 \ST@leftskip=\skip59
 \ST@parfillskip=\skip60
-\ST@pageleft=\dimen127
-\ST@headht=\dimen128
-\ST@tailht=\dimen129
-\ST@pagesofar=\dimen130
-\ST@pboxht=\dimen131
-\ST@lineht=\dimen132
-\ST@stretchht=\dimen133
-\ST@prevht=\dimen134
-\ST@toadd=\dimen135
-\ST@dimen=\dimen136
+\ST@pageleft=\dimen124
+\ST@headht=\dimen125
+\ST@tailht=\dimen126
+\ST@pagesofar=\dimen127
+\ST@pboxht=\dimen128
+\ST@lineht=\dimen129
+\ST@stretchht=\dimen130
+\ST@prevht=\dimen131
+\ST@toadd=\dimen132
+\ST@dimen=\dimen133
 \ST@pbox=\box35
 ))
 (/usr/share/texmf-texlive/tex/latex/glossaries/styles/glossary-tree.sty
@@ -397,97 +510,61 @@ Package tocbibind Note: Using chapter style headings, unless overridden.
 
 ) (./usecases.sty (/usr/share/texmf-texlive/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen137
-\lightrulewidth=\dimen138
-\cmidrulewidth=\dimen139
-\belowrulesep=\dimen140
-\belowbottomsep=\dimen141
-\aboverulesep=\dimen142
-\abovetopsep=\dimen143
-\cmidrulesep=\dimen144
-\cmidrulekern=\dimen145
-\defaultaddspace=\dimen146
-\@cmidla=\count125
-\@cmidlb=\count126
-\@aboverulesep=\dimen147
-\@belowrulesep=\dimen148
-\@thisruleclass=\count127
-\@lastruleclass=\count128
-\@thisrulewidth=\dimen149
+\heavyrulewidth=\dimen134
+\lightrulewidth=\dimen135
+\cmidrulewidth=\dimen136
+\belowrulesep=\dimen137
+\belowbottomsep=\dimen138
+\aboverulesep=\dimen139
+\abovetopsep=\dimen140
+\cmidrulesep=\dimen141
+\cmidrulekern=\dimen142
+\defaultaddspace=\dimen143
+\@cmidla=\count117
+\@cmidlb=\count118
+\@aboverulesep=\dimen144
+\@belowrulesep=\dimen145
+\@thisruleclass=\count119
+\@lastruleclass=\count120
+\@thisrulewidth=\dimen146
 ))
 (/usr/share/texmf-texlive/tex/latex/rotating/rotating.sty
 Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
-\c@r@tfl@t=\count129
+\c@r@tfl@t=\count121
 \rotFPtop=\skip62
 \rotFPbot=\skip63
 \rot@float@box=\box36
-\rot@mess@toks=\toks34
+\rot@mess@toks=\toks35
 )
 \glo@main@file=\write4
 \openout4 = `main.glo'.
 
-Package glossaries Info: Writing glossary file main.glo on input line 44.
+Package glossaries Info: Writing glossary file main.glo on input line 45.
  (./glossary.tex)
 (./main.aux (./title.aux) (./prologue.aux) (./preface.aux) (./background.aux)
 (./specification.aux
 
 LaTeX Warning: Label `fig:statestraining' multiply defined.
 
-) (./dessign.aux) (./implementation.aux) (./conclussions.aux)
-(./bibliography.aux) (./userguide.aux
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-
-LaTeX Warning: Label `fig:placement' multiply defined.
-
-) (./adminguide.aux))
+))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Info: Redefining \l on input line 49.
-LaTeX Info: Redefining \L on input line 49.
- (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count130
-\scratchdimen=\dimen150
-\scratchbox=\box37
-\nofMPsegments=\count131
-\nofMParguments=\count132
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count133
-\MPscratchDim=\dimen151
-\MPnumerator=\count134
-\everyMPtoPDFconversion=\toks36
-)
-\c@lstlisting=\count135
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Info: Redefining \l on input line 50.
+LaTeX Info: Redefining \L on input line 50.
+\c@lstlisting=\count122
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
  (/usr/share/texmf-texlive/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2008/03/28 v1.2 longtable captions (AR)
@@ -495,24 +572,6 @@ Package: ltcaption 2008/03/28 v1.2 longtable captions (AR)
 Package caption Info: rotating package is loaded.
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 49.
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
-Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
-Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
-)
-\c@section@level=\count136
-)
-LaTeX Info: Redefining \ref on input line 49.
-LaTeX Info: Redefining \pageref on input line 49.
- (./main.out)
-(./main.out)
-\@outlinefile=\write5
-\openout5 = `main.out'.
-
-\AtBeginShipoutBox=\box38
 
 (/usr/share/texmf-texlive/tex/latex/glossaries/dict/glossaries-dictionary-Engli
 sh.dict
@@ -521,24 +580,19 @@ Dictionary: glossaries-dictionary, Language: English
 \openout2 = `title.aux'.
 
  (./title.tex
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no ± in font cmr12!
- <upc.png, id=347, 252.945pt x 56.21pt>
-File: upc.png Graphic file (type png)
- <use upc.png>
-[1
+File: upc.eps Graphic file (type eps)
+ <upc.eps> [1
 
 \openout3 = `main.ist'.
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./upc.png>]) [2
+]) [2
 
 
 ]
 \openout2 = `prologue.aux'.
 
-
-(./prologue.tex
+ (./prologue.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
@@ -549,15 +603,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 9.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 9.
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no ± in font cmr12!
 
 Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no ± in font cmr12!
 
 Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
@@ -573,16 +623,9 @@ Overfull \hbox (9.4534pt too wide) in paragraph at lines 55--63
 ]) [4
 
 
-] (./main.toc [1
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.113 ... fitxer csv o excel}{8}{subsection.A.3.1}
-                                                   [2])
-\tf@toc=\write6
-\openout6 = `main.toc'.
+] (./main.toc)
+\tf@toc=\write5
+\openout5 = `main.toc'.
 
 
 
@@ -592,13 +635,15 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.58 \makeindex
+l.59 \makeindex
                
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[1] [2
+[1
+
+] [2
 
 ]
 \openout2 = `preface.aux'.
@@ -630,36 +675,256 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.17 \item E
-            n l'annex \ref{cha:adminguide} es dona un petit manual de admini...
+
+
+LaTeX Warning: Reference `cha:dessign' on page 1 undefined on input line 14.
+
+
+LaTeX Warning: Reference `cha:conclussions' on page 1 undefined on input line 1
+5.
+
+
+LaTeX Warning: Reference `cha:userguide' on page 1 undefined on input line 16.
+
 [1
 
 
 ]
+
+LaTeX Warning: Reference `cha:adminguide' on page 2 undefined on input line 17.
+
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no § in font cmr12!
-)pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.66 \include{preface}
-                       [2]
+) [2]
 \openout2 = `background.aux'.
 
  (./background.tex
 Cap\'{\i }tol 2.
 
+! Package inputenc Error: Unicode char \u8:óaIc not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \chapter{Introducció a Ichnaea}
+                                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:óuna not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 ...\textit{software} de com funciona, sinó una
+                                                   visi\'{o} global del seu ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ími not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 ... mitjan\c{c}ant l'\'{u}s d'indicadors quími
+                                                  cs i microbiòlegics \cite{...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:òleg not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 ...l'\'{u}s d'indicadors químics i microbiòleg
+                                                  ics \cite{paper}. Per fer ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation `paper' on page 3 undefined on input line 7.
+
+
+! Package inputenc Error: Unicode char \u8:òesp not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 ...robiòlegics \cite{paper}. Per fer això es p
+                                                  renen mostres i s'analitze...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:àod not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 ...i contenen residus fecals d'origen humà o d
+                                                  e quina família de animals...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:íli not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 ...idus fecals d'origen humà o de quina famíli
+                                                  a de animals \cite{pfc}.\\
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation `pfc' on page 3 undefined on input line 7.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
+
+
+! Package inputenc Error: Unicode char \u8:ó\'es not set up for use with LaTeX.
+
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 Prendre aquesta decisió \'{e}s
+                                   molt difícil. Fins i tot, els microbiòleg...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:íci not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 Prendre aquesta decisió \'{e}s molt difíci
+                                              l. Fins i tot, els microbiòleg...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:òleg not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ...s molt difícil. Fins i tot, els microbiòleg
+                                                  s no estan completament se...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ódel not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ...egurs de determinar la font d'infecció de l
+                                                  es mostres d'aigües contam...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ...ar la font d'infecció de les mostres d'aigü
+                                                  es contaminades. La raó es...
+
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Unicode char \u8:óesq not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ... mostres d'aigües contaminades. La raó es q
+                                                  ue les mostres son extrete...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:òest not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ...etes directament de l'entorn i per això est
+                                                  an diluïdes i envellides \...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ïde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ...tament de l'entorn i per això estan diluïde
+                                                  s i envellides \cite{pfc}.\\
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation `pfc' on page 3 undefined on input line 9.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--10
@@ -667,9 +932,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
  []
 
 
+! Package inputenc Error: Unicode char \u8:ódel not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 ...i pot ajudar a assegurar la protecció de l
+                                                  es poblacions humanes, mos...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ïso not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 ...ietat d'enfermetats, especialment en païso
+                                                  s subdesenvolupats \cite{p...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation `pfc' on page 3 undefined on input line 11.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
+
+
+! Package inputenc Error: Unicode char \u8:íge not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 ...noves mostres i fer prediccions dels oríge
+                                                  ns d'aquestes \cite{pfc}.\\
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation `pfc' on page 3 undefined on input line 14.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 14--15
@@ -681,9 +993,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--15
 
 
 ]
+
+! Package inputenc Error: Unicode char \u8:ànc not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 ...lupada, com a Master Thesis per David Sànc
+                                                  hez, va donar un primer en...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 16--17
 
  []
+
+
+! Package inputenc Error: Unicode char \u8:ódel not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 ...'aquestes variables segons la estació de l
+                                                  'any. Aquests fitxers s'ag...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 28--29
@@ -700,12 +1041,97 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--35
 
  []
 
+
+! PACKAGE INPUTENC ERROR: UNICODE CHAR \U8:ÓAIC NOT SET UP FOR USE WITH LATEX.
+
+SEE THE INPUTENC PACKAGE DOCUMENTATION FOR EXPLANATION.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.36 \item U
+            na variable derivada. Son dos "variables single" relacionades pe...
+
+YOUR COMMAND WAS IGNORED.
+TYPE  I <COMMAND> <RETURN>  TO REPLACE IT WITH ANOTHER COMMAND,
+OR  <RETURN>  TO CONTINUE WITHOUT IT.
+
 [4]
+
+! Package inputenc Error: Unicode char \u8:òria not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.37 \item Una variable d'origen, obligatòria
+                                              per cada mostra. \'{E}s una et...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:íge not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.39 ...l.luci\'{o}. En aquestes matrius els oríge
+                                                  ns son obligatoris i cada ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
-) [5] [6
+
+! Package inputenc Error: Unicode char \u8:íge not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46 ...n entrenament, pot fer prediccions d'oríge
+                                                  ns de contaminaci\'{o}. Aq...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ète not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46 ...er exemple, les mostres no tenen perquè te
+                                                  nir un origen o poden valo...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+) [5]
+
+! PACKAGE INPUTENC ERROR: UNICODE CHAR \U8:ÓAIC NOT SET UP FOR USE WITH LATEX.
+
+SEE THE INPUTENC PACKAGE DOCUMENTATION FOR EXPLANATION.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.69 \cleardoublepage
+                     
+YOUR COMMAND WAS IGNORED.
+TYPE  I <COMMAND> <RETURN>  TO REPLACE IT WITH ANOTHER COMMAND,
+OR  <RETURN>  TO CONTINUE WITHOUT IT.
+
+[6
 
 
 ]
@@ -714,6 +1140,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--40
  (./specification.tex
 Cap\'{\i }tol 3.
 
+! Package inputenc Error: Unicode char \u8:àny not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ...utenticats han de tenir permisos i  pertàny
+                                                  er a grups amb rols autori...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
@@ -721,20 +1161,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--22
 [7
 
 
-] [8] <img/specification/Actors.png, id=530, 577.15625pt x 436.63126pt>
-File: img/specification/Actors.png Graphic file (type png)
+] [8]
 
-<use img/specification/Actors.png> [9 <./img/specification/Actors.png>]
-<img/specification/UsesCases.png, id=538, 968.61874pt x 3394.6825pt>
-File: img/specification/UsesCases.png Graphic file (type png)
+! LaTeX Error: Cannot determine size of graphic in img/specification/Actors.png
+ (no BoundingBox).
 
-<use img/specification/UsesCases.png>
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.68 ...s[scale=0.5]{img/specification/Actors.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-LaTeX Warning: Float too large for page by 111.42447pt on input line 92.
+File: img/specification/Actors.png Graphic file (type eps)
+<img/specification/Actors.png>
 
+! LaTeX Error: Cannot determine size of graphic in img/specification/UsesCases.
+png (no BoundingBox).
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 ...cale=0.2]{img/specification/UsesCases.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
+File: img/specification/UsesCases.png Graphic file (type eps)
+<img/specification/UsesCases.png> [9]
 ! Undefined control sequence.
 l.95 ...documentaci\'{o} s'utilitzar\`{a} la seg\¨
                                                   {u}ent estructura per defi...
@@ -753,187 +1210,395 @@ Underfull \hbox (badness 10000) in paragraph at lines 95--96
 Underfull \vbox (badness 10000) detected at line 107
  []
 
-Missing character: There is no ç in font cmr12!
-Missing character: There is no ç in font cmr12!
-Missing character: There is no ç in font cmr12!
-Missing character: There is no ç in font cmr12!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+! Package inputenc Error: Unicode char \u8:ònim not set up for use with LaTeX.
 
- [10]
-Underfull \vbox (badness 10000) detected at line 123
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.112 \addfield{Actors:}{Anònim}
+                                
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:çde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:çan not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:çde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:çde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) detected at line 122
+ []
+
+[10]
+Underfull \vbox (badness 10000) detected at line 133
  []
 
 
-Underfull \vbox (badness 10000) detected at line 135
+Underfull \vbox (badness 10000) detected at line 142
  []
 
 [11]
-Underfull \vbox (badness 10000) detected at line 145
+Underfull \vbox (badness 10000) detected at line 153
  []
 
 
-Underfull \vbox (badness 10000) detected at line 157
+! Package inputenc Error: Unicode char \u8:çau not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.173 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) detected at line 174
  []
 
 [12]
-Missing character: There is no ç in font cmr12!
-
-Underfull \vbox (badness 10000) detected at line 179
- []
-
-
-Underfull \vbox (badness 10000) detected at line 193
+Underfull \vbox (badness 10000) detected at line 187
  []
 
 [13]
-Underfull \vbox (badness 10000) detected at line 208
+Underfull \vbox (badness 10000) detected at line 201
  []
 
 
-Underfull \vbox (badness 10000) detected at line 228
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.219 }
+       
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+Underfull \vbox (badness 10000) detected at line 220
  []
 
 [14]
-Underfull \vbox (badness 10000) detected at line 245
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.235 }
+       
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+Underfull \vbox (badness 10000) detected at line 236
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 255
  []
 
 [15]
-Underfull \vbox (badness 10000) detected at line 265
+
+! Package inputenc Error: Unicode char \u8:àti not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:àsd not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) detected at line 275
  []
 
 [16]
-Underfull \vbox (badness 10000) detected at line 286
+Underfull \vbox (badness 10000) detected at line 287
+ []
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.300 }
+       
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+Underfull \vbox (badness 10000) detected at line 301
  []
 
 [17]
-Underfull \vbox (badness 10000) detected at line 299
- []
-
-[18]
-Underfull \vbox (badness 10000) detected at line 314
+Underfull \vbox (badness 10000) detected at line 317
  []
 
 
-Underfull \vbox (badness 10000) detected at line 331
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [18]
+Underfull \vbox (badness 10000) detected at line 334
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 343
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 352
  []
 
 [19]
-Underfull \vbox (badness 10000) detected at line 350
+Underfull \vbox (badness 10000) detected at line 361
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 373
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 384
  []
 
 [20]
-Underfull \vbox (badness 10000) detected at line 360
- []
-
-
-Underfull \vbox (badness 10000) detected at line 370
- []
-
-[21]
-Underfull \vbox (badness 10000) detected at line 380
- []
-
-
 Underfull \vbox (badness 10000) detected at line 393
  []
 
-[22]
-Underfull \vbox (badness 10000) detected at line 405
+
+Underfull \vbox (badness 10000) detected at line 404
  []
+
+[21]
+
+! Package inputenc Error: Unicode char \u8:çam not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.414 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
 
 Underfull \vbox (badness 10000) detected at line 415
  []
 
-[23]
-Underfull \vbox (badness 10000) detected at line 427
+
+Underfull \vbox (badness 10000) detected at line 425
  []
 
-Missing character: There is no ç in font cmr12!
 
-Underfull \vbox (badness 10000) detected at line 439
+Underfull \vbox (badness 10000) detected at line 434
+ []
+
+[22]
+Underfull \vbox (badness 10000) detected at line 443
+ []
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.456 }
+       
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+Underfull \vbox (badness 10000) detected at line 457
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 476
+ []
+
+[23]
+Underfull \vbox (badness 10000) detected at line 495
  []
 
 [24]
-Underfull \vbox (badness 10000) detected at line 450
+Underfull \vbox (badness 10000) detected at line 507
  []
 
 
-Underfull \vbox (badness 10000) detected at line 460
+Underfull \vbox (badness 10000) detected at line 519
+ []
+
+[25]
+Underfull \vbox (badness 10000) detected at line 529
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [25]
-Underfull \vbox (badness 10000) detected at line 470
+Underfull \vbox (badness 10000) detected at line 539
  []
 
 
-Underfull \vbox (badness 10000) detected at line 485
- []
-
-
-Underfull \vbox (badness 10000) detected at line 505
+Underfull \vbox (badness 10000) detected at line 550
  []
 
 [26]
-Underfull \vbox (badness 10000) detected at line 525
- []
 
-[27]
-Underfull \vbox (badness 10000) detected at line 537
- []
+! LaTeX Error: Cannot determine size of graphic in img/specification/ModelClass
+.png (no BoundingBox).
 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.558 ...le=0.5]{img/specification/ModelClass.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Underfull \vbox (badness 10000) detected at line 549
- []
+File: img/specification/ModelClass.png Graphic file (type eps)
+<img/specification/ModelClass.png>
 
-[28]
-Underfull \vbox (badness 10000) detected at line 559
- []
+! Package inputenc Error: Unicode char \u8:çan not set up for use with LaTeX.
 
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.579 ...s de la matriu a la que pertany mitjançan
+                                                  t la associaci\'{o} \texti...
 
-Underfull \vbox (badness 10000) detected at line 569
- []
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-[29]
-Underfull \vbox (badness 10000) detected at line 580
- []
-
-<img/specification/ModelClass.png, id=818, 1105.12875pt x 746.79pt>
-File: img/specification/ModelClass.png Graphic file (type png)
-
-<use img/specification/ModelClass.png> [30]
-Missing character: There is no ç in font cmr12!
-
-Overfull \hbox (10.29808pt too wide) in paragraph at lines 611--612
+[27] [28]
+Overfull \hbox (10.29808pt too wide) in paragraph at lines 581--582
 []\OT1/cmr/m/it/12 VariableMatrixConfig\OT1/cmr/m/n/12 : aque-s-ta classe guar-
 da la con-fig-u-raci^^So d'u-na colum-
  []
 
 
-Overfull \hbox (1.432pt too wide) in paragraph at lines 624--625
+Overfull \hbox (1.432pt too wide) in paragraph at lines 594--595
 []\OT1/cmr/m/n/12 predictionResult: col-lec-ci^^So de re-sul-tats de la ex-e-cu
 -ci^^So d'u-na predic-
  []
 
 
-LaTeX Warning: Reference `specificaion:status' on page 31 undefined on input li
-ne 625.
+LaTeX Warning: Reference `specificaion:status' on page 29 undefined on input li
+ne 595.
 
-<img/specification/StatesTraining.png, id=832, 450.68375pt x 352.31625pt>
-File: img/specification/StatesTraining.png Graphic file (type png)
 
-<use img/specification/StatesTraining.png> [31]
-<img/specification/StatesPrediction.png, id=837, 493.845pt x 447.6725pt>
-File: img/specification/StatesPrediction.png Graphic file (type png)
+! LaTeX Error: Cannot determine size of graphic in img/specification/StatesTrai
+ning.png (no BoundingBox).
 
-<use img/specification/StatesPrediction.png> [32 <./img/specification/StatesTra
-ining.png> <./img/specification/StatesPrediction.png>]
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.609 ....4]{img/specification/StatesTraining.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: img/specification/StatesTraining.png Graphic file (type eps)
+<img/specification/StatesTraining.png> [29]
+
+! LaTeX Error: Cannot determine size of graphic in img/specification/StatesPred
+iction.png (no BoundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.619 ...]{img/specification/StatesPrediction.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: img/specification/StatesPrediction.png Graphic file (type eps)
+<img/specification/StatesPrediction.png>
 ! Undefined control sequence.
-l.657 ...{o} donarem veurem els diagrames de seq\¨
+l.627 ...{o} donarem veurem els diagrames de seq\¨
                                                   {u}encia de les operacions...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -942,1339 +1607,104 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-<img/specification/SequenceNewSeasonSe.png, id=846, 627.34375pt x 621.32124pt>
-File: img/specification/SequenceNewSeasonSe.png Graphic file (type png)
-
-<use img/specification/SequenceNewSeasonSe.png>
-Missing character: There is no ¨ in font cmr12!
-Missing character: There is no ¨ in font cmr12!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [33]
-<img/specification/SequenceAddNewFilesToSeasonSet.png, id=851, 627.34375pt x 62
-1.32124pt>
-File: img/specification/SequenceAddNewFilesToSeasonSet.png Graphic file (type p
-ng)
- <use img/specification/SequenceAddNewFilesToSeasonSet.png>
-Missing character: There is no ¨ in font cmr12!
-Missing character: There is no ¨ in font cmr12!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34 <./img/specification/SequenceNewSeasonSe.png>]
-<img/specification/SequenceCreateMatrix.png, id=859, 381.425pt x 399.4925pt>
-File: img/specification/SequenceCreateMatrix.png Graphic file (type png)
-
-<use img/specification/SequenceCreateMatrix.png>
-Missing character: There is no ¨ in font cmr12!
-Missing character: There is no ¨ in font cmr12!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35 <./img/specification/SequenceAddNewFilesToSeasonSet.png>]
-<img/specification/SequenceCreateTraining.png, id=868, 799.98875pt x 781.92125p
-t>
-File: img/specification/SequenceCreateTraining.png Graphic file (type png)
- <use img/specification/SequenceCreateTraining.png>
-Overfull \hbox (89.99695pt too wide) in paragraph at lines 685--686
- [][] 
- []
-
-Missing character: There is no ¨ in font cmr12!
-Missing character: There is no ¨ in font cmr12!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [36 <./img/specification/SequenceCreateMatrix.png>]
-<img/specification/SequenceConfigureColumn.png, id=876, 588.1975pt x 706.64pt>
-File: img/specification/SequenceConfigureColumn.png Graphic file (type png)
-
-<use img/specification/SequenceConfigureColumn.png>
-Missing character: There is no ¨ in font cmr12!
-Missing character: There is no ¨ in font cmr12!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [37 <./img/specification/SequenceCreateTraining.png>]) [38 <./img/specificatio
-n/SequenceConfigureColumn.png>] [39 <./img/specification/UsesCases.png>] [40 <.
-/img/specification/ModelClass.png>]
-\openout2 = `dessign.aux'.
-
- (./dessign.tex
-Cap\'{\i }tol 4.
-<img/design/ArchitectureSoftware.png, id=902, 835.12pt x 461.725pt>
-File: img/design/ArchitectureSoftware.png Graphic file (type png)
-
-<use img/design/ArchitectureSoftware.png>
-Overfull \hbox (27.55898pt too wide) in paragraph at lines 11--12
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-! Misplaced alignment tab character &.
-l.17 \item Ichnaea Web Application &
-                                     Services: \'{e}s el \textit{core} de la...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-
-LaTeX Warning: Reference `dessign:queue_system_overview' on page 41 undefined o
-n input line 19.
-
-
-Overfull \hbox (4.16074pt too wide) in paragraph at lines 19--20
-[]\OT1/cmr/m/n/12 Productor-Cua-Consumidor ^^Ses el sis-tema de cues. Ex-plique
-m el paradig-
- []
-
-! Undefined control sequence.
-l.24 ...ini i persistencia de dades) amb els seg\¨
-                                                  {u}ents patrons de disseny:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (21.43741pt too wide) in paragraph at lines 24--26
-\OT1/cmr/m/n/12 Per la im-ple-mentaci^^Ro del sis-tema web s'han us-at un dis-s
-e-ny per capes(Presentaci^^So,
- []
-
-[41
-
-
-
-
-] <img/design/IchnaeaPatterns.png, id=910, 911.405pt x 495.8525pt>
-File: img/design/IchnaeaPatterns.png Graphic file (type png)
-
-<use img/design/IchnaeaPatterns.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[42 <./img/design/ArchitectureSoftware.png>]
-Missing character: There is no ç in font cmr12!
-Missing character: There is no ó in font cmr12!
-Missing character: There is no ç in font cmr12!
- [43 <./img/design/IchnaeaPatterns.png>]) [44]
-\openout2 = `implementation.aux'.
-
- (./implementation.tex
-Cap\'{\i }tol 5.
-[45
-
-
-
-
-]
-! Undefined control sequence.
-l.52 El \itemit
-               {framework} escollit ha sigut Symfony2. A continuaci\'{o} es ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \textitBundle 
-                              
-l.57 \item \textitBundle
-                         de usuaris: UserBundle. Paquet de serveis, vistes i...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-LaTeX Warning: Citation `fosuserbundle' on page 46 undefined on input line 57.
-
-[46]
-! Undefined control sequence.
-l.69 \item Bootstrap: \texit
-                            {framework} pel front-end desenvolupat per Twitt...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[47]
-! Undefined control sequence.
-l.78 ...cursos de la aplicaci\'{o} \'{e}s la seg\¨
-                                                  {u}ent:\\
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 78--79
-
- []
-
-
-Overfull \hbox (17.0336pt too wide) in paragraph at lines 90--106
-[] \OT1/cmr/m/n/12 Les
- []
-
-Missing character: There is no ó in font cmr12!
-Missing character: There is no í in font cmr12!
-Missing character: There is no ó in font cmr12!
-Missing character: There is no ó in font cmr12!
-[48]
-! Undefined control sequence.
-l.113 ...poden executar-se en un entorn distribu\¨
-                                                  {i}, pero aquesta capacita...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ó in font cmr12!
-Missing character: There is no ó in font cmr12!
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 127.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 132.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 132.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 132.
-
-(/usr/share/texmf-texlive/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 132.
- [49]
-Overfull \hbox (10.00354pt too wide) in paragraph at lines 152--153
-[][][][][][][][][][][]  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
-
- []
-
-) [50]
-\openout2 = `test.aux'.
-
- (./test.tex
-Cap\'{\i }tol 6.
-! Undefined control sequence.
-l.3 En aquest cap\´
-                   {i}tol expossem les proves realitzades de la aplicaci\'{o}.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.6 ...des en un SONY Vaio VGN-NW21EF amb la seg\¨
-                                                  {u}ent especificaci\'{o}:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.12 ...essaris de la aplicaci\'{o} i amb la seg\¨
-                                                  {u}ent configuraci\'{o}:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ç in font cmr12!
-[51
-
-
-
-
-]
-! Too many }'s.
-l.27 ...es(columnes). La importaci\'{o}(creaci\{'}
-                                                   del model de dades a part...
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-LaTeX Warning: Reference `cypruss' on page 52 undefined on input line 40.
-
-
-Overfull \hbox (0.76512pt too wide) in paragraph at lines 40--41
- \OT1/cmr/bx/n/12 En-tre-na-ment de \OT1/cmr/bx/it/12 Cypruss[] \OT1/cmr/m/n/12
- L'en-tre-na-ment de la ma-triu \OT1/cmr/m/it/12 Cypruss\OT1/cmr/m/n/12 (mirar
- []
-
-
-LaTeX Warning: Reference `cypruss_test' on page 52 undefined on input line 42.
-
-! Undefined control sequence.
-<argument> Prova en entorn distribu\¨
-                                     {i}t
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...n . \ \fi Prova en entorn distribu\¨
-                                                  {i}t
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...name }\fi Prova en entorn distribu\¨
-                                                  {i}t
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...name }\fi Prova en entorn distribu\¨
-                                                  {i}t}{\thepage }{\@current...
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.46 Les proves en un entorn distribu\¨
-                                       {i}t s'han realitzat en un m\'{a}quin...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.46 ...rtual proporcionada per RdLab amb la seg\¨
-                                                  {u}ent especificaci\'{o}.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[52]
-Missing character: There is no ç in font cmr12!
-
-! Too many }'s.
-l.68 ...roporcionada. La importaci\'{o}(creaci\{'}
-                                                   del model de dades a part...
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-) [53] [54
-
-
-]
-\openout2 = `conclussions.aux'.
-
- (./conclussions.tex
-Cap\'{\i }tol 7.
-! Too many }'s.
-l.4 ...criu la evoluci\'{o} temporal, la gesti\{o}
-                                                   del projecte, la estimaci...
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-! Undefined control sequence.
-l.14 \item Depuraci\'{o} en entorn distribu\¨
-                                             {i}t del sistema de cues. Encar...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.14 ... ha sigut desenvolupada per ser distribu\¨
-                                                  {i}da i separada del siste...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.14 ...en un entorn m\'{e}s complexe i distribu\¨
-                                                  {i}t.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[55
-
-
-]) [56]
-! Undefined control sequence.
-l.84 \cleardouplepage
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-\openout2 = `bibliography.aux'.
-
-(./bibliography.tex
-Cap\'{\i }tol 8.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3 \begin{thebibliography}{100}
-                                 [1
-
-
-
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3 \begin{thebibliography}{100}
-                                 [2
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
-[]\OT1/cmr/m/n/12 ''Learn Sym-fony - Sym-fony'' [On-line]. Disponible a
- []
-
-Missing character: There is no – in font cmr12!
-Missing character: There is no – in font cmr12!
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
-[]\OT1/cmr/m/n/12 ''Modelviewcontroller'' [On-line] Disponible a
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
-[]\OT1/cmr/m/n/12 Fabien Po-tenci-er ''What is Sym-fony2?'' [On-line]
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.24 ...] ''http://es.wikipedia.org/wiki/Advanced_
-                                                  Message_Queuing_Protocol''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.25 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.25 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-[]\OT1/cmr/m/n/12 ''Advanced Mes-sage Queu-ing Pro-to-col'' [On-line]
- []
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.25 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-Missing character: There is no ó in font cmr12!
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
-[]\OT1/cmr/m/n/12 ''El pa-trn Repos-i-to-rio (Repos-i-to-ry Pat-tern)'' [On-lin
-e]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
-\OT1/cmr/m/n/12 ''http://barradevblog.wordpress.com/2013/04/23/el-patron-reposi
-torio-
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.28 ...ine] ''http://es.wikipedia.org/wiki/Mapeo_
-                                                  objeto-relacional''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.29 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.29 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (21.62105pt too wide) in paragraph at lines 28--29
-[]\OT1/cmr/m/n/12 ''Mapeo objeto-relacional'' [On-line] ''http://es.wikipedia.o
-rg/wiki/Mapeo$[]\OML/cmm/m/it/12 bjeto \OMS/cmsy/m/n/12 ^^@
- []
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.29 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.30 \bibitem{dependency_injection}
-                                    Martin Fowler [Online] ''http://martinfo...
-[3])pdfTeX warning (ext4): destination with the same identifier (name{page.4}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.85 \include{bibliography}
-                            [4]
-No file main.gls.
-\openout2 = `userguide.aux'.
-
-(./userguide.tex
-Ap\`endix A.
-Missing character: There is no ç in font cmr12!
-
-<img/userguide/dashboard_complete_trainings.png, id=1073, 1371.1225pt x 770.88p
-t>
-File: img/userguide/dashboard_complete_trainings.png Graphic file (type png)
- <use img/userguide/dashboard_complete_trainings.png>
-Missing character: There is no ç in font cmr12!
-pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.23 \item P
-            rogr\'{e}s: actualment Ichnaea no retorna estat del proces. Sola...
-[5
-
-
-
- <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
-Overfull \hbox (22.99525pt too wide) in paragraph at lines 24--26
-[]\OT1/cmr/m/n/12 Status. Els pos-si-bles sta-tus son ''pend-ing''(no s'ha pogu
-t en-viar),''sent''(s'ha
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.28  \item ICON_
-                 EYE_OPEN es per anar a la pantalla de visualitzaci\'{o} del...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 28.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.28 ...er anar a la pantalla de visualitzaci\'{o}
-                                                   del training.
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.28 ...er anar a la pantalla de visualitzaci\'{o}
-                                                   del training.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
+! LaTeX Error: Cannot determine size of graphic in img/specification/SequenceNe
+wSeasonSe.png (no BoundingBox).
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.29  \end{itemize}
-                   
+l.631 ...mg/specification/SequenceNewSeasonSe.png}
+                                                  
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
+File: img/specification/SequenceNewSeasonSe.png Graphic file (type eps)
+<img/specification/SequenceNewSeasonSe.png>
 
-! LaTeX Error: Something's wrong--perhaps a missing \item.
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.632 ...fitxers d'envelliments per una variable}}
+                                                  
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.632 ...fitxers d'envelliments per una variable}}
+                                                  
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! LaTeX Error: Cannot determine size of graphic in img/specification/SequenceAd
+dNewFilesToSeasonSet.png (no BoundingBox).
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.29  \end{itemize}
-                   
+l.639 ...ation/SequenceAddNewFilesToSeasonSet.png}
+                                                  
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
+File: img/specification/SequenceAddNewFilesToSeasonSet.png Graphic file (type e
+ps)
+<img/specification/SequenceAddNewFilesToSeasonSet.png>
 
-! LaTeX Error: Something's wrong--perhaps a missing \item.
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
 
-See the LaTeX manual or LaTeX Companion for explanation.
+See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.29  \end{itemize}
-                   
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.29  \end{itemize}
-                   
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-Missing character: There is no è in font cmex10!
-<img/userguide/variable_configuration.png, id=1078, 1371.1225pt x 770.88pt>
-File: img/userguide/variable_configuration.png Graphic file (type png)
-
-<use img/userguide/variable_configuration.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.55 \item Editar una ''Season Set'', amb ICON_
-                                               EDIT.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+l.640 ... a un conjunt de fitxers d'envelliments}}
+                                                  
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
 
 
-! LaTeX Error: Command \item invalid in math mode.
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
 
-See the LaTeX manual or LaTeX Companion for explanation.
+See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.56 \item
-           Esborrar una ''Season Set'', amb la ICON_TRASH.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
+l.640 ... a un conjunt de fitxers d'envelliments}}
                                                   
-l.56 \item E
-            sborrar una ''Season Set'', amb la ICON_TRASH.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.56 \item E
-            sborrar una ''Season Set'', amb la ICON_TRASH.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.57 \end{itemize}
-                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (78.57462pt too wide) in paragraph at lines 55--58
-[]\OT1/cmr/m/n/12 Editar una ''Sea-son Set'', amb ICON$[]\OML/cmm/m/it/12 DIT:E
-sborraruna[]SeasonSet[]; amblaICON[]RASH:$ 
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.63 \item L
-            listar les variables per seleccionar una variable('Ichnaea Data ...
-[6]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.64 ...s vol afegir la variable, fent click ICON_
-                                                  EDIT
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.65 \item
-           Al apartat inferior ''List of season set'', clickar a la ICON_PLUS.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.65 \item A
-            l apartat inferior ''List of season set'', clickar a la ICON_PLUS.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.65 \item A
-            l apartat inferior ''List of season set'', clickar a la ICON_PLUS.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.66 \end{itemize}
-                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (287.38434pt too wide) in paragraph at lines 64--68
-[]\OT1/cmr/m/n/12 Editar la vari-able a la que es vol afe-gir la vari-able, fen
-t click ICON$[]\OML/cmm/m/it/12 DITAlapartatinferior[]Listofseasonset[]; clicka
-ralaICON[]LUS:$
- []
-
-<img/userguide/season_set_edition.png, id=1084, 1371.1225pt x 770.88pt>
-File: img/userguide/season_set_edition.png Graphic file (type png)
-
-<use img/userguide/season_set_edition.png>pdfTeX warning (ext4): destination wi
-th the same identifier (name{page.7}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.79 	\item E
-             ditar el nom de la season set [7 <./img/userguide/variable_configu
-ration.png (PNG copy)> <./img/userguide/season_set_edition.png (PNG copy)>]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.89 ...a que es vol afegir la variable, amb ICON_
-                                                  EDIT
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.90 \item
-           Editar, amb ICON_EDIT, la ''season set'' del llistat ''List of se...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.90 \item E
-            ditar, amb ICON_EDIT, la ''season set'' del llistat ''List of se...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.90 \item E
-            ditar, amb ICON_EDIT, la ''season set'' del llistat ''List of se...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.92 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.92 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (417.84785pt too wide) in paragraph at lines 89--92
-[]\OT1/cmr/m/n/12 Editar la vari-able a la que es vol afe-gir la vari-able, amb
- ICON$[]\OML/cmm/m/it/12 DITEditar; ambICON[]DIT; la[]seasonset[]delllistat[]Li
-stofseasonset[]:Llegirelpunt[]A:\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 :\OT1/cmr/m/n
-/12 4[][]$ 
- []
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.92 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Undefined control sequence.
-l.98 ...matriu \'{e}s important que sigui el seg\¨
-                                                  {u}ent.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.102     Cel.la bu\¨
-                     {i}da & Alias de la columna & .... & ORIGIN \\ \hline
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (7.31445pt too wide) in paragraph at lines 100--107
- [] 
- []
-
-
-Overfull \hbox (3.22504pt too wide) in paragraph at lines 111--112
-[]\OT1/cmr/m/n/12 Valor de la sam-ple: ^^Ses el val-or de la mostra per la colu
-m-na(variable) 
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.112 \item N
-             om de la sample: \'{e}s un identificador de la mostra. La aplic...
-[8]
-Missing character: There is no ç in font cmr12!
- <img/userguide/matrix_configure.png, id=1096, 1371.1225pt x 770.88pt>
-File: img/userguide/matrix_configure.png Graphic file (type png)
-
-<use img/userguide/matrix_configure.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-Missing character: There is no ç in font cmr12!
-Missing character: There is no ç in font cmr12!
-pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.149 
-       [9]pdfTeX warning (ext4): destination with the same identifier (name{pag
-e.10}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.164 \section
-              {Clonar una matriu} [10 <./img/userguide/matrix_configure.png (PN
-G copy)>] <img/userguide/clone_matrix.png, id=1105, 1371.1225pt x 770.88pt>
-File: img/userguide/clone_matrix.png Graphic file (type png)
-
-<use img/userguide/clone_matrix.png>
-<img/userguide/clone_matrix-2.png, id=1106, 1371.1225pt x 770.88pt>
-File: img/userguide/clone_matrix-2.png Graphic file (type png)
-
-<use img/userguide/clone_matrix-2.png>
-! Undefined control sequence.
-l.180 ...u i anem a la interficie de configuraci\Â
-                                                  ´{o}. Mirar \ref{sec:confi...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ´ in font cmr12!
-! Missing $ inserted.
-<inserted text> 
-                $
-l.183 ...e matrius del sistema, amb la icona ICON_
-                                                  ROAD, es pot accedir al fo...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 183.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.183 ...s pot accedir al formulari de creaci\'{o}
-                                                   de trainings.
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.183 ...s pot accedir al formulari de creaci\'{o}
-                                                   de trainings.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-! LaTeX Error: Not in outer par mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.184 \begin{figure}[h!]
-                        
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Undefined control sequence.
-\@float@Hx ...ltovf \fi \global \setbox \@currbox 
-                                                  \color@vbox \normalcolor \...
-l.184 \begin{figure}[h!]
-                        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   \vbox 
-l.184 \begin{figure}[h!]
-                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-<img/userguide/training_create.png, id=1108, 1371.1225pt x 770.88pt>
-File: img/userguide/training_create.png Graphic file (type png)
-
-<use img/userguide/training_create.png>
-! Missing $ inserted.
-<inserted text> 
-                $
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-Missing character: There is no è in font cmex10!
-
-Overfull \hbox (237.4543pt too wide) in paragraph at lines 183--191
-\OT1/cmr/m/n/12 train-ing''. Des-de el lli-s-tat de ma-trius del sis-tema, amb 
-la icona ICON$[]\OML/cmm/m/it/12 OAD; espotaccediralformularidecreaci[]detraini
-ngs:[]$ 
- []
-
-! Extra }, or forgotten \endgroup.
-\@par ... \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.191 \item P
-             art esquerra superior: El training cont\'{e} un nom i una descr...
-[11 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
--2.png (PNG copy)>]
-! Undefined control sequence.
-l.196 Si la creaci\Â
-                    ´{o} \Â´e{s} correcte, les dades s'enviaran a la cua de ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ´ in font cmr12!
-! Undefined control sequence.
-l.196 Si la creaci\Â´{o} \Â
-                           ´e{s} correcte, les dades s'enviaran a la cua de ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ´ in font cmr12!
-! Undefined control sequence.
-l.196 ...aran a la cua de procesos i la aplicaci\Â
-                                                  ´{o} es redirigir\Â´{a} la...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ´ in font cmr12!
-! Undefined control sequence.
-l.196 ...ocesos i la aplicaci\Â´{o} es redirigir\Â
-                                                  ´{a} la pantalla de visual...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ´ in font cmr12!
-! Undefined control sequence.
-l.196 ...rigir\Â´{a} la pantalla de visualitzaci\Â
-                                                  ´{o} de trainings.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ´ in font cmr12!
-! Undefined control sequence.
-l.202 ...pots accedir a visualitzar la informaci\Â
-                                                  ´{o} del training.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ´ in font cmr12!
-<img/userguide/view_training_pending.png, id=1115, 1371.1225pt x 770.88pt>
-File: img/userguide/view_training_pending.png Graphic file (type png)
-
-<use img/userguide/view_training_pending.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.219 \section
-              {Crear una predicci\'{o}} [12]
-<img/userguide/prediction_create.png, id=1121, 1371.1225pt x 770.88pt>
-File: img/userguide/prediction_create.png Graphic file (type png)
-
-<use img/userguide/prediction_create.png>pdfTeX warning (ext4): destination wit
-h the same identifier (name{page.13}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.230 \begin{center}
-                     [13 <./img/userguide/view_training_pending.png (PNG copy)>
- <./img/userguide/prediction_create.png (PNG copy)>]
-! Undefined control sequence.
-l.233     Cel.la bu\¨
-                     {i}da & Alias de la columna & .... & ORIGIN \\ \hline
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (7.31445pt too wide) in paragraph at lines 231--238
- [] 
- []
-
-
-Overfull \hbox (5.44124pt too wide) in paragraph at lines 250--250
-[]\OT1/cmr/bx/n/14.4 Executar una predic-ci^^So de una ma-triu de predic-
- []
-
-)pdfTeX warning (ext4): destination with the same identifier (name{page.14}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.89 \include{userguide}
-                         [14]
-\openout2 = `adminguide.aux'.
-
- (./adminguide.tex
-Ap\`endix B.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.15}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.91 \include{adminguide}
-                          [15
-
-
-
-
-]
-! Undefined control sequence.
-l.92 \cleardouplepage
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-(./main.aux (./title.aux) (./prologue.aux) (./preface.aux) (./background.aux)
-(./specification.aux) (./dessign.aux) (./implementation.aux) (./test.aux)
-(./conclussions.aux) (./bibliography.aux) (./userguide.aux) (./adminguide.aux))
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+[30
+! TeX capacity exceeded, sorry [parameter stack size=10000].
+\@float #1->
+            \@ifnextchar [{\@xfloat {#1}}{\edef \reserved@a {\noexpand \@xfl...
+l.643 
+      
+If you really absolutely need more capacity,
+you can ask a wizard to enlarge me.
+
+ 
 Here is how much of TeX's memory you used:
- 10242 strings out of 495061
- 152681 string characters out of 1182622
- 373069 words of memory out of 3000000
- 12669 multiletter control sequences out of 15000+50000
- 10264 words of font info for 35 fonts, out of 3000000 for 9000
+ 6436 strings out of 495062
+ 92753 string characters out of 1182645
+ 515076 words of memory out of 3000000
+ 9457 multiletter control sequences out of 15000+50000
+ 9546 words of font info for 33 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,10n,75p,1083b,1645s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (79 pages, 1711809 bytes).
-PDF statistics:
- 1271 PDF objects out of 1440 (max. 8388607)
- 456 named destinations out of 1000 (max. 500000)
- 799 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 3345i,9n,10001p,1887b,557s stack positions out of 5000i,500n,10000p,200000b,50000s
+Output written on main.dvi (36 pages, 58056 bytes).

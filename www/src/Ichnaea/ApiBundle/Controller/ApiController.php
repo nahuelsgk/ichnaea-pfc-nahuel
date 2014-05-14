@@ -143,7 +143,6 @@ class ApiController extends FosRestController{
     {
     	$ichnaeaService = $this->get('ichnaea.service');
     	$new_data   = $this->getRequest()->get('data');
-    	error_log("HELLO".$new_data);
     	$ichnaeaService->updateSampleData($matrix_id, $sample_id, $index, $new_data);
     	return $this->view(null, 200);
     }
@@ -159,6 +158,16 @@ class ApiController extends FosRestController{
     	$predictionService = $this->get('ichnaea_web_app_prediction.service');
     	$new_data   = $this->getRequest()->get('data');
     	$predictionService->updateSamplePredictionData($prediction_id, $sample_id, $index, $new_data);
+    	return $this->view(null, 200);
+    }
+    
+    public function updateColumnPredictionAction($prediction_id, $column_index)
+    {
+    	$predictionService = $this->get('ichnaea_web_app_prediction.service');
+    	$request      = $this->getRequest();
+    	$new_name     = $request->get('name');
+    	$new_variable = $request->get('variable');
+    	$predictionService->updateColumnPrediction($prediction_id, $column_index, $new_name, $new_variable);
     	return $this->view(null, 200);
     }
 }

@@ -140,6 +140,7 @@ class LoadGroupData implements FixtureInterface, ContainerAwareInterface
 		$content = $this->read_matrix_file();
 		$serviceMatrix->createMatrixFromCSVContent('cyprus',$content, $user->getId());
 		
+		//@TODO: create all cases in the csv
 	}
 	
 	private function build_variable($name, $summer_file, $winter_file)

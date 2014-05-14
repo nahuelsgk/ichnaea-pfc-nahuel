@@ -1,0 +1,18 @@
+[] Crear un usuario l.belanche
+--Activar redireccion para capturar el mail
+/opt/lampp/htdocs/ichnaea/www/app/config/
+--Una vez recibido desactivar
+[] Listar variables y seasons sets
+- Listar season sets
+- Listar seasons de una season set
+[] Crear una season set - Antartida
+[] Importar cyprus y configurarla con Antartida
+- Lanzar el training directamente
+- Configurar la matriz
+- Relanzarlo de nuevo
+[] Crear training
+[] Crear una prediccion con un training 
+[] Listar matrices
+[] Clonar una matriz
+[] Listar trainings
+[] Listar predicciones

@@ -111,6 +111,7 @@ class PredictionController extends Controller
 				'training_id'	     => $matrixPrediction->getTraining()->getId(),
 				'matrix_trained_id'  => $matrixPrediction->getTraining()->getMatrix()->getId(),
 				'matrix_description' => $matrixPrediction->getDescription(),
+				'availableVars'		 => $matrixPrediction->getTraining()->getColumnsSelected(),
 				#'matrix' => $matrixPrediction
 			)
 		);

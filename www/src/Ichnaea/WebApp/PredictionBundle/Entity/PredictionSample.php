@@ -5,7 +5,7 @@ namespace Ichnaea\WebApp\PredictionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sample
+ * PredictionSample
  *
  * @ORM\Table(name="prediction_sample")
  * @ORM\Entity
@@ -160,7 +160,7 @@ class PredictionSample
      * Set matrix
      *
      * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $matrix
-     * @return Sample
+     * @return PredictionSample
      */
     public function setMatrix(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $matrix = null)
     {

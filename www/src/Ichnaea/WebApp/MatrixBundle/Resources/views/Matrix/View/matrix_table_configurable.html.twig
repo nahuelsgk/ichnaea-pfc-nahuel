@@ -1,6 +1,6 @@
 {# 
   Parameters of this view:
-    - 'configurable_columns': 'disable' 
+    - 'configurable_columns': 'enable' for  matrix, 'prediction' for predictions, disable for read-only 
     - 'configurable_samples':'enable'
     - 'api': 'prediction'
 #}
@@ -136,6 +136,38 @@
 										   </td>
 										   {% endfor %}
 										   <td class='inner-head col_header_last head'>&nbsp;</td>
+								{% elseif configurable_columns == 'prediction' %}
+                            	           {% for column in columns %}
+										   <td class='inner-head col_header head'>
+										    <a title="Variable selection"><i class="icon-wrench"></i></a>
+										    <select placeholder="Select the variable" class="input-medium" id="selectedPredictionVariable-{{column.id}}" onChange="displayHiddenElement('column-{{column.id}}-action');"">
+										        <option value="0">None</option>
+										      	{% for availableVar in availableVars %}
+										        	<option value="{{availableVar.id}}" {% if column.variable is not null and column.variable.id == availableVar.id%} selected="selected" {% endif %}>{{availableVar.name}} {% if availableVar.seasonSet is not null %}- {{ availableVar.seasonSet.name }}{% endif %}</option>
+										      	{% endfor %}
+										    </select>
+										    <br/>
+										   	<a title="Alias of the variable"><i class="icon-pencil"></i></a>
+										   	<input 
+										   		type="text" 
+										   		class="input-medium" 
+										   		id="column-name-{{column.id}}" 
+										   		value="{{column.name}}" 
+										   		onchange="
+										   			displayHiddenElement('column-{{column.id}}-action'); 
+										   			displayHiddenElement('save_all_changes');">
+										    <br/>
+										    <a class="btn btn-mini save_button_action_column" 
+										    style="visibility: hidden;" id="column-{{column.id}}-action" 
+										    onclick="updatePredictionVariableConfigurationAction(
+										   			'{{ loop.index }}',
+										   			$('#column-name-{{column.id}}').val(),
+										   			$('#selectedPredictionVariable-{{column.id}}').val(),
+										   			'column-{{column.id}}-action'
+										   		);"><i class="icon-edit"></i></a>
+										   </td>
+										   {% endfor %}
+										   <td class='inner-head col_header_last head'>&nbsp;</td>
                             	{% else %}
                                 	{% for column in columns %}
 								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>
@@ -205,10 +237,20 @@ function renderListSeasonSets(listData, toListId)
  * BEGIN API LIBRARY
  */
 {% if api == 'prediction' %}
+
 function updateSampleData(sample_id, sample_name, sample_date, sample_origin, sample_button_action)
 {
   sendEvent('{{ path('sample_prediction_api',{'prediction_id': matrix_id}) }}'+sample_id, 'PUT', {name: sample_name, date: sample_date, origin:sample_origin }, function (data){displaySuccessfulAction(sample_button_action)});
 }
+
+{% if configurable_columns == 'prediction' %}
+function updatePredictionVariableConfigurationAction(column_index, column_name, column_variable_id, column_button_action)
+{
+  sendEvent('{{ path('column_prediction_api', {"prediction_id": matrix_id }) }}/'+column_index, 'PUT', {name: column_name, variable: column_variable_id}, function (data){displaySuccessfulAction(column_button_action)});    
+}
+
+{% endif %}
+
 {% else %}
 function updateVariableConfigurationAction(column_id, column_name, column_variable_id, season_set_id, column_button_action)
 {
@@ -226,6 +268,7 @@ function loadSeasonSetIntoSelectListAction(variable_id, idOptionList)
 	sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
 }
 {% endif %}
+
 
 /*  
  * END API LIBRARY

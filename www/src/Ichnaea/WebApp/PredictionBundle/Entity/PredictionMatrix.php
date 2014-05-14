@@ -48,6 +48,11 @@ class PredictionMatrix
 	private $owner;
 	
 	/**
+	 * @ORM\OneToMany(targetEntity="PredictionColumn", mappedBy="prediction", cascade={"persist"})
+	 */
+	private $columns;
+	
+	/**
 	 * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample", mappedBy="matrix", cascade={"persist"})
 	 */
 	private $rows;

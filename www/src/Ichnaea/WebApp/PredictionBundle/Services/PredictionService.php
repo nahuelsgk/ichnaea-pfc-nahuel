@@ -7,6 +7,7 @@ require_once __DIR__.' /../../../../../../amqp/php/vendor/autoload.php';
 use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix as PredictionMatrix;
 use Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample;
+use Ichnaea\WebApp\PredictionBundle\Entity\PredictionColumn;
 use Ichnaea\WebApp\MatrixBundle\Service\MatrixUtils as MatrixUtils;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Filesystem\Filesystem;
@@ -341,6 +342,49 @@ class PredictionService
 		$this->em->persist($sample);
 		$this->em->flush();
 		return true;
+	}
+	
+	/**
+	 * Updates a column configuration in a prediction
+	 * 
+	 * @param int $prediction_id
+	 * @param int $column_index
+	 * @param string $name
+	 * @param int $column_configuration_id
+	 * @return boolean
+	 */
+	public function updateColumnPrediction($prediction_id, $column_index, $name, $column_configuration_id)
+	{
+		$columnRepository                = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionColumn');
+		$variableConfigurationRepository = $this->em->getRepository('MatrixBundle:VariableMatrixConfig');
+		$predictionRepostitory           = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix');
+		
+		error_log("Prediction_id:" . $prediction_id);
+		error_log("Index_id:" . $prediction_id);
+		
+		$prediction       = $predictionRepostitory->find($prediction_id);
+		$columnPrediction = $columnRepository->findOneBy(array('prediction' => $prediction_id, 'index' => $column_index));
+	
+		if(is_null($columnPrediction)){
+			$columnPrediction = new PredictionColumn();
+			$columnPrediction->setName($name);
+			$columnPrediction->setIndex($column_index);
+			$columnPrediction->setPrediction($prediction);
+		}
+		else{
+			$columnPrediction->setName($name);
+		}
+		if(!is_null($column_configuration_id)){
+			error_log("Column configuration: " .$column_configuration_id);
+		    $variableConfiguration = $variableConfigurationRepository->find($column_configuration_id);
+		    if(!empty($variableConfiguration)){
+		      $columnPrediction->addColumnConfiguration($variableConfiguration);
+		    }
+		}
+		$this->em->persist($columnPrediction);
+		$this->em->flush();
+		return true;
+		
 	}
 }
 
