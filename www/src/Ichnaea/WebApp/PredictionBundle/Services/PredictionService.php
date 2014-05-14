@@ -45,7 +45,6 @@ class PredictionService
 		//new prediction matrix
 		if ( is_null($prediction_id) === TRUE)
 		{
-		  //die("prediction_id is null");
 		  $predictionMatrix = new PredictionMatrix();		
 		  $predictionMatrix->setName($name);
 		  $predictionMatrix->setDescription($description);
@@ -61,14 +60,21 @@ class PredictionService
 			$predictionMatrix->setDescription($description);
 			
 		
-			//If we need to update de content, reset the samples 
+			//If we need to update the content, reset the samples 
 			if ($content != '')
 			{
 				//Delete all samples
 				foreach ($predictionMatrix->getRows() as $sample){
 					$predictionMatrix->removeRow($sample);
 					$this->em->remove($sample);
-				}		
+				}
+				//Delete all columns
+				foreach ($predictionMatrix->getColumns() as $column)
+				{
+					$predictionMatrix->removeColumn($column);
+					$this->em->remove($column);
+				}
+				
 			}
 		}
 		
@@ -77,24 +83,73 @@ class PredictionService
 		{
 			$index=0;
 			
-			//m_columns: the number of columns of the matrix
-			$m_columns = count($training->getMatrix()->getColumns());
+			//n_columns: the number of columns of the csv
+			$n_columns = 0;
+			//m_columns: mark the final values position
+			$m_columns = 0;
+			//by default the ORIGIN COLUMN dont exists
 			$origin = FALSE;
-			
+			//by default the DATE COLUMN dont exists
+			$date = FALSE;
+		
 			foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
-				$max_colums=0;
 				//On headers, init indexs counters
 				if($index == 0) {
 					$columns    = explode(";", $line);
 					
-					//IF in the columns[m_columns+1] is written "ORIGIN" instead of a variable name means that matrix has the ORIGIN COLUMN
-					if (isset($columns[$m_columns+1])){
-						if (strpos($columns[$m_columns+1], "ORIGIN") !== false ){
-							$origin = TRUE;
-							$m_columns++;
-						}
+					$n_columns = count($columns);
+					
+					/* Begin Resolving format of CSV  */
+					//IF in the columns[m_columns] is written "ORIGIN" 
+					//instead of a variable name 
+					//means that this csv in the last column species a sample
+					if (strpos($columns[$n_columns-1], "ORIGIN") !== false ){
+						$origin = TRUE;
+						$m_columns = $n_columns-2;
+					}
+					//IF in the columns[m_columns] is written "DATE"
+					//instead of a variable name
+					//means that this csv in the last column species a date
+					elseif (strpos($columns[$n_columns-1], "DATE") !== false ){
+						$date = TRUE;
+						$m_columns = $n_columns-2;
+					}
+					//IF in the columns[m_columns] is written "DATE"
+					//instead of a variable name
+					//means that this csv in the last column species a date
+					elseif (strpos($columns[$n_columns-2], "ORIGIN") !== false && strpos($columns[$n_columns-1], "DATE") !== false){
+						$origin = TRUE;
+						$date = TRUE;
+						$m_columns = $n_columns-3;
+					}
+					else{
+						$m_columns = $n_columns-1;
 					}
 					
+					/* END Resolving format of CSV */
+					for($i=1; $i<=$m_columns; $i++){
+						$variable_name = MatrixUtils::cleanStringCSV($columns[$i]);
+						$variableConfiguration = new PredictionColumn();
+						$variableConfiguration->setName($variable_name);
+						$variableConfiguration->setPrediction($predictionMatrix);
+						$variableConfiguration->setIndex($i);
+						
+						$columns_trained = $training->getColumnsSelected();
+						echo "Creo columna $i<br>";
+						//Try to match if the column name has the same name
+						if(!empty($columns_trained)){
+							foreach($columns_trained as $column_trained){
+								if(!is_null($column_trained->getVariable())){
+									if($column_trained->getVariable()->getName() == $variable_name){
+										$variableConfiguration->setColumnConfiguration($column_trained);
+										break;
+									}
+								}
+							}
+						}
+						$predictionMatrix->addColumn($variableConfiguration);
+					}
+					//die();
 				}
 				else{
 					//If not an empty line
@@ -111,8 +166,8 @@ class PredictionService
 						
 						//manage origin column
 						if ($origin == TRUE){
-							$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
-							if(isset($columns[$m_columns])) $sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$m_columns]));
+							$sample->setSamples(array_slice($columns, 1, $n_columns-2, TRUE));
+							if(isset($columns[$n_columns-1])) $sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$n_columns-1]));
 						}
 						else{
 							$sample->setSamples(array_slice($columns, 1, null, TRUE));
@@ -131,7 +186,6 @@ class PredictionService
 		$userRepository = $this->em->getRepository('UserBundle:User');
 		$user = $userRepository->find($owner_id);
 		$predictionMatrix->setOwner($user);
-		
 		$this->em->persist($predictionMatrix);
 		$this->em->flush();
 		return $predictionMatrix->getId();
@@ -361,10 +415,12 @@ class PredictionService
 		
 		error_log("Prediction_id:" . $prediction_id);
 		error_log("Index_id:" . $prediction_id);
+		error_log("Column configuration:" . $column_configuration_id);
 		
 		$prediction       = $predictionRepostitory->find($prediction_id);
 		$columnPrediction = $columnRepository->findOneBy(array('prediction' => $prediction_id, 'index' => $column_index));
 	
+		
 		if(is_null($columnPrediction)){
 			$columnPrediction = new PredictionColumn();
 			$columnPrediction->setName($name);
@@ -374,12 +430,14 @@ class PredictionService
 		else{
 			$columnPrediction->setName($name);
 		}
-		if(!is_null($column_configuration_id)){
-			error_log("Column configuration: " .$column_configuration_id);
-		    $variableConfiguration = $variableConfigurationRepository->find($column_configuration_id);
-		    if(!empty($variableConfiguration)){
-		      $columnPrediction->addColumnConfiguration($variableConfiguration);
-		    }
+		if ($column_configuration_id == 0)
+		{
+			$columnPrediction->setColumnConfiguration(NULL);
+		}
+		else
+		{
+			$newVariableConfiguration = $variableConfigurationRepository->find($column_configuration_id);
+			$columnPrediction->setColumnConfiguration($newVariableConfiguration);
 		}
 		$this->em->persist($columnPrediction);
 		$this->em->flush();

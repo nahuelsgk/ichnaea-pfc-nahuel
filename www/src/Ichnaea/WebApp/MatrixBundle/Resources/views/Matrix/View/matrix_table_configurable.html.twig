@@ -143,7 +143,7 @@
 										    <select placeholder="Select the variable" class="input-medium" id="selectedPredictionVariable-{{column.id}}" onChange="displayHiddenElement('column-{{column.id}}-action');"">
 										        <option value="0">None</option>
 										      	{% for availableVar in availableVars %}
-										        	<option value="{{availableVar.id}}" {% if column.variable is not null and column.variable.id == availableVar.id%} selected="selected" {% endif %}>{{availableVar.name}} {% if availableVar.seasonSet is not null %}- {{ availableVar.seasonSet.name }}{% endif %}</option>
+										        	<option value="{{availableVar.id}}" {% if column.columnConfiguration is not null and column.columnConfiguration.id == availableVar.id %}selected="selected"{% endif %}> {{availableVar.name}} {% if availableVar.seasonSet is not null %}- {{ availableVar.seasonSet.name }}{% endif %}</option>
 										      	{% endfor %}
 										    </select>
 										    <br/>

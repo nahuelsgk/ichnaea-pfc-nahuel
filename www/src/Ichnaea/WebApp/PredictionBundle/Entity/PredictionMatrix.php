@@ -48,7 +48,7 @@ class PredictionMatrix
 	private $owner;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="PredictionColumn", mappedBy="prediction", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="Ichnaea\WebApp\PredictionBundle\Entity\PredictionColumn", mappedBy="prediction", cascade={"persist"})
 	 */
 	private $columns;
 	
@@ -397,4 +397,37 @@ class PredictionMatrix
     	$this->created = $date;
     }
     
+
+    /**
+     * Add columns
+     *
+     * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionColumn $columns
+     * @return PredictionMatrix
+     */
+    public function addColumn(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionColumn $columns)
+    {
+        $this->columns[] = $columns;
+
+        return $this;
+    }
+
+    /**
+     * Remove columns
+     *
+     * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionColumn $columns
+     */
+    public function removeColumn(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionColumn $columns)
+    {
+        $this->columns->removeElement($columns);
+    }
+
+    /**
+     * Get columns
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getColumns()
+    {
+        return $this->columns;
+    }
 }

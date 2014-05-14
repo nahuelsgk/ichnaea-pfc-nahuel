@@ -42,11 +42,8 @@ class PredictionColumn
 	private $prediction;
 	
 	/**
-    * @ORM\ManyToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig")
-    * @ORM\JoinTable(name="prediction_variable_matrix_config",
-    *  joinColumns={@ORM\JoinColumn(name="prediction_column_id", referencedColumnName="id")},
-    *  inverseJoinColumns={@ORM\JoinColumn(name="matrix_column_id", referencedColumnName="id")}
-    * )  
+    * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig")
+  	* @ORM\JoinColumn(name="column_configuration_id", referencedColumnName="id", nullable=true)  
     */
 	private $columnConfiguration;
 	
@@ -134,36 +131,26 @@ class PredictionColumn
      */
     public function __construct()
     {
-        $this->columnConfiguration = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
-     * Add columnConfiguration
+     * Set columnConfiguration
      *
      * @param \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnConfiguration
      * @return PredictionColumn
      */
-    public function addColumnConfiguration(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnConfiguration)
+    public function setColumnConfiguration(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnConfiguration = null)
     {
-        $this->columnConfiguration[] = $columnConfiguration;
+        $this->columnConfiguration = $columnConfiguration;
 
         return $this;
     }
 
     /**
-     * Remove columnConfiguration
-     *
-     * @param \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnConfiguration
-     */
-    public function removeColumnConfiguration(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnConfiguration)
-    {
-        $this->columnConfiguration->removeElement($columnConfiguration);
-    }
-
-    /**
      * Get columnConfiguration
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig 
      */
     public function getColumnConfiguration()
     {

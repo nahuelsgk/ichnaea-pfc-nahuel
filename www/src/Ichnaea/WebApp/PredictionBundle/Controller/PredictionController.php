@@ -101,11 +101,12 @@ class PredictionController extends Controller
 	public function predictionMatrixViewAction($matrix_id, $training_id, $prediction_id){
 		$predictionService = $this->get('ichnaea_web_app_prediction.service');
 		$matrixPrediction = $predictionService->getPredictionMatrix($matrix_id, $training_id, $prediction_id);
+		
 		return $this->render('IchnaeaWebAppPredictionBundle::view.html.twig',
 			array(
 				'matrix_name'        => $matrixPrediction->getName(),
 				'samples'	         => $matrixPrediction->getRows(),
-				'columns'	         => $matrixPrediction->getTraining()->getMatrix()->getColumns(),
+				'columns'	         => $matrixPrediction->getColumns(),
 				'matrix_id'          => $matrixPrediction->getId(),
 				'matrix_status'	     => $matrixPrediction->getStatus(),
 				'training_id'	     => $matrixPrediction->getTraining()->getId(),

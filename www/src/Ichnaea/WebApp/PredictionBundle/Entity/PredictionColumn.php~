@@ -30,9 +30,9 @@ class PredictionColumn
 	private $name;
 	
 	/**
-	 * @var int
+	 * @var integer
 	 *
-	 * @ORM\Column(name="index", type="int", nullable=false)
+	 * @ORM\Column(name="position", type="integer", nullable=false)
 	 */
 	private $index;
 	
@@ -42,11 +42,8 @@ class PredictionColumn
 	private $prediction;
 	
 	/**
-    * @ORM\ManyToMany(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig")
-    * @ORM\JoinTable(name="prediction_variable_matrix_config",
-    *  joinColumns={@ORM\JoinColumn(name="prediction_column_id", referencedColumnName="id")},
-    *  inverseJoinColumns={@ORM\JoinColumn(name="matrix_column_id", referencedColumnName="id")}
-    * )  
+    * @ORM\ManyToOne(targetEntity="Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig")
+  	* @ORM\JoinColumn(name="column_configuration_id", referencedColumnName="id", nullable=true)  
     */
 	private $columnConfiguration;
 	
@@ -99,7 +96,7 @@ class PredictionColumn
 	/**
 	 * Get index
 	 *
-	 * @return string
+	 * @return integer
 	 */
 	public function getIndex()
 	{
@@ -113,7 +110,7 @@ class PredictionColumn
 	 * @param \Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $matrix
 	 * @return PredictionColumn
 	 */
-	public function setPrediction(\Ichnaea\WebApp\MatrixBundle\Entity\PredictionMatrix $prediction = null)
+	public function setPrediction(\Ichnaea\WebApp\PredictionBundle\Entity\PredictionMatrix $prediction = null)
 	{
 		$this->prediction = $prediction;
 	
@@ -123,10 +120,40 @@ class PredictionColumn
 	/**
 	 * Get matrix
 	 *
-	 * @return \Ichnaea\WebApp\MatrixBundle\Entity\PredictionMatrix
+	 * @return \Ichnaea\WebApp\Bundle\Entity\PredictionMatrix
 	 */
 	public function getPrediction()
 	{
 		return $this->prediction;
 	}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+    }
+
+
+    /**
+     * Set columnConfiguration
+     *
+     * @param \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnConfiguration
+     * @return PredictionColumn
+     */
+    public function setColumnConfiguration(\Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig $columnConfiguration = null)
+    {
+        $this->columnConfiguration = $columnConfiguration;
+
+        return $this;
+    }
+
+    /**
+     * Get columnConfiguration
+     *
+     * @return \Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig 
+     */
+    public function getColumnConfiguration()
+    {
+        return $this->columnConfiguration;
+    }
 }
