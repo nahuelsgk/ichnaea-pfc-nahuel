@@ -6,7 +6,7 @@ En aquest cap\'{i}tol es descriuen els requeriments, les operatives que es neces
 
 \subsection{Requeriments funcionals}
 \subsubsection{Administraci\'{o} d'usuaris}
-La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertànyer a grups amb rols autoritzats per fer certes accions. \'{E}s una aplicaci\'{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
+La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertÃ nyer a grups amb rols autoritzats per fer certes accions. \'{E}s una aplicaci\'{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
 \begin{itemize}
 \item Crear comptes d'usuari.
 \item Atendre peticions de restaurar contrasenyes.
@@ -92,7 +92,7 @@ A la figura \ref{fig:usecases} es pot veure la el diagrama de casos d'\'{u}s.
 \end{figure}
 
 \subsection{Especificaci\'{o} dels casos d'\'{u}s}
-En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir els casos d'\'{u}s:\\
+En la documentaci\'{o} s'utilitzar\`{a} la segÃ¼ent estructura per definir els casos d'\'{u}s:\\
 \begin{usecase}
 \addtitle{Identificador}{Nom cas d'us}
 \addfield{Actors:}{Llista de actors}
@@ -109,12 +109,12 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 
 \begin{usecase}
 \addtitle{Usuari001}{Crear un usuari}
-\addfield{Actors:}{Anònim}
+\addfield{Actors:}{AnÃ²nim}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item Usuari accedeix al formulari de registraci\'{o}. L'usuari introdueix un nom d'usuari, un correu electr\`{o}nic i una contrasenya per duplicat
-	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enllaç de confirmaci\'{o} i crea un compte no validada.
-	\item L'usuari accedeix mitjançant l'enllaç de confirmaci\'{o}.
-	\item El sistema comprova que \'{e}s un enllaç de confirmaci\'{o} v\`{a}lid d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
+	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enllaï¿½ de confirmaci\'{o} i crea un compte no validada.
+	\item L'usuari accedeix mitjanÃ§ant l'enllaÃ§ de confirmaci\'{o}.
+	\item El sistema comprova que \'{e}s un enllaÃ§ de confirmaci\'{o} v\`{a}lid d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
 }
 \addscenario{Cursos alternatius:}{
 \item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu, que el correu sigui v\`{a}lid. Sino es correcte li informa a l'usuari al mateix formulari.
@@ -157,7 +157,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una variable d'un llistat de variables.
-	\item El sistema li mostra un formulari d'edici\'{o} de la variable amb un enllaç a un formulari de creaci\'{o}.
+	\item El sistema li mostra un formulari d'edici\'{o} de la variable amb un enllaÃ§ a un formulari de creaci\'{o}.
 	\item L'usuari accedeix a un formulari de creaci\'{o} d'un conjunt de fitxers.
 	\item El sistema li mostra un formulari de creaci\'{o}.
 	\item L'usuari pot donar un nom i seleccionar 0, 1 o 2 fitxers, on cada fitxer pot ser configurat com:
@@ -208,7 +208,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
     \item El sistema li mostra un formulari de edici\'{o} dels components.
     \item L'usuari pot donar un nom i seleccionar 0, 1 o 2 fitxers, on cada fitxer pot ser configurat com:
 	\begin{itemize}
-		\item a únic per tot l'any
+		\item a ï¿½nic per tot l'any
 		\item com estiu
 		\item com hivern
 		\item com tardor
@@ -231,7 +231,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 	\item El sistema esborra el fitxer.
 }
 \addscenario{Cursos alternatius:}{
-\item[5] L'usuari cancel·la la acci\'{o}.
+\item[5] L'usuari cancelÂ·la la acci\'{o}.
 }
 \end{usecase}
 
@@ -263,11 +263,11 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 	\item L'usuari accedeix a un formulari on pot actualitzar el nom a la matriu i/o seleccionar el fitxer de tipus de fulla de c\`{a}lcul. L'usuari confirma els canvis
 	\item El sistema esborra la matriu anterior i torna a crear la matriu on:
 	\begin{itemize}
-	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automàticament s'assigna a aquesta columna a aquesta variable i a un conjunt de fitxers d'envelliments per defecte.
+	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automÃ ticament s'assigna a aquesta columna a aquesta variable i a un conjunt de fitxers d'envelliments per defecte.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un aliàs d'origen, autom\`{a}ticament s'assigna un origen
-		\item Les columnes restants s'assignan com a valors de la mostra
+		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un aliÃ s d'origen, autom\`{a}ticament s'assigna un origen
+		\item Les columnes restants s'assignen com a valors de la mostra
 	\end{itemize}
 	\end{itemize}
 	\item L'usuari visualitza la matriu.
@@ -296,7 +296,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 	\item El sistema clona la matriu i la seva configuraci\'{o} sense copiar entrenaments ni prediccions. El propietari de la matriu \'{e}s l'usuari que ha realitzat la clonaci\'{o}.
 }
 \addscenario{Cursos alternatius:}{
-	\item[3] L'usuari cancel·la la acci\'{o}.
+	\item[3] L'usuari cancelÂ·la la acci\'{o}.
 }
 \end{usecase}
 
@@ -330,6 +330,17 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 	\end{itemize}
 	\item L'usuari accepta la configuraci\'{o}.
 	\item El sistema guarda la configuraci\'{o} de la mostra.
+}
+\end{usecase}
+
+\begin{usecase}
+\addtitle{Matriu007}{Validar una matriu}
+\addfield{Actors:}{Usuari propietari de una matriu}
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+	\item L'usuari selecciona un matriu.
+	\item El sistema mostra una vista per validar les dades.
+	\item L'usuari accepta una validaci\'{o}.
+	\item El sistema mostra al usuari si conte alguna dada buida com algun valor de mostres, una origen d'una mostra o una data de mostra.
 }
 \end{usecase}
 
@@ -408,7 +419,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item L'usuari selecciona un entrenament finalitzat
-    \item El sistema visualitza un enllaç amb la possibilitat de descarregar el fitxer resultats d'un entrenament.
+    \item El sistema visualitza un enllaï¿½ amb la possibilitat de descarregar el fitxer resultats d'un entrenament.
     \item L'usuari accedeix a la descarrega.
     \item El sistema envia a l'usuari els resultats.
 }
@@ -452,7 +463,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la seg\¨{u}ent estructura per definir el
 	\item El sistema esborra la predicci\'{o}.
 }
 \addscenario{Cursos alternatius:}{
-	\item[3] L'usuari cancel·la la acci\'{o}.
+	\item[3] L'usuari cancelï¿½la la acci\'{o}.
 }
 \end{usecase}
 
@@ -576,7 +587,7 @@ A continuaci\'{o} es descriuran algunes de le classes i alguns atributs per a la
 
 \item \textit{Matrix}: en aquesta classe es guarda la informaci\'{o} b\`{a}sica d'una matriu.
 
-\item \textit{Sample}:en aquesta classe es guarda la informaci\'{o} de cadascuna de les files de la matriu a la que pertany mitjançant la associaci\'{o} \textit{rows}.
+\item \textit{Sample}:en aquesta classe es guarda la informaci\'{o} de cadascuna de les files de la matriu a la que pertany mitjanï¿½ant la associaci\'{o} \textit{rows}.
 
 \item \textit{VariableMatrixConfig}: aquesta classe guarda la configuraci\'{o} d'una columna de la matriu i associa la columna a una variable i a un conjunt de fitxers d'aquesta variable.
 
@@ -624,12 +635,12 @@ Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuar
 En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar la predicci\'{o} a la cua despr\'{e}s de comprovar l'error.
 
 \section{Model del comportament}
-En aquesta secci\'{o} donarem veurem els diagrames de seq\¨{u}encia de les operacions m\'{e}s complexes dels casos d'us.
+En aquesta secci\'{o} donarem veurem els diagrames de seq\ï¿½{u}encia de les operacions m\'{e}s complexes dels casos d'us.
 \subsection*{Crear un conjunt de fitxers d'envelliments per una variable}
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceNewSeasonSe.png}
-  \caption{Diagram de seq¨{u}encia \textit{Crear un conjunt de fitxers d'envelliments per una variable}}
+  \caption{Diagram de seqï¿½{u}encia \textit{Crear un conjunt de fitxers d'envelliments per una variable}}
   \label{fig:sequencenewseasonset}
 \end{figure}
 
@@ -637,7 +648,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\¨{u}encia de les opera
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceAddNewFilesToSeasonSet.png}
-  \caption{Diagram de seq¨{u}encia \textit{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}}
+  \caption{Diagram de seqï¿½{u}encia \textit{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}}
   \label{fig:sequenceaddnewseason}
 \end{figure}
 
@@ -645,7 +656,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\¨{u}encia de les opera
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceCreateMatrix.png}
-  \caption{Diagram de seq¨{u}encia \textit{Crear una matriu des d'un fitxer}}
+  \caption{Diagram de seqï¿½{u}encia \textit{Crear una matriu des d'un fitxer}}
   \label{fig:sequencenewmatrixfromfile}
 \end{figure}
 
@@ -653,7 +664,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\¨{u}encia de les opera
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceCreateTraining.png}
-  \caption{Diagram de seq¨{u}encia \textit{Crear un entrenament}}
+  \caption{Diagram de seqï¿½{u}encia \textit{Crear un entrenament}}
   \label{fig:sequenceaddtraining}
 \end{figure}
 
@@ -661,7 +672,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\¨{u}encia de les opera
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceConfigureColumn.png}
-  \caption{Diagrama de seq¨{u}encia \textit{Configurar una columna d'una matriu} }
+  \caption{Diagrama de seqï¿½{u}encia \textit{Configurar una columna d'una matriu} }
   \label{fig:sequenceconfigurecolumn}
 \end{figure}
 

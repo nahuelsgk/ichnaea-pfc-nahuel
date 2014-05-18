@@ -1,0 +1,124 @@
+\select@language {catalan}
+\contentsline {chapter}{\numberline {1}Prefaci}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Abast}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Objectius}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}Introducci\IeC {\'o} a Ichnaea}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}MST: Microbial Source Tracking}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Ichnaea Software}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}L'univers d'Ichnaea}{4}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Matrius}{4}{subsection.2.3.1}
+\contentsline {subsubsection}{Variables i conjunts de envelliments}{4}{section*.2}
+\contentsline {subsection}{\numberline {2.3.2}La matriu i les mostres}{4}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Entrenaments}{5}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Matrius de prediccions}{5}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Sistema de cues}{5}{subsection.2.3.5}
+\contentsline {chapter}{\numberline {3}An\`{a}lisis i Especificaci\'{o}}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}An\`{a}lisis de Requeriments}{7}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Requeriments funcionals}{7}{subsection.3.1.1}
+\contentsline {subsubsection}{Administraci\'{o} d'usuaris}{7}{section*.3}
+\contentsline {subsubsection}{Administraci\'{o} de variables de sistema}{7}{section*.4}
+\contentsline {subsubsection}{Administraci\'{o} de matrius}{8}{section*.5}
+\contentsline {subsubsection}{Administraci\'{o} de entrenaments}{8}{section*.6}
+\contentsline {subsubsection}{Administraci\'{o} de matrius de predicci\'{o}}{8}{section*.7}
+\contentsline {subsection}{\numberline {3.1.2}Requeriments no funcionals}{9}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Model de Casos d'us}{9}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Actors}{9}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Diagrama dels casos d'\'{u}s}{10}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Especificaci\'{o} dels casos d'\'{u}s}{10}{subsection.3.2.3}
+\contentsline {subsubsection}{Configurar una mostra d'una matriu de predicci\'{o}}{27}{section*.10}
+\contentsline {subsubsection}{Enviar una predicci\'{o} al sistema de cues}{27}{section*.11}
+\contentsline {subsubsection}{Veure una predicci\'{o}}{28}{section*.12}
+\contentsline {subsubsection}{Veure els resultats d'una predicci\'{o}}{28}{section*.13}
+\contentsline {subsubsection}{Actualitzar l'estat d'una predicci\'{o}}{29}{section*.14}
+\contentsline {section}{\numberline {3.3}Model Conceptual}{29}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Diagrama de classes}{29}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Explicaci\'{o} de les classes}{29}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Model d'estats}{30}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Estats dels entrenaments}{31}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Estats de les prediccions}{31}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Model del comportament}{32}{section.3.5}
+\contentsline {chapter}{\numberline {4}Disseny}{41}{chapter.4}
+\contentsline {section}{\numberline {4.1}Esquema general l\`{o}gic arquitect\'{o}nic del sistema}{41}{section.4.1}
+\contentsline {section}{\numberline {4.2}Patr\'{o} de disseny}{41}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Esquema del disseny}{42}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Explicaci\'{o} del m\`{o}del}{42}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Disseny d'interf\'{i}cies}{44}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Interf\'{i}cie de configuraci\'{o} de matrius}{44}{subsection.4.3.1}
+\contentsline {chapter}{\numberline {5}Implementaci\'{o}}{45}{chapter.5}
+\contentsline {section}{\numberline {5.1}Estudi previ de les tecnologies}{45}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}\textit {Framework} a mida}{45}{subsection.5.1.1}
+\contentsline {paragraph}{Avantatges}{45}{section*.31}
+\contentsline {paragraph}{Desavantatges}{45}{section*.32}
+\contentsline {subsection}{\numberline {5.1.2}\textit {Codeigniter}}{46}{subsection.5.1.2}
+\contentsline {paragraph}{Avantatges}{46}{section*.33}
+\contentsline {paragraph}{Desavantatges}{46}{section*.34}
+\contentsline {subsection}{\numberline {5.1.3}\textit {Symfony2}}{46}{subsection.5.1.3}
+\contentsline {paragraph}{Avantatges}{46}{section*.35}
+\contentsline {paragraph}{Desavantatges}{46}{section*.36}
+\contentsline {section}{\numberline {5.2}Implementaci\'{o}}{46}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}\textit {Symfony2}}{47}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Gesti\'{o} de depend\`{e}ncies}{47}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Recursos}{48}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Servei web}{48}{section.5.3}
+\contentsline {section}{\numberline {5.4}Integraci\'{o} amb el sistema de cues RabbitMQP}{49}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Introducci\'{o} a l'arquitectura de cues: AMQP}{49}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Consumidors i gesti\'{o} de resultats}{49}{subsection.5.4.2}
+\contentsline {subsubsection}{Consumidor d'entrenaments}{50}{section*.37}
+\contentsline {subsubsection}{Consumidor de prediccions}{51}{section*.38}
+\contentsline {chapter}{\numberline {6}Proves i tests}{53}{chapter.6}
+\contentsline {section}{\numberline {6.1}Prova en PC local}{53}{section.6.1}
+\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{54}{section*.39}
+\contentsline {subsubsection}{Gesti\'{o} de matrius}{54}{section*.40}
+\contentsline {paragraph}{Creaci\'{o} de matrius}{54}{section*.41}
+\contentsline {paragraph}{Esborrat de matrius}{54}{section*.42}
+\contentsline {paragraph}{Esborrat d'un entrenament}{54}{section*.43}
+\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{54}{section*.44}
+\contentsline {paragraph}{Creaci\'{o} de matrius de predicci\'{o}}{54}{section*.45}
+\contentsline {paragraph}{Rendiment d'Ichnaea Software en aquest entorn}{54}{section*.46}
+\contentsline {subparagraph}{Entrenament de \textit {Cypruss}}{54}{section*.47}
+\contentsline {subparagraph}{Predicci\'{o} de \textit {Cypruss}}{55}{section*.48}
+\contentsline {section}{\numberline {6.2}Prova en entorn distribu{i}t}{55}{section.6.2}
+\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{55}{section*.49}
+\contentsline {subsubsection}{Gesti\'{o} de matrius}{55}{section*.50}
+\contentsline {paragraph}{Creaci\'{o} de matrius}{55}{section*.51}
+\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{56}{section*.52}
+\contentsline {chapter}{\numberline {7}Conclusions}{57}{chapter.7}
+\contentsline {section}{\numberline {7.1}Metodologia \IeC {\`a}gil}{57}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Backlog}{58}{subsection.7.1.1}
+\contentsline {section}{\numberline {7.2}Estimaci\'{o} econ\'{o}mica}{58}{section.7.2}
+\contentsline {section}{\numberline {7.3}Millores en futures versions}{58}{section.7.3}
+\contentsline {chapter}{\numberline {8}Bibliografia}{1}{chapter.8}
+\contentsline {chapter}{Bibliografia}{3}{section*.54}
+\contentsline {chapter}{\numberline {A}Manual d'usuari}{5}{appendix.A}
+\contentsline {section}{\numberline {A.1}Casa de l'usuari}{5}{section.A.1}
+\contentsline {subsection}{\numberline {A.1.1}Llistat dels meus trainings pendents}{5}{subsection.A.1.1}
+\contentsline {section}{\numberline {A.2}Variables}{6}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Veure les variables del sistema}{6}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Formulari de edici\'{o} d'una variable}{6}{subsection.A.2.2}
+\contentsline {subsection}{\numberline {A.2.3}Crear una ''season set'' d'una variable}{7}{subsection.A.2.3}
+\contentsline {subsection}{\numberline {A.2.4}Editar una ''Season Set'' d'una variable}{7}{subsection.A.2.4}
+\contentsline {subsection}{\numberline {A.2.5}Afegir una ''season'' a una ''season set'' existent d'una variable}{8}{subsection.A.2.5}
+\contentsline {section}{\numberline {A.3}Matrius}{8}{section.A.3}
+\contentsline {subsection}{\numberline {A.3.1}Crear una matriu desde un fitxer csv o excel}{8}{subsection.A.3.1}
+\contentsline {section}{\numberline {A.4}Configurar una matriu}{9}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Alias de una columna}{9}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Especificar una columna a una variable i la season set}{10}{subsection.A.4.2}
+\contentsline {subsection}{\numberline {A.4.3}Cambiar la visualitzaci\'{o}}{10}{subsection.A.4.3}
+\contentsline {subsection}{\numberline {A.4.4}Visualitzar missatges}{10}{subsection.A.4.4}
+\contentsline {subsection}{\numberline {A.4.5}Actualitzar una dada d'una fila i d'una columna}{11}{subsection.A.4.5}
+\contentsline {section}{\numberline {A.5}Clonar una matriu}{11}{section.A.5}
+\contentsline {section}{\numberline {A.6}Crear un training d'una matriu}{12}{section.A.6}
+\contentsline {subsection}{\numberline {A.6.1}Simular un training de la matriu Cyprus}{12}{subsection.A.6.1}
+\contentsline {section}{\numberline {A.7}Visualitzar un training}{12}{section.A.7}
+\contentsline {subsection}{\numberline {A.7.1}Problem\'{a}tiques de la creaci\'{o} de trainings}{12}{subsection.A.7.1}
+\contentsline {section}{\numberline {A.8}Crear una matriu de predicci\'{o}}{13}{section.A.8}
+\contentsline {section}{\numberline {A.9}Crear una predicci\'{o}}{13}{section.A.9}
+\contentsline {section}{\numberline {A.10}Actualitzar una matriu de predicci\'{o}}{14}{section.A.10}
+\contentsline {section}{\numberline {A.11}Llistar les meves prediccions}{14}{section.A.11}
+\contentsline {section}{\numberline {A.12}Visualitzar una matriu de predicci\'{o}}{14}{section.A.12}
+\contentsline {subsection}{\numberline {A.12.1}Actualitzar una matriu de predicci\'{o}}{14}{subsection.A.12.1}
+\contentsline {subsection}{\numberline {A.12.2}Executar una predicci\'{o} de una matriu de predicci\'{o}}{14}{subsection.A.12.2}
+\contentsline {chapter}{\numberline {B}Manual d'administrador}{15}{appendix.B}
+\contentsline {section}{\numberline {B.1}Llistar usuaris del sistema}{15}{section.B.1}
+\contentsline {section}{\numberline {B.2}Canviar el grup de l'usuari}{15}{section.B.2}
+\contentsline {section}{\numberline {B.3}Comprovar cua}{15}{section.B.3}

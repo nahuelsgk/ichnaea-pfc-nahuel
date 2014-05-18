@@ -203,14 +203,18 @@ class PredictionController extends Controller
 	 */
 	public function viewPredictionResultsAction($matrix_id, $training_id, $prediction_id)
 	{
-		$results = $this->get('ichnaea_web_app_prediction.service')->getPredictionResults($matrix_id, $training_id, $prediction_id, 'asHTMLTables');
+		$results    = $this->get('ichnaea_web_app_prediction.service')->getPredictionResults($matrix_id, $training_id, $prediction_id, 'asHTMLTables');
+		$prediction = $this->get('ichnaea_web_app_prediction.service')->getPredictionMatrix($matrix_id, $training_id, $prediction_id);
 		return $this->render(
 				'IchnaeaWebAppPredictionBundle::results.html.twig', 
 				array(
-					'results'       => $results,
-					'matrix_id'     => $matrix_id,
-					'training_id'   => $training_id,
-					'prediction_id' => $prediction_id  
+					'matrix_name'     => $prediction->getTraining()->getMatrix()->getName(),
+					'training_name'   => $prediction->getTraining()->getName(),
+					'prediction_name' => $prediction->getName(),
+					'results'         => $results,
+					'matrix_id'       => $matrix_id,
+					'training_id'     => $training_id,
+					'prediction_id'   => $prediction_id  
 				));
 	}
 

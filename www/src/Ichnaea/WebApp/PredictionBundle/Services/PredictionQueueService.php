@@ -49,7 +49,7 @@ class PredictionQueueService
 		$data = MatrixUtils::buildDatasetFromMatrix(
 				NULL,
 				'simple',
-				$predict_matrix->getTraining()->getMatrix()->getColumns(),
+				$predict_matrix->getColumns(),
 				$predict_matrix->getRows()
 		);
 	

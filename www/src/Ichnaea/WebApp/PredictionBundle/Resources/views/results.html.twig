@@ -4,6 +4,23 @@
 
 {% block body %} 
 <div class="container">
+<div id="general_info">
+<legend>General info<legend>
+<table class="table">
+<thead>
+<th>Matrix</th>
+<th>Training</th>
+<th>Prediction</th>
+</thead>
+<tbody>
+<tr>
+ <td><a href="{{ path('matrix_ui_view', {matrix_id: matrix_id}) }}" target="_blank">{{ matrix_name }}</td>
+ <td><a href="{{ path('training_view', {matrix_id: matrix_id, training_id: training_id})}}" target="_blank">{{ training_name }}</a>
+ <td><a href="{{ path('view_matrix_prediction	', {matrix_id: matrix_id, training_id: training_id, prediction_id: prediction_id}) }}" target="_blank">{{ prediction_name }}</a>
+</tr>
+</tbody>
+</table>
+</div>
 {% for result in results%}
  <legend>
  	Result {{ loop.index }}

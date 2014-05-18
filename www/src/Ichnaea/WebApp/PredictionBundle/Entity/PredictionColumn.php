@@ -100,7 +100,7 @@ class PredictionColumn
 	 */
 	public function getIndex()
 	{
-		return $this->name;
+		return $this->index;
 	}
 	
 	

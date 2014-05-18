@@ -2,8 +2,13 @@
 namespace Ichnaea\WebApp\MatrixBundle\Service;
 
 use Ichnaea\WebApp\MatrixBundle\Entity\Matrix as Matrix;
+use Ichnaea\WebApp\MatrixBundle\Entity\Sample as Sample;
 use Ichnaea\WebApp\MatrixBundle\Entity\Variable as Variable;
 use Ichnaea\WebApp\MatrixBundle\Entity\SeasonSet as SeasonSet;
+use Ichnaea\WebApp\MatrixBundle\Entity\VariableMatrixConfig as VariableMatrixConfig;
+use Ichnaea\WebApp\PredictionBundle\Entity\PredictionColumn as PredictionColumn;
+use Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample as PredictionSample; 
+ 
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer as DateTimeToStringTransformer;
 
 /*
@@ -16,10 +21,15 @@ class MatrixUtils{
 * a) info for send it to the queue
 * b) builds a csv file to send for downloading
 * 
-* IMPORTANT: its an overload function. It's also used for generate csv. The type of csv is simple
-* or completed configured for uploading matrixs
+* IMPORTANT: its an overload function. It's also used for generate csv. 
+* The type of csv is simple or completed configured for uploading matrixs
 * IMPORTANT: CLASS is a reserved word for empty cells
 *
+* @param $matrix -> maybe obsolete. It is not used.
+* @param string $type: ENUM (simple: just the matrix and its value, complete: NOT 100% IMPLEMENTED)
+* @param Collection: Generic Collection of Objects. It depends the objects, use some 
+* 
+*  
 * Return:
 * {
 *  [dataset_format] => csv
@@ -68,45 +78,105 @@ static public function buildDatasetFromMatrix(
     $i = 0; 
     //@GENERIC $columns = $matrix->getColumns();
     
+    
+    //SPECIAL Variable: Just the remember which positions in the prediction Matrix
+    //Array [position] => trained 
+    $trainedPositionsInPredictionMatrix = array();
+    //echo "<pre>";
     //BEGIN CSV @1 - ROWS with the var name/alias if simple; if complete only var name
     foreach($columns as $column)
     {
-    	//Column with variable associated
-    	if ($column->getVariable() instanceof Variable){
-    		$var_name    = $column->getVariable()->getName();
-	    	$seasonSet = $column->getSeasonSet();
-	    	
-	    	if ($seasonSet instanceof SeasonSet){
-	    		
-	    		$season_set_components = $seasonSet->getComponents();	
-	    		$j = 0;
-	    		foreach($season_set_components as $component){
-	    			$season         = $component->getSeason();
-	    			$season_content = $season->getContent();
-	    			$season_season  = $component->getSeasonType();
-	    			//must respect the "aging_fileformat"
-	    			$aging_name = 'env'.$var_name.'-'.MatrixUtils::resolveSeasonName($season_season).'.txt';
-	    			$dataSet["aging"][$aging_name] = $season_content;
-	    			$j++;
-	    		}
-	    	}  
-	    	//Just one column per variable
-	    	$columns_name[] = $var_name;
+    	//For Trainings
+    	if($column instanceof VariableMatrixConfig)
+    	{	
+    	    //Column with variable associated
+	    	if ($column->getVariable() instanceof Variable)
+	    	{
+	    		$var_name    = $column->getVariable()->getName();
+		    	$seasonSet = $column->getSeasonSet();
+		    	
+		    	if ($seasonSet instanceof SeasonSet){
+		    		
+		    		$season_set_components = $seasonSet->getComponents();	
+		    		$j = 0;
+		    		foreach($season_set_components as $component){
+		    			$season         = $component->getSeason();
+		    			$season_content = $season->getContent();
+		    			$season_season  = $component->getSeasonType();
+		    			//must respect the "aging_fileformat"
+		    			$aging_name = 'env'.$var_name.'-'.MatrixUtils::resolveSeasonName($season_season).'.txt';
+		    			$dataSet["aging"][$aging_name] = $season_content;
+		    			$j++;
+		    		}
+		    	}  
+		    	//Just one column per variable
+		    	$columns_name[] = $var_name;
+	    	}
+	    	//Another kind of column(no variable associated)
+	    	else{
+	    		//In this case we use the alias
+	    		if ($type == 'simple') $columns_name[] = $column->getName();
+	    		else $columns_name[] = $empty_cell_string;
+	    	}
    		}
    		
-   		//Another kind of column(no variable associated) 
-   		else{
-   			//In this case we use the alias
-   			if ($type == 'simple') $columns_name[] = $column->getName();
-   			else $columns_name[] = $empty_cell_string;
+   		//For Predictions
+   		elseif($column instanceof PredictionColumn)
+   		{	
+   			//Only with a configuration Column with trained variables
+   			if(!is_null($column->getColumnConfiguration())){
+   				//echo "COLUMN FOR PREDICTION in position ".$column->getIndex()."<br>";
+   				$trainedPositionsInPredictionMatrix[$column->getIndex()] = 'trained';
+   				
+	   			//echo "* IS CONFIGURED<br>";
+	   			//Column with a trained variable with season set
+	   			if ($column->getColumnConfiguration()->getVariable() instanceof Variable){
+	   				//echo "**VARIABLE WITH SEASON SET";
+	   				$var_name    = $column->getColumnConfiguration()->getVariable()->getName();
+	   				$seasonSet = $column->getColumnConfiguration()->getVariable()->getSeasonSet();
+	   				 
+	   				if ($seasonSet instanceof SeasonSet){
+	   			
+	   					$season_set_components = $seasonSet->getComponents();
+	   					$j = 0;
+	   					foreach($season_set_components as $component){
+	   						$season         = $component->getSeason();
+	   						$season_content = $season->getContent();
+	   						$season_season  = $component->getSeasonType();
+	   						//must respect the "aging_fileformat"
+	   						$aging_name = 'env'.$var_name.'-'.MatrixUtils::resolveSeasonName($season_season).'.txt';
+	   						$dataSet["aging"][$aging_name] = $season_content;
+	   						$j++;
+	   					}
+	   				}
+	   				//Just one column per variable
+	   				$columns_name[] = $var_name;
+	   			}
+	   			//Another kind of column: column with a trained variable "derivated"(no seasonset)
+	   			else
+	   			{
+	   				//echo "** VARIABLE DERIVATED WITHOUT SEASON SET";
+	   				//In this case we use the alias
+	   				if ($type == 'simple') $columns_name[] = $column->getColumnConfiguration()->getName();
+	   				else $columns_name[] = $empty_cell_string;
+	   			}
+   			}
    		}
+   		
+   		
+   		
    		$i++;
    	}	
+   	//echo "<br>COLUMNS TRAINED";
+   	//var_dump($trainedPositionsInPredictionMatrix);
    	
    	//First row, joins all the columns name with ;
    	$csv_content[] = implode($columns_name,";");
    	//END CSV @1
    	
+   	//***************************
+   	//* BEGIN ONLY FOR COMPLETE *
+   	//***************************
    	//BEGIN CSV @2 - Row with id of the season set
    	$columns_name = array();
    	if ($type == 'complete')
@@ -142,16 +212,55 @@ static public function buildDatasetFromMatrix(
    		$csv_content[] = implode($columns_name,";");
    	}
    	//END CSV @3
+   	//***************************
+   	//* END   ONLY FOR COMPLETE *
+   	//***************************
    	
    	//Finally ful fill the samples
    	//@GENERIC $samples = $matrix->getRows();
+   	$row_content = array();
    	foreach ($samples as $sample) {
+   		//echo "SAMPLE<br>";
    		$row_content   = array();
    		$values        = $sample->getSamples();
    		$sample_name   = $sample->getName();
    		$sample_date   = $sample->getDate();
    		$sample_origin = $sample->getOrigin(); 
-   		if ($type == 'simple') $row_content = array_merge( (array) $sample_name, (array)$values);
+   		if ($type == 'simple')
+   		{
+   			
+   			//echo "* CLASS: ".get_class($sample)."<br>";
+   			//echo "* Sample name: ".$sample->getName()."<br>";
+   			//\Doctrine\Common\Util\Debug::dump($sample);
+   			//For predictions only the configurated columns
+   			if (get_class($sample) === 'Ichnaea\WebApp\PredictionBundle\Entity\PredictionSample')
+   			{
+   				//echo "* SAMPLE FROM PREDICTION<br>";
+   				$current_position = 1;
+   				foreach($sample->getSamples() as $sample_value)
+   				{
+   					var_dump($sample_value);
+   					//current_position - 1 because the array is shifted one position
+   					if (array_key_exists($current_position, $trainedPositionsInPredictionMatrix)){
+   						//echo "** POSITION $current_position is SELECTED THE VALUE ".$sample_value."<br>";
+   						$row_content[] = $sample_value;
+   					}
+   					$current_position++;	
+   				}
+   			}
+   			//For trainings complete matrix
+   			elseif (get_class($sample) == 'Ichnaea\WebApp\MatrixBundle\Entity\Sample')
+   			{
+   				//echo "* SAMPLE FROM MATRIX<br>";
+   				$row_content = array_merge( (array) $sample_name, (array)$values);
+   			}
+   			
+   			else
+   			{
+   				//echo "* PROBLEMS!!";	
+   			}  			
+   			
+   		}
    		
    		//BEGIN CSV @4 - IF complete add origins and dates
    		else
@@ -163,6 +272,8 @@ static public function buildDatasetFromMatrix(
    					(array) $values
    			);
    		}
+   		//echo "VALUES PUSHED<br>";
+   		//var_dump($row_content);
    		$csv_content[] = implode($row_content, ";");
    	}
    	$csv = implode($csv_content, "\r\n");
@@ -175,11 +286,19 @@ static public function buildDatasetFromMatrix(
    			'Summer'    => '0.5',
    			'Winter'    => '0.0'
    	);
-   	
-		   	
+   	//echo "<pre>";
+   	//var_dump($dataSet);
+   	//echo "</pre>";
+	//die();   	
    	return $dataSet;	
 }
 
+/**
+ * 
+ * @param unknown $matrix
+ * @param string $type
+ * @return multitype:multitype: number string multitype:string
+ */
 static public function buildDatasetFromMatrixPrediction($matrix, $type = 'simple'){
 	$dataSet = array();
 	$dataSet["fake_duration"]         = 10;

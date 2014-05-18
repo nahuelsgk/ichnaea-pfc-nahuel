@@ -1,8 +1,10 @@
 \chapter{Implementaci\'{o}}
 \label{cha:implementation}
+En aquest cap√≠tol es descriu les tecnologies estudiades i aplicades per aplicar el disseny anteriorment descrit.
+
 
 \section{Estudi previ de les tecnologies}
-En aquesta secci'{o} es far\'{a} una descripci\'{o} de les tecnologies estudiades per tal de poder realitzar aquest projecte. 
+En aquesta secci\'{o} es far\'{a} una descripci\'{o} de les tecnologies estudiades per tal de poder realitzar aquest projecte. 
 
 \subsection{\textit{Framework} a mida}
 En un principi \'{e}s va valorar la possibilitat de desenvolupar tot un nou \textit{framework} per la implementaci\'{o} del projecte. Les tecnologies emprades son PHP com a llenguatge de programaci\'{o} i MySQL com a motor de bases de dades.
@@ -64,9 +66,9 @@ Arquitectonicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, si
 \subsection{Gesti\'{o} de depend\`{e}ncies} 
 \textit{Symfony2} utilitza \textit{Composer} per la gesti\'{o} de depend\`{e}ncies. \textit{Composer} \'{e}s un gestor de dependencies a nivell d'aplicaci\'{o}. Les depend\`{e}ncies son:
 \begin{itemize}
-\item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interfÌcies. Simplifica la manera de interaccionar amb els documents HTML i la simplifica la manera de manipular l'arbre DOM.
+\item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interf√≠cies. Simplifica la manera de interaccionar amb els documents HTML i la simplifica la manera de manipular l'arbre DOM.
 \item FOSUserBundle: paquet per a \textit{Symfony} per la gesti\'{o} de usuaris. 
-\item Bootstrap: \texit{framework} pel \textit{front-end} desenvolupat per Twitter. Implementa nous est‡ndards com HTML5 i CSS3. Permet el desenvolupament de manera r\`{a}pida i usable interf\'{i}cies soportades per m˙ltiples navegadors.
+\item Bootstrap: \texit{framework} pel \textit{front-end} desenvolupat per Twitter. Implementa nous estendards com HTML5 i CSS3. Permet el desenvolupament de manera r\`{a}pida i usable interf\'{i}cies soportades per m√∫ltiples navegadors.
 \item RestBundle: paquet per Symfony per desenvolupar llibreries API JSON Restful.
 \item Symfony FS: paquet per gestionar sistema de fitxers.
 \item Doctrine Fixtures: paquet per gestionar la inserci\'{o} controlada de dades a la base de dades.
@@ -75,7 +77,7 @@ Arquitectonicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, si
 \end{itemize}
 
 \subsection{Recursos}
-La estructura de recursos de la aplicaci\'{o} \'{e}s la seg\®{u}ent:\\
+La estructura de recursos de la aplicaci\'{o} \'{e}s la seg\ÔøΩ{u}ent:\\
 
 \begin{tabular}{| l | l |}
 \hline
@@ -84,11 +86,11 @@ Matrius       & matrix/(id) \\ \hline
 ''Predictions'' & matrix/(id)/training/(id)/prediction/(id) \\ \hline
 \end{tabular}
 
-S'ha emprat aquesta estructura de recursos degut a les dependËncies entre les diferents entitats. Un ''training'' dep\'{e}n d'una matriu i una predicci\'{o} dep\'{e}n d'un ''training''.
+S'ha emprat aquesta estructura de recursos degut a les depend√®ncies entre les diferents entitats. Un ''training'' dep\'{e}n d'una matriu i una predicci\'{o} dep\'{e}n d'un ''training''.
 
 \section{Servei web}
-S'ha desenvolupat una llibreria API JSON Restful\cite{apijson} per enriquir les interfÌcies. S'ha emprat aquesta tecnologia per la escal.labilitat que aporta i perquË en un futur es pugui aprofitar el desenvolupament d'aquesta.
-Les operacions, els recursos i el par‡metres son:\\
+S'ha desenvolupat una llibreria API JSON Restful\cite{apijson} per enriquir les interf√≠cies. S'ha emprat aquesta tecnologia per la escal.labilitat que aporta i perqu√® en un futur es pugui aprofitar el desenvolupament d'aquesta.
+Les operacions, els recursos i el par√†metres son:\\
 \begin{tabular}{ | l | l |}
 \hline
 GET & /api/season/(id) \\ \hline
@@ -102,17 +104,17 @@ DELETE & /api/variable/(id)/seasonSet/(id) /component/(id)/complete\\ \hline
 PUT & /api/matrix/(id)/column/(id)\\ \hline
 PUT & /api/matrix/(id)/sample/(id)\\ \hline
 \end{tabular}
-Les peticions estan securitzades per ''cookies'' i per sessiÛ per identificar i validar a l'usuari.
+Les peticions estan securitzades per ''cookies'' i per sessi√≥ per identificar i validar a l'usuari.
 
 \section{Integraci\'{o} amb el sistema de cues RabbitMQP}
 \subsection{Introducci\'{o} a l'arquitectura de cues: AMQP}
 \label{sec:queue_system_overview}
-L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicacions d'un sistema de comunicaciÛ. Les caracterÌstiques que definen al protocol AMQP son la orientaciÛ a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com,per exemple, la seguretat o les subscripcions.\cite{amqp}\\
-AMQP defineix una s\`{e}rie d'entitats. Des de la perspectiva de la interconnexiÛ les m\'{e}s rellevants son:
+L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicacions d'un sistema de comunicaci√≥. Les caracter√≠stiques que definen al protocol AMQP son la orientaci√≥ a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com,per exemple, la seguretat o les subscripcions.\cite{amqp}\\
+AMQP defineix una s\`{e}rie d'entitats. Des de la perspectiva de la interconnexi√≥ les m\'{e}s rellevants son:
 \begin{itemize}
-\item El corredor de missatges: un servidor on els clients AMQP es connecten usant el protocol AMQP. Els corredores de missatges poden executar-se en un entorn distribu\®{i}, pero aquesta capacitat \'{e}s espec\'{i}fica de la implementaciÛ.
+\item El corredor de missatges: un servidor on els clients AMQP es connecten usant el protocol AMQP. Els corredores de missatges poden executar-se en un entorn distribu√Øt, per√≤ aquesta capacitat \'{e}s espec\'{i}fica de la implementaci√≥.
 \item Usuari: un usuari \'{e}s una entitat amb credencial pot ser autoritzat a connectar-se a un corredor.
-\item ConnexiÛ: una connexi\'{o} f\'{i}sica, usant per exemple TCP/IP, entre el corredor i l'usuari.
+\item Connexi√≥: una connexi\'{o} f\'{i}sica, usant per exemple TCP/IP, entre el corredor i l'usuari.
 \item Clients: productors i consumidors. EXPLICAR PRODUCTORS I CONSUMIDORS.
 \end{itemize}
 
