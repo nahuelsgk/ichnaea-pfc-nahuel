@@ -44,6 +44,7 @@ class ConsumerCommand extends ContainerAwareCommand
 		$amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($trainingService){
 			print "Received build-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
 			$data = $resp->toArray();
+			var_dump($data);
 			$trainingService->updateTraining($resp->getId(), $data['progress'], $data['error'], $data['data'] );
 		});
 		$amqp->wait();

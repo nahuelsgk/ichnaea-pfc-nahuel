@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  18 MAY 2014 17:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  21 MAY 2014 22:16
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -710,6 +710,9 @@ LaTeX Warning: Label `fig:placement' multiply defined.
 
 LaTeX Warning: Label `fig:placement' multiply defined.
 
+
+LaTeX Warning: Label `fig:placement' multiply defined.
+
 ) (./adminguide.aux))
 \openout1 = `main.aux'.
 
@@ -782,7 +785,7 @@ Dictionary: glossaries-dictionary, Language: English
 )
 \openout2 = `title.aux'.
 
- (./title.tex <upc.png, id=363, 252.945pt x 56.21pt>
+ (./title.tex <upc.png, id=367, 252.945pt x 56.21pt>
 File: upc.png Graphic file (type png)
  <use upc.png>
 [1
@@ -848,7 +851,7 @@ Overfull \hbox (9.05678pt too wide) in paragraph at lines 55--63
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.99 ...Set'' d'una variable}{7}{subsection.A.2.4}
+l.100 ...et'' d'una variable}{7}{subsection.A.2.3}
                                                    [2])
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -894,13 +897,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.19 \item E
-            n l'annex \ref{cha:adminguide} es dona un petit manual de admini...
+l.20 \item E
+            n l'annex \ref{cha:userguide} es dona un petit manual d'usuari.
 [1
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 25--26
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
 
  []
 
@@ -963,6 +966,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+
+ []
+
 ) [5] [6
 
 
@@ -979,16 +987,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--22
 [7
 
 
-] [8] <img/specification/Actors.png, id=550, 577.15625pt x 436.63126pt>
+] [8] <img/specification/Actors.png, id=558, 577.15625pt x 436.63126pt>
 File: img/specification/Actors.png Graphic file (type png)
 
 <use img/specification/Actors.png> [9 <./img/specification/Actors.png>]
-<img/specification/UsesCases.png, id=558, 968.61874pt x 3394.6825pt>
+<img/specification/UsesCases.png, id=566, 1114.1625pt x 3458.9225pt>
 File: img/specification/UsesCases.png Graphic file (type png)
 
 <use img/specification/UsesCases.png>
 
-LaTeX Warning: Float too large for page by 111.42447pt on input line 92.
+LaTeX Warning: Float too large for page by 124.27225pt on input line 92.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1003,19 +1011,6 @@ Underfull \vbox (badness 10000) detected at line 107
  []
 
 
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.118 }
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \vbox (badness 10000) detected at line 122
  []
 
@@ -1024,127 +1019,78 @@ Underfull \vbox (badness 10000) detected at line 133
  []
 
 
-Underfull \vbox (badness 10000) detected at line 142
+Underfull \vbox (badness 10000) detected at line 147
  []
 
 [11]
-Underfull \vbox (badness 10000) detected at line 153
+Underfull \vbox (badness 10000) detected at line 158
  []
 
 
-Underfull \vbox (badness 10000) detected at line 174
+Underfull \vbox (badness 10000) detected at line 179
  []
 
 [12]
-Underfull \vbox (badness 10000) detected at line 187
+Underfull \vbox (badness 10000) detected at line 197
  []
 
 [13]
-Underfull \vbox (badness 10000) detected at line 201
- []
-
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.219 }
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \vbox (badness 10000) detected at line 220
+Underfull \vbox (badness 10000) detected at line 213
  []
 
 [14]
-Underfull \vbox (badness 10000) detected at line 236
+Underfull \vbox (badness 10000) detected at line 234
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 252
  []
 
 [15]
-Underfull \vbox (badness 10000) detected at line 255
- []
-
-
-Underfull \vbox (badness 10000) detected at line 275
+Underfull \vbox (badness 10000) detected at line 273
  []
 
 [16]
-Underfull \vbox (badness 10000) detected at line 287
+Underfull \vbox (badness 10000) detected at line 296
  []
-
-
-Overfull \vbox (3.46779pt too high) has occurred while \output is active []
-
 
 [17]
-Underfull \vbox (badness 10000) detected at line 301
- []
-
-
-Underfull \vbox (badness 10000) detected at line 317
+Underfull \vbox (badness 10000) detected at line 308
  []
 
 [18]
-Underfull \vbox (badness 10000) detected at line 334
+Underfull \vbox (badness 10000) detected at line 322
  []
 
 
-Underfull \vbox (badness 10000) detected at line 345
+Underfull \vbox (badness 10000) detected at line 338
  []
 
 [19]
-Underfull \vbox (badness 10000) detected at line 354
+Underfull \vbox (badness 10000) detected at line 355
  []
 
 
-Underfull \vbox (badness 10000) detected at line 363
+Underfull \vbox (badness 10000) detected at line 366
  []
 
 [20]
-Underfull \vbox (badness 10000) detected at line 372
+Underfull \vbox (badness 10000) detected at line 382
  []
 
 
-Underfull \vbox (badness 10000) detected at line 384
+Underfull \vbox (badness 10000) detected at line 397
  []
 
 [21]
-Underfull \vbox (badness 10000) detected at line 395
+Underfull \vbox (badness 10000) detected at line 413
  []
 
 
-Underfull \vbox (badness 10000) detected at line 404
+Underfull \vbox (badness 10000) detected at line 425
  []
 
 [22]
-Underfull \vbox (badness 10000) detected at line 415
- []
-
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.425 }
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \vbox (badness 10000) detected at line 426
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [23]
 Underfull \vbox (badness 10000) detected at line 436
  []
 
@@ -1152,100 +1098,95 @@ Underfull \vbox (badness 10000) detected at line 436
 Underfull \vbox (badness 10000) detected at line 445
  []
 
-
-Underfull \vbox (badness 10000) detected at line 454
+[23]
+Underfull \vbox (badness 10000) detected at line 460
  []
 
 
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.467 }
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \vbox (badness 10000) detected at line 468
+Underfull \vbox (badness 10000) detected at line 471
  []
 
 [24]
-Underfull \vbox (badness 10000) detected at line 487
+Underfull \vbox (badness 10000) detected at line 481
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 497
  []
 
 [25]
-Underfull \vbox (badness 10000) detected at line 506
+Underfull \vbox (badness 10000) detected at line 513
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 527
  []
 
 [26]
-Underfull \vbox (badness 10000) detected at line 518
- []
-
-
-Underfull \vbox (badness 10000) detected at line 530
+Underfull \vbox (badness 10000) detected at line 548
  []
 
 [27]
-Underfull \vbox (badness 10000) detected at line 540
- []
-
-
-Underfull \vbox (badness 10000) detected at line 550
+Underfull \vbox (badness 10000) detected at line 569
  []
 
 [28]
-Underfull \vbox (badness 10000) detected at line 561
+Underfull \vbox (badness 10000) detected at line 581
  []
 
-<img/specification/ModelClass.png, id=809, 1105.12875pt x 746.79pt>
+[29]
+Underfull \vbox (badness 10000) detected at line 593
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 603
+ []
+
+[30]
+Underfull \vbox (badness 10000) detected at line 613
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 624
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 641
+ []
+
+[31] <img/specification/ModelClass.png, id=851, 1105.12875pt x 818.05624pt>
 File: img/specification/ModelClass.png Graphic file (type png)
 
-<use img/specification/ModelClass.png> [29]
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.590 ...s de la matriu a la que pertany mitjanï¿½
-                                                  ant la associaci\'{o} \tex...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Overfull \hbox (9.91643pt too wide) in paragraph at lines 592--593
+<use img/specification/ModelClass.png> [32]
+Overfull \hbox (9.91643pt too wide) in paragraph at lines 672--673
 []\OT1/lmr/m/it/12 VariableMatrixConfig\OT1/lmr/m/n/12 : aque-s-ta classe guar-
 da la con-fig-u-raci^^So d'u-na colum-
  []
 
 
-Overfull \hbox (1.43416pt too wide) in paragraph at lines 605--606
+Overfull \hbox (1.43416pt too wide) in paragraph at lines 685--686
 []\OT1/lmr/m/n/12 predictionResult: col-lec-ci^^So de re-sul-tats de la ex-e-cu
 -ci^^So d'u-na predic-
  []
 
 
-LaTeX Warning: Reference `specificaion:status' on page 30 undefined on input li
-ne 606.
+Underfull \hbox (badness 10000) in paragraph at lines 696--697
 
-<img/specification/StatesTraining.png, id=824, 450.68375pt x 352.31625pt>
+ []
+
+[33] <img/specification/StatesTraining.png, id=868, 554.07pt x 351.3125pt>
 File: img/specification/StatesTraining.png Graphic file (type png)
 
-<use img/specification/StatesTraining.png> [30]
-<img/specification/StatesPrediction.png, id=829, 493.845pt x 447.6725pt>
+<use img/specification/StatesTraining.png>
+<img/specification/StatesPrediction.png, id=869, 523.9575pt x 452.69125pt>
 File: img/specification/StatesPrediction.png Graphic file (type png)
 
-<use img/specification/StatesPrediction.png> [31 <./img/specification/StatesTra
-ining.png> <./img/specification/StatesPrediction.png>]
+<use img/specification/StatesPrediction.png>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34 <./img/specification/StatesTraining.png>]
 ! Undefined control sequence.
-l.638 ...{o} donarem veurem els diagrames de seq\ï
+l.721 ...{o} donarem veurem els diagrames de seq\ï
                                                   ¿½{u}encia de les operacio...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1261,7 +1202,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.638 ...o} donarem veurem els diagrames de seq\ï¿
+l.721 ...o} donarem veurem els diagrames de seq\ï¿
                                                   ½{u}encia de les operacion...
 
 You need to provide a definition with \DeclareInputText 
@@ -1275,198 +1216,61 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.638 ...} donarem veurem els diagrames de seq\ï¿½
+l.721 ...} donarem veurem els diagrames de seq\ï¿½
                                                   {u}encia de les operacions...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-<img/specification/SequenceNewSeasonSe.png, id=838, 627.34375pt x 621.32124pt>
+<img/specification/SequenceNewSeasonSe.png, id=876, 627.34375pt x 621.32124pt>
 File: img/specification/SequenceNewSeasonSe.png Graphic file (type png)
 
 <use img/specification/SequenceNewSeasonSe.png>
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.643 ...fitxers d'envelliments per una variable}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.643 ...fitxers d'envelliments per una variable}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32]
-<img/specification/SequenceAddNewFilesToSeasonSet.png, id=843, 627.34375pt x 62
+ [35 <./img/specification/StatesPrediction.png>]
+<img/specification/SequenceAddNewFilesToSeasonSet.png, id=884, 627.34375pt x 62
 1.32124pt>
 File: img/specification/SequenceAddNewFilesToSeasonSet.png Graphic file (type p
 ng)
  <use img/specification/SequenceAddNewFilesToSeasonSet.png>
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.651 ... a un conjunt de fitxers d'envelliments}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.651 ... a un conjunt de fitxers d'envelliments}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33 <./img/specification/SequenceNewSeasonSe.png>]
-<img/specification/SequenceCreateMatrix.png, id=851, 381.425pt x 399.4925pt>
+ [36 <./img/specification/SequenceNewSeasonSe.png>]
+<img/specification/SequenceCreateMatrix.png, id=892, 381.425pt x 399.4925pt>
 File: img/specification/SequenceCreateMatrix.png Graphic file (type png)
 
 <use img/specification/SequenceCreateMatrix.png>
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.659 ...textit{Crear una matriu des d'un fitxer}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.659 ...textit{Crear una matriu des d'un fitxer}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34 <./img/specification/SequenceAddNewFilesToSeasonSet.png>]
-<img/specification/SequenceCreateTraining.png, id=859, 799.98875pt x 781.92125p
+ [37 <./img/specification/SequenceAddNewFilesToSeasonSet.png>]
+<img/specification/SequenceCreateTraining.png, id=900, 799.98875pt x 781.92125p
 t>
 File: img/specification/SequenceCreateTraining.png Graphic file (type png)
  <use img/specification/SequenceCreateTraining.png>
-Overfull \hbox (89.99695pt too wide) in paragraph at lines 666--667
+Overfull \hbox (89.99695pt too wide) in paragraph at lines 749--750
  [][] 
  []
 
 
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.667 ...¿½{u}encia \textit{Crear un entrenament}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.667 ...¿½{u}encia \textit{Crear un entrenament}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35 <./img/specification/SequenceCreateMatrix.png>]
-<img/specification/SequenceConfigureColumn.png, id=868, 588.1975pt x 706.64pt>
+ [38 <./img/specification/SequenceCreateMatrix.png>]
+<img/specification/SequenceConfigureColumn.png, id=908, 588.1975pt x 706.64pt>
 File: img/specification/SequenceConfigureColumn.png Graphic file (type png)
 
 <use img/specification/SequenceConfigureColumn.png>
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.675 ...it{Configurar una columna d'una matriu} }
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:ï¿½ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.675 ...it{Configurar una columna d'una matriu} }
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36 <./img/specification/SequenceCreateTraining.png>]) [37 <./img/specificatio
-n/SequenceConfigureColumn.png>] [38 <./img/specification/UsesCases.png>] [39 <.
-/img/specification/ModelClass.png>] [40
-
-
-]
+ [39 <./img/specification/SequenceCreateTraining.png>]) [40 <./img/specificatio
+n/SequenceConfigureColumn.png>] [41 <./img/specification/UsesCases.png>] [42 <.
+/img/specification/ModelClass.png>]
 \openout2 = `dessign.aux'.
 
  (./dessign.tex
 Cap\'{\i }tol 4.
-<img/design/ArchitectureSoftware.png, id=898, 835.12pt x 461.725pt>
+<img/design/ArchitectureSoftware.png, id=935, 835.12pt x 461.725pt>
 File: img/design/ArchitectureSoftware.png Graphic file (type png)
 
 <use img/design/ArchitectureSoftware.png>
@@ -1488,7 +1292,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 
-LaTeX Warning: Reference `dessign:queue_system_overview' on page 41 undefined o
+LaTeX Warning: Reference `dessign:queue_system_overview' on page 43 undefined o
 n input line 19.
 
 
@@ -1498,121 +1302,30 @@ m el paradig-
  []
 
 
-! Package inputenc Error: Unicode char \u8:ènc not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.24 ...capes(Presentaci\'{o}, domini i persistènc
-                                                  ia de dades) amb els seg\¨...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Undefined control sequence.
-l.24 ...ini i persistència de dades) amb els seg\¨
-                                                  {u}ents patrons de disseny:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
 Overfull \hbox (21.44148pt too wide) in paragraph at lines 24--26
 \OT1/lmr/m/n/12 Per la im-ple-mentaci^^Ro del sis-tema web s'han us-at un dis-s
 e-ny per capes(Presentaci^^So,
  []
 
-[41
+[43
 
 
-]
 
-! Package inputenc Error: Unicode char \u8:íci not set up for use with LaTeX.
 
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.32   \item Interfíci
-                      es enriquides amb servei webs
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-<img/design/IchnaeaPatterns.png, id=906, 911.405pt x 495.8525pt>
+] <img/design/IchnaeaPatterns.png, id=942, 911.405pt x 495.8525pt>
 File: img/design/IchnaeaPatterns.png Graphic file (type png)
 
 <use img/design/IchnaeaPatterns.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[42 <./img/design/ArchitectureSoftware.png>]
-
-! Package inputenc Error: Unicode char \u8:çan not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.51 ...{o} accedeix a la capa de domini mitjançan
-                                                  t serveis, injectant depen...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:ó.\enditemize not set up for use wit
-h LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 \end{itemize}
-                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:çan not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.58 ...\'{o}gica de Ichnaea. Accedeixen mitjançan
-                                                  t les dades repositoris d'...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:ècn not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.58 ...ginyers els agrada dir que \'{e}s una tècn
-                                                  ica de programaci\'{o} i a...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[43 <./img/design/IchnaeaPatterns.png>]) [44]
+[44 <./img/design/ArchitectureSoftware.png>] [45 <./img/design/IchnaeaPatterns.
+png>]) [46]
 \openout2 = `implementation.aux'.
 
  (./implementation.tex
 Cap\'{\i }tol 5.
-[45
+[47
 
 
 
@@ -1627,10 +1340,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[46]
 
-LaTeX Warning: Citation `fosuserbundle' on page 47 undefined on input line 59.
+LaTeX Warning: Citation `fosuserbundle' on page 48 undefined on input line 59.
 
+[48]
 ! Undefined control sequence.
 l.71 \item Bootstrap: \texit
                             {framework} pel \textit{front-end} desenvolupat ...
@@ -1640,7 +1353,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[47]
+[49]
 ! Undefined control sequence.
 l.80 ...cursos de la aplicaci\'{o} \'{e}s la seg\ï
                                                   ¿½{u}ent:\\
@@ -1682,23 +1395,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 80--81
  []
 
 
-Overfull \hbox (26.60315pt too wide) in paragraph at lines 92--108
-[]
+Overfull \hbox (17.03769pt too wide) in paragraph at lines 92--108
+[] \OT1/lmr/m/n/12 Les
  []
 
 
-Overfull \hbox (4.25172pt too wide) in paragraph at lines 109--109
-[]\OT1/lmr/bx/n/17.28 Integraci^^So amb el sis-tema de cues Rab-
- []
+Underfull \vbox (badness 1755) has occurred while \output is active []
 
-
-Underfull \vbox (badness 2662) has occurred while \output is active []
-
- [48]
+ [50]
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 129.
 
-[49]
+[51]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 134.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1713,29 +1421,8 @@ File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <10> not available
 (Font)              Font shape `OML/lmm/m/it' tried instead on input line 134.
 
-Overfull \hbox (11.37775pt too wide) in paragraph at lines 142--143
-[][][][][][]  
- []
-
-
-Overfull \hbox (23.37787pt too wide) in paragraph at lines 146--148
+Overfull \hbox (10.00354pt too wide) in paragraph at lines 154--155
 [][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (3.37787pt too wide) in paragraph at lines 153--154
-[][][][][][][][][][] 
- []
-
-
-Overfull \hbox (39.37823pt too wide) in paragraph at lines 154--155
-[][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (0.12917pt too wide) in paragraph at lines 162--163
-\OT1/lmr/m/n/12 El con-sum-i-dor d'en-tre-na-ments es que-da es-coltant les re-
-spostes del servei
  []
 
 
@@ -1748,168 +1435,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 165--166
 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [50])
-[51] [52
-
-
-]
+) [52]
 \openout2 = `test.aux'.
 
  (./test.tex
 Cap\'{\i }tol 6.
-! Undefined control sequence.
-l.3 En aquest cap\´
-                   {i}tol expossem les proves realitzades de la aplicaci\'{o}.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.6 ...des en un SONY Vaio VGN-NW21EF amb la seg\¨
-                                                  {u}ent especificaci\'{o}:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.12 ...essaris de la aplicaci\'{o} i amb la seg\¨
-                                                  {u}ent configuraci\'{o}:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! Package inputenc Error: Unicode char \u8:çan not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.19 ...t. Les comunicacions es capturen mitjançan
-                                                  t el \textit{profiler} de ...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 [53
 
 
+
+
 ]
-! Extra }, or forgotten \endgroup.
+! Too many }'s.
 l.27 ...es(columnes). La importaci\'{o}(creaci\{'}
                                                    del model de dades a part...
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-
-Overfull \hbox (1.9708pt too wide) in paragraph at lines 38--39
- \OT1/lmr/bx/n/12 Rendi-ment d'Ich-naea Soft-ware en aque-st en-torn[] \OT1/lmr
-/m/n/12 Aque-st project
- []
-
-
-Overfull \hbox (11.34312pt too wide) in paragraph at lines 40--41
- \OT1/lmr/bx/n/12 En-tre-na-ment de \OT1/lmr/bx/it/12 Cypruss[] \OT1/lmr/m/n/12
- L'en-tre-na-ment de la ma-triu \OT1/lmr/m/it/12 Cypruss\OT1/lmr/m/n/12 (mirar
- []
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
 
 [54]
-! Undefined control sequence.
-<argument> Prova en entorn distribu\¨
-                                     {i}t
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...n . \ \fi Prova en entorn distribu\¨
-                                                  {i}t
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...name }\fi Prova en entorn distribu\¨
-                                                  {i}t
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...name }\fi Prova en entorn distribu\¨
-                                                  {i}t}{\thepage }{\@current...
-l.45 \section{Prova en entorn distribu\¨{i}t}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.46 Les proves en un entorn distribu\¨
-                                       {i}t s'han realitzat en un m\'{a}quin...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.46 ...rtual proporcionada per RdLab amb la seg\¨
-                                                  {u}ent especificaci\'{o}.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! Package inputenc Error: Unicode char \u8:çar not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.62 ...'han pogut executar prediccions ni llençar
-                                                   entrenaments.
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Extra }, or forgotten \endgroup.
+! Too many }'s.
 l.68 ...roporcionada. La importaci\'{o}(creaci\{'}
                                                    del model de dades a part...
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
 
 [55]) [56]
 \openout2 = `conclussions.aux'.
@@ -1918,7 +1466,7 @@ deleted material, e.g., by typing `I$}'.
 Cap\'{\i }tol 7.
 ! Undefined control sequence.
 l.8 ...projecte s'han emprat un metodologia \texit
-                                                  {agile}. S'han fet iteraci...
+                                                  {agile} i aprofitant tÃ¨cn...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1926,9 +1474,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 17--19
-[] 
- []
+LaTeX Warning: Citation `agile' on page 57 undefined on input line 8.
 
 [57
 
@@ -1972,11 +1518,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
-[]\OT1/lmr/m/n/12 ''The Doc-trine Pro-jec-t'' [On-line] Disponible a
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 20--21
 []\OT1/lmr/m/n/12 ''Model-view-controller'' [On-line] Disponible a
  []
@@ -1992,12 +1533,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
  []
 
 
-Overfull \hbox (23.49863pt too wide) in paragraph at lines 24--25
-\OT1/lmr/m/n/12 ''http://es.wikipedia.org/wiki/Advanced[]Message[]Queuing[]Prot
-ocol'' 
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 26--27
 []\OT1/lmr/m/n/12 ''El pa-tr^^Son Repos-i-to-rio (Repos-i-to-ry Pat-tern)'' [On
 -line]
@@ -2010,7 +1545,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 26--27
-\OT1/lmr/m/n/12 repositorio-repository-pattern-implementacion-practica-con-
+\OT1/lmr/m/n/12 repositorio-repository-pattern-implementacion-practica-con-enti
+ty-
  []
 
 ! Missing $ inserted.
@@ -2041,10 +1577,17 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
-[]\OT1/lmr/m/n/12 ''Mapeo objeto-relacional'' [On-line]
+Overfull \hbox (50.31981pt too wide) in paragraph at lines 28--29
+[]\OT1/lmr/m/n/12 ''Mapeo objeto-relacional'' [On-line] ''http://es.wikipedia.o
+rg/wiki/Mapeo$[]\OML/lmm/m/it/12 bjeto \OMS/lmsy/m/n/12 ^^@
  []
 
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.29 
+      [3]
 ! Extra }, or forgotten \endgroup.
 \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
                                                   \fi 
@@ -2056,13 +1599,17 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.33 \end{thebibliography}
-                           [3])pdfTeX warning (ext4): destination with the same
- identifier (name{page.4}) has been already used, duplicate ignored
+! Undefined control sequence.
+l.34 \bibtem
+            {agile} [Online] ''http://agilemethodology.org/''
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+)pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.87 \include{bibliography}
@@ -2073,7 +1620,7 @@ No file main.gls.
 (./userguide.tex
 Ap\`endix A.
 
-<img/userguide/dashboard_complete_trainings.png, id=1076, 1371.1225pt x 770.88p
+<img/userguide/dashboard_complete_trainings.png, id=1112, 1371.1225pt x 770.88p
 t>
 File: img/userguide/dashboard_complete_trainings.png Graphic file (type png)
  <use img/userguide/dashboard_complete_trainings.png>pdfTeX warning (ext4): des
@@ -2081,198 +1628,24 @@ tination with the same identifier (name{page.5}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.22 \item N
-            om de l'usuari que la creat [5
+l.23 \item P
+            rogr\'{e}s: actualment Ichnaea no retorna estat del proces. Sola...
+[5
 
 
 
  <./img/userguide/dashboard_complete_trainings.png (PNG copy)>]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.28  \item ICON_
-                 EYE_OPEN es per anar a la pantalla de visualitzaci\'{o} del...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 28.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.28 ...er anar a la pantalla de visualitzaci\'{o}
-                                                   del training.
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.28 ...er anar a la pantalla de visualitzaci\'{o}
-                                                   del training.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.29  \end{itemize}
-                   
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.29  \end{itemize}
-                   
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.29  \end{itemize}
-                   
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.29  \end{itemize}
-                   
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-Missing character: There is no è in font lmex10!
-
-Overfull \hbox (11.52066pt too wide) in paragraph at lines 28--30
-[]\OT1/lmr/m/n/12 ICON$[]\OML/lmm/m/it/12 YE[]PENesperanaralapantalladevisualit
-zaci[]deltraining:$ 
+Overfull \hbox (21.65668pt too wide) in paragraph at lines 24--26
+[]\OT1/lmr/m/n/12 Status. Els pos-si-bles sta-tus son ''pend-ing''(no s'ha pogu
+t en-viar),''sent''(s'ha
  []
 
-<img/userguide/variable_configuration.png, id=1081, 1371.1225pt x 770.88pt>
+<img/userguide/variable_configuration.png, id=1117, 1371.1225pt x 770.88pt>
 File: img/userguide/variable_configuration.png Graphic file (type png)
 
 <use img/userguide/variable_configuration.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.55 \item Editar una ''Season Set'', amb ICON_
-                                               EDIT.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.56 \item
-           Esborrar una ''Season Set'', amb la ICON_TRASH.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.56 \item E
-            sborrar una ''Season Set'', amb la ICON_TRASH.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.56 \item E
-            sborrar una ''Season Set'', amb la ICON_TRASH.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.57 \end{itemize}
-                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (107.27983pt too wide) in paragraph at lines 55--58
-[]\OT1/lmr/m/n/12 Editar una ''Sea-son Set'', amb ICON$[]\OML/lmm/m/it/12 DIT:E
-sborraruna[]SeasonSet[]; amblaICON[]RASH:$ 
- []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has 
 been already used, duplicate ignored
@@ -2280,106 +1653,7 @@ been already used, duplicate ignored
                    \relax 
 l.63 \item L
             listar les variables per seleccionar una variable('Ichnaea Data ...
-[6]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.64 ...s vol afegir la variable, fent click ICON_
-                                                  EDIT
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.65 \item
-           Al apartat inferior ''List of season set'', clickar a la ICON_PLUS.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.65 \item A
-            l apartat inferior ''List of season set'', clickar a la ICON_PLUS.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.65 \item A
-            l apartat inferior ''List of season set'', clickar a la ICON_PLUS.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.66 \end{itemize}
-                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (316.76169pt too wide) in paragraph at lines 64--68
-[]\OT1/lmr/m/n/12 Editar la vari-able a la que es vol afe-gir la vari-able, fen
-t click ICON$[]\OML/lmm/m/it/12 DITAlapartatinferior[]Listofseasonset[]; clicka
-ralaICON[]LUS:$
- []
-
-<img/userguide/season_set_edition.png, id=1087, 1371.1225pt x 770.88pt>
+[6] <img/userguide/season_set_edition.png, id=1123, 1371.1225pt x 770.88pt>
 File: img/userguide/season_set_edition.png Graphic file (type png)
 
 <use img/userguide/season_set_edition.png>
@@ -2393,93 +1667,17 @@ been already used, duplicate ignored
 l.88 \item L
             listar les variables per seleccionar una variable('Ichnaea Data ...
 [7 <./img/userguide/variable_configuration.png (PNG copy)>]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.89 ...a que es vol afegir la variable, amb ICON_
-                                                  EDIT
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.102 ...a & Alias de la columna & .... & ORIGIN &
+                                                   DATE \\ \hline
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
 
 
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.90 \item
-           Editar, amb ICON_EDIT, la ''season set'' del llistat ''List of se...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.90 \item E
-            ditar, amb ICON_EDIT, la ''season set'' del llistat ''List of se...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.90 \item E
-            ditar, amb ICON_EDIT, la ''season set'' del llistat ''List of se...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.92 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.92 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (443.70096pt too wide) in paragraph at lines 89--92
-[]\OT1/lmr/m/n/12 Editar la vari-able a la que es vol afe-gir la vari-able, amb
- ICON$[]\OML/lmm/m/it/12 DITEditar; ambICON[]DIT; la[]seasonset[]delllistat[]Li
-stofseasonset[]:Llegirelpunt[]A:\OT1/lmr/m/n/12 2\OML/lmm/m/it/12 :\OT1/lmr/m/n
-/12 4[][]$ 
- []
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.92 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-
-Overfull \hbox (7.31754pt too wide) in paragraph at lines 100--107
+Overfull \hbox (36.69223pt too wide) in paragraph at lines 100--107
  [] 
  []
 
@@ -2487,37 +1685,48 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.111 \item V
-             alor de la sample: \'{e}s el valor de la mostra per la columna(...
+l.110 \item A
+             lias de la columna: \'{e}s un nom qualsevol per identificar la ...
 [8 <./img/userguide/season_set_edition.png (PNG copy)>]
-<img/userguide/matrix_configure.png, id=1100, 1371.1225pt x 770.88pt>
-File: img/userguide/matrix_configure.png Graphic file (type png)
+Overfull \hbox (3.22833pt too wide) in paragraph at lines 111--112
+[]\OT1/lmr/m/n/12 Valor de la sam-ple: ^^Ses el val-or de la mostra per la colu
+m-na(variable) 
+ []
 
-<use img/userguide/matrix_configure.png>
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (2.27689pt too wide) in paragraph at lines 120--121
+\OT1/lmr/m/n/12 DIA(DD)/MES(MM)/ANY(YYYY). Per ex-em-ple 01/12/2014. Es
+ []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.149 
-       [9]pdfTeX warning (ext4): destination with the same identifier (name{pag
-e.10}) has been already used, duplicate ignored
+l.136 \item V
+             isualitzar missatges de validacions i notificacions [9]
+<img/userguide/matrix_configure.png, id=1139, 1371.1225pt x 770.88pt>
+File: img/userguide/matrix_configure.png Graphic file (type png)
+
+<use img/userguide/matrix_configure.png>pdfTeX warning (ext4): destination with
+ the same identifier (name{page.10}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.164 \section
-              {Clonar una matriu} [10 <./img/userguide/matrix_configure.png (PN
-G copy)>] <img/userguide/clone_matrix.png, id=1108, 1371.1225pt x 770.88pt>
+l.154 
+       [10 <./img/userguide/matrix_configure.png (PNG copy)>]
+Overfull \hbox (9.30653pt too wide) in paragraph at lines 163--163
+[]\OT1/lmr/bx/n/14.4 Actualitzar una da-da d'u-na fi-la i d'u-na colum-
+ []
+
+<img/userguide/clone_matrix.png, id=1144, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix.png Graphic file (type png)
 
 <use img/userguide/clone_matrix.png>
-<img/userguide/clone_matrix-2.png, id=1109, 1371.1225pt x 770.88pt>
+<img/userguide/clone_matrix-2.png, id=1145, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix-2.png Graphic file (type png)
 
 <use img/userguide/clone_matrix-2.png>
 ! Undefined control sequence.
-l.180 ...u i anem a la interficie de configuraci\Â
+l.182 ...u i anem a la interficie de configuraci\Â
                                                   ´{o}. Mirar \ref{sec:confi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2533,136 +1742,45 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.180 ... i anem a la interficie de configuraci\Â´
+l.182 ... i anem a la interficie de configuraci\Â´
                                                   {o}. Mirar \ref{sec:config...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.183 ...e matrius del sistema, amb la icona ICON_
-                                                  ROAD, es pot accedir al fo...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 183.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.183 ...s pot accedir al formulari de creaci\'{o}
-                                                   de trainings.
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.183 ...s pot accedir al formulari de creaci\'{o}
-                                                   de trainings.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-! LaTeX Error: Not in outer par mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.184 \begin{figure}[h!]
-                        
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Undefined control sequence.
-\@float@Hx ...ltovf \fi \global \setbox \@currbox 
-                                                  \color@vbox \normalcolor \...
-l.184 \begin{figure}[h!]
-                        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   \vbox 
-l.184 \begin{figure}[h!]
-                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-<img/userguide/training_create.png, id=1111, 1371.1225pt x 770.88pt>
+<img/userguide/training_create.png, id=1147, 1371.1225pt x 770.88pt>
 File: img/userguide/training_create.png Graphic file (type png)
 
 <use img/userguide/training_create.png>
-! Missing $ inserted.
-<inserted text> 
-                $
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Missing } inserted.
-<inserted text> 
-                }
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-Missing character: There is no è in font lmex10!
-
-Overfull \hbox (235.49069pt too wide) in paragraph at lines 183--191
-\OT1/lmr/m/n/12 train-ing''. Des-de el lli-s-tat de ma-trius del sis-tema, amb 
-la icona ICON$[]\OML/lmm/m/it/12 OAD; espotaccediralformularidecreaci[]detraini
-ngs:[]$ 
- []
-
-! Extra }, or forgotten \endgroup.
-\@par ... \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.191 \item
-            Part esquerra superior: El training cont\'{e} un nom i una descr...
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.191 \item P
-             art esquerra superior: El training cont\'{e} un nom i una descr...
-[11 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
--2.png (PNG copy)>]
+l.194 \item P
+             art dreta superior: Desplegable per seleccionar un dels origens...
+[11]
+
+LaTeX Warning: Text page 12 contains only floats.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.194 \item P
+             art dreta superior: Desplegable per seleccionar un dels origens...
+[12 <./img/userguide/clone_matrix.png (PNG copy)> <./img/userguide/clone_matrix
+-2.png (PNG copy)> <./img/userguide/training_create.png (PNG copy)>]
 ! Undefined control sequence.
-l.196 Si la creaci\Â
+l.198 Si la creaci\Â
                     ´{o} \Â´e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2678,14 +1796,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.196 Si la creaci\Â´
+l.198 Si la creaci\Â´
                      {o} \Â´e{s} correcte, les dades s'enviaran a la cua de ...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.196 Si la creaci\Â´{o} \Â
+l.198 Si la creaci\Â´{o} \Â
                            ´e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2701,14 +1819,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.196 Si la creaci\Â´{o} \Â´
+l.198 Si la creaci\Â´{o} \Â´
                             e{s} correcte, les dades s'enviaran a la cua de ...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.196 ...aran a la cua de procesos i la aplicaci\Â
+l.198 ...aran a la cua de procesos i la aplicaci\Â
                                                   ´{o} es redirigir\Â´{a} la...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2724,14 +1842,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.196 ...ran a la cua de procesos i la aplicaci\Â´
+l.198 ...ran a la cua de procesos i la aplicaci\Â´
                                                   {o} es redirigir\Â´{a} la ...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.196 ...ocesos i la aplicaci\Â´{o} es redirigir\Â
+l.198 ...ocesos i la aplicaci\Â´{o} es redirigir\Â
                                                   ´{a} la pantalla de visual...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2747,14 +1865,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.196 ...cesos i la aplicaci\Â´{o} es redirigir\Â´
+l.198 ...cesos i la aplicaci\Â´{o} es redirigir\Â´
                                                   {a} la pantalla de visuali...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.196 ...rigir\Â´{a} la pantalla de visualitzaci\Â
+l.198 ...rigir\Â´{a} la pantalla de visualitzaci\Â
                                                   ´{o} de trainings.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2770,13 +1888,13 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.196 ...igir\Â´{a} la pantalla de visualitzaci\Â´
+l.198 ...igir\Â´{a} la pantalla de visualitzaci\Â´
                                                   {o} de trainings.
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.202 ...pots accedir a visualitzar la informaci\Â
+l.204 ...pots accedir a visualitzar la informaci\Â
                                                   ´{o} del training.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2792,61 +1910,62 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.202 ...ots accedir a visualitzar la informaci\Â´
+l.204 ...ots accedir a visualitzar la informaci\Â´
                                                   {o} del training.
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-<img/userguide/view_training_pending.png, id=1118, 1371.1225pt x 770.88pt>
+<img/userguide/view_training_pending.png, id=1158, 1371.1225pt x 770.88pt>
 File: img/userguide/view_training_pending.png Graphic file (type png)
 
 <use img/userguide/view_training_pending.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.216 \section
-              {Crear una matriu de predicci\'{o}} [12]
-<img/userguide/prediction_create.png, id=1124, 1371.1225pt x 770.88pt>
-File: img/userguide/prediction_create.png Graphic file (type png)
-
-<use img/userguide/prediction_create.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (36.69223pt too wide) in paragraph at lines 231--238
- [] 
- []
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.246 \section
-              {Visualitzar una matriu de predicci\'{o}} [13 <./img/userguide/vi
-ew_training_pending.png (PNG copy)>])pdfTeX warning (ext4): destination with th
-e same identifier (name{page.14}) has been already used, duplicate ignored
+l.221 \section
+              {Crear una predicci\'{o}} [13]
+<img/userguide/prediction_create.png, id=1165, 1371.1225pt x 770.88pt>
+File: img/userguide/prediction_create.png Graphic file (type png)
+
+<use img/userguide/prediction_create.png>pdfTeX warning (ext4): destination wit
+h the same identifier (name{page.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.232 \begin{center}
+                     [14 <./img/userguide/view_training_pending.png (PNG copy)>
+ <./img/userguide/prediction_create.png (PNG copy)>]
+Overfull \hbox (36.69223pt too wide) in paragraph at lines 233--240
+ [] 
+ []
+
+)pdfTeX warning (ext4): destination with the same identifier (name{page.15}) ha
+s been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.91 \include{userguide}
-                         [14 <./img/userguide/prediction_create.png (PNG copy)>
+                         [15]pdfTeX warning (ext4): destination with the same i
+dentifier (name{page.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.92 \cleardoublepage
+                      [16
+
+
 ]
 \openout2 = `adminguide.aux'.
 
  (./adminguide.tex
 Ap\`endix B.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.15}) ha
+)pdfTeX warning (ext4): destination with the same identifier (name{page.17}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.93 \include{adminguide}
-                          [15
-
-
+                          [17
 
 
 ]
@@ -2860,7 +1979,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-! LaTeX Error: \begin{itemize} on input line 53 ended by \end{document}.
+! LaTeX Error: \begin{itemize} on input line 87 ended by \end{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -2884,16 +2003,16 @@ LaTeX Warning: There were multiply-defined labels.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 53 (\begingroup)
+### semi simple group (level 1) entered at line 87 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 10939 strings out of 495061
- 159584 string characters out of 1182622
- 390438 words of memory out of 3000000
- 13343 multiletter control sequences out of 15000+50000
+ 10961 strings out of 495061
+ 159820 string characters out of 1182622
+ 388601 words of memory out of 3000000
+ 13339 multiletter control sequences out of 15000+50000
  66276 words of font info for 46 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,10n,75p,1083b,1937s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,10n,75p,1083b,1773s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/
 texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
 rm.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fon
@@ -2904,9 +2023,9 @@ r/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/pub
 lic/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share
 /texmf/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf/fonts/type1/public/lm
 /lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (81 pages, 1763155 bytes).
+Output written on main.pdf (83 pages, 1859011 bytes).
 PDF statistics:
- 1274 PDF objects out of 1440 (max. 8388607)
- 435 named destinations out of 1000 (max. 500000)
- 831 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1321 PDF objects out of 1440 (max. 8388607)
+ 461 named destinations out of 1000 (max. 500000)
+ 839 words of extra memory for PDF output out of 10000 (max. 10000000)
 

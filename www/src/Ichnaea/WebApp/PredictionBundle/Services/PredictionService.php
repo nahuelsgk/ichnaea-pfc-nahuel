@@ -95,7 +95,7 @@ class PredictionService
 			foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
 				//On headers, init indexs counters
 				if($index == 0) {
-					$columns    = explode(";", $line);
+					$columns   = explode(";", $line);
 					
 					$n_columns = count($columns);
 					
@@ -165,9 +165,21 @@ class PredictionService
 						}
 						
 						//manage origin column
-						if ($origin == TRUE){
+						if ($origin == TRUE && $date == FALSE){
 							$sample->setSamples(array_slice($columns, 1, $n_columns-2, TRUE));
 							if(isset($columns[$n_columns-1])) $sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$n_columns-1]));
+						}
+						//manage origin and date
+						elseif($date == TRUE){
+							$sample->setSamples(array_slice($columns, 1, $n_columns-3, TRUE));
+							if(isset($columns[$n_columns-2])) $sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$n_columns-2]));
+							if(isset($columns[$n_columns-1])) {
+								//$convert_date = date_create_from_format(, $columns[$n_columns-1]);
+								//var_dump($convert_date);
+								//die();
+								
+								$sample->setDate(\DateTime::createFromFormat('d/n/Y', $columns[$n_columns-1]));
+							}
 						}
 						else{
 							$sample->setSamples(array_slice($columns, 1, null, TRUE));
@@ -304,6 +316,13 @@ class PredictionService
 	public function deletePrediction($matrix_id, $training_id, $prediction_id, $user_id)
 	{
 		$prediction = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix')->find($prediction_id);
+		
+		//delete all columns
+		foreach($prediction->getColumns() as $column)
+		{
+			$prediction->removeColumn($column);
+			$this->em->remove($column);
+		}
 		//delete all samples
 		foreach ($prediction->getRows() as $sample){
 			$prediction->removeRow($sample);

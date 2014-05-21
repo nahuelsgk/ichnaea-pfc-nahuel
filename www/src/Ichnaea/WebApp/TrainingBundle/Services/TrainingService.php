@@ -92,6 +92,11 @@ class TrainingService{
 		return $training->getId();
 	}
 	
+	private function removeNonSelectedColumns(&$columns, $columns_selection)
+	{
+		
+	}
+	
 	/**
 	 * Creates a training and send it to the queue
 	 * 
@@ -108,12 +113,30 @@ class TrainingService{
 		$trainer = $this->em->getRepository('UserBundle:User')->find($trainer_id);
 		$matrix  = $this->em->getRepository('MatrixBundle:Matrix')->find($matrix_id);
 		
+		
+		//build the params needed
+		$columns = $matrix->getColumns();
+		$position_selected = array();
+		$index = 1; 
+		//Only pass the selected columns
+		foreach($columns as $current_column){
+			//echo "Evaluate ".$current_column->getId()."<br>";
+			if(!in_array($current_column->getId(), $columns_selection))
+			{
+				//echo "** Removing id...".$current_column->getId()."<br>";
+				$columns->removeElement($current_column);
+			}
+			else{$position_selected[$index] = "selected";}
+			$index++;
+		}
+		
 		//Prepare data for the queue
 		$data = MatrixUtils::buildDatasetFromMatrix(
 				NULL,
 				'simple',
-				$matrix->getColumns(),
-				$matrix->getRows()
+				$columns,
+				$matrix->getRows(),
+				$position_selected
 		);
   
         //build the data array for the dataset

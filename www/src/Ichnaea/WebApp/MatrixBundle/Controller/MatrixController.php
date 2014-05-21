@@ -168,10 +168,11 @@ class MatrixController extends Controller
 		return $this->render(
 				'MatrixBundle:Matrix:view.html.twig', 
 				array(
-						'matrix_name' => $matrix->getName(),
-						'samples'	  => $matrix->getRows(),
-						'columns'	  => $matrix->getColumns(),
-						'matrix_id'   => $matrix->getId(),
+						'matrix_name'     => $matrix->getName(),
+						'samples'	      => $matrix->getRows(),
+						'columns'	      => $matrix->getColumns(),
+						'matrix_id'       => $matrix->getId(),
+						'matrix_owner_id' => $matrix->getOwner()->getId(),
 						#'matrix' => $matrix
 				)	
 		);

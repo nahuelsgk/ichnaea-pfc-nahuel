@@ -27,7 +27,8 @@ class MatrixUtils{
 *
 * @param $matrix -> maybe obsolete. It is not used.
 * @param string $type: ENUM (simple: just the matrix and its value, complete: NOT 100% IMPLEMENTED)
-* @param Collection: Generic Collection of Objects. It depends the objects, use some 
+* @param Collection: Generic Collection of Objects. It depends the objects, use some
+* @parar array: Position selected: ONLY for trainings. Array that marks which position must be pushed into samples 
 * 
 *  
 * Return:
@@ -49,7 +50,8 @@ static public function buildDatasetFromMatrix(
 		$matrix,
 		$type = 'simple',
 		\Doctrine\Common\Collections\Collection $columns,
-		\Doctrine\Common\Collections\Collection $samples)
+		\Doctrine\Common\Collections\Collection $samples,
+		$positions_selected = NULL)
 	{	
     $dataSet = array();
     $dataSet["fake_duration"]         = 10;
@@ -239,7 +241,7 @@ static public function buildDatasetFromMatrix(
    				$current_position = 1;
    				foreach($sample->getSamples() as $sample_value)
    				{
-   					var_dump($sample_value);
+   					//var_dump($sample_value);
    					//current_position - 1 because the array is shifted one position
    					if (array_key_exists($current_position, $trainedPositionsInPredictionMatrix)){
    						//echo "** POSITION $current_position is SELECTED THE VALUE ".$sample_value."<br>";
@@ -251,17 +253,28 @@ static public function buildDatasetFromMatrix(
    			//For trainings complete matrix
    			elseif (get_class($sample) == 'Ichnaea\WebApp\MatrixBundle\Entity\Sample')
    			{
-   				//echo "* SAMPLE FROM MATRIX<br>";
-   				$row_content = array_merge( (array) $sample_name, (array)$values);
-   			}
-   			
+   				//if is null(no param passed), push all values(by now only used by download as csv)
+   				if(is_null($positions_selected)) $row_content = array_merge( (array) $sample_name, (array)$values);
+   				//for create trainings
+	   			else{
+	   				$current_position=1;
+	   				$row_content_sample = array();
+	   				foreach($sample->getSamples() as $sample_value){
+	   					if(array_key_exists($current_position, $positions_selected)){
+	   						$row_content_sample[] = $sample_value;
+	   					}
+	   					$current_position++;
+	   					$row_content = array_merge( (array) $sample_name, (array)$row_content_sample);
+	   				}
+   				}
+   				
+   			}	
    			else
    			{
    				//echo "* PROBLEMS!!";	
    			}  			
    			
    		}
-   		
    		//BEGIN CSV @4 - IF complete add origins and dates
    		else
    		{ 

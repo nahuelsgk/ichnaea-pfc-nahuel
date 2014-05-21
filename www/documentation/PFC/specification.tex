@@ -15,12 +15,12 @@ La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris a
 \end{itemize}
 
 \subsubsection{Administraci\'{o} de variables de sistema}
-La aplicaci\'{o} ha de gestionar les variables que Ichnaea al sistema per poder utilitzar-les amb el \textit{software}. Les variables han de tenir associades conjunts de fitxers\ref{cha:backgroud:univers:matrius:variables_seasons}). La aplicaci\'{o} ha de poder gestionar les variables, els continguts dels fitxers i les associacions entre les variables i els conjunts de fitxers.
+La aplicaci\'{o} ha de gestionar les variables que Ichnaea que Ichnaea utilitza al sistema per poder utilitzar-les amb el \textit{software}. Aquestes variables han de tenir associades conjunts de fitxers.\ref{cha:backgroud:univers:matrius:variables_seasons}) La aplicaci\'{o} ha de poder gestionar les variables, els continguts dels fitxers i les associacions entre les variables i els conjunts de fitxers.
 
 \subsubsection{Administraci\'{o} de matrius}
 La aplicaci\'{o} ha de gestionar i configurar matrius de dades. Per la creaci\'{o} de matrius ha de poder llegir una fulla de c\`{a}lcul i crear un model de dades que representi una matriu a partir de les dades proporcionades.\\
 
-La aplicaci\'{o} ha de permetre la configuraci\'{o} de matrius\ref{cha:backgroud:univers:matrius}:
+La aplicaci\'{o} ha de permetre la configuraci\'{o} de les matrius(mirar \ref{cha:backgroud:univers:matrius}):
 \begin{itemize}
 \item Gestionar matrius: crear, actualitzar, esborrar i configurar-les.
 \item Configurar les columnes d'una matriu com una variable i un conjunt de fitxers en cas de que tinguin m\'{e}s.
@@ -33,7 +33,7 @@ La aplicaci\'{o} ha de permetre la configuraci\'{o} de matrius\ref{cha:backgroud
 El sistema ha de gestionar i crear entrenaments i enviar-ho contra una cua d'execuci\'{o} d'Ichnaea:
 \begin{itemize}
 	\item Gestionar entrenaments: crear, configurar i esborrar.
-	\item Enviar a processar-los a la cua de processos.
+	\item Enviar les matrius a entrenar a la cua d'execucions d'entrenaments.
 	\item Llegir e interpretar el estat del proc\'{e}s.
 	\item Guardar els resultats dels entrenaments.
 	\item Gestionar les sortides de les execucions.
@@ -43,7 +43,7 @@ El sistema ha de gestionar i crear entrenaments i enviar-ho contra una cua d'exe
 El sistema ha de gestionar i crear noves matrius de prediccions i enviar-ho contra una cua d'execuci\'{o}.
 \begin{itemize}
 	\item Gestionar les matrius de prediccions.
-	\item Enviar a processar-los a la cua de processos.
+	\item Enviar a les matrius de prediccions a la cua d'execucions de prediccions.
 	\item Llegir e interpretar el estat del proc\'{e}s.
 	\item Llegir els resultats de les prediccions.
 	\item Gestionar les sortides de les execucions.
@@ -65,7 +65,7 @@ Els requeriments no funcionals son:
 Els usuaris del sistema son:
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.5]{img/specification/Actors.png}
+  \includegraphics[scale=0.4]{img/specification/Actors.png}
   \caption{Actors}
   \label{specification:actors}
 \end{figure}
@@ -112,12 +112,12 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Anònim}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item Usuari accedeix al formulari de registraci\'{o}. L'usuari introdueix un nom d'usuari, un correu electr\`{o}nic i una contrasenya per duplicat
-	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enlla� de confirmaci\'{o} i crea un compte no validada.
+	\item El sistema envia al usuari una confirmaci\'{o} via correu electr\'{o}nic amb un enllaç de confirmaci\'{o} i crea un compte no validada.
 	\item L'usuari accedeix mitjançant l'enllaç de confirmaci\'{o}.
-	\item El sistema comprova que \'{e}s un enllaç de confirmaci\'{o} v\`{a}lid d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat al sistema com un usuari i ja \'{e}s un usuari del sistema.
+	\item El sistema comprova que \'{e}s un enllaç de confirmaci\'{o} v\`{a}lid d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat com usuari bàsic del sistema.
 }
 \addscenario{Cursos alternatius:}{
-\item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu, que el correu sigui v\`{a}lid. Sino es correcte li informa a l'usuari al mateix formulari.
+\item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu i que el correu sigui v\`{a}lid. Sino \'{e}s correcte li informa a l'usuari al mateix formulari.
 }
 \end{usecase}
 
@@ -126,9 +126,9 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'administrador llista tots els usuaris del sistema i selecciona un.
-	\item L'administrador veu el formulari de edici\'{o} de permisos.
-	\item L'administrador selecciona el nou perm\'{s} i salva el perfil.
-	\item El sistema guarda el nou perm\'{i}s
+	\item El sistema mostra un formulari de edici\'{o} de permisos.
+	\item L'administrador selecciona el nou permís i confirma l'acció.
+	\item El sistema guarda els canvis i notifica a l'administrador.
 }
 \end{usecase}
 
@@ -136,8 +136,13 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Variable001}{Crear una variable}
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari visualitza el formulari on pot donar un identificador que ha de ser \'{u}nic en el sistema i una descripci\'{o} .
-	\item El sistema crear la variable.
+	\item L'usuari accedeix a un formulari de creacio.
+	\item El sistema mostra un formulari de creacio de variables.
+	\item L'usuari dona un identificador i una descripci\'{o}.
+	\item El sistema crea la variable amb la informació donada i confirma a l'usuari.
+}
+\addscenario{Cursos alternatius:}{
+\item[4] El sistema valida que existeixi ja una variable amb aquest identificador i li notifica a l'usuari.
 }
 \end{usecase}
 
@@ -146,7 +151,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item L'admininistrador seleccion un variable d'un llistat de variables.
-    \item El sistema li mostra un formulari d'edici\'{o} on pot veure els conjunts dels fitxers i pot actualitzar la descripci\'{o}.
+    \item El sistema mostra un formulari d'edici\'{o} on pot veure els conjunts dels fitxers i pot actualitzar la descripci\'{o}.
     \item L'usuari modifica la descripci\'{o} i salva els canvis.
     \item El sistema guarda les modificacions.
 }
@@ -157,19 +162,19 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una variable d'un llistat de variables.
-	\item El sistema li mostra un formulari d'edici\'{o} de la variable amb un enllaç a un formulari de creaci\'{o}.
+	\item El sistema mostra un formulari d'edici\'{o} de la variable amb un enllaç a un formulari de creaci\'{o} de conjunt de fitxers.
 	\item L'usuari accedeix a un formulari de creaci\'{o} d'un conjunt de fitxers.
 	\item El sistema li mostra un formulari de creaci\'{o}.
 	\item L'usuari pot donar un nom i seleccionar 0, 1 o 2 fitxers, on cada fitxer pot ser configurat com:
 	\begin{itemize}
-		\item a unic per tot l'any
+		\item a únic per tot l'any
 		\item com estiu
 		\item com hivern
 		\item com tardor
 		\item com estiu
 	\end{itemize}	
 	\item L'usuari salva els canvis.
-	\item El sistema guarda els canvis.
+	\item El sistema guarda els canvis i notifica a l'usuari.
 }
 \end{usecase}
 
@@ -178,11 +183,16 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item L'usuari selecciona una variable d'un llistat de variables.
-    \item El sistema li mostra un formulari d'edici\'{o} on pot editar el nom.
+    \item El sistema li mostra un llistat dels conjunts de fitxers de la variable.
     \item L'usuari selecciona un conjunt de fitxers.
-    \item El sistema li mostra un formulari on pot actualitzar un conjunt de fitxers.
-    \item L'usuari actualiza les dades i guarda els canvis.
-    \item El sistema guarda els canvis. 
+    \item El sistema li mostra un formulari d'edició del conjunt de fitxers on es pot:
+    \begin{itemize}
+    \item Canviar el nom del conjunt de fitxers
+    \item Esborrar un fitxer
+    \item Afegir m\'{e}s fitxer i configurar-los com estiu, hivern, tardor, primavera o com tot l'any.
+    \end{itemize}
+    \item L'usuari salva els can.
+    \item El sistema guarda els canvis i notifica a l'usuari. 
 }
 \end{usecase}
 
@@ -190,13 +200,15 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Variable005}{Esborrar un conjunt d'envelliments d'una variable}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item L'usuari selecciona un conjunt de fitxers d'una variable d'un llistat.
+    \item L'usuari seleccion una variable.
+    \item El sistema mostra un llistat de conjunts de fitxers per esborrar.
+    \item L'usuari selecciona del llistat un conjunt de fitxers per esborrar.
     \item El sistema li mostra un vista de confirmaci\'{o} de la acci\'{o}.
     \item L'usuari confirma la acci\'{o}.
-    \item El sistema esborra tots els fitxers.
+    \item El sistema esborra tots els fitxers i el conjunt.
 }
 \addscenario{Cursos alternatius:}{
-\item[3] L'usuari cancela la acci\'{o}.
+\item[4] L'usuari cancela la acci\'{o}.
 }
 \end{usecase}
 
@@ -205,10 +217,12 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item L'usuari selecciona una variable d'un llistat de variables.
-    \item El sistema li mostra un formulari de edici\'{o} dels components.
-    \item L'usuari pot donar un nom i seleccionar 0, 1 o 2 fitxers, on cada fitxer pot ser configurat com:
+    \item El sistema mostra un llistat de conjunts de fitxers de la variable.
+    \item L'usuari seleccion un conjunt de fitxers.
+    \item El sistema mostra un formulari de edici\'{o} del conjunt de fitxers.
+    \item L'usuari pot seleccionar 0, 1 o 2 fitxers, on cada fitxer pot ser configurat com:
 	\begin{itemize}
-		\item a �nic per tot l'any
+		\item a únic per tot l'any
 		\item com estiu
 		\item com hivern
 		\item com tardor
@@ -224,14 +238,16 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item L'usuari selecciona una variable d'un llistat de variables.
-    \item El sistema li mostra un formulari de edici\'{o} dels components.
+    \item El sistema mostra un llistat de conjunts de fitxers de la variable.
+    \item L'usuari seleccion un conjunt de fitxers.
+    \item El sistema mostra un llistat del fitxers.
 	\item L'usuari selecciona un fitxer per esborrar.
 	\item El sistema li demana confirmaci\'{o}.
 	\item L'usuari confirma l'acci\'{o}
 	\item El sistema esborra el fitxer.
 }
 \addscenario{Cursos alternatius:}{
-\item[5] L'usuari cancel·la la acci\'{o}.
+\item[6] L'usuari cancel·la la acci\'{o}.
 }
 \end{usecase}
 
@@ -240,14 +256,16 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Matriu001}{Crear una matriu des d'un fitxer}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari accedeix a un formulari on pot donar nom a la matriu i seleccionar el fitxer en format csv o excel. L'usuari accepta el formulari.
+	\item L'usuari accedeix a un formulari de creació de matrius.
+	\item El sistema mostra el formulari on pot donar nom a la matriu i seleccionar el fitxer en format CSV o Microsoft Excel. L'usuari accepta el formulari.
 	\item El sistema crear la matriu on:
 	\begin{itemize}
-	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automaticament s'assigna a aquesta columna a aquesta variable i a un conjunt de fitxers d'envelliments per defecte.
+	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automàticament s'assigna a aquesta columna a aquesta variable i a un conjunt de fitxers d'envelliments per defecte. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
 		\item Les columnes restants s'assignen com a valors de la mostra
+		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
 	\item L'usuari visualitza la matriu.
 	\end{itemize}
@@ -260,14 +278,17 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una matriu per actualitzar.
 	\item El sistema li mostra un formulari d'edici\'{o} de la matriu.
-	\item L'usuari accedeix a un formulari on pot actualitzar el nom a la matriu i/o seleccionar el fitxer de tipus de fulla de c\`{a}lcul. L'usuari confirma els canvis
+	\item L'usuari accedeix a un formulari de importacio.
+	\item El sistema mostra el formulari d'edicio.
+	\item L'usuari pot actualitzar el nom a la matriu i/o seleccionar el fitxer de tipus de fulla de c\`{a}lcul. L'usuari confirma els canvis
 	\item El sistema esborra la matriu anterior i torna a crear la matriu on:
 	\begin{itemize}
-	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automàticament s'assigna a aquesta columna a aquesta variable i a un conjunt de fitxers d'envelliments per defecte.
+	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable es igual al identificador de la variable, automàticament s'assigna a aquesta columna a aquesta variable i a un conjunt de fitxers d'envelliments per defecte. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un aliàs d'origen, autom\`{a}ticament s'assigna un origen
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
 		\item Les columnes restants s'assignen com a valors de la mostra
+		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
 	\end{itemize}
 	\item L'usuari visualitza la matriu.
@@ -290,7 +311,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Matriu004}{Esborrar una matriu}
 \addfield{Actors:}{Propietari de la matriu}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari selecciona una matriu del sistema per esborrara.
+	\item L'usuari selecciona una matriu del sistema per esborrar.
 	\item El sistema demana confirmaci\'{o} per esborrar la matriu.
 	\item L'usuari confirma la acci\'{o}.
 	\item El sistema clona la matriu i la seva configuraci\'{o} sense copiar entrenaments ni prediccions. El propietari de la matriu \'{e}s l'usuari que ha realitzat la clonaci\'{o}.
@@ -320,7 +341,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Matriu006}{Configurar una mostra d'una matriu}
 \addfield{Actors:}{Usuari propietari de una matriu}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari selecciona un matriu.
+	\item L'usuari selecciona una matriu.
 	\item El sistema mostra una vista per configurar les mostres de la matriu.
 	\item L'usuari selecciona una mostra i pot:
 	\begin{itemize}
@@ -340,7 +361,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 	\item L'usuari selecciona un matriu.
 	\item El sistema mostra una vista per validar les dades.
 	\item L'usuari accepta una validaci\'{o}.
-	\item El sistema mostra al usuari si conte alguna dada buida com algun valor de mostres, una origen d'una mostra o una data de mostra.
+	\item El sistema mostra al usuari si conte alguna dada buida com algun valor de mostres, un origen d'una mostra buit o una data de mostra buida.
 }
 \end{usecase}
 
@@ -349,7 +370,14 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de entrenaments del sistema.
-	\item El sistema llista els entrenaments amb les dades b\`{a}siques: matriu entrenada, estat del entrenament, descripci\'{o} de l'entrenament, creador, data de creaci\'{o}.
+	\item El sistema llista els entrenaments amb les dades b\`{a}siques: 
+	\begin{itemize}
+	\item nom de la matriu entrenada
+	\item estat del entrenament
+	\item descripci\'{o} de l'entrenament
+	\item creador de l'entrenament
+	\item data de creaci\'{o} de l'entrenament.
+	\end{itemize}
 }
 \end{usecase}
 
@@ -358,7 +386,13 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de entrenaments que ha creat.
-	\item El sistema llista els entrenaments que ha creat amb dades b\`{a}siques: matriu entrenada, estat de l'entrenament, descripci\'{o} de l'entrenament, data de creaci\'{o}.
+	\item El sistema llista els entrenaments que ha creat amb dades b\`{a}siques: 
+	\begin{itemize}
+	\item nom de la matriu entrenada
+	\item estat de l'entrenament
+	\item descripci\'{o} de l'entrenament
+	\item data de creaci\'{o} de l'entrenament.
+	\end{itemize}
 }
 \end{usecase}
 
@@ -367,7 +401,14 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de matrius entrenables.
-	\item El sistema llista els entrenaments amb un estat finalitzat i sense errors amb dades b\`{a}siques: matriu entrenada, estat de l'entrenament, creador, descripci\'{o} de l'entrenament, data de creaci\'{o}.
+	\item El sistema llista els entrenaments amb un estat finalitzat i sense errors amb dades b\`{a}siques: 
+	\begin{itemize}
+	\item nom de la matriu entrenada
+	\item estat de l'entrenament
+	\item creador
+	\item descripci\'{o} de l'entrenament
+	\item data de creaci\'{o}.
+	\end{itemize}
 }
 \end{usecase}
 
@@ -375,11 +416,11 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Training004}{Crear un entrenament}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari selecciona una matriu per entrenar
+	\item L'usuari selecciona una matriu per entrenar.
 	\item El sistema li mostra un formulari per crear entrenaments.
 	\item L'usuari pot donar un nom, una descripci\'{o}, seleccionar un origen dels disponibles i quines columnes vol entrenar. Finalment confirma les dades.
-	\item El sistema guarda l'entrenament i envia al sistema de cues les dades. El sistema avalua si ha pogut enviar l'entrenament al sistema de cues en cas que el servei estigui caigut. 
-	\item L'usuari veu el training creat.
+	\item El sistema guarda l'entrenament i envia les dades al sistema de cues d'execucions de entrenaments. El sistema avalua si ha pogut enviar l'entrenament al sistema de cues en cas que el servei estigui caigut. 
+	\item L'usuari veu les dades b\'{a}siques de l'entrenament.
 }
 \end{usecase}
 
@@ -412,14 +453,18 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 	\item L'usuari confirma l'acci\'{o}
 	\item El sistema esborra el entrenaments i totes les prediccions que s'han fet a partir d'aquest entrenament.
 }
+\addscenario{Cursos alternatius:}{
+	\item[3] L'usuari cancel·la la acci\'{o}.
+}
+
 \end{usecase}
 
 \begin{usecase}
 \addtitle{Training008}{Descarregar els resultats d'un entrenament}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item L'usuari selecciona un entrenament finalitzat
-    \item El sistema visualitza un enlla� amb la possibilitat de descarregar el fitxer resultats d'un entrenament.
+    \item L'usuari selecciona un entrenament finalitzat.
+    \item El sistema visualitza un enllaç amb la possibilitat de descarregar el fitxer resultats d'un entrenament.
     \item L'usuari accedeix a la descarrega.
     \item El sistema envia a l'usuari els resultats.
 }
@@ -429,7 +474,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Training009}{Actualitzar l'estat d'un entrenament}
 \addfield{Actors:}{Cua}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item La cua avisa al consumidor que ha finalitzat un entrenament i li envia unes dades al consumidor
+    \item La cua avisa al consumidor que ha finalitzat un entrenament i li envia les dades al consumidor.
     \item El consumidor rep les dades i li envia al sistema
     \item El sistema les guarda i actualitza l'estat del entrenament.
 }
@@ -440,7 +485,14 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de prediccions
-	\item El sistema llista totes les prediccions amb dades b\`{a}siques.
+	\item El sistema llista totes les prediccions amb dades b\`{a}siques:
+	\begin{itemize}
+	\item nom de la matriu
+	\item nom de l'entrenament
+	\item nom de la predicció
+	\item data de creació
+	\item estat de la execució.
+	\end{itemize}
 }
 \end{usecase}
 
@@ -450,6 +502,13 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de prediccions creades per ell.
 	\item EL sistema llista totes les prediccions creades per l'usuari amb dades b\`{a}siques.
+		\begin{itemize}
+	\item nom de la matriu
+	\item nom de l'entrenament
+	\item nom de la predicció
+	\item data de creació
+	\item estat de la execució.
+	\end{itemize}
 }
 \end{usecase}
 
@@ -463,7 +522,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 	\item El sistema esborra la predicci\'{o}.
 }
 \addscenario{Cursos alternatius:}{
-	\item[3] L'usuari cancel�la la acci\'{o}.
+	\item[3] L'usuari cancel·la la acci\'{o}.
 }
 \end{usecase}
 
@@ -474,34 +533,38 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 	\item L'usuari selecciona un entrenament per crear una predicci\'{o}.
 	\item El sistema li mostra un formulari de creaci\'{o} de prediccions.
 	\item L'usuari accedeix a un formulari on pot donar nom a la matriu de predicci\'{o} i seleccionar una fulla de c\`{a}lcul. L'usuari accepta el formulari.
-	\item El sistema crear la matriu on:
+	\item El sistema crea la matriu on:
 	\begin{itemize}
+	\item La primera fila del fitxer s'associa com una variable entrenada. Si la variable es igual al identificador de la variable entrenada, automàticament s'assigna a aquesta columna a aquesta columna de l'entrename i al un conjunt de fitxers d'envelliments que s'ha entrenat. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
 		\item Les columnes restants s'assignen com a valors de la mostra
+		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
-	\item L'usuari visualitza la matriu.
 	\end{itemize}
+	\item El sistema mostra la matriu de predicció.
 }
 \end{usecase}
 
 \begin{usecase}
-\addtitle{Prediction005}{Actualitzar una matriu de predicci\'{o} desde un fitxer}
+\addtitle{Prediction005}{Actualitzar una matriu de predicci\'{o} des d'un fitxer}
 \addfield{Actors:}{Usuari propietari de la predicci\'{o}}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item L'usuari seleccion un entrenament
+    \item L'usuari selecciona un entrenament.
     \item El sistema li mostra un formulari d'edici\'{o} de prediccions.
     \item L'usuari pot actualitzar el nom de la predicci\'{o} i seleccionar una fulla de c\'{a}lcul i guardar els canvis.
     \item El sistema esborra la matrius de predicci\'{o}, actualitza les dades i crea la matriu on:
-    	\begin{itemize}
-	\item Cada fila de la fulla de calcul, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s el identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
-		\item Les columnes restants s'assignan com a valors de la mostra
+	\item La primera fila del fitxer s'associa com una variable entrenada. Si la variable es igual al identificador de la variable entrenada, automàticament s'assigna a aquesta columna a aquesta columna de l'entrename i al un conjunt de fitxers d'envelliments que s'ha entrenat. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
+	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
+	\begin{itemize}
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item Les columnes restants s'assignen com a valors de la mostra
+		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
-	\item L'usuari visualitza la matriu.
 	\end{itemize}
+
 }
 \end{usecase}
 
@@ -525,7 +588,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
     \item L'usuari selecciona una predicci\'{o}.
     \item El sistema li mostra un formulari per enviar la matriu de predicci\'{o} al sistema de cues.
     \item L'usuari confirma la acci\'{o}.
-    \item El sistema prepara les dades per enviar i li dona al sistema de cues.
+    \item El sistema prepara les dades per enviar i les envia al sistema de cues d'execucions de prediccions.
 }
 \end{usecase}
 
@@ -560,6 +623,23 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \end{usecase}
 
+\subsubsection{Configurar una columna d'una matriu de predicció}
+\begin{usecase}
+\addtitle{Prediction011}{Actualitzar l'estat d'una predicci\'{o}}
+\addfield{Actors:}{Propietari d'una predicció}
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+   \item L'usuari selecciona una matriu de predicció.
+   \item El sistema mostra una vista per configurar les columnes de una matriu de predicció.
+	\item L'usuari selecciona una columna i pot:
+	\begin{itemize}
+		\item donar un nom a la columna
+		\item seleccionar una variable amb el conjunt d'envelliments de la variable que s'ha entrenat.
+	\end{itemize}
+	\item L'usuari accepta la configuraci\'{o}
+	\item El sistema salva la configuraci\'{o} de la columna i notifica a l'usuari.
+}
+\end{usecase}
+
 \section{Model Conceptual}
 A continuaci\'{o} es descriu el model conceptual resultant dels casos d'usos.
 
@@ -587,7 +667,7 @@ A continuaci\'{o} es descriuran algunes de le classes i alguns atributs per a la
 
 \item \textit{Matrix}: en aquesta classe es guarda la informaci\'{o} b\`{a}sica d'una matriu.
 
-\item \textit{Sample}:en aquesta classe es guarda la informaci\'{o} de cadascuna de les files de la matriu a la que pertany mitjan�ant la associaci\'{o} \textit{rows}.
+\item \textit{Sample}: en aquesta classe es guarda la informaci\'{o} de cadascuna de les files de la matriu a la que pertany mitjançant la associaci\'{o} \textit{rows}.
 
 \item \textit{VariableMatrixConfig}: aquesta classe guarda la configuraci\'{o} d'una columna de la matriu i associa la columna a una variable i a un conjunt de fitxers d'aquesta variable.
 
@@ -597,22 +677,25 @@ A continuaci\'{o} es descriuran algunes de le classes i alguns atributs per a la
 \item status: estat de la predicci\'{o}. Mirar l'apartat \ref{sec:status}.
 \end{itemize}
 
-\item \textit{ColumnTrained}: aquesta classe associa un entrenament amb quines columnes es volen entrenar.
+\item \textit{Column Selected}: aquesta classe associa un entrenament amb quines columnes es volen entrenar.
 
 \item \textit{PredictionMatrix}: en aquesta classe es guarda la informaci\'{o} d'una matriu de predicci\'{o}.
 \begin{itemize}
 \item requestId: identificador del proc\'{e}s en la cua d'execuci\'{o}.
 \item predictionResult: collecci\'{o} de resultats de la execuci\'{o} d'una predicci\'{o}.
-\item status: estat de la predicci\'{o}. Mirar \ref{specificaion:status}.
+\item status: estat de la predicci\'{o}. Mirar \ref{sec:status}.
 \end{itemize}
 
 \item \textit{PredictionSample}: en aquesta classe es guarda la informaci\'{o} de les mostres(files) d'una matriu de predicci\'{o}.
 
+\item \textit{PredictionColumn}: en aquesta classe es guarda la informaci\'{o} de les columnes d'una matriu de predicci\'{o} i la associaci\'{o} entre les columnes entrenades. La propietat index cont\'{e} la posició que ocupa en la matriu.
 \end{itemize}
 
 \section{Model d'estats}
 \label{sec:status}
-La aplicaci\'{o} i el sistema de cues son dos components separats. Aix\'{o} ens obliga a definir estats per els entrenaments i per les prediccions. El principal problema que existeix en la versi\'{o} actual de Ichnaea Software es que no retorna estats parcials.
+La aplicaci\'{o} i el sistema de cues de execucions son dos components separats. Aix\'{o} ens obliga a definir estats per els entrenaments i per les prediccions.\\
+
+El principal problema que existeix en la versi\'{o} actual de Ichnaea Software \'{e}s que no retorna estats parcials d'execucions: no ens retorna si ha començat la execució o quan temps queda o percentatge porta. A continuaci\'{o} s'explica quins estats s'han definit per els entrenaments i per les prediccions.
 
 \subsection{Estats dels entrenaments}
 \begin{figure}[H]
@@ -621,7 +704,8 @@ La aplicaci\'{o} i el sistema de cues son dos components separats. Aix\'{o} ens 
   \caption{Diagram d'estats dels entrenaments}
   \label{fig:statestraining}
 \end{figure}
-Per crear un entrenament, primer es comproba que es pot establir connexi\'{o} amb la cua. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent(\textit{pending}). En el cas que es pugui establir connexi\'{o}, s'envia les dades i es queda en aquest estat fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb un error d'Ichnaea.\\
+Per crear un entrenament, primer es comprova que es pot establir connexi\'{o} amb la cua. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades i es queda en aquest estat fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb un error d'Ichnaea.\\
+
 En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar l'entrenament a la cua despr\'{e}s de comprovar l'error.
 
 \subsection{Estats de les prediccions}
@@ -631,16 +715,16 @@ En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar l'entrename
   \caption{Diagram d'estats dels entrenaments}
   \label{fig:statestraining}
 \end{figure}
-Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la predicci\'{o} estar\'{a} en un estat inicial(\textit{new}). Quan l'usuari confirmi l'enviament, primer es comprova que es pot establir connexi\'{o} amb la cua. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent(\textit{pending}). En el cas que es pugui establir connexi\'{o}, s'envia les dades. Es queda en aquest estat rebent multiples respostes fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb els errors.\\
+Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la matriu de predicci\'{o} estar\'{a} en un estat inicial(\textit{nou}). Quan l'usuari confirmi l'enviament, primer es comprova que es pot establir connexi\'{o} amb la cua d'execucions de prediccions. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades. Es queda en aquest estat rebent múltiples respostes fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb els errors.\\
 En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar la predicci\'{o} a la cua despr\'{e}s de comprovar l'error.
 
 \section{Model del comportament}
-En aquesta secci\'{o} donarem veurem els diagrames de seq\�{u}encia de les operacions m\'{e}s complexes dels casos d'us.
+En aquesta secci\'{o} donarem veurem els diagrames de seqüència de les operacions m\'{e}s complexes dels casos d'us.
 \subsection*{Crear un conjunt de fitxers d'envelliments per una variable}
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceNewSeasonSe.png}
-  \caption{Diagram de seq�{u}encia \textit{Crear un conjunt de fitxers d'envelliments per una variable}}
+  \caption{Diagram de seqüència \textit{Crear un conjunt de fitxers d'envelliments per una variable}}
   \label{fig:sequencenewseasonset}
 \end{figure}
 
@@ -648,7 +732,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\�{u}encia de les ope
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceAddNewFilesToSeasonSet.png}
-  \caption{Diagram de seq�{u}encia \textit{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}}
+  \caption{Diagram de seqüència \textit{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}}
   \label{fig:sequenceaddnewseason}
 \end{figure}
 
@@ -656,7 +740,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\�{u}encia de les ope
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceCreateMatrix.png}
-  \caption{Diagram de seq�{u}encia \textit{Crear una matriu des d'un fitxer}}
+  \caption{Diagram de seqüència \textit{Crear una matriu des d'un fitxer}}
   \label{fig:sequencenewmatrixfromfile}
 \end{figure}
 
@@ -664,7 +748,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\�{u}encia de les ope
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceCreateTraining.png}
-  \caption{Diagram de seq�{u}encia \textit{Crear un entrenament}}
+  \caption{Diagram de seqüència \textit{Crear un entrenament}}
   \label{fig:sequenceaddtraining}
 \end{figure}
 
@@ -672,7 +756,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seq\�{u}encia de les ope
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceConfigureColumn.png}
-  \caption{Diagrama de seq�{u}encia \textit{Configurar una columna d'una matriu} }
+  \caption{Diagrama de seqüencia \textit{Configurar una columna d'una matriu} }
   \label{fig:sequenceconfigurecolumn}
 \end{figure}
 

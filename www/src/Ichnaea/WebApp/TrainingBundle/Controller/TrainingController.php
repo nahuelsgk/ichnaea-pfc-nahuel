@@ -91,14 +91,9 @@ class TrainingController extends Controller
     					array(
     						"matrix_id"      => $matrix_id,
     						"n_columns"      => $n_columns,
+    						"matrix_name"	 => $matrix->getName(),
     						"name" 		     => $name,
     						"description"    => $description,
-    						"k1"		     => $k1,
-    						"k2"		     => $k2,
-    						"best_models"    => $best_models,
-     						"min_size"       => $min_size_var_set,
-    						"max_size"       => $max_size_var_set,
-    						"type_of_search" => $type_of_search,
     						"errors"	     => $errors,
     						
     					)
@@ -117,12 +112,14 @@ class TrainingController extends Controller
         				"errors" => NULL,
         				"name" => NULL,
         				"description" => NULL,
-        				"k1"		     => NULL,
+        				"matrix_name"	 => $matrix->getName(),
+        				
+        				/*"k1"		     => NULL,
         				"k2"		     => NULL,
         				"best_models"    => NULL,
         				"min_size"       => NULL,
         				"max_size"       => NULL,
-        				"type_of_search" => NULL,
+        				"type_of_search" => NULL,*/
         				"origins"		 => $matrix->getOrigins(),
         				"columns"		 => $matrix->getColumns()
         	)

@@ -25,7 +25,7 @@ Al llistat superior pots veure els trainings que has creat on::
 \item 
 \item Operacions
  \begin{itemize}
- \item ICON_EYE_OPEN es per anar a la pantalla de visualitzaci\'{o} del training.
+ \item ICONEYEOPEN es per anar a la pantalla de visualitzaci\'{o} del training.
  \end{itemize}
 \end{itemize}
 
@@ -52,8 +52,8 @@ Desde la interf\'{i}cie de configuraci\'{o} es pot:
 \begin{itemize}
 \item Modificar la descripci\'{o}
 \item Accedir a la vista per afegir una ''Season set'', amb la icona del signe de suma.
-\item Editar una ''Season Set'', amb ICON_EDIT.
-\item Esborrar una ''Season Set'', amb la ICON_TRASH.
+\item Editar una ''Season Set'', amb ICONEDIT.
+\item Esborrar una ''Season Set'', amb la ICONTRASH.
 \end{itemize}
 
 \subsection{Crear una ''season set'' d'una variable}
@@ -61,8 +61,8 @@ Desde la interf\'{i}cie de configuraci\'{o} es pot:
 Per tal de crear un conjunt de seasons per una variable:
 \begin{itemize}
 \item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable, fent click ICON_EDIT
-\item Al apartat inferior ''List of season set'', clickar a la ICON_PLUS.
+\item Editar la variable a la que es vol afegir la variable, fent click ICONEDIT
+\item Al apartat inferior ''List of season set'', clickar a la ICONPLUS.
 \end{itemize}
 Es poden donar un nom i afegir tants fitxers com es vulguin. S'ha de tenir cura perque existeix la possibilitat de afegir varis fitxers amb una mateixa configuraci\'{o} (estaci\'{o}). Actualment Ichnaea solament processa estiu e hivern. Per m\'{e}s descripci\'{o} d'aquesta interf\'{i}cie anar al punt \ref{season_set:edit}
 
@@ -86,8 +86,8 @@ S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una 
 Per tal de crear un conjunt de seasons per una variable:
 \begin{itemize}
 \item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable, amb ICON_EDIT
-\item Editar, amb ICON_EDIT, la ''season set'' del llistat ''List of season set''.
+\item Editar la variable a la que es vol afegir la variable, amb ICONEDIT
+\item Editar, amb ICONEDIT, la ''season set'' del llistat ''List of season set''.
 Llegir el punt \ref{season_set:edit}
 
 
@@ -99,7 +99,7 @@ El format de la matriu \'{e}s important que sigui el següent.
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
     \hline
-    Cel.la buida & Alias de la columna & .... & ORIGIN \\ \hline
+    Cel.la buida & Alias de la columna & .... & ORIGIN & DATE \\ \hline
     Nom de la sample & Valor de la sample  & .... & Origen de la sample \\ \hline
     S01-10-20        & 0,000145            & .... & Human \\ \hline
     \hline
@@ -116,8 +116,10 @@ On:
 \item PG - PIG
 \item CW - COW
 \end{itemize}
-\item Origen de la sample: \'{e}s una cadena de caracters que especifica l'origen de la mostra. Solament es distingir\'{a} si a les capçaleres a la ultima columna s'especifica la paraula ORIGIN.
+\item Origen de la mostra: \'{e}s una cadena de caràcters que especifica l'origen de la mostra. Solament es distingir\'{a} si a les capçaleres a la ultima columna s'especifica la paraula ORIGIN. Es OPCIONAL. 
+\item Data de la mostra: \'{e}s una data de calendari. Amb el format DIA(DD)/MES(MM)/ANY(YYYY). Per exemple 01/12/2014. Es OPCIONAL. 
 \end{itemize}
+Important: l'ordre de les columnes \'{e}s important. Si volem deixar la columna origen buida però posar dates, s'ha d'especificar igualment la columna i deixar-la buida. I l'origen de la mostra es resoldra amb el mapejat abans explicat.
 En la pantalla, es pot seleccionar un fitxer csv i pujar'ho. Seguidament, es podr\`{a} establir la relaci\'{o} de la variable real de la columna i quin conjunt de fitxers per defecte usa. Mirar \ref{sec:configure_matrix}.
 
 \section{Configurar una matriu}
@@ -126,11 +128,11 @@ Per accedir a configurar una matriu, has d'anar a la teva pantalla de inici(mira
 Desde la interficie de configuraci\'{o} es pot configurar:
 \begin{itemize}
 \item Donar un alias a la columna
-\item Asociar una columna a una variable
+\item Associar una columna a una variable
 \item Seleccionar un conjunt de fitxers de la variable
 \item Donar nom a una mostra
 \item Donar una data a una mostra
-\item Donar un origen a un sample
+\item Donar un origen a un mostra
 \item Visualitzar missatges de validacions i notificacions
 \item Donar acc\'{e}s als usuaris per que puguin crear trainings.
 \end{itemize}
@@ -141,10 +143,10 @@ Desde la interficie de configuraci\'{o} es pot configurar:
   \label{fig:configure_matrix}
 \end{figure}
 
-\subsection{Alias de una columna} 
-A la secci\'{o} de les capçaleres, a la icona del llapis, es pot especificar un alias a la columna. Si es prem "Enter" o es canvia el focus, s'activa el bot\'{o} de salvaguardat.
+\subsection{Alies de una columna} 
+A la secci\'{o} de les capçaleres, a la icona del llapis, es pot especificar un alies a la columna. Si es prem "Enter" o es canvia el focus, s'activa el bot\'{o} de salvaguardat.
 
-\subsection{Especificar una columna a una variable i la season set}
+\subsection{Especificar en una columna una variable i un conjunt de fitxers}
 A la secci\'{o} de les capçaleres, a la icona de la clau anglesa, es pot seleccionar la variable del sistema. Autom\'{a}ticament, a la llista de dalt, es carrega la llista de "Seasons Set". Quan es selecciona un dels dos llistats, s'activa el bot\'{o} de salvaguardat. No \'{e}s obligatori donar-li una variable i una "Season Set".
 
 \subsection{Cambiar la visualitzaci\'{o}}
@@ -180,7 +182,7 @@ Fent click a la icona de reload, anem al formulari que suggereix un nom per iden
 Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}. Mirar \ref{sec:configure_matrix}.
 
 \section{Crear un training d'una matriu}
-Per crear un training s'ha de accedir al menu superior ''Trainings - Create a training''. Desde el llistat de matrius del sistema, amb la icona ICON_ROAD, es pot accedir al formulari de creaci\'{o} de trainings.
+Per crear un training s'ha de accedir al menu superior ''Trainings - Create a training''. Desde el llistat de matrius del sistema, amb la icona ICONROAD, es pot accedir al formulari de creaci\'{o} de trainings.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/training_create.png}

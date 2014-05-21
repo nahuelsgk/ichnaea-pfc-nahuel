@@ -16,6 +16,12 @@
   <div style="float: left; width: 50%;">
 	  <legend>Create a new training</legend>
 	  <div class="control-group">
+	   <label class="control-label" for="Matrix">Matrix</label>
+	    <div class="controls">
+	     <a href="{{ path('matrix_ui_view', {'matrix_id': matrix_id}) }}">{{ matrix_name }}</a>
+	    </div>
+	  </div>
+	  <div class="control-group">
 	   <label class="control-label" for="Name">Name</label>
 	    <div class="controls">
 	     <input type="text" id="name" name="name" placeholder="Training name" required {% if name %}value="{{name}}"{% endif %}>

@@ -4,6 +4,14 @@
 
 {% block main_content %}
 
+<div class="container">
+<legend>{{ matrix_name }} 
+  <a class="btn btn-mini" href="{{path('create_training_form', {'matrix_id': matrix_id})}}" name="create_training" title="Create training from this matrix"><i class="icon-road"></i></a>
+  {% if app.user.id == matrix_owner_id %}
+  	<a class="btn btn-mini" href="{{path('matrix_ui_edit', {'matrix_id': matrix_id})}}" name="edit_matrix" title="For Admins: Configure columns and samples"><i class="icon-edit"></i></a>
+  {% endif %}
+</legend>
+</div>
 {#  include 'MatrixBundle:Matrix:view_matrix_table.html.twig' #}
 {%  include 'MatrixBundle:Matrix:View/matrix_table_configurable.html.twig' with {'configurable_columns': 'disable', 'configurable_samples':'disable', 'api': 'none'} %}
 

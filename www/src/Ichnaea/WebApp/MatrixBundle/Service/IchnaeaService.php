@@ -386,23 +386,53 @@ class IchnaeaService{
 	private function buildMatrixFromCSV(&$matrix, $content){
 		$index=0;
 		$origin = FALSE;
+		
+		//n_columns: the number of columns of the csv
+		$n_columns = 0;
+		//m_columns: mark the final values position
+		$m_columns = 0;
+		//by default the ORIGIN COLUMN dont exists
+		$origin = FALSE;
+		//by default the DATE COLUMN dont exists
+		$date = FALSE;
+		
 		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
-			$max_colums=0;
 		
 			//First row: variables alias
 			if($index == 0){
 				$columns    = explode(";", $line);
-				$m_columns  = count($columns);
+				
+				$n_columns  = count($columns);
 					
-				//resolve if the last column is ORIGIN
-				if (strpos($columns[$m_columns-1], "ORIGIN") !== false ){
+				/* Begin Resolving format of CSV  */
+				//IF in the columns[m_columns] is written "ORIGIN" 
+				//instead of a variable name 
+				//means that this csv in the last column species a sample
+				if (strpos($columns[$n_columns-1], "ORIGIN") !== false ){
 					$origin = TRUE;
-					//Just to avoid the last column
-					$m_columns --;
+					$m_columns = $n_columns-2;
 				}
-					
+				//IF in the columns[m_columns] is written "DATE"
+				//instead of a variable name
+				//means that this csv in the last column species a date
+				elseif (strpos($columns[$n_columns-1], "DATE") !== false ){
+					$date = TRUE;
+					$m_columns = $n_columns-2;
+				}
+				//IF in the columns[m_columns] is written "DATE"
+				//instead of a variable name
+				//means that this csv in the last column species a date
+				elseif (strpos($columns[$n_columns-2], "ORIGIN") !== false && strpos($columns[$n_columns-1], "DATE") !== false){
+					$origin = TRUE;
+					$date = TRUE;
+					$m_columns = $n_columns-3;
+				}
+				else{
+					$m_columns = $n_columns-1;
+				}
+				
 				//Exclude first column
-				for($i=1; $i<$m_columns; $i++){
+				for($i=1; $i<=$m_columns; $i++){
 					$variable_name = MatrixUtils::cleanStringCSV($columns[$i]);
 					$variableConfiguration = new VariableMatrixConfig();
 					$variableConfiguration->setName($variable_name);
@@ -436,11 +466,20 @@ class IchnaeaService{
 						$columns[$key] = Utils::cleanStringCSV($string);
 					}
 		
-					if ($origin == TRUE){
-						$sample->setSamples(array_slice($columns, 1, $m_columns-1, TRUE));
-						if(isset($columns[$m_columns]) && $origin)
-						{
-							$sample->setOrigin(Utils::cleanStringCSV($columns[$m_columns]));
+					if ($origin == TRUE && $date == FALSE){
+						$sample->setSamples(array_slice($columns, 1, $n_columns-2, TRUE));
+						if(isset($columns[$n_columns-1])) $sample->setOrigin(Utils::cleanStringCSV($columns[$n_columns-1]));
+					}
+					//manage origin and date
+					elseif($date == TRUE){
+						$sample->setSamples(array_slice($columns, 1, $n_columns-3, TRUE));
+						if(isset($columns[$n_columns-2])) $sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$n_columns-2]));
+						if(isset($columns[$n_columns-1])) {
+							//$convert_date = date_create_from_format(, $columns[$n_columns-1]);
+							//var_dump($convert_date);
+							//die();
+					
+							$sample->setDate(\DateTime::createFromFormat('d/n/Y', $columns[$n_columns-1]));
 						}
 					}
 					//We want all the values until the end

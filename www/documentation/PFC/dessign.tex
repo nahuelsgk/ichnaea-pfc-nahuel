@@ -21,7 +21,7 @@ On:
 \end{itemize}
 
 \section{Patr\'{o} de disseny}
-Per la implementaci\`{o} del sistema web s'han usat un disseny per capes(Presentaci\'{o}, domini i persistËncia de dades) amb els seg\®{u}ents patrons de disseny:
+Per la implementaci\`{o} del sistema web s'han usat un disseny per capes(Presentaci\'{o}, domini i persist√®ncia de dades) amb els seg√ºents patrons de disseny:
   \begin{itemize}
   \item Model-Vista-Controlador amb controlador frontal
   \item Capa de Servei
@@ -29,7 +29,7 @@ Per la implementaci\`{o} del sistema web s'han usat un disseny per capes(Present
   \item Repositori de model de dades
   \item Capa de mapejat de dades
   \item View template
-  \item InterfÌcies enriquides amb servei webs
+  \item Interf√≠cies enriquides amb servei webs
   \end{itemize}
 
 \subsection{Esquema del disseny}
@@ -48,18 +48,26 @@ Els components MVC,Model-Vista-Controlador, amb controlador frontal \'{e}s un di
 \item el controlador frontal rep totes les peticions i les re-dirigeix als controladors corresponents
 \item el controlador se encarrega de processar les peticions especifiques
 \end{itemize}
-L'arquitectura MVC separa la capa de presentaci\'{o} de la l\`{o}gica de domini. La capa de presentaci\'{o} accedeix a la capa de domini mitjanÁant serveis, injectant depend\'{e}ncies. \\
+L'arquitectura MVC separa la capa de presentaci\'{o} de la l\`{o}gica de domini. La capa de presentaci\'{o} accedeix a la capa de domini mitjan√ßant serveis, injectant depend\'{e}ncies. \\
 La injecci\'{o} de depend\'{e}ncies \'{e}s un patr\'{o} a on es subministren objectes a una classe en lloc de ser la classe qui crea els objectes\cite{dependency_injection}. Les avantatges de usar DI(''dependency injection''):
 \begin{itemize}
 \item Codi m\'{e}s f\`{a}cil de mantenir, extendre o modificar
 \item Desenvolupament guiat per proves (Test Driven Development o TDD en angl\'{e}s)
-\item DI ens obliga a planejar una mica millor les nostres depend\`{e}ncies; decidim si una classe realment necessita d'un altre objecte per realitzar la seva funciÛ.
+\item DI ens obliga a planejar una mica millor les nostres depend\`{e}ncies; decidim si una classe realment necessita d'un altre objecte per realitzar la seva funci√≥.
 \end{itemize}
-Els serveis, en aquest cas, contenen l\'{o}gica de Ichnaea. Accedeixen mitjanÁant les dades repositoris d'objectes. Els repositoris son mediadors entre el domini i les dades pesistents. Els repositoris retornen entitats de la l\'{ogica}. El mapatge de dades ORM(''Object Relational Mapping''), mapatge objecte-relacional, \'{e}s un patr\'{o} de disseny, encara que alguns enginyers els agrada dir que \'{e}s una tËcnica de programaci\'{o} i a uns altres una tecnologia, que estableix una relaci\'{o} directe entre les entitats i la dades persistents.\cite{orm}
+Els serveis, en aquest cas, contenen l\'{o}gica de Ichnaea. Accedeixen mitjan√ßant les dades repositoris d'objectes. Els repositoris son mediadors entre el domini i les dades pesistents. Els repositoris retornen entitats de la l\'{ogica}. El mapatge de dades ORM(''Object Relational Mapping''), mapatge objecte-relacional, \'{e}s un patr\'{o} de disseny, encara que alguns enginyers els agrada dir que \'{e}s una t√®cnica de programaci\'{o} i a uns altres una tecnologia, que estableix una relaci\'{o} directe entre les entitats i la dades persistents.\cite{orm}
 
 \section{Disseny d'interf\'{i}cies}
-Les interf\'{i}cies s'ha dissenyat enriquides i 
-\subsection{Interf\'{i}cie de configuraci\'{o} de matrius}
+El disseny d'interf√≠cies per les configuracions de les matrius es basa en funcionalitats enriquides\cite{ria}. Per dotar de funcionalitats a les interf√≠cies webs s'utilitza peticions as√≠ncrones. Per complir aquest requeriment s'ha de dissenyar una llibreria per atendre les peticions i 
+\subsection{Interf\'{i}cie de configuraci\'{o} de matrius de entrenaments}
+Les funcionalitats as√≠ncrones que han de cumplir els casos d'us:
+\begin{itemize}
+\item Carrega de conjunt de fitxers segons les variables.
+\item Guardar la configuracio de la columna:alias i variable i conjunt de fitxers).
+\item Desplegar un calendari per seleccionar una data de la mostra.
+\item Desplegar un selector obert de possibles valors de tots els origens que estiguin especificats a les mostres.
+\item Actualitzar valors en una posici√≥ de la taula.
+\end{itemize}
 
 
 

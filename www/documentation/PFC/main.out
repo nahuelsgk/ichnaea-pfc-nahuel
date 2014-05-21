@@ -31,7 +31,7 @@
 \BOOKMARK [2][-]{subsection.4.2.1}{Esquema del disseny}{section.4.2}
 \BOOKMARK [2][-]{subsection.4.2.2}{Explicaci\363 del m\362del}{section.4.2}
 \BOOKMARK [1][-]{section.4.3}{Disseny d'interf\355cies}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.3.1}{Interf\355cie de configuraci\363 de matrius}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.1}{Interf\355cie de configuraci\363 de matrius de entrenaments}{section.4.3}
 \BOOKMARK [0][-]{chapter.5}{Implementaci\363}{}
 \BOOKMARK [1][-]{section.5.1}{Estudi previ de les tecnologies}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.1.1}{Framework a mida}{section.5.1}
@@ -47,14 +47,15 @@
 \BOOKMARK [2][-]{subsection.5.4.2}{Consumidors i gesti\363 de resultats}{section.5.4}
 \BOOKMARK [0][-]{chapter.6}{Proves i tests}{}
 \BOOKMARK [1][-]{section.6.1}{Prova en PC local}{chapter.6}
-\BOOKMARK [1][-]{section.6.2}{Prova en entorn distribuit}{chapter.6}
+\BOOKMARK [1][-]{section.6.2}{Prova en entorn distribu\357t}{chapter.6}
+\BOOKMARK [1][-]{section.6.3}{Errors coneguts}{chapter.6}
 \BOOKMARK [0][-]{chapter.7}{Conclusions}{}
 \BOOKMARK [1][-]{section.7.1}{Metodologia \340gil}{chapter.7}
 \BOOKMARK [2][-]{subsection.7.1.1}{Backlog}{section.7.1}
 \BOOKMARK [1][-]{section.7.2}{Estimaci\363 econ\363mica}{chapter.7}
 \BOOKMARK [1][-]{section.7.3}{Millores en futures versions}{chapter.7}
 \BOOKMARK [0][-]{chapter.8}{Bibliografia}{}
-\BOOKMARK [0][-]{section*.54}{Bibliografia}{}
+\BOOKMARK [0][-]{section*.57}{Bibliografia}{}
 \BOOKMARK [0][-]{appendix.A}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.A.1}{Casa de l'usuari}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.1.1}{Llistat dels meus trainings pendents}{section.A.1}
@@ -67,8 +68,8 @@
 \BOOKMARK [1][-]{section.A.3}{Matrius}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.3.1}{Crear una matriu desde un fitxer csv o excel}{section.A.3}
 \BOOKMARK [1][-]{section.A.4}{Configurar una matriu}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.4.1}{Alias de una columna}{section.A.4}
-\BOOKMARK [2][-]{subsection.A.4.2}{Especificar una columna a una variable i la season set}{section.A.4}
+\BOOKMARK [2][-]{subsection.A.4.1}{Alies de una columna}{section.A.4}
+\BOOKMARK [2][-]{subsection.A.4.2}{Especificar en una columna una variable i un conjunt de fitxers}{section.A.4}
 \BOOKMARK [2][-]{subsection.A.4.3}{Cambiar la visualitzaci\363}{section.A.4}
 \BOOKMARK [2][-]{subsection.A.4.4}{Visualitzar missatges}{section.A.4}
 \BOOKMARK [2][-]{subsection.A.4.5}{Actualitzar una dada d'una fila i d'una columna}{section.A.4}

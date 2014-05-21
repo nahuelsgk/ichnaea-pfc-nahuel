@@ -10,7 +10,7 @@ use Ichnaea\WebApp\MatrixBundle\Entity\Matrix;
 class TrainingValidation 
 {
 	/*
-	 * The set of possible errors that a training can have
+	 * The set of possible errors that a training can have: OBSOLETE
 	 */
 	const ERROR_MINIMUM_VARIABLE_SET                     = 0;
 	const ERROR_MAXIMUM_VARIABLE_SET                     = 1;
@@ -21,7 +21,7 @@ class TrainingValidation
 	const STATUS_OK   = 1;
 	const STATUS_FAIL = 0;
 	/*
-	 * The mapping errors description
+	 * The mapping errors description: OBSOLETE
 	 */
 	private $string_errors = array (
 	self::ERROR_MINIMUM_VARIABLE_SET                     => "Minimum value not valid",
@@ -83,17 +83,6 @@ class TrainingValidation
 		$matrix  = $this->training->getMatrix();
 		$columns = $matrix->getColumns();
 		$size_m  = $columns->count();
-		/*
-		$minimum = $this->training->getMinSizeVariableSet();
-		$maximum = $this->training->getMaxSizeVariableSet();
-		
-		//Validate a set of rules
-		if ($minimum <= 0)       $this->pushToErrors(self::ERROR_MINIMUM_VARIABLE_SET);
-		if ($maximum <= 0)       $this->pushToErrors(self::ERROR_MAXIMUM_VARIABLE_SET);
-		if ($minimum > $maximum) $this->pushToErrors(self::ERROR_MINIMUM_VARIABLE_SET_BIGGER_THAN_MAXIMUM);
-		if ($maximum > $size_m)  $this->pushToErrors(self::ERROR_MAXIMUM_VARIABLE_SET_BIGGER_THAN_MATRIX);
-		if ($minimum > $size_m)  $this->pushToErrors(self::ERROR_MIMIMUM_VARIABLE_SET_BIGGER_THAN_MATRIX);
-		*/
 	}
 	
 	private function pushToErrors($error)
