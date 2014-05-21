@@ -25,6 +25,12 @@ class IchnaeaService{
 	 */
 	protected $em;
 	
+	const CSV_FORMAT_NONE        = 0;
+	const CSV_FORMAT_DATE        = 1;
+	const CSV_FORMAT_ORIGIN      = 2;
+	const CSV_FORMAT_ORIGIN_DATE = 3;
+	const CSV_FORMAT_DATE_ORIGIN = 4;
+	
 	/**
 	 * 
 	 * @param EntityManager $em
@@ -395,6 +401,8 @@ class IchnaeaService{
 		$origin = FALSE;
 		//by default the DATE COLUMN dont exists
 		$date = FALSE;
+
+		$csv_format = self::CSV_FORMAT_NONE;
 		
 		foreach(preg_split("/((\r?\n)|(\r\n?))/", $content) as $line){
 		
@@ -408,31 +416,43 @@ class IchnaeaService{
 				//IF in the columns[m_columns] is written "ORIGIN" 
 				//instead of a variable name 
 				//means that this csv in the last column species a sample
-				if (strpos($columns[$n_columns-1], "ORIGIN") !== false ){
-					$origin = TRUE;
+				if (strpos($columns[$n_columns-1], "ORIGIN") !== false && strpos($columns[$n_columns-2], "DATE") === false)
+				{
+					$csv_format = self::CSV_FORMAT_ORIGIN;
 					$m_columns = $n_columns-2;
 				}
+				
 				//IF in the columns[m_columns] is written "DATE"
 				//instead of a variable name
 				//means that this csv in the last column species a date
-				elseif (strpos($columns[$n_columns-1], "DATE") !== false ){
-					$date = TRUE;
+				elseif (strpos($columns[$n_columns-1], "DATE") !== false && strpos($columns[$n_columns-2], "ORIGIN") === false)
+				{
+					$csv_format = self::CSV_FORMAT_DATE;
 					$m_columns = $n_columns-2;
 				}
+				
 				//IF in the columns[m_columns] is written "DATE"
 				//instead of a variable name
 				//means that this csv in the last column species a date
-				elseif (strpos($columns[$n_columns-2], "ORIGIN") !== false && strpos($columns[$n_columns-1], "DATE") !== false){
-					$origin = TRUE;
-					$date = TRUE;
+				elseif (strpos($columns[$n_columns-2], "ORIGIN") !== false && strpos($columns[$n_columns-1], "DATE") !== false)
+				{
+					$csv_format = self::CSV_FORMAT_ORIGIN_DATE;
+					$m_columns = $n_columns-3;
+				}
+				
+				elseif (strpos($columns[$n_columns-2], "DATE") !== false && strpos($columns[$n_columns-1], "ORIGIN") !== false)
+				{
+					$csv_format = self::CSV_FORMAT_DATE_ORIGIN;
 					$m_columns = $n_columns-3;
 				}
 				else{
+					$csv_format = self::CSV_FORMAT_NONE;
 					$m_columns = $n_columns-1;
 				}
 				
 				//Exclude first column
-				for($i=1; $i<=$m_columns; $i++){
+				for($i=1; $i<=$m_columns; $i++)
+				{
 					$variable_name = MatrixUtils::cleanStringCSV($columns[$i]);
 					$variableConfiguration = new VariableMatrixConfig();
 					$variableConfiguration->setName($variable_name);
@@ -459,39 +479,58 @@ class IchnaeaService{
 		
 					//First Column: Definition of sample
 					$sample = new Sample();
-					$sample->setName($columns[0]);
+					$sample->setName(Utils::cleanStringCSV($columns[0]));
 					$sample->setMatrix($matrix);
-		
-					foreach($columns as $key => $string) {
+					foreach($columns as $key => $string) 
+					{
 						$columns[$key] = Utils::cleanStringCSV($string);
 					}
-		
-					if ($origin == TRUE && $date == FALSE){
+				
+					if ($csv_format == self::CSV_FORMAT_ORIGIN)
+					{
 						$sample->setSamples(array_slice($columns, 1, $n_columns-2, TRUE));
-						if(isset($columns[$n_columns-1])) $sample->setOrigin(Utils::cleanStringCSV($columns[$n_columns-1]));
+						if (isset($columns[$n_columns-1]) ) 
+							$sample->setOrigin(Utils::cleanStringCSV($columns[$n_columns-1]));
+						else 
+							$sample->setOrigin(Utils::resolveOriginInSampleName($columns[0]));
 					}
-					//manage origin and date
-					elseif($date == TRUE){
-						$sample->setSamples(array_slice($columns, 1, $n_columns-3, TRUE));
-						if(isset($columns[$n_columns-2])) $sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$n_columns-2]));
-						if(isset($columns[$n_columns-1])) {
-							//$convert_date = date_create_from_format(, $columns[$n_columns-1]);
-							//var_dump($convert_date);
-							//die();
 					
+					//manage origin and date
+					elseif($csv_format == self::CSV_FORMAT_ORIGIN_DATE)
+					{
+						$sample->setSamples(array_slice($columns, 1, $n_columns-3, TRUE));
+						if(isset($columns[$n_columns-2])) 
+							$sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$n_columns-2]));
+						else
+							$sample->setOrigin(Utils::resolveOriginInSampleName($columns[0]));
+						
+						if($columns[$n_columns-1] != '')
 							$sample->setDate(\DateTime::createFromFormat('d/n/Y', $columns[$n_columns-1]));
-						}
+						
 					}
+					
+					//manage origin and date
+					elseif($csv_format == self::CSV_FORMAT_DATE_ORIGIN)
+					{
+						$sample->setSamples(array_slice($columns, 1, $n_columns-3, TRUE));
+						if($columns[$n_columns-2] != '')
+							$sample->setDate(\DateTime::createFromFormat('d/n/Y', $columns[$n_columns-2]));
+						
+						if(isset($columns[$n_columns-1]))
+							$sample->setOrigin(MatrixUtils::cleanStringCSV($columns[$n_columns-1]));
+						else
+							$sample->setOrigin(Utils::resolveOriginInSampleName($columns[0]));
+					}
+					
 					//We want all the values until the end
-					else{
+					else
+					{
 						$sample->setSamples(array_slice($columns, 1, null, TRUE));
 						$sample->setOrigin(Utils::resolveOriginInSampleName($columns[0]));
 					}
 					$matrix->addRow($sample);
-		
 				}
 			}
-		
 			$index++;
 		}
 	}
