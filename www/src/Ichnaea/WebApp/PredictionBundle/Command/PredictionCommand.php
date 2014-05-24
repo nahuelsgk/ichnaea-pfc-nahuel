@@ -40,7 +40,7 @@ class PredictionCommand extends ContainerAwareCommand
 		$predictionService = $this->getContainer()->get('ichnaea_web_app_prediction.service');
 		
 		//By now is only fired when it is finished
-		$amqp-> listenForPredictModelsResponse(function (PredictModelsResponse $resp) use ($predictionService){
+		$amqp->listenForPredictModelsResponse(function (PredictModelsResponse $resp) use ($predictionService){
 			print "Received predict-models response ".$resp->getId()." ".intval($resp->getProgress()*100)."%\n";
 			$data = $resp->toArray();
 			

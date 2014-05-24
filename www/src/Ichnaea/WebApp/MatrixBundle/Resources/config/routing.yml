@@ -231,6 +231,14 @@ create_training:
     requirements: 
         _method: GET
 
+matrix_validation:
+    pattern: /matrix/{matrix_id}/{validate}
+    defaults: { _controller: MatrixBundle:Matrix:guiMatrix}
+    requirements:
+        _method: GET
+        matrix_id: "\d+"
+        validate: validate
+        
 my_matrixs:
     pattern: /my_matrixs
     defaults: { _controller: MatrixBundle:Matrix:getMyMatrixs }

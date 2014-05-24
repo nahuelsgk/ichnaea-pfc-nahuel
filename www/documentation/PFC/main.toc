@@ -38,59 +38,60 @@
 \contentsline {subsection}{\numberline {3.4.1}Estats dels entrenaments}{34}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Estats de les prediccions}{35}{subsection.3.4.2}
 \contentsline {section}{\numberline {3.5}Model del comportament}{35}{section.3.5}
-\contentsline {chapter}{\numberline {4}Disseny}{43}{chapter.4}
-\contentsline {section}{\numberline {4.1}Esquema general l\`{o}gic arquitect\'{o}nic del sistema}{43}{section.4.1}
-\contentsline {section}{\numberline {4.2}Patr\'{o} de disseny}{43}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Esquema del disseny}{44}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Explicaci\'{o} del m\`{o}del}{44}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Disseny d'interf\'{i}cies}{46}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Interf\'{i}cie de configuraci\'{o} de matrius de entrenaments}{46}{subsection.4.3.1}
-\contentsline {chapter}{\numberline {5}Implementaci\'{o}}{47}{chapter.5}
-\contentsline {section}{\numberline {5.1}Estudi previ de les tecnologies}{47}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}\textit {Framework} a mida}{47}{subsection.5.1.1}
-\contentsline {paragraph}{Avantatges}{47}{section*.32}
-\contentsline {paragraph}{Desavantatges}{47}{section*.33}
-\contentsline {subsection}{\numberline {5.1.2}\textit {Codeigniter}}{47}{subsection.5.1.2}
-\contentsline {paragraph}{Avantatges}{48}{section*.34}
-\contentsline {paragraph}{Desavantatges}{48}{section*.35}
-\contentsline {subsection}{\numberline {5.1.3}\textit {Symfony2}}{48}{subsection.5.1.3}
-\contentsline {paragraph}{Avantatges}{48}{section*.36}
-\contentsline {paragraph}{Desavantatges}{48}{section*.37}
-\contentsline {section}{\numberline {5.2}Implementaci\'{o}}{48}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}\textit {Symfony2}}{49}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Gesti\'{o} de depend\`{e}ncies}{49}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Recursos}{50}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Servei web}{50}{section.5.3}
-\contentsline {section}{\numberline {5.4}Integraci\'{o} amb el sistema de cues RabbitMQP}{51}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Introducci\'{o} a l'arquitectura de cues: AMQP}{51}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Consumidors i gesti\'{o} de resultats}{51}{subsection.5.4.2}
-\contentsline {subsubsection}{Consumidor d'entrenaments}{52}{section*.38}
-\contentsline {subsubsection}{Consumidor de prediccions}{52}{section*.39}
-\contentsline {chapter}{\numberline {6}Proves i tests}{53}{chapter.6}
-\contentsline {section}{\numberline {6.1}Prova en PC local}{53}{section.6.1}
-\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{54}{section*.40}
-\contentsline {subsubsection}{Gesti\'{o} de matrius}{54}{section*.41}
-\contentsline {paragraph}{Creaci\'{o} de matrius}{54}{section*.42}
-\contentsline {paragraph}{Esborrat de matrius}{54}{section*.43}
-\contentsline {paragraph}{Esborrat d'un entrenament}{54}{section*.44}
-\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{54}{section*.45}
-\contentsline {paragraph}{Creaci\'{o} de matrius de predicci\'{o}}{54}{section*.46}
-\contentsline {paragraph}{Rendiment d'Ichnaea Software en aquest entorn}{54}{section*.47}
-\contentsline {subparagraph}{Entrenament de \textit {Cypruss}}{54}{section*.48}
-\contentsline {subparagraph}{Predicci\'{o} de \textit {Cypruss}}{54}{section*.49}
-\contentsline {section}{\numberline {6.2}Prova en entorn distribu\IeC {\@umlaut \i }t}{55}{section.6.2}
-\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{55}{section*.50}
-\contentsline {subsubsection}{Gesti\'{o} de matrius}{55}{section*.51}
-\contentsline {paragraph}{Creaci\'{o} de matrius}{55}{section*.52}
-\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{55}{section*.53}
-\contentsline {section}{\numberline {6.3}Errors coneguts}{56}{section.6.3}
-\contentsline {chapter}{\numberline {7}Conclusions}{57}{chapter.7}
-\contentsline {section}{\numberline {7.1}Metodologia \IeC {\`a}gil}{57}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}Backlog}{57}{subsection.7.1.1}
-\contentsline {section}{\numberline {7.2}Estimaci\'{o} econ\'{o}mica}{58}{section.7.2}
-\contentsline {section}{\numberline {7.3}Millores en futures versions}{58}{section.7.3}
+\contentsline {chapter}{\numberline {4}Disseny}{45}{chapter.4}
+\contentsline {section}{\numberline {4.1}Esquema general l\`{o}gic arquitect\'{o}nic del sistema}{45}{section.4.1}
+\contentsline {section}{\numberline {4.2}Patr\'{o} de disseny}{46}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Esquema del disseny}{46}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Explicaci\'{o} del disseny}{47}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Disseny d'interf\'{i}cies}{48}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Interf\'{i}cie de configuraci\'{o} de matrius}{48}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Interf\'{i}cie de configuraci\'{o} de matrius de predicci\IeC {\'o}}{49}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}Implementaci\'{o}}{51}{chapter.5}
+\contentsline {section}{\numberline {5.1}Estudi previ de les tecnologies}{51}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}\textit {Framework} a mida}{51}{subsection.5.1.1}
+\contentsline {paragraph}{Avantatges}{51}{section*.35}
+\contentsline {paragraph}{Desavantatges}{51}{section*.36}
+\contentsline {subsection}{\numberline {5.1.2}\textit {Codeigniter}}{51}{subsection.5.1.2}
+\contentsline {paragraph}{Avantatges}{52}{section*.37}
+\contentsline {paragraph}{Desavantatges}{52}{section*.38}
+\contentsline {subsection}{\numberline {5.1.3}\textit {Symfony2}}{52}{subsection.5.1.3}
+\contentsline {paragraph}{Avantatges}{52}{section*.39}
+\contentsline {paragraph}{Desavantatges}{52}{section*.40}
+\contentsline {section}{\numberline {5.2}Implementaci\'{o}}{52}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}\textit {Symfony2}}{53}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Gesti\'{o} de depend\`{e}ncies}{53}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Recursos}{54}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Servei web}{54}{section.5.3}
+\contentsline {section}{\numberline {5.4}Integraci\'{o} amb el sistema de cues RabbitMQP}{55}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Introducci\'{o} a l'arquitectura de cues: AMQP}{55}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Consumidors i gesti\'{o} de resultats}{55}{subsection.5.4.2}
+\contentsline {subsubsection}{Consumidor d'entrenaments}{56}{section*.41}
+\contentsline {subsubsection}{Consumidor de prediccions}{56}{section*.42}
+\contentsline {chapter}{\numberline {6}Proves i tests}{57}{chapter.6}
+\contentsline {section}{\numberline {6.1}Prova en PC local}{57}{section.6.1}
+\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{58}{section*.43}
+\contentsline {subsubsection}{Gesti\'{o} de matrius}{58}{section*.44}
+\contentsline {paragraph}{Creaci\'{o} de matrius}{58}{section*.45}
+\contentsline {paragraph}{Esborrat de matrius}{58}{section*.46}
+\contentsline {paragraph}{Esborrat d'un entrenament}{58}{section*.47}
+\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{58}{section*.48}
+\contentsline {paragraph}{Creaci\'{o} de matrius de predicci\'{o}}{58}{section*.49}
+\contentsline {paragraph}{Rendiment d'Ichnaea Software en aquest entorn}{58}{section*.50}
+\contentsline {subparagraph}{Entrenament de \textit {Cypruss}}{58}{section*.51}
+\contentsline {subparagraph}{Predicci\'{o} de \textit {Cypruss}}{58}{section*.52}
+\contentsline {section}{\numberline {6.2}Prova en entorn distribu\IeC {\@umlaut \i }t}{59}{section.6.2}
+\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{59}{section*.53}
+\contentsline {subsubsection}{Gesti\'{o} de matrius}{59}{section*.54}
+\contentsline {paragraph}{Creaci\'{o} de matrius}{59}{section*.55}
+\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{59}{section*.56}
+\contentsline {section}{\numberline {6.3}Errors coneguts}{60}{section.6.3}
+\contentsline {chapter}{\numberline {7}Conclusions}{61}{chapter.7}
+\contentsline {section}{\numberline {7.1}Metodologia \IeC {\`a}gil}{61}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Backlog}{61}{subsection.7.1.1}
+\contentsline {section}{\numberline {7.2}Estimaci\'{o} econ\'{o}mica}{62}{section.7.2}
+\contentsline {section}{\numberline {7.3}Millores en futures versions}{62}{section.7.3}
 \contentsline {chapter}{\numberline {8}Bibliografia}{1}{chapter.8}
-\contentsline {chapter}{Bibliografia}{3}{section*.57}
+\contentsline {chapter}{Bibliografia}{3}{section*.60}
 \contentsline {chapter}{\numberline {A}Manual d'usuari}{5}{appendix.A}
 \contentsline {section}{\numberline {A.1}Casa de l'usuari}{5}{section.A.1}
 \contentsline {subsection}{\numberline {A.1.1}Llistat dels meus trainings pendents}{5}{subsection.A.1.1}

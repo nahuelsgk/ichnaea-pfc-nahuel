@@ -107,7 +107,7 @@
 										    </select>
 										    <br/>
 										    <a title="Variable selection"><i class="icon-wrench"></i></a>
-										    <select placeholder="Select the variable" class="input-medium" id="selectedSingleVariable-{{column.id}}" onChange="loadSeasonSetIntoSelectListAction(this.value, 'seasonSetListVariable-{{column.id}}');displayHiddenElement('column-{{column.id}}-action');"">
+										    <select placeholder="Select the variable" class="input-medium" id="selectedSingleVariable-{{column.id}}" onChange="loadSeasonSetIntoSelectListAction(this.value, 'seasonSetListVariable-{{column.id}}');displayHiddenElement('column-{{column.id}}-action');displayHiddenElement('save_all_changes');">
 										        <option value="0">None</option>
 										      	{% for availableVar in availableVars %}
 										        	<option value="{{availableVar.id}}" {% if column.variable is not null and column.variable.id == availableVar.id%} selected="selected" {% endif %}>{{availableVar.name}} </option>
@@ -215,8 +215,8 @@ function displaySuccessfulAction(elem)
   	$('#'+elem).html(previous_content);
   	$('#'+elem).css('display', 'inline');
   	$('#'+elem).css('visibility', 'hidden');
+    hide_save_all_button();
   });
-  
 }
 
 function displayHiddenElement(elem)
@@ -333,6 +333,29 @@ function submit_sample_value_change(input, td_id)
 {% endif %}
 
 {% endif %}
+
+function hide_save_all_button()
+{
+	var pendings_col = $('.save_button_action_column').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	var pendings_row = $('.save_button_action_row').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	if(pendings_col.length == 0 && pendings_row.length == 0) $('#save_all_changes').css('visibility', 'hidden');
+	console.log(pendings_col.length);
+	console.log(pendings_row.length);
+}
+
+function save_all_pending_action() 
+{
+    //Save all columns
+	var pendings = $('.save_button_action_column').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	$(pendings).each(function(index, element){$(element).trigger('click');});
+	$('#save_all_changes').css('visibility', 'hidden');
+	
+	//Save all rows
+	var pendings = $('.save_button_action_row').filter(function() {return !($(this).css('visibility') == 'hidden' || $(this).css('display') == 'none');});
+	$(pendings).each(function(index, element){$(element).trigger('click');});
+	$('#save_all_changes').css('visibility', 'hidden');
+	  
+}
 
 function init_editable_cells() 
 {

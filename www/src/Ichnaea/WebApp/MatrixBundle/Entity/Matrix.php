@@ -296,6 +296,9 @@ class Matrix
     	return $originsArray;
     }
     
+    public function validate(){
+    	
+    }
     public function __clone(){
     }
 }

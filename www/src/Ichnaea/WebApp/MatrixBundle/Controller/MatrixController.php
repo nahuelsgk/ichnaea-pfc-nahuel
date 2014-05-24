@@ -5,9 +5,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Ichnaea\WebApp\MatrixBundle\Service\IchnaeaService;
+use Ichnaea\WebApp\MatrixBundle\Entity\MatrixValidation as MatrixValidation;
 
 class MatrixController extends Controller
-{	
+{
 	/**
 	 * Renders the form to create a matrix
 	 * 
@@ -92,7 +93,7 @@ class MatrixController extends Controller
 	 * @throws HttpException
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
 	 */
-	public function guiMatrixAction($matrix_id){
+	public function guiMatrixAction($matrix_id, $validate = NULL){
 		$ichnaeaService = $this->get('ichnaea.service');
 		
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
@@ -104,6 +105,8 @@ class MatrixController extends Controller
 		$user_id = $this->getUser()->getId();
 		
 		$request = $this->getRequest();
+		
+		//A POST request to save a general configuration
 		if ($request->getMethod() == 'POST'){
 			$visible = $request->get('visible');
 			$matrix = $ichnaeaService->updateMatrixConfiguration(
@@ -114,21 +117,31 @@ class MatrixController extends Controller
 	   	}
 	   	
 		$availableVars = $ichnaeaService->getAllVariables();
+
+		$validation;
+		if ($validate == 'validate'){
+			$validation = new MatrixValidation($matrix);
+			$validation->validate();	
+		}
+		
+		//Some validations
 		$visible       = $matrix->getVisible();
 		$isTrained     = $ichnaeaService->matrixIsTrained($matrix_id);
 		$complete      = $matrix->isComplete();
+		
 		return $this->render(
 				'MatrixBundle:Matrix:matrix.html.twig', 
 				array(
-						'visible'       => $visible,
-						'is_trained'    => $isTrained,
-						'complete'      => $complete,
+						'visible'            => $visible,
+						'is_trained'         => $isTrained,
+						'complete'           => $complete,
 						//'matrix'    => $matrix,
-						'matrix_name'   => $matrix->getName(), 
-						'samples'	    => $matrix->getRows(),
-						'columns'	    => $matrix->getColumns(), 
-						'availableVars' => $availableVars,
-						'matrix_id'		=> $matrix->getId(),
+						'matrix_name'        => $matrix->getName(), 
+						'samples'	         => $matrix->getRows(),
+						'columns'	         => $matrix->getColumns(), 
+						'availableVars'      => $availableVars,
+						'matrix_id'		     => $matrix->getId(),
+						'validations_errors' => $validate == 'validate' ? $validation->getErrorsAsArrayOfStrings(): NULL
 				)
 		);
 	}
