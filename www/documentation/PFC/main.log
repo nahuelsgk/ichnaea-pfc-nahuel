@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  23 MAY 2014 21:12
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  24 MAY 2014 18:47
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -687,11 +687,19 @@ Package glossaries Info: Writing glossary file main.glo on input line 46.
 
 LaTeX Warning: Label `fig:statestraining' multiply defined.
 
-) (./dessign.aux) (./implementation.aux) (./test.aux
+) (./dessign.aux) (./implementation.aux
+
+LaTeX Warning: Label `fig:dessignpatters' multiply defined.
+
+) (./test.aux
 
 LaTeX Warning: Label `cypruss' multiply defined.
 
-) (./conclussions.aux) (./bibliography.aux) (./userguide.aux
+) (./conclussions.aux) (./bibliography.aux
+
+LaTeX Warning: Label `apijson' multiply defined.
+
+) (./userguide.aux
 
 LaTeX Warning: Label `fig:placement' multiply defined.
 
@@ -851,7 +859,7 @@ Overfull \hbox (9.05678pt too wide) in paragraph at lines 55--63
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.100 ...'{o} d'una variable}{6}{subsection.A.2.2}
+l.102 ...'{o} d'una variable}{6}{subsection.A.2.2}
                                                    [2])
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -1251,7 +1259,7 @@ n/SequenceUpdatePrediccio.png>] [42 <./img/specification/UsesCases.png>] [43 <.
 
  (./dessign.tex
 Cap\'{\i }tol 4.
-<img/design/ArchitectureSoftware.png, id=952, 835.12pt x 461.725pt>
+<img/design/ArchitectureSoftware.png, id=952, 835.12pt x 479.7925pt>
 File: img/design/ArchitectureSoftware.png Graphic file (type png)
 
 <use img/design/ArchitectureSoftware.png>
@@ -1269,7 +1277,7 @@ m el paradig-
  []
 
 
-Overfull \hbox (21.44148pt too wide) in paragraph at lines 24--26
+Overfull \hbox (21.44148pt too wide) in paragraph at lines 25--27
 \OT1/lmr/m/n/12 Per la im-ple-mentaci^^Ro del sis-tema web s'han us-at un dis-s
 e-ny per capes(Presentaci^^So,
  []
@@ -1277,42 +1285,61 @@ e-ny per capes(Presentaci^^So,
 <img/design/IchnaeaPatterns.png, id=961, 911.405pt x 495.8525pt>
 File: img/design/IchnaeaPatterns.png Graphic file (type png)
 
-<use img/design/IchnaeaPatterns.png> [46]
-Underfull \hbox (badness 10000) in paragraph at lines 59--60
+<use img/design/IchnaeaPatterns.png>
+Overfull \hbox (156.84721pt too wide) in paragraph at lines 39--40
+[][] 
+ []
+
+[46] [47 <./img/design/IchnaeaPatterns.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
 
  []
 
-[47 <./img/design/IchnaeaPatterns.png>]
-<img/design/Interficiedeconfiguracio.png, id=978, 789.95125pt x 558.085pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+
+ []
+
+[48]
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
+
+ []
+
+[49]
+<img/design/Interficiedeconfiguracio.png, id=989, 789.95125pt x 558.085pt>
 File: img/design/Interficiedeconfiguracio.png Graphic file (type png)
 
 <use img/design/Interficiedeconfiguracio.png>
-Overfull \hbox (83.9744pt too wide) in paragraph at lines 82--83
-[][] 
+Overfull \hbox (4.97466pt too wide) in paragraph at lines 133--134
+ [][] 
  []
 
-[48] [49 <./img/design/Interficiedeconfiguracio.png>]
-<img/design/Interficiedeconfiguraciopredi.png, id=992, 789.95125pt x 530.98375p
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [50]
+<img/design/Interficiedeconfiguraciopredi.png, id=997, 789.95125pt x 530.98375p
 t>
 File: img/design/Interficiedeconfiguraciopredi.png Graphic file (type png)
  <use img/design/Interficiedeconfiguraciopredi.png>
-Overfull \hbox (83.9744pt too wide) in paragraph at lines 101--102
-[][] 
+Overfull \hbox (4.97466pt too wide) in paragraph at lines 153--154
+ [][] 
  []
 
-) [50 <./img/design/Interficiedeconfiguraciopredi.png>]
+) [51 <./img/design/Interficiedeconfiguracio.png>] [52 <./img/design/Interficie
+deconfiguraciopredi.png>]
 \openout2 = `implementation.aux'.
 
  (./implementation.tex
 Cap\'{\i }tol 5.
-[51
+[53
 
 
 
 
 ]
 ! Undefined control sequence.
-l.54 El \itemit
+l.53 El \itemit
                {framework} escollit ha sigut \textit{Symfony2}. A continuaci...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1320,12 +1347,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-
-LaTeX Warning: Citation `fosuserbundle' on page 52 undefined on input line 59.
-
-[52]
+[54]
 ! Undefined control sequence.
-l.71 \item Bootstrap: \texit
+l.70 \item Bootstrap: \texit
                             {framework} pel \textit{front-end} desenvolupat ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1333,99 +1357,104 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[53]
 ! Undefined control sequence.
-l.80 ...cursos de la aplicaci\'{o} \'{e}s la seg\ï
-                                                  ¿½{u}ent:\\
+<argument> \@listctr 
+                     
+l.71 ...breries API JSON Restful.\bibitem{apijson}
+                                                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.71 ...breries API JSON Restful.\bibitem{apijson}
                                                   
-l.80 ...ursos de la aplicaci\'{o} \'{e}s la seg\ï¿
-                                                  ½{u}ent:\\
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
+I'm forgetting what you said and using zero instead.
 
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.80 ...rsos de la aplicaci\'{o} \'{e}s la seg\ï¿½
-                                                  {u}ent:\\
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+[55]
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
 
 
-Overfull \hbox (17.03769pt too wide) in paragraph at lines 92--108
-[] \OT1/lmr/m/n/12 Les
+Underfull \hbox (badness 10000) in paragraph at lines 81--87
+
  []
 
 
-Underfull \vbox (badness 1755) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
- [54]
+ []
 
-LaTeX Warning: Reference `dessign:archsoftware' on page 55 undefined on input l
-ine 124.
+<img/implementation/apirestul.png, id=1048, 915.42pt x 295.1025pt>
+File: img/implementation/apirestul.png Graphic file (type png)
+
+<use img/implementation/apirestul.png>
+Overfull \hbox (67.70888pt too wide) in paragraph at lines 97--98
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--100
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [56]
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
+
+ []
+
+[57 <./img/implementation/apirestul.png (PNG copy)>]
+
+LaTeX Warning: Reference `dessign:archsoftware' on page 58 undefined on input l
+ine 128.
 
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 129.
-[55]
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 133.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 134.
+(Font)              <10> on input line 138.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 134.
+(Font)              <7> on input line 138.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 134.
-LaTeX Font Info:    Try loading font information for OML+lmr on input line 134.
+(Font)              <5> on input line 138.
+LaTeX Font Info:    Try loading font information for OML+lmr on input line 138.
 
- (/usr/share/texmf/tex/latex/lm/omllmr.fd
+(/usr/share/texmf/tex/latex/lm/omllmr.fd
 File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <10> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 134.
-
-Overfull \hbox (10.00354pt too wide) in paragraph at lines 154--155
+(Font)              Font shape `OML/lmm/m/it' tried instead on input line 138.
+ [58]
+Overfull \hbox (10.00354pt too wide) in paragraph at lines 158--159
 [][][][][][][][][][][]  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
 
  []
 
-) [56]
+) [59] [60
+
+
+]
 \openout2 = `test.aux'.
 
  (./test.tex
 Cap\'{\i }tol 6.
-[57
-
-
+[61
 
 
 ]
@@ -1435,14 +1464,14 @@ l.27 ...es(columnes). La importaci\'{o}(creaci\{'}
 You've closed more groups than you opened.
 Such booboos are generally harmless, so keep going.
 
-[58]
+[62]
 ! Too many }'s.
 l.68 ...roporcionada. La importaci\'{o}(creaci\{'}
                                                    del model de dades a part...
 You've closed more groups than you opened.
 Such booboos are generally harmless, so keep going.
 
-[59]) [60]
+[63]) [64]
 \openout2 = `conclussions.aux'.
 
  (./conclussions.tex
@@ -1457,14 +1486,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `agile' on page 61 undefined on input line 8.
+LaTeX Warning: Citation `agile' on page 65 undefined on input line 8.
 
-[61
-
-
+[65
 
 
-]) [62]
+
+
+]) [66]
 ! Undefined control sequence.
 l.86 \cleardouplepage
                      
@@ -1500,6 +1529,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 []\OT1/lmr/m/n/12 ''Learn Sym-fony - Sym-fony'' [On-line]. Disponible a
  []
 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.apijson}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.10 \bibitem{apijson}
+                       ''JSON API''  [Online]. Disponible a ''http://jsonapi...
 
 Underfull \hbox (badness 10000) in paragraph at lines 20--21
 []\OT1/lmr/m/n/12 ''Model-view-controller'' [On-line] Disponible a
@@ -1599,6 +1634,143 @@ l.44 ...ne] ''http://en.wikipedia.org/wiki/Active_
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.45 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.45 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (31.18948pt too wide) in paragraph at lines 44--45
+[]\OT1/lmr/m/n/12 Active record Pat-tern [On-line] ''http://en.wikipedia.org/wi
+ki/Active$[]\OML/lmm/m/it/12 ecord[]attern[][]$ 
+ []
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.45 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+[]\OT1/lmr/m/n/12 Composer, De-pen-den-cy Man-ag-er for PHP [On-line]
+ []
+
+
+Overfull \hbox (137.40846pt too wide) in paragraph at lines 48--49
+[]\OT1/lmr/m/n/12 FriendsOfSymfony/FOSUserBundle [On-line] ''https://github.com
+/FriendsOfSymfony/FOSUserBundle'' 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.50 ...p://en.wikipedia.org/wiki/List\_of\_HTT\P_
+                                                  status\_codes''
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.51 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.51 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (81.40126pt too wide) in paragraph at lines 50--51
+[]\OT1/lmr/m/n/12 List of HTTP sta-tus code [On-line] ''http://en.wikipedia.org
+/wiki/List[]of[]HTT\OMS/lmsy/m/n/12 {$[]\OML/lmm/m/it/12 tatus[]codes[][]$ 
+ []
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.51 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.52 ...line] ''http://en.wikipedia.org/wiki/HTTP_
+                                                  cookie''
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.53 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.53 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.53 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.54 ...e] ''http://en.wikipedia.org/wiki/Session_
+                                                  ID''
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
 
 ! LaTeX Error: Command \end{thebibitemlist} invalid in math mode.
 
@@ -1606,21 +1778,21 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.45 \end{thebibliography}
+l.55 \end{thebibliography}
                           
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Empty `thebibliography' environment on input line 45.
+LaTeX Warning: Empty `thebibliography' environment on input line 55.
 
 
-LaTeX Warning: Empty `thebibliography' environment on input line 45.
+LaTeX Warning: Empty `thebibliography' environment on input line 55.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.45 \end{thebibliography}
+l.55 \end{thebibliography}
                           
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1628,14 +1800,8 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-)
-Overfull \hbox (31.18948pt too wide) in paragraph at lines 44--87
-[]\OT1/lmr/m/n/12 Active record Pat-tern [On-line] ''http://en.wikipedia.org/wi
-ki/Active$[]\OML/lmm/m/it/12 ecord[]attern[]$ 
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
-been already used, duplicate ignored
+)pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.87 \include{bibliography}
@@ -1646,7 +1812,7 @@ No file main.gls.
 (./userguide.tex
 Ap\`endix A.
 
-<img/userguide/dashboard_complete_trainings.png, id=1149, 1371.1225pt x 770.88p
+<img/userguide/dashboard_complete_trainings.png, id=1184, 1371.1225pt x 770.88p
 t>
 File: img/userguide/dashboard_complete_trainings.png Graphic file (type png)
  <use img/userguide/dashboard_complete_trainings.png>pdfTeX warning (ext4): des
@@ -1666,7 +1832,7 @@ Overfull \hbox (21.65668pt too wide) in paragraph at lines 24--26
 t en-viar),''sent''(s'ha
  []
 
-<img/userguide/variable_configuration.png, id=1154, 1371.1225pt x 770.88pt>
+<img/userguide/variable_configuration.png, id=1190, 1371.1225pt x 770.88pt>
 File: img/userguide/variable_configuration.png Graphic file (type png)
 
 <use img/userguide/variable_configuration.png>
@@ -1679,7 +1845,7 @@ been already used, duplicate ignored
                    \relax 
 l.63 \item L
             listar les variables per seleccionar una variable('Ichnaea Data ...
-[6] <img/userguide/season_set_edition.png, id=1160, 1371.1225pt x 770.88pt>
+[6] <img/userguide/season_set_edition.png, id=1196, 1371.1225pt x 770.88pt>
 File: img/userguide/season_set_edition.png Graphic file (type png)
 
 <use img/userguide/season_set_edition.png>
@@ -1730,7 +1896,7 @@ been already used, duplicate ignored
                    \relax 
 l.136 \item V
              isualitzar missatges de validacions i notificacions [9]
-<img/userguide/matrix_configure.png, id=1176, 1371.1225pt x 770.88pt>
+<img/userguide/matrix_configure.png, id=1211, 1371.1225pt x 770.88pt>
 File: img/userguide/matrix_configure.png Graphic file (type png)
 
 <use img/userguide/matrix_configure.png>pdfTeX warning (ext4): destination with
@@ -1743,11 +1909,11 @@ Overfull \hbox (9.30653pt too wide) in paragraph at lines 163--163
 []\OT1/lmr/bx/n/14.4 Actualitzar una da-da d'u-na fi-la i d'u-na colum-
  []
 
-<img/userguide/clone_matrix.png, id=1181, 1371.1225pt x 770.88pt>
+<img/userguide/clone_matrix.png, id=1216, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix.png Graphic file (type png)
 
 <use img/userguide/clone_matrix.png>
-<img/userguide/clone_matrix-2.png, id=1182, 1371.1225pt x 770.88pt>
+<img/userguide/clone_matrix-2.png, id=1217, 1371.1225pt x 770.88pt>
 File: img/userguide/clone_matrix-2.png Graphic file (type png)
 
 <use img/userguide/clone_matrix-2.png>
@@ -1780,7 +1946,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/userguide/training_create.png, id=1184, 1371.1225pt x 770.88pt>
+<img/userguide/training_create.png, id=1219, 1371.1225pt x 770.88pt>
 File: img/userguide/training_create.png Graphic file (type png)
 
 <use img/userguide/training_create.png>
@@ -1941,7 +2107,7 @@ l.204 ...ots accedir a visualitzar la informaci\Â´
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-<img/userguide/view_training_pending.png, id=1195, 1371.1225pt x 770.88pt>
+<img/userguide/view_training_pending.png, id=1231, 1371.1225pt x 770.88pt>
 File: img/userguide/view_training_pending.png Graphic file (type png)
 
 <use img/userguide/view_training_pending.png>
@@ -1954,7 +2120,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has
                    \relax 
 l.221 \section
               {Crear una predicci\'{o}} [13]
-<img/userguide/prediction_create.png, id=1201, 1371.1225pt x 770.88pt>
+<img/userguide/prediction_create.png, id=1237, 1371.1225pt x 770.88pt>
 File: img/userguide/prediction_create.png Graphic file (type png)
 
 <use img/userguide/prediction_create.png>pdfTeX warning (ext4): destination wit
@@ -2032,10 +2198,10 @@ LaTeX Warning: There were multiply-defined labels.
 ### semi simple group (level 1) entered at line 87 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 10992 strings out of 495061
- 160726 string characters out of 1182622
- 388937 words of memory out of 3000000
- 13357 multiletter control sequences out of 15000+50000
+ 11017 strings out of 495061
+ 161132 string characters out of 1182622
+ 366161 words of memory out of 3000000
+ 13368 multiletter control sequences out of 15000+50000
  66276 words of font info for 46 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,10n,75p,1083b,1773s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2049,9 +2215,9 @@ r/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/pub
 lic/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share
 /texmf/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf/fonts/type1/public/lm
 /lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (87 pages, 1934106 bytes).
+Output written on main.pdf (91 pages, 2009468 bytes).
 PDF statistics:
- 1361 PDF objects out of 1440 (max. 8388607)
- 471 named destinations out of 1000 (max. 500000)
- 862 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1399 PDF objects out of 1440 (max. 8388607)
+ 483 named destinations out of 1000 (max. 500000)
+ 867 words of extra memory for PDF output out of 10000 (max. 10000000)
 

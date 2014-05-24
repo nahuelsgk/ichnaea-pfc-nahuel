@@ -31,8 +31,8 @@
 \BOOKMARK [2][-]{subsection.4.2.1}{Esquema del disseny}{section.4.2}
 \BOOKMARK [2][-]{subsection.4.2.2}{Explicaci\363 del disseny}{section.4.2}
 \BOOKMARK [1][-]{section.4.3}{Disseny d'interf\355cies}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.3.1}{Interf\355cie de configuraci\363 de matrius}{section.4.3}
-\BOOKMARK [2][-]{subsection.4.3.2}{Interf\355cie de configuraci\363 de matrius de predicci\363}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.1}{Disseny principal}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.2}{Interf\355cie de configuraci\363 de matrius}{section.4.3}
 \BOOKMARK [0][-]{chapter.5}{Implementaci\363}{}
 \BOOKMARK [1][-]{section.5.1}{Estudi previ de les tecnologies}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.1.1}{Framework a mida}{section.5.1}
@@ -42,7 +42,7 @@
 \BOOKMARK [2][-]{subsection.5.2.1}{Symfony2}{section.5.2}
 \BOOKMARK [2][-]{subsection.5.2.2}{Gesti\363 de depend\350ncies}{section.5.2}
 \BOOKMARK [2][-]{subsection.5.2.3}{Recursos}{section.5.2}
-\BOOKMARK [1][-]{section.5.3}{Servei web}{chapter.5}
+\BOOKMARK [1][-]{section.5.3}{API: llibreria de serveis web}{chapter.5}
 \BOOKMARK [1][-]{section.5.4}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.4.1}{Introducci\363 a l'arquitectura de cues: AMQP}{section.5.4}
 \BOOKMARK [2][-]{subsection.5.4.2}{Consumidors i gesti\363 de resultats}{section.5.4}
@@ -56,7 +56,7 @@
 \BOOKMARK [1][-]{section.7.2}{Estimaci\363 econ\363mica}{chapter.7}
 \BOOKMARK [1][-]{section.7.3}{Millores en futures versions}{chapter.7}
 \BOOKMARK [0][-]{chapter.8}{Bibliografia}{}
-\BOOKMARK [0][-]{section*.60}{Bibliografia}{}
+\BOOKMARK [0][-]{section*.63}{Bibliografia}{}
 \BOOKMARK [0][-]{appendix.A}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.A.1}{Casa de l'usuari}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.1.1}{Llistat dels meus trainings pendents}{section.A.1}

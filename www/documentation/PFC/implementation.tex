@@ -2,7 +2,6 @@
 \label{cha:implementation}
 En aquest capítol es descriuen les tecnologies estudiades i aplicades per implementar el disseny anteriorment descrit.
 
-
 \section{Estudi previ de les tecnologies}
 En aquesta secci\'{o} es far\'{a} una descripci\'{o} de les tecnologies estudiades per tal de poder realitzar aquest projecte. 
 
@@ -20,7 +19,7 @@ En un principi \'{e}s va valorar la possibilitat de desenvolupar tot un nou \tex
 \end{itemize} 
 
 \subsection{\textit{Codeigniter}}
-Codeigniter \'{e}s un \textit{framework} per a desenvolupament web r\`{a}pid amb PHP.\cite{codeigniter} Usa el patr\'{o} ''active record' per la gesti\'{o} d'emmagazetmatge de dades.\cite{activerecord}
+Codeigniter \'{e}s un \textit{framework} per a desenvolupament web r\`{a}pid amb PHP.\cite{codeigniter} Usa el patr\'{o} ''active record' per la gesti\'{o} d'emmagatzematge de dades.\cite{activerecord}
 \paragraph{Avantatges}
 \begin{itemize}
 \item Corba d'aprenentatge rapida.
@@ -64,52 +63,57 @@ Arquitectonicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, si
 \end{itemize}
 
 \subsection{Gesti\'{o} de depend\`{e}ncies} 
-\textit{Symfony2} utilitza \textit{Composer} per la gesti\'{o} de depend\`{e}ncies. \textit{Composer} \'{e}s un gestor de dependencies a nivell d'aplicaci\'{o}. Les depend\`{e}ncies son:
+\textit{Symfony2} utilitza \textit{Composer} per la gesti\'{o} de depend\`{e}ncies.\cite{composer} \textit{Composer} \'{e}s un gestor de dependencies a nivell d'aplicaci\'{o}. Les depend\`{e}ncies son:
 \begin{itemize}
-\item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interfícies. Simplifica la manera de interaccionar amb els documents HTML i la simplifica la manera de manipular l'arbre DOM.
-\item FOSUserBundle: paquet per a \textit{Symfony} per la gesti\'{o} de usuaris. 
-\item Bootstrap: \texit{framework} pel \textit{front-end} desenvolupat per Twitter. Implementa nous estendards com HTML5 i CSS3. Permet el desenvolupament de manera r\`{a}pida i usable interf\'{i}cies soportades per múltiples navegadors.
-\item RestBundle: paquet per Symfony per desenvolupar llibreries API JSON Restful.
+\item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interfícies. Simplifica la manera de interaccionar amb els documents HTML i la simplifica la manera de manipular l'arbre DOM.\cite{jquery}
+\item FOSUserBundle: paquet per a \textit{Symfony} per la gesti\'{o} de usuaris.\cite{fosuserbundle}
+\item Bootstrap: \texit{framework} pel \textit{front-end} desenvolupat per Twitter. Implementa nous estàndards com HTML5 i CSS3. Permet el desenvolupament d'interf\'{i}cies de manera r\`{a}pida i usables suportades per múltiples navegadors.
+\item RestBundle: paquet per Symfony per desenvolupar llibreries API JSON Restful.\bibitem{apijson}
 \item Symfony FS: paquet per gestionar sistema de fitxers.
 \item Doctrine Fixtures: paquet per gestionar la inserci\'{o} controlada de dades a la base de dades.
-\item TWIG: motor de plantilles per a PHP.
-\item Doctrine: ORM pel mapatge de dades, usant MySQL.
+\item TWIG: motor de plantilles per a PHP.\cite{twig}
+\item Doctrine: ORM pel mapatge de dades, usant MySQL.\cite{mysql}
 \end{itemize}
 
 \subsection{Recursos}
-La estructura de recursos de la aplicaci\'{o} \'{e}s la seg\�{u}ent:\\
+La estructura de recursos de la aplicaci\'{o} \'{e}s la següent:\\
 
 \begin{tabular}{| l | l |}
 \hline
 Matrius       & matrix/(id) \\ \hline
-''Trainings''  & matrix/(id)/training/(id) \\ \hline
-''Predictions'' & matrix/(id)/training/(id)/prediction/(id) \\ \hline
-\end{tabular}
+Entrenamens  & matrix/(id)/training/(id) \\ \hline
+Prediccions & matrix/(id)/training/(id)/prediction/(id) \\ \hline
+\end{tabular}\\
 
-S'ha emprat aquesta estructura de recursos degut a les dependències entre les diferents entitats. Un ''training'' dep\'{e}n d'una matriu i una predicci\'{o} dep\'{e}n d'un ''training''.
+S'ha emprat aquesta estructura de recursos degut a les dependències entre les diferents entitats. Un entrenament dep\'{e}n d'una matriu i una predicci\'{o} dep\'{e}n d'un entrenament.
 
-\section{Servei web}
-S'ha desenvolupat una llibreria API JSON Restful\cite{apijson} per enriquir les interfícies. S'ha emprat aquesta tecnologia per la escal.labilitat que aporta i perquè en un futur es pugui aprofitar el desenvolupament d'aquesta.
-Les operacions, els recursos i el paràmetres son:\\
-\begin{tabular}{ | l | l |}
-\hline
-GET & /api/season/(id) \\ \hline
-POST & /api/season/searchByName \\ \hline
-     & INPUT: \{'pattern': string\} \\ \hline
-     & OUTPUT: ['string-match-1',...,'string-match-n'] \\ \hline
-GET & /api/variable/(id)/seasonSet \\ \hline
-DELETE & /api/variable/(id)/seasonSet/(id)\\ \hline
-DELETE & /api/variable/(id)/seasonSet/(id) /component/(id) \\ \hline
-DELETE & /api/variable/(id)/seasonSet/(id) /component/(id)/complete\\ \hline
-PUT & /api/matrix/(id)/column/(id)\\ \hline
-PUT & /api/matrix/(id)/sample/(id)\\ \hline
-\end{tabular}
-Les peticions estan securitzades per ''cookies'' i per sessió per identificar i validar a l'usuari.
+\section{API: llibreria de serveis web}
+S'ha desenvolupat una llibreria API JSON RESTful per donar resposta a les funcionalitats asíncrones de les interfícies.\cite{apijson} S'ha emprat aquesta tecnologia per la escal.labilitat que aporta i perquè en un futur es pugui aprofitar el desenvolupament d'aquesta amb la integració d'altres tipus client, com poden ser aplicacions mòbils o altres serveis.\\
+
+La arquitectura RESTful aprofita al màxim el protocol HTTP per establir dades i actualment s'usen per donar funcionalitats asincrones a les interficies(mirar \ref{sec:dessigninterfaces}).
+
+Les operacions, els recursos i el paràmetres implementats son:\\
+\begin{figure}[H]
+  \includegraphics[scale=0.5]{img/implementation/apirestul.png}
+  \caption{Operacions de serveis web}
+  \label{fig:dessignpatters}
+\end{figure}
+On:
+\begin{itemize}
+\item Operació \'{e}s el mètode HTTP.
+\item Recurs \'{e}s el identificador del recurs.
+\item Entrada \'{e}s l'objecte JSON d'entrada de la operació.
+\item Sortida \'{e}s l'objecte JSON de sortida de la operació.
+\item HTTP Codi son els codis HTTP que retornen.\cite{listhttpcodis}
+\end{itemize}
+
+Totes les operacions estan securitzades per \textit{cookies}\cite{cookies} i per sessió per identificar i validar a l'usuari.\cite{sessions}
 
 \section{Integraci\'{o} amb el sistema de cues RabbitMQP}
 \subsection{Introducci\'{o} a l'arquitectura de cues: AMQP}
 \label{sec:queue_system_overview}
 L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicacions d'un sistema de comunicació. Les característiques que definen al protocol AMQP son la orientació a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com,per exemple, la seguretat o les subscripcions.\cite{amqp}\\
+
 AMQP defineix una s\`{e}rie d'entitats. Des de la perspectiva de la interconnexió les m\'{e}s rellevants son:
 \begin{itemize}
 \item El corredor de missatges: un servidor on els clients AMQP es connecten usant el protocol AMQP. Els corredores de missatges poden executar-se en un entorn distribuït, però aquesta capacitat \'{e}s espec\'{i}fica de la implementació.
