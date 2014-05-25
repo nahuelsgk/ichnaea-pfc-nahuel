@@ -68,32 +68,34 @@
 \contentsline {subsection}{\numberline {5.4.1}Introducci\'{o} a l'arquitectura de cues: AMQP}{57}{subsection.5.4.1}
 \contentsline {subsection}{\numberline {5.4.2}Consumidors i gesti\'{o} de resultats}{58}{subsection.5.4.2}
 \contentsline {subsubsection}{Consumidor d'entrenaments}{59}{section*.44}
-\contentsline {subsubsection}{Consumidor de prediccions}{59}{section*.45}
-\contentsline {chapter}{\numberline {6}Proves i tests}{61}{chapter.6}
-\contentsline {section}{\numberline {6.1}Prova en PC local}{61}{section.6.1}
-\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{62}{section*.46}
-\contentsline {subsubsection}{Gesti\'{o} de matrius}{62}{section*.47}
-\contentsline {paragraph}{Creaci\'{o} de matrius}{62}{section*.48}
-\contentsline {paragraph}{Esborrat de matrius}{62}{section*.49}
-\contentsline {paragraph}{Esborrat d'un entrenament}{62}{section*.50}
-\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{62}{section*.51}
-\contentsline {paragraph}{Creaci\'{o} de matrius de predicci\'{o}}{62}{section*.52}
-\contentsline {paragraph}{Rendiment d'Ichnaea Software en aquest entorn}{62}{section*.53}
-\contentsline {subparagraph}{Entrenament de \textit {Cypruss}}{62}{section*.54}
-\contentsline {subparagraph}{Predicci\'{o} de \textit {Cypruss}}{62}{section*.55}
-\contentsline {section}{\numberline {6.2}Prova en entorn distribu\IeC {\@umlaut \i }t}{63}{section.6.2}
-\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{63}{section*.56}
-\contentsline {subsubsection}{Gesti\'{o} de matrius}{63}{section*.57}
-\contentsline {paragraph}{Creaci\'{o} de matrius}{63}{section*.58}
-\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{63}{section*.59}
-\contentsline {section}{\numberline {6.3}Errors coneguts}{64}{section.6.3}
-\contentsline {chapter}{\numberline {7}Conclusions}{65}{chapter.7}
-\contentsline {section}{\numberline {7.1}Metodologia \IeC {\`a}gil}{65}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}Backlog}{65}{subsection.7.1.1}
-\contentsline {section}{\numberline {7.2}Estimaci\'{o} econ\'{o}mica}{66}{section.7.2}
-\contentsline {section}{\numberline {7.3}Millores en futures versions}{66}{section.7.3}
+\contentsline {subsubsection}{Consumidor de prediccions}{60}{section*.45}
+\contentsline {section}{\numberline {5.5}Serveis Web Ichnaea}{61}{section.5.5}
+\contentsline {chapter}{\numberline {6}Proves i tests}{63}{chapter.6}
+\contentsline {section}{\numberline {6.1}Prova en PC local}{63}{section.6.1}
+\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{64}{section*.46}
+\contentsline {subsubsection}{Gesti\'{o} de matrius}{64}{section*.47}
+\contentsline {paragraph}{Creaci\'{o} de matrius}{64}{section*.48}
+\contentsline {paragraph}{Esborrat de matrius}{64}{section*.49}
+\contentsline {paragraph}{Esborrat d'un entrenament}{64}{section*.50}
+\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{64}{section*.51}
+\contentsline {paragraph}{Creaci\'{o} de matrius de predicci\'{o}}{64}{section*.52}
+\contentsline {paragraph}{Rendiment d'Ichnaea Software en aquest entorn}{64}{section*.53}
+\contentsline {subparagraph}{Entrenament de \textit {Cypruss}}{64}{section*.54}
+\contentsline {subparagraph}{Predicci\'{o} de \textit {Cypruss}}{64}{section*.55}
+\contentsline {section}{\numberline {6.2}Prova en entorn distribu\IeC {\@umlaut \i }t}{65}{section.6.2}
+\contentsline {subsubsection}{Creaci\'{o} i administraci\'{o} d'usuaris}{65}{section*.56}
+\contentsline {subsubsection}{Gesti\'{o} de matrius}{65}{section*.57}
+\contentsline {paragraph}{Creaci\'{o} de matrius}{65}{section*.58}
+\contentsline {paragraph}{Temps de resposta de les API JSON Restful}{65}{section*.59}
+\contentsline {section}{\numberline {6.3}Errors coneguts}{66}{section.6.3}
+\contentsline {chapter}{\numberline {7}Conclusions}{67}{chapter.7}
+\contentsline {section}{\numberline {7.1}Metodologia \IeC {\`a}gil}{67}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Backlog}{67}{subsection.7.1.1}
+\contentsline {section}{\numberline {7.2}Planificaci\IeC {\'o}}{69}{section.7.2}
+\contentsline {section}{\numberline {7.3}Estimaci\'{o} econ\'{o}mica}{69}{section.7.3}
+\contentsline {section}{\numberline {7.4}Millores en futures versions}{71}{section.7.4}
 \contentsline {chapter}{\numberline {8}Bibliografia}{1}{chapter.8}
-\contentsline {chapter}{Bibliografia}{3}{section*.63}
+\contentsline {chapter}{Bibliografia}{3}{section*.65}
 \contentsline {chapter}{\numberline {A}Manual d'usuari}{5}{appendix.A}
 \contentsline {section}{\numberline {A.1}Casa de l'usuari}{5}{section.A.1}
 \contentsline {subsection}{\numberline {A.1.1}Llistat dels meus trainings pendents}{5}{subsection.A.1.1}

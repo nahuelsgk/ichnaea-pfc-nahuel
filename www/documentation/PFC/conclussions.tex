@@ -18,10 +18,67 @@ En el cas d'aquest projecte s'ha usat l'artefacte principal ''Backlog'' mitjanç
 \centerline{Com \textbf{rol} vull fer \textbf{alguna cosa} per \textbf{obtenir benefici}}
 
 \subsection{Backlog}
-Ens hem basat en les histories d'usuaris amb el següent \textit{backlog} puntuant segons la serie de Fibonnaci.\cite{backlogfibonnacci}
+Ens hem basat en les histories d'usuaris amb el següent \textit{backlog} puntuant segons la serie de Fibonnaci.\cite{backlogfibonnacci}. Eludim els requeriments ja que es poden consultar al capitol \ref{cha:specification}.
+
+\begin{center}
+\begin{longtable}{ | p{3cm} | p{5cm} | p{5cm} | p{1cm} | }
+\hline
+\multicolumn{1}{|c|}{\textbf{Com}} & \multicolumn{1}{|c|}{\textbf{vull}} & \multicolumn{1}{|c|}{\textbf{per}} &\multicolumn{1}{|c|}{\textbf{Punts}} \\ \hline
+Usuari anònim &	registrar-me &	usar la aplicació &	3 \\ \hline
+Usuari registrat &	recuperar el password & entrar en cas que m'ho oblidi de la contrasenya & 3 \\ \hline
+Usuari administrador &	vull afegir variables & indicar en les matrius quina variable de Ichnaea representa & 1 \\ \hline
+Usuari registrat &	crear una matriu important un csv o excel & configurar-la i crear entrenaments & 8 \\ \hline
+Usuari registrat &	crear un entrenament a partir d'una matriu & crear prediccions & 5 \\ \hline
+Propietari d'una matriu & configurar una matriu & executar un entrenament & 21 \\ \hline
+Propietari d'una matriu	& esborrar una matriu & eliminar dades, entrenaments i prediccions & 3 \\ \hline
+Usuari registrat &	crear una predicció important un csv o excel & crear un conjunt de dades per predir i executar-es a Ichnaea & 8 \\ \hline
+Propietari d'entrenament & 	esborrar una predicció & eliminar dades i prediccions & 2 \\ \hline
+Usuari registrat & veure els resultat d'una predicció & consultar dades i crear una predicció & 1 \\ \hline
+Usuari registrat & vull veure les matrius del sistema creades publiques & crear entrenaments a partir d'elles & 2  \\ \hline
+Usuari registrat & vull veure els entrenaments finalitzats correctament	 & crear prediccions a partir d'elles & 2  \\ \hline
+Usuari registrat & vull afegir conjunts de fitxers a un variable & indicar en les matrius quina conjunt de fitxers enviar a Ichnaea & 3  \\ \hline
+Usuari registrat & vull esborrar fitxers d'un conjunt de fitxers & corregir dades en cas d'errors & 2 \\ \hline
+Usuari administrador & vull testejar el sistema de cues & assegurar el correcte funcionament amb el sistema de cues en cas de detectar errors d'accesibilitat & 1 \\ \hline
+Sistema de cues & vull indicar al sistema web que he acabat un entrenament & actulitzar les dades d'un entrenament i guardar els resultats al disc & 5 \\ \hline
+Usuari registrat & enviar un predicció a la cua d'execucions de prediccions & predir origens de mostres & 5  \\ \hline
+Usuari registrat & veure els resultats d'una predicció & consultar dades predites & 3  \\ \hline
+Usuari registrat & veure un entrenament & consultar les dades entrenades i crear un predicció & 2  \\ \hline
+Propietari d'un entrenament & vull enviar un entrenament a execució & poder crear prediccions & 5  \\ \hline
+Sistema de cues & indicar al sistema web que tinc un resultat & poder consultar prediccions & 3  \\ \hline
+Propietari d'una predicció & configurar les dades d'una matriu	& enviar les dades a Ichnaea per predir & 21  \\ \hline
+Propietari d'una matriu & validar la matriu	 & comprovar la validessa de les dades & 5  \\ \hline
+\end{longtable}
+\end{center}
+
+\section{Planificació}
+A la figura \ref{fig:gant} es descriu la planificació àgil per setmanes i per ítems.
+\begin{sidewaysfigure}[ht]
+    \includegraphics[scale=0.5]{img/conclussions/gantz.png}
+    \caption{Diagrama de Gant.}
+    \label{fig:gant}
+\end{sidewaysfigure}
 
 \section{Estimaci\'{o} econ\'{o}mica}
+La estimació del cost es calcula a partir dels següents paràmetres:
+\begin{itemize}
+\item Cada setmana de desenvolupament del projecte son 15 hores
+\item Calcul a partir del cost. Es contempla com a cost intern seguint el cost dels rols involucrats en cada area.
+\item Calcul de venta com a servei. Es contempla el cas de venta de projecte com empresa segons els preus de mercats d'una consultoria \textit{StartUp} de desenvolupament a mida.
+\item Es un projecte àgil. Tots els integrants treballen en tots les tareas.
+\item Son iteracions rapides de dues setmanes.
+\end{itemize}
 
+\begin{sidewaystable}
+\begin{tabular}{|p{3cm}|p{2cm}|p{1cm}|p{3cm}|p{1cm}|p{1cm}|p{1cm}|p{2cm}|p{2cm}|}
+\hline
+Tarea & Setmanes & Hores & Rols & Cost \euro/h & Cost total & Servei \euro/h & Servei total & Rendiment \\ \hline
+Especificacions i tomes de requeriments & N/A: 3 hores per iteració & 91.5 h & Cap de projecte & 18 \euro/h & 1647\euro & 45 \euro/h & 4117.5\euro & \\ \hline
+Anàlisis de tecnologia & 15 setmanes & 225 h & Analista & 15 \euro/h & 3375\euro & 30\euro & 6750\euro & \\ \hline
+Implementació Aplicació & 32 setmanes & 480 h & Desenvolupador & 12 \euro/h & 5760 & 30\euro/h & 14440\euro & \\ \hline
+Documentació i Qualitat & 14 setmanes & 210 h & Becari & 8 \euro/h & 1680\euro & & & \\ \hline 
+Total & 61 setmanes & 1006.5 h & & & 12462\euro & & 25267.5\euro & 12805.5\euro \\ \hline
+\end{tabular}
+\end{sidewaystable}
 
 \section{Millores en futures versions}
 \begin{itemize}

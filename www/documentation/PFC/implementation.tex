@@ -68,11 +68,12 @@ Arquitectonicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, si
 \item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interfícies. Simplifica la manera de interaccionar amb els documents HTML i la simplifica la manera de manipular l'arbre DOM.\cite{jquery}
 \item FOSUserBundle: paquet per a \textit{Symfony} per la gesti\'{o} de usuaris.\cite{fosuserbundle}
 \item Bootstrap: \texit{framework} pel \textit{front-end} desenvolupat per Twitter. Implementa nous estàndards com HTML5 i CSS3. Permet el desenvolupament d'interf\'{i}cies de manera r\`{a}pida i usables suportades per múltiples navegadors.
-\item RestBundle: paquet per Symfony per desenvolupar llibreries API JSON Restful.\bibitem{apijson}
+\item RestBundle: paquet per Symfony per desenvolupar llibreries API JSON Restful.\cite{apijson}
 \item Symfony FS: paquet per gestionar sistema de fitxers.
 \item Doctrine Fixtures: paquet per gestionar la inserci\'{o} controlada de dades a la base de dades.
 \item TWIG: motor de plantilles per a PHP.\cite{twig}
 \item Doctrine: ORM pel mapatge de dades, usant MySQL.\cite{mysql}
+\item Sistema de cues: projecte desenvolupat per Miguel Ibero conjuntament amb aquest per la execució de Ichnaea.
 \end{itemize}
 
 \subsection{Recursos}
@@ -80,8 +81,8 @@ La estructura de recursos de la aplicaci\'{o} \'{e}s la següent:\\
 
 \begin{tabular}{| l | l |}
 \hline
-Matrius       & matrix/(id) \\ \hline
-Entrenamens  & matrix/(id)/training/(id) \\ \hline
+Matrius     & matrix/(id) \\ \hline
+Entrenamens & matrix/(id)/training/(id) \\ \hline
 Prediccions & matrix/(id)/training/(id)/prediction/(id) \\ \hline
 \end{tabular}\\
 
@@ -112,21 +113,29 @@ Totes les operacions estan securitzades per \textit{cookies}\cite{cookies} i per
 \section{Integraci\'{o} amb el sistema de cues RabbitMQP}
 \subsection{Introducci\'{o} a l'arquitectura de cues: AMQP}
 \label{sec:queue_system_overview}
-L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicacions d'un sistema de comunicació. Les característiques que definen al protocol AMQP son la orientació a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com,per exemple, la seguretat o les subscripcions.\cite{amqp}\\
+L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicacions d'un sistema de comunicació. Les característiques que defineixen al protocol AMQP son la orientació a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com,per exemple, la seguretat o les subscripcions.\cite{amqp}\\
 
 AMQP defineix una s\`{e}rie d'entitats. Des de la perspectiva de la interconnexió les m\'{e}s rellevants son:
 \begin{itemize}
 \item El corredor de missatges: un servidor on els clients AMQP es connecten usant el protocol AMQP. Els corredores de missatges poden executar-se en un entorn distribuït, però aquesta capacitat \'{e}s espec\'{i}fica de la implementació.
 \item Usuari: un usuari \'{e}s una entitat amb credencial pot ser autoritzat a connectar-se a un corredor.
 \item Connexió: una connexi\'{o} f\'{i}sica, usant per exemple TCP/IP, entre el corredor i l'usuari.
-\item Clients: productors i consumidors. EXPLICAR PRODUCTORS I CONSUMIDORS.
+\item Clients: productors i consumidors. \'{E}s un model de comunicacio con el productor \'{e}s un proces emissor  i el consumidor \'{e}s un proces receptor.\cite{messaging}
 \end{itemize}
 
-RabbitMQ \'{e}s un \textit{software} que implementa aquest protocol. El sistema de cues est\'{a} implementat per Miguel Ibero. I ofereix una ofereix una llibreria per la seva integraci\'{o}. 
+\textbf{RabbitMQ} \'{e}s un \textit{software} que implementa aquest protocol. El sistema de cues est\'{a} implementat com a Projecte de Final de Carrera de Miguel Ibero i ofereix una llibreria per la seva integració.\\
+
+Per la integració amb el sistema amb cues s'ha desenvolupat:
+\begin{itemize}
+\item Gestionar la dependència.
+\item Desenvolupar el consumidors.
+\end{itemize}
 
 \subsection{Consumidors i gesti\'{o} de resultats}
-Les respostes de les execucions de Ichnaea enviades per la cua (mirar la figura \ref{dessign:archsoftware}), les rep el consumidor. \\
-\textit{Symfony2} permet crear comandes CLI per crear processos. Els consumidors necessiten ser processos ''stand-alone''(aut\'{o}noms) que escoltin les sortides, consumeixin, els resultats de la cua. \\
+Els consumidors en el protocol de missatgeria son els processos receptors de missatges emesos per els productors. Les respostes de les execucions de Ichnaea  (mirar la figura \ref{dessign:archsoftware}) les rep el consumidor. \\
+
+\textit{Symfony2} permet crear comandes CLI per crear processos. Els consumidors necessiten ser processos ''stand-alone''(aut\'{o}noms) que escoltin les sortides i consumeixin els resultats de la cua. \\
+
 L'esquelet d'una comanda per aquests consumidors actualment \'{e}s:
 \begin{lstlisting}
 class ConsumerCommand extends ContainerAwareCommand
@@ -155,16 +164,61 @@ class ConsumerCommand extends ContainerAwareCommand
 		//un objecte de la resposta esperada 
 		//i li passa el servei 
 		$amqp->listenForBuildModelResponse(function (ObjectResponse $resposta_de_la_cua) use ($servei){
+		 	//Codi servidor
+		 	....
 			$servei->actualitzaDades($resposta_de_la_cua);
+			....
 		});
 		$amqp->wait();
 	}
 }
+$end
 \end{lstlisting}
 
 \subsubsection{Consumidor d'entrenaments}
-El consumidor d'entrenaments es queda escoltant les respostes del servei de \\
+El consumidor d'entrenaments escolta les respostes del productor d'entrenaments. \\
+
+Ichnaea actualment no retorna progres parcial ni estimacions de finalitzaci\'{o}. Solament produeix un resultat al final de la seva execució. Es a dir, en el tros de codi servidor simplement escoltar totes les sortides i enviar-les al servei d'entrenaments.
+
+\begin{lstlisting}
+$trainingService = $this->getContainer()->get('ichnaea.training_service');
+		
+$amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($trainingService){
+	$data = $resp->toArray();
+	var_dump($data);
+	$trainingService->updateTraining($resp->getId(), $data['progress'], $data['error'], $data['data'] );
+});
+$amqp->wait();
+\end{lstlisting}
+
+Els missatges produïts son vectors associatius que conte el identificador del proces i els binaris retornats. Aquests binaries son un fitxer en format zip en Base64 que cont\'{e} les dades per poder usar-les en les prediccions.
 
 \subsubsection{Consumidor de prediccions}
-El consumidor de prediccions es queda escoltant les respostes del servei de \\
+El consumidor de prediccions escolta les respostes del productor de prediccions.\\
 
+La execució d'Ichnaea per prediccions treu resposta per cadascuna de les mostres proporcionades. Peró no son totes valides. La resposta s'ha d'avaluar segons la especificació donada. 
+\begin{lstlisting}
+$predictionService = $this->getContainer()->get('ichnaea_web_app_prediction.service');
+		
+$amqp->listenForPredictModelsResponse(function (PredictModelsResponse $resp) use ($predictionService){
+	$data = $resp->toArray();
+	
+	$data['result'] = $resp->getResult();
+
+	if($resp->getResult()->isFinished()) {
+ 		$data['result'] = $resp->getResult();
+	} else {
+		unset($data['result']);
+	}
+	$predictionService->updatePrediction($resp->getId(), $data['progress'], $data['error'], isset($data['result']) ? $data['result'] : 'NULL');
+		});
+		$amqp->wait();
+\end{lstlisting}
+
+Els missatges produïts son vectors associatius que cont\'{e} el identificador del proces i resultats. Els resultats son uns objectes que es guarden contínuament en un vector de resultats.
+
+
+\section{Serveis Web Ichnaea}
+Un cop explicat quins són els llenguatges, les eines de desenvolupament i les tecnologies que s’han fet servir en la realització d’aquest projecte, es pot veure el sistema d’informació resultant a l'apendix \ref{cha:userguide}
+i a l'apendix \ref{cha:adminguide}.\\ 
+ 

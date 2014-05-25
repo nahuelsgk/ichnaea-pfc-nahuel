@@ -19,31 +19,42 @@ En aquest entorn s'ha instal.lat tots els components necessaris de la aplicaci\'
 \item SMTP deshabilitat. Les comunicacions es capturen mitjançant el \textit{profiler} de Symfony2.
 \item Memoria cau deshabilitada.
 \end{itemize}
+
 \subsubsection{Creaci\'{o} i administraci\'{o} d'usuaris}
 S'han provat satisfactoriament totes les proves sense cap tipus de incid\`{e}ncia. Les funcionalitats son extensions del paquet FOSUserBundle, que cont\'{e} totes les funcionalitats provades per la comunitat.
+
 \subsubsection{Gesti\'{o} de matrius}
+
 \paragraph{Creaci\'{o} de matrius}
 \label{cypruss}
-Partim d'una matrius de dades reals proporcionada per Anicet XXX anomenada \textit{Cypruss}. \'{E}s una matriu composta per 103 mostres de 27 variables(columnes). La importaci\'{o}(creaci\{'} del model de dades a partir d'un fitxer) triga 1226ms i la renderitzaci\'{o} 1066ms. 
+Partim d'una matrius de dades reals proporcionada per Anicet Blanch anomenada \textit{Cypruss}. \'{E}s una matriu composta per 103 mostres de 27 variables(columnes). La importaci\'{o}(creaci\{'} del model de dades a partir d'un fitxer) triga 1226ms i la renderitzaci\'{o} 1066ms. 
+
 \paragraph{Esborrat de matrius}
 La prova \'{e}s un esborrat de matrius amb 4 entrenaments i dos prediccions ocupa 1153ms.
+
 \paragraph{Esborrat d'un entrenament}
 La prova d'un esborrat d'un entrenament amb dos prediccions triga 857ms.
+
 \paragraph{Temps de resposta de les API JSON Restful}
 Les llibreries de les interficies enriquides son usades en les configuracions de matrius, tant de les normals com les de predicci\'{o}. El temps m\'{i}nim calculat ha sigut 407ms i el m\'{a}xim 572ms.
+
 \paragraph{Creaci\'{o} de matrius de predicci\'{o}}
 \label{cypruss_test}
 S'ha emprat una matriu de test per fer prediccions de 19 mostres. La creaci\'{o} del model de dades des d'un fitxer ha trigat 857ms i la renderitzaci\'{o} 855ms.
+
 \paragraph{Rendiment d'Ichnaea Software en aquest entorn}
 Aquest project no consisteix en l'estudi de rendiment d'Ichnaea Software. Per\'{o} es interesant fer un estudi de temps en la realitzaci\'{o} delvs procesos.
+
 \subparagraph{Entrenament de \textit{Cypruss}}
 L'entrenament de la matriu \textit{Cypruss}(mirar \ref{cypruss}) ha tingut diferents mesures. S'han pres 3 messures diferents: 1h 47min, 2h 15min i 1h 55min. Varia segons la carrega de la CPU, ja que requereix una alta carrega de CPU.
+
 \subparagraph{Predicci\'{o} de \textit{Cypruss}}
 La predicci\'{o} de la matriu de test(mirar \ref{cypruss_test}) ha tingut diferents mesure. S'han pres 3 messures diferents:
 35min, 57min i 1h 5min, aproximadament. Varia segons la carrega de la CPU, ja que requereix una alta carrega de CPU.
 
 \section{Prova en entorn distribuït}
 Les proves en un entorn distribuït s'han realitzat en un m\'{a}quina virtual proporcionada per RdLab amb la següent especificaci\'{o}.
+
 \begin{itemize}
 \item 2 processadors QEMU Virtual CPU version 1.0 a2659Mhz
 \item 2Gb RAM	
@@ -60,12 +71,15 @@ En aquest entorn s'ha instal.lat:
 \item Memoria cau habilitada.
 \end{itemize}
 No s'han pogut executar prediccions ni executar entrenaments.
+
 \subsubsection{Creaci\'{o} i administraci\'{o} d'usuaris}
 S'han provat satisfactoriament totes les proves sense cap tipus de incid\`{e}ncia. Les funcionalitats son extensions del paquet FOSUserBundle, que cont\'{e} totes les funcionalitats provades per la comunitat. 
+
 \subsubsection{Gesti\'{o} de matrius}
 \paragraph{Creaci\'{o} de matrius}
 \label{cypruss}
 Partim de la mateixa matriu de dades reals proporcionada. La importaci\'{o}(creaci\{'} del model de dades a partir d'un fitxer) triga 1826ms i la renderitzaci\'{o} 1466ms sense haver passat per mem\'{o}ria cau. Despr\'{e}s de la segona execuci\'{o} la renderitzaci\'{o} tria 627ms.
+
 \paragraph{Temps de resposta de les API JSON Restful}
 Les llibreries de les interficies enriquides son usades en les configuracions de matrius, tant de les normals com les de predicci\'{o}. El temps m\'{i}nim calculat ha sigut 216ms i el m\'{a}xim ha sigut 297ms.
 

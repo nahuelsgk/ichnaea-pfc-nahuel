@@ -46,6 +46,7 @@
 \BOOKMARK [1][-]{section.5.4}{Integraci\363 amb el sistema de cues RabbitMQP}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.4.1}{Introducci\363 a l'arquitectura de cues: AMQP}{section.5.4}
 \BOOKMARK [2][-]{subsection.5.4.2}{Consumidors i gesti\363 de resultats}{section.5.4}
+\BOOKMARK [1][-]{section.5.5}{Serveis Web Ichnaea}{chapter.5}
 \BOOKMARK [0][-]{chapter.6}{Proves i tests}{}
 \BOOKMARK [1][-]{section.6.1}{Prova en PC local}{chapter.6}
 \BOOKMARK [1][-]{section.6.2}{Prova en entorn distribu\357t}{chapter.6}
@@ -53,10 +54,11 @@
 \BOOKMARK [0][-]{chapter.7}{Conclusions}{}
 \BOOKMARK [1][-]{section.7.1}{Metodologia \340gil}{chapter.7}
 \BOOKMARK [2][-]{subsection.7.1.1}{Backlog}{section.7.1}
-\BOOKMARK [1][-]{section.7.2}{Estimaci\363 econ\363mica}{chapter.7}
-\BOOKMARK [1][-]{section.7.3}{Millores en futures versions}{chapter.7}
+\BOOKMARK [1][-]{section.7.2}{Planificaci\363}{chapter.7}
+\BOOKMARK [1][-]{section.7.3}{Estimaci\363 econ\363mica}{chapter.7}
+\BOOKMARK [1][-]{section.7.4}{Millores en futures versions}{chapter.7}
 \BOOKMARK [0][-]{chapter.8}{Bibliografia}{}
-\BOOKMARK [0][-]{section*.63}{Bibliografia}{}
+\BOOKMARK [0][-]{section*.65}{Bibliografia}{}
 \BOOKMARK [0][-]{appendix.A}{Manual d'usuari}{}
 \BOOKMARK [1][-]{section.A.1}{Casa de l'usuari}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.1.1}{Llistat dels meus trainings pendents}{section.A.1}
