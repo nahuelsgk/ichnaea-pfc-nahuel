@@ -5,6 +5,7 @@
   <th>Name</th>
   <th>Matrix</th>
   <th>Description</th>
+  <th>Origin</th>
   <th>Created on</th>
   <th>by</th>
   <th>Progress</th>
@@ -32,6 +33,7 @@
    <td>{{ training.name }}</td>
    <td><a href="{{ path('matrix_ui_view', {'matrix_id' : training.matrix.id}) }}">{{ training.matrix.name }}</td>
    <td>{{ training.description }}</td>
+   <td>{{ training.originVersus }}</td>
    <td>{{ training.created | date('d-m-Y') }}</td>
    <td>{{ training.trainer.username }}</td>
    <td>{{ training.progress }}</td>

@@ -3,93 +3,141 @@
 
 \section{Casa de l'usuari}
 \label{sec:home}
-Per accedir la casa del usuari es pot anar accedint mitjançant el logo del men\'{u} situat a l'esquerra del men\'{u}.
+Per accedir la casa del usuari es pot anar accedint mitjançant el logo de ''Ichnaea'' del menú situat a l'esquerra del menú.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/dashboard_complete_trainings.png}
+  \includegraphics[scale=0.4]{img/userguide/dashboard.png}
   \caption{Casa de l'usuari}
   \label{fig:placement}
 \end{figure}
 A continuaci\'{o} descriurem cadascuna de les parts.
 
-\subsection{Llistat dels meus trainings pendents}
-Al llistat superior pots veure els trainings que has creat on::
+\subsection{Llistat dels meus entrenaments pendents}
+Al llistat superior pots veure els entrenaments que has creat i que estan pendents de finalitzar, on: 
 \begin{itemize}
-\item Nom de la matriu com a enllaç per veure la matriu
-\item Descripci\'{o} del ''training''
-\item Data de creaci\'{o}
-\item Nom de l'usuari que la creat
+\item Nom del entrenament.
+\item Nom de la matriu entrenada com a enllaç per veure la matriu.
+\item Descripci\'{o} del entrenament.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor pero Ichnaea no esta desenvolupat encara per executar un entrenament amb aquest paràmetre.
+\item Data de creaci\'{o} de l'entrenament.
+\item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
 \item Progr\'{e}s: actualment Ichnaea no retorna estat del proces. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors son 0.00 i 1.00.
-\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua) i ''finished''(ha terminat)
-\item 
+\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myTrainings}).
+\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
 \item Operacions
  \begin{itemize}
- \item ICONEYEOPEN es per anar a la pantalla de visualitzaci\'{o} del training.
+ \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
  \end{itemize}
 \end{itemize}
 
-\subsubsection*{Estat del trainings}
-En la figura es contempla els estats possibles:
+\subsection{Llistat de les meves prediccions pendents}
+Al llistat inferior pots veure les prediccions que has creat i que estan pendents de finalitzar, on: 
 \begin{itemize}
-\item Color verd: training sense errors i predectible
-\item Color gris: training actualment corrent
-\item Color salm\'{o}: ''training'' no s'ha enviat per algun problema amb la cua o amb errors.
+\item Nom de la predicció.
+\item Nom de la matriu entrenada com a enllaç per veure la matriu.
+\item Descripci\'{o} del entrenament que s'esta usant en la predicció.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor pero Ichnaea no esta desenvolupat encara per executar una entrenament amb aquest paràmetre.
+\item Data de creaci\'{o} de la predicció.
+\item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
+\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myPrediccions}).
+\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
+\item Operacions
+ \begin{itemize}
+ \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
+ \end{itemize}
+\end{itemize}
+
+\subsection{Els meus entrenaments}
+\label{subsec:myTrainings}
+Per accedir als teus entrenaments, ves al menu ''Trainings >> My trainings''.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{img/userguide/my_trainings.png}
+  \caption{Els meus entrenaments}
+  \label{fig:my_trainings}
+\end{figure}
+On:
+\begin{itemize}
+\item Nom del entrenament.
+\item Nom de la matriu entrenada com a enllaç per veure la matriu.
+\item Descripci\'{o} del entrenament.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor pero Ichnaea no esta desenvolupat encara per executar un entrenament amb aquest paràmetre.
+\item Data de creaci\'{o} de l'entrenament.
+\item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
+\item Progr\'{e}s: actualment Ichnaea no retorna estat del proces. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors son 0.00 i 1.00.
+\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua) i ''finished''(finalitzat). 
+\item Operacions
+ \begin{itemize}
+ \item \iconeyeopen \'{e}s per anar a la pantalla de visualització de l'entrenament.
+ \end{itemize}
+\end{itemize}
+
+\subsection{Les meves prediccions}
+\label{subsec:myPrediccions}
+Per accedir a les teves prediccions, ves al menu ''Predictions >> My predictions''.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{img/userguide/my_predictions.png}
+  \caption{Les meves prediccions}
+  \label{fig:my_predictions}
+\end{figure}
+\begin{itemize}
+\item Nom de la predicció.
+\item Nom de la matriu entrenada com a enllaç per veure la matriu.
+\item Nom de l'entrenament com a enllaç per veure quin entrenament s'esta usant per la predicció.
+\item Descripció el entrenament que s'esta usant en la predicció.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor pero Ichnaea no esta desenvolupat encara per executar una entrenament amb aquest paràmetre.
+\item Data de creaci\'{o} de la predicció.
+\item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
+\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua), ''finished''(ha finalitzat) i ''new''(s'esta configurant encara la matriu de predicció).
+\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
+\item Operacions
+ \begin{itemize}
+ \item \iconeyeopen \'{e}s per anar a la pantalla de visualització de l'entrenament.
+ \item \iconresults \'{e}s per consultar els resultats.
+ \end{itemize}
 \end{itemize}
 
 \section{Variables}
 \subsection{Veure les variables del sistema}
-Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les variables del sistema. Fent click a la icona de edici\'{o}, es pot accedir a la interficie de configuraci\'{o} de la variable seleccionada.
+Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les variables del sistema. Amb la icona \iconeyeopen, es pot accedir a la interfície de configuraci\'{o} de la variable seleccionada.
 
 \subsection{Formulari de edici\'{o} d'una variable}
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/variable_configuration.png}
+  \includegraphics[scale=0.5]{img/userguide/variable_configuration.png}
   \caption{Configuraci\'{o} de variable}
   \label{fig:placement}
 \end{figure}
-Desde la interf\'{i}cie de configuraci\'{o} es pot:
+\subsection*{Informació bàsica}
+L' ID \'{e}s l'identificador d'Ichnaea i la descripció \'{e}s un camp modificable per descriure la variable.
+\subsection{Llistat de conjunts de fitxers: ''season set''}
+Son els conjunts de fitxers amb el seus components on:
 \begin{itemize}
-\item Modificar la descripci\'{o}
-\item Accedir a la vista per afegir una ''Season set'', amb la icona del signe de suma.
-\item Editar una ''Season Set'', amb ICONEDIT.
-\item Esborrar una ''Season Set'', amb la ICONTRASH.
+\item \iconedit per modificar el conjunt de fitxers(nom, components i configuracions).
+\item \icontrash per esborrar tot el conjunt i tots el fitxers associats, excepte els compartits.
+\item \iconadd per afegir un conjunt nou de fitxers
 \end{itemize}
 
-\subsection{Crear una ''season set'' d'una variable}
+\subsection{Formulari de creació i d'actualització d'un conjunt de fitxers(''Season set'')}
 \label{season_set:variable}
-Per tal de crear un conjunt de seasons per una variable:
-\begin{itemize}
-\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable, fent click ICONEDIT
-\item Al apartat inferior ''List of season set'', clickar a la ICONPLUS.
-\end{itemize}
-Es poden donar un nom i afegir tants fitxers com es vulguin. S'ha de tenir cura perque existeix la possibilitat de afegir varis fitxers amb una mateixa configuraci\'{o} (estaci\'{o}). Actualment Ichnaea solament processa estiu e hivern. Per m\'{e}s descripci\'{o} d'aquesta interf\'{i}cie anar al punt \ref{season_set:edit}
-
-\subsection{Editar una ''Season Set'' d'una variable}
-\label{season_set:edit}
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/season_set_edition.png}
-  \caption{Edici\'{o} de una ''Season Set''}
-  \label{fig:placement}
+  \includegraphics[scale=0.5]{img/userguide/season_set_edition.png}
+  \caption{Configuraci\'{o} de conjunts de fitxers d'una variable}
+  \label{fig:seasonSetEdition}
 \end{figure}
-Desde aquesta vista es pot:
-\begin{itemize}
-	\item Editar el nom de la season set
-	\item Eliminar simplement la relaci\'{o} amb una season amb la icona de la brossa.	
-	\item Eliminar un fitxer de la ''Season Set'' i la relaci\'{o}, amb la icona de la creu	
-\end{itemize}
-S'ha de tenir cura perque exiteix la possibilitat de afegir varis fitxers a una mateixa estaci\'{o}. Actualment Ichnaea solament processa estiu e hivern.
 
-\subsection{Afegir una ''season'' a una ''season set'' existent d'una variable}
-Per tal de crear un conjunt de seasons per una variable:
-\begin{itemize}
-\item Llistar les variables per seleccionar una variable('Ichnaea Data - View variables')
-\item Editar la variable a la que es vol afegir la variable, amb ICONEDIT
-\item Editar, amb ICONEDIT, la ''season set'' del llistat ''List of season set''.
-Llegir el punt \ref{season_set:edit}
+\subsubsection{Afegir nous fitxers a un conjunt de fitxers}
+A l'apartat ''Add new seasons to this season set'', \'{e}s pot afegir nous fitxers amb un navegador de fitxer accedint a ''Navega...''. Al selector de temporades es pot configurar el fitxer com estiu, hivern, tardor, primavera o com a tot l'any. El tercer camp \'{e}s un camp especial de tipus ''sols lectura'' per comprovar que el fitxer es carrega be.
 
+\subsubsection{Afegir un fitxer d'una altre variable}
+En el cas de que existeixin variables que tinguin envelliments similars, es pot buscar a la secció ''Add shared seasons''. Es un camp de tipus auto-completat que desplega un menú per que l'usuari seleccioni el que busca. Amb el següent selector el pot configurar. L'ultim camp es per comprovar que el fitxer es carrega be.
+
+\subsubsection{Esborrar un fitxer del conjunt de fitxers}
+Amb la icona \icontrash pots esborrar el fitxer i el seu contingut d'aquest conjunt de fitxers.\\
+Amb la icona \iconremove pots esborrar el fitxer com a component. Per exemple, si has afegit un fitxer compartit, no esborres el fitxer sinó que simplement deixa de estar associat a aquest conjunt de fitxers.
 
 \section{Matrius}
 \subsection{Crear una matriu desde un fitxer csv o excel}
@@ -203,8 +251,9 @@ Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Teni
 \section{Visualitzar un training}
 Desde la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus trainings i en quin estadi es troben. Amb la icona "ull", pots accedir a visualitzar la informaci\´{o} del training.
 
-\subsection{Problem\'{a}tiques de la creaci\'{o} de trainings}
-\subsubsection*{Error en el enviament}
+\section{Problemes de Ichnaea}
+\label{sec:ichnaeaErrors}
+\subsection{Error en els entrenaments}
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/view_training_pending.png}

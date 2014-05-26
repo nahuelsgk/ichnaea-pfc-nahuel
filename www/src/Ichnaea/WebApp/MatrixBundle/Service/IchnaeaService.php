@@ -182,7 +182,7 @@ class IchnaeaService{
 	 *  [0][content] - content of the season
 	 * @return number - A season set created with components(new or already in the system)
 	 */
-	public function createSeasonSet($variable_id, $name, $seasonIds = NULL, $components)
+	public function createSeasonSet($variable_id, $name, $alreadySeason = NULL, $components)
 	{
 		//basic info setting
 		$seasonSet = new SeasonSet();
@@ -194,10 +194,20 @@ class IchnaeaService{
 		
 		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
 		
-		//@TODO: dont work, need to be converted into components 
-		foreach($seasonIds as $seasonId){
-			$season = $seasonRepository->find($seasonId);
-			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
+		//... search in the associative array the id and the type
+		$type     = reset($alreadySeason);
+		$seasonId = key($alreadySeason);
+		$season   = $seasonRepository->find($seasonId);
+		//... search if it was already a component
+		var_dump($alreadySeason);
+		
+		if(!is_null($alreadySeason)){
+			$season = $this->getSeasonById($seasonId);
+			$seasonSetComponent = new SeasonSetComponent();
+			$seasonSetComponent->setSeason($season);
+			$seasonSetComponent->setSeasonSet($seasonSet);
+			$seasonSetComponent->setSeasonType($type);
+			$this->em->persist($seasonSetComponent);
 		}
 		
 		//@TODO: replicated code
@@ -224,19 +234,34 @@ class IchnaeaService{
 	 * 
 	 * @param unknown $seasonSet_id
 	 * @param unknown $name
-	 * @param string $seasonIds
+	 * @param array[int]=>'type' $seasonIds
 	 * @param string $components
 	 */
-    public function updateSeasonSet($seasonSet_id, $name, $seasonIds = NULL, $components = NULL)
+    public function updateSeasonSet($seasonSet_id, $name, $alreadySeason = NULL, $components = NULL)
     {
 		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
 		$seasonSet->setName($name);
 		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
 		
-		//@TODO: dont work, need to be converted into components
-		foreach($seasonIds as $seasonId){
-			$season = $seasonRepository->find($seasonId);
-			if(!$seasonSet->getSeason()->contains($season)) $seasonSet->addSeason($season);
+		//Map the season id of the components into an array for...
+		$components_already = $seasonSet->getComponents();
+		$components_array;
+		foreach($components_already as $component)
+		{
+			$components_array[$component->getSeason()->getId()] = $component->getSeason();
+		}
+		//... search in the associative array the id and the type
+		$type     = reset($alreadySeason);
+		$seasonId = key($alreadySeason);
+		$season   = $seasonRepository->find($seasonId);
+		//... search if it was already a component
+		if(!isset($components_array[$seasonId]) && !is_null($alreadySeason)){
+			$season = $this->getSeasonById($seasonId);
+			$seasonSetComponent = new SeasonSetComponent();
+			$seasonSetComponent->setSeason($season);
+			$seasonSetComponent->setSeasonSet($seasonSet);
+			$seasonSetComponent->setSeasonType($type);
+			$this->em->persist($seasonSetComponent);
 		}
 		
 		//@TODO: replicated code

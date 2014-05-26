@@ -46,8 +46,8 @@
 	<ul>
 	{% for season_component in season_set_components %}
 		<li id="season_set_component-{{season_component.id}}">
-		  <!--  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component" onclick='deleteSeasonSetComponent( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
-  		  <i class="icon-trash"></i></a>-->
+		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component" onclick='deleteSeasonSetComponent( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
+  		  <i class="icon-remove"></i></a>
   		  <a class="btn btn-mini" name="edit_season_set" title="Delete season set component and file" onclick='deleteSeasonSetComponentComplete( {{season_component.id}}, "season_set_component-{{season_component.id}}")' >
   		  <i class="icon-trash"></i></a> </i> 
   		  <a href="{{ path('season_edit', { 'season_id': season_component.season.id }) }}" target="_blank">{{season_component.season.name}}</a> is configured for this season set as <i>{{ season_component.seasonType }}</i>  		  
@@ -71,10 +71,10 @@
         </div>
     </div>
 	
-	<div style="display: none">
+	<div>
     <legend>Add shared seasons
-    	<a class="btn btn-mini" name="add_season" title="Add season from the system" onclick="addSeasonComponent();">
-     	<i class="icon-plus"></i></a>
+    	<!--  <a class="btn btn-mini" name="add_season" title="Add season from the system" onclick="addSeasonComponent();">
+     	<i class="icon-plus"></i></a>-->
     </legend>
     <div class="control-group">
         <label class="control-label" for="list_of_season_components">Seasons components</label>
@@ -85,19 +85,20 @@
            </div>
            -->
         </div>
-      </div>
-    </div>
     </div>
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
     </div>
 </form>
 </div>
 
 
+<!-- Tricky part: is hidden and later when init the form just call to the add this template. The number 3 is only for respect the macro. By now, only 3 selectors -->
 <div class="template_hidden" id="template_component_item" name="component[]">
              <input type="text" class="season_component_name" name="season_name" placeholder="Search season name or type new name">
-             <input type="text" class="season_component_id" name="season_id[]" placeholder="Season id" id="" readonly>
+             {{ _self.season_options(3, 'summer') }}
+             <input type="text" class="season_component_id" name="season_id" placeholder="Season id" id="" readonly>
 </div>
 
 {% endblock %}
@@ -168,7 +169,14 @@ function addSeasonComponent(){
 	        response(
 	          $.map(
 	            data, 
-	            function(obj){return {label: obj.name, value: obj.name, id: obj.id, target_input_form: id_input_season_id} } 
+	            function(obj){
+	            	return {
+	            		label: obj.name, 
+	            		value: obj.name, 
+	            		id: obj.id, 
+	            		target_input_form: id_input_season_id
+	            	} 
+	            } 
 	        )
 	     )
 	     }

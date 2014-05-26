@@ -9,6 +9,7 @@
  <tr>
   <th>&nbsp;</th>
   <th>Name</th>
+  <th>Visible</th>
   <th>&nbsp;</th>
  </tr>
  </thead>
@@ -17,6 +18,7 @@
  <tr>
   <td>{{ loop.index }}</td>
   <td>{{ matrix.name }}</td>
+  <td>{% if matrix.visible == 1 %}yes{% else %}no{% endif %}</td>
   <td>   
     <a 	class="btn btn-mini" 
     	href="{{path('matrix_ui_edit', {'matrix_id': matrix.id})}}" 
