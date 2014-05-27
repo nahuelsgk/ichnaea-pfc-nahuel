@@ -1,0 +1,10 @@
+{% extends '::GUI/withOutContainer.html.twig' %}
+
+{% block page_title %}Application error {% endblock %}
+
+{% block main_content %}
+<div class="container">
+<div class="alert alert-danger">{{ message }}</div>
+<a class="btn btn-primary" href={{ continue_url }}>Continue</a>
+</div>
+{% endblock %}

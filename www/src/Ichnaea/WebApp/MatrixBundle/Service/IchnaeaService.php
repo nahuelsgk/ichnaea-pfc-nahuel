@@ -334,22 +334,34 @@ class IchnaeaService{
 		$this->em->remove($season);
 		$this->em->flush();
 	}
-	
 	/**
 	 * 
-	 * @param int $season_set_id
+	 * @param unknown $season_set_id
+	 * @return boolean: FALSE if it is in used in any matrix, TRUE if it could removed
 	 */
 	public function deleteSeasonSetCascade($season_set_id)
 	{
 		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($season_set_id);
 		
+		//Check if is used in a matrix
+		$columns_in_matrix_using_this_season_set = $this->em->getRepository('MatrixBundle:VariableMatrixConfig')->findBy(array('seasonSet' => $seasonSet));
+		if (count($columns_in_matrix_using_this_season_set) > 0) return false;
+		
 		$components = $seasonSet->getComponents();
 		foreach ($components as $component){
-			$this->em->remove($component->getSeason());
-			$this->em->remove($component);
+			$season = $component->getSeason();
+			$components_by_season = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->findBy(array('season' => $season));
+			if (count($components_by_season) > 1){
+				$this->em->remove($component);
+			}
+			elseif($components_by_season = 1){
+				$this->em->remove($component);
+			   	$this->em->remove($component->getSeason());
+			}
 		}
 		$this->em->remove($seasonSet);
 		$this->em->flush();
+		return true;
 	}
 	
 	/**

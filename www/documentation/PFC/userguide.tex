@@ -112,15 +112,16 @@ Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les varia
 \end{figure}
 \subsection*{Informació bàsica}
 L' ID \'{e}s l'identificador d'Ichnaea i la descripció \'{e}s un camp modificable per descriure la variable.
-\subsection{Llistat de conjunts de fitxers: ''season set''}
-Son els conjunts de fitxers amb el seus components on:
+\subsection{Llistat de conjunts de fitxers}
+A l'apartat ''List of season set'' es veuen els conjunts de fitxers amb el seus components d'aquesta variable on:
 \begin{itemize}
 \item \iconedit per modificar el conjunt de fitxers(nom, components i configuracions).
-\item \icontrash per esborrar tot el conjunt i tots el fitxers associats, excepte els compartits.
+\item \icontrash per esborrar tot el conjunt i tots el fitxers associats, excepte els compartits(simplement esborra la associació).
 \item \iconadd per afegir un conjunt nou de fitxers
 \end{itemize}
 
 \subsection{Formulari de creació i d'actualització d'un conjunt de fitxers(''Season set'')}
+A la figura \ref{fig:seasonSetEdition} es pot veure aquest formulari.
 \label{season_set:variable}
 \begin{figure}[h!]
   \centering
@@ -128,88 +129,117 @@ Son els conjunts de fitxers amb el seus components on:
   \caption{Configuraci\'{o} de conjunts de fitxers d'una variable}
   \label{fig:seasonSetEdition}
 \end{figure}
+A continuació es descriuen les funcionalitats d'aquest formulari.
 
 \subsubsection{Afegir nous fitxers a un conjunt de fitxers}
-A l'apartat ''Add new seasons to this season set'', \'{e}s pot afegir nous fitxers amb un navegador de fitxer accedint a ''Navega...''. Al selector de temporades es pot configurar el fitxer com estiu, hivern, tardor, primavera o com a tot l'any. El tercer camp \'{e}s un camp especial de tipus ''sols lectura'' per comprovar que el fitxer es carrega be.
+A l'apartat \textbf{''Add new seasons to this season set''}, \'{e}s pot afegir nous fitxers amb un navegador de fitxer accedint a ''Navega...''. \\
+
+El selector de temporades es per configurar el fitxer com estiu, hivern, tardor, primavera o com a tot l'any.\\
+
+El tercer camp \'{e}s un camp especial de tipus ''sols lectura'' per comprovar que el fitxer es carrega be.
 
 \subsubsection{Afegir un fitxer d'una altre variable}
-En el cas de que existeixin variables que tinguin envelliments similars, es pot buscar a la secció ''Add shared seasons''. Es un camp de tipus auto-completat que desplega un menú per que l'usuari seleccioni el que busca. Amb el següent selector el pot configurar. L'ultim camp es per comprovar que el fitxer es carrega be.
+En el cas de que existeixin variables que tinguin envelliments similars, es pot buscar a la secció ''Add shared seasons''.\\
+
+\'{E}s un camp de tipus auto-completat que desplega un menú per que l'usuari seleccioni el que busca. Amb el següent selector el pot configurar. L'ultim camp es per comprovar que el fitxer es carrega be.
 
 \subsubsection{Esborrar un fitxer del conjunt de fitxers}
 Amb la icona \icontrash pots esborrar el fitxer i el seu contingut d'aquest conjunt de fitxers.\\
 Amb la icona \iconremove pots esborrar el fitxer com a component. Per exemple, si has afegit un fitxer compartit, no esborres el fitxer sinó que simplement deixa de estar associat a aquest conjunt de fitxers.
 
 \section{Matrius}
+
 \subsection{Crear una matriu desde un fitxer csv o excel}
 \label{sec:create_matrix}
-Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv o Microsoft Excel. El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
-El format de la matriu \'{e}s important que sigui el següent.
-\begin{center}
-    \begin{tabular}{ | l | l | l | p{5cm} |}
-    \hline
-    Cel.la buida & Alias de la columna & .... & ORIGIN & DATE \\ \hline
-    Nom de la sample & Valor de la sample  & .... & Origen de la sample \\ \hline
-    S01-10-20        & 0,000145            & .... & Human \\ \hline
-    \hline
-    \end{tabular}
-\end{center}
-On:
-\begin{itemize}
-\item Alias de la columna: \'{e}s un nom qualsevol per identificar la columna. Si el sistema cont\'{e} una variable amb el mateix nom, autom\`{a}ticament li assignar aquesta variable amb una ''season set'' per defecte. Si l'alias de variable definit al full de c\`{a}lcul \'{e}s el mateix que el d'una variable del sistema, s'assigna a la variable i li assignar un conjunt de fitxers per defecte.
-\item Valor de la sample: \'{e}s el valor de la mostra per la columna(variable)
-\item Nom de la sample: \'{e}s un identificador de la mostra. La aplicaci\'{o} mapeja el contingut de subcadenas amb:
-\begin{itemize}
-\item PL - POULTRY
-\item HM - HUMAN
-\item PG - PIG
-\item CW - COW
-\end{itemize}
-\item Origen de la mostra: \'{e}s una cadena de caràcters que especifica l'origen de la mostra. Solament es distingir\'{a} si a les capçaleres a la ultima columna s'especifica la paraula ORIGIN. Es OPCIONAL. 
-\item Data de la mostra: \'{e}s una data de calendari. Amb el format DIA(DD)/MES(MM)/ANY(YYYY). Per exemple 01/12/2014. Es OPCIONAL. 
-\end{itemize}
-Important: l'ordre de les columnes \'{e}s important. Si volem deixar la columna origen buida però posar dates, s'ha d'especificar igualment la columna i deixar-la buida. I l'origen de la mostra es resoldra amb el mapejat abans explicat.
-En la pantalla, es pot seleccionar un fitxer csv i pujar'ho. Seguidament, es podr\`{a} establir la relaci\'{o} de la variable real de la columna i quin conjunt de fitxers per defecte usa. Mirar \ref{sec:configure_matrix}.
+Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv o Microsoft Excel.El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
 
-\section{Configurar una matriu}
-\label{sec:configure_matrix}
-Per accedir a configurar una matriu, has d'anar a la teva pantalla de inici(mirar \ref{sec:home}). 
-Desde la interficie de configuraci\'{o} es pot configurar:
+El format de la matriu \'{e}s com es mostra a la figura \ref{matrixSource}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{img/userguide/matrix_source.png}
+  \caption{Fulla de calcul d'exemple}
+  \label{fig:matrixSource}
+\end{figure}
+
 \begin{itemize}
-\item Donar un alias a la columna
-\item Associar una columna a una variable
-\item Seleccionar un conjunt de fitxers de la variable
-\item Donar nom a una mostra
-\item Donar una data a una mostra
-\item Donar un origen a un mostra
-\item Visualitzar missatges de validacions i notificacions
-\item Donar acc\'{e}s als usuaris per que puguin crear trainings.
+\item Primera columna. Son els identificadors de la variable. Si una columna es diu igual que una variable del sistema, automàticament s'assigna a aquesta.
+\item Les ultimes dues columnes son especials i son opcionals. Es contemplen totes les casuístiques:
+\begin{itemize}
+\item No existeixen
+\item Solament ORIGIN
+\item Solament DATE
+\item Primer ORIGIN i després DATE
+\item Primer DATE i després ORIGIN
 \end{itemize}
+\item La columna ORIGIN explicita l'origen de les mostres. En el cas que no sigui present, cada mostra s'intentar\`{a} resoldre  amb un associació segons sub-cadenes:
+\begin{itemize}
+\item Si el identificador de la mostra conte HM es resoldrà com HUMAN.
+\item Si el identificador de la mostra conte PG es resoldrà com PIG.
+\item Si el identificador de la mostra conte PL es resoldrà com POULTRY.
+\item Si el identificador de la mostra conte CW es resoldrà com COW
+\end{itemize}
+\item La columna DATE explicita les dates de les mostres amb el format DD/MM/YYYY.
+\end{itemize}
+
+El resultat d'aquest exemple es pot veure a la figura \ref{fig:matrixResulting}:
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.3]{img/userguide/matrix_resulting.png}
+  \caption{Resultat de la fulla d'exemple}
+  \label{fig:matrixResulting}
+\end{figure}
+
+\subsection{Interficie de configuració d'una matriu}
+A la figura \ref{fig:configure_matrix} es pot veure la interfície de configuració de les matrius.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/matrix_configure.png}
   \caption{Interficie de configuraci\'{o} de matrius}
   \label{fig:configure_matrix}
 \end{figure}
-
-\subsection{Alies de una columna} 
-A la secci\'{o} de les capçaleres, a la icona del llapis, es pot especificar un alies a la columna. Si es prem "Enter" o es canvia el focus, s'activa el bot\'{o} de salvaguardat.
-
-\subsection{Especificar en una columna una variable i un conjunt de fitxers}
-A la secci\'{o} de les capçaleres, a la icona de la clau anglesa, es pot seleccionar la variable del sistema. Autom\'{a}ticament, a la llista de dalt, es carrega la llista de "Seasons Set". Quan es selecciona un dels dos llistats, s'activa el bot\'{o} de salvaguardat. No \'{e}s obligatori donar-li una variable i una "Season Set".
-
-\subsection{Cambiar la visualitzaci\'{o}}
-A la secci\'{o} de configuraci\'{o}, es pot cambiar la visibilitat. Si la matriu \'{e}s invisible, els usuaris no poden crear ''trainings''. Per guardar els canvis, s'ha de pitjar el but\'{o} "Save configuration".
-
-\subsection{Visualitzar missatges}
-Existeixen diverses restriccions i missatges:
+A continuació descrivim les seccions.
 \begin{itemize}
-\item Notificaci\'{o} de visibilitat: una matriu visible es entrenable. 
-\item Notificaci\'{o} de matriu amb trainings creats. Una modificaci\'{o} crea una incoherencia amb aquests trainings ja que no ser\'{a} la mateixa matriu.
-\item Notificaci\'{o} d'origens. Les mostres necessiten obligatoriament uns origins.
+\item Configuració bàsica
+\item Missatges
+\item Accions
+\item Dades de Matrius
 \end{itemize}
 
-\subsection{Actualitzar una dada d'una fila i d'una columna}
-Es poden actualitzar les dades d'una mostra i d'una 
+\subsubsection{Configuració bàsica}
+La visibilitat \'{e}s un parametre per permetre que altres usuaris vegin la matriu per entrenar-la.
+
+\subsubsection{Missatges} 
+Apartat on el sistema comunica a l'usuari errors de validacions i perills.
+
+\subsubsection{Accions} 
+Les accions disponibles son:
+\begin{itemize} 
+\item \icondownload per descarregar-se la matriu en CSV.
+\item \iconupdate per actualitzar les dades, no la configuració.
+\item \icontrash per esborrar la matriu, els entrenaments i les prediccions
+\item \icontraining per crear un entrenament amb aquesta matriu
+\item But\'{o} ''Validate'': valida la matriu. Sortiran a la secció de missatges els possibles errors.
+\end{itemize}
+
+\subsubsection{Configuració de les dades de la matriu}
+\paragraph*{Columnes} Les columnes es per configurar les variables de la matriu on:
+\begin{itemize}
+\item \iconalias es per definir el alies de la columna
+\item \iconvariable es per seleccionar una variable. Si no es selecciona res, quedara configurada com una variable derivada.
+\item \iconseason en cas de seleccionar una variable, es carregaran els conjunts de fitxers de la variable.
+\end{itemize}
+Una vegada actualitzat les dades en alguna columna, apareixerà la icona \iconedit per salvar les dades. En el cas que hagi diferents columnes configurades, es podrà pitjar el buto ''Save all changes''.
+
+\paragraph*{Actualitzar una mostra} Per actualitzar una mostra:
+\begin{itemize}
+\item El primer camp es l'alies de la mostra
+\item El segon es un calendari per seleccionar una data
+\item El tercer es un camp auto completat optatiu. Quan es comença a escriure, surt un desplegable per seleccionar un dels possibles valors dels orígens que existeixen a la matriu o escriure un nou.
+\end{itemize}
+
+\paragraph*{Actualitzar una dada d'una fila i d'una columna} Es poden actualitzar les dades d'una mostra fent un doble ''click'' en una de les celles. Prement ''Enter'' es guarda el resultat.
+
+
 
 \section{Clonar una matriu}
 \label{sec:clone_matrix}

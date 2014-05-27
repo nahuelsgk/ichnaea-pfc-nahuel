@@ -59,6 +59,7 @@ class VariableController extends Controller{
 	
 	
 	/**
+	 * Util function to build an array to help controller to pass Dataset to the services
 	 * 
 	 * @param unknown $request
 	 * @return multitype:
@@ -132,7 +133,12 @@ class VariableController extends Controller{
 		);
 	}
 	
-	
+	/**
+	 * Controls the render and the request for delete a season Set
+	 * @param unknown $variable_id
+	 * @param unknown $season_set_id
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function seasonSetCompleteDestroyFormAction($variable_id, $season_set_id)
 	{
 		$request = $this->getRequest();
@@ -140,7 +146,15 @@ class VariableController extends Controller{
 		
 		if($request->getMethod() == 'POST'){
 			//perform season massacre
-			$ichnaeaService->deleteSeasonSetCascade($season_set_id);
+			$return = $ichnaeaService->deleteSeasonSetCascade($season_set_id);
+			
+			if (!$return){
+				return $this->render('::error.html.twig', 
+					array(
+						'message'      => 'Could not be deleted beacauthis season set is in used by a matrix',
+						'continue_url' => $this->generateUrl('variable_edit', array('variable_id' => $variable_id)),
+				));
+			}
 			
 			//redirect into the variable form
 			return $this->redirect($this->generateUrl('variable_edit', array('variable_id' => $variable_id)));

@@ -105,33 +105,32 @@
 \contentsline {section}{\numberline {A.2}Variables}{9}{section.A.2}
 \contentsline {subsection}{\numberline {A.2.1}Veure les variables del sistema}{9}{subsection.A.2.1}
 \contentsline {subsection}{\numberline {A.2.2}Formulari de edici\'{o} d'una variable}{9}{subsection.A.2.2}
-\contentsline {subsection}{\numberline {A.2.3}Llistat de conjunts de fitxers: ''season set''}{10}{subsection.A.2.3}
+\contentsline {subsection}{\numberline {A.2.3}Llistat de conjunts de fitxers}{10}{subsection.A.2.3}
 \contentsline {subsection}{\numberline {A.2.4}Formulari de creaci\IeC {\'o} i d'actualitzaci\IeC {\'o} d'un conjunt de fitxers(''Season set'')}{10}{subsection.A.2.4}
-\contentsline {subsubsection}{Afegir nous fitxers a un conjunt de fitxers}{10}{section*.72}
+\contentsline {subsubsection}{Afegir nous fitxers a un conjunt de fitxers}{11}{section*.72}
 \contentsline {subsubsection}{Afegir un fitxer d'una altre variable}{11}{section*.73}
-\contentsline {subsubsection}{Esborrar un fitxer del conjunt de fitxers}{11}{section*.74}
+\contentsline {subsubsection}{Esborrar un fitxer del conjunt de fitxers}{12}{section*.74}
 \contentsline {section}{\numberline {A.3}Matrius}{12}{section.A.3}
 \contentsline {subsection}{\numberline {A.3.1}Crear una matriu desde un fitxer csv o excel}{12}{subsection.A.3.1}
-\contentsline {section}{\numberline {A.4}Configurar una matriu}{13}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Alies de una columna}{14}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Especificar en una columna una variable i un conjunt de fitxers}{14}{subsection.A.4.2}
-\contentsline {subsection}{\numberline {A.4.3}Cambiar la visualitzaci\'{o}}{14}{subsection.A.4.3}
-\contentsline {subsection}{\numberline {A.4.4}Visualitzar missatges}{14}{subsection.A.4.4}
-\contentsline {subsection}{\numberline {A.4.5}Actualitzar una dada d'una fila i d'una columna}{14}{subsection.A.4.5}
-\contentsline {section}{\numberline {A.5}Clonar una matriu}{14}{section.A.5}
-\contentsline {section}{\numberline {A.6}Crear un training d'una matriu}{15}{section.A.6}
-\contentsline {subsection}{\numberline {A.6.1}Simular un training de la matriu Cyprus}{16}{subsection.A.6.1}
-\contentsline {section}{\numberline {A.7}Visualitzar un training}{16}{section.A.7}
-\contentsline {section}{\numberline {A.8}Problemes de Ichnaea}{17}{section.A.8}
-\contentsline {subsection}{\numberline {A.8.1}Error en els entrenaments}{17}{subsection.A.8.1}
-\contentsline {section}{\numberline {A.9}Crear una matriu de predicci\'{o}}{17}{section.A.9}
-\contentsline {section}{\numberline {A.10}Crear una predicci\'{o}}{17}{section.A.10}
-\contentsline {section}{\numberline {A.11}Actualitzar una matriu de predicci\'{o}}{18}{section.A.11}
-\contentsline {section}{\numberline {A.12}Llistar les meves prediccions}{18}{section.A.12}
-\contentsline {section}{\numberline {A.13}Visualitzar una matriu de predicci\'{o}}{18}{section.A.13}
-\contentsline {subsection}{\numberline {A.13.1}Actualitzar una matriu de predicci\'{o}}{18}{subsection.A.13.1}
-\contentsline {subsection}{\numberline {A.13.2}Executar una predicci\'{o} de una matriu de predicci\'{o}}{18}{subsection.A.13.2}
-\contentsline {chapter}{\numberline {B}Manual d'administrador}{19}{appendix.B}
-\contentsline {section}{\numberline {B.1}Llistar usuaris del sistema}{19}{section.B.1}
-\contentsline {section}{\numberline {B.2}Canviar el grup de l'usuari}{19}{section.B.2}
-\contentsline {section}{\numberline {B.3}Comprovar cua}{19}{section.B.3}
+\contentsline {subsection}{\numberline {A.3.2}Interficie de configuraci\IeC {\'o} d'una matriu}{13}{subsection.A.3.2}
+\contentsline {subsubsection}{Configuraci\IeC {\'o} b\IeC {\`a}sica}{13}{section*.78}
+\contentsline {subsubsection}{Missatges}{14}{section*.79}
+\contentsline {subsubsection}{Accions}{14}{section*.80}
+\contentsline {subsubsection}{Configuraci\IeC {\'o} de les dades de la matriu}{14}{section*.81}
+\contentsline {section}{\numberline {A.4}Clonar una matriu}{15}{section.A.4}
+\contentsline {section}{\numberline {A.5}Crear un training d'una matriu}{16}{section.A.5}
+\contentsline {subsection}{\numberline {A.5.1}Simular un training de la matriu Cyprus}{17}{subsection.A.5.1}
+\contentsline {section}{\numberline {A.6}Visualitzar un training}{17}{section.A.6}
+\contentsline {section}{\numberline {A.7}Problemes de Ichnaea}{17}{section.A.7}
+\contentsline {subsection}{\numberline {A.7.1}Error en els entrenaments}{17}{subsection.A.7.1}
+\contentsline {section}{\numberline {A.8}Crear una matriu de predicci\'{o}}{17}{section.A.8}
+\contentsline {section}{\numberline {A.9}Crear una predicci\'{o}}{18}{section.A.9}
+\contentsline {section}{\numberline {A.10}Actualitzar una matriu de predicci\'{o}}{19}{section.A.10}
+\contentsline {section}{\numberline {A.11}Llistar les meves prediccions}{19}{section.A.11}
+\contentsline {section}{\numberline {A.12}Visualitzar una matriu de predicci\'{o}}{19}{section.A.12}
+\contentsline {subsection}{\numberline {A.12.1}Actualitzar una matriu de predicci\'{o}}{19}{subsection.A.12.1}
+\contentsline {subsection}{\numberline {A.12.2}Executar una predicci\'{o} de una matriu de predicci\'{o}}{19}{subsection.A.12.2}
+\contentsline {chapter}{\numberline {B}Manual d'administrador}{21}{appendix.B}
+\contentsline {section}{\numberline {B.1}Llistar usuaris del sistema}{21}{section.B.1}
+\contentsline {section}{\numberline {B.2}Canviar el grup de l'usuari}{21}{section.B.2}
+\contentsline {section}{\numberline {B.3}Comprovar cua}{21}{section.B.3}
