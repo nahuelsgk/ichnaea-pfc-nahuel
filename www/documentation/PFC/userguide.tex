@@ -3,28 +3,28 @@
 
 \section{Casa de l'usuari}
 \label{sec:home}
-Per accedir la casa del usuari es pot anar accedint mitjançant el logo de ''Ichnaea'' del menú situat a l'esquerra del menú.
+Per accedir la casa de l'usuari es pot anar accedint mitjançant el logo de ''Ichnaea'' del menú situat a l'esquerra del menú. Per mirar la casa de l'usuari mirar la figura \ref{fig:dashboard}.
 
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{img/userguide/dashboard.png}
-  \caption{Casa de l'usuari}
-  \label{fig:placement}
+  \caption{Interfície d'usuari: ''Casa de l'usuari''}
+  \label{fig:dashboard}
 \end{figure}
 A continuaci\'{o} descriurem cadascuna de les parts.
 
 \subsection{Llistat dels meus entrenaments pendents}
-Al llistat superior pots veure els entrenaments que has creat i que estan pendents de finalitzar, on: 
+Al llistat superior(''My pending trainings'') pots veure els entrenaments que has creat i que estan pendents de finalitzar, on: 
 \begin{itemize}
 \item Nom del entrenament.
 \item Nom de la matriu entrenada com a enllaç per veure la matriu.
 \item Descripci\'{o} del entrenament.
-\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor pero Ichnaea no esta desenvolupat encara per executar un entrenament amb aquest paràmetre.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor però Ichnaea no esta desenvolupat encara per executar un entrenament amb aquest paràmetre.
 \item Data de creaci\'{o} de l'entrenament.
 \item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
 \item Progr\'{e}s: actualment Ichnaea no retorna estat del proces. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors son 0.00 i 1.00.
-\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myTrainings}).
-\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
+\item Status. Els possibles estats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myTrainings}).
+\item Error: en cas que hi hagues algun error en el entrenament des de Ichnaea, sortiria un breu descripció.(Mirar \ref{subsec:trainingerrorsIchnaea})
 \item Operacions
  \begin{itemize}
  \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
@@ -32,7 +32,7 @@ Al llistat superior pots veure els entrenaments que has creat i que estan penden
 \end{itemize}
 
 \subsection{Llistat de les meves prediccions pendents}
-Al llistat inferior pots veure les prediccions que has creat i que estan pendents de finalitzar, on: 
+Al llistat inferior(''My pending predictions'') pots veure les prediccions que has creat i que estan pendents de finalitzar, on: 
 \begin{itemize}
 \item Nom de la predicció.
 \item Nom de la matriu entrenada com a enllaç per veure la matriu.
@@ -40,8 +40,8 @@ Al llistat inferior pots veure les prediccions que has creat i que estan pendent
 \item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor pero Ichnaea no esta desenvolupat encara per executar una entrenament amb aquest paràmetre.
 \item Data de creaci\'{o} de la predicció.
 \item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
-\item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myPrediccions}).
-\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
+\item Status. Els possibles stats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myPrediccions}).
+\item Error: en cas que hi hagués algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
 \item Operacions
  \begin{itemize}
  \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
@@ -50,7 +50,7 @@ Al llistat inferior pots veure les prediccions que has creat i que estan pendent
 
 \subsection{Els meus entrenaments}
 \label{subsec:myTrainings}
-Per accedir als teus entrenaments, ves al menu ''Trainings >> My trainings''.
+Per accedir als teus entrenaments, seguir el menu ''Trainings >> My trainings''.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{img/userguide/my_trainings.png}
@@ -75,11 +75,11 @@ On:
 
 \subsection{Les meves prediccions}
 \label{subsec:myPrediccions}
-Per accedir a les teves prediccions, ves al menu ''Predictions >> My predictions''.
+Per accedir a les teves prediccions, seguir el menu ''Predictions >> My predictions''(mirar la figura \ref{fig:my_prediccions}).
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{img/userguide/my_predictions.png}
-  \caption{Les meves prediccions}
+  \caption{Interfície d'usuari: ''Les meves prediccions''}
   \label{fig:my_predictions}
 \end{figure}
 \begin{itemize}
@@ -189,15 +189,17 @@ El resultat d'aquest exemple es pot veure a la figura \ref{fig:matrixResulting}:
   \label{fig:matrixResulting}
 \end{figure}
 
-\subsection{Interficie de configuració d'una matriu}
+\subsection{Interfície de configuració d'una matriu}
+\label{subsec:interfaceConfiguration}
 A la figura \ref{fig:configure_matrix} es pot veure la interfície de configuració de les matrius.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/matrix_configure.png}
-  \caption{Interficie de configuraci\'{o} de matrius}
+  \caption{Interfície de configuraci\'{o} de matrius}
   \label{fig:configure_matrix}
 \end{figure}
-A continuació descrivim les seccions.
+
+\textbf{Solament l'usuari propietari de la matriu la pot configurar}. A continuació descrivim les seccions de la interfície.
 \begin{itemize}
 \item Configuració bàsica
 \item Missatges
@@ -206,7 +208,7 @@ A continuació descrivim les seccions.
 \end{itemize}
 
 \subsubsection{Configuració bàsica}
-La visibilitat \'{e}s un parametre per permetre que altres usuaris vegin la matriu per entrenar-la.
+La visibilitat \'{e}s un paràmetre per permetre que altres usuaris vegin la matriu per entrenar-la.
 
 \subsubsection{Missatges} 
 Apartat on el sistema comunica a l'usuari errors de validacions i perills.
@@ -240,46 +242,49 @@ Una vegada actualitzat les dades en alguna columna, apareixerà la icona \iconed
 \paragraph*{Actualitzar una dada d'una fila i d'una columna} Es poden actualitzar les dades d'una mostra fent un doble ''click'' en una de les celles. Prement ''Enter'' es guarda el resultat.
 
 
+\subsection{Clonar una matriu}
+\label{subsec:clone_matrix}
+L'objectiu de clonar una matriu es per tenir matrius similars però per canviar de configuracions. L'objectiu de canviar de configuració es crear entrenaments amb altres configuracions(altres conjunts de fitxers per variable, o modificar un origen , etc). No es copien ni els entrenaments ni les prediccions.\\
 
-\section{Clonar una matriu}
-\label{sec:clone_matrix}
-Desde el menu ''Ichnaea Data - View Matrix'', podem accedir al llistat de variables del sistema. Amb la icona etiquetada com "Clone the matrix", podem clonar una matriu sencera configurada. No es copien els trainings.
+Per clonar una matriu, seguir el menú ''Ichnaea Data - View Matrix'', podem accedir al llistat de variables del sistema; amb la icona \iconclone accedim al formulari de clonaci\'{o}(figura \ref{fig:cloneMatrix}). 
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/clone_matrix.png}
-  \caption{Llistat de matrius}
-  \label{fig:placement}
+  \includegraphics[scale=0.2]{img/userguide/clone_matrix}
+  \caption{Interfici d'usuari ''Clonar una matriu''}
+  \label{fig:cloneMatrix}
 \end{figure}
-Fent click a la icona de reload, anem al formulari que suggereix un nom per identificar-la.
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale=0.2]{img/userguide/clone_matrix-2.png}
-  \caption{Llistat de matrius}
-  \label{fig:placement}
-\end{figure}
-Acceptant, es clona la matriu i anem a la interficie de configuraci\´{o}. Mirar \ref{sec:configure_matrix}.
+El formulari suggereix un nom que es pot canviar. Si l'usuari accepta la clonaci\'{o} l'usuari clona les dades i la configuraci\'{o} i es dirigir\`{a} a la la interfície de configuració.
 
-\section{Crear un training d'una matriu}
-Per crear un training s'ha de accedir al menu superior ''Trainings - Create a training''. Desde el llistat de matrius del sistema, amb la icona ICONROAD, es pot accedir al formulari de creaci\'{o} de trainings.
+
+\section{Entrenaments}
+\subsection{Crear un entrenament d'una matriu}
+Per crear un entrenament primerament s'ha de seleccionar un matriu. Per crear un entrenament existeixen diferents formes:
+\begin{itemize} 
+\item Opció 1) Des de el llistat de matrius entrenables(''Ichnaea Data >> Create training'') amb la icona \icontraining.
+\item Opció 2) Visualitzant una matriu accedint des de el llistat de matrius del sistema: ''Ichnaea Data >> View matrixs >> \iconeyeopen >> \icontraining.
+\item Opcio 3) Des de la interfície de configuració de la matriu(mirar la secció \ref{subsec:interfaceConfiguration}).
+\end{itemize}
+
+La figura \ref{fig:createTraining} \'{e}s la interfície de creació d'entrenaments on:
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/training_create.png}
+  \includegraphics[scale=0.4]{img/userguide/training_create.png}
   \caption{Llistat de matrius}
-  \label{fig:placement}
+  \label{fig:createTraining}
 \end{figure}
 \begin{itemize}
-\item Part esquerra superior: El training cont\'{e} un nom i una descripci\'{o}. Es poden seleccionar quines columnes vols entrenar de la matriu. 
-\item Part dreta superior: Desplegable per seleccionar un dels origens disponibles.  El origen-versus, es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", el training ser\'{a} tots contra tots. Si \'{e}s selecciona un origen concret, el training es far\`{a} aquest origen contra els altres. Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}.
+\item Part esquerra superior: nom i descripci\'{o} de l'entrenament.
+\item Part dreta superior: Desplegable per seleccionar un dels orígens disponibles.  El ''origen-versus'', es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", l'entrenament ser\'{a} tots contra tots. Si \'{e}s selecciona un origen concret, l'entrenament es far\`{a} aquest origen contra els altres. \textbf{Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}}.
 \item Selecci\'{o} de columnes. Selecci\'{o} de columnes que vols entrenar.
 \end{itemize}
 
-Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i la aplicaci\´{o} es redirigir\´{a} la pantalla de visualitzaci\´{o} de trainings.
+Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i la aplicaci\´{o} es redirigir\´{a} la pantalla de visualitzaci\´{o} de entrenaments(mirar la secció \ref{subsec:viewtraining}).
 
-\subsection{Simular un training de la matriu Cyprus}
-Actualment la aplicaci\'{o} Ichnaea i el sistema de cues no esta implantat. Tenim la opci\'{o} de tenir una matriu entrenada en un altre plataforma per poder fer proves amb les interficies de prediccions. Pendent d'implementaci\'{o}.
+\subsection{Visualitzar un entrenament}
+\label{subsec:viewtraining}
+Des de la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus entrenaments pendents i en quin estadi es troben. Per els finalitzats, es poden accedir des de ''Els meus entrenaments''(secció \ref{subsec:myTrainings}).
 
-\section{Visualitzar un training}
-Desde la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus trainings i en quin estadi es troben. Amb la icona "ull", pots accedir a visualitzar la informaci\´{o} del training.
+
 
 \section{Problemes de Ichnaea}
 \label{sec:ichnaeaErrors}

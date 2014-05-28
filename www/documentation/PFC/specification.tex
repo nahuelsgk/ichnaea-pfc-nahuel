@@ -205,10 +205,13 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
     \item L'usuari selecciona del llistat un conjunt de fitxers per esborrar.
     \item El sistema li mostra un vista de confirmaci\'{o} de la acci\'{o}.
     \item L'usuari confirma la acci\'{o}.
-    \item El sistema esborra tots els fitxers i el conjunt.
+    \item El sistema esborra tots els fitxers que no estiguin compartits i el conjunt.
 }
 \addscenario{Cursos alternatius:}{
-\item[4] L'usuari cancela la acci\'{o}.
+\item[4] L'usuari cancel·la la acci\'{o}.
+}
+\addscenario{Cursos alternatius:}{
+\item[6] El sistema avisa l'usuari que no pot esborrar el conjunt de fitxers ja que esta en us en una configuració de matrius.
 }
 \end{usecase}
 
@@ -248,6 +251,51 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \addscenario{Cursos alternatius:}{
 \item[6] L'usuari cancel·la la acci\'{o}.
+}
+\addscenario{Cursos alternatius:}{
+\item[8] El sistema notifica a l'usuari que no pot esborrar un fitxer que esta compartit amb un altre conjunt de fitxers.
+}
+\end{usecase}
+
+\begin{usecase}
+\addtitle{Variable008}{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+    \item L'usuari selecciona una variable d'un llistat de variables.
+    \item El sistema mostra un llistat de conjunts de fitxers de la variable.
+    \item L'usuari seleccion un conjunt de fitxers.
+    \item El sistema mostra un formulari de edici\'{o} del conjunt de fitxers.
+    \item L'usuari pot seleccionar 1 fitxer del sistema existent, on pot ser configurat com:
+	\begin{itemize}
+		\item a únic per tot l'any
+		\item com estiu
+		\item com hivern
+		\item com tardor
+		\item com estiu
+	\end{itemize}
+	\item L'usuari salva els canvis.
+	\item El sistema guarda els canvis.
+}
+\end{usecase}
+
+\begin{usecase}
+\addtitle{Variable010}{Eliminar la associació d'un fitxer d'un conjunt de fitxers d'envelliments}
+\addfield{Actors:}{Usuari registrat}
+\addscenario{Curs t\'{i}pic d'esdeveniments:}{
+    \item L'usuari selecciona una variable d'un llistat de variables.
+    \item El sistema mostra un llistat de conjunts de fitxers de la variable.
+    \item L'usuari seleccion un conjunt de fitxers.
+    \item El sistema mostra un llistat del fitxers.
+	\item L'usuari selecciona un fitxer per esborrar la associació.
+	\item El sistema li demana confirmació.
+	\item L'usuari confirma l'acci\'{o}
+	\item El sistema esborra la associació però deixa el fitxer al sistema.
+}
+\addscenario{Cursos alternatius:}{
+\item[6] L'usuari cancel·la la acci\'{o}.
+}
+\addscenario{Cursos alternatius:}{
+\item[8] El sistema notifica a l'usuari que no pot esborrar un fitxer que esta compartit amb un altre conjunt de fitxers.
 }
 \end{usecase}
 

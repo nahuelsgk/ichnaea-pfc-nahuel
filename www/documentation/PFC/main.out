@@ -72,21 +72,23 @@
 \BOOKMARK [2][-]{subsection.A.2.4}{Formulari de creaci\363 i d'actualitzaci\363 d'un conjunt de fitxers\(''Season set''\)}{section.A.2}
 \BOOKMARK [1][-]{section.A.3}{Matrius}{appendix.A}
 \BOOKMARK [2][-]{subsection.A.3.1}{Crear una matriu desde un fitxer csv o excel}{section.A.3}
-\BOOKMARK [2][-]{subsection.A.3.2}{Interficie de configuraci\363 d'una matriu}{section.A.3}
-\BOOKMARK [1][-]{section.A.4}{Clonar una matriu}{appendix.A}
-\BOOKMARK [1][-]{section.A.5}{Crear un training d'una matriu}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.5.1}{Simular un training de la matriu Cyprus}{section.A.5}
-\BOOKMARK [1][-]{section.A.6}{Visualitzar un training}{appendix.A}
-\BOOKMARK [1][-]{section.A.7}{Problemes de Ichnaea}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.7.1}{Error en els entrenaments}{section.A.7}
-\BOOKMARK [1][-]{section.A.8}{Crear una matriu de predicci\363}{appendix.A}
-\BOOKMARK [1][-]{section.A.9}{Crear una predicci\363}{appendix.A}
-\BOOKMARK [1][-]{section.A.10}{Actualitzar una matriu de predicci\363}{appendix.A}
-\BOOKMARK [1][-]{section.A.11}{Llistar les meves prediccions}{appendix.A}
-\BOOKMARK [1][-]{section.A.12}{Visualitzar una matriu de predicci\363}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.12.1}{Actualitzar una matriu de predicci\363}{section.A.12}
-\BOOKMARK [2][-]{subsection.A.12.2}{Executar una predicci\363 de una matriu de predicci\363}{section.A.12}
+\BOOKMARK [2][-]{subsection.A.3.2}{Interf\355cie de configuraci\363 d'una matriu}{section.A.3}
+\BOOKMARK [2][-]{subsection.A.3.3}{Clonar una matriu}{section.A.3}
+\BOOKMARK [1][-]{section.A.4}{Entrenaments}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.4.1}{Crear un entrenament d'una matriu}{section.A.4}
+\BOOKMARK [2][-]{subsection.A.4.2}{Visualitzar un entrenament}{section.A.4}
+\BOOKMARK [1][-]{section.A.5}{Problemes de Ichnaea}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.5.1}{Error en els entrenaments}{section.A.5}
+\BOOKMARK [1][-]{section.A.6}{Crear una matriu de predicci\363}{appendix.A}
+\BOOKMARK [1][-]{section.A.7}{Crear una predicci\363}{appendix.A}
+\BOOKMARK [1][-]{section.A.8}{Actualitzar una matriu de predicci\363}{appendix.A}
+\BOOKMARK [1][-]{section.A.9}{Llistar les meves prediccions}{appendix.A}
+\BOOKMARK [1][-]{section.A.10}{Visualitzar una matriu de predicci\363}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.10.1}{Actualitzar una matriu de predicci\363}{section.A.10}
+\BOOKMARK [2][-]{subsection.A.10.2}{Executar una predicci\363 de una matriu de predicci\363}{section.A.10}
 \BOOKMARK [0][-]{appendix.B}{Manual d'administrador}{}
 \BOOKMARK [1][-]{section.B.1}{Llistar usuaris del sistema}{appendix.B}
 \BOOKMARK [1][-]{section.B.2}{Canviar el grup de l'usuari}{appendix.B}
 \BOOKMARK [1][-]{section.B.3}{Comprovar cua}{appendix.B}
+\BOOKMARK [0][-]{section*.90}{\315ndex de figures}{}
+\BOOKMARK [0][-]{section*.92}{\315ndex de taules}{}
