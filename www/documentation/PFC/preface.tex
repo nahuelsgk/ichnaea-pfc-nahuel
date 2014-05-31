@@ -1,37 +1,45 @@
 \chapter{Prefaci}
 \label{cha:prefaci}
 
-
-\section{Abast}
+\section{Introducció}
 \label{sec:abast}
+Aquest projecte desenvolupa el disseny i la implementació d'un sistema per manegar l'algoritme de Backtracking bacteriològic Ichnaea. El principal objectiu del \textit{software} Ichnaea \'{e}s determinar l'origen de la pol·lució fecal en cossos aquosos mitjançant la generació de bosses de models i l'anàlisis de mostres. Aquest problema es conegut com MST(Microbial Source Tracking).\\
 
-L'objectiu del projecte es desenvolupar un conjunts de serveis web per manegar l'algoritme de Backtracking bacteriol\`{o}gic Ichnaea. Actualment Ichnaea es troba en la versi\'{o} 2.0, desenvolupat per Aitor Perez P\'{e}rez P\'{e}rez. La primera versi\'{o} va ser desenvolupada per David Sànchez. \\
+En aquest document veurem una breu descripció de l'univers d'Ichnaea, el disseny i la implementació d'aquest sistema i les conclusions arribades amb la realització d'aquest projecte.
 
-La complexitat de les entrades i configuracions dels paràmetres de entrada de Ichnaea, requereixen de unes interfícies enriquides i d'un model de dades flexible per poder executar l'algoritme. Per un altre banda i com a segon objectiu principal \'{e}s integrar el Projecte de Final de Carrera de Miguel Ibero "Sistema de cues per Ichnaea Software", on s'est\`{a} dissenyant i desenvolupant un sistema de cues per manegar les execucions; Ichnaea requereixen d'un temps elevat de proc\'{e}s. Com a tercer objectiu, s'ha de dissenyar e implementar aquest sistema en un entorn distribuït en xarxa. \\
+\section{Motivació}
+La motivació d'aquest projecte es evolucionar el \textit{software} Ichnaea dotant a l'algoritme d'un sistema i d'unes interfícies per administrar-lo i executar-lo. La complexitat tant de les entrades i de les configuracions dels paràmetres de Ichnaea com de les sortides, fa que es requereixi la realització d'aquest projecte.\\
 
-El document següent conte:
+Actualment Ichnaea es troba en la versi\'{o} 2.0, desenvolupat per Aitor P\'{e}rez P\'{e}rez. La primera versi\'{o} va ser desenvolupada com a tesis per David Sànchez. En la actualitat no existeix cap algoritme de Backtracking Bacteriologic ni cap sistema similar destinat aquests problema.\\
+
+Paral·lelament a aquest PFC, Miguel Ibero desenvolupa el PFC "Sistema de cues per a Ichnaea". Ambdós, juntament amb les futures versions de Ichnaea, s'integren i formen la evolució de Ichnaea com a un sistema complexe.
+
+\section{Objectius}
+\label{sec:objetius}
+Els objectius principals del projecte son dos. En primer lloc, dotar un sistema multi capa robust i distribuït en xarxa amb la capacitat de tenir  interfícies enriquides i d'un model de dades flexible per poder configurar i executar l'algoritme. En segon lloc integrar el Projecte de Final de Carrera de Miguel Ibero "Sistema de cues per Ichnaea Software", on s'est\`{a} dissenyant i desenvolupant un sistema de cues per manegar les execucions\\
+
+Per assolir els objectius principals he desenvolupat els següents objectius específics:
 \begin{itemize}
-\item En el cap\'{i}tol \ref{cha:background} es fa una petita introducci\'{o} a Ichnaea i al problema MST. 
-\item En el cap\'{i}tol \ref{cha:specification} s'especifica els requeriments, els casos d'ussos i el m\'{o}del de dades.
-\item En el cap\'{i}tol \ref{cha:dessign} s'especifica el disseny de l'aplicació.
-\item En el capítol \ref{cha:implementation} es descriuen les tecnologies i la implementació del projecte.
-\item En el capitol \ref{cha:tests} es descriuen les proves i les dificultats trobades.
-\item En el cap\'{i}tol \ref{cha:conclussions} s'especifica l'estudi econòmic del projecte i les possibles millores.
+\item Estudiar l'algoritme Ichnaea i les seves entitats per dissenyar un model de dades.
+\item Especificar e implementar les interf\'{i}cies de usuari per poder configurar les entrades i execucions de Ichnaea.
+\item Especificar e implementar interf\'{i}cies d'usuari per poder veure els resultats de la execuci\'{o} del software Ichnaea. 
+\item Interf\'{i}cies usables, comprensibles i enriquides per tenir una bona experiència de usuari. 
+\item Dissenyar e implementar una llibreria API per integrar amb futurs sistemes o tecnologies.
+\item Implementar tots aquests objectius en una tecnologia distribuïda en xarxa. 
+\item Dissenyar un model de dades flexible que permeti evolucionar el sistema per a futures versions de Ichnaea.
+\item Integrar el sistema amb el projecte "Sistema de cues per Ichnaea Software" de Miguel Ibero.
+\end{itemize}
+
+\section{Estructura del document}
+El document s'estructura de la seguent manera:
+\begin{itemize}
+\item Al cap\'{i}tol \ref{cha:background} es fa una petita introducci\'{o} a Ichnaea i al problema MST. 
+\item Al cap\'{i}tol \ref{cha:specification} s'especifica els requeriments, els casos d'usos i el m\'{o}del de dades.
+\item Al cap\'{i}tol \ref{cha:dessign} s'especifica el disseny de l'aplicació.
+\item Al capítol \ref{cha:implementation} es descriuen les tecnologies i la implementació del projecte.
+\item Al capítol \ref{cha:tests} es descriuen les proves i les dificultats trobades.
+\item Al cap\'{i}tol \ref{cha:conclussions} es descriu la metodologia, la evolució i l'estudi econòmic del projecte i les possibles millores.
 \item En l'annex \ref{cha:userguide} es dona un petit manual d'usuari.
 \item En l'annex \ref{cha:adminguide} es dona un petit manual de administrador.
 \end{itemize}
 
-\section{Objectius}
-\label{sec:objetius}
-
-Els objectiu principals del projecte son:\\
-
-\begin{itemize}
-\item Especificar e implementar les interf\'{i}cies de usuari per poder configurar les entrades i execuci\'{o} del software Ichnaea.
-\item Especificar e implementar interf\'{i}cies d'usuari per poder veure els resultats de la execuci\'{o} del software Ichnaea. 
-\item Interf\'{i}cies usables, comprensibles i enriquides per tenir una bona experiencia de usuari. 
-\item Prototipus de llibreria API per en un futur escalar-la i poder integrar el projecte amb qualsevol periferic o tecnologia. 
-\item Implementar tots aquests objectius en una tecnologia distribuida en xarxa. 
-\item Dissenyar un model de dades flexible que permiti relacionar els objectes per a futures versions de Ichnaea i noves funcionalitats que es poguin desenvolupar mitjançant modificacions o millores de les interficies. 
-\item Integrar la aplicaci\'{o} web amb el projecte "Sistema de cues per Ichnaea Software" de Miguel Ibero.
-\end{itemize}

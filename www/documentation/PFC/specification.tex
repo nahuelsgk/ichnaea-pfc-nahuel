@@ -1,50 +1,64 @@
 \chapter{An\`{a}lisis i Especificaci\'{o}}
 \label{cha:specification}
-En aquest cap\'{i}tol es descriuen els requeriments, les operatives que es necessiten i el model de dades.
+En aquest cap\'{i}tol s'analitzen les dades que gestiona Ichnaea i el comportament que es vol del sistema per cobrir les necessitats derivades de les execucions d'Ichnaea. D'aquest anàlisis es deriven els requeriments, les operatives que es necessiten i el model de dades.
 
 \section{An\`{a}lisis de Requeriments}
 
 \subsection{Requeriments funcionals}
 \subsubsection{Administraci\'{o} d'usuaris}
-La aplicaci\'{o} ha de estar protegida i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertànyer a grups amb rols autoritzats per fer certes accions. \'{E}s una aplicaci\'{o} distribuida per tant s'ha de dissenyar un sistema que permeti:
+La aplicaci\'{o} ha de estar protegida, auditada i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertànyer a grups amb rols autoritzats per fer certes accions dintre de l'aplicació web.\\ 
+
+S'ha de dissenyar un sistema que permeti:
 \begin{itemize}
 \item Crear comptes d'usuari.
 \item Atendre peticions de restaurar contrasenyes.
-\item Enviar mails de confirmacions de accions.
+\item Enviament de correus electrònics de confirmacions de accions.
 \item Canviar permisos a usuaris.
 \end{itemize}
 
 \subsubsection{Administraci\'{o} de variables de sistema}
-La aplicaci\'{o} ha de gestionar les variables que Ichnaea que Ichnaea utilitza al sistema per poder utilitzar-les amb el \textit{software}. Aquestes variables han de tenir associades conjunts de fitxers.\ref{cha:backgroud:univers:matrius:variables_seasons}) La aplicaci\'{o} ha de poder gestionar les variables, els continguts dels fitxers i les associacions entre les variables i els conjunts de fitxers.
+La aplicaci\'{o} ha de gestionar les variables que Ichnaea utilitza per poder generar les entrades que necessita el \textit{software}. Aquestes variables han de tenir associades un o diversos conjunts de fitxers.\ref{cha:backgroud:univers:matrius:variables_seasons}).\\
+
+S'ha de dissenyar un sistema que permeti:
+\begin{itemize}
+\item gestionar les variables que necessita Ichnaea.
+\item gestionar els fitxers i el contingut dels fitxers que necessiten les variables.
+\item gestionar les associacions entre els fitxers, els conjunts de fitxers i les variables .
+\end{itemize} 
 
 \subsubsection{Administraci\'{o} de matrius}
-La aplicaci\'{o} ha de gestionar i configurar matrius de dades. Per la creaci\'{o} de matrius ha de poder llegir una fulla de c\`{a}lcul i crear un model de dades que representi una matriu a partir de les dades proporcionades.\\
+La aplicaci\'{o} ha de gestionar i configurar matrius de dades. Per la creaci\'{o} de matrius ha de poder llegir una fulla de c\`{a}lcul i crear un model de dades que representi una matriu a partir de les dades proporcionades. A mes, la aplicaci\'{o} ha de permetre la configuraci\'{o} de les matrius.(mirar \ref{cha:backgroud:univers:matrius})\\
 
-La aplicaci\'{o} ha de permetre la configuraci\'{o} de les matrius(mirar \ref{cha:backgroud:univers:matrius}):
+S'ha de dissenyar un sistema permeti:
 \begin{itemize}
-\item Gestionar matrius: crear, actualitzar, esborrar i configurar-les.
-\item Configurar les columnes d'una matriu com una variable i un conjunt de fitxers en cas de que tinguin m\'{e}s.
-\item Configurar l'origen d'una mostra de la matriu.
-\item Configurar la data d'una mostra de la matriu.
+\item gestionar matrius: crear, actualitzar, esborrar i configurar-les.
+\item configurar les columnes d'una matriu com una variable i un conjunt de fitxers en cas de que tinguin m\'{e}s.
+\item configurar l'origen d'una mostra de la matriu.
+\item configurar la data d'una mostra de la matriu.
 \item Configurar o actualitzar dades b\`{a}siques d'una matriu.
 \end{itemize}
 
 \subsubsection{Administraci\'{o} de entrenaments}
-El sistema ha de gestionar i crear entrenaments i enviar-ho contra una cua d'execuci\'{o} d'Ichnaea:
+El sistema ha de gestionar i crear entrenaments i enviar-ho contra una cua d'execuci\'{o} d'Ichnaea. Per executar un entrenament s'ha de generar les dades d'entrada a partir de las matrius\ref{subsec:backgroundTrainings}.\\
+
+S'ha de dissenyar un sistema que permeti:
 \begin{itemize}
-	\item Gestionar entrenaments: crear, configurar i esborrar.
-	\item Enviar les matrius a entrenar a la cua d'execucions d'entrenaments.
-	\item Llegir e interpretar el estat del proc\'{e}s.
-	\item Guardar els resultats dels entrenaments.
+	\item gestionar els entrenaments: crear, configurar i esborrar.
+	\item generar les dades necessaries per les execucions dels entrenaments.
+	\item enviar les dades generades a la cua d'execucions d'entrenaments.
+	\item llegir e interpretar l'estat del proc\'{e}s d'entrenament.
+	\item guardar els resultats dels entrenaments.
 	\item Gestionar les sortides de les execucions.
 \end{itemize}
 
 \subsubsection{Administraci\'{o} de matrius de predicci\'{o}}
-El sistema ha de gestionar i crear noves matrius de prediccions i enviar-ho contra una cua d'execuci\'{o}.
+El sistema ha de gestionar i crear noves matrius de prediccions. A m\'{e}s ha de generar les dades necessàries per executar prediccions i enviar-les a una cua d'execucions de prediccions.\\
+
+S'ha de dissenyar un sistema que permeti:
 \begin{itemize}
-	\item Gestionar les matrius de prediccions.
-	\item Enviar a les matrius de prediccions a la cua d'execucions de prediccions.
-	\item Llegir e interpretar el estat del proc\'{e}s.
+	\item gestionar les matrius de prediccions.
+	\item enviar a les matrius de prediccions a la cua d'execucions.
+	\item Llegir e interpretar el estat del proc\'{e}s d'execució.
 	\item Llegir els resultats de les prediccions.
 	\item Gestionar les sortides de les execucions.
 \end{itemize}
@@ -52,38 +66,43 @@ El sistema ha de gestionar i crear noves matrius de prediccions i enviar-ho cont
 \subsection{Requeriments no funcionals}
 Els requeriments no funcionals son:
 \begin{itemize}
-\item Bon rendiment
-\item Escalabilitat
-\item Mantenible
-\item Flexibilitat
-\item Usabilitat
+\item Un sistema amb bon rendiment 
+\item Un sistema que permeti l'escalabilitat en cas d'augment o disminució de recursos
+\item Un sistema fàcil de mantenir per continuar la evolució i/o resolució de mal funcionaments.
+\item Un sistema amb un disseny flexible per poder fer canvis.
+\item Un sistema usable pels usuaris.
+\item Un sistema robust als errors.
 \end{itemize}
 
 \section{Model de Casos d'us}
+A continuació expliquem els actors que intervenen al sistema i els casos d'usos generats de l'anàlisi de requeriments.
 
 \subsection{Actors}
-Els usuaris del sistema son:
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.4]{img/specification/Actors.png}
-  \caption{Actors}
-  \label{specification:actors}
-\end{figure}
+La figura \ref{fig:actors} descriu els actors físics i lògics del sistema. A continuació els detallem.
+
 \begin{itemize}
 \item Usuari an\`{o}nim: usuari sense compte al sistema.
 \item Usuari registrat: usuari amb compte al sistema.
 \begin{itemize}
 \item Propietari d'una matriu: usuari que ha creat una matriu.
 \item Propietari d'un entrenament: usuari que ha creat un entrenament.
-\item Propietari d'una predicci\'{o}: usuair que ha creat una matriu de predicci\'{o}.
+\item Propietari d'una predicci\'{o}: usuari que ha creat una matriu de predicci\'{o}.
 \end{itemize}
 \item Usuari administrador: usuari amb permisos administratius.
 \item Cua: usuari l\'{o}gic(no \'{e}s una persona f\'{i}sica) dels sistema que gestiona les execucions.
 \item Consumidor: usuari l\'{o}gic(no \'{e}s una persona f\'{i}sica) del sistema que gestiona les sortides de les execucions.
 \item Sistema: sistema que rep les peticions i gestiona les sortides.
 \end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{img/specification/Actors.png}
+  \caption{Actors}
+  \label{fig:actors}
+\end{figure}
+
 \subsection{Diagrama dels casos d'\'{u}s}
-A la figura \ref{fig:usecases} es pot veure la el diagrama de casos d'\'{u}s.
+A la figura \ref{fig:usecases} es pot veure la el diagrama de casos d'\'{u}s. A la secció \ref{subsec:usescases} es detallen.
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.2]{img/specification/UsesCases.png}
@@ -92,7 +111,8 @@ A la figura \ref{fig:usecases} es pot veure la el diagrama de casos d'\'{u}s.
 \end{figure}
 
 \subsection{Especificaci\'{o} dels casos d'\'{u}s}
-En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els casos d'\'{u}s:\\
+\label{subsec:usescases}
+A continuació s'especifica el fluxe dels casos d'usos i el comportament del sistema en cadascun de ells. En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els casos d'\'{u}s:\\
 \begin{usecase}
 \addtitle{Identificador}{Nom cas d'us}
 \addfield{Actors:}{Llista de actors}
@@ -157,6 +177,8 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \end{usecase}
 
+\phantomsection
+\label{variable003}
 \begin{usecase}
 \addtitle{Variable003}{Crear un conjunt de fitxers d'envelliment per una variable}
 \addfield{Actors:}{Usuari registrat}
@@ -191,7 +213,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
     \item Esborrar un fitxer
     \item Afegir m\'{e}s fitxer i configurar-los com estiu, hivern, tardor, primavera o com tot l'any.
     \end{itemize}
-    \item L'usuari salva els can.
+    \item L'usuari salva els canvis.
     \item El sistema guarda els canvis i notifica a l'usuari. 
 }
 \end{usecase}
@@ -200,7 +222,7 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \addtitle{Variable005}{Esborrar un conjunt d'envelliments d'una variable}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item L'usuari seleccion una variable.
+    \item L'usuari selecciona una variable.
     \item El sistema mostra un llistat de conjunts de fitxers per esborrar.
     \item L'usuari selecciona del llistat un conjunt de fitxers per esborrar.
     \item El sistema li mostra un vista de confirmaci\'{o} de la acci\'{o}.
@@ -257,6 +279,8 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \end{usecase}
 
+\phantomsection
+\label{variable008}
 \begin{usecase}
 \addtitle{Variable008}{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}
 \addfield{Actors:}{Usuari registrat}
@@ -299,7 +323,8 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \end{usecase}
 
-
+\phantonsection
+\label{matriu001}
 \begin{usecase}
 \addtitle{Matriu001}{Crear una matriu des d'un fitxer}
 \addfield{Actors:}{Usuari registrat}
@@ -369,6 +394,8 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \end{usecase}
 
+\phantonsection
+\label{matriu005}
 \begin{usecase}
 \addtitle{Matriu005}{Configurar la columna d'una matriu}
 \addfield{Actors:}{Usuari propietari de la matriu}
@@ -460,6 +487,8 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \end{usecase}
 
+\phantonsection
+\label{training004}
 \begin{usecase}
 \addtitle{Training004}{Crear un entrenament}
 \addfield{Actors:}{Usuari registrat}
@@ -660,6 +689,8 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 }
 \end{usecase}
 
+\phantonsection
+\label{prediction010}
 \subsubsection{Actualitzar l'estat d'una predicci\'{o}}
 \begin{usecase}
 \addtitle{Prediction010}{Actualitzar l'estat d'una predicci\'{o}}
@@ -689,19 +720,23 @@ En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els c
 \end{usecase}
 
 \section{Model Conceptual}
-A continuaci\'{o} es descriu el model conceptual resultant dels casos d'usos.
+A continuaci\'{o} es descriu el model conceptual resultant dels casos d'usos. Est\`{a} compost pel diagrama de classes i una explicació de cadascuna de les classes. 
 
 \subsection{Diagrama de classes}
-La figura \ref{fig:datamodel} \'{e}s el diagrama UML on est\`{a} implementat el modelatge de dades.
+La figura \ref{fig:datamodel} \'{e}s el diagrama UML\cite{uml} on est\`{a} implementat el modelatge de dades. Especifiquem el diagrama en angl\'{e}s per complir l'estandard UML.
+
 \begin{sidewaysfigure}
   \includegraphics[scale=0.5]{img/specification/ModelClass.png}
   \caption{Model de dades}
   \label{fig:datamodel}
 \end{sidewaysfigure}
 
+Per la seva comprensió en la següent secció detallem el diagrama.
+
 
 \subsection{Explicaci\'{o} de les classes}
-A continuaci\'{o} es descriuran algunes de le classes i alguns atributs per a la seva millor comprensi\'{o}.
+A continuaci\'{o} es descriuran les classes del model de dades(figura \ref{fig:datamodel}), alguns atributs de les classes i les relacions entre elles.
+
 \begin{itemize}
 \item \textit{Users}: en aquesta classe es guarda la informaci\'{o} dels usuaris.
 
@@ -711,15 +746,15 @@ A continuaci\'{o} es descriuran algunes de le classes i alguns atributs per a la
 
 \item \textit{SeasonSet}: en aquesta classe es guarda la informaci\'{o} d'un conjunt de fitxers.
 
-\item \textit{SeasonSetComponent}: aquesta classe associa fitxers als conjunts de fitxers.
+\item \textit{SeasonSetComponent}: aquesta classe associa fitxers als conjunts de fitxers i quina es la seva configuració.
 
 \item \textit{Matrix}: en aquesta classe es guarda la informaci\'{o} b\`{a}sica d'una matriu.
 
 \item \textit{Sample}: en aquesta classe es guarda la informaci\'{o} de cadascuna de les files de la matriu a la que pertany mitjançant la associaci\'{o} \textit{rows}.
 
-\item \textit{VariableMatrixConfig}: aquesta classe guarda la configuraci\'{o} d'una columna de la matriu i associa la columna a una variable i a un conjunt de fitxers d'aquesta variable.
+\item \textit{VariableMatrixConfig}: aquesta classe guarda la configuraci\'{o} d'una columna de la matriu i associa la columna amb una variable i amb un conjunt de fitxers d'aquesta variable.
 
-\item \textit{Training}: en aquesta classe es guarda la informaci\'{o} d'un entrenament.
+\item \textit{Training}: en aquesta classe es guarda la informaci\'{o} d'un entrenament on:
 \begin{itemize}
 \item requestId: identificador del proc\'{e}s en la cua d'execuci\'{o}.
 \item status: estat de la predicci\'{o}. Mirar l'apartat \ref{sec:status}.
@@ -727,7 +762,7 @@ A continuaci\'{o} es descriuran algunes de le classes i alguns atributs per a la
 
 \item \textit{Column Selected}: aquesta classe associa un entrenament amb quines columnes es volen entrenar.
 
-\item \textit{PredictionMatrix}: en aquesta classe es guarda la informaci\'{o} d'una matriu de predicci\'{o}.
+\item \textit{PredictionMatrix}: en aquesta classe es guarda la informaci\'{o} d'una matriu de predicci\'{o} on:
 \begin{itemize}
 \item requestId: identificador del proc\'{e}s en la cua d'execuci\'{o}.
 \item predictionResult: collecci\'{o} de resultats de la execuci\'{o} d'una predicci\'{o}.
@@ -743,7 +778,7 @@ A continuaci\'{o} es descriuran algunes de le classes i alguns atributs per a la
 \label{sec:status}
 La aplicaci\'{o} i el sistema de cues de execucions son dos components separats. Aix\'{o} ens obliga a definir estats per els entrenaments i per les prediccions.\\
 
-El principal problema que existeix en la versi\'{o} actual de Ichnaea Software \'{e}s que no retorna estats parcials d'execucions: no ens retorna si ha començat la execució o quan temps queda o percentatge porta. A continuaci\'{o} s'explica quins estats s'han definit per els entrenaments i per les prediccions.
+El principal problema que existeix en la versi\'{o} actual de Ichnaea Software \'{e}s que no retorna estats parcials d'execucions: no ens retorna si ha començat la execució, quan temps queda o percentatge porta. A continuaci\'{o} s'explica quins estats s'han definit per els entrenaments i per les prediccions.
 
 \subsection{Estats dels entrenaments}
 \begin{figure}[H]
@@ -752,7 +787,7 @@ El principal problema que existeix en la versi\'{o} actual de Ichnaea Software \
   \caption{Diagram d'estats dels entrenaments}
   \label{fig:statestraining}
 \end{figure}
-Per crear un entrenament, primer es comprova que es pot establir connexi\'{o} amb la cua. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades i es queda en aquest estat fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb un error d'Ichnaea.\\
+Per crear un entrenament, primer es comprova que es pot establir connexi\'{o} amb la cua. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat ''pendent''. En el cas que es pugui establir connexi\'{o}, s'envien les dades i es queda en aquest estat fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb un error d'Ichnaea.\\
 
 En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar l'entrenament a la cua despr\'{e}s de comprovar l'error.
 
@@ -763,20 +798,23 @@ En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar l'entrename
   \caption{Diagram d'estats dels entrenaments}
   \label{fig:statestraining}
 \end{figure}
-Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la matriu de predicci\'{o} estar\'{a} en un estat inicial(\textit{nou}). Quan l'usuari confirmi l'enviament, primer es comprova que es pot establir connexi\'{o} amb la cua d'execucions de prediccions. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades. Es queda en aquest estat rebent múltiples respostes fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb els errors.\\
+Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la matriu de predicci\'{o} estar\'{a} en un estat inicial(''nou''). Quan l'usuari confirmi l'enviament, primer es comprova que es pot establir connexi\'{o} amb la cua d'execucions de prediccions. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades. Es queda en aquest estat rebent múltiples respostes fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb els errors.\\
 En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar la predicci\'{o} a la cua despr\'{e}s de comprovar l'error.
 
 \section{Model del comportament}
-En aquesta secci\'{o} donarem veurem els diagrames de seqüència de les operacions m\'{e}s complexes dels casos d'us.
+En aquesta secci\'{o} veurem els diagrames de seqüència de les operacions m\'{e}s complexes dels casos d'us tenint en compte els estats definits.
+
 \subsection*{Crear un conjunt de fitxers d'envelliments per una variable}
+L'identificador d'aquest cas d'us \'{e}s \textbf{Variable003}(mirar la p\`{a}gina \pageref{variable003}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceNewSeasonSe.png}
-  \caption{Diagram de seqüència \textit{Crear un conjunt de fitxers d'envelliments per una variable}}
+  \caption{Diagrama de seqüència \textit{Crear un conjunt de fitxers d'envelliments per una variable}}
   \label{fig:sequencenewseasonset}
 \end{figure}
 
 \subsection*{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}
+L'identificador d'aquest cas d'us \'{e}s \textbf{Variable008}(mirar la p\`{a}gina \pageref{variable008}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceAddNewFilesToSeasonSet.png}
@@ -785,6 +823,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seqüència de les operaci
 \end{figure}
 
 \subsection*{Crear una matriu des d'un fitxer}
+L'identificador d'aquest cas d'us \'{e}s \textbf{Matriu001}(mirar la p\`{a}gina \pageref{matriu001}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceCreateMatrix.png}
@@ -793,14 +832,16 @@ En aquesta secci\'{o} donarem veurem els diagrames de seqüència de les operaci
 \end{figure}
 
 \subsection*{Crear un entrenament}
+L'identificador d'aquest cas d'us \'{e}s \textbf{Training004}(mirar la p\`{a}gina \pageref{training004}).
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.6]{img/specification/SequenceCreateTraining.png}
+  \includegraphics[scale=0.5]{img/specification/SequenceCreateTraining.png}
   \caption{Diagram de seqüència \textit{Crear un entrenament}}
   \label{fig:sequenceaddtraining}
 \end{figure}
 
 \subsection*{Configurar una columna d'una matriu}
+L'identificador d'aquest cas d'us \'{e}s \textbf{Matriu005}(mirar la p\`{a}gina \pageref{matriu005}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceConfigureColumn.png}
@@ -809,6 +850,7 @@ En aquesta secci\'{o} donarem veurem els diagrames de seqüència de les operaci
 \end{figure}
 
 \subsection*{Actualitzar l'estat d'una predicci\'{o}}
+L'identificador d'aquest cas d'us \'{e}s \textbf{Prediction010}(mirar la p\`{a}gina \pageref{prediction010}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceUpdatePrediccio.png}

@@ -2,39 +2,39 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Actors\relax }}{9}{figure.caption.8}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagram d'estats dels entrenaments\relax }}{36}{figure.caption.17}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagram d'estats dels entrenaments\relax }}{37}{figure.caption.18}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagram de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Crear un conjunt de fitxers d'envelliments per una variable}\relax }}{38}{figure.caption.20}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagram de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Afegir un nou fitxer a un conjunt de fitxers d'envelliments}\relax }}{39}{figure.caption.22}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagram de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Crear una matriu des d'un fitxer}\relax }}{40}{figure.caption.24}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagram de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Crear un entrenament}\relax }}{41}{figure.caption.26}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Diagrama de seq\IeC {\@umlaut u}encia \textit {Configurar una columna d'una matriu} \relax }}{42}{figure.caption.28}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Diagrama de seq\IeC {\@umlaut u}encia \textit {Actualitzar l'estat d'una predicci\'{o}} \relax }}{43}{figure.caption.30}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de casos d'\'{u}s\relax }}{44}{figure.caption.9}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Model de dades\relax }}{45}{figure.caption.16}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Actors\relax }}{12}{figure.caption.8}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagram d'estats dels entrenaments\relax }}{39}{figure.caption.19}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagram d'estats dels entrenaments\relax }}{40}{figure.caption.20}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagrama de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Crear un conjunt de fitxers d'envelliments per una variable}\relax }}{41}{figure.caption.22}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagram de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Afegir un nou fitxer a un conjunt de fitxers d'envelliments}\relax }}{42}{figure.caption.24}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagram de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Crear una matriu des d'un fitxer}\relax }}{43}{figure.caption.26}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagram de seq\IeC {\@umlaut u}\IeC {\`e}ncia \textit {Crear un entrenament}\relax }}{44}{figure.caption.28}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Diagrama de seq\IeC {\@umlaut u}encia \textit {Configurar una columna d'una matriu} \relax }}{45}{figure.caption.30}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Diagrama de seq\IeC {\@umlaut u}encia \textit {Actualitzar l'estat d'una predicci\'{o}} \relax }}{46}{figure.caption.32}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de casos d'\'{u}s\relax }}{47}{figure.caption.9}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Model de dades\relax }}{48}{figure.caption.18}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura del sistema\relax }}{47}{figure.caption.31}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Patrons de disseny\relax }}{49}{figure.caption.32}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Interf\IeC {\'\i }cie de configuraci\IeC {\'o} de matrius\relax }}{53}{figure.caption.34}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Interf\IeC {\'\i }cie de configuraci\IeC {\'o} de matrius de prediccions\relax }}{54}{figure.caption.36}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura del sistema\relax }}{50}{figure.caption.33}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Patrons de disseny\relax }}{51}{figure.caption.34}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Interf\IeC {\'\i }cie de configuraci\IeC {\'o} de matrius\relax }}{55}{figure.caption.39}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Interf\IeC {\'\i }cie de configuraci\IeC {\'o} de matrius de prediccions\relax }}{56}{figure.caption.41}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Operacions de serveis web\relax }}{59}{figure.caption.43}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Diagrama de Gant.\relax }}{74}{figure.caption.62}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Operacions de serveis web\relax }}{61}{figure.caption.48}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Interf\IeC {\'\i }cie d'usuari: ''Casa de l'usuari''\relax }}{5}{figure.caption.66}
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Els meus entrenaments\relax }}{7}{figure.caption.67}
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Interf\IeC {\'\i }cie d'usuari: ''Les meves prediccions''\relax }}{8}{figure.caption.68}
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Configuraci\'{o} de variable\relax }}{10}{figure.caption.69}
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Configuraci\'{o} de conjunts de fitxers d'una variable\relax }}{11}{figure.caption.71}
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Fulla de calcul d'exemple\relax }}{12}{figure.caption.75}
-\contentsline {figure}{\numberline {A.7}{\ignorespaces Resultat de la fulla d'exemple\relax }}{13}{figure.caption.76}
-\contentsline {figure}{\numberline {A.8}{\ignorespaces Interf\IeC {\'\i }cie de configuraci\'{o} de matrius\relax }}{14}{figure.caption.77}
-\contentsline {figure}{\numberline {A.9}{\ignorespaces Interfici d'usuari ''Clonar una matriu''\relax }}{15}{figure.caption.85}
-\contentsline {figure}{\numberline {A.10}{\ignorespaces Llistat de matrius\relax }}{16}{figure.caption.86}
-\contentsline {figure}{\numberline {A.11}{\ignorespaces Training que es pot enviar a la cua\relax }}{17}{figure.caption.87}
-\contentsline {figure}{\numberline {A.12}{\ignorespaces Exemple de creaci\'{o} de predicci\'{o}\relax }}{18}{figure.caption.88}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Diagrama de Gant.\relax }}{76}{figure.caption.67}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Interf\IeC {\'\i }cie d'usuari: ''Casa de l'usuari''\relax }}{5}{figure.caption.71}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Els meus entrenaments\relax }}{7}{figure.caption.72}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Interf\IeC {\'\i }cie d'usuari: ''Les meves prediccions''\relax }}{8}{figure.caption.73}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Configuraci\'{o} de variable\relax }}{10}{figure.caption.74}
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Configuraci\'{o} de conjunts de fitxers d'una variable\relax }}{11}{figure.caption.76}
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Fulla de calcul d'exemple\relax }}{12}{figure.caption.80}
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Resultat de la fulla d'exemple\relax }}{13}{figure.caption.81}
+\contentsline {figure}{\numberline {A.8}{\ignorespaces Interf\IeC {\'\i }cie de configuraci\'{o} de matrius\relax }}{14}{figure.caption.82}
+\contentsline {figure}{\numberline {A.9}{\ignorespaces Interfici d'usuari ''Clonar una matriu''\relax }}{15}{figure.caption.90}
+\contentsline {figure}{\numberline {A.10}{\ignorespaces Llistat de matrius\relax }}{16}{figure.caption.91}
+\contentsline {figure}{\numberline {A.11}{\ignorespaces Interf\IeC {\'\i }cie de visualitzaci\IeC {\'o} de entrenaments\relax }}{18}{figure.caption.92}
+\contentsline {figure}{\numberline {A.12}{\ignorespaces Exemple de creaci\'{o} de predicci\'{o}\relax }}{19}{figure.caption.93}
 \addvspace {10\p@ }

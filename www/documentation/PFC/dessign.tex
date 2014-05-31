@@ -1,28 +1,29 @@
 \chapter{Disseny}
 \label{cha:dessign}
 
-En aquest cap\'{i}tol veurem els patrons de dissenys emprats i les tecnologies usades. Tamb\'{e} descriurem les interf\'{i}cies d'usuari m\'{e}s complexa.
-
+En aquest cap\'{i}tol s'explica el disseny implementat per complir l'especificació del sistema. Es defineix la arquitectura del sistema, els patrons de dissenys emprats i les interfícies mes complexes. 
 
 \section{Esquema general l\`{o}gic arquitect\'{o}nic del sistema}
-La figura \ref{fig:archsoftware} \'{e}s un esquema dels components logics del sistema on:
+A continuació expliquem el la arquitectura lògica dels components del sistema. La figura \ref{fig:archsoftware} \'{e}s un esquema s'aquesta arquitectura.\\
 
-\begin{figure}[H]
+Els components de l'arquitectura son:
+
+\begin{figure}[h!]
   \includegraphics[scale=0.5]{img/design/ArchitectureSoftware.png}
   \caption{Arquitectura del sistema}
   \label{fig:archsoftware}
 \end{figure}
 
 \begin{itemize}
-\item \textit{Ichnaea Web Application \& Services}: \'{e}s el \textit{core} de la aplicaci\'{o} i dels serveis HTTP.
+\item \textit{Ichnaea Web Application \& Services}: \'{e}s el \textit{core} de la aplicaci\'{o} i dels serveis HTTP. Es el codi i la aplicació desenvolupada. Es el principal responsable del projecte.
 \item Servidor de correu \'{e}s el servidor SMTP per enviar correus electr\`{o}nics als usuaris.
 \item Productor-Cua-Consumidor \'{e}s el sistema de cues. Expliquem el paradigma al cap\'{i}tol \ref{sec:queue_system_overview}. La funci\'{o} \'{e}s gestionar els inicis, fluxos i finals d'execucions de Ichnaea.
-\item La base de dades \'{e}s on es guarden els continguts i models de dades i resultats.
-\item El sistema de fitxers \'{e}s on es guarden els resultats dels entrenaments per usar amb les prediccions.
+\item La base de dades \'{e}s on es guarden els continguts, els models de dades i els resultats.
+\item El sistema de fitxers \'{e}s on es guarden els resultats en format binari dels entrenaments per usar amb les prediccions.
 \end{itemize}
 
 \section{Patr\'{o} de disseny}
-Per la implementaci\`{o} del sistema web s'han usat un disseny per capes(Presentaci\'{o}, domini i persistència de dades) amb els següents patrons de disseny:
+Per la implementaci\`{o} del sistema web s'han usat un disseny per capes: presentaci\'{o}, domini i persistència de dades. S'han seleccionat els seguents patrons conforme a complir els requeriments especificats.
   \begin{itemize}
   \item Model-Vista-Controlador amb controlador frontal
   \item Capa de Servei
@@ -32,31 +33,41 @@ Per la implementaci\`{o} del sistema web s'han usat un disseny per capes(Present
   \item View template
   \item Interfícies enriquides amb servei webs
   \end{itemize}
+A continuació expliquem detalladem cadascun d'aquests patrons.
 
 \subsection{Esquema del disseny}
-La figura \ref{fig:dessignpatters} \'{e}s el diagrama general dels patrons que s'usaran per aquest projecte.
+Per tal de donar una visió general del patrons de disseny usats, dediquem aquesta secció a un diagrama esquematic dels patrons usats.\\
+
+La figura \ref{fig:dessignpatters} dona una visió general de la integració i les responsabilitats de cadascun dels patrons.
 \begin{figure}[H]
   \includegraphics[scale=0.5]{img/design/IchnaeaPatterns.png}
   \caption{Patrons de disseny}
   \label{fig:dessignpatters}
 \end{figure}
 
+A continuació expliquem detalladament els patrons de disseny i la integracio entre ells.
+
 \subsection{Explicaci\'{o} del disseny}
-El patró MVC,Model-Vista-Controlador, amb controlador frontal \'{e}s un disseny t\'{i}pic en les aplicacions web on:
+\subsubsection{Model-Vista-Controlador amb controlador frontal}
+El patró Model-Vista-Controlador \'{e}s un disseny t\'{i}pic en les aplicacions web on:
 \begin{itemize}
 \item el \textbf{model} \'{e}s una representaci\'{o} de les dades.
 \item la \textbf{vista} transforma el model a un format visible i llegible.
-\item el \textbf{controlador frontal} rep totes les peticions i les re-dirigeix als controladors corresponents
-\item el controlador se encarrega de processar les peticions especifiques
+\item el \textbf{controlador} rep les peticions i dona les sortides.
 \end{itemize}
+El controlador frontal \'{e}s una variació del controlador que centralitza totes les peticions i les re-dirigeix cap als controladors corresponents. La principal avantatge d'aquesta \'{e}s la centralització de les peticions per en un únic punt, augmentem la re-usabilitat del codi i millorem la gestió de la seguretat.
+
+\subsubsection{Injecció de dependencies}
 L'arquitectura \textbf{MVC} separa la capa de presentaci\'{o} de la l\`{o}gica de domini. La capa de presentaci\'{o} accedeix a la capa de domini mitjançant serveis, injectant depend\'{e}ncies. \\
-La \textbf{injecci\'{o} de depend\'{e}ncies} \'{e}s un patr\'{o} a on es subministren objectes a una classe en lloc de ser la classe qui crea els objectes.\cite{dependency_injection} Les avantatges de usar DI(''dependency injection''):
+
+La \textbf{injecci\'{o} de depend\'{e}ncies} \'{e}s un patr\'{o} a on es subministren objectes a una classe en lloc de ser la classe qui crea els objectes.\cite{dependency_injection} Les avantatges de usar DI(''dependency injection'') son:
 \begin{itemize}
 \item Codi m\'{e}s f\`{a}cil de mantenir, extendre o modificar
 \item Desenvolupament guiat per proves (Test Driven Development o TDD en angl\'{e}s)
 \item DI ens obliga a planejar una mica millor les nostres depend\`{e}ncies; decidim si una classe realment necessita d'un altre objecte per realitzar la seva funció.
 \end{itemize}
 
+\subsubsection{Repositori de model de dades}
 En la \textbf{capa de serveis} cont\'{e} la l\'{o}gica de Ichnaea. Accedeixen a les dades mitjançant \textbf{repositoris} d'objectes. Els \textbf{repositoris} son mediadors entre el domini i les dades persistents. Els repositoris retornen entitats i/o collecions d'entitats de la l\'{ogica} de domini. \\
 
 El \textbf{mapatge de dades} ORM(''Object Relational Mapping''), mapatge objecte-relacional, \'{e}s un patr\'{o} de disseny(encara que alguns enginyers els agrada dir que \'{e}s una tècnica de programaci\'{o} i a uns altres una tecnologia) que estableix una relaci\'{o} directe entre les entitats i la dades persistents.\cite{orm}

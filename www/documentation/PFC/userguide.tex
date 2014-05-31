@@ -244,7 +244,7 @@ Una vegada actualitzat les dades en alguna columna, apareixerà la icona \iconed
 
 \subsection{Clonar una matriu}
 \label{subsec:clone_matrix}
-L'objectiu de clonar una matriu es per tenir matrius similars però per canviar de configuracions. L'objectiu de canviar de configuració es crear entrenaments amb altres configuracions(altres conjunts de fitxers per variable, o modificar un origen , etc). No es copien ni els entrenaments ni les prediccions.\\
+L'objectiu de clonar una matriu es per tenir matrius similars però per canviar de configuracions. L'objectiu de canviar de configuració es crear entrenaments amb altres configuracions(altres conjunts de fitxers per variable, o modificar un origen , etc). No es copien ni els entrenaments ni les prediccions. Una matriu entrenada no es pot canviar la configuració.\\
 
 Per clonar una matriu, seguir el menú ''Ichnaea Data - View Matrix'', podem accedir al llistat de variables del sistema; amb la icona \iconclone accedim al formulari de clonaci\'{o}(figura \ref{fig:cloneMatrix}). 
 \begin{figure}[h!]
@@ -258,6 +258,7 @@ El formulari suggereix un nom que es pot canviar. Si l'usuari accepta la clonaci
 
 \section{Entrenaments}
 \subsection{Crear un entrenament d'una matriu}
+\label{subsec:createtraining}
 Per crear un entrenament primerament s'ha de seleccionar un matriu. Per crear un entrenament existeixen diferents formes:
 \begin{itemize} 
 \item Opció 1) Des de el llistat de matrius entrenables(''Ichnaea Data >> Create training'') amb la icona \icontraining.
@@ -284,17 +285,40 @@ Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i
 \label{subsec:viewtraining}
 Des de la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus entrenaments pendents i en quin estadi es troben. Per els finalitzats, es poden accedir des de ''Els meus entrenaments''(secció \ref{subsec:myTrainings}).
 
+La figura \ref{fig:viewTraining} es la interfícies que mostra un entrenament on:
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{img/userguide/view_training_pending.png}
+  \caption{Interfície de visualització de entrenaments}
+  \label{fig:viewTraining}
+\end{figure}
+\begin{itemize}
+\item Títol: nom de l'entrenament, data de creació i propietari.
+\item Configuracio: 
+\begin{itemize}
+\item Nom de la matriu com enllaç
+\item Nom de l'entrenament
+\item Origin-versus seleccionat(veure \ref{subsec:createtraining}).
+\item \textbf{Cue id}: identificador del proces a la cua.
+\end{itemize}
+\item Columnes seleccionades per entrenar
+\item Resultat: es una barra de progressió. Actualment Ichnaea no ens retorna estats parcial. Així que la barra estarà buida o plena.
+\item Errors: errors capturats d'Ichnaea.
+\item Prediccions: prediccions fetes amb aquest entrenament. Amb la icona \iconadd es pot crear una predicció usant aquest entrenament.
+\end{itemize}
+
+\section{Prediccions}
+\subsection{Crear un entrenament d'una matriu}
+Per crear una matriu de prediccions, primer s'ha de seleccionar un entrenament. Per seleccionar un entrenament i crear una predicció tenim X opcions:
+\begin{itemize}
+\item Opció a) Seguir el menú ''Trainings'' >> ''Create trainings'' >> Seleccionar un entrenament amb \icontableninesquares
+\item Opcio b) Des de la interfície de visualitzacions d'entrenaments(mirar \ref{subsec:viewtraining}).
+\end{itemize}
 
 \section{Problemes de Ichnaea}
 \label{sec:ichnaeaErrors}
 \subsection{Error en els entrenaments}
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale=0.2]{img/userguide/view_training_pending.png}
-  \caption{Training que es pot enviar a la cua}
-  \label{fig:placement}
-\end{figure}
 
 Actualment Ichnaea Software i el sistema de cues no esta implantat. Per defecte, la creaci\'{o} donar\'{a} error. Per tant, es pot utilitzar la simulaci\'{o} de trainings.
 A banda d'aix\'{o}, tenim predifinits un conjunt de situacions que a continuaci\'{o} descrivim.
