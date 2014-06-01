@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  31 MAY 2014 20:17
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.1)  1 JUN 2014 19:25
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -687,17 +687,13 @@ Package glossaries Info: Writing glossary file main.glo on input line 63.
 
 LaTeX Warning: Label `fig:statestraining' multiply defined.
 
-) (./dessign.aux) (./implementation.aux
-
-LaTeX Warning: Label `fig:dessignpatters' multiply defined.
-
-) (./test.aux
+) (./dessign.aux) (./implementation.aux) (./test.aux
 
 LaTeX Warning: Label `cypruss' multiply defined.
 
 ) (./conclussions.aux) (./bibliography.aux) (./userguide.aux
 
-LaTeX Warning: Label `fig:placement' multiply defined.
+LaTeX Warning: Label `fig:viewTraining' multiply defined.
 
 ) (./adminguide.aux))
 \openout1 = `main.aux'.
@@ -837,7 +833,7 @@ Overfull \hbox (9.05678pt too wide) in paragraph at lines 55--63
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.104 ...rediccions pendents}{6}{subsection.A.1.2}
+l.107 ...rediccions pendents}{8}{subsection.A.1.2}
                                                    [2])
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -1013,11 +1009,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
  []
 
-[11] <img/specification/Actors.png, id=607, 577.15625pt x 436.63126pt>
+[11] <img/specification/Actors.png, id=608, 577.15625pt x 436.63126pt>
 File: img/specification/Actors.png Graphic file (type png)
 
 <use img/specification/Actors.png>
-<img/specification/UsesCases.png, id=610, 1114.1625pt x 3458.9225pt>
+<img/specification/UsesCases.png, id=611, 1114.1625pt x 3458.9225pt>
 File: img/specification/UsesCases.png Graphic file (type png)
 
 <use img/specification/UsesCases.png>
@@ -1225,47 +1221,47 @@ Underfull \vbox (badness 10000) detected at line 703
 Underfull \vbox (badness 10000) detected at line 720
  []
 
-[36] <img/specification/ModelClass.png, id=929, 1105.12875pt x 818.05624pt>
+[36] <img/specification/ModelClass.png, id=930, 1105.12875pt x 818.05624pt>
 File: img/specification/ModelClass.png Graphic file (type png)
 
 <use img/specification/ModelClass.png> [37]
-Overfull \hbox (9.91643pt too wide) in paragraph at lines 755--756
+Overfull \hbox (9.91643pt too wide) in paragraph at lines 756--757
 []\OT1/lmr/m/it/12 VariableMatrixConfig\OT1/lmr/m/n/12 : aque-s-ta classe guar-
 da la con-fig-u-raci^^So d'u-na colum-
  []
 
 
-Overfull \hbox (1.43416pt too wide) in paragraph at lines 768--769
+Overfull \hbox (1.43416pt too wide) in paragraph at lines 769--770
 []\OT1/lmr/m/n/12 predictionResult: col-lec-ci^^So de re-sul-tats de la ex-e-cu
 -ci^^So d'u-na predic-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 779--780
+Underfull \hbox (badness 10000) in paragraph at lines 780--781
 
  []
 
-[38] <img/specification/StatesTraining.png, id=948, 494.84875pt x 360.34625pt>
+[38] <img/specification/StatesTraining.png, id=949, 494.84875pt x 360.34625pt>
 File: img/specification/StatesTraining.png Graphic file (type png)
 
 <use img/specification/StatesTraining.png>
-Underfull \hbox (badness 10000) in paragraph at lines 790--791
+Underfull \hbox (badness 10000) in paragraph at lines 791--792
 
  []
 
-<img/specification/StatesPrediction.png, id=949, 513.92pt x 452.69125pt>
+<img/specification/StatesPrediction.png, id=950, 513.92pt x 452.69125pt>
 File: img/specification/StatesPrediction.png Graphic file (type png)
 
 <use img/specification/StatesPrediction.png>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39 <./img/specification/StatesTraining.png>]
-<img/specification/SequenceNewSeasonSe.png, id=957, 627.34375pt x 621.32124pt>
+<img/specification/SequenceNewSeasonSe.png, id=958, 627.34375pt x 621.32124pt>
 File: img/specification/SequenceNewSeasonSe.png Graphic file (type png)
 
 <use img/specification/SequenceNewSeasonSe.png> [40 <./img/specification/States
 Prediction.png>]
-<img/specification/SequenceAddNewFilesToSeasonSet.png, id=966, 627.34375pt x 62
+<img/specification/SequenceAddNewFilesToSeasonSet.png, id=967, 627.34375pt x 62
 1.32124pt>
 File: img/specification/SequenceAddNewFilesToSeasonSet.png Graphic file (type p
 ng)
@@ -1273,18 +1269,18 @@ ng)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [41 <./img/specification/SequenceNewSeasonSe.png>]
-<img/specification/SequenceCreateMatrix.png, id=976, 381.425pt x 399.4925pt>
+<img/specification/SequenceCreateMatrix.png, id=977, 381.425pt x 399.4925pt>
 File: img/specification/SequenceCreateMatrix.png Graphic file (type png)
 
 <use img/specification/SequenceCreateMatrix.png>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [42 <./img/specification/SequenceAddNewFilesToSeasonSet.png>]
-<img/specification/SequenceCreateTraining.png, id=985, 799.98875pt x 781.92125p
+<img/specification/SequenceCreateTraining.png, id=986, 799.98875pt x 781.92125p
 t>
 File: img/specification/SequenceCreateTraining.png Graphic file (type png)
  <use img/specification/SequenceCreateTraining.png>
-Overfull \hbox (9.9934pt too wide) in paragraph at lines 838--839
+Overfull \hbox (9.9934pt too wide) in paragraph at lines 839--840
  [][] 
  []
 
@@ -1292,17 +1288,17 @@ Overfull \hbox (9.9934pt too wide) in paragraph at lines 838--839
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [43 <./img/specification/SequenceCreateMatrix.png>]
-<img/specification/SequenceConfigureColumn.png, id=994, 588.1975pt x 706.64pt>
+<img/specification/SequenceConfigureColumn.png, id=995, 588.1975pt x 706.64pt>
 File: img/specification/SequenceConfigureColumn.png Graphic file (type png)
 
 <use img/specification/SequenceConfigureColumn.png>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [44 <./img/specification/SequenceCreateTraining.png>]
-<img/specification/SequenceUpdatePrediccio.png, id=1003, 760.8425pt x 313.17pt>
+<img/specification/SequenceUpdatePrediccio.png, id=1004, 760.8425pt x 313.17pt>
 File: img/specification/SequenceUpdatePrediccio.png Graphic file (type png)
 <use img/specification/SequenceUpdatePrediccio.png>
-Overfull \hbox (66.50902pt too wide) in paragraph at lines 856--857
+Overfull \hbox (66.50902pt too wide) in paragraph at lines 857--858
  [][] 
  []
 
@@ -1321,7 +1317,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
 
-<img/design/ArchitectureSoftware.png, id=1029, 835.12pt x 479.7925pt>
+<img/design/ArchitectureSoftware.png, id=1030, 835.12pt x 479.7925pt>
 File: img/design/ArchitectureSoftware.png Graphic file (type png)
 
 <use img/design/ArchitectureSoftware.png>
@@ -1338,86 +1334,230 @@ Overfull \hbox (4.16542pt too wide) in paragraph at lines 20--21
 m el paradig-
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+
+ []
+
 [49
 
 
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+] [50 <./img/design/ArchitectureSoftware.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[50 <./img/design/ArchitectureSoftware.png>]
-<img/design/IchnaeaPatterns.png, id=1042, 911.405pt x 495.8525pt>
+<img/design/IchnaeaPatterns.png, id=1044, 1485.55pt x 518.93875pt>
 File: img/design/IchnaeaPatterns.png Graphic file (type png)
 
 <use img/design/IchnaeaPatterns.png>
-Overfull \hbox (65.70139pt too wide) in paragraph at lines 43--44
+Overfull \hbox (2.20947pt too wide) in paragraph at lines 46--47
 [][] 
  []
 
-[51 <./img/design/IchnaeaPatterns.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
+Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
-[52] [53]
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+[51]
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
 
-<img/design/Interficiedeconfiguracio.png, id=1068, 789.95125pt x 558.085pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--85
+
+ []
+
+
+Overfull \hbox (8.56033pt too wide) in paragraph at lines 89--90
+\OT1/lmr/m/n/12 El \OT1/lmr/bx/n/12 ma-p-atge de dades \OT1/lmr/m/n/12 ORM(''Ob
+ject Re-la-tion-al Map-ping''), ma-p-atge objecte-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+
+ []
+
+[52]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+<img/design/Maininterface.png, id=1066, 367.3725pt x 264.99pt>
+File: img/design/Maininterface.png Graphic file (type png)
+
+<use img/design/Maininterface.png> [53]
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
+
+ []
+
+[54 <./img/design/Maininterface.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+
+ []
+
+[55]
+<img/design/Interficiedeconfiguracio.png, id=1095, 789.95125pt x 558.085pt>
 File: img/design/Interficiedeconfiguracio.png Graphic file (type png)
 
 <use img/design/Interficiedeconfiguracio.png>
-Overfull \hbox (4.97466pt too wide) in paragraph at lines 144--145
+Overfull \hbox (4.97466pt too wide) in paragraph at lines 191--192
  [][] 
  []
 
-[54]
-<img/design/Interficiedeconfiguraciopredi.png, id=1077, 789.95125pt x 530.98375
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [56]
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
+
+ []
+
+[57 <./img/design/Interficiedeconfiguracio.png>]
+<img/design/Interficiedeconfiguraciopredi.png, id=1109, 789.95125pt x 530.98375
 pt>
 File: img/design/Interficiedeconfiguraciopredi.png Graphic file (type png)
  <use img/design/Interficiedeconfiguraciopredi.png>
-Overfull \hbox (4.97466pt too wide) in paragraph at lines 164--165
+Overfull \hbox (4.97466pt too wide) in paragraph at lines 213--214
  [][] 
  []
 
-) [55 <./img/design/Interficiedeconfiguracio.png>] [56 <./img/design/Interficie
-deconfiguraciopredi.png>]
+) [58 <./img/design/Interficiedeconfiguraciopredi.png>] [59 <./img/design/Ichna
+eaPatterns.png>] [60
+
+
+]
 \openout2 = `implementation.aux'.
 
  (./implementation.tex
 Cap\'{\i }tol 5.
-[57
+
+Overfull \hbox (15.30713pt too wide) in paragraph at lines 6--7
+\OT1/lmr/m/n/12 al-itzaci^^So d'aque-st pro-jecte. S'han aval-u-at difer-ents m
+arcs de tre-balls(\OT1/lmr/m/it/12 framework\OT1/lmr/m/n/12 )
+ []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
 
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
 ! Undefined control sequence.
-l.53 El \itemit
-               {framework} escollit ha sigut \textit{Symfony2}. A continuaci...
+l.13 ...envolupament dels servei web amb un \texit
+                                                  {framework} anomenat \text...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[58]
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+
+ []
+
+[61
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+[62]
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+
+ []
+
+
+Overfull \hbox (24.01454pt too wide) in paragraph at lines 68--69
+\OT1/lmr/m/n/12 Finalment es va es-tu-di-ar les tend^^Rencies ac-tu-als i es va
+ de-cidir es-tu-di-ar \OT1/lmr/m/it/12 Symfony2\OT1/lmr/m/n/12 .[[]]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
+
+ []
+
+[63]
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+
+ []
+
+[64]
 ! Undefined control sequence.
-l.70 \item Bootstrap: \texit
+l.99 \item Bootstrap: \texit
                             {framework} pel \textit{front-end} desenvolupat ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1425,132 +1565,147 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[59]
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--88
-
+Underfull \hbox (badness 2229) in paragraph at lines 119--119
+[]\OT1/lmr/m/n/12 Conjunt de fitx-ers d'u-na
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
-
- []
-
-<img/implementation/apirestul.png, id=1131, 932.48375pt x 286.06876pt>
-File: img/implementation/apirestul.png Graphic file (type png)
-
-<use img/implementation/apirestul.png>
-Overfull \hbox (76.24074pt too wide) in paragraph at lines 98--99
+Overfull \hbox (60.79134pt too wide) in paragraph at lines 112--122
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--101
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
+
+ []
+
+[65] <img/implementation/apirestul.png, id=1184, 932.48375pt x 286.06876pt>
+File: img/implementation/apirestul.png Graphic file (type png)
+
+<use img/implementation/apirestul.png>
+Overfull \hbox (76.24074pt too wide) in paragraph at lines 135--136
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--138
+
+ []
+
+[66 <./img/implementation/apirestul.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 
-Underfull \vbox (badness 2521) has occurred while \output is active []
-
- [60]
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
-
- []
-
-[61 <./img/implementation/apirestul.png (PNG copy)>]
-Overfull \hbox (1.1431pt too wide) in paragraph at lines 123--124
+Overfull \hbox (1.1431pt too wide) in paragraph at lines 160--161
 \OT1/lmr/m/n/12 pro-duc-tor ^^Ses un pro-ces emis-sor i el con-sum-i-dor ^^Ses 
 un pro-ces receptor.[[]] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
+ []
+
+[67]
+
+LaTeX Warning: Reference `dessign:archsoftware' on page 68 undefined on input l
+ine 172.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
  []
 
 
-LaTeX Warning: Reference `dessign:archsoftware' on page 62 undefined on input l
-ine 135.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 142.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 179.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 147.
+(Font)              <10> on input line 184.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 147.
+(Font)              <7> on input line 184.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 147.
-LaTeX Font Info:    Try loading font information for OML+lmr on input line 147.
+(Font)              <5> on input line 184.
+LaTeX Font Info:    Try loading font information for OML+lmr on input line 184.
 
 (/usr/share/texmf/tex/latex/lm/omllmr.fd
 File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <10> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 147.
- [62]
-Overfull \hbox (10.00354pt too wide) in paragraph at lines 169--170
+(Font)              Font shape `OML/lmm/m/it' tried instead on input line 184.
+ [68]
+Overfull \hbox (10.00354pt too wide) in paragraph at lines 206--207
 [][][][][][][][][][][]  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
 
  []
 
 
-Overfull \hbox (12.00336pt too wide) in paragraph at lines 184--186
-[][][][][][][][][][][][][]  
- []
-
-[63]
-Underfull \hbox (badness 10000) in paragraph at lines 197--198
-
- []
-
-
-Overfull \hbox (72.00397pt too wide) in paragraph at lines 201--203
+Overfull \hbox (12.00336pt too wide) in paragraph at lines 221--223
 [][][][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (4.00348pt too wide) in paragraph at lines 213--214
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
+
+ []
+
+[69]
+Overfull \hbox (72.00397pt too wide) in paragraph at lines 238--240
+[][][][][][][][][][][][][]  
+ []
+
+
+Overfull \hbox (4.00348pt too wide) in paragraph at lines 250--251
 [][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.42636pt too wide) in paragraph at lines 218--219
+Overfull \hbox (15.42636pt too wide) in paragraph at lines 255--256
 \OT1/lmr/m/n/12 del pro-ces i re-sul-tats. Els re-sul-tats son uns ob-jectes qu
 e es guarden cont^^S^^Pnuament
  []
 
-[64]
-Underfull \hbox (badness 10000) in paragraph at lines 222--224
+
+Underfull \hbox (badness 10000) in paragraph at lines 259--261
 
  []
 
-) [65] [66
-
-
-]
+) [70]
 \openout2 = `test.aux'.
 
  (./test.tex
 Cap\'{\i }tol 6.
-[67
+[71
+
+
 
 
 ]
@@ -1560,14 +1715,14 @@ l.30 ...es(columnes). La importaci\'{o}(creaci\{'}
 You've closed more groups than you opened.
 Such booboos are generally harmless, so keep going.
 
-[68]
+[72]
 ! Too many }'s.
 l.81 ...roporcionada. La importaci\'{o}(creaci\{'}
                                                    del model de dades a part...
 You've closed more groups than you opened.
 Such booboos are generally harmless, so keep going.
 
-[69]) [70]
+[73]) [74]
 \openout2 = `conclussions.aux'.
 
  (./conclussions.tex
@@ -1635,7 +1790,7 @@ Overfull \hbox (62.3078pt too wide) in alignment at lines 24--45
 Underfull \vbox (badness 10000) detected at line 45
  []
 
-[71
+[75
 
 
 
@@ -1650,7 +1805,7 @@ Overfull \hbox (62.3078pt too wide) in alignment at lines 45--50
  [] [] [] [] 
  []
 
-[72] <img/conclussions/gantz.png, id=1293, 1222.5675pt x 304.13625pt>
+[76] <img/conclussions/gantz.png, id=1336, 1222.5675pt x 304.13625pt>
 File: img/conclussions/gantz.png Graphic file (type png)
 
 <use img/conclussions/gantz.png>
@@ -1748,7 +1903,7 @@ Overfull \hbox (28.14952pt too wide) in paragraph at lines 72--82
 [][] 
  []
 
-[73] [74]) [75] [76 <./img/conclussions/gantz.png (PNG copy)>]
+[77] [78]) [79] [80 <./img/conclussions/gantz.png (PNG copy)>]
 ! Undefined control sequence.
 l.103 \cleardouplepage
                       
@@ -1790,24 +1945,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
-[]\OT1/lmr/m/n/12 Fabien Po-tenci-er ''What is Sym-fony2?'' [On-line]
+Underfull \hbox (badness 1596) in paragraph at lines 22--23
+[]\OT1/lmr/m/n/12 Fabien Po-tenci-er ''What is Sym-fony2?'' [On-line] Disponibl
+e a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-[]\OT1/lmr/m/n/12 ''Advanced Mes-sage Queu-ing Pro-to-col'' [On-line]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
-[]\OT1/lmr/m/n/12 ''El pa-tr^^Son Repos-i-to-rio (Repos-i-to-ry Pat-tern)'' [On
--line]
+Underfull \hbox (badness 5924) in paragraph at lines 24--25
+[]\OT1/lmr/m/n/12 ''Advanced Mes-sage Queu-ing Pro-to-col'' [On-line] Disponibl
+e a
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 26--27
-\OT1/lmr/m/n/12 ''http://barradevblog.wordpress.com/2013/04/23/el-patron-
+\OT1/lmr/m/n/12 a ''http://barradevblog.wordpress.com/2013/04/23/el-patron-
  []
 
 
@@ -1816,37 +1967,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--27
 ty-
  []
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.28 ...ine] ''http://es.wikipedia.org/wiki/Mapeo_
-                                                  objeto-relacional''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.29 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.29 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (50.31981pt too wide) in paragraph at lines 28--29
-[]\OT1/lmr/m/n/12 ''Mapeo objeto-relacional'' [On-line] ''http://es.wikipedia.o
-rg/wiki/Mapeo$[]\OML/lmm/m/it/12 bjeto \OMS/lmsy/m/n/12 ^^@
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+[]\OT1/lmr/m/n/12 ''Mapeo objeto-relacional'' [On-line] Disponible a
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
@@ -1855,258 +1978,113 @@ been already used, duplicate ignored
                    \relax 
 l.29 
       [3]
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.29 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.44 ...ne] ''http://en.wikipedia.org/wiki/Active_
-                                                  record_pattern''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.45 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.45 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (31.18948pt too wide) in paragraph at lines 44--45
-[]\OT1/lmr/m/n/12 Active record Pat-tern [On-line] ''http://en.wikipedia.org/wi
-ki/Active$[]\OML/lmm/m/it/12 ecord[]attern[][]$ 
- []
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.45 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-[]\OT1/lmr/m/n/12 Composer, De-pen-den-cy Man-ag-er for PHP [On-line]
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+[]\OT1/lmr/m/n/12 Web de Mar-tin Fowler [On-line] Disponible a
  []
 
 
-Overfull \hbox (137.40846pt too wide) in paragraph at lines 48--49
-[]\OT1/lmr/m/n/12 FriendsOfSymfony/FOSUserBundle [On-line] ''https://github.com
-/FriendsOfSymfony/FOSUserBundle'' 
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.50 ...p://en.wikipedia.org/wiki/List\_of\_HTT\P_
-                                                  status\_codes''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.51 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.51 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (81.40126pt too wide) in paragraph at lines 50--51
-[]\OT1/lmr/m/n/12 List of HTTP sta-tus code [On-line] ''http://en.wikipedia.org
-/wiki/List[]of[]HTT\OMS/lmsy/m/n/12 {$[]\OML/lmm/m/it/12 tatus[]codes[][]$ 
- []
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.51 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.52 ...line] ''http://en.wikipedia.org/wiki/HTTP_
-                                                  cookie''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.53 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.53 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.53 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.54 ...e] ''http://en.wikipedia.org/wiki/Session_
-                                                  ID''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.55 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.55 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.55 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.56 ...s/~infosd/lib/exe/fetch.php?media=es:paso_
-                                                  de_mensajes.pdf''
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.57 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.57 
-     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
-[]\OT1/lmr/m/n/12 ''Paso de men-sajes'' PDF por Grupo Ar-cos [On-line]
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+[]\OT1/lmr/m/n/12 Web de la co-mu-ni-tat Ag-ile [On-line] Disponible a
  []
 
 
-Overfull \hbox (67.56317pt too wide) in paragraph at lines 56--57
-\OT1/lmr/m/n/12 ''http://www.arcos.inf.uc3m.es/ infosd/lib/exe/fetch.php?media=
-es:paso$[]\OML/lmm/m/it/12 e[]ensajes:pdf[][]$ 
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+[]\OT1/lmr/m/n/12 ''Agile Man-i-festo'' [On-line] Disponible a
  []
 
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.57 
-     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+
+Underfull \hbox (badness 3229) in paragraph at lines 38--39
+\OT1/lmr/m/n/12 a ''http://scrummethodology.com/scrum-effort-estimation-and-sto
+ry-
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+[]\OT1/lmr/m/n/12 ''A Ful-ly Baked PHP Frame-work'' [On-line] Disponible a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+[]\OT1/lmr/m/n/12 ''Active record Pat-tern'' [On-line] Disponible a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
+[]\OT1/lmr/m/n/12 ''FriendsOfSymfony/FOSUserBundle'' [On-line] Disponible a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+[]\OT1/lmr/m/n/12 ''List of HTTP sta-tus code'' [On-line] Disponible a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
+[]\OT1/lmr/m/n/12 ''HTTP cook-ie'' [On-line] Disponible a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
+[]\OT1/lmr/m/n/12 ''Session ID'' [On-line] Disponible a
+ []
+
+
+Overfull \hbox (102.60754pt too wide) in paragraph at lines 56--57
+\OT1/lmr/m/n/12 ''http://www.arcos.inf.uc3m.es/[]infosd/lib/exe/fetch.php?media
+=es:paso[]de[]mensajes.pdf'' 
+ []
+
+
+Underfull \hbox (badness 1983) in paragraph at lines 58--59
 []\OT1/lmr/m/n/12 Sensio Labs Core Team ''Sym-fony2 - The Book"[Online] PDF
  []
 
-)pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+[]\OT1/lmr/m/n/12 ''Unified Mod-el-ing Lan-guage'' [On-line] Disponible a
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.61 
+      [4]
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
+[]\OT1/lmr/m/n/12 ''P of EAA: Tem-plate View'' [On-line] Disponible a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
+[]\OT1/lmr/m/n/12 ''Ajax(programming)'' [On-line] Disponible a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+[]\OT1/lmr/m/n/12 ''RESTful Web Ser-vices in Java'' [On-line] Disponible
+ []
+
+)pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.104 \include{bibliography}
-                             [4]
+                             [5]
 No file main.gls.
 \openout2 = `userguide.aux'.
 
-(./userguide.tex
+(./userguide.texpdfTeX warning (ext4): destination with the same identifier (na
+me{page.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 \chapter
+            {Manual d'usuari} [6
+
+
+
+]
 Ap\`endix A.
-<img/userguide/dashboard.png, id=1339, 984.67876pt x 651.43375pt>
+<img/userguide/dashboard.png, id=1384, 984.67876pt x 651.43375pt>
 File: img/userguide/dashboard.png Graphic file (type png)
 
 <use img/userguide/dashboard.png>
@@ -2114,47 +2092,43 @@ Overfull \hbox (3.86452pt too wide) in paragraph at lines 10--11
  [][] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
+pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.19 \item N
-            om del entrenament. [5
-
-
-
- <./img/userguide/dashboard.png (PNG copy)>]
+            om del entrenament. [7 <./img/userguide/dashboard.png (PNG copy)>]
 Overfull \hbox (20.35068pt too wide) in paragraph at lines 26--27
 []\OT1/lmr/m/n/12 Status. Els pos-si-bles es-tats son ''pend-ing''(no s'ha pogu
 t en-viar),''sent''(s'ha
  []
 
 
-LaTeX Warning: Reference `subsec:trainingerrorsIchnaea' on page 6 undefined on 
+LaTeX Warning: Reference `subsec:trainingerrorsIchnaea' on page 8 undefined on 
 input line 27.
 
-<img/icons/eyeopen.png, id=1346, 31.11626pt x 24.09pt>
+<img/icons/eyeopen.png, id=1390, 31.11626pt x 24.09pt>
 File: img/icons/eyeopen.png Graphic file (type png)
 
 <use img/icons/eyeopen.png>pdfTeX warning (ext4): destination with the same ide
-ntifier (name{page.6}) has been already used, duplicate ignored
+ntifier (name{page.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.43 \item S
             tatus. Els possibles stats son ''pending''(no s'ha pogut enviar)...
-[6 <./img/icons/eyeopen.png (PNG copy)>]
+[8 <./img/icons/eyeopen.png (PNG copy)>]
 Overfull \hbox (15.1287pt too wide) in paragraph at lines 43--44
 []\OT1/lmr/m/n/12 Status. Els pos-si-bles stats son ''pend-ing''(no s'ha pogut 
 en-viar),''sent''(s'ha
  []
 
 
-LaTeX Warning: Reference `subsec:trainingerrorsIchnaea' on page 7 undefined on 
+LaTeX Warning: Reference `subsec:trainingerrorsIchnaea' on page 9 undefined on 
 input line 44.
 
 File: img/icons/eyeopen.png Graphic file (type png)
 <use img/icons/eyeopen.png>
-<img/userguide/my_trainings.png, id=1351, 984.67876pt x 686.565pt>
+<img/userguide/my_trainings.png, id=1395, 984.67876pt x 686.565pt>
 File: img/userguide/my_trainings.png Graphic file (type png)
 
 <use img/userguide/my_trainings.png>
@@ -2162,12 +2136,12 @@ Overfull \hbox (3.86452pt too wide) in paragraph at lines 56--57
  [][] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has 
+pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.64 \item D
-            escripci\'{o} del entrenament. [7 <./img/userguide/my_trainings.png
+            escripci\'{o} del entrenament. [9 <./img/userguide/my_trainings.png
  (PNG copy)>]
 Overfull \hbox (21.65668pt too wide) in paragraph at lines 69--70
 []\OT1/lmr/m/n/12 Status. Els pos-si-bles sta-tus son ''pend-ing''(no s'ha pogu
@@ -2177,10 +2151,10 @@ t en-viar),''sent''(s'ha
 File: img/icons/eyeopen.png Graphic file (type png)
 <use img/icons/eyeopen.png>
 
-LaTeX Warning: Reference `fig:my_prediccions' on page 8 undefined on input line
- 78.
+LaTeX Warning: Reference `fig:my_prediccions' on page 10 undefined on input lin
+e 78.
 
-<img/userguide/my_predictions.png, id=1357, 985.6825pt x 357.335pt>
+<img/userguide/my_predictions.png, id=1401, 985.6825pt x 357.335pt>
 File: img/userguide/my_predictions.png Graphic file (type png)
 
 <use img/userguide/my_predictions.png>
@@ -2188,31 +2162,31 @@ Overfull \hbox (4.266pt too wide) in paragraph at lines 81--82
  [][] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has 
-been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.90 \item O
             rigen: Paràmetre de creació seleccionat per l'entrenament. Act...
-[8 <./img/userguide/my_predictions.png (PNG copy)>]
+[10 <./img/userguide/my_predictions.png (PNG copy)>]
 Overfull \hbox (21.65668pt too wide) in paragraph at lines 93--94
 []\OT1/lmr/m/n/12 Status. Els pos-si-bles sta-tus son ''pend-ing''(no s'ha pogu
 t en-viar),''sent''(s'ha
  []
 
 
-LaTeX Warning: Reference `subsec:trainingerrorsIchnaea' on page 9 undefined on 
-input line 94.
+LaTeX Warning: Reference `subsec:trainingerrorsIchnaea' on page 11 undefined on
+ input line 94.
 
 File: img/icons/eyeopen.png Graphic file (type png)
 <use img/icons/eyeopen.png>
-<img/icons/iconfolderopen.png, id=1362, 39.14626pt x 33.12375pt>
+<img/icons/iconfolderopen.png, id=1406, 39.14626pt x 33.12375pt>
 File: img/icons/iconfolderopen.png Graphic file (type png)
 
 <use img/icons/iconfolderopen.png>
 File: img/icons/eyeopen.png Graphic file (type png)
  <use img/icons/eyeopen.png>
-<img/userguide/variable_configuration.png, id=1363, 788.9475pt x 481.8pt>
+<img/userguide/variable_configuration.png, id=1407, 788.9475pt x 481.8pt>
 File: img/userguide/variable_configuration.png Graphic file (type png)
 
 <use img/userguide/variable_configuration.png>
@@ -2223,23 +2197,23 @@ Overfull \hbox (4.47278pt too wide) in paragraph at lines 109--110
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/icons/edit.png, id=1364, 31.11626pt x 28.105pt>
+<img/icons/edit.png, id=1408, 31.11626pt x 28.105pt>
 File: img/icons/edit.png Graphic file (type png)
  <use img/icons/edit.png>pdfTeX warning (ext4): destination with the same ident
-ifier (name{page.9}) has been already used, duplicate ignored
+ifier (name{page.11}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.119 \item \icontrash
                        per esborrar tot el conjunt i tots el fitxers associa...
-[9 <./img/icons/iconfolderopen.png (PNG copy)>]
-<img/icons/trash.png, id=1369, 25.09375pt x 35.13126pt>
+[11 <./img/icons/iconfolderopen.png (PNG copy)>]
+<img/icons/trash.png, id=1413, 25.09375pt x 35.13126pt>
 File: img/icons/trash.png Graphic file (type png)
 
-<use img/icons/trash.png> <img/icons/add.png, id=1370, 29.10875pt x 36.135pt>
+<use img/icons/trash.png> <img/icons/add.png, id=1414, 29.10875pt x 36.135pt>
 File: img/icons/add.png Graphic file (type png)
 
 <use img/icons/add.png>
-<img/userguide/season_set_edition.png, id=1372, 772.8875pt x 553.06625pt>
+<img/userguide/season_set_edition.png, id=1416, 772.8875pt x 553.06625pt>
 File: img/userguide/season_set_edition.png Graphic file (type png)
 
 <use img/userguide/season_set_edition.png>
@@ -2251,13 +2225,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has
+pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.137 E
        l selector de temporades es per configurar el fitxer com estiu, hiver...
-[10 <./img/userguide/variable_configuration.png (PNG copy)> <./img/icons/edit.p
+[12 <./img/userguide/variable_configuration.png (PNG copy)> <./img/icons/edit.p
 ng (PNG copy)> <./img/icons/trash.png (PNG copy)> <./img/icons/add.png (PNG cop
 y)>]
 Underfull \hbox (badness 10000) in paragraph at lines 137--138
@@ -2270,34 +2244,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--143
  []
 
 File: img/icons/trash.png Graphic file (type png)
-<use img/icons/trash.png> <img/icons/remove.png, id=1378, 32.12pt x 28.105pt>
+<use img/icons/trash.png> <img/icons/remove.png, id=1423, 32.12pt x 28.105pt>
 File: img/icons/remove.png Graphic file (type png)
 
 <use img/icons/remove.png>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has
+pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.149 
-       [11 <./img/userguide/season_set_edition.png (PNG copy)>]
-
-LaTeX Warning: Reference `matrixSource' on page 12 undefined on input line 156.
-
-
-<img/userguide/matrix_source.png, id=1384, 752.8125pt x 207.77625pt>
+       [13 <./img/userguide/season_set_edition.png (PNG copy)>]
+<img/userguide/matrix_source.png, id=1429, 752.8125pt x 207.77625pt>
 File: img/userguide/matrix_source.png Graphic file (type png)
 
 <use img/userguide/matrix_source.png>pdfTeX warning (ext4): destination with th
-e same identifier (name{page.12}) has been already used, duplicate ignored
+e same identifier (name{page.14}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.176 \item
             Si el identificador de la mostra conte HM es resoldrà com HUMAN.
-[12 <./img/icons/remove.png (PNG copy)> <./img/userguide/matrix_source.png (PNG
+[14 <./img/icons/remove.png (PNG copy)> <./img/userguide/matrix_source.png (PNG
  copy)>]
-<img/userguide/matrix_resulting.png, id=1391, 1322.9425pt x 292.09125pt>
+<img/userguide/matrix_resulting.png, id=1436, 1322.9425pt x 292.09125pt>
 File: img/userguide/matrix_resulting.png Graphic file (type png)
 
 <use img/userguide/matrix_resulting.png>
@@ -2305,99 +2275,107 @@ Overfull \hbox (6.88582pt too wide) in paragraph at lines 187--188
  [][] 
  []
 
-<img/userguide/matrix_configure.png, id=1393, 1371.1225pt x 770.88pt>
+<img/userguide/matrix_configure.png, id=1438, 1371.1225pt x 770.88pt>
 File: img/userguide/matrix_configure.png Graphic file (type png)
 
 <use img/userguide/matrix_configure.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has
+pdfTeX warning (ext4): destination with the same identifier (name{page.15}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.216 \subsubsection
-                    {Accions} [13 <./img/userguide/matrix_resulting.png (PNG co
-py)>] <img/icons/download.png, id=1402, 34.1275pt x 29.10875pt>
+                    {Accions} [15 <./img/userguide/matrix_resulting.png (PNG co
+py)>] <img/icons/download.png, id=1446, 34.1275pt x 29.10875pt>
 File: img/icons/download.png Graphic file (type png)
 
 <use img/icons/download.png>
-<img/icons/updatedata.png, id=1403, 42.1575pt x 26.0975pt>
+<img/icons/updatedata.png, id=1447, 42.1575pt x 26.0975pt>
 File: img/icons/updatedata.png Graphic file (type png)
 
 <use img/icons/updatedata.png>
 File: img/icons/trash.png Graphic file (type png)
  <use img/icons/trash.png>
-<img/icons/training.png, id=1404, 29.10875pt x 30.1125pt>
+<img/icons/training.png, id=1448, 29.10875pt x 30.1125pt>
 File: img/icons/training.png Graphic file (type png)
 
 <use img/icons/training.png>
-<img/icons/alias.png, id=1405, 30.1125pt x 33.12375pt>
+! Undefined control sequence.
+l.226 \phantonsection
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<img/icons/alias.png, id=1449, 30.1125pt x 33.12375pt>
 File: img/icons/alias.png Graphic file (type png)
 
 <use img/icons/alias.png>
-<img/icons/variable.png, id=1406, 30.1125pt x 29.10875pt>
+<img/icons/variable.png, id=1450, 30.1125pt x 29.10875pt>
 File: img/icons/variable.png Graphic file (type png)
 
 <use img/icons/variable.png>
-<img/icons/season.png, id=1407, 40.15pt x 29.10875pt>
+<img/icons/season.png, id=1451, 40.15pt x 29.10875pt>
 File: img/icons/season.png Graphic file (type png)
 
 <use img/icons/season.png>
 File: img/icons/edit.png Graphic file (type png)
  <use img/icons/edit.png>pdfTeX warning (ext4): destination with the same ident
-ifier (name{page.14}) has been already used, duplicate ignored
+ifier (name{page.16}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.235 \paragraph
-                *{Actualitzar una mostra} Per actualitzar una mostra: [14 <./im
-g/userguide/matrix_configure.png (PNG copy)> <./img/icons/download.png (PNG cop
-y)> <./img/icons/updatedata.png (PNG copy)> <./img/icons/training.png (PNG copy
-)> <./img/icons/alias.png (PNG copy)> <./img/icons/variable.png (PNG copy)> <./
-img/icons/season.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 247--248
+l.236 
+       [16 <./img/userguide/matrix_configure.png (PNG copy)> <./img/icons/downl
+oad.png (PNG copy)> <./img/icons/updatedata.png (PNG copy)> <./img/icons/traini
+ng.png (PNG copy)> <./img/icons/alias.png (PNG copy)> <./img/icons/variable.png
+ (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
 
  []
 
-<img/icons/clone.png, id=1416, 33.12375pt x 32.12pt>
+<img/icons/clone.png, id=1459, 33.12375pt x 32.12pt>
 File: img/icons/clone.png Graphic file (type png)
  <use img/icons/clone.png>
-<img/userguide/clone_matrix.png, id=1418, 1066.98625pt x 369.38pt>
+<img/userguide/clone_matrix.png, id=1461, 1066.98625pt x 369.38pt>
 File: img/userguide/clone_matrix.png Graphic file (type png)
 
 <use img/userguide/clone_matrix.png>pdfTeX warning (ext4): destination with the
- same identifier (name{page.15}) has been already used, duplicate ignored
+ same identifier (name{page.17}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.264 \item O
+l.266 \item O
              pció 1) Des de el llistat de matrius entrenables(''Ichnaea Dat...
-[15 <./img/icons/clone.png (PNG copy)> <./img/userguide/clone_matrix.png (PNG c
-opy)>]
+[17 <./img/icons/season.png (PNG copy)> <./img/icons/clone.png (PNG copy)> <./i
+mg/userguide/clone_matrix.png (PNG copy)>]
 File: img/icons/training.png Graphic file (type png)
  <use img/icons/training.png>
 File: img/icons/eyeopen.png Graphic file (type png)
- <use img/icons/eyeopen.png>
-File: img/icons/training.png Graphic file (type png)
 
-<use img/icons/training.png>
-<img/userguide/training_create.png, id=1428, 892.33376pt x 581.17125pt>
+<use img/icons/eyeopen.png>
+File: img/icons/training.png Graphic file (type png)
+ <use img/icons/training.png>
+<img/userguide/training_create.png, id=1470, 892.33376pt x 581.17125pt>
 File: img/userguide/training_create.png Graphic file (type png)
 
 <use img/userguide/training_create.png>
-Overfull \hbox (19.74396pt too wide) in paragraph at lines 278--279
+Overfull \hbox (19.74396pt too wide) in paragraph at lines 280--281
 []\OT1/lmr/m/n/12 Part dreta su-pe-ri-or: De-sple-gable per se-lec-cionar un de
 ls or^^S^^Pgens disponibles.
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has
+pdfTeX warning (ext4): destination with the same identifier (name{page.18}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.279 \item S
+l.281 \item S
              elecci\'{o} de columnes. Selecci\'{o} de columnes que vols entr...
-[16 <./img/userguide/training_create.png (PNG copy)>]
+[18 <./img/userguide/training_create.png (PNG copy)>]
 ! Undefined control sequence.
-l.282 Si la creaci\�
+l.284 Si la creaci\�
                     �{o} \´e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2413,14 +2391,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.282 Si la creaci\´
+l.284 Si la creaci\´
                      {o} \´e{s} correcte, les dades s'enviaran a la cua de ...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.282 Si la creaci\´{o} \�
+l.284 Si la creaci\´{o} \�
                            �e{s} correcte, les dades s'enviaran a la cua de ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2436,14 +2414,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.282 Si la creaci\´{o} \´
+l.284 Si la creaci\´{o} \´
                             e{s} correcte, les dades s'enviaran a la cua de ...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.282 ...aran a la cua de procesos i la aplicaci\�
+l.284 ...aran a la cua de procesos i la aplicaci\�
                                                   �{o} es redirigir\´{a} la...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2459,14 +2437,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.282 ...ran a la cua de procesos i la aplicaci\´
+l.284 ...ran a la cua de procesos i la aplicaci\´
                                                   {o} es redirigir\´{a} la ...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.282 ...ocesos i la aplicaci\´{o} es redirigir\�
+l.284 ...ocesos i la aplicaci\´{o} es redirigir\�
                                                   �{a} la pantalla de visual...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2482,14 +2460,14 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.282 ...cesos i la aplicaci\´{o} es redirigir\´
+l.284 ...cesos i la aplicaci\´{o} es redirigir\´
                                                   {a} la pantalla de visuali...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 ! Undefined control sequence.
-l.282 ...rigir\´{a} la pantalla de visualitzaci\�
+l.284 ...rigir\´{a} la pantalla de visualitzaci\�
                                                   �{o} de entrenaments(mirar...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2505,17 +2483,17 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.282 ...igir\´{a} la pantalla de visualitzaci\´
+l.284 ...igir\´{a} la pantalla de visualitzaci\´
                                                   {o} de entrenaments(mirar ...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
-<img/userguide/view_training_pending.png, id=1438, 788.9475pt x 721.69624pt>
+<img/userguide/view_training_pending.png, id=1479, 788.9475pt x 721.69624pt>
 File: img/userguide/view_training_pending.png Graphic file (type png)
 
 <use img/userguide/view_training_pending.png>
-Overfull \hbox (4.47278pt too wide) in paragraph at lines 292--293
+Overfull \hbox (4.47278pt too wide) in paragraph at lines 293--294
  [][] 
  []
 
@@ -2523,62 +2501,169 @@ Overfull \hbox (4.47278pt too wide) in paragraph at lines 292--293
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 File: img/icons/add.png Graphic file (type png)
-<use img/icons/add.png>
-<img/icons/table-9-squares.png, id=1440, 30.1125pt x 30.1125pt>
+<use img/icons/add.png>pdfTeX warning (ext4): destination with the same identif
+ier (name{page.19}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.320 \item O
+             pció a) Seguir el menú ''Trainings'' >> ''Create trainings'' ...
+[19] <img/icons/table-9-squares.png, id=1486, 30.1125pt x 30.1125pt>
 File: img/icons/table-9-squares.png Graphic file (type png)
 
 <use img/icons/table-9-squares.png>pdfTeX warning (ext4): destination with the 
-same identifier (name{page.17}) has been already used, duplicate ignored
+same identifier (name{page.20}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.317 \end{itemize}
-                    [17]pdfTeX warning (ext4): destination with the same identi
-fier (name{page.18}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.326 \section
-              {Crear una matriu de predicci\'{o}} [18 <./img/userguide/view_tra
-ining_pending.png (PNG copy)> <./img/icons/table-9-squares.png (PNG copy)>]
-<img/userguide/prediction_create.png, id=1451, 1371.1225pt x 770.88pt>
-File: img/userguide/prediction_create.png Graphic file (type png)
+l.324 
+       [20 <./img/userguide/view_training_pending.png (PNG copy)> <./img/icons/
+table-9-squares.png (PNG copy)>]
 
-<use img/userguide/prediction_create.png>
-Overfull \hbox (7.31754pt too wide) in paragraph at lines 341--348
- [] 
+LaTeX Warning: Reference `fig:configure_matrix_prediction' on page 21 undefined
+ on input line 326.
+
+File: img/userguide/view_training_pending.png Graphic file (type png)
+<use img/userguide/view_training_pending.png>
+Overfull \hbox (4.47278pt too wide) in paragraph at lines 329--330
+ [][] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.19}) has
+
+Underfull \vbox (badness 1199) has occurred while \output is active []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.21}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.356 \section
-              {Visualitzar una matriu de predicci\'{o}} [19 <./img/userguide/pr
-ediction_create.png (PNG copy)>]
-Overfull \hbox (5.44263pt too wide) in paragraph at lines 360--360
-[]\OT1/lmr/bx/n/14.4 Executar una predic-ci^^So de una ma-triu de predic-
+l.338 \item \iconremove
+                        esborra la matriu de predicció [21]
+File: img/icons/remove.png Graphic file (type png)
+
+<use img/icons/remove.png>
+File: img/icons/updatedata.png Graphic file (type png)
+ <use img/icons/updatedata.png>
+File: img/icons/alias.png Graphic file (type png)
+
+<use img/icons/alias.png>
+File: img/icons/variable.png Graphic file (type png)
+ <use img/icons/variable.png>pdfTeX warning (ext4): destination with the same i
+dentifier (name{page.22}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.366 \item R
+             esult: son cadascun dels resultats que retorna Ichnaea en una p...
+[22] <img/userguide/result_prediction_gui.png, id=1509, 469.755pt x 678.535pt>
+File: img/userguide/result_prediction_gui.png Graphic file (type png)
+
+<use img/userguide/result_prediction_gui.png>
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
+
  []
 
-)pdfTeX warning (ext4): destination with the same identifier (name{page.20}) ha
-s been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{page.23}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.381 
+       [23 <./img/userguide/result_prediction_gui.png (PNG copy)>]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.385 ...: cannot open the connection Calls: aged_
+                                                  samples_lr -> read.csv -> ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+! LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.386 \end{center}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.386 \end{center}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.386 \end{center}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.386 \end{center}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (64.64464pt too wide) in paragraph at lines 385--387
+\OML/lmm/m/it/12 Warningmessage \OT1/lmr/m/n/12 : \OML/lmm/m/it/12 Infile\OT1/l
+mr/m/n/12 (\OML/lmm/m/it/12 file; \OT1/lmr/m/n/12 "\OML/lmm/m/it/12 rt\OT1/lmr/
+m/n/12 ") : \OML/lmm/m/it/12 cannotopenfile[]::=data=aging=envFRNAPH:I \OMS/lms
+y/m/n/12 ^^@
+ []
+
+<img/userguide/error_training.png, id=1515, 650.43pt x 575.14874pt>
+File: img/userguide/error_training.png Graphic file (type png)
+
+<use img/userguide/error_training.png>)pdfTeX warning (ext4): destination with 
+the same identifier (name{page.24}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.108 \include{userguide}
-                          [20]
+                          [24 <./img/userguide/error_training.png (PNG copy)>]
 \openout2 = `adminguide.aux'.
 
- (./adminguide.tex
+
+(./adminguide.tex
 Ap\`endix B.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.21}) ha
-s been already used, duplicate ignored
+File: img/icons/edit.png Graphic file (type png)
+<use img/icons/edit.png>
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.25}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.23 
+      [25
+
+
+
+
+])pdfTeX warning (ext4): destination with the same identifier (name{page.26}) h
+as been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.110 \include{adminguide}
-                           [21
-
-
-
-
-]
+                           [26]
 ! Undefined control sequence.
 l.111 \cleardouplepage
                       
@@ -2588,20 +2673,15 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.22}) has
- been already used, duplicate ignored
+(./main.lofpdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.27}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.112 \listoffigures
-                     [22
+l.37 ...a matriu''\relax }}{17}{figure.caption.94}
+                                                   [27
 
 
-] (./main.lofpdfTeX warning (ext4): destination with the same identifier (name{
-page.23}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.38 ...trenaments\relax }}{18}{figure.caption.89}
-                                                   [23])
+])
 \tf@lof=\write7
 \openout7 = `main.lof'.
 
@@ -2615,21 +2695,21 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.24}) has
+pdfTeX warning (ext4): destination with the same identifier (name{page.28}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.114 \listoftables
-                    [24] (./main.lot)
+                    [28] (./main.lot)
 \tf@lot=\write8
 \openout8 = `main.lot'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.25}) has
+pdfTeX warning (ext4): destination with the same identifier (name{page.29}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.115 \end{document}
-                     [25
+                     [29
 
 ] (./main.aux (./title.aux) (./prologue.aux)
 (./preface.aux) (./background.aux) (./specification.aux) (./dessign.aux)
@@ -2643,75 +2723,27 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 11270 strings out of 495061
- 165351 string characters out of 1182622
- 394402 words of memory out of 3000000
- 13490 multiletter control sequences out of 15000+50000
+ 11299 strings out of 495061
+ 165926 string characters out of 1182622
+ 394161 words of memory out of 3000000
+ 13513 multiletter control sequences out of 15000+50000
  66393 words of font info for 47 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,13n,75p,1083b,1771s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{figure.caption.77} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.70} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.69} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.89} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.88} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.87} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.79} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.78} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.68} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.64} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.38} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.36} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.45} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{section*.94} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{section*.92} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{section*.67} has been referenced but does not exist
-, replaced by a fixed one
-
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/
-dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/sha
-re/texmf-texlive/fonts/type1/public/eurosym/feymr10.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb
-></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/typ
-e1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr
-/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/t
-exmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/l
-mro12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (109 pages, 1972178 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/s
+hare/texmf-texlive/fonts/type1/public/eurosym/feymr10.pfb></usr/share/texmf/fon
+ts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share
+/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm
+/lmro12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmsy8.pfb>
+Output written on main.pdf (117 pages, 2050231 bytes).
 PDF statistics:
- 1684 PDF objects out of 1728 (max. 8388607)
- 587 named destinations out of 1000 (max. 500000)
- 1005 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1748 PDF objects out of 2073 (max. 8388607)
+ 591 named destinations out of 1000 (max. 500000)
+ 1015 words of extra memory for PDF output out of 10000 (max. 10000000)
 

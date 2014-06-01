@@ -1,0 +1,64 @@
+\chapter{Manual d'administradors de sistemes i desenvolupadors}
+\label{cha:userguide}
+
+En aquest apèndix donarem una visió global dels requeriments, com implantar el sistema i com prepara l'entorn. Es molt recomanable llegir la documentació de Symfony2.\cite{symfony}.
+
+\section{Requeriments del sistema}
+En aquest apartat es descriu els components i la configuració necessària per muntar el sistema. Solament es contempla la instal·lació d'aquest sistema. Es fa una petita visió de com instal.lar el sistema de cues. El sistema de cues te el seu propi manual al qual s'hauria de demanar explícitament una vegada es finalitzi el projecte de Miguel Ibero ''Sistema de cues per Ichnaea Software''.\\
+
+De totes formes, al codi es un repositori conjunt. Ambdós projectes es descarreguen i dintre del codi 
+
+Els requeriments son:
+\begin{itemize}
+\item S.O. Ubuntu 10.4 minim
+\item Entorn LAMP: Linux, Apache, MySQL, PHP
+\item RabbitMQ
+\item Codi de la aplicació.
+\end{itemize}
+
+\section{Desplegar el codi}
+\label{sec:deploy}
+El codi es troba versionat sota GIT de RdLab. Una vegada demanat i acceptat l'access es pot descarregar el codi amb la comanda:
+\begin{center}
+git clone http://USER@git-rdlab.lsi.upc.edu/git/ichnaea.git
+\end{center}
+Seguidament instal.lar les dependència executant \texit{Composer}.
+
+\section{Estructura del codi}
+En el codi es troba ambdós projectes: el sistema de cues i la aplicació. A continuació expliquem esquemàticament l'estructura del codi des de l'arrel del projecte:
+\begin{itemize}
+\item ./amqp: Codi del projecte del sistema de cues
+\item ./r: Dades d'exemple per el sistema de cues
+\item ./www: Codi de la aplicació web. Es codi del \textit{framework} Symfony2. Detallem algunes rutes a tenir en compte dintre d'aquest carpeta:
+\begin{itemize}
+\item documentation: cont\'{e} el codi de la generació d'aquest document, diagrames i de mes artefactes. Destaquem la carpeta Installation-FORDEVELOPERS-AND-SYSADMINS on es troben algunes instruccions útils per preparar l'entorn.
+\item src: tot el codi desenvolupat: controladors, serveis, API, html, etc.
+\end{itemize}
+\end{itemize}
+
+\section{Configuració de la aplicació}
+\subsection{Configuració de la connexió a base de dades}
+Des de el fitxer \texit{www/app/config/parameters.yml} es pot configurar la connexió a base de dades.
+
+\subsection{Creació de l'esquema de la base de dades}
+Des de la CLI de Symfony es pot crear la base de dades mitjançant la comanda:
+\begin{center}
+app/console doctrine:database:create
+\end{center}
+
+\subsection{Inserció de dades controlades}
+La aplicació conte dades de mostra per començar a utilitzar la aplicacio. Al \textit{markdown} \textit{www/documentation/Installation-FORDEVELOPERS-AND-SYSADMINS/Installation.md} s'explica com fer'ho.
+
+\subsection{Configuració del servidor de correu}
+Des de el fitxer \texit{www/app/config/parameters.yml} es pot configurar la connexió SMTP.
+
+\subsection{Configuració del sistema de fitxers}
+Des de el fitxer \textit{/www/src/Ichnaea/WebApp/TrainingBundle/Resources/config/services.yml} es pot configura la ruta per guardar els resultats dels entrenaments.
+
+\subsection{Configuració de la connexió al sistema de cues}
+Des de el fitxer \textit{/www/src/Ichnaea/WebApp/TrainingBundle/Resources/config/services.yml} es pot configura els paràmetres de connexió amb el sistema de cues.
+
+\section{Configuració de l'entorn}
+Per preparar l'entorn amb el sistema de cues es necessari llegir la documentació del projecte del sistema de cues de Miguel Ibero. La documentació útil es pot trobar \textit{amqp/INSTALL.md} i \textit{amqp/php/README.md}.\\
+
+Una vegada configurat aquest entorn podem executar els productors i consumidors de cues. Aquesta informació es troba a \textit{www/documentation/Installation-FORDEVELOPERS-AND-SYSADMINS/FOR_DEVELOPERS.md}

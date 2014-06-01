@@ -149,11 +149,11 @@ Amb la icona \iconremove pots esborrar el fitxer com a component. Per exemple, s
 
 \section{Matrius}
 
-\subsection{Crear una matriu desde un fitxer csv o excel}
+\subsection{Crear una matriu desde un fitxer CSV o Excel}
 \label{sec:create_matrix}
 Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv o Microsoft Excel.El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
 
-El format de la matriu \'{e}s com es mostra a la figura \ref{matrixSource}
+El format del fitxer de la matriu \'{e}s com es mostra a la figura \ref{fig:matrixSource}.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/matrix_source.png}
@@ -162,7 +162,7 @@ El format de la matriu \'{e}s com es mostra a la figura \ref{matrixSource}
 \end{figure}
 
 \begin{itemize}
-\item Primera columna. Son els identificadors de la variable. Si una columna es diu igual que una variable del sistema, automàticament s'assigna a aquesta.
+\item Primera columna. Son els identificadors de la variable. Si una columna es diu igual que una variable del sistema, automàticament s'assigna a aquesta variable.
 \item Les ultimes dues columnes son especials i son opcionals. Es contemplen totes les casuístiques:
 \begin{itemize}
 \item No existeixen
@@ -223,8 +223,10 @@ Les accions disponibles son:
 \item But\'{o} ''Validate'': valida la matriu. Sortiran a la secció de missatges els possibles errors.
 \end{itemize}
 
+\phantonsection
+\label{matrixConfiguration}
 \subsubsection{Configuració de les dades de la matriu}
-\paragraph*{Columnes} Les columnes es per configurar les variables de la matriu on:
+\paragraph*{Columnes} Des de les columnes, es configuraren les variables de la matriu on:
 \begin{itemize}
 \item \iconalias es per definir el alies de la columna
 \item \iconvariable es per seleccionar una variable. Si no es selecciona res, quedara configurada com una variable derivada.
@@ -286,13 +288,13 @@ Si la creaci\´{o} \´e{s} correcte, les dades s'enviaran a la cua de procesos i
 Des de la casa de l'usuari(mirar \ref{sec:home}), es pot veure els teus entrenaments pendents i en quin estadi es troben. Per els finalitzats, es poden accedir des de ''Els meus entrenaments''(secció \ref{subsec:myTrainings}).
 
 La figura \ref{fig:viewTraining} es la interfícies que mostra un entrenament on:
-
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/view_training_pending.png}
   \caption{Interfície de visualització de entrenaments}
   \label{fig:viewTraining}
 \end{figure}
+
 \begin{itemize}
 \item Títol: nom de l'entrenament, data de creació i propietari.
 \item Configuracio: 
@@ -308,55 +310,85 @@ La figura \ref{fig:viewTraining} es la interfícies que mostra un entrenament on
 \item Prediccions: prediccions fetes amb aquest entrenament. Amb la icona \iconadd es pot crear una predicció usant aquest entrenament.
 \end{itemize}
 
+\section{Errors en els entrenaments}
+Mirar la secció \ref{sec:ichnaeaErrors}.
+
 \section{Prediccions}
-\subsection{Crear un entrenament d'una matriu}
-Per crear una matriu de prediccions, primer s'ha de seleccionar un entrenament. Per seleccionar un entrenament i crear una predicció tenim X opcions:
+\subsection{Crear una matriu de predicció a partir d'un entrenament desde un fitxer CSV o Excel}
+Per crear una matriu de prediccions, primer s'ha de seleccionar un entrenament. Per seleccionar un entrenament i crear una predicció tenim 2 opcions:
 \begin{itemize}
-\item Opció a) Seguir el menú ''Trainings'' >> ''Create trainings'' >> Seleccionar un entrenament amb \icontableninesquares
+\item Opció a) Seguir el menú ''Trainings'' >> ''Create trainings'' >> Seleccionar un entrenament de la llista accedint amb l'icona \icontableninesquares.
 \item Opcio b) Des de la interfície de visualitzacions d'entrenaments(mirar \ref{subsec:viewtraining}).
 \end{itemize}
+El format del fitxer es el mateix de que el que s'explica a l'apartat \ref{sec:create_matrix}. La principal diferencia es la resolució automàtica de configuracions de columnes: si el identificador de la columna es igual al identificador de la columna entrenada, automàticament s'assigna aquesta columna entrenada.
+
+\subsection{Configuració d'una matriu de predicció}
+A la figura \ref{fig:configure_matrix_prediction} es pot veure la interfície de configuració de les matrius.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{img/userguide/view_training_pending.png}
+  \caption{Interfície de visualització de entrenaments}
+  \label{fig:viewTraining}
+\end{figure}
+\textbf{Solament l'usuari propietari de la matriu la pot configurar}. A continuació descrivim les seccions de la interfície.
+
+\subsubsection{Accions bàsiques}
+Les accions bàsiques es troben a la part superior esquerre on:
+\begin{itemize}
+\item \iconremove esborra la matriu de predicció
+\item \iconupdate per accedir a la interfície d'actualització de la matriu, on es pot actualitzar el nom i pujar tota nova matriu.
+\item But\'{o} "Perform prediction" prepara les dades i les envia a la cua d'execucions de prediccions.
+\end{itemize}
+
+\subsubsection{Configuració de les dades de la matriu}
+\paragraph{Columnes} Des de les columnes es configuren el mapejat amb les columnes entrenades on:
+\begin{itemize}
+\item \iconalias es per definir el alies de la columna
+\item \iconvariable es per seleccionar la columna entrenada.
+\end{itemize}
+
+\paragraph*{Actualitzar una mostra} La actualització de mostres de prediccions es igual que la configuració de mostres de matrius, explicat a la pagina \pageref{matrixConfiguration}.
+
+\paragraph*{Actualitzar una dada d'una fila i d'una columna} Es poden actualitzar les dades d'una mostra fent un doble ''click'' en una de les celles. Prement ''Enter'' es guarda el resultat.
+
+\subsection{Executar una predicció}
+Per executar una predicció mirar la secció anterior, a l'apartat ''Accions Basiques''. Una vegada enviat a execució es podra consultar a les prediccions de l'usuari(explicat a l'apartat \ref{subsec:myPrediccions}).
+
+\subsection{Consultat resultats d'una prediccio}
+Per consultar els resultats d'una predicció existeixen 2 formes:
+\begin{itemize}
+\item es pot accedir des de les prediccions de l'usuari(mirar l'apartat \ref{subsec:myPrediccions}) 
+\item des de la interfície de configuració de la matriu de predicció mitjançant el but\'{o} ''View results'' en el cas que la la execució de la predicció hagi finalitzat.
+\end{itemize}
+La figura \ref{fig:viewresults} es la interfície de visualitzacions de resultats on:
+\begin{itemize}
+\item Informació bàsica: cont\'{e} enllaços a la matriu, l'entrenament, i la nova predicció.
+\item Result: son cadascun dels resultats que retorna Ichnaea en una predicció. Actualment no s'interpreten aquests resultats. Simplement es recullen.
+\end{itemize}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{img/userguide/result_prediction_gui.png}
+  \caption{Interfície de visualització de resultats de prediccions}
+  \label{fig:viewresults}
+\end{figure}
 
 \section{Problemes de Ichnaea}
 \label{sec:ichnaeaErrors}
+A traves de l'us de Ichnaea han sortit diversos errors a diferents nivells del software. Son externs a aquest projecte. Ichnaea encara esta evolucionant i l'aplicacio depen d'Ichnaea.
+
 \subsection{Error en els entrenaments}
+Si el proces d'entrenament llença un error, la aplicacio recull l'error i el mostra. Analitzen un exemple.\\
 
-Actualment Ichnaea Software i el sistema de cues no esta implantat. Per defecte, la creaci\'{o} donar\'{a} error. Per tant, es pot utilitzar la simulaci\'{o} de trainings.
-A banda d'aix\'{o}, tenim predifinits un conjunt de situacions que a continuaci\'{o} descrivim.
+Actualment Ichnaea esta esperant trobar unes variables concretes. En el cas que no estiguin configurades en la matriu, Ichnaea donara un error del tipus que recull l'aplicació(figura \ref{fig:viewtrainingerror}).
 
-\section{Crear una matriu de predicci\'{o}}
-Desde la casa de l'usuari, es pot veure els teus trainings i en quin estadi es troben. Amb la icona "Quadradets"
-
-\section{Crear una predicci\'{o}}
-Desde la casa de l'usuari(mirar \ref{sec:home}) es pot crear una predicci\'{o} d'un training. Seleccionant la icona ''quadricules'' de un trainig correcte(en color verd), es pot crear un matriu de predicci\'{o}.
+\begin{center}
+''failed command result: Error in file(file, "rt") : cannot open the connection Calls: aged_samples_lr -> read.csv -> read.table -> file In addition: Warning message: In file(file, "rt") : cannot open file '../data/aging/envFRNAPH.I-Hivern.txt': El fitxer ''
+\end{center}
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.2]{img/userguide/prediction_create.png}
-  \caption{Exemple de creaci\'{o} de predicci\'{o}}
-  \label{fig:placement}
+  \includegraphics[scale=0.5]{img/userguide/error_training.png}
+  \caption{Interfície de visualització d'entrenament amb error}
+  \label{fig:viewtrainingerror}
 \end{figure}
-
-A part superior \'{e}s pot seleccionar un fitxer per pujar la matriu per predir. A la part inferior es pot veure les columnes que el training t\'{e} seleccionades. La matrius en format csv ha de tenir el format indicat per la part inferior. En breu es podr\'{a} descarregar una template per tenir el template i poder simplement omplir els valors:
-\begin{center}
-    \begin{tabular}{ | l | l | l | p{5cm} |}
-    \hline
-    Cel.la buida & Alias de la columna & .... & ORIGIN \\ \hline
-    Nom de la sample & Valor de la sample  & .... & Origen de la sample \\ \hline
-    S01-10-20        & 0,000145            & .... & Human \\ \hline
-    \hline
-    \end{tabular}
-\end{center}
-Seguidament es pot visualitzar
-
-\section{Actualitzar una matriu de predicci\'{o}}
-
-\section{Llistar les meves prediccions}
-Desde el menu superior "Prediction - My predictions" pots llistar les teves prediccions.
-
-\section{Visualitzar una matriu de predicci\'{o}}
-
-\subsection{Actualitzar una matriu de predicci\'{o}}
-
-\subsection{Executar una predicci\'{o} de una matriu de predicci\'{o}}
-
-
+Una forma d'actuar envers a aquest error seria mirar la configuració de la matriu i mirar si existeix la columna FRNAPH.I.

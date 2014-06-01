@@ -30,5 +30,4 @@ app/console doctrine:schema:create
 b) First execute to have a user into the web app with admin
 php app/console doctrine:fixtures:load
 
-c) Extra: Needs to configure the matrix from the beginnig
 

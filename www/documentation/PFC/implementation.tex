@@ -1,61 +1,90 @@
 \chapter{Implementaci\'{o}}
 \label{cha:implementation}
-En aquest capítol es descriuen les tecnologies estudiades i aplicades per implementar el disseny anteriorment descrit.
+En aquest capítol es descriuen les tecnologies estudiades, escollides i aplicades per implementar el disseny anteriorment descrit.
 
 \section{Estudi previ de les tecnologies}
-En aquesta secci\'{o} es far\'{a} una descripci\'{o} de les tecnologies estudiades per tal de poder realitzar aquest projecte. 
+En aquesta secci\'{o} es far\'{a} una descripci\'{o} de les tecnologies estudiades per la realització d'aquest projecte. S'han avaluat diferents marcs de treballs(\textit{framework}) així com un propi per la implementació del projecte.\\
 
-\subsection{\textit{Framework} a mida}
-En un principi \'{e}s va valorar la possibilitat de desenvolupar tot un nou \textit{framework} per la implementaci\'{o} del projecte. Les tecnologies emprades son PHP com a llenguatge de programaci\'{o} i MySQL com a motor de bases de dades.
-\paragraph{Avantatges}
-\begin{itemize} 
-\item La principal avantatge \'{e}s el control total de la implantaci\'{o} de tots els processos i tecnologies.
-\end{itemize} 
+A continuació fem una anàlisis de cadascuna de elles explicant els avantatges i desavantatges.
 
-\paragraph{Desavantatges}
-\begin{itemize} 
-\item Desenvolupament extremadament lent.
-\item Re-inventar la roda quan no \'{e}s necessari.
-\end{itemize} 
+\subsection{Llenguatge de programació: JAVA vs. PHP}
+S'han avaluat dos llenguatges de programació: JAVA i PHP.\\
 
-\subsection{\textit{Codeigniter}}
-Codeigniter \'{e}s un \textit{framework} per a desenvolupament web r\`{a}pid amb PHP.\cite{codeigniter} Usa el patr\'{o} ''active record' per la gesti\'{o} d'emmagatzematge de dades.\cite{activerecord}
-\paragraph{Avantatges}
+En un principi es va avaluar JAVA per el desenvolupament dels servei web amb un \texit{framework} anomenat \textit{Jersey}.\cite{jersey} Aquesta tecnologia implementa llibreries API de tipus RESTful, molt convenient per entorns distribuits, però t\'{e} l'impediment de tenir d'una corba de desenvolupament molt lenta i un integració entre components externs complexes. Això era un impediment ja que la integració amb el sistema de cues \'{e}s un requeriment. L'altre gran desavantatge era que implicava un canvi de disseny en la capa de presentació. S'hauria d'aplicar el patró MVC(explicat a la secció \ref{mvcFrontController}) als navegadors amb tecnologies mitjançant l'us de \textit{frameworks} que encara estan en etapes de desenvolupament i/o evolució.\\
+
+PHP \'{e}s l'altre llenguatge analitzat. PHP \'{e}s un llenguatge orientat objectes enfocat al desenvolupament web que:
 \begin{itemize}
-\item Corba d'aprenentatge rapida.
-\item Desenvolupament r\`{a}pid.
-\item \'{E}s patr\'{o} MVC.
+\item \'{e}s àmpliament usat.
+\item \'{e}s àmpliament reconegut.
+\item t\'{e} una documentació excel·lent.
+\item t\'{e} una comunitat activa i participativa.
+\item les ultimes versions desenvolupades han tingut molt bons resultats en rendiments i en escal.labilitat.
+\item \'{e}s de desenvolupament ràpid.
 \end{itemize}
 
-\paragraph{Desavantatges}
+\subsection{Motor de base de dades}
+S'han evaluat i testat dos motors de bases de dades: MySQL i MongoDB.\\
+
+MongoDB \'{e}s un motor de base de dades orientat a documents molt escal·lable i d'alt rendiment. \'{E}s un tipus de base de dades "NOSql"; es a dir no relacional. MongoDB gestiona col·leccions de documents en format JSON.\cite{apijson} Una gran avantatge d'aquest motor \'{e}s la llibertat de no definir cap estructura predeterminada pels documents. Una avantatge molt interessant per la gestió de dades de matrius.\cite{mongodb}\\
+
+Però el gran problema que trobem en MongoDB per aquest projecte \'{e}s la absència del model relacional. \'{E}s molt important el requeriment relacional de dades per gestionar la associació entre conjunts de fitxers, els fitxers i les variables. MongoDB \'{e}s un motor de base de dades no relacional. Per establir relacions s'han de forçar les relacions amb el cost de implementar-les en el codi i amb estructures extraordinàries dintre del motor de base de dades.\\
+
+Els requeriments dels projecte recomanen l'us d'una base de dades relacional. MySQL, pel contrari de MongoDB, \'{e}s un motor de base de dades relacionals àmpliament usat en el desenvolupament web. Implementant el disseny del model de bases dades(mirar la seccio \ref{subsec:diagramclasses}) vam veure que tenia un rendiment excel·lent en la creació de matrius i en la gestió de configuracions de matrius.
+
+\subsection{Anàlisis de marcs de treball}
+Una vegada seleccionats el llenguatge de programació i el motor de bases de dades, s'han analitzat diferents marcs de treball per la implementació del projecte. A continuació analitzem les avantatges i desavantatges de cadascun.
+
+\subsubsection{\textit{Framework} a mida}
+En un principi \'{e}s va valorar la possibilitat de desenvolupar tot un nou \textit{framework} per la implementaci\'{o} del projecte.\\
+
+Els principal avantatges \'{e}s el control total de la implantaci\'{o} de tots els processos i tecnologies.\\
+
+Els principals inconvenients son:
+\begin{itemize} 
+\item desenvolupament extremadament lent.
+\item re-inventar la roda quan no \'{e}s necessari. Existeixen al mercat marcs de treballs excel·lents i que compleixen les necessitats requerides.
+\end{itemize} 
+
+\subsubsection{\textit{Codeigniter}}
+Es va avaluar el desenvolupar del sistema amb \textit{Codeigniter}. \textit{Codeigniter} \'{e}s un \textit{framework} per a desenvolupament web r\`{a}pid amb PHP.\cite{codeigniter} Implementa el patro MVC(mirar la secció \ref{subsec:dessignexplanation}) amb un patró de persistència de dades de tipus ''active record' per la gesti\'{o} d'emmagatzematge de dades.\cite{activerecord}\\
+
+Els principals avantatges son:
 \begin{itemize}
-\item No compleix tots el requisits de disseny de patrons especificat.
-\item No inclou \textit{templating}
-\item Dificultat en segregar la l\`{o}gica de la presentaci\'{o}.
+\item corba d'aprenentatge r\`{a}pida.
+\item desenvolupament r\`{a}pid.
+\item implementa el patr\'{o} MVC(mirar la secció \ref{subsec:dessignexplanation}).
 \end{itemize}
 
-\subsection{\textit{Symfony2}}
-\textit{Symfony2} \'{e}s un HTTP \textit{framework} per a PHP. Nativament implementa una variaci\'{o} del Model-Vista-Controlador amb controlador frontal amb injecci\'{o} de depencies a la capa de serveis.\cite{symfony}
+Els principals inconvenients son:
+\begin{itemize}
+\item no compleix tots el requisits de disseny de patrons especificat.
+\item no inclou \textit{templating}
+\item dificultat en segregar la l\`{o}gica de la presentaci\'{o}.
+\end{itemize}
 
-\paragraph{Avantatges}
+Els desavantatges de no complir cap dels dissenys especificats, a excepció del patró MVC, han sigut decisius per no usar aquesta tecnologia.
+
+\subsubsection{\textit{Symfony2}}
+Finalment es va estudiar les tendències actuals i es va decidir estudiar \textit{Symfony2}.\cite{symfony} \textit{Symfony2} \'{e}s un HTTP \textit{framework} per a PHP. Nativament implementa una variaci\'{o} del Model-Vista-Controlador amb controlador frontal amb injecci\'{o} de depencies a la capa de serveis(mirar la secció \ref{subsec:dessignexplanation}).\\
+
+Els principals avantatges son:
 \begin{itemize}
 \item Altament configurable.
 \item Compleix tots els requisits de dissenys de patrons especificat.
 \item Alt rendiment
 \end{itemize}
 
-\paragraph{Desavantatges}
-\begin{itemize}
-\item Corba d'aprenentatge alta.
-\end{itemize}
+Els principal inconvenients \'{e}s que t\'{e} una corba d'aprenentatge alta.\\
+
+Els avantatges han fet que es decidís per usar aquesta tecnologia. \textit{Symfony2} utilitza un conjunt de tecnologies que fan que s'implementi correctament la especificació i s'assoleixi tots els requeriments especificats. A continuació es descriu breument el \textit{framework} i totes les tecnologies involucrades.
 
 \section{Implementaci\'{o}}
-El \itemit{framework} escollit ha sigut \textit{Symfony2}. A continuaci\'{o} es dona una visi\'{o} general de les tecnologies.
+El sistema ha sigut desenvolupat principalment amb el \textit{framework} \textit{Symfony2}. A continuaci\'{o} es dona una visi\'{o} general del \textit{framework} i a la implementació del projecte.
 
 \subsection{\textit{Symfony2}}
 Arquitectonicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, similar als paquets de JAVA. Els \textit{bundles} son un conjunt de serveis, entitats i recursos independents entre si. Els \textit{bundles} implementats son:
 \begin{itemize}
-\item \textit{Bundle} de usuaris: UserBundle. Paquet de serveis, vistes i recursos per usuaris. S'ha utilitzat un paquet de \textit{Symfony2}: FOSUserBundle \cite{fosuserbundle}. S'ha fet una extensi\'{o} del paquet per implementar la gesti\'{o} de rols i grups.
+\item \textit{Bundle} de usuaris: UserBundle. Paquet de serveis, vistes i recursos per usuaris. S'ha utilitzat el paquet de \textit{Symfony2} FOSUserBundle \cite{fosuserbundle} i s'ha fet una extensi\'{o} del paquet per implementar la gesti\'{o} de rols i grups. 
 \item \textit{Bundle} de matrius: MatrixBundle. Paquet de serveis, vistes i recursos per les matrius.
 \item \textit{Bundle} de trainings: TrainingBundle. Paquet de serveis, vistes i recursos per els entrenaments.
 \item \textit{Bundle} de serveis webs: ApiBundle. Paquet de serveis,vistes i recursos per la API JSON Restful. 
@@ -77,14 +106,22 @@ Arquitectonicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, si
 \end{itemize}
 
 \subsection{Recursos}
-La estructura de recursos de la aplicaci\'{o} \'{e}s la següent:\\
+L'estandard HTTP recomana unes URI estructurades i coherents.\cite{rfc3986} La dependència de les nostres entitats requereixen una definició jeràrquica del recursos webs. La estructura de recursos de la aplicaci\'{o} \'{e}s la següent:\\
 
-\begin{tabular}{| l | l |}
+\begin{table}
+\begin{tabular}{| p{5cm} | p{10cm} |}
 \hline
 Matrius     & matrix/(id) \\ \hline
 Entrenamens & matrix/(id)/training/(id) \\ \hline
 Prediccions & matrix/(id)/training/(id)/prediction/(id) \\ \hline
-\end{tabular}\\
+Fitxers 	& season/(id) \\ \hline
+Variables	& variable/(id) \\ \hline
+Conjunt de fitxers d'una variable & variable/(id)/seasonset/(id) \\ \hline
+Fitxer d'un conjunt de fitxers d'una variable & variable/(id)/seasonset/(id)/season/(id) \\ \hline
+\end{tabular}
+\caption{Taula dels recursos web de l'aplicació}
+\end{table}
+\\
 
 S'ha emprat aquesta estructura de recursos degut a les dependències entre les diferents entitats. Un entrenament dep\'{e}n d'una matriu i una predicci\'{o} dep\'{e}n d'un entrenament.
 
@@ -96,8 +133,8 @@ La arquitectura RESTful aprofita al màxim el protocol HTTP per establir dades i
 Les operacions, els recursos i el paràmetres implementats son:\\
 \begin{figure}[H]
   \includegraphics[scale=0.5]{img/implementation/apirestul.png}
-  \caption{Operacions de serveis web}
-  \label{fig:dessignpatters}
+  \caption{Operacions de la API Restful}
+  \label{fig:apirestful}
 \end{figure}
 On:
 \begin{itemize}
