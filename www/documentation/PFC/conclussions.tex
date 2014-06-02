@@ -5,7 +5,8 @@ En aquest cap\'{i}tol es descriu la evolució temporal, la gestió del projecte,
 
 
 \section{Metodologia àgil}
-Per la realització del projecte s'han emprat un metodologia \texit{agile} i aprofitant tècniques i artefactes de l'SCRUM.\cite{agile} S'han fet iteracions quinzenals amb el ''product owner'' canviant requisits, definint noves especificacions en cadascuna de les reunions, definint nous requisits i fent petites \textit{demos} dels avanços.\\
+Per la realització del projecte s'han emprat una metodologia \textit{agile}. Concretament aprofitant tècniques i artefactes de l'SCRUM.\cite{agile}\\
+
 Els principis bàsics de la metodologia àgil són\cite{agilemanifesto}:
 \begin{itemize}
 \item Els individus i les seves interaccions per sobre dels processos i les eines.
@@ -14,10 +15,13 @@ Els principis bàsics de la metodologia àgil són\cite{agilemanifesto}:
 \item La resposta davant del canvi per sobre de seguir un pla tancat.
 \end{itemize}
 
-En el cas d'aquest projecte s'ha usat l'artefacte principal ''Backlog'' mitjançant histories de usuaris. Les historia de usuari son una una representació d'un requisit de software escrit en una o dos frases. En aquest cas:\\
-\centerline{Com \textbf{rol} vull fer \textbf{alguna cosa} per \textbf{obtenir benefici}}
+Per la realització d'aquest projecte s'han realitzat iteracions quinzenals amb el \textit{product owner}}.\cite{productowner} En cada iteració s'han anat canviant requisits, analitzant tecnologies, definint noves especificacions, definint nous requisits i fent petites \textit{demos} dels avanços implementats en cada iteració.\\
 
 \subsection{Backlog}
+En el cas d'aquest projecte s'ha usat l'artefacte principal ''Backlog'' mitjançant histories de usuaris. Les historia de usuari son una una representació d'un requisit del \textit{software} escrit en una o dos frases. En aquest cas:\\
+
+\centerline{Com \textbf{rol} vull fer \textbf{alguna cosa} per \textbf{obtenir benefici}}
+~\\
 Ens hem basat en les histories d'usuaris amb el següent \textit{backlog} puntuant segons la serie de Fibonnaci.\cite{backlogfibonnacci}. Eludim els requeriments ja que es poden consultar al capitol \ref{cha:specification}.
 
 \begin{center}
@@ -47,6 +51,7 @@ Propietari d'un entrenament & vull enviar un entrenament a execució & poder cre
 Sistema de cues & indicar al sistema web que tinc un resultat & poder consultar prediccions & 3  \\ \hline
 Propietari d'una predicció & configurar les dades d'una matriu	& enviar les dades a Ichnaea per predir & 21  \\ \hline
 Propietari d'una matriu & validar la matriu	 & comprovar la validessa de les dades & 5  \\ \hline
+\caption{Taula de \textit{backlog} ponderada amb la serie de Fibonnaci}
 \end{longtable}
 \end{center}
 
@@ -58,14 +63,16 @@ A la figura \ref{fig:gant} es descriu la planificació àgil per setmanes i per 
     \label{fig:gant}
 \end{sidewaysfigure}
 
+Al contrari de les metodologies en cascada, a on no es passa al següent ítem fins que s'acabi, es pot veure com es modifica ítems anteriors segons els canvis en cada iteració \textit{agile}.
+
 \section{Estimaci\'{o} econ\'{o}mica}
 La estimació del cost es calcula a partir dels següents paràmetres:
 \begin{itemize}
 \item Cada setmana de desenvolupament del projecte son 15 hores
-\item Calcul a partir del cost. Es contempla com a cost intern seguint el cost dels rols involucrats en cada area.
+\item Calcul a partir del cost. Es contempla com a cost intern seguint el cost dels rols involucrats en cada àrea.
 \item Calcul de venta com a servei. Es contempla el cas de venta de projecte com empresa segons els preus de mercats d'una consultoria \textit{StartUp} de desenvolupament a mida.
-\item Es un projecte àgil. Tots els integrants treballen en tots les tareas.
-\item Son iteracions rapides de dues setmanes.
+\item Es un projecte àgil. Tots els integrants treballen en totes les tareas.
+\item Son iteracions r\'{a}pides de dues setmanes.
 \end{itemize}
 
 \begin{sidewaystable}
@@ -82,6 +89,7 @@ Total & 61 setmanes & 1006.5 h & & & 12462\euro & & 25267.5\euro & 12805.5\euro 
 \end{sidewaystable}
 
 \section{Millores en futures versions}
+A continuació es dona una breu descripció de possibles treballs futurs d'aquest projecte.
 \begin{itemize}
 \item Refactoritzaci\'{o} del codi
 \item Personalitzaci\'{o} dels perfils d'usuari: formats de dades, dates, idiomes en el cas de internalitzaci\'{o}
@@ -94,3 +102,5 @@ Total & 61 setmanes & 1006.5 h & & & 12462\euro & & 25267.5\euro & 12805.5\euro 
 \item Implementar tests autom\'{a}tics.
 \end{itemize}
 
+\section{Conclusions finals}
+La realització d'aquest projecte esta motivada per la evolució d'Ichnaea com a sistema complexe. Durant la realització d'aquest projecte s'han pogut observar les 

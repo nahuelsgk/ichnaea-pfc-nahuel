@@ -97,7 +97,7 @@ La figura \ref{fig:actors} descriu els actors físics i lògics del sistema. A c
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{img/specification/Actors.png}
-  \caption{Actors}
+  \caption{Diagrama d'actors dels sistema}
   \label{fig:actors}
 \end{figure}
 
@@ -785,7 +785,7 @@ El principal problema que existeix en la versi\'{o} actual de Ichnaea Software \
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.4]{img/specification/StatesTraining.png}
-  \caption{Diagram d'estats dels entrenaments}
+  \caption{Diagrama d'estats dels entrenaments}
   \label{fig:statestraining}
 \end{figure}
 Per crear un entrenament, primer es comprova que es pot establir connexi\'{o} amb la cua. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat ''pendent''. En el cas que es pugui establir connexi\'{o}, s'envien les dades i es queda en aquest estat fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb un error d'Ichnaea.\\
@@ -796,7 +796,7 @@ En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar l'entrename
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.4]{img/specification/StatesPrediction.png}
-  \caption{Diagram d'estats dels entrenaments}
+  \caption{Diagrama d'estats dels entrenaments}
   \label{fig:statestraining}
 \end{figure}
 Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la matriu de predicci\'{o} estar\'{a} en un estat inicial(''nou''). Quan l'usuari confirmi l'enviament, primer es comprova que es pot establir connexi\'{o} amb la cua d'execucions de prediccions. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades. Es queda en aquest estat rebent múltiples respostes fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb els errors.\\
