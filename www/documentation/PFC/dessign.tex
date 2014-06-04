@@ -4,9 +4,7 @@
 En aquest cap\'{i}tol s'explica el disseny implementat per complir l'especificació del sistema. Es defineix la arquitectura del sistema, els patrons de dissenys emprats i les interfícies m\'{e}s complexes. 
 
 \section{Esquema general l\`{o}gic arquitect\'{o}nic del sistema}
-A continuació expliquem la arquitectura lògica dels components del sistema. La figura \ref{fig:archsoftware} \'{e}s un esquema d'aquesta arquitectura.\\
-
-Els components de l'arquitectura son:
+A continuació s'explica la arquitectura lògica dels components del sistema. La figura \ref{fig:archsoftware} de la p\`{a}gina \pageref{fig:archsoftware} \'{e}s un esquema d'aquesta arquitectura. Els components de l'arquitectura son:.\\
 
 \begin{figure}[h!]
   \includegraphics[scale=0.5]{img/design/ArchitectureSoftware.png}
@@ -17,11 +15,11 @@ Els components de l'arquitectura son:
 \begin{itemize}
 \item \textit{Ichnaea Web Application \& Services}: \'{e}s el \textit{core} de la aplicaci\'{o} i dels serveis HTTP. Es el codi i la aplicació desenvolupada. Es el principal responsable d'aquest projecte.
 \item Servidor de correu \'{e}s el servidor SMTP per enviar correus electr\`{o}nics als usuaris.
-\item Productor-Cua-Consumidor \'{e}s el sistema de cues. Expliquem el paradigma al cap\'{i}tol \ref{sec:queue_system_overview}. La funci\'{o} \'{e}s gestionar els inicis, fluxos i finals d'execucions de Ichnaea.
+\item Productor-Cua-Consumidor \'{e}s el sistema de cues. Expliquem el paradigma a la secció \ref{sec:queue_system_overview}. La funci\'{o} \'{e}s gestionar els inicis, fluxos i finals d'execucions de Ichnaea.
 \item La base de dades \'{e}s on es guarden els continguts, els models de dades i els resultats.
 \item El sistema de fitxers \'{e}s on es guarden els resultats en format binari dels entrenaments per usar amb les prediccions.
 \end{itemize}
-Es contempla una arquitectura distribuïda com a base inicial per complir els requeriments d'escalabilitat en els casos de augment o disminucions de recursos i per tenir un sistema amb un bon rendiments.\\
+Es contempla una arquitectura distribuïda com a base inicial per complir els requeriments d'escalabilitat en els casos de augment o disminucions de recursos i per tenir un sistema amb un bon rendiment.\\
 
 A continuació donem una visió global de com es distribueixen els patrons i de les seves responsabilitats i els expliquem detalladament.
 

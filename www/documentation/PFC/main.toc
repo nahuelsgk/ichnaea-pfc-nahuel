@@ -96,51 +96,57 @@
 \contentsline {subsection}{\numberline {7.1.1}Backlog}{79}{subsection.7.1.1}
 \contentsline {section}{\numberline {7.2}Planificaci\IeC {\'o}}{81}{section.7.2}
 \contentsline {section}{\numberline {7.3}Estimaci\'{o} econ\'{o}mica}{81}{section.7.3}
-\contentsline {section}{\numberline {7.4}Millores en futures versions}{82}{section.7.4}
-\contentsline {chapter}{\numberline {8}Bibliografia}{1}{chapter.8}
-\contentsline {chapter}{Bibliografia}{3}{section*.75}
-\contentsline {chapter}{\numberline {A}Manual d'usuari}{7}{appendix.A}
-\contentsline {section}{\numberline {A.1}Casa de l'usuari}{7}{section.A.1}
-\contentsline {subsection}{\numberline {A.1.1}Llistat dels meus entrenaments pendents}{8}{subsection.A.1.1}
-\contentsline {subsection}{\numberline {A.1.2}Llistat de les meves prediccions pendents}{8}{subsection.A.1.2}
-\contentsline {subsection}{\numberline {A.1.3}Els meus entrenaments}{9}{subsection.A.1.3}
-\contentsline {subsection}{\numberline {A.1.4}Les meves prediccions}{10}{subsection.A.1.4}
-\contentsline {section}{\numberline {A.2}Variables}{11}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Veure les variables del sistema}{11}{subsection.A.2.1}
-\contentsline {subsection}{\numberline {A.2.2}Formulari de edici\'{o} d'una variable}{11}{subsection.A.2.2}
-\contentsline {subsection}{\numberline {A.2.3}Llistat de conjunts de fitxers}{12}{subsection.A.2.3}
-\contentsline {subsection}{\numberline {A.2.4}Formulari de creaci\IeC {\'o} i d'actualitzaci\IeC {\'o} d'un conjunt de fitxers(''Season set'')}{12}{subsection.A.2.4}
-\contentsline {subsubsection}{Afegir nous fitxers a un conjunt de fitxers}{12}{section*.82}
-\contentsline {subsubsection}{Afegir un fitxer d'una altre variable}{13}{section*.83}
-\contentsline {subsubsection}{Esborrar un fitxer del conjunt de fitxers}{14}{section*.84}
-\contentsline {section}{\numberline {A.3}Matrius}{14}{section.A.3}
-\contentsline {subsection}{\numberline {A.3.1}Crear una matriu desde un fitxer CSV o Excel}{14}{subsection.A.3.1}
-\contentsline {subsection}{\numberline {A.3.2}Interf\IeC {\'\i }cie de configuraci\IeC {\'o} d'una matriu}{15}{subsection.A.3.2}
-\contentsline {subsubsection}{Configuraci\IeC {\'o} b\IeC {\`a}sica}{15}{section*.88}
-\contentsline {subsubsection}{Missatges}{16}{section*.89}
-\contentsline {subsubsection}{Accions}{16}{section*.90}
-\contentsline {subsubsection}{Configuraci\IeC {\'o} de les dades de la matriu}{16}{section*.91}
-\contentsline {subsection}{\numberline {A.3.3}Clonar una matriu}{17}{subsection.A.3.3}
-\contentsline {section}{\numberline {A.4}Entrenaments}{18}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Crear un entrenament d'una matriu}{18}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Visualitzar un entrenament}{19}{subsection.A.4.2}
-\contentsline {section}{\numberline {A.5}Errors en els entrenaments}{19}{section.A.5}
-\contentsline {section}{\numberline {A.6}Prediccions}{20}{section.A.6}
-\contentsline {subsection}{\numberline {A.6.1}Crear una matriu de predicci\IeC {\'o} a partir d'un entrenament desde un fitxer CSV o Excel}{20}{subsection.A.6.1}
-\contentsline {subsection}{\numberline {A.6.2}Configuraci\IeC {\'o} d'una matriu de predicci\IeC {\'o}}{21}{subsection.A.6.2}
-\contentsline {subsubsection}{Accions b\IeC {\`a}siques}{22}{section*.99}
-\contentsline {subsubsection}{Configuraci\IeC {\'o} de les dades de la matriu}{22}{section*.100}
-\contentsline {paragraph}{Columnes}{22}{section*.101}
-\contentsline {subsection}{\numberline {A.6.3}Executar una predicci\IeC {\'o}}{22}{subsection.A.6.3}
-\contentsline {subsection}{\numberline {A.6.4}Consultat resultats d'una prediccio}{22}{subsection.A.6.4}
-\contentsline {section}{\numberline {A.7}Problemes de Ichnaea}{23}{section.A.7}
-\contentsline {subsection}{\numberline {A.7.1}Error en els entrenaments}{24}{subsection.A.7.1}
-\contentsline {chapter}{\numberline {B}Manual d'administrador}{25}{appendix.B}
-\contentsline {section}{\numberline {B.1}Llistar usuaris del sistema}{25}{section.B.1}
-\contentsline {section}{\numberline {B.2}Canviar el grup de l'usuari}{25}{section.B.2}
-\contentsline {section}{\numberline {B.3}Comprovar cua}{26}{section.B.3}
-\contentsline {section}{\numberline {B.4}Crear una variable Ichnaea}{26}{section.B.4}
-\contentsline {section}{\numberline {B.5}Llistar tots els entrenaments del sistema}{26}{section.B.5}
-\contentsline {section}{\numberline {B.6}Llistat totes les prediccions del sistema}{26}{section.B.6}
-\contentsline {chapter}{\'Index de figures}{27}{section*.107}
-\contentsline {chapter}{\'Index de taules}{29}{section*.109}
+\contentsline {section}{\numberline {7.4}Conclusions finals}{82}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Millores per futures versions}{82}{subsection.7.4.1}
+\contentsline {paragraph}{Depuraci\'{o} en entorn distribu\IeC {\@umlaut \i }t}{84}{section*.77}
+\contentsline {paragraph}{Sistema de notificacions}{84}{section*.78}
+\contentsline {paragraph}{Sistema de projectes}{84}{section*.79}
+\contentsline {paragraph}{Sistema de invitacions}{84}{section*.80}
+\contentsline {paragraph}{Implementar tests autom\'{a}tics}{84}{section*.81}
+\contentsline {subsection}{\numberline {7.4.2}Reflexi\IeC {\'o} final}{84}{subsection.7.4.2}
+\contentsline {chapter}{Bibliografia}{1}{section*.83}
+\contentsline {chapter}{\numberline {A}Manual d'usuari}{5}{appendix.A}
+\contentsline {section}{\numberline {A.1}Casa de l'usuari}{5}{section.A.1}
+\contentsline {subsection}{\numberline {A.1.1}Llistat dels meus entrenaments pendents}{6}{subsection.A.1.1}
+\contentsline {subsection}{\numberline {A.1.2}Llistat de les meves prediccions pendents}{6}{subsection.A.1.2}
+\contentsline {subsection}{\numberline {A.1.3}Els meus entrenaments}{7}{subsection.A.1.3}
+\contentsline {subsection}{\numberline {A.1.4}Les meves prediccions}{8}{subsection.A.1.4}
+\contentsline {section}{\numberline {A.2}Variables}{9}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Veure les variables del sistema}{9}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Formulari de edici\'{o} d'una variable}{9}{subsection.A.2.2}
+\contentsline {subsection}{\numberline {A.2.3}Llistat de conjunts de fitxers}{10}{subsection.A.2.3}
+\contentsline {subsection}{\numberline {A.2.4}Formulari de creaci\IeC {\'o} i d'actualitzaci\IeC {\'o} d'un conjunt de fitxers(''Season set'')}{10}{subsection.A.2.4}
+\contentsline {subsubsection}{Afegir nous fitxers a un conjunt de fitxers}{10}{section*.90}
+\contentsline {subsubsection}{Afegir un fitxer d'una altre variable}{11}{section*.91}
+\contentsline {subsubsection}{Esborrar un fitxer del conjunt de fitxers}{12}{section*.92}
+\contentsline {section}{\numberline {A.3}Matrius}{12}{section.A.3}
+\contentsline {subsection}{\numberline {A.3.1}Crear una matriu desde un fitxer CSV o Excel}{12}{subsection.A.3.1}
+\contentsline {subsection}{\numberline {A.3.2}Interf\IeC {\'\i }cie de configuraci\IeC {\'o} d'una matriu}{13}{subsection.A.3.2}
+\contentsline {subsubsection}{Configuraci\IeC {\'o} b\IeC {\`a}sica}{13}{section*.96}
+\contentsline {subsubsection}{Missatges}{14}{section*.97}
+\contentsline {subsubsection}{Accions}{14}{section*.98}
+\contentsline {subsubsection}{Configuraci\IeC {\'o} de les dades de la matriu}{14}{section*.99}
+\contentsline {subsection}{\numberline {A.3.3}Clonar una matriu}{15}{subsection.A.3.3}
+\contentsline {section}{\numberline {A.4}Entrenaments}{16}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Crear un entrenament d'una matriu}{16}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Visualitzar un entrenament}{17}{subsection.A.4.2}
+\contentsline {section}{\numberline {A.5}Errors en els entrenaments}{17}{section.A.5}
+\contentsline {section}{\numberline {A.6}Prediccions}{18}{section.A.6}
+\contentsline {subsection}{\numberline {A.6.1}Crear una matriu de predicci\IeC {\'o} a partir d'un entrenament desde un fitxer CSV o Excel}{18}{subsection.A.6.1}
+\contentsline {subsection}{\numberline {A.6.2}Configuraci\IeC {\'o} d'una matriu de predicci\IeC {\'o}}{19}{subsection.A.6.2}
+\contentsline {subsubsection}{Accions b\IeC {\`a}siques}{20}{section*.107}
+\contentsline {subsubsection}{Configuraci\IeC {\'o} de les dades de la matriu}{20}{section*.108}
+\contentsline {paragraph}{Columnes}{20}{section*.109}
+\contentsline {subsection}{\numberline {A.6.3}Executar una predicci\IeC {\'o}}{20}{subsection.A.6.3}
+\contentsline {subsection}{\numberline {A.6.4}Consultat resultats d'una prediccio}{20}{subsection.A.6.4}
+\contentsline {section}{\numberline {A.7}Problemes de Ichnaea}{21}{section.A.7}
+\contentsline {subsection}{\numberline {A.7.1}Error en els entrenaments}{22}{subsection.A.7.1}
+\contentsline {chapter}{\numberline {B}Manual d'administrador}{23}{appendix.B}
+\contentsline {section}{\numberline {B.1}Llistar usuaris del sistema}{23}{section.B.1}
+\contentsline {section}{\numberline {B.2}Canviar el grup de l'usuari}{23}{section.B.2}
+\contentsline {section}{\numberline {B.3}Comprovar cua}{24}{section.B.3}
+\contentsline {section}{\numberline {B.4}Crear una variable Ichnaea}{24}{section.B.4}
+\contentsline {section}{\numberline {B.5}Llistar tots els entrenaments del sistema}{24}{section.B.5}
+\contentsline {section}{\numberline {B.6}Llistat totes les prediccions del sistema}{24}{section.B.6}
+\contentsline {chapter}{\'Index de figures}{25}{section*.115}
+\contentsline {chapter}{\'Index de taules}{27}{section*.117}

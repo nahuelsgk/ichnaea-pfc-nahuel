@@ -1,7 +1,7 @@
 \chapter{Conclusions}
 \label{cha:conclussions}
 
-En aquest cap\'{i}tol es descriu la evolució temporal, la gestió del projecte, la estimació econòmica i les possibles millores.
+En aquest cap\'{i}tol es descriu la evolució temporal, la gestió del projecte, la estimació econòmica resultat i les possibles millores que es poden realitzar. Per finalitzar, plantejo en forma de reflexió personal les conclusions de la realització d'aquest projecte.
 
 
 \section{Metodologia àgil}
@@ -18,11 +18,11 @@ Els principis bàsics de la metodologia àgil són\cite{agilemanifesto}:
 Per la realització d'aquest projecte s'han realitzat iteracions quinzenals amb el \textit{product owner}}.\cite{productowner} En cada iteració s'han anat canviant requisits, analitzant tecnologies, definint noves especificacions, definint nous requisits i fent petites \textit{demos} dels avanços implementats en cada iteració.\\
 
 \subsection{Backlog}
-En el cas d'aquest projecte s'ha usat l'artefacte principal ''Backlog'' mitjançant histories de usuaris. Les historia de usuari son una una representació d'un requisit del \textit{software} escrit en una o dos frases. En aquest cas:\\
+En el cas d'aquest projecte s'ha usat l'artefacte principal ''Backlog'' mitjançant histories de usuaris. Les historia d' usuari son una una representació d'un requisit del \textit{software} escrit en una o dos frases. En aquest cas:\\
 
 \centerline{Com \textbf{rol} vull fer \textbf{alguna cosa} per \textbf{obtenir benefici}}
 ~\\
-Ens hem basat en les histories d'usuaris amb el següent \textit{backlog} puntuant segons la serie de Fibonnaci.\cite{backlogfibonnacci}. Eludim els requeriments ja que es poden consultar al capitol \ref{cha:specification}.
+A la taula \ref{table:backlog} es pot veure el \textit{backlog} amb les histories d'usuaris puntuant cadascuna segons la serie de Fibonnaci.\cite{backlogfibonnacci}. Eludim els requeriments ja que es poden consultar al capítol \ref{cha:specification}.
 
 \begin{center}
 \begin{longtable}{ | p{3cm} | p{5cm} | p{5cm} | p{1cm} | }
@@ -52,31 +52,34 @@ Sistema de cues & indicar al sistema web que tinc un resultat & poder consultar 
 Propietari d'una predicció & configurar les dades d'una matriu	& enviar les dades a Ichnaea per predir & 21  \\ \hline
 Propietari d'una matriu & validar la matriu	 & comprovar la validessa de les dades & 5  \\ \hline
 \caption{Taula de \textit{backlog} ponderada amb la serie de Fibonnaci}
+\label{table:backlog}
 \end{longtable}
 \end{center}
 
 \section{Planificació}
-A la figura \ref{fig:gant} es descriu la planificació àgil per setmanes i per ítems.
+A la figura \ref{fig:gant} es descriu la planificació àgil per setmanes i per ítems.\\
 \begin{sidewaysfigure}[ht]
     \includegraphics[scale=0.5]{img/conclussions/gantz.png}
-    \caption{Diagrama de Gant.}
+    \caption{Diagrama de Gant de planificacio del projecte}
     \label{fig:gant}
 \end{sidewaysfigure}
 
-Al contrari de les metodologies en cascada, a on no es passa al següent ítem fins que s'acabi, es pot veure com es modifica ítems anteriors segons els canvis en cada iteració \textit{agile}.
+Al contrari de les metodologies en cascada, a on no es passa al següent ítem fins que s'acabi, es pot veure com es modifiquem ítems anteriors segons els canvis en cada iteració \textit{agile}.
 
 \section{Estimaci\'{o} econ\'{o}mica}
-La estimació del cost es calcula a partir dels següents paràmetres:
+La estimació del cost es calcula tenint en compte els següents paràmetres i consideracions:
 \begin{itemize}
 \item Cada setmana de desenvolupament del projecte son 15 hores
-\item Calcul a partir del cost. Es contempla com a cost intern seguint el cost dels rols involucrats en cada àrea.
-\item Calcul de venta com a servei. Es contempla el cas de venta de projecte com empresa segons els preus de mercats d'una consultoria \textit{StartUp} de desenvolupament a mida.
+\item C\`{a}lcul a partir del cost. Es contempla com a cost intern seguint el cost dels rols involucrats en cada àrea.
+\item C\`{a}lcul de venta com a servei. Es contempla el cas de venta de projecte com empresa segons els preus de mercats d'una consultoria \textit{StartUp} de desenvolupament a mida.
 \item Es un projecte àgil. Tots els integrants treballen en totes les tareas.
 \item Son iteracions r\'{a}pides de dues setmanes.
 \end{itemize}
 
+A la taula \ref{costs} a la p\`{a}gina \pageref{costs} s'especifiquen els costos resultats tenint en compte l'esmentat anteriorment.
+
 \begin{sidewaystable}
-\begin{tabular}{|p{3cm}|p{2cm}|p{1cm}|p{3cm}|p{1cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{2.75cm}|p{2cm}|p{1cm}|p{3cm}|p{1cm}|p{2cm}|p{2cm}|p{2cm}|p{1.75cm}|}
 \hline
 Tarea & Setmanes & Hores & Rols & Cost \euro/h & Cost total & Servei \euro/h & Servei total & Rendiment \\ \hline
 Especificacions i tomes de requeriments & N/A: 3 hores per iteració & 91.5 h & Cap de projecte & 18 \euro/h & 1647\euro & 45 \euro/h & 4117.5\euro & \\ \hline
@@ -86,21 +89,40 @@ Documentació i Qualitat & 14 setmanes & 210 h & Becari & 8 \euro/h & 1680\euro 
 \hline
 Total & 61 setmanes & 1006.5 h & & & 12462\euro & & 25267.5\euro & 12805.5\euro \\ \hline
 \end{tabular}
+\caption{Taula de costos de la realització del projecte}
+\label{costs}
 \end{sidewaystable}
 
-\section{Millores en futures versions}
-A continuació es dona una breu descripció de possibles treballs futurs d'aquest projecte.
-\begin{itemize}
-\item Refactoritzaci\'{o} del codi
-\item Personalitzaci\'{o} dels perfils d'usuari: formats de dades, dates, idiomes en el cas de internalitzaci\'{o}
-\item Ampliaci\'{o} de les API Restful
-\item Depuraci\'{o} en els exploradors m\'{e}s habituals. La aplicaci\'{o} est\'{a} depurada per Mozilla Firefox i Google Chrome. Per\'{o} no ha sigut per Internet Explorer o Safari.
-\item Depuraci\'{o} en entorn distribuït del sistema de cues. Encara que la aplicaci\'{o} ha sigut desenvolupada per ser distribuïda i separada del sistema de cues, no ha sigut possible provar-la en un entorn m\'{e}s complexe i distribuït.
-\item Sistema de notificacions. Un sistema m\'{e}s el.laborat de notificacions. Per exemple, notificacions quan un ''training'' ha acabat o enviar
-\item Sistema de projectes. La aplicaci\'{o} no ha sigut contemplada per ser m\'{e}s col.laborat-iva. Hauria de ser m\'{e}s concurrent contra alguns recursos, per exemple diversos editors d'una matriu al mateix temps.
-\item Sistema de invitacions. Un sistema per invitar col.laboradors tant siguin de la plataforma com si no.
-\item Implementar tests autom\'{a}tics.
-\end{itemize}
 
 \section{Conclusions finals}
-La realització d'aquest projecte esta motivada per la evolució d'Ichnaea com a sistema complexe. Durant la realització d'aquest projecte s'han pogut observar les 
+La realització d'aquest projecte est\'{a} motivada per la evolució d'Ichnaea com a sistema complexe. Durant l'us de la pròpia aplicació executant Ichnaea s'han pogut observar les millores que s'haurien de portar a terme al propi \textit{software} Ichnaea.\\
+
+A m\'{e}s a m\'{e}s, durant les nostres reunions personals amb tots els involucrats s'han plantejat possibles millores conceptuals per continuar evolucionant Ichnaea, que no haguessin sortit si no fos per la implementació d'aquest projecte. 
+
+\subsection{Millores per futures versions}
+A continuació exposo un conjunt de possibles millores per una segona iteració del projecte.
+
+\paragraph*{Personalitzaci\'{o} dels perfils d'usuari} Actualment els perfils d'usuari son dades basiques com noms, noms d'usuari i/o contrasenyes encriptades juntament amb processos per administrar aquestes dades com reenviar una contrasenya. Una millora interessant seria afegir dades configurables per l'usuari com, per exemple, en quin forma voldrien veure les dades de les matrius(exponencials o decimals) o en quin format volen establir les dates de les mostres.
+
+\paragraph*{Internalització de l'aplicació} La internalització de les aplicacions \'{e}s un projecte sencer. Empreses tenen equips sencer d'enginyers per portar a terme aquestes tasques. Per exemple: traduccions, formats de dates, alfabets(ciríl·lic, àrab, xines,..), formats de decimals son algunes de les tasques que realitzen aquests equips i que es podria implementar en aquest projecte. 
+
+\paragraph*{Ampliaci\'{o} de les API Restful} Actualment s'ha desenvolupat el motor dels serveis webs. Una ampliacio d'aquesta API seria interessant per desenvolupar aplicacions mòbils.
+
+\paragraph{Depuraci\'{o} en entorn distribuït} Encara que la aplicaci\'{o} ha sigut desenvolupada per ser distribuïda i separada del sistema de cues, no ha sigut possible provar-la en un entorn m\'{e}s complexe i distribuït per falta de recursos.
+
+\paragraph{Sistema de notificacions} Elaborar un sistema m\'{e}s el.laborat de notificacions per gestionar una bona comunicació amb l'usuari. Per exemple, notificacions quan un entrenament ha acabat o enviar correus electrònics per notificar als usuaris creadors de entrenaments o de prediccions en resposta a un esdeveniment de finalitzaci\'{o} d'algun d'aquests. 
+
+\paragraph{Sistema de projectes} La aplicaci\'{o} no ha sigut contemplada per ser m\'{e}s col.laborat-iva. Hauria de ser m\'{e}s concurrent contra alguns recursos, com per exemple permetre diversos editors d'una matriu al mateix temps.
+
+\paragraph{Sistema de invitacions} Un sistema per invitar col·laboradors a gestionar matrius, crear entrenaments i/o prediccions tant siguin usuaris ja registrats de la plataforma com si fossin externs.
+
+\paragraph{Implementar tests autom\'{a}tics} Per aplicar metodologies de desenvolupament m\'{e}s robustes com per exemple TDD.\cite{tdd}
+
+\subsection{Reflexió final}
+Una millora conceptual que penso per una propera iteració es afegir una capa abstracte lògica m\'{e}s a la aplicació. Actualment el projecte ha sigut enfocat a la execució d'Ichnaea com a \textit{software}. Es a dir, purament exfocat als processos. Un concepte interessant seria tenir tot un repositori d'entrenaments i afegir una lògica de negoci per damunt per gestionar-los. Tenint aquest repositoris, l'aplicació podria estar enfocada a les prediccions i les localitzacions. Aquesta millora conceptual es completament escal.lable a aquest projecte. Justament aquest projecte i el model de dades implementat podria ser el motor d'aquesta nova capa. Un benefici d'aquesta millora seria la seguent situacio.
+
+Imaginem un conjunt d'usuaris amb una aplicació mòbil entressin mostres de dades per fer prediccions a un pais X. Amb el GPS es donaria una localització i amb el rellotge es definís la data de la mostra en cadascuna de les mesures que els usuaris entressin. Aquesta millora podria anar fent prediccions, decidint quin entrenament usar sense especificar-lo. En el cas que no estigues entrenada i que tingues els envelliments per aquest pais i d'aquesta epoca de l'any decidiria crear un nou entrenament. I en el cas que no tingues res, notificaria als administradors per que intentessin definir envelliments per aquesta localització.\\
+
+Encara que arribar fins aquest sistema esta lluny, ja es comença a discernir el potencial del sistema i de la evolucio que ha començat amb aquest projecte. El projecte es troba purament en l'àmbit de la investigació i no hi ha res semblant. Per tant ha sigut una oportunitat haver aportat un gra de sorra en aquest àmbit. I de tant segur acabara sent una eina per a els biòlegs ja que les expectatives son grans i ja tenim feina definida per a futures evolucions.\\
+
+\'{E}s una gran experiència haver treballat i, sobretot, apres amb Lluís Belanche i Miguel Ibero. Han sorgit idees i hem resolt situacions per poder evolucionar aquest \textit{software} tan prometedor per intentar solucionar un problema que pot ser molt útil a la humanitat.
