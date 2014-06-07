@@ -40,7 +40,6 @@ function importFileIntoInput(fromInput, toInput){
 }
 
 function sendEvent(uri, method, params, success_callback){
-	console.log("Commons: Trying to send to new codeignite api");
 	$.ajax({
 		type: 		method,
 		url: 		uri,
@@ -48,8 +47,13 @@ function sendEvent(uri, method, params, success_callback){
 		data: 		params,
 		timeout: 	150000,
 		success:	function(data){
-			if(typeof success_callback != 'undefined') success_callback(data);
-			//showMessage('success', 1500, data.msg);
+			if (data.status != 'undefined' && data.status == 'error'){
+				displayMessage(data.msg, 'undefined')
+			}
+			else{
+				if (typeof success_callback != 'undefined') success_callback(data);
+				//showMessage('success', 1500, data.msg);
+			}
 		},
 		error: function(data, type){
 			  if(type==='timeout') {
@@ -62,9 +66,9 @@ function sendEvent(uri, method, params, success_callback){
 		}
 	});
 };
-function confirmMessage($message, $continueAction){
+function confirmMessage(message, continueAction){
 	  $('<div></div>').appendTo('body')
-	  .html('<div><h6>'+$message+'</h6></div>')
+	  .html('<div><h6>'+message+'</h6></div>')
 	  .dialog({
 	      modal: true, 
 	      title: 'message', 
@@ -74,7 +78,7 @@ function confirmMessage($message, $continueAction){
 	      resizable: false,
 	      buttons: {
 	          Yes: function () {
-	        	  $continueAction();
+	        	  if (typeof continueAction != 'undefined') continueAction();
 	              $(this).dialog("close");
 	        
 	          },

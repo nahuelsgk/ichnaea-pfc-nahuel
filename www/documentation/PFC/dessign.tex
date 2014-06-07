@@ -4,11 +4,11 @@
 En aquest cap\'{i}tol s'explica el disseny implementat per complir l'especificació del sistema. Es defineix la arquitectura del sistema, els patrons de dissenys emprats i les interfícies m\'{e}s complexes. 
 
 \section{Esquema general l\`{o}gic arquitect\'{o}nic del sistema}
-A continuació s'explica la arquitectura lògica dels components del sistema. La figura \ref{fig:archsoftware} de la p\`{a}gina \pageref{fig:archsoftware} \'{e}s un esquema d'aquesta arquitectura. Els components de l'arquitectura son:.\\
+A continuació s'explica l'arquitectura lògica dels components del sistema. La figura \ref{fig:archsoftware} a la p\`{a}gina \pageref{fig:archsoftware} \'{e}s un esquema d'aquesta arquitectura. Els components de l'arquitectura son:\\
 
 \begin{figure}[h!]
   \includegraphics[scale=0.5]{img/design/ArchitectureSoftware.png}
-  \caption{Arquitectura del sistema}
+  \caption{Diagrama de l'arquitectura del sistema}
   \label{fig:archsoftware}
 \end{figure}
 
@@ -21,10 +21,10 @@ A continuació s'explica la arquitectura lògica dels components del sistema. La
 \end{itemize}
 Es contempla una arquitectura distribuïda com a base inicial per complir els requeriments d'escalabilitat en els casos de augment o disminucions de recursos i per tenir un sistema amb un bon rendiment.\\
 
-A continuació donem una visió global de com es distribueixen els patrons i de les seves responsabilitats i els expliquem detalladament.
+A continuació donem una visió global dels patrons usats, de com es distribueixen i de les seves responsabilitats.
 
 \section{Patrons de disseny}
-Per la implementaci\`{o} del sistema web s'han usat un disseny per capes. Les capes son presentaci\'{o}, domini i persistència de dades. S'han seleccionat els següents patrons per complir els requeriments especificats.
+Per la implementaci\`{o} del sistema web s'ha usat un disseny per capes. Les capes son presentaci\'{o}, domini i persistència de dades. S'han seleccionat els següents patrons per complir els requeriments especificats.
   \begin{itemize}
   \item Model-Vista-Controlador amb controlador frontal
   \item Capa de Servei
@@ -37,7 +37,8 @@ Per la implementaci\`{o} del sistema web s'han usat un disseny per capes. Les ca
 A continuació expliquem detallem cadascun d'aquests patrons.
 
 \subsection{Esquema del disseny}
-Per tal de donar una visió general del patrons de disseny usats, dediquem aquesta secció a un diagrama esquemàtic dels patrons usats.\\
+\label{subsec:dessigndiagram}
+Per tal de donar una visió general del patrons de disseny usats, dediquem aquesta secció a un diagrama esquemàtic dels patrons usats degut a la complexitat del disseny.\\
 
 La figura \ref{fig:dessignpatters} a la p\`{a}gina \pageref{fig:dessignpatters} dona una visió general de la distribució dels patrons en els capes i com s'integren.\\
 \begin{sidewaysfigure}[ht]
@@ -60,47 +61,49 @@ El patró Model-Vista-Controlador \'{e}s un disseny t\'{i}pic en les aplicacions
 \item la \textbf{vista} transforma el model a un format visible i llegible.
 \item el \textbf{controlador} rep les peticions i dona les sortides.
 \end{itemize}
-El \textbf{controlador frontal} \'{e}s una variació del controlador que centralitza totes les peticions i les re-dirigeix cap als controladors corresponents.\\
+El \textbf{controlador frontal} \'{e}s una variació del controlador que centralitza totes les peticions i les re-dirigeix cap als controladors corresponents m\'{e}s especialitzats.\\
 
-Les principals avantatges d'aquesta variació \'{e}s la centralització de les peticions en un únic punt, augment de la re-usabilitat del codi i millorem la gestió de la seguretat.
+Les principals avantatges d'aquesta variació \'{e}s la centralització de les peticions en un únic punt. Això t\'{e} un impacte directe en l'augment de la re-usabilitat del codi i d'una millor gestió de la seguretat.
 
 \subsubsection{Injecció de dependències}
-L'arquitectura \textbf{MVC} separa la capa de presentaci\'{o} de la l\`{o}gica de domini. La capa de presentaci\'{o} accedeix a la capa de domini mitjançant serveis, injectant depend\'{e}ncies. \\
+L'arquitectura \textbf{MVC} separa la capa de presentaci\'{o} de la l\`{o}gica de domini. La capa de presentaci\'{o} accedeix a la capa de domini mitjançant serveis, injectant depend\'{e}ncies (secció \ref{subsec:dessigndiagram}).\\
 
 La \textbf{injecci\'{o} de depend\'{e}ncies} \'{e}s un patr\'{o} a on es subministren objectes a una classe en lloc de ser la classe qui crea els objectes.\cite{dependency_injection}\\
 
 Les avantatges de usar DI(''dependency injection'') son:
 \begin{itemize}
-\item Codi m\'{e}s f\`{a}cil de mantenir, extendre o modificar
-\item Desenvolupament guiat per proves (Test Driven Development o TDD en angl\'{e}s)
+\item Codi m\'{e}s f\`{a}cil de mantenir, extendre o modificar.
+\item Desenvolupament guiat per proves (Test Driven Development o TDD en angl\'{e}s).
 \item DI ens obliga a planejar una mica millor les nostres depend\`{e}ncies; decidim si una classe realment necessita d'un altre objecte per realitzar la seva funció.
 \end{itemize}
 
 \subsubsection{Repositori de model de dades}
 La \textbf{capa de serveis} cont\'{e} la l\'{o}gica del sistema web d'Ichnaea i depen directament del domini. El domini accedeix a les dades mitjançant \textbf{repositoris} d'objectes. Els \textbf{repositoris} son mediadors entre el domini i les dades persistents. Els repositoris retornen entitats i/o col·leccions d'entitats de la l\'{ogica} de domini.\\
 
-Les principals avantatges d'aquest patró son la facilitat de realitzar tests, separació molt clara entre el domini i la capa de dades i la possibilitat de usar els repositoris amb altres dominis.\\
+Les principals avantatges d'aquest patró son la facilitat de realitzar tests, la clara segregació entre capa de domini i la capa de dades i la possibilitat de usar els repositoris amb altres dominis.\\
 
 La principal avantatge de la integració entre el patró repositori i la injecció de dependències \'{e}s el \textbf{desacoblament entre domini i la capa de dades}. En altres paraules, es podria canviar la tecnologia de la capa de dades sense fer quasi cap modificació. 
 
 \phantomsection
 \label{ormdessign}
 \subsubsection{Capa de mapatge de dades}
-El \textbf{mapatge de dades} ORM(''Object Relational Mapping''), mapatge objecte-relacional, \'{e}s un patr\'{o} de disseny(encara que alguns enginyers els agrada dir que \'{e}s una tècnica de programaci\'{o} i a uns altres una tecnologia) que estableix una relaci\'{o} directe entre les entitats i la dades persistents.\cite{orm}\\
+El \textbf{mapatge de dades} ORM(''Object Relational Mapping'' o mapatge objecte-relacional) \'{e}s un patr\'{o} de disseny(encara que alguns enginyers els agrada dir que \'{e}s una tècnica de programaci\'{o} i a uns altres una tecnologia) que estableix una relaci\'{o} directe entre les entitats i la dades persistents.\cite{orm}\\
 
-Les principals avantatges d'usar aquest patró son la facilitat de desenvolupament, abstracció de la base de dades, la seguretat i el manteniment del codi.
+Les principals avantatges d'usar aquest patró son la facilitat de desenvolupament, abstracció de la base de dades, la seguretat i el manteniment del codi.\\
+
+En qualsevol projecte es molt útil ja que mentre es desenvolupen les classes, a la vegada es defineixen els esquemes de les bases de dades.
 
 \subsubsection{View template}
 El patró de vista ''template'' es una variació del component \textbf{Vista} del patró \textbf{MVC}. Es un patró molt vinculat al desenvolupament de pagines HTML i la entitat base son les plantilles.\\
 
-Les plantilles son pagines estàtiques amb informacio dinamica. El controlador del patró MVC emplena aquestes variables dinàmiques generant pagines dinàmicament.\cite{viewtemplate}\\
+Les plantilles son pagines estàtiques amb informació dinàmica mitjançant variables. El controlador del patró MVC emplena aquestes variables generant pagines dinàmicament.\cite{viewtemplate}\\
 
 Les principals avantatges d'usar aquest patró son la clara separació entre vistes i lògiques d'aplicació i del controlador.  
 
 \phantomsection
 \label{ria}
 \subsubsection{Interfícies enriquides amb serveis webs}
-Les aplicacions web enriquides(RIA) son aplicacions que tenen la majoria aplicacions d'escriptori tradicional. L'objectiu es millorar la experiència i la productivitat de l'usuari. En aquest cas, com \'{e}s un sistema web, els clients son els navegadors webs o els perifèrics com altres sistemes o una aplicació mòbil.\cite{ria}\\
+Les aplicacions web enriquides(RIA) son aplicacions que tenen la majoria de les funcions de les aplicacions d'escriptori tradicional. L'objectiu es millorar la experiència i la productivitat de l'usuari. En aquest cas, com \'{e}s un sistema web, els clients son els navegadors webs o els perifèrics com altres sistemes o una aplicació mòbil.\cite{ria}\\
 
 L'us del patró ''View Template'' ens facilita que part del desenvolupament de l'aplicació estigui al costat del clients(navegadors) per dissenyar unes interfícies complexes i enriquides.\\ 
 
@@ -111,6 +114,7 @@ En el disseny de les interfícies, es pretén definir com serà la part del sist
 A continuació es detalla el disseny principal de l'aplicació i de les interfícies m\'{e}s complexes.
 
 \subsection{Disseny principal}
+\label{subsec:maindessign}
 A la figura \ref{fig:maininterface} es detalla la estructura estètica de la aplicació. 
 
 \begin{figure}[H]
@@ -120,14 +124,16 @@ A la figura \ref{fig:maininterface} es detalla la estructura estètica de la apl
   \label{fig:maininterface}
 \end{figure}
 
-La capçalera de totes les p\`{a}agines del sistema serà sempre visibles i contindrà el menú de la aplicació. A la part esquerra del menu sortira el logo d'Ichnaea i a la dreta un menú per l'usuari.\\
+La capçalera de totes les p\`{a}gines del sistema serà sempre visibles i contindrà el menú de la aplicació. A la part esquerra del menu sortira el logo d'Ichnaea i a la dreta un menú per l'usuari.\\
 
-El menú contindrà dos nivell. El primer nivell esta detallat a la capçalera. El segon nivell es desplegar\'{a} al accedir a la opci\'{o} del primer nivell.\\
+El menú contindrà dos nivell. El primer nivell esta detallat a la capçalera. I el segon nivell es desplegar\'{a} al accedir a la opci\'{o} del primer nivell.\\
 
-El menú serà condicional als permisos de l'usuari que estigui usant. La jerarquia del menú es la següent:
+\phantonsection
+\label{menudessign}
+El menú serà condicional als permisos de l'usuari que estigui usant la aplicació. La jerarquia del menú es la següent:
 \begin{itemize}
 \item Logo
-\item Matrius
+\item Matrius.
  \begin{itemize}
  \item Les meves matrius
  \item Crear una matriu
@@ -142,7 +148,7 @@ El menú serà condicional als permisos de l'usuari que estigui usant. La jerarq
  \item Les meves prediccions
  \item Crear una predicció
  \end{itemize} 
-\item Dades de Ichnaea 
+\item Dades de Ichnaea. Son dades generals consultables per tots els usuaris.
  \begin{itemize}
  \item Variables del sistema
  \item Fitxers
@@ -166,21 +172,21 @@ El menú serà condicional als permisos de l'usuari que estigui usant. La jerarq
 \end{itemize}
 
 \subsection{Interf\'{i}cie de configuraci\'{o} de matrius}
-El disseny d'interfícies per les configuracions de les matrius es basa en desenvolupar funcionalitats enriquides\cite{ria}. Per dotar de funcionalitats a les interfícies webs s'utilitza peticions el paradigma de peticions asíncrones implementant el patro de disseny ''Interfícies enriquides amb serveis webs'' explicat a la secció \ref{subsec:dessignexplanation} a la pagina \pageref{ria}.\cite{asyncronous}\\ 
+El disseny d'interfícies per les configuracions de les matrius es basa en desenvolupar funcionalitats enriquides\cite{ria}. Per dotar de funcionalitats a les interfícies webs s'utilitza el paradigma de peticions asíncrones;\cite{asyncronous} mitjançant l'aplicació del patró de disseny ''Interfícies enriquides amb serveis webs''(explicat a la secció \ref{subsec:dessignexplanation} a la pagina \pageref{ria}).\\ 
 
-Per complir aquest requeriment s'ha de dissenyar una llibreria per atendre les peticions asíncrones i desenvolupar funcionalitats a les interfícies per atendre les respostes a aquestes peticions. A continuaci\'{o} es descriuen les interf\'{i}cies m\'{e}s complexes: les responsables de la configuraci\'{o} de les matrius.
+Per complir aquest requeriment s'ha de dissenyar una llibreria per atendre les peticions asíncrones i desenvolupar funcionalitats a les interfícies per atendre les respostes a aquestes peticions. A continuaci\'{o} es descriuen les interf\'{i}cies m\'{e}s complexes que son les de configuraci\'{o} de matrius.
 
 \subsubsection{Interf\'{i}cie de configuraci\'{o} de matrius}
-La interfície de configuració de matrius ha de permetre la configuració de les dades de les matrius de forma asíncrona per tenir una bona experiència de usuari. La interfície mostra una graella amb moltes dades. Per tant \'{e}s important separar clarament les dades i les funcionalitats de configuració.\\
+Per tenir una bona experiència de usuari, la interfície de configuració de matrius ha de permetre la configuració de les dades de les matrius de forma asíncrona. La interfície ha de mostrar una graella amb moltes dades. Per tant \'{e}s important separar clarament les dades i les funcionalitats de configuració.\\
 
 Les funcionalitats enriquides que ha de complir la interfície son:
 \begin{itemize}
-\item Carrega d'un conjunt de fitxers segons la variable seleccionada..
+\item Carregar un conjunt de fitxers segons la variable seleccionada.
 \item Guardar la configuració d'una columna: alies, variable i conjunt de fitxers.
 \item Desplegar un calendari per seleccionar una data i assignar-la a una mostra.
 \item Desplegar un selector obert de possibles valors de tots els orígens que estiguin especificats a les mostres.
 \item Actualitzar el valor d'una mostra i d'una variable.
-\item Permetre la mobilitat per la matriu fixant les capçaleres de les columnes i les files.
+\item Permetre la mobilitat per les dades de la matriu fixant les capçaleres de les columnes i les files perquè l'usuari tingui una referencia clara a que correspon la dada.
 \item Adaptar-se a les dimensions de la pantalla.
 \end{itemize}
 
@@ -195,7 +201,7 @@ A la figura \ref{fig:interfacematrixconf} s'especifica el disseny de la interfí
 
 
 \subsubsection{Interf\'{i}cie de configuraci\'{o} de matrius de predicció}
-La interfície de configuració de matrius de prediccions ha de permetre la configuració de les dades de les matrius de forma asíncrona per tenir una bona experiència de usuari. La interfície mostra una graella amb moltes dades. Per tant \'{e}s separar clarament les dades i les funcionalitats de configuració.\\
+Al igual que l'anterior, per tenir una bona experiència de usuari, la interfície de configuració de matrius de predicció ha de permetre la configuració de les dades de les matrius de forma asíncrona. La interfície ha de mostrar una graella amb moltes dades. Per tant \'{e}s important separar clarament les dades i les funcionalitats de configuració.\\
 
 Les funcionalitats enriquides que han de complir:
 \begin{itemize}

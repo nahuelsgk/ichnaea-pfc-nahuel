@@ -1,7 +1,9 @@
 \chapter{Conclusions}
 \label{cha:conclussions}
 
-En aquest cap\'{i}tol es descriu la evolució temporal, la gestió del projecte, la estimació econòmica resultat i les possibles millores que es poden realitzar. Per finalitzar, plantejo en forma de reflexió personal les conclusions de la realització d'aquest projecte.
+En aquest cap\'{i}tol es descriu la evolució temporal, la gestió del projecte, la estimació econòmica resultat i les possibles millores que es poden realitzar.\\
+
+Per finalitzar, plantejo en forma de reflexió personal les conclusions arribades amb la realització d'aquest projecte.
 
 
 \section{Metodologia àgil}
@@ -57,7 +59,7 @@ Propietari d'una matriu & validar la matriu	 & comprovar la validessa de les dad
 \end{center}
 
 \section{Planificació}
-A la figura \ref{fig:gant} es descriu la planificació àgil per setmanes i per ítems.\\
+A la figura \ref{fig:gant} a la p\`{a}gina \pageref{fig:gant} es descriu la planificació àgil per setmanes i per ítems.\\
 \begin{sidewaysfigure}[ht]
     \includegraphics[scale=0.5]{img/conclussions/gantz.png}
     \caption{Diagrama de Gant de planificacio del projecte}
@@ -102,27 +104,27 @@ A m\'{e}s a m\'{e}s, durant les nostres reunions personals amb tots els involucr
 \subsection{Millores per futures versions}
 A continuació exposo un conjunt de possibles millores per una segona iteració del projecte.
 
-\paragraph*{Personalitzaci\'{o} dels perfils d'usuari} Actualment els perfils d'usuari son dades basiques com noms, noms d'usuari i/o contrasenyes encriptades juntament amb processos per administrar aquestes dades com reenviar una contrasenya. Una millora interessant seria afegir dades configurables per l'usuari com, per exemple, en quin forma voldrien veure les dades de les matrius(exponencials o decimals) o en quin format volen establir les dates de les mostres.
+\paragraph*{Personalitzaci\'{o} dels perfils d'usuari} Actualment els perfils d'usuari son dades bàsiques com noms, noms d'usuari i/o contrasenyes encriptades juntament amb processos per administrar aquestes dades com reenviar una contrasenya. Una millora interessant seria afegir dades configurables per l'usuari com, per exemple, en quin forma voldrien veure les dades de les matrius(exponencials o decimals) o en quin format volen establir les dates de les mostres.
 
-\paragraph*{Internalització de l'aplicació} La internalització de les aplicacions \'{e}s un projecte sencer. Empreses tenen equips sencer d'enginyers per portar a terme aquestes tasques. Per exemple: traduccions, formats de dates, alfabets(ciríl·lic, àrab, xines,..), formats de decimals son algunes de les tasques que realitzen aquests equips i que es podria implementar en aquest projecte. 
+\paragraph*{Internacionalització de l'aplicació} La internacionalització d'una aplicació \'{e}s un projecte sencer. Empreses tenen equips sencers d'enginyers especialitzats per portar a terme aquestes tasques. Per exemple: traduccions, formats de dates, alfabets(ciríl·lic, àrab, xines,..), formats de números decimals son algunes de les tasques que realitzen aquests equips i que es podria implementar en aquest projecte. 
 
-\paragraph*{Ampliaci\'{o} de les API Restful} Actualment s'ha desenvolupat el motor dels serveis webs. Una ampliacio d'aquesta API seria interessant per desenvolupar aplicacions mòbils.
+\paragraph*{Ampliaci\'{o} de les API Restful} Actualment s'ha desenvolupat el motor dels serveis webs. Una ampliació d'aquesta API seria interessant per desenvolupar aplicacions mòbils.
 
 \paragraph{Depuraci\'{o} en entorn distribuït} Encara que la aplicaci\'{o} ha sigut desenvolupada per ser distribuïda i separada del sistema de cues, no ha sigut possible provar-la en un entorn m\'{e}s complexe i distribuït per falta de recursos.
 
 \paragraph{Sistema de notificacions} Elaborar un sistema m\'{e}s el.laborat de notificacions per gestionar una bona comunicació amb l'usuari. Per exemple, notificacions quan un entrenament ha acabat o enviar correus electrònics per notificar als usuaris creadors de entrenaments o de prediccions en resposta a un esdeveniment de finalitzaci\'{o} d'algun d'aquests. 
 
-\paragraph{Sistema de projectes} La aplicaci\'{o} no ha sigut contemplada per ser m\'{e}s col.laborat-iva. Hauria de ser m\'{e}s concurrent contra alguns recursos, com per exemple permetre diversos editors d'una matriu al mateix temps.
+\paragraph{Sistema de projectes} La aplicaci\'{o} no ha sigut contemplada per ser m\'{e}s col·laborativa. Hauria de ser m\'{e}s concurrent contra alguns recursos, com per exemple permetre diversos editors d'una matriu al mateix temps.
 
 \paragraph{Sistema de invitacions} Un sistema per invitar col·laboradors a gestionar matrius, crear entrenaments i/o prediccions tant siguin usuaris ja registrats de la plataforma com si fossin externs.
 
 \paragraph{Implementar tests autom\'{a}tics} Per aplicar metodologies de desenvolupament m\'{e}s robustes com per exemple TDD.\cite{tdd}
 
 \subsection{Reflexió final}
-Una millora conceptual que penso per una propera iteració es afegir una capa abstracte lògica m\'{e}s a la aplicació. Actualment el projecte ha sigut enfocat a la execució d'Ichnaea com a \textit{software}. Es a dir, purament exfocat als processos. Un concepte interessant seria tenir tot un repositori d'entrenaments i afegir una lògica de negoci per damunt per gestionar-los. Tenint aquest repositoris, l'aplicació podria estar enfocada a les prediccions i les localitzacions. Aquesta millora conceptual es completament escal.lable a aquest projecte. Justament aquest projecte i el model de dades implementat podria ser el motor d'aquesta nova capa. Un benefici d'aquesta millora seria la seguent situacio.
+Una millora conceptual que penso per una propera iteració es afegir una capa abstracte lògica m\'{e}s a la aplicació. Actualment el projecte ha sigut enfocat a la execució d'Ichnaea com a \textit{software}. Es a dir, purament enfocat als processos. Un concepte interessant seria tenir tot un repositori d'entrenaments i afegir una lògica de negoci per damunt per gestionar-los. Tenint aquest repositoris, l'aplicació podria estar enfocada a les prediccions i les localitzacions. Aquesta millora conceptual es completament escal.lable a aquest projecte. Justament aquest projecte i el model de dades implementat podria ser el motor d'aquesta nova capa. Un benefici d'aquesta millora seria la següent situació.\\
 
-Imaginem un conjunt d'usuaris amb una aplicació mòbil entressin mostres de dades per fer prediccions a un pais X. Amb el GPS es donaria una localització i amb el rellotge es definís la data de la mostra en cadascuna de les mesures que els usuaris entressin. Aquesta millora podria anar fent prediccions, decidint quin entrenament usar sense especificar-lo. En el cas que no estigues entrenada i que tingues els envelliments per aquest pais i d'aquesta epoca de l'any decidiria crear un nou entrenament. I en el cas que no tingues res, notificaria als administradors per que intentessin definir envelliments per aquesta localització.\\
+Imaginem un conjunt d'usuaris amb una aplicació mòbil entressin mostres de dades per fer prediccions a un país X. Amb el GPS es donaria una localització i amb el rellotge es definiria la data de la mostra en cadascuna de les mesures que els usuaris entressin. Aquesta millora podria anar fent prediccions, decidint quin entrenament usar sense especificar-lo. En el cas que no estigues entrenada i que tingues els envelliments per aquest país i d'aquesta epoca de l'any decidiria crear un nou entrenament. I en el cas que no tingues res, notificaria als administradors per que intentessin definir envelliments per aquesta localització.\\
 
-Encara que arribar fins aquest sistema esta lluny, ja es comença a discernir el potencial del sistema i de la evolucio que ha començat amb aquest projecte. El projecte es troba purament en l'àmbit de la investigació i no hi ha res semblant. Per tant ha sigut una oportunitat haver aportat un gra de sorra en aquest àmbit. I de tant segur acabara sent una eina per a els biòlegs ja que les expectatives son grans i ja tenim feina definida per a futures evolucions.\\
+Encara que arribar fins aquest sistema esta lluny, ja es comença a entreveure fins a on pot arribar el seu potencial i de la evolució que ha començat amb aquest projecte. El projecte es troba purament en l'àmbit de la investigació i no hi ha res semblant. Per tant ha sigut una oportunitat haver aportat un gra de sorra en aquest àmbit. I de tant segur acabar\`{a} sent una eina per a els biòlegs. Les expectatives son grans i ja tenim feina definida per a futures evolucions.\\
 
 \'{E}s una gran experiència haver treballat i, sobretot, apres amb Lluís Belanche i Miguel Ibero. Han sorgit idees i hem resolt situacions per poder evolucionar aquest \textit{software} tan prometedor per intentar solucionar un problema que pot ser molt útil a la humanitat.

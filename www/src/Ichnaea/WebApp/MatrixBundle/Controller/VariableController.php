@@ -7,6 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class VariableController extends Controller{
 	
+	/**
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getVariablesListAction()
 	{
 		$ichnaeaService = $this->get('ichnaea.service');
@@ -14,6 +18,11 @@ class VariableController extends Controller{
 		return $this->render('MatrixBundle:Variable:list.html.twig', array("variables" => $variables));
 	}
 	
+	/**
+	 * 
+	 * @param string $variable_id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getFormVariableAction($variable_id = NULL)
 	{
         $variable = NULL;
@@ -35,6 +44,10 @@ class VariableController extends Controller{
 		);
 	}
 	
+	/**
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function createVariableAction()
 	{
 		$request = $this->getRequest();
@@ -46,6 +59,11 @@ class VariableController extends Controller{
 		return $this->redirect($this->generateUrl('variable_list'));
 	}
 	
+	/**
+	 * 
+	 * @param unknown $variable_id
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function updateVariableAction($variable_id)
 	{
 		$request = $this->getRequest();
@@ -104,11 +122,10 @@ class VariableController extends Controller{
 			$season_id = $request->get('season_id');
 			//Read on the form why is season_3
 			$already_season[$season_id] = $request->get('season_3');
-		
 			$season_id = $ichnaeaService->createSeasonSet(
 					$variable_id,
 				    $name, 
-					$already_season,
+					$season_id == ''? NULL : $already_season,
 					$seasons
 			);
 			return $this->redirect($this->generateUrl('season_set_edit', array('variable_id'=>$variable_id, 'season_set_id' => $season_id )));
@@ -177,13 +194,13 @@ class VariableController extends Controller{
 		  $seasons = $this->buildSeasonComponents($request);
 		  
 		  //Season that are already in the system and were choosen
-		  //We build a mapping association [seasonId] => summer|winter|spring....
+		  //We build a mapping association [seasonId] => summer|winter|spring for a better searching method
 		  $already_season = array();
 		  $season_id = $request->get('season_id');
 		  //Read on the form why is season_3
 		  $already_season[$season_id] = $request->get('season_3');
-		  
-		  $ichnaeaService->updateSeasonSet($season_set_id, $name, $already_season, $seasons);
+		
+		  $ichnaeaService->updateSeasonSet($season_set_id, $name, $season_id == ''? NULL : $already_season, $seasons);
 		  return $this->redirect($this->generateUrl('season_set_edit', array('variable_id' => $variable_id, 'season_set_id' => $season_set_id)));
 		}
 		

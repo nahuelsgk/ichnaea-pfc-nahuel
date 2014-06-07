@@ -43,7 +43,7 @@ class ApiController extends FosRestController{
     public function deleteSeasonSetAction($variable_id, $seasonSet_id){
        $ichnaeaService = $this->get('ichnaea.service');
        $ichnaeaService->deleteSeasonSet($seasonSet_id);
-       return $this->view(null, 204);
+       return $this->view(array('status' => 'ok'), 204);
     }
     
     /**
@@ -56,7 +56,7 @@ class ApiController extends FosRestController{
     {
     	$ichnaeaService = $this->get('ichnaea.service');
     	$ret = $ichnaeaService->deleteSeasonSetComponent($variable_id, $seasonSet_id, $component_id);
-    	return $this->view($ret, 200);
+    	return $this->view(array('status' => 'ok'), 200);
     }
     
     /**
@@ -69,7 +69,8 @@ class ApiController extends FosRestController{
     {
     	$ichnaeaService = $this->get('ichnaea.service');
     	$ret = $ichnaeaService->deleteCompleteSeasonSetComponent($variable_id, $seasonSet_id, $component_id);
-    	return $this->view($ret, 200);
+    	if ($ret == false) return $this->view(array('status' => 'error', 'msg' => "Can't delete this component because is in used or is shared" ), 200);
+    	return $this->view(array('status' => 'ok'), 200);
     }
     
     /**

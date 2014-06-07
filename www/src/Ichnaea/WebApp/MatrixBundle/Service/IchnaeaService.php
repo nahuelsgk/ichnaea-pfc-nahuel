@@ -194,14 +194,13 @@ class IchnaeaService{
 		
 		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
 		
-		//... search in the associative array the id and the type
-		$type     = reset($alreadySeason);
-		$seasonId = key($alreadySeason);
-		$season   = $seasonRepository->find($seasonId);
-		//... search if it was already a component
-		var_dump($alreadySeason);
-		
 		if(!is_null($alreadySeason)){
+			//... search in the associative array the id and the type
+			$type     = reset($alreadySeason);
+			$seasonId = key($alreadySeason);
+			$season   = $seasonRepository->find($seasonId);
+			//... search if it was already a component
+		
 			$season = $this->getSeasonById($seasonId);
 			$seasonSetComponent = new SeasonSetComponent();
 			$seasonSetComponent->setSeason($season);
@@ -224,7 +223,6 @@ class IchnaeaService{
 			$seasonSetComponent->setSeasonType($type);
 			$this->em->persist($seasonSetComponent);
 		}
-		
 		$this->em->flush();
 		
 		return $seasonSet->getId();
@@ -243,27 +241,29 @@ class IchnaeaService{
 		$seasonSet->setName($name);
 		$seasonRepository = $this->em->getRepository('MatrixBundle:Season');
 		
-		//Map the season id of the components into an array for...
-		$components_already = $seasonSet->getComponents();
-		$components_array;
-		foreach($components_already as $component)
+		if(!is_null($alreadySeason))
 		{
-			$components_array[$component->getSeason()->getId()] = $component->getSeason();
+			//First, map the season id of the components to its type into an array for...
+			$components_already = $seasonSet->getComponents();
+			$components_array;
+			foreach($components_already as $component)
+			{
+				$components_array[$component->getSeason()->getId()] = $component->getSeason();
+			}
+			//... for search in the associative array the type according to id
+			$type     = reset($alreadySeason);
+			$seasonId = key($alreadySeason);
+			$season   = $seasonRepository->find($seasonId);
+			//... and search if it was already a component
+			if(!isset($components_array[$seasonId])){
+				$season = $this->getSeasonById($seasonId);
+				$seasonSetComponent = new SeasonSetComponent();
+				$seasonSetComponent->setSeason($season);
+				$seasonSetComponent->setSeasonSet($seasonSet);
+				$seasonSetComponent->setSeasonType($type);
+				$this->em->persist($seasonSetComponent);
+			}
 		}
-		//... search in the associative array the id and the type
-		$type     = reset($alreadySeason);
-		$seasonId = key($alreadySeason);
-		$season   = $seasonRepository->find($seasonId);
-		//... search if it was already a component
-		if(!isset($components_array[$seasonId]) && !is_null($alreadySeason)){
-			$season = $this->getSeasonById($seasonId);
-			$seasonSetComponent = new SeasonSetComponent();
-			$seasonSetComponent->setSeason($season);
-			$seasonSetComponent->setSeasonSet($seasonSet);
-			$seasonSetComponent->setSeasonType($type);
-			$this->em->persist($seasonSetComponent);
-		}
-		
 		//@TODO: replicated code
 		foreach($components as $component){
 			$filename = $component['filename'];
@@ -276,9 +276,9 @@ class IchnaeaService{
 			$seasonSetComponent->setSeason($season);
 			$seasonSetComponent->setSeasonSet($seasonSet);
 			$seasonSetComponent->setSeasonType($type);
+			
 			$this->em->persist($seasonSetComponent);
 		}
-		
 		$this->em->flush();
 		return $seasonSet->getId();
 	}
@@ -328,12 +328,13 @@ class IchnaeaService{
 	 * 
 	 * @param int $seasonSet_id
 	 */
-	public function deleteSeasonSet($seasonSet_id)
+	/*public function deleteSeasonSet($seasonSet_id)
 	{
 		$season = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
 		$this->em->remove($season);
 		$this->em->flush();
-	}
+	}*/
+	
 	/**
 	 * 
 	 * @param unknown $season_set_id
@@ -344,16 +345,22 @@ class IchnaeaService{
 		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($season_set_id);
 		
 		//Check if is used in a matrix
-		$columns_in_matrix_using_this_season_set = $this->em->getRepository('MatrixBundle:VariableMatrixConfig')->findBy(array('seasonSet' => $seasonSet));
-		if (count($columns_in_matrix_using_this_season_set) > 0) return false;
+		$used = $this->seasonSetIsUsedInAnyMatrix($seasonSet);
+		if ($used == true) return false;
+		//@delete this next two lines if lines above works!
+		//$columns_in_matrix_using_this_season_set = $this->em->getRepository('MatrixBundle:VariableMatrixConfig')->findBy(array('seasonSet' => $seasonSet));
+		//if (count($columns_in_matrix_using_this_season_set) > 0) return false;
 		
 		$components = $seasonSet->getComponents();
+		//Check if a components has a shared season set....
 		foreach ($components as $component){
 			$season = $component->getSeason();
 			$components_by_season = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->findBy(array('season' => $season));
+			//if has it just removed as a a component
 			if (count($components_by_season) > 1){
 				$this->em->remove($component);
 			}
+			//otherwise remove it
 			elseif($components_by_season = 1){
 				$this->em->remove($component);
 			   	$this->em->remove($component->getSeason());
@@ -378,6 +385,32 @@ class IchnaeaService{
 	}
 	
 	/**
+	 * Checks if a season set is used in any matrix
+	 *  
+	 * @param unknown $season_set_id
+	 * @return boolean
+	 */
+	private function seasonSetIsUsedInAnyMatrix($seasonSet)
+	{
+		$columns_in_matrix_using_this_season_set = $this->em->getRepository('MatrixBundle:VariableMatrixConfig')->findBy(array('seasonSet' => $seasonSet));
+		if (count($columns_in_matrix_using_this_season_set) > 0) return true;
+		return false;
+	}
+	
+	/**
+	 * Checks if a season set has been trained
+	 * @param unknown $sesonSet
+	 */
+	private function seasonSetHasBeenTrainedInAnyMatrix($seasonSet)
+	{
+		$columns_that_uses_this_season_set = $this->em->getRepository('MatrixBundle:VariableMatrixConfig')->findBy(array('seasonSet' => $seasonSet));
+		foreach($columns_that_uses_this_season_set as $column){
+			if (count($column()->getMatrix->getTraining()) > 0) return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * 
 	 * @param int $variable_id
 	 * @param int $season_set_id
@@ -386,9 +419,26 @@ class IchnaeaService{
 	public function deleteCompleteSeasonSetComponent($variable_id, $season_set_id, $component_id)
 	{
 		$seasonSetComponent = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->find($component_id);
+		
+		//Check if this season it is in used in a matrix
+		$seasonSet = $this->em->getRepository('MatrixBundle:SeasonSet')->find($season_set_id);
+		
+		//Check if is used in a matrix
+		$used = $this->seasonSetHasBeenTrainedInAnyMatrix($seasonSet);
+		if ($used == true) return false;
+		
+		//Check if it is shared by any other season set
+		$season = $seasonSetComponent->getSeason();
+		$components_by_season = $this->em->getRepository('MatrixBundle:SeasonSetComponent')->findBy(array('season' => $season));
+		//if has it, only can be removed as a a component
+		if (count($components_by_season) > 1){
+			return false;
+		}
+		
 		$this->em->remove($seasonSetComponent);
 		$this->em->remove($seasonSetComponent->getSeason());
 		$this->em->flush();
+		return true;
 	}
 	
 	/**

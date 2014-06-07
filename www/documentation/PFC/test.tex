@@ -31,7 +31,9 @@ Partim d'una matrius de dades reals proporcionada per Anicet Blanch anomenada \t
 
 La importaci\'{o} de matrius de dades \'{e}s una operaci\'{o} costosa ja que ha de llegir cadascun dels valors del fitxer. Seguidament el sistema renderitza la interficie de configuracions de matrius.\\
 
-La creaci\'{o} del model de dades a partir d'un fitxer(lectura de totes les dades i modelat) triga de temps mig 1226ms. La renderitzaci\'{o} triga de temps mig 1066ms. 
+La creaci\'{o} del model de dades a partir d'un fitxer(lectura de totes les dades i modelat) triga de temps mig 1226ms. La renderitzaci\'{o} triga de temps mig 1066ms.\\
+
+Si sumen ambdos temps surt un temps pro-mig d'importació i visualització de 2292ms. Es un temps excel·lent per una operació d'aquest tipus i amb tamany d'aquest fitxer.
 
 \subsubsection{Esborrat de matrius}
 Els esborrats de matrius han de esborrar totes les entitats dependents. En aquest cas ha d'esborrar tots els entrenaments i les prediccions creades a partir d'aquests entrenaments.\\
@@ -44,7 +46,7 @@ Els esborrats de matrius han de esborrar totes les entitats dependents. En aques
 La prova d'un esborrat d'un entrenament amb dos prediccions triga 857ms. Es va comprovar correctament l'esborrat de l'entrenament i de les prediccions.
 
 \subsubsection{Temps de resposta de les API JSON Restful}
-Les llibreries de les interfícies enriquides son usades en les configuracions de matrius, tant de les normals com les de predicci\'{o}. Les proves s'han realitzat amb eines de mesures al navegadors: ''Firebug'' en Firefox i l'inspector natiu de Google Chrome. El temps m\'{i}nim calculat ha sigut 407ms i el m\'{a}xim 1050ms.\\
+Les llibreries de les interfícies enriquides son usades en les configuracions de matrius, tant de les normals com les de predicci\'{o}. Les proves s'han realitzat amb eines de mesures als navegadors: ''Firebug'' en Firefox i l'inspector natiu de Google Chrome. El temps m\'{i}nim calculat ha sigut 407ms i el m\'{a}xim 1050ms.\\
 
 A la figura \fig{firebugAPI} es pot veure un diagrama de les peticions i els temps de resposta on a la columna ''Línia de temps'' es pot veure els temps trigats per peticions. Les peticions corresponents a demanar conjunts de fitxers i de salvar configuracions de columnes.
 \begin{figure}[h]
@@ -64,10 +66,10 @@ La creaci\'{o} del model de dades des d'un fitxer ha trigat 857ms i la renderitz
 Aquest projecte no consisteix en l'estudi de rendiment d'Ichnaea Software. Per\'{o} es interesant fer un estudi de temps en la realitzaci\'{o} dels procesos.
 
 \paragraph{Entrenament de \textit{Cypruss}}
-L'entrenament de la matriu \textit{Cypruss}(mirar \ref{cypruss}) ha tingut diferents mesures. S'han pres 3 mesures diferents: 1h 47min, 2h 15min i 1h 55min. Varia segons la carrega de la CPU i l'us de la memoria RAM. Es un proces que requereix una alta carrega de CPU.
+L'entrenament de la matriu \textit{Cypruss}(mirar \ref{cypruss}) ha tingut diferents mesures. S'han pres 3 mesures diferents: 1h 47min, 2h 15min i 1h 55min. Varia segons la carrega de la CPU i l'us de la memoria RAM. \'{E}s un proces que requereix una alta carrega de CPU.
 
 \paragraph{Predicci\'{o} de \textit{Cypruss}}
-La predicci\'{o} de la matriu de test(mirar \ref{cypruss_test}) ha tingut diferents mesure. S'han pres 3 messures diferents: 35min, 57min i 1h 5min, aproximadament. Varia segons la carrega de la CPU, ja que requereix una alta carrega de CPU.
+La predicci\'{o} de la matriu de test(mirar \ref{cypruss_test}) ha tingut diferents mesure. S'han pres 3 messures diferents: 35min, 57min i 1h 5min, aproximadament. Varia segons la carrega de la CPU, ja que requereix una alta c\`{a}rrega de CPU.
 
 \section{Prova en entorn distribuït}
 Les proves en un entorn distribuït s'han realitzat en un m\'{a}quina virtual proporcionada per RdLab amb la següent especificaci\'{o}.
@@ -94,7 +96,7 @@ S'han provat satisfactoriament totes les proves sense cap tipus de incid\`{e}nci
 
 \subsection{Gesti\'{o} de matrius}
 \subsubsection{Creaci\'{o} de matrius}
-Partim de la mateixa matriu de dades reals proporcionada. La importaci\'{o}(creaci\{'} del model de dades a partir d'un fitxer) triga 1826ms i la renderitzaci\'{o} 1466ms sense haver passat per mem\'{o}ria cau. Despr\'{e}s de la segona execuci\'{o} la renderitzaci\'{o} tria 627ms.
+Partim de la mateixa matriu de dades reals proporcionada. La importaci\'{o}(creaci\'{o} del model de dades a partir d'un fitxer) triga 1826ms i la renderitzaci\'{o} 1466ms sense haver passat per mem\'{o}ria cau. Despr\'{e}s de la segona execuci\'{o} la renderitzaci\'{o} tria 627ms.
 
 \subsubsection{Temps de resposta de les API JSON Restful}
 Les llibreries de les interficies enriquides son usades en les configuracions de matrius, tant de les normals com les de predicci\'{o}. El temps m\'{i}nim calculat ha sigut 216ms i el m\'{a}xim ha sigut 297ms.
@@ -102,6 +104,7 @@ Les llibreries de les interficies enriquides son usades en les configuracions de
 
 \section{Dificultats trobades}
 \label{sec:errorsKnown}
+La realització de les proves han donat un conjunt de situacions que considero com a dificultats que s'han superades. 
 
 \subsection*{Creació d'entrenaments parcials}
 A l'hora de crear entrenaments existeix la possibilitat de crear entrenaments parcials, seleccionant les columnes que vols entrenar. Actualment Ichnaea Software utilitza un fitxer de configuració estàtic i esta esperant un conjunt de variables que si no es presenten dona un error de lectura del contingut de fitxers.\\

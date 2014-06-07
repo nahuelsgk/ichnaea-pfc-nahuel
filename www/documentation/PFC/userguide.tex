@@ -1,9 +1,16 @@
 \chapter{Manual d'usuari}
 \label{cha:userguide}
+En aquest apendix es dona una descripcio de com accedir als recursos i com fer funcionar la aplicacio.
+
+\section{Introducció}
+La aplicació esta dissenyada per instal·lar-se en qualsevol servidor i la ruta de accés principal depen de la instal·lació.
+Si la aplicació esta en local, normalment l'accés es faria des de el navegador amb la URL http://localhost/login per introduir les credencials i entrar a la aplicació o per crear-se una compte.\\
+
+Una vegada autenticat el sistema, a la part superior el menú sempre serà visible i la seva estructura esta explicada a la secció \ref{subsec:maindessign} a la p\`{a}gina \pageref{menudessign}.
 
 \section{Casa de l'usuari}
 \label{sec:home}
-Per accedir la casa de l'usuari es pot anar accedint mitjançant el logo de ''Ichnaea'' del menú situat a l'esquerra del menú. Per mirar la casa de l'usuari mirar la figura \ref{fig:dashboard}.
+Per accedir la casa de l'usuari(figura \ref{fig:dashboard}) es pot fer mitjançant el logo de ''Ichnaea'' del menú situat a l'esquerra.\\
 
 \begin{figure}[h!]
   \centering
@@ -11,6 +18,7 @@ Per accedir la casa de l'usuari es pot anar accedint mitjançant el logo de ''Ic
   \caption{Interfície d'usuari: ''Casa de l'usuari''}
   \label{fig:dashboard}
 \end{figure}
+
 A continuaci\'{o} descriurem cadascuna de les parts.
 
 \subsection{Llistat dels meus entrenaments pendents}
@@ -23,8 +31,8 @@ Al llistat superior(''My pending trainings'') pots veure els entrenaments que ha
 \item Data de creaci\'{o} de l'entrenament.
 \item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
 \item Progr\'{e}s: actualment Ichnaea no retorna estat del proces. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors son 0.00 i 1.00.
-\item Status. Els possibles estats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myTrainings}).
-\item Error: en cas que hi hagues algun error en el entrenament des de Ichnaea, sortiria un breu descripció.(Mirar \ref{subsec:trainingerrorsIchnaea})
+\item Status. Els possibles estats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''. A la secció \ref{subsec:myTrainings} es dona mes informació al respecte.
+\item Error: en cas que hi hagués algun error en el entrenament des de Ichnaea, sortiria un breu descripció.(secció  \ref{sec:ichnaeaErrors})
 \item Operacions
  \begin{itemize}
  \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
@@ -41,7 +49,7 @@ Al llistat inferior(''My pending predictions'') pots veure les prediccions que h
 \item Data de creaci\'{o} de la predicció.
 \item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
 \item Status. Els possibles stats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myPrediccions}).
-\item Error: en cas que hi hagués algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
+\item Error: en cas que hi hagués algun error en el entrenament des de Ichnaea, sortiria un breu descripció. A la secció Mirar \ref{sec:ichnaeaErrors} es dona mes informació al respecte.
 \item Operacions
  \begin{itemize}
  \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
@@ -50,14 +58,14 @@ Al llistat inferior(''My pending predictions'') pots veure les prediccions que h
 
 \subsection{Els meus entrenaments}
 \label{subsec:myTrainings}
-Per accedir als teus entrenaments, seguir el menu ''Trainings >> My trainings''.
+Per accedir als teus entrenaments, accedir al menú ''Trainings >> My trainings''. A la figura \ref{fig:my_trainings} es pot veure el llistat els entrenaments d'un usuari on:
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{img/userguide/my_trainings.png}
-  \caption{Els meus entrenaments}
+  \caption{Interfície d'usuari: ''Els meus entrenaments''}
   \label{fig:my_trainings}
 \end{figure}
-On:
+
 \begin{itemize}
 \item Nom del entrenament.
 \item Nom de la matriu entrenada com a enllaç per veure la matriu.
@@ -69,13 +77,13 @@ On:
 \item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua) i ''finished''(finalitzat). 
 \item Operacions
  \begin{itemize}
- \item \iconeyeopen \'{e}s per anar a la pantalla de visualització de l'entrenament.
+ \item \iconeyeopen per accedir a la pantalla de visualització de l'entrenament.
  \end{itemize}
 \end{itemize}
 
 \subsection{Les meves prediccions}
 \label{subsec:myPrediccions}
-Per accedir a les teves prediccions, seguir el menu ''Predictions >> My predictions''(mirar la figura \ref{fig:my_prediccions}).
+Per accedir a les teves prediccions, accedir al menú ''Predictions >> My predictions''. A la figura \ref{fig:my_predictions} es pot veure el llistat de les prediccions d'un usuari on:
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{img/userguide/my_predictions.png}
@@ -86,16 +94,16 @@ Per accedir a les teves prediccions, seguir el menu ''Predictions >> My predicti
 \item Nom de la predicció.
 \item Nom de la matriu entrenada com a enllaç per veure la matriu.
 \item Nom de l'entrenament com a enllaç per veure quin entrenament s'esta usant per la predicció.
-\item Descripció el entrenament que s'esta usant en la predicció.
+\item Descripció de l'entrenament que s'esta usant en la predicció.
 \item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor pero Ichnaea no esta desenvolupat encara per executar una entrenament amb aquest paràmetre.
 \item Data de creaci\'{o} de la predicció.
 \item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
 \item Status. Els possibles status son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua), ''finished''(ha finalitzat) i ''new''(s'esta configurant encara la matriu de predicció).
-\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio.(Mirar \ref{subsec:trainingerrorsIchnaea})
+\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio. A la secció \ref{sec:ichnaeaErrors} es dona m\'{e}s informació al respecte.
 \item Operacions
  \begin{itemize}
- \item \iconeyeopen \'{e}s per anar a la pantalla de visualització de l'entrenament.
- \item \iconresults \'{e}s per consultar els resultats.
+ \item \iconeyeopen per accedir a la pantalla de visualització de l'entrenament.
+ \item \iconresults per consultar els resultats.
  \end{itemize}
 \end{itemize}
 
@@ -107,9 +115,11 @@ Desde el menu ''Ichnaea  Data - View Variables'', es poden veure totes les varia
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/variable_configuration.png}
-  \caption{Configuraci\'{o} de variable}
+  \caption{Interfície de configuraci\'{o} d'una variable}
   \label{fig:placement}
 \end{figure}
+A continuació es descriuen les parts bàsiques d'aquest formulari.
+
 \subsection*{Informació bàsica}
 L' ID \'{e}s l'identificador d'Ichnaea i la descripció \'{e}s un camp modificable per descriure la variable.
 \subsection{Llistat de conjunts de fitxers}
@@ -126,17 +136,26 @@ A la figura \ref{fig:seasonSetEdition} es pot veure aquest formulari.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/season_set_edition.png}
-  \caption{Configuraci\'{o} de conjunts de fitxers d'una variable}
+  \caption{Interfície de configuraci\'{o} de conjunts de fitxers d'una variable}
   \label{fig:seasonSetEdition}
 \end{figure}
 A continuació es descriuen les funcionalitats d'aquest formulari.
 
 \subsubsection{Afegir nous fitxers a un conjunt de fitxers}
-A l'apartat \textbf{''Add new seasons to this season set''}, \'{e}s pot afegir nous fitxers amb un navegador de fitxer accedint a ''Navega...''. \\
+A l'apartat \textbf{''Add new seasons to this season set''}, \'{e}s pot afegir nous fitxers localitzats a la maquina de l'usuari amb un navegador típic de fitxers accedint a ''Navega...''. \\
 
 El selector de temporades es per configurar el fitxer com estiu, hivern, tardor, primavera o com a tot l'any.\\
 
-El tercer camp \'{e}s un camp especial de tipus ''sols lectura'' per comprovar que el fitxer es carrega be.
+El tercer camp \'{e}s un camp especial de tipus ''sols lectura'' per comprovar que el fitxer es carrega be.\\
+
+Actualment el format del fitxer que accepta Ichnaea, es un fitxer de text amb la estructura que es veu a la figura \ref{fig:envelliment}. Les línies que comencen per '\#' son línies que Ichnaea escapa.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{img/userguide/envelliment.png}
+  \caption{Format d'un fitxer d'envelliment}
+  \label{fig:envelliment}
+\end{figure}
 
 \subsubsection{Afegir un fitxer d'una altre variable}
 En el cas de que existeixin variables que tinguin envelliments similars, es pot buscar a la secció ''Add shared seasons''.\\
@@ -151,7 +170,7 @@ Amb la icona \iconremove pots esborrar el fitxer com a component. Per exemple, s
 
 \subsection{Crear una matriu desde un fitxer CSV o Excel}
 \label{sec:create_matrix}
-Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format csv o Microsoft Excel.El format csv es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
+Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format CSV o Microsoft Excel. El format CSV es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
 
 El format del fitxer de la matriu \'{e}s com es mostra a la figura \ref{fig:matrixSource}.
 \begin{figure}[h!]
@@ -185,7 +204,7 @@ El resultat d'aquest exemple es pot veure a la figura \ref{fig:matrixResulting}:
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.3]{img/userguide/matrix_resulting.png}
-  \caption{Resultat de la fulla d'exemple}
+  \caption{Resultat de la importació d'una fulla d'exemple}
   \label{fig:matrixResulting}
 \end{figure}
 
@@ -323,12 +342,12 @@ Per crear una matriu de prediccions, primer s'ha de seleccionar un entrenament. 
 El format del fitxer es el mateix de que el que s'explica a l'apartat \ref{sec:create_matrix}. La principal diferencia es la resolució automàtica de configuracions de columnes: si el identificador de la columna es igual al identificador de la columna entrenada, automàticament s'assigna aquesta columna entrenada.
 
 \subsection{Configuració d'una matriu de predicció}
-A la figura \ref{fig:configure_matrix_prediction} es pot veure la interfície de configuració de les matrius.
+A la figura \ref{fig:view_training_pending} es pot veure la interfície de configuració de les matrius.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/view_training_pending.png}
   \caption{Interfície de visualització de entrenaments}
-  \label{fig:viewTraining}
+  \label{fig:view_training_pending}
 \end{figure}
 \textbf{Solament l'usuari propietari de la matriu la pot configurar}. A continuació descrivim les seccions de la interfície.
 
@@ -382,7 +401,7 @@ Si el proces d'entrenament llença un error, la aplicacio recull l'error i el mo
 Actualment Ichnaea esta esperant trobar unes variables concretes. En el cas que no estiguin configurades en la matriu, Ichnaea donara un error del tipus que recull l'aplicació(figura \ref{fig:viewtrainingerror}).
 
 \begin{center}
-''failed command result: Error in file(file, "rt") : cannot open the connection Calls: aged_samples_lr -> read.csv -> read.table -> file In addition: Warning message: In file(file, "rt") : cannot open file '../data/aging/envFRNAPH.I-Hivern.txt': El fitxer ''
+''failed command result: Error in file(file, "rt") : cannot open the connection Calls: aged\_samples\_lr - \> read.csv -> read.table -\> file In addition: Warning message: In file(file, "rt") : cannot open file '../data/aging/envFRNAPH.I-Hivern.txt': El fitxer ''
 \end{center}
 
 \begin{figure}[h!]
