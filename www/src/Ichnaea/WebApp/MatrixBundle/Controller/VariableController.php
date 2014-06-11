@@ -13,7 +13,7 @@ class VariableController extends Controller{
 	 */
 	public function getVariablesListAction()
 	{
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$variables = $ichnaeaService->getAllVariables();
 		return $this->render('MatrixBundle:Variable:list.html.twig', array("variables" => $variables));
 	}
@@ -30,7 +30,7 @@ class VariableController extends Controller{
         $season_sets = NULL;
 		if (!is_null($variable_id)) {	
 			$action = 'update';
-			$ichnaeaService = $this->get('ichnaea.service');
+			$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 			$variable = $ichnaeaService->getVariableById($variable_id);
 			
 		}
@@ -51,7 +51,7 @@ class VariableController extends Controller{
 	public function createVariableAction()
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$name  = $request->request->get('var_name');
 		//@TODO Check error name 
 		$notes = $request->request->get('var_description');
@@ -67,7 +67,7 @@ class VariableController extends Controller{
 	public function updateVariableAction($variable_id)
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$name  = $request->request->get('var_name');
 		//@TODO Check error name 
 		$notes = $request->request->get('var_description');
@@ -110,7 +110,7 @@ class VariableController extends Controller{
 		
 		if ($request->getMethod() == 'POST') {
 			$request = $this->getRequest();
-			$ichnaeaService = $this->get('ichnaea.service');
+			$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 			$name = $request->get('season_set_name');
 			
 			//read season file contents
@@ -135,7 +135,7 @@ class VariableController extends Controller{
 		$action = 'create';
 		$season_set = NULL;
 		$season_set_components = NULL;
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$season = $ichnaeaService->getVariableById($variable_id);
 		
 		return $this->render(
@@ -159,7 +159,7 @@ class VariableController extends Controller{
 	public function seasonSetCompleteDestroyFormAction($variable_id, $season_set_id)
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		
 		if($request->getMethod() == 'POST'){
 			//perform season massacre
@@ -185,7 +185,7 @@ class VariableController extends Controller{
 	public function editSeasonSetFormAction($variable_id, $season_set_id)
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		
 		if ($request->getMethod() == 'POST'){
 		  $name = $request->get("season_set_name");

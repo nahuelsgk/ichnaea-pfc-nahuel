@@ -29,10 +29,11 @@ training_list:
         _method: GET
         
 list_training_systems:
-    pattern: /system/trainings/
+    pattern: /system/trainings/{page}
     defaults: { _controller: IchnaeaWebAppTrainingBundle:Training:trainingList }
     requirements:
         _method: GET
+        page: "\d+"
 
 training_view:
     pattern: /matrix/{matrix_id}/training/{training_id}

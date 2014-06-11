@@ -204,9 +204,12 @@ class TrainingService{
 	/**
 	 * Get a list of all trainings in the systems
 	 */
-	public function getTrainingList()
+	public function getTrainingList($offset = 0)
 	{
-		return $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training')->findAll();
+		$items = 30;
+		$repository = $this->em->getRepository('IchnaeaWebAppTrainingBundle:Training');
+		$trainings = $repository->findBy(array(), array(), $items, $offset * $items);
+		return $trainings;
 	}
 	
 	/**

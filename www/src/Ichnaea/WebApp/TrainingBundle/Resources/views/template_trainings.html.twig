@@ -54,3 +54,5 @@
  {% endfor %}
  </tbody>
  </table>
+ 
+ {% if previous_page is defined and next_page is defined %}<center><a href="{{ path('list_predictions_system', {'page': previous_page}) }}"> Previous </a>| <a href="{{ path('list_predictions_system', {'page': next_page}) }}">Next</a></center>{% endif %}

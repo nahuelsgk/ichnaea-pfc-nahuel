@@ -34,7 +34,7 @@ class MatrixController extends Controller
 		$user = $this->getUser();
 		$owner_id = $user->getId(); 
 		
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$matrix_id = $ichnaeaService->createMatrixFromCSVContent($name, $csvContent, $owner_id);
 		return $this->redirect($this->generateUrl('matrix_ui_edit', array('matrix_id'=>$matrix_id)));
 	}
@@ -48,7 +48,7 @@ class MatrixController extends Controller
 	public function updateDataSetFormAction($matrix_id)
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		
 		if ($request->getMethod() == 'POST'){
 			$csvContent = $request->request->get("content");
@@ -78,7 +78,7 @@ class MatrixController extends Controller
 	 */
 	public function listSystemsMatrixAction(){
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$listMatrixs = $ichnaeaService->getAllMatrixs();
 		return $this->render('MatrixBundle:Matrix:Pages/matrixs_list.html.twig', 
 				array(
@@ -94,7 +94,7 @@ class MatrixController extends Controller
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
 	 */
 	public function guiMatrixAction($matrix_id, $validate = NULL){
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
 		
@@ -153,7 +153,7 @@ class MatrixController extends Controller
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
 	 */
 	public function saveConfigurationAction($matrix_id) {
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		
 	    $matrix = $ichnaeaService->getMatrix($matrix_id);
 	    
@@ -176,7 +176,7 @@ class MatrixController extends Controller
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function viewMatrixAction($matrix_id){
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$matrix        = $ichnaeaService->getMatrix($matrix_id);
 		return $this->render(
 				'MatrixBundle:Matrix:view.html.twig', 
@@ -198,7 +198,7 @@ class MatrixController extends Controller
 	 */
 	public function buildFilesAction($matrix_id)
 	{
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$matrix = $ichnaeaService->buildFiles($matrix_id);
 		return $this->redirect($this->generateUrl('matrix_ui_edit',array("matrix_id" => $matrix_id)));
 	}
@@ -210,7 +210,7 @@ class MatrixController extends Controller
 	 */
 	public function downloadFormAction($matrix_id)
 	{
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$matrix = $ichnaeaService->getMatrix($matrix_id);
 	    return $this->render('MatrixBundle:Matrix:Pages/download_form.html.twig', 
 	    		array(
@@ -231,7 +231,7 @@ class MatrixController extends Controller
 		$type    = $request->request->get("type_download");
 		
 		
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$file_content = $ichnaeaService->getMatrixAs('csv', $type, $matrix_id);
 		
 	    $response = new Response();
@@ -249,7 +249,7 @@ class MatrixController extends Controller
 	 */
 	public function cloneFormAction($matrix_id)
 	{
-		$ichnaeaService = $this->get("ichnaea.service");
+		$ichnaeaService = $this->get("ichnaea.data_basic_manager");
 		$matrix = $ichnaeaService->getMatrix($matrix_id);
 		$today = date_create();
 		
@@ -274,7 +274,7 @@ class MatrixController extends Controller
 	    $owner   = $this->getUser();
 	    $name   = $request->request->get('name');
 	    
-	    $ichnaeaService = $this->get('ichnaea.service');
+	    $ichnaeaService = $this->get('ichnaea.data_basic_manager');
 	    $matrix        = $ichnaeaService->cloneMatrix($matrix_id, $owner ,$name);
 	    $matrix_id     = $matrix->getId();
 	    
@@ -300,7 +300,7 @@ class MatrixController extends Controller
 	 */
 	public function downloadDataSetAction($matrix_id)
 	{
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$file_content = $ichnaeaService->getMatrixAs('csv', 'simple', $matrix_id);
 		
 		$response = new Response();
@@ -317,7 +317,7 @@ class MatrixController extends Controller
 	public function listTrainableMatrixAction()
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$listMatrixs = $ichnaeaService->getTrainableMatrixs();
 		return $this->render('MatrixBundle:Matrix:Pages/matrixs_list.html.twig',
 				array(
@@ -345,7 +345,7 @@ class MatrixController extends Controller
 	 */
 	public function getMatrixDeleteConfirmationAction($matrix_id)
 	{
-		$ichnaeaService = $this->get("ichnaea.service");
+		$ichnaeaService = $this->get("ichnaea.data_basic_manager");
 		$matrix = $ichnaeaService->getMatrix($matrix_id);
 		
 		$user = $this->get('security.context')->getToken()->getUser();
@@ -373,7 +373,7 @@ class MatrixController extends Controller
 	 */
 	public function matrixDeleteAction($matrix_id)
 	{
-		$ichnaeaService = $this->get("ichnaea.service");
+		$ichnaeaService = $this->get("ichnaea.data_basic_manager");
 		$matrix = $ichnaeaService->getMatrix($matrix_id);
 		
 		$user = $this->get('security.context')->getToken()->getUser();

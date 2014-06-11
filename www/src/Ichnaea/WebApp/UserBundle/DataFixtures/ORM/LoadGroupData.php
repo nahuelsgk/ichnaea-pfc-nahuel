@@ -136,7 +136,7 @@ class LoadGroupData implements FixtureInterface, ContainerAwareInterface
 			$manager->flush();
 		}
 		
-		$serviceMatrix = $this->container->get('ichnaea.service');
+		$serviceMatrix = $this->container->get('ichnaea.data_basic_manager');
 		$content = $this->read_matrix_file();
 		$serviceMatrix->createMatrixFromCSVContent('cyprus',$content, $user->getId());
 		

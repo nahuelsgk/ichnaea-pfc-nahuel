@@ -165,7 +165,7 @@ class PredictionController extends Controller
 	public function listSystemPredictionsAction($page)
 	{
 		$predictions = $this->get('ichnaea_web_app_prediction.service')->getSystemPredictions($page);
-		return $this->render('IchnaeaWebAppPredictionBundle::list.html.twig',
+		return $this->render('IchnaeaWebAppPredictionBundle::system_list.html.twig',
 				array(
 					'predictions'   => $predictions,
 					'previous_page' => ($page-1) < 0 ? 0 : $page-1 ,

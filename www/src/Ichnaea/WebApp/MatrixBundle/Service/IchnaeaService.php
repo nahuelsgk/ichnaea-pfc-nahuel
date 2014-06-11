@@ -304,40 +304,9 @@ class IchnaeaService{
 	}
 	
 	/**
+	 * Delete a SeasonSet and its files
 	 * 
-	 * @param id $id - seasonSet id
-	 * @return Array[season]
-	 */
-	/*public function getSeasonSetComponents($id)
-	{
-		$repository = $this->em->getRepository('MatrixBundle:SeasonSetComponent');
-		$season_components = $repository->findBySeasonSetId($id);
-		$index = 0;
-		$components = NULL;
-		foreach($season_components as $c){
-			$season = $this->em->getRepository('MatrixBundle:Season')->find($c->getSeasonId());
-			$components[$index]['name'] = $season->getName();
-			$components[$index]['id']   = $season->getId();
-			$components[$index]['component_id'] = $c->getId();
-			$index++;
-		}
-		return $components;
-	}*/
-	
-	/**
-	 * 
-	 * @param int $seasonSet_id
-	 */
-	/*public function deleteSeasonSet($seasonSet_id)
-	{
-		$season = $this->em->getRepository('MatrixBundle:SeasonSet')->find($seasonSet_id);
-		$this->em->remove($season);
-		$this->em->flush();
-	}*/
-	
-	/**
-	 * 
-	 * @param unknown $season_set_id
+	 * @param int $season_set_id
 	 * @return boolean: FALSE if it is in used in any matrix, TRUE if it could removed
 	 */
 	public function deleteSeasonSetCascade($season_set_id)

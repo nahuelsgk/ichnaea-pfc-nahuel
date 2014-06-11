@@ -1,0 +1,12 @@
+{% extends '::GUI/withContainer.html.twig' %}
+
+{% block page_title %}System's trainings list{% endblock %}
+
+{% block body %}
+<div class="container">
+<div style="width: 100%;">
+<h1>System's trainings</h1>
+{% include 'IchnaeaWebAppTrainingBundle::template_trainings.html.twig' %}
+</div>
+</div>
+{% endblock %}

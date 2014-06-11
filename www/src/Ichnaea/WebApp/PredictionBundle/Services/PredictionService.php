@@ -238,7 +238,8 @@ class PredictionService
 	/**
 	 * Returns the complete list of predictions
 	 */
-	public function getSystemPredictions($offset = 0){
+	public function getSystemPredictions($offset = 0)
+	{
 		$items = 30;
 		$repository = $this->em->getRepository('IchnaeaWebAppPredictionBundle:PredictionMatrix');
 		$predictions = $repository->findBy(array(), array(), $items, $offset * $items);

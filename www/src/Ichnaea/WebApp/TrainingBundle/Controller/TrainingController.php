@@ -10,7 +10,8 @@ class TrainingController extends Controller
 {
 	
 	/**
-	 * Controller to list all trainable trainings 
+	 * Lists trainings predictables: ready to make predictions
+	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function predictableTrainingListAction()
 	{
@@ -26,27 +27,31 @@ class TrainingController extends Controller
 	}
 	
 	/**
-	 * Controller to render all the system's trainings
+	 * Lists all the system's trainings
+	 * 
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function trainingListAction()
+	public function trainingListAction($page)
 	{
-		$trainings = $trainingService = $this->get('ichnaea.trainingService')->getTrainingList();
+		$trainings = $trainingService = $this->get('ichnaea.trainingService')->getTrainingList($page);
 		return $this->render(
-			'IchnaeaWebAppTrainingBundle::list.html.twig',
+			'IchnaeaWebAppTrainingBundle::system_list.html.twig',
 			array(
-				'trainings' => $trainings
+				'trainings' => $trainings,
+				'previous_page' => ($page-1) < 0 ? 0 : $page-1 ,
+				'next_page' => $page+1,
 			)
 		);
 	}
 	
 	/**
-	 * Controller to list all the trainable matrixs
+	 * List all the trainable matrixs
+	 * 
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function listTrainableMatrixsAction()
 	{
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$matrixs = $ichnaeaService->getTrainableMatrixs();
 		return $this->render(
 				'IchnaeaWebAppTrainingBundle::trainable_matrixs.html.twig',
@@ -54,14 +59,14 @@ class TrainingController extends Controller
 		);
 	}
 	/**
-	 * Controller for render and validations for creating a training
+	 * Render and validates a creating a training form
 	 * 
 	 * @param integer $matrix_id
 	 * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpFoundation\RedirectResponse
 	 */
     public function trainingFormAction($matrix_id)
     {
-    	$matrixService = $this->get('ichnaea.service');
+    	$matrixService = $this->get('ichnaea.data_basic_manager');
     	$n_columns     = $matrixService->getM($matrix_id);
     	$matrix 	   = $matrixService->getMatrix($matrix_id);
     	
@@ -195,6 +200,7 @@ class TrainingController extends Controller
 		
 	/**
 	 * Resend a training.
+	 * 
 	 * @TODO: maybe performs some validation. Only available when there are errors
 	 * @param integer $matrix_id
 	 * @param integer $training_id

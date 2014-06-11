@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class SeasonController extends Controller{
 	
 	public function indexAction(){
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$seasons = $ichnaeaService->getAllSeasons();
 		return $this->render('MatrixBundle:Season:list.html.twig', array("seasons" => $seasons));	
 	}
@@ -17,7 +17,7 @@ class SeasonController extends Controller{
 	public function createSeasonAction()
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$name       = $request->request->get("name");
 		$notes      = $request->request->get("notes");
 		$start_date = $request->request->get("start_date");
@@ -30,7 +30,7 @@ class SeasonController extends Controller{
 	public function updateSeasonAction($season_id)
 	{
 		$request = $this->getRequest();
-		$ichnaeaService = $this->get('ichnaea.service');
+		$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 		$name       = $request->request->get("name");
 		$notes      = $request->request->get("notes");
 		$start_date = $request->request->get("start_date");
@@ -44,7 +44,7 @@ class SeasonController extends Controller{
 		$request = $this->getRequest();
 		$season = NULL;
 		if($season_id){
-			$ichnaeaService = $this->get('ichnaea.service');
+			$ichnaeaService = $this->get('ichnaea.data_basic_manager');
 			$season = $ichnaeaService->getSeasonById($season_id);
 		}
 		return $this->render('MatrixBundle:Season:form.html.twig', array("season" => $season));
