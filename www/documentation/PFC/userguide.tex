@@ -1,12 +1,13 @@
 \chapter{Manual d'usuari}
 \label{cha:userguide}
-En aquest apèndix es dona una descripció de com accedir als recursos i com fer funcionar la aplicació.
+En aquest apèndix es dona una descripció de com accedir als recursos i com fer funcionar l'aplicació.
 
 \section{Introducció}
-La aplicació esta dissenyada per instal·lar-se en qualsevol servidor i la ruta de accés principal depen de la instal·lació.
-Si la aplicació esta en local, normalment l'accés es faria des de el navegador amb la URL http://localhost/login per introduir les credencials i entrar a la aplicació o per crear-se una compte(figures \ref{fig:login} i \ref{fig:signup}) \\
+L'aplicació est\`{a} dissenyada per instal·lar-se en qualsevol servidor i la ruta d'accés principal depèn de la instal·lació.\\
 
-Una vegada autenticat el sistema, a la part superior el menú sempre serà visible i la seva estructura esta explicada a la secció \ref{subsec:maindessign} a la p\`{a}gina \pageref{menudessign}.\\
+Si l'aplicació est\'{a} instal·lada en local, normalment l'accés es faria des del navegador amb la URL http://localhost/login per introduir les credencials i entrar a l'aplicació o per crear-se una compte(figures \ref{fig:login} i \ref{fig:signup}) \\
+
+Una vegada autenticat el sistema, a la part superior el menú sempre serà visible i la seva estructura est\`{a} explicada a la secció \ref{subsec:maindessign} a la p\`{a}gina \pageref{menudessign}.\\
 
 \begin{figure}[h!]
   \centering
@@ -39,18 +40,18 @@ A continuaci\'{o} descriurem cadascuna de les parts.
 \subsection{Llistat dels meus entrenaments pendents}
 Al llistat superior(''My pending trainings'') es pot veure els entrenaments que un usuari ha creat i que estan pendents de finalitzar, on: 
 \begin{itemize}
-\item Nom del entrenament.
+\item Nom de l'entrenament.
 \item Nom de la matriu entrenada com a enllaç per veure-la.
 \item Descripci\'{o} del entrenament.
-\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta la executar d'un entrenament amb aquest paràmetre.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta la execució d'un entrenament amb aquest paràmetre.
 \item Data de creaci\'{o} de l'entrenament.
-\item Nom de l'usuari que la creat(que en aquest cas sempre serà l'usuari registrat).
-\item Progr\'{e}s: actualment Ichnaea no retorna estat del proces. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors son 0.00 i 1.00.
-\item Status. Els possibles estats en aquesta interfície son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''. A la secció \ref{subsec:myTrainings} es dona mes informació al respecte.
-\item Error: en cas que hi hagués algun error en el entrenament des de Ichnaea, sortiria un breu descripció.(secció  \ref{sec:ichnaeaErrors})
+\item Nom de l'usuari que la creada(que en aquest cas sempre serà l'usuari registrat).
+\item Progr\'{e}s: actualment Ichnaea no retorna estat del proc\'{e}s. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors s\'{o}n 0.00 i 1.00.
+\item Status. Els possibles estats en aquesta interfície s\'{o}n ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''. A la secció \ref{subsec:myTrainings} es dona m\'{e}s informació al respecte.
+\item Error: en cas que hi hagués algun error en l'entrenament des de Ichnaea, sortiria una breu descripció (veg. secció  \ref{sec:ichnaeaErrors}).
 \item Operacions
  \begin{itemize}
- \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
+ \item \iconeyeopen per accedir a la pantalla de visualització de l'entrenament.
  \end{itemize}
 \end{itemize}
 
@@ -59,18 +60,17 @@ Al llistat inferior(''My pending predictions'') pots veure les prediccions que h
 \begin{itemize}
 \item Nom de la predicció.
 \item Nom de la matriu entrenada com a enllaç per veure-la.
-\item Descripci\'{o} de l'entrenament que s'esta usant en la predicció.
-\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta la execució d'un entrenament amb aquest paràmetre.
+\item Descripci\'{o} de l'entrenament que s'est\`{a} usant en la predicció.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta l'execució d'un entrenament amb aquest paràmetre.
 \item Data de creaci\'{o} de la predicció.
-\item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
-\item Status. Els possibles estats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments''(mirar \ref{subsec:myPrediccions}).
-\item Error: en cas que hi hagués algun error en el entrenament des de Ichnaea, sortiria un breu descripció. A la secció Mirar \ref{sec:ichnaeaErrors} es dona mes informació al respecte.
+\item Nom de l'usuari que la creada(que sempre serà l'usuari registrat).
+\item Status. Els possibles estats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua). Els entrenaments finalitzats es poden consultar a ''Els meus entrenaments'' (veg. secció \ref{subsec:myPrediccions}).
+\item Error: en cas que hi hagués algun error en el entrenament des de Ichnaea, sortiria una breu descripció. A la secció \ref{sec:ichnaeaErrors} es dona mes informació al respecte.
 \item Operacions
  \begin{itemize}
- \item \iconeyeopen es per anar a la pantalla de visualització de l'entrenament.
+ \item \iconeyeopen per accedir a la pantalla de visualització de l'entrenament.
  \end{itemize}
 \end{itemize}
-
 
 \subsection{Els meus entrenaments}
 \label{subsec:myTrainings}
@@ -83,14 +83,14 @@ Per accedir als teus entrenaments, seguir la ruta del menú ''Trainings >> My tr
 \end{figure}
 
 \begin{itemize}
-\item Nom del entrenament.
+\item Nom de l'entrenament.
 \item Nom de la matriu entrenada com a enllaç per veure-la.
 \item Descripci\'{o} del entrenament.
-\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta la execució d'un entrenament amb aquest paràmetre.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta l'execució d'un entrenament amb aquest paràmetre.
 \item Data de creaci\'{o} de l'entrenament.
-\item Nom de l'usuari que la creat(que en aquest cas sempre serà l'usuari registrat).
-\item Progr\'{e}s: actualment Ichnaea no retorna estat del proces. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors son 0.00 i 1.00.
-\item Status. Els possibles estats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua) i ''finished''(finalitzat). 
+\item Nom de l'usuari que la creada(que en aquest cas sempre serà l'usuari registrat).
+\item Progr\'{e}s: actualment Ichnaea no retorna estat del proc\'{e}s. Solament ens diu si ha acabat o no. Per tant els \'{u}nics valors s\'{o}n 0.00 i 1.00.
+\item Status. Els possibles estats s\'{o}n ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua) i ''finished''(finalitzat). 
 \item Operacions
  \begin{itemize}
  \item \iconeyeopen per accedir a la pantalla de visualització de l'entrenament.
@@ -111,12 +111,12 @@ Per accedir a les teves prediccions, seguir la ruta del menú ''Predictions >> M
 \item Nom de la predicció.
 \item Nom de la matriu entrenada com a enllaç per veure-la.
 \item Nom de l'entrenament com a enllaç per veure quin entrenament s'esta usant per la predicció.
-\item Descripció de l'entrenament que s'esta usant en la predicció.
-\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta la execució d'un entrenament amb aquest paràmetre.
+\item Descripció de l'entrenament que s'est\`{a} usant en la predicció.
+\item Origen: Paràmetre de creació seleccionat per l'entrenament. Actualment solament es guarda el valor. Ichnaea encara no suporta l'execució d'un entrenament amb aquest paràmetre.
 \item Data de creaci\'{o} de la predicció.
-\item Nom de l'usuari que la creat(que sempre serà l'usuari registrat).
-\item Status. Els possibles estats son ''pending''(no s'ha pogut enviar),''sent''(s'ha enviat a la cua), ''finished''(ha finalitzat) i ''new''(s'esta configurant encara la matriu de predicció).
-\item Error: en cas que hi hagues algun error en el entrenament desde Ichnaea, sortiria un breu descripcio. A la secció \ref{sec:ichnaeaErrors} es dona m\'{e}s informació al respecte.
+\item Nom de l'usuari que la creada(que sempre serà l'usuari registrat).
+\item Status. Els possibles estats s\'{o}n ''pending''(no s'ha pogut enviar), ''sent''(s'ha enviat a la cua), ''finished''(ha finalitzat) i ''new''(s'esta configurant encara la matriu de predicció).
+\item Error: en cas que hi hagués algun error en el entrenament des de Ichnaea, sortiria un breu descripció. A la secció \ref{sec:ichnaeaErrors} es dona m\'{e}s informació al respecte.
 \item Operacions
  \begin{itemize}
  \item \iconeyeopen per accedir a la pantalla de visualització de l'entrenament.
@@ -141,10 +141,10 @@ A continuació es descriuen les parts bàsiques d'aquest formulari.
 L' ID \'{e}s l'identificador d'Ichnaea i la descripció \'{e}s un camp modificable per descriure la variable.
 
 \subsection{Conjunts de fitxers d'una variable}
-A l'apartat ''List of season set'' es veuen els conjunts de fitxers amb el seus components d'aquesta variable on:
+A l'apartat ''List of season set'' es veuen els conjunts de fitxers amb els seus components d'aquesta variable on:
 \begin{itemize}
 \item \iconedit per modificar el conjunt de fitxers(nom, components i configuracions).
-\item \icontrash per esborrar tot el conjunt i tots el fitxers associats, excepte els compartits(simplement esborra la associació).
+\item \icontrash per esborrar tot el conjunt i tots els fitxers associats, excepte els compartits (simplement esborra l'associació).
 \item \iconadd per afegir un conjunt nou de fitxers
 \end{itemize}
 
@@ -161,13 +161,13 @@ Accedint a la variable es pot veure el següent formulari:\\
 A continuació es descriuen les funcionalitats d'aquest formulari.
 
 \subsubsection{Afegir nous fitxers a un conjunt de fitxers}
-A l'apartat \textbf{''Add new seasons to this season set''}, \'{e}s pot afegir nous fitxers localitzats a la maquina de l'usuari amb un navegador típic de fitxers accedint a ''Navega...''. \\
+A l'apartat \textbf{''Add new seasons to this season set''}, \'{e}s pot afegir nous fitxers localitzats a la m\'{a}quina de l'usuari amb un navegador típic de fitxers accedint a ''Navega...''. \\
 
-El selector de temporades es per configurar el fitxer com estiu, hivern, tardor, primavera o com a tot l'any.\\
+El selector de temporades \'{e}s per configurar el fitxer com estiu, hivern, tardor, primavera o com a tot l'any.\\
 
-El tercer camp \'{e}s un camp especial de tipus ''sols lectura'' per comprovar que el fitxer es carrega be.\\
+El tercer camp \'{e}s un camp especial de tipus ''sols lectura'' per comprovar que el fitxer es carrega b\'{e}.\\
 
-Actualment el format del fitxer que accepta Ichnaea, es un fitxer de text amb la estructura que es veu a la figura \ref{fig:envelliment}. Les línies que comencen per '\#' son línies que Ichnaea escapa.
+Actualment el format del fitxer que accepta Ichnaea, \'{e}s un fitxer de text amb l'estructura que es veu a la figura \ref{fig:envelliment}. Les línies que comencen per '\#' son línies que Ichnaea escapa.
 
 \begin{figure}[h!]
   \centering
@@ -177,33 +177,33 @@ Actualment el format del fitxer que accepta Ichnaea, es un fitxer de text amb la
 \end{figure}
 
 \subsubsection{Afegir un fitxer d'una altre variable}
-En el cas de que existeixin variables que tinguin envelliments similars, es pot buscar a la secció ''Add shared seasons''.\\
+En el cas que existeixin variables que tinguin envelliments similars, es pot buscar a la secció ''Add shared seasons''.\\
 
-\'{E}s un camp de tipus auto-completat que desplega un menú per que l'usuari seleccioni el que busca. Amb el següent selector el pot configurar. L'ultim camp es per comprovar que el fitxer es carrega be.
+\'{E}s un camp de tipus autocompletat que desplega un menú perquè l'usuari seleccioni el que busca. Amb el següent selector el pot configurar. L'\'{u}ltim camp \'{e}s per comprovar que el fitxer es carrega b\'{e}.
 
 \subsubsection{Esborrar un fitxer del conjunt de fitxers}
 Amb la icona \icontrash pots esborrar el fitxer i el seu contingut d'aquest conjunt de fitxers.\\
 
-Amb la icona \iconremove pots esborrar el fitxer com a component. Per exemple, si has afegit un fitxer compartit, no esborres el fitxer sinó que simplement deixa de estar associat a aquest conjunt de fitxers.\\
+Amb la icona \iconremove pots esborrar el fitxer com a component. Per exemple, si has afegit un fitxer compartit, no esborres el fitxer sinó que simplement deixa d'estar associat a aquest conjunt de fitxers.\\
 
-Important: S'ha de tenir en compte que no es pot esborrar un fitxer d'una matriu que ha estat entrenada. Tampoc es pot esborrar un fitxer que esta compartit. Solament es pot esborra la associació.
+Important: S'ha de tenir en compte que no es pot esborrar un fitxer d'una matriu que ha estat entrenada. Tampoc es pot esborrar un fitxer que estigui compartit. Solament es pot esborra la associació.
 \section{Matrius}
 
 \subsection{Crear una matriu desde un fitxer CSV o Excel}
 \label{sec:create_matrix}
-Desde el menu superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format CSV o Microsoft Excel. El format CSV es compatible amb les programaris de ofim\`{a}tica m\'{e}s habituals como Microsoft Excel o Libreoffice.
+Des del menú superior ''IchnaeaData - New matrix'', es pot pujat una nova matriu en format CSV o Microsoft Excel. El format CSV es compatible amb els programaris de ofim\`{a}tica m\'{e}s habituals com Microsoft Excel o Libreoffice.
 
 El format del fitxer de la matriu \'{e}s com es mostra a la figura \ref{fig:matrixSource}.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/matrix_source.png}
-  \caption{Fulla de calcul d'exemple}
+  \caption{Fulla de c\`{a}lcul d'exemple}
   \label{fig:matrixSource}
 \end{figure}
 
 \begin{itemize}
 \item Primera fila. Cada columna, excepte la que posa CLASS, son els identificadors de la variable. Si una columna es diu igual que una variable del sistema, automàticament s'assigna a aquesta variable en la configuració de la variable.
-\item Les ultimes dues columnes son especials i son opcionals. Es contemplen totes les casuístiques:
+\item Les ultimes dues columnes s\'{o}n especials i s\'{o}n opcionals. Es contemplen totes les casuístiques:
 \begin{itemize}
 \item No existeixen
 \item Solament existeix ORIGIN
@@ -211,12 +211,12 @@ El format del fitxer de la matriu \'{e}s com es mostra a la figura \ref{fig:matr
 \item Primer ORIGIN i després DATE
 \item Primer DATE i després ORIGIN
 \end{itemize}
-\item La columna ORIGIN explicita l'origen de les mostres. En el cas que no sigui present, cada mostra s'intentar\`{a} resoldre  amb un associació segons sub-cadenes:
+\item La columna ORIGIN explicita l'origen de les mostres. En el cas que no sigui present, cada mostra s'intentar\`{a} resoldre amb una associació segons subcadenes:
 \begin{itemize}
-\item Si el identificador de la mostra cont\'{e} HM es resoldrà com HUMAN.
-\item Si el identificador de la mostra cont\'{e} PG es resoldrà com PIG.
-\item Si el identificador de la mostra cont\'{e} PL es resoldrà com POULTRY.
-\item Si el identificador de la mostra cont\'{e} CW es resoldrà com COW
+\item Si l'identificador de la mostra cont\'{e} HM es resoldrà com HUMAN.
+\item Si l'identificador de la mostra cont\'{e} PG es resoldrà com PIG.
+\item Si l'identificador de la mostra cont\'{e} PL es resoldrà com POULTRY.
+\item Si l'identificador de la mostra cont\'{e} CW es resoldrà com COW
 \end{itemize}
 \item La columna DATE explicita les dates de les mostres amb el format DD/MM/YYYY.
 \end{itemize}
@@ -254,7 +254,7 @@ La visibilitat \'{e}s un paràmetre per permetre que altres usuaris vegin la mat
 Apartat on el sistema comunica a l'usuari errors de validacions i perills.
 
 \subsubsection{Accions} 
-Les accions disponibles son:
+Les accions disponibles s\'{o}n:
 \begin{itemize} 
 \item \icondownload per descarregar-se la matriu en CSV.
 \item \iconupdate per actualitzar les dades, no la configuració.
@@ -268,17 +268,17 @@ Les accions disponibles son:
 \subsubsection{Configuració de les dades de la matriu}
 \paragraph*{Columnes} Des de les columnes, es configuraren les variables de la matriu on:
 \begin{itemize}
-\item \iconalias es per definir el alies de la columna
-\item \iconvariable es per seleccionar una variable. Si no es selecciona res, quedara configurada com una variable derivada.
+\item \iconalia \'{e}s per definir l\`{a}lies de la columna
+\item \iconvariable \'{e}s per seleccionar una variable. Si no es selecciona res, quedar\`{a} configurada com una variable derivada.
 \item \iconseason en cas de seleccionar una variable, es carregaran els conjunts de fitxers de la variable.
 \end{itemize}
-Una vegada actualitzat les dades en alguna columna, apareixerà la icona \iconedit per salvar les dades. En el cas que hagi diferents columnes configurades, es podrà pitjar el buto ''Save all changes''.
+Una vegada actualitzat les dades en alguna columna, apareixerà la icona \iconedit per salvar les dades. En el cas que hagi diferents columnes configurades, es podrà pitjar el bot\'{o} ''Save all changes''.
 
 \paragraph*{Actualitzar una mostra} Per actualitzar una mostra:
 \begin{itemize}
-\item El primer camp es l'alies de la mostra
-\item El segon es un calendari per seleccionar una data
-\item El tercer es un camp auto completat optatiu. Quan es comença a escriure, surt un desplegable per seleccionar un dels possibles valors dels orígens que existeixen a la matriu o escriure un nou.
+\item El primer camp \'{e}s l'alies de la mostra
+\item El segon \'{e}s un calendari per seleccionar una data
+\item El tercer \'{e}s un camp autocompletat optatiu. Quan es comença a escriure, surt un desplegable per seleccionar un dels possibles valors dels orígens que existeixen a la matriu o escriure un nou.
 \end{itemize}
 
 \paragraph*{Actualitzar una dada d'una fila i d'una columna} Es poden actualitzar les dades d'una mostra fent un doble ''click'' en una de les celles. Prement ''Enter'' es guarda el resultat.
@@ -286,13 +286,13 @@ Una vegada actualitzat les dades en alguna columna, apareixerà la icona \iconed
 
 \subsection{Clonar una matriu}
 \label{subsec:clone_matrix}
-L'objectiu de clonar una matriu es per tenir matrius similars però per canviar de configuracions. L'objectiu de canviar de configuració es crear entrenaments amb altres configuracions(altres conjunts de fitxers per variable, o modificar un origen, etc); ja que a una matriu entrenada no es pot canviar la configuració. No es copien ni els entrenaments ni les prediccions\\
+L'objectiu de clonar una matriu \'{e}s tenir matrius similars però per canviar de configuracions. L'objectiu de canviar de configuració \'{e}s crear entrenaments amb altres configuracions(altres conjunts de fitxers per variable, o modificar un origen, etc); ja que a una matriu entrenada no es pot canviar la configuració. No es copien ni els entrenaments ni les prediccions\\
 
 Per clonar una matriu, seguir la ruta del menú ''Ichnaea Data - View Matrix''. S'accedir\{a} a un llistat de variables del sistema; amb la icona \iconclone accedim al formulari de clonaci\'{o}(figura \ref{fig:cloneMatrix}). 
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.2]{img/userguide/clone_matrix}
-  \caption{Interfici d'usuari ''Clonar una matriu''}
+  \caption{Interfície ''Clonar una matriu''}
   \label{fig:cloneMatrix}
 \end{figure}
 El formulari suggereix un nom que es pot canviar. Si l'usuari accepta la clonaci\'{o} l'usuari clona les dades i la configuraci\'{o} i es dirigir\`{a} a la la interfície de configuració.
@@ -301,27 +301,27 @@ El formulari suggereix un nom que es pot canviar. Si l'usuari accepta la clonaci
 \section{Entrenaments}
 \subsection{Crear un entrenament d'una matriu}
 \label{subsec:createtraining}
-Per crear un entrenament primerament s'ha de seleccionar un matriu. Per crear un entrenament existeixen diferents formes:
+Per crear un entrenament primerament s'ha de seleccionar una matriu. Per crear un entrenament existeixen diferents formes:
 \begin{itemize} 
 \item Opció 1) Des de el llistat de matrius entrenables(''Ichnaea Data >> Create training'') amb la icona \icontraining.
-\item Opció 2) Visualitzant una matriu accedint des de el llistat de matrius del sistema: ''Ichnaea Data >> View matrixs >> \iconeyeopen >> \icontraining.
-\item Opcio 3) Des de la interfície de configuració de la matriu(mirar la secció \ref{subsec:interfaceConfiguration}).
+\item Opció 2) Visualitzant una matriu accedint des del llistat de matrius del sistema: ''Ichnaea Data >> View matrixs >> \iconeyeopen >> \icontraining.
+\item Opcio 3) Des de la interfície de configuració de la matriu(veg. la secció \ref{subsec:interfaceConfiguration}).
 \end{itemize}
 
 La figura \ref{fig:createTraining} \'{e}s la interfície de creació d'entrenaments on:
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{img/userguide/training_create.png}
-  \caption{Llistat de matrius}
+  \caption{Interfície de creació d'entrenaments}
   \label{fig:createTraining}
 \end{figure}
 \begin{itemize}
 \item Part esquerra superior: nom i descripci\'{o} de l'entrenament.
-\item Part dreta superior: Desplegable per seleccionar un dels orígens disponibles.  El ''origen-versus'', es un llistat de la variable origen de la matriu. Si es selecciona el valor "All versus all", l'entrenament ser\'{a} tots contra tots. Si \'{e}s selecciona un origen concret, l'entrenament es far\`{a} aquest origen contra els altres. \textbf{Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}}.
+\item Part dreta superior: Desplegable per seleccionar un dels orígens disponibles.  El ''origen-versus'', \'{e}s un llistat de la variable de tipus origen de la matriu. Si es selecciona el valor "All versus all", l'entrenament ser\'{a} tots contra tots. Si \'{e}s selecciona un origen concret, l'entrenament es far\`{a} aquest origen contra els altres. \textbf{Actualment Ichnaea no suporta aquesta part per\'{o} en el futur est\`{a} planificat que ho far\`{a}}.
 \item Selecci\'{o} de columnes. Selecci\'{o} de columnes que vols entrenar.
 \end{itemize}
 
-Si la creaci\'{o} \'e{s} correcte, les dades s'enviaran a la cua de procesos i la aplicaci\'{o} es redirigir\'{a} a la pantalla de visualitzaci\'{o} de entrenaments(mirar la secció \ref{subsec:viewtraining}).
+Si la creaci\'{o} \'e{s} correcte, les dades s'enviaran a la cua de processos i la aplicaci\'{o} es redirigir\'{a} a la pantalla de visualitzaci\'{o} d'entrenaments (veg. la secció \ref{subsec:viewtraining}).
 
 \subsection{Visualitzar un entrenament}
 \label{subsec:viewtraining}
@@ -331,7 +331,7 @@ A continuació veiem la interfície que de visualització d'un entrenament on:
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/view_training_pending.png}
-  \caption{Interfície de visualització de entrenaments}
+  \caption{Interfície de visualització d'entrenaments}
   \label{fig:viewTraining}
 \end{figure}
 
@@ -339,12 +339,12 @@ A continuació veiem la interfície que de visualització d'un entrenament on:
 \item Títol: nom de l'entrenament, data de creació i propietari.
 \item Configuracio: 
 \begin{itemize}
-\item Nom de la matriu com enllaç
-\item Nom de l'entrenament
+\item Nom de la matriu com enllaç.
+\item Nom de l'entrenament.
 \item Origin-versus seleccionat(veure \ref{subsec:createtraining}).
-\item \textbf{Cue id}: identificador del proces a la cua.
+\item \textbf{Cue id}: identificador del proc\'{e}s a la cua.
 \end{itemize}
-\item Columnes seleccionades per entrenar
+\item Columnes seleccionades per entrenar.
 \item Resultat: es una barra de progressió. Actualment Ichnaea no ens retorna estats parcial. Així que la barra estarà buida o plena.
 \item Errors: errors capturats d'Ichnaea.
 \item Prediccions: prediccions fetes amb aquest entrenament. Amb la icona \iconadd es pot crear una predicció usant aquest entrenament.
@@ -354,20 +354,20 @@ A continuació veiem la interfície que de visualització d'un entrenament on:
 Mirar la secció \ref{sec:ichnaeaErrors}.
 
 \section{Prediccions}
-\subsection{Crear una matriu de predicció a partir d'un entrenament desde un fitxer CSV o Excel}
+\subsection{Crear una matriu de predicció a partir d'un entrenament des d'un fitxer CSV o Excel}
 Per crear una matriu de prediccions, primer s'ha de seleccionar un entrenament. Per seleccionar un entrenament i crear una predicció tenim 2 opcions:
 \begin{itemize}
-\item Opció a) Seguir el menú ''Trainings'' >> ''Create trainings'' >> Seleccionar un entrenament de la llista accedint amb l'icona \icontableninesquares.
-\item Opcio b) Des de la interfície de visualitzacions d'entrenaments(mirar \ref{subsec:viewtraining}).
+\item Opció a) Seguir el menú ''Trainings'' >> ''Create trainings'' >> Seleccionar un entrenament de la llista accedint amb la icona \icontableninesquares.
+\item Opció b) Des de la interfície de visualitzacions d'entrenaments(mirar \ref{subsec:viewtraining}).
 \end{itemize}
-El format del fitxer es el mateix que el que s'explica a l'apartat \ref{sec:create_matrix}. La principal diferencia \'{e}s la resolució automàtica de configuracions de columnes: si el identificador de la columna es igual al identificador de la columna entrenada, automàticament s'assigna aquesta columna entrenada.
+El format del fitxer es el mateix que el que s'explica a l'apartat \ref{sec:create_matrix}. La principal diferencia \'{e}s la resolució automàtica de configuracions de columnes: si l'identificador de la columna \'{e}s igual a l'identificador de la columna entrenada, automàticament s'assigna aquesta columna entrenada.
 
 \subsection{Configuració d'una matriu de predicció}
 A la figura \ref{fig:view_training_pending} es pot veure la interfície de configuració de les matrius.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{img/userguide/view_training_pending.png}
-  \caption{Interfície de visualització de entrenaments}
+  \caption{Interfície de visualització d'entrenaments}
   \label{fig:view_training_pending}
 \end{figure}
 \textbf{Solament l'usuari propietari de la matriu la pot configurar}. A continuació descrivim les seccions de la interfície.
@@ -383,27 +383,27 @@ Les accions bàsiques es troben a la part superior esquerre on:
 \subsubsection{Configuració de les dades de la matriu}
 \paragraph{Columnes} Des de les columnes es configuren el mapejat amb les columnes entrenades on:
 \begin{itemize}
-\item \iconalias es per definir el alies de la columna
-\item \iconvariable es per seleccionar la columna entrenada.
+\item \iconalias \'{e}s per definir l'\`{a}lies de la columna
+\item \iconvariable '{e}s per seleccionar la columna entrenada.
 \end{itemize}
 
-\paragraph*{Actualitzar una mostra} La actualització de mostres de prediccions es igual que la configuració de mostres de matrius, explicat a la pagina \pageref{matrixConfiguration}.
+\paragraph*{Actualitzar una mostra} L'actualització de mostres de prediccions es igual que la configuració de mostres de matrius, explicat a la p\`{a}gina \pageref{matrixConfiguration}.
 
 \paragraph*{Actualitzar una dada d'una fila i d'una columna} Es poden actualitzar les dades d'una mostra fent un doble ''click'' en una de les celles. Prement ''Enter'' es guarda el resultat.
 
 \subsection{Executar una predicció}
-Per executar una predicció mirar la secció anterior, a l'apartat ''Accions Basiques''. Una vegada enviat a execució es podra consultar a les prediccions de l'usuari(explicat a l'apartat \ref{subsec:myPrediccions}).
+Per executar una predicció mirar la secció anterior, a l'apartat ''Accions Bàsiques''. Una vegada enviat a execució es podr\`{a} consultar a les prediccions de l'usuari(explicat a l'apartat \ref{subsec:myPrediccions}).
 
-\subsection{Consultat resultats d'una prediccio}
+\subsection{Consultar resultats d'una predicció}
 Per consultar els resultats d'una predicció existeixen 2 formes:
 \begin{itemize}
 \item es pot accedir des de les prediccions de l'usuari(mirar l'apartat \ref{subsec:myPrediccions}) 
-\item des de la interfície de configuració de la matriu de predicció mitjançant el but\'{o} ''View results'' en el cas que la la execució de la predicció hagi finalitzat.
+\item des de la interfície de configuració de la matriu de predicció mitjançant el bot\'{o} ''View results'' en el cas que l'execució de la predicció hagi finalitzat.
 \end{itemize}
 La figura \ref{fig:viewresults} es la interfície de visualitzacions de resultats on:
 \begin{itemize}
 \item Informació bàsica: cont\'{e} enllaços a la matriu, l'entrenament, i la nova predicció.
-\item Result: son cadascun dels resultats que retorna Ichnaea en una predicció. Actualment no s'interpreten aquests resultats. Simplement es recullen.
+\item Result: s'{o}n cadascun dels resultats que retorna Ichnaea en una predicció. Actualment no s'interpreten aquests resultats. Simplement es recullen.
 \end{itemize}
 \begin{figure}[h!]
   \centering
@@ -414,12 +414,12 @@ La figura \ref{fig:viewresults} es la interfície de visualitzacions de resultat
 
 \section{Problemes de Ichnaea}
 \label{sec:ichnaeaErrors}
-A traves de l'us de Ichnaea han sortit diversos errors a diferents nivells del software. Son externs a aquest projecte. Ichnaea encara esta evolucionant i l'aplicacio depen d'Ichnaea.
+Mitjançant l'us de Ichnaea han sortit diversos errors a diferents nivells del \textit{software}. S\'{o}n externs a aquest projecte. Ichnaea encara est\`{a} evolucionant i l'aplicació depèn d'Ichnaea.
 
 \subsection{Error en els entrenaments}
-Si el proces d'entrenament llença un error, la aplicacio recull l'error i el mostra. Analitzen un exemple.\\
+Si el proc\'{e}s d'entrenament llença un error, la aplicació recull l'error i el mostra. Analitzen un exemple.\\
 
-Actualment Ichnaea esta esperant trobar unes variables concretes. En el cas que no estiguin configurades en la matriu, Ichnaea donara un error del tipus que recull l'aplicació(figura \ref{fig:viewtrainingerror}).
+Actualment Ichnaea esta esperant trobar unes variables concretes. En el cas que no estiguin configurades en la matriu, Ichnaea donar\`{a} un error del tipus que recull l'aplicació(figura \ref{fig:viewtrainingerror}).
 
 \begin{center}
 ''failed command result: Error in file(file, "rt") : cannot open the connection Calls: aged\_samples\_lr - \> read.csv -> read.table -\> file In addition: Warning message: In file(file, "rt") : cannot open file '../data/aging/envFRNAPH.I-Hivern.txt': El fitxer ''
@@ -431,4 +431,4 @@ Actualment Ichnaea esta esperant trobar unes variables concretes. En el cas que 
   \caption{Interfície de visualització d'entrenament amb error}
   \label{fig:viewtrainingerror}
 \end{figure}
-Una forma d'actuar envers a aquest error seria mirar la configuració de la matriu i mirar si existeix la columna FRNAPH.I.
+En aquest cas en concret, una forma d'actuar envers a aquest error seria mirar la configuració de la matriu i mirar si existeix la columna FRNAPH.I.

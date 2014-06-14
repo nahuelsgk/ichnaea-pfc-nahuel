@@ -113,7 +113,6 @@ class PredictionController extends Controller
 				'matrix_trained_id'  => $matrixPrediction->getTraining()->getMatrix()->getId(),
 				'matrix_description' => $matrixPrediction->getDescription(),
 				'availableVars'		 => $matrixPrediction->getTraining()->getColumnsSelected(),
-				#'matrix' => $matrixPrediction
 			)
 		);
 	}

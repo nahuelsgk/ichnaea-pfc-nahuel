@@ -168,6 +168,20 @@
 										   </td>
 										   {% endfor %}
 										   <td class='inner-head col_header_last head'>&nbsp;</td>
+								{% elseif configurable_columns == 'prediction_read_only' %}
+                            	           {% for column in columns %}
+										   <td class='inner-head col_header head'>
+										    <a title="Variable selection"><i class="icon-wrench"></i></a>
+										      	{% for availableVar in availableVars %}
+										        	{% if column.columnConfiguration is not null and column.columnConfiguration.id == availableVar.id %} {{availableVar.name}} {% if availableVar.seasonSet is not null %}- {{ availableVar.seasonSet.name }}{% endif %}{% endif %}
+										      	{% endfor %}
+										    </select>
+										    <br/>
+										   	<a title="Alias of the variable"><i class="icon-pencil"></i></a>
+										     {{column.name}}
+										   </td>
+										   {% endfor %}
+										   <td class='inner-head col_header_last head'>&nbsp;</td>
                             	{% else %}
                                 	{% for column in columns %}
 								   <td class='inner-head {% if loop.last %}col_header_last{% else %}col_header {% endif %} head'>

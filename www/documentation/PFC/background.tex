@@ -1,42 +1,42 @@
 \chapter{Introducció a Ichnaea}
 \label{cha:background}
-En aquest cap\'{i}tol es descriu breument l'univers MST e Ichnaea, necessari per entendre el requeriments. No es dona una visi\'{o} completa del \textit{software} de com funciona, sino una visi\'{o} global del seu objectiu i quins elements utilitza. 
+En aquest cap\'{i}tol es descriu breument l'univers MST e Ichnaea, necessari per entendre els requeriments. No es dona una visi\'{o} completa del \textit{software} de com funciona, sinó una visi\'{o} global del seu objectiu i quins elements utilitza. 
 
 \section{MST: Microbial Source Tracking}
 \label{sec:mst}
-MST \'{e}s un problema obert en l'actualitat. Consisteix en determinar l'origen biol\`{o}gic dels residus fecals en cossos aquosos mitjan\c{c}ant l'\'{u}s d'indicadors químics i microbiòlegs \cite{paper}. Per fer això es prenen mostres i s'analitzen en un laboratori, i segons els resultats, es decideix si contenen residus fecals d'origen humà o de quina família de animals \cite{pfc}.\\
+MST \'{e}s un problema obert en l'actualitat. Consisteix en determinar l'origen biol\`{o}gic dels residus fecals en cossos aquosos mitjan\c{c}ant l'\'{u}s d'indicadors químics i microbiòlegs \cite{paper}. Per fer això es prenen mostres i s'analitzen en un laboratori, i segons els resultats, es decideix si contenen residus fecals d'origen humà o de quina família d'animals.\cite{pfc}\\
 
-Prendre aquesta decisió \'{e}s molt difícil. Fins i tot, els microbiòlegs no estan completament segurs de determinar la font d'infecció de les mostres d'aigües contaminades. La raó es que les mostres son extretes directament de l'entorn i per això estan diluïdes i envellides \cite{pfc}.\\
+Prendre aquesta decisió \'{e}s molt difícil. Fins i tot, els microbiòlegs no estan completament segurs de determinar la font d'infecció de les mostres d'aigües contaminades. La raó es que les mostres s\'{o}n extretes directament de l'entorn i per això estan diluïdes i envellides \cite{pfc}.\\
 
-L'estudi de l'origen de la pol.luci\'{o} en cossos aquosos \'{e}s un problema gran i pot ajudar a assegurar la protecció de les poblacions humanes, mostrant una varietat d'enfermetats, especialment en països subdesenvolupats \cite{pfc}.\\
+L'estudi de l'origen de la pol.luci\'{o} en cossos aquosos \'{e}s un problema gran i pot ajudar a assegurar la protecció de les poblacions humanes, mostrant una varietat de malalties, especialment en països subdesenvolupats \cite{pfc}.\\
 
 \section{Ichnaea Software}
-Ichnaea \'{e}s un software desenvolupat per ajudar a resoldre el problema MST. \'{E}s un eina per llegir matrius de dades(mostres mesurades) i construir diversos conjunts de models. Amb l'ajuda d'aquestes bosses de models, pot llegir noves mostres i fer prediccions dels orígens d'aquestes \cite{pfc}.\\
+Ichnaea \'{e}s un software desenvolupat per ajudar a resoldre el problema MST. \'{E}s una eina per llegir matrius de dades(mostres mesurades) i construir diversos conjunts de models. Amb l'ajuda d'aquestes bosses de models, pot llegir noves mostres i fer prediccions dels orígens d'aquestes \cite{pfc}.\\
  
-Actualment es troba en la versi\'{o} 2.0. La primera versi\'{o} va ser desenvolupada, com a Master Thesis per David Sànchez, va donar un primer enfoc al problema MST. La segona versi\'{o} ha sigut desenvolupada com a Projecte de Final de Carrera per Aitor P\'{e}rez P\'{e}rez. Ambdues versions han sigut supervisades per Llu\'{i}s Belanche. Desde la primera versi\'{o} s'ha refactoritzat el codi i millorat tant el rendiment com els algoritmes.\\
+Actualment es troba en la versi\'{o} 2.0. La primera versi\'{o} va ser desenvolupada, com a Master Thesis per David Sànchez, va donar un primer enfoc al problema MST. La segona versi\'{o} ha sigut desenvolupada com a Projecte de Final de Carrera per Aitor P\'{e}rez P\'{e}rez. Ambdues versions han sigut supervisades per Llu\'{i}s Belanche. Des de la primera versi\'{o} s'ha refactoritzat el codi i millorat tant el rendiment com els algoritmes.\\
 
 
 \section{L'univers d'Ichnaea}
-A continuaci\'{o} veurem les entitats amb les que treballa Ichnaea per tal poder donar una visi\'{o} de les dades.
+A continuaci\'{o} veurem les entitats amb les qual treballa Ichnaea per tal poder donar una visi\'{o} de les dades.
 
 \subsection{Matrius}
 \label{cha:backgroud:univers:matrius}
 Ichnaea processa inicialment unes matrius on \'e{s} defineixen les mostres de dades extretes, on cada columna representa una variable i cada fila representa una mostra. 
 
-\subsubsection{Variables i conjunts de envelliments}
+\subsubsection{Variables i conjunts d'envelliments}
 \label{cha:backgroud:univers:matrius:variables_seasons}
-Les variables de Ichnaea tenen associades uns fitxers. En aquest fitxers s'especifiquen dades mesurades que representen els envelliments de les mostres d'aquestes variables segons la estació de l'any. Aquests fitxers s'agrupen en un conjunt per formar conjunts d'envelliments.\\
+Les variables de Ichnaea tenen associades uns fitxers. En aquests fitxers s'especifiquen dades mesurades que representen els envelliments de les mostres d'aquestes variables segons l'estació de l'any. Aquests fitxers s'agrupen en un conjunt per formar conjunts d'envelliments.\\
 
-L'objectiu de tenir diferents conjunts d'envelliments \'{e}s tenir agrupats els fitxers segons les localitzacions. Per exemple, podem tenir el bacteri \textit{Fecal Coliform} amb dos conjunts de envelliments de dos localitzacions diferents del mon. Per exemple, un conjunt de envelliments pot correspondre a mesures fetes a Nairobi i unes altres a Mosc\'{u}. I cada fitxer representa una estaci\'{o} de l'any, ja que segons la estaci\'{o} i la localitzaci\'{o} els envelliments son diferents.\\
+L'objectiu de tenir diferents conjunts d'envelliments \'{e}s tenir agrupats els fitxers segons les localitzacions. Per exemple, podem tenir el bacteri \textit{Fecal Coliform}(com a variable d'Ichnaea) amb dos conjunts d'envelliments de dues localitzacions diferents del mon. Per exemple, un conjunt d'envelliments pot correspondre a mesures fetes a Nairobi i unes altres a Mosc\'{u}. I cada fitxer representa una estaci\'{o} de l'any, ja que segons la estaci\'{o} i la localitzaci\'{o} els envelliments s\'{o}n diferents.\\
 
 \subsection{La matriu i les mostres}
 Cada columna d'aquesta matriu, representa una variable de la matriu. Aquesta variable pot ser:\\
 \begin{itemize}
-\item Una variable que representa una variable de Ichnaea: ''variable single''
-\item Una variable derivada. Son dos "variables single" relacionades per una operaci\'{o}.
+\item Una variable que representa una variable d'Ichnaea: ''variable single''
+\item Una variable derivada. S\'{o}n dos ''variables single'' relacionades per una operaci\'{o}.
 \item Una variable d'origen, obligatòria per cada mostra. \'{E}s una etiqueta que identifica l'origen de la mostra.
 \end{itemize}
-Les variables d'origen representa una etiqueta de la mostra per tal de identificar origen de la pol.luci\'{o}. En aquestes matrius els orígens son obligatoris i cada columna ha de tenir un valor definit.\\
+Les variables d'origen representa una etiqueta de la mostra per tal d'identificar l'origen de la pol.luci\'{o}. En aquestes matrius els orígens son obligatoris i cada columna ha de tenir un valor definit.\\
 
 \subsection{Entrenaments}
 \label{subsec:backgroundTrainings}
@@ -47,7 +47,7 @@ Aquestes bosses de m\`{o}dels resultants s'utilitzen per fer prediccions.
 \subsection{Matrius de prediccions}
 Les dades que necessita Ichnaea per fer prediccions son un conjunt de noves mostres en forma de matriu. A partir d'un entrenament, pot fer prediccions d'orígens de contaminaci\'{o}.\\ 
 
-Aquestes matrius son molt similars descrites a la secci\'{o} \ref{cha:backgroud:univers:matrius}. La difer\'{e}ncia \'{e}s que les mostres no han de ser completes. Per exemple, les mostres no tenen perquè tenir un origen o poden valors per variables sense definir.
+Aquestes matrius s\'{o}n molt similars descrites a la secció \ref{cha:backgroud:univers:matrius}. La difer\'{e}ncia \'{e}s que les mostres no han de ser completes. Per exemple, les mostres no tenen perquè tenir un origen o poden valors per variables sense definir.
 
 \subsection{Sistema de cues}
 La execucions del \textit{software} Ichnaea, tant per executar entrenaments de matrius i fer prediccions, requereixen d'un cost alt de proc\'{e}s tant en rendiment com en temps d'execució. Això es un problema a l'hora de desenvolupar aquest sistema web ja que la execució d'Ichnaea ha de estar separada dels processos de la aplicació.\\

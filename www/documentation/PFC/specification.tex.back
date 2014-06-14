@@ -1,18 +1,18 @@
 \chapter{An\`{a}lisis i Especificaci\'{o}}
 \label{cha:specification}
-En aquest cap\'{i}tol s'analitzen les dades que gestiona Ichnaea i el comportament que es vol del sistema per cobrir les necessitats derivades de les execucions d'Ichnaea. D'aquest anàlisi es deriven els requeriments, les operatives que es necessiten i el model de dades.
+En aquest cap\'{i}tol s'analitzen les dades que gestiona Ichnaea i el comportament que es vol del sistema per cobrir les necessitats derivades de les execucions d'Ichnaea. D'aquest anàlisis es deriven els requeriments, les operatives que es necessiten i el model de dades.
 
 \section{An\`{a}lisis de Requeriments}
 
 \subsection{Requeriments funcionals}
 \subsubsection{Administraci\'{o} d'usuaris}
-La aplicaci\'{o} ha d'estar protegida, auditada i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertànyer a grups amb rols autoritzats per fer certes accions dintre de l'aplicació web.\\ 
+La aplicaci\'{o} ha de estar protegida, auditada i autoritzada pels usuaris. Els usuaris autenticats han de tenir permisos i  pertànyer a grups amb rols autoritzats per fer certes accions dintre de l'aplicació web.\\ 
 
 Per tant, s'ha de dissenyar un sistema que permeti:
 \begin{itemize}
 \item Crear comptes d'usuari.
 \item Atendre peticions de restaurar contrasenyes.
-\item Enviament de correus electrònics de confirmacions d'accions.
+\item Enviament de correus electrònics de confirmacions de accions.
 \item Canviar permisos a usuaris.
 \end{itemize}
 
@@ -46,7 +46,7 @@ Per tant, s'ha de dissenyar un sistema que permeti:
 	\item gestionar els entrenaments: crear, configurar i esborrar.
 	\item generar les dades necessàries per les execucions dels entrenaments.
 	\item enviar les dades generades a la cua d'execucions d'entrenaments.
-	\item llegir i interpretar l'estat del proc\'{e}s d'entrenament.
+	\item llegir e interpretar l'estat del proc\'{e}s d'entrenament.
 	\item guardar els resultats dels entrenaments.
 	\item Gestionar les sortides de les execucions.
 \end{itemize}
@@ -58,7 +58,7 @@ S'ha de dissenyar un sistema que permeti:
 \begin{itemize}
 	\item gestionar les matrius de prediccions.
 	\item enviar a les matrius de prediccions a la cua d'execucions.
-	\item Llegir i interpretar l'estat del proc\'{e}s d'execució.
+	\item Llegir e interpretar el estat del proc\'{e}s d'execució.
 	\item Llegir els resultats de les prediccions.
 	\item Gestionar les sortides de les execucions.
 \end{itemize}
@@ -68,7 +68,7 @@ Els requeriments no funcionals son:
 \begin{itemize}
 \item Un sistema amb bon rendiment 
 \item Un sistema que permeti l'escalabilitat en cas d'augment o disminució de recursos
-\item Un sistema fàcil de mantenir per continuar l'evolució i/o resolució de mal funcionaments.
+\item Un sistema fàcil de mantenir per continuar la evolució i/o resolució de mal funcionaments.
 \item Un sistema amb un disseny flexible per poder fer canvis.
 \item Un sistema usable pels usuaris.
 \item Un sistema robust als errors.
@@ -89,7 +89,7 @@ La figura \ref{fig:actors} descriu els actors físics i lògics del sistema. A c
 \item Propietari d'una predicci\'{o}: usuari que ha creat una matriu de predicci\'{o}.
 \end{itemize}
 \item Usuari administrador: usuari amb permisos administratius.
-\item Cua: usuari l\'{o}gic (no \'{e}s una persona f\'{i}sica) del sistema que gestiona les execucions.
+\item Cua: usuari l\'{o}gic (no \'{e}s una persona f\'{i}sica) dels sistema que gestiona les execucions.
 \item Consumidor: usuari l\'{o}gic (no \'{e}s una persona f\'{i}sica) del sistema que gestiona les sortides de les execucions.
 \item Sistema: sistema que rep les peticions i gestiona les sortides.
 \end{itemize}
@@ -102,7 +102,7 @@ La figura \ref{fig:actors} descriu els actors físics i lògics del sistema. A c
 \end{figure}
 
 \subsection{Diagrama dels casos d'\'{u}s}
-A la figura \ref{fig:usecases} es pot veure el diagrama de casos d'\'{u}s. I a la secció \ref{subsec:usescases} es detallen.
+A la figura \ref{fig:usecases} es pot veure la el diagrama de casos d'\'{u}s. I a la secció \ref{subsec:usescases} es detallen.
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.2]{img/specification/UsesCases.png}
@@ -112,7 +112,7 @@ A la figura \ref{fig:usecases} es pot veure el diagrama de casos d'\'{u}s. I a l
 
 \subsection{Especificaci\'{o} dels casos d'\'{u}s}
 \label{subsec:usescases}
-A continuació s'especifica el flux dels casos d'usos i el comportament del sistema en cadascun d'ells. En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els casos d'\'{u}s:\\
+A continuació s'especifica el flux dels casos d'usos i el comportament del sistema en cadascun de ells. En la documentaci\'{o} s'utilitzar\`{a} la següent estructura per definir els casos d'\'{u}s:\\
 \begin{usecase}
 \addtitle{Identificador}{Nom cas d'us}
 \addfield{Actors:}{Llista de actors}
@@ -137,7 +137,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 	\item El sistema comprova que \'{e}s un enllaç de confirmaci\'{o} v\`{a}lid d'aquest usuari i activa la compte. L'usuari ja est\'{a} autenticat com usuari bàsic del sistema.
 }
 \addscenario{Cursos alternatius:}{
-\item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu i que el correu sigui v\`{a}lid. Si no \'{e}s correcte li informa a l'usuari al mateix formulari.
+\item[3] El sistema valida que no existeixi un usuari amb aquesta compte de correu i que el correu sigui v\`{a}lid. Sino \'{e}s correcte li informa a l'usuari al mateix formulari.
 }
 \end{usecase}
 
@@ -158,7 +158,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a un formulari de creació.
 	\item El sistema mostra un formulari de creació de variables.
-	\item L'usuari d\'{o}na un identificador i una descripci\'{o}.
+	\item L'usuari dona un identificador i una descripci\'{o}.
 	\item El sistema crea la variable amb la informació donada i confirma a l'usuari.
 }
 \addscenario{Cursos alternatius:}{
@@ -225,15 +225,15 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
     \item L'usuari selecciona una variable.
     \item El sistema mostra un llistat de conjunts de fitxers per esborrar.
     \item L'usuari selecciona del llistat un conjunt de fitxers per esborrar.
-    \item El sistema li mostra una vista de confirmaci\'{o} de l'acci\'{o}.
+    \item El sistema li mostra un vista de confirmaci\'{o} de la acci\'{o}.
     \item L'usuari confirma la acci\'{o}.
     \item El sistema esborra tots els fitxers que no estiguin compartits i el conjunt.
 }
 \addscenario{Cursos alternatius:}{
-\item[4] L'usuari cancel·la l'acci\'{o}.
+\item[4] L'usuari cancel·la la acci\'{o}.
 }
 \addscenario{Cursos alternatius:}{
-\item[6] El sistema avisa l'usuari que no pot esborrar el conjunt de fitxers, ja que est\`{a} en \'{u}s en una configuració de matrius.
+\item[6] El sistema avisa l'usuari que no pot esborrar el conjunt de fitxers ja que est\`{a} en \'{u}s en una configuració de matrius.
 }
 \end{usecase}
 
@@ -244,7 +244,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
     \item L'usuari selecciona una variable d'un llistat de variables.
     \item El sistema mostra un llistat de conjunts de fitxers de la variable.
     \item L'usuari selecciona un conjunt de fitxers.
-    \item El sistema mostra un formulari d'edici\'{o} del conjunt de fitxers.
+    \item El sistema mostra un formulari de edici\'{o} del conjunt de fitxers.
     \item L'usuari pot seleccionar 0, 1 o 2 fitxers, on cada fitxer pot ser configurat com:
 	\begin{itemize}
 		\item a únic per tot l'any
@@ -265,7 +265,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
     \item L'usuari selecciona una variable d'un llistat de variables.
     \item El sistema mostra un llistat de conjunts de fitxers de la variable.
     \item L'usuari selecciona un conjunt de fitxers.
-    \item El sistema mostra un llistat dels fitxers.
+    \item El sistema mostra un llistat del fitxers.
 	\item L'usuari selecciona un fitxer per esborrar.
 	\item El sistema li demana confirmaci\'{o}.
 	\item L'usuari confirma l'acci\'{o}
@@ -291,7 +291,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
     \item L'usuari selecciona una variable d'un llistat de variables.
     \item El sistema mostra un llistat de conjunts de fitxers de la variable.
     \item L'usuari selecciona un conjunt de fitxers.
-    \item El sistema mostra un formulari d'edici\'{o} del conjunt de fitxers.
+    \item El sistema mostra un formulari de edici\'{o} del conjunt de fitxers.
     \item L'usuari pot seleccionar 1 fitxer del sistema existent, on pot ser configurat com:
 	\begin{itemize}
 		\item a únic per tot l'any
@@ -306,20 +306,20 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \end{usecase}
 
 \begin{usecase}
-\addtitle{Variable010}{Eliminar l'associació d'un fitxer d'un conjunt de fitxers d'envelliments}
+\addtitle{Variable010}{Eliminar la associació d'un fitxer d'un conjunt de fitxers d'envelliments}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item L'usuari selecciona una variable d'un llistat de variables.
     \item El sistema mostra un llistat de conjunts de fitxers de la variable.
     \item L'usuari selecciona un conjunt de fitxers.
-    \item El sistema mostra un llistat dels fitxers.
-	\item L'usuari selecciona un fitxer per esborrar l'associació.
+    \item El sistema mostra un llistat del fitxers.
+	\item L'usuari selecciona un fitxer per esborrar la associació.
 	\item El sistema li demana confirmació.
 	\item L'usuari confirma l'acci\'{o}
-	\item El sistema esborra l'associació però deixa el fitxer al sistema.
+	\item El sistema esborra la associació però deixa el fitxer al sistema.
 }
 \addscenario{Cursos alternatius:}{
-\item[6] L'usuari cancel·la l'acci\'{o}.
+\item[6] L'usuari cancel·la la acci\'{o}.
 }
 \end{usecase}
 
@@ -333,12 +333,12 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 	\item El sistema mostra el formulari d'importació on pot donar nom a la matriu i seleccionar el fitxer en format CSV o Microsoft Excel. L'usuari accepta el formulari.
 	\item El sistema crear la matriu on:
 	\begin{itemize}
-	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable \'{e}s igual l'identificador de la variable, automàticament s'assigna a aquesta columna la variable corresponent i a un conjunt de fitxers d'envelliments per defecte. Les dues ultimes columnes s\'{o}n optatives, on s'especifica l'origen i la data de la mostra.
+	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable \'{e}s igual l'identificador de la variable, automàticament s'assigna a aquesta columna la variable corresponent i a un conjunt de fitxers d'envelliments per defecte. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un \`{a}lies d'origen, autom\`{a}ticament s'assigna un origen.
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen.
 		\item Les columnes restants s'assignen com a valors de la mostra.
-		\item Les dues ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
+		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
 	\item L'usuari visualitza la matriu.
 	\end{itemize}
@@ -351,17 +351,17 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una matriu per actualitzar.
 	\item El sistema li mostra un formulari d'edici\'{o} de la matriu.
-	\item L'usuari accedeix a un formulari d'importació.
+	\item L'usuari accedeix a un formulari de importació.
 	\item El sistema mostra el formulari d'importació.
 	\item L'usuari pot actualitzar el nom a la matriu i/o seleccionar el fitxer de tipus de fulla de c\`{a}lcul. L'usuari confirma els canvis
 	\item El sistema esborra la matriu anterior i torna a crear la matriu on:
 	\begin{itemize}
-	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable \'{e}s igual a l'identificador de la variable, automàticament s'assigna a aquesta columna la variable corresponent i a un conjunt de fitxers d'envelliments per defecte. Les dues ultimes columnes s\'{o}n optatives, on s'especifica l'origen i la data de la mostra.
+	\item La primera fila del fitxer s'associa com una variable Ichnaea. Si la variable \'{e}s igual a l'identificador de la variable, automàticament s'assigna a aquesta columna la variable corresponent i a un conjunt de fitxers d'envelliments per defecte. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un \`{a}lies d'origen, autom\`{a}ticament s'assigna un origen.
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen.
 		\item Les columnes restants s'assignen com a valors de la mostra.
-		\item Les dues ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
+		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
 	\end{itemize}
 	\item L'usuari visualitza la matriu.
@@ -386,11 +386,11 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una matriu del sistema per esborrar.
 	\item El sistema demana confirmaci\'{o} per esborrar la matriu.
-	\item L'usuari confirma l'acci\'{o}.
+	\item L'usuari confirma la acci\'{o}.
 	\item El sistema esborra la matriu amb els entrenaments i les prediccions. 
 }
 \addscenario{Cursos alternatius:}{
-	\item[3] L'usuari cancel·la l'acci\'{o}.
+	\item[3] L'usuari cancel·la la acci\'{o}.
 }
 \end{usecase}
 
@@ -405,7 +405,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 	\item L'usuari selecciona una columna i pot:
 	\begin{itemize}
 		\item donar un nom a la columna.
-		\item seleccionar una variable i un conjunt d'envelliments de la variable.
+		\item seleccionar una variable i una conjunt d'envelliments de la variable.
 	\end{itemize}
 	\item L'usuari accepta la configuraci\'{o}.
 	\item El sistema salva la configuraci\'{o} de la columna.
@@ -414,14 +414,14 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 
 \begin{usecase}
 \addtitle{Matriu006}{Configurar una mostra d'una matriu}
-\addfield{Actors:}{Usuari propietari d'una matriu}
+\addfield{Actors:}{Usuari propietari de una matriu}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una matriu.
 	\item El sistema mostra una vista per configurar les mostres de la matriu.
 	\item L'usuari selecciona una mostra i pot:
 	\begin{itemize}
 	\item donar una data.
-	\item donar un nom a la mostra.
+	\item donar una nom a la mostra.
 	\item donar un origen de la mostra.
 	\end{itemize}
 	\item L'usuari accepta la configuraci\'{o}.
@@ -431,12 +431,12 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 
 \begin{usecase}
 \addtitle{Matriu007}{Validar una matriu}
-\addfield{Actors:}{Usuari propietari d'una matriu}
+\addfield{Actors:}{Usuari propietari de una matriu}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona un matriu.
 	\item El sistema mostra una vista per validar les dades.
 	\item L'usuari accepta una validaci\'{o}.
-	\item El sistema mostra a l'usuari si cont\'{e} alguna dada buida com algun valor de les mostres, un origen d'una mostra buida o una data de mostra buida.
+	\item El sistema mostra al usuari si cont\'{e} alguna dada buida com algun valor de les mostres, un origen d'una mostra buida o una data de mostra buida.
 }
 \end{usecase}
 
@@ -444,11 +444,11 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addtitle{Training001}{Llistar els entrenaments del sistema}
 \addfield{Actors:}{Usuari administrador}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari accedeix a la vista del llistat d'entrenaments del sistema.
+	\item L'usuari accedeix a la vista del llistat de entrenaments del sistema.
 	\item El sistema llista els entrenaments amb les dades b\`{a}siques: 
 	\begin{itemize}
 	\item nom de la matriu entrenada.
-	\item estat de l'entrenament.
+	\item estat del entrenament.
 	\item descripci\'{o} de l'entrenament.
 	\item creador de l'entrenament.
 	\item data de creaci\'{o} de l'entrenament.
@@ -460,7 +460,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addtitle{Training002}{Llistar els meus entrenaments}
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-	\item L'usuari accedeix a la vista del llistat d'entrenaments que ha creat.
+	\item L'usuari accedeix a la vista del llistat de entrenaments que ha creat.
 	\item El sistema llista els entrenaments que ha creat amb dades b\`{a}siques: 
 	\begin{itemize}
 	\item nom de la matriu entrenada.
@@ -496,7 +496,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 	\item L'usuari selecciona una matriu per entrenar.
 	\item El sistema li mostra un formulari per crear entrenaments.
 	\item L'usuari pot donar un nom, una descripci\'{o}, seleccionar un origen dels disponibles i quines columnes vol entrenar. Finalment confirma les dades.
-	\item El sistema guarda l'entrenament i envia les dades al sistema de cues d'execucions d'entrenaments. El sistema avalua si ha pogut enviar l'entrenament al sistema de cues en cas que el servei estigui caigut. 
+	\item El sistema guarda l'entrenament i envia les dades al sistema de cues d'execucions de entrenaments. El sistema avalua si ha pogut enviar l'entrenament al sistema de cues en cas que el servei estigui caigut. 
 	\item L'usuari veu les dades b\'{a}siques de l'entrenament.
 }
 \end{usecase}
@@ -505,10 +505,10 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addtitle{Training005}{Re-enviar un entrenament al sistema de cues}
 \addfield{Actors:}{Usuari propietari d'un entrenament}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
-    \item L'usuari selecciona un entrenament que ha tingut problemes d'enviament.
+    \item L'usuari selecciona un entrenament que ha tingut problemes de enviament.
     \item El sistema mostra una vista de visualitzaci\'{o} del entrenament.
     \item L'usuari pot consultar quin possible error ha passat i pot confirmar el re-enviament.
-    \item El sistema actualitza les dades i reenvia les dades al sistema de cues.
+    \item El sistema actualitza les dades i re-envia les dades al sistema de cues.
 }
 \end{usecase}
 
@@ -528,10 +528,10 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 	\item L'usuari selecciona un entrenament per esborrar.
 	\item El sistema demana confirmaci\'{o} per esborrar l'entrenament.
 	\item L'usuari confirma l'acci\'{o}
-	\item El sistema esborra els entrenaments i totes les prediccions que s'han fet a partir d'aquest entrenament.
+	\item El sistema esborra el entrenaments i totes les prediccions que s'han fet a partir d'aquest entrenament.
 }
 \addscenario{Cursos alternatius:}{
-	\item[3] L'usuari cancel·la l'acci\'{o}.
+	\item[3] L'usuari cancel·la la acci\'{o}.
 }
 
 \end{usecase}
@@ -541,8 +541,8 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item L'usuari selecciona un entrenament finalitzat.
-    \item El sistema visualitza un enllaç amb la possibilitat de descarregar el fitxer resultants d'un entrenament.
-    \item L'usuari accedeix a l'enllaç de la descarrega.
+    \item El sistema visualitza un enllaç amb la possibilitat de descarregar el fitxer resultats d'un entrenament.
+    \item L'usuari accedeix a la descarrega.
     \item El sistema envia a l'usuari els resultats.
 }
 \end{usecase}
@@ -553,7 +553,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
     \item La cua avisa al consumidor que ha finalitzat un entrenament i li envia les dades al consumidor.
     \item El consumidor rep les dades i li envia al sistema
-    \item El sistema les guarda i actualitza l'estat de l'entrenament.
+    \item El sistema les guarda i actualitza l'estat del entrenament.
 }
 \end{usecase}
 
@@ -568,14 +568,14 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 	\item nom de l'entrenament
 	\item nom de la predicció
 	\item data de creació
-	\item estat de l'execució.
+	\item estat de la execució.
 	\end{itemize}
 }
 \end{usecase}
 
 \begin{usecase}
 \addtitle{Prediction002}{Llistar les meves prediccions}
-\addfield{Actors:}{Usuari registrat}
+\addfield{Actors:}{Usuari registrats}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari accedeix a la vista del llistat de prediccions creades per ell.
 	\item EL sistema llista totes les prediccions creades per l'usuari amb dades b\`{a}siques.
@@ -584,40 +584,40 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 	\item nom de l'entrenament
 	\item nom de la predicció
 	\item data de creació
-	\item estat de l'execució.
+	\item estat de la execució.
 	\end{itemize}
 }
 \end{usecase}
 
 \begin{usecase}
 \addtitle{Prediction003}{Esborrar una predicci\'{o}}
-\addfield{Actors:}{Usuari registrat}
+\addfield{Actors:}{Usuari registrats}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una predicci\'{o} per esborrar.
 	\item El sistema li demana confirmaci\'{o} per esborrar la predicci\'{o}.
-	\item L'usuari confirma l'acci\'{o}.
+	\item L'usuari confirma la acci\'{o}.
 	\item El sistema esborra la predicci\'{o}.
 }
 \addscenario{Cursos alternatius:}{
-	\item[3] L'usuari cancel·la l'acci\'{o}.
+	\item[3] L'usuari cancel·la la acci\'{o}.
 }
 \end{usecase}
 
 \begin{usecase}
 \addtitle{Prediction004}{Crear una matriu de predicci\'{o} des d'un fitxer}
-\addfield{Actors:}{Usuari registrat}
+\addfield{Actors:}{Usuari registrats}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona un entrenament per crear una predicci\'{o}.
 	\item El sistema li mostra un formulari de creaci\'{o} de prediccions.
 	\item L'usuari accedeix a un formulari on pot donar nom a la matriu de predicci\'{o} i seleccionar una fulla de c\`{a}lcul. L'usuari accepta el formulari.
 	\item El sistema crea la matriu on:
 	\begin{itemize}
-	\item La primera fila del fitxer s'associa com una variable entrenada. Si la variable \'{e}s igual a l'identificador de la variable entrenada, automàticament s'assigna a aquesta columna de l'entrenament i al conjunt de fitxers d'envelliments que s'ha entrenat. Les dues ultimes columnes s\'{o}n optatives, on s'especifica l'origen i la data de la mostra.
+	\item La primera fila del fitxer s'associa com una variable entrenada. Si la variable es igual al identificador de la variable entrenada, automàticament s'assigna a aquesta columna a aquesta columna de l'entrename i al un conjunt de fitxers d'envelliments que s'ha entrenat. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un \`{a}lies d'origen, autom\`{a}ticament s'assigna un origen
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
 		\item Les columnes restants s'assignen com a valors de la mostra
-		\item Les dues ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
+		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
 	\end{itemize}
 	\item El sistema mostra la matriu de predicció.
@@ -631,13 +631,13 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
     \item L'usuari selecciona un entrenament.
     \item El sistema li mostra un formulari d'edici\'{o} de prediccions.
     \item L'usuari pot actualitzar el nom de la predicci\'{o} i seleccionar una fulla de c\'{a}lcul i guardar els canvis.
-    \item El sistema esborra la matriu de predicci\'{o}, actualitza les dades i crea la matriu on:
+    \item El sistema esborra la matrius de predicci\'{o}, actualitza les dades i crea la matriu on:
 	\begin{itemize}
-	\item La primera fila del fitxer s'associa com una variable entrenada. Si la variable es igual a l'identificador de la variable entrenada, automàticament s'assigna a aquesta columna de l'entrenament i al conjunt de fitxers d'envelliments que s'ha entrenat. Les dues ultimes columnes s\'{o}n optatives, on s'especifica l'origen i la data de la mostra.
+	\item La primera fila del fitxer s'associa com una variable entrenada. Si la variable es igual al identificador de la variable entrenada, automàticament s'assigna a aquesta columna a aquesta columna de l'entrename i al un conjunt de fitxers d'envelliments que s'ha entrenat. Les dues ultimes columnes son optatives, on s'especifica l'origen i la data de la mostra.
 	\item Cada fila del fitxer, despr\'{e}s de la primera fila:
 	\begin{itemize}
-		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un \`{a}lies d'origen, autom\`{a}ticament s'assigna un origen.
-		\item Les columnes restants s'assignen com a valors de la mostra.
+		\item La primera columna \'{e}s l'identificador de la mostra. Si cont\'{e} un alias d'origen, autom\`{a}ticament s'assigna un origen
+		\item Les columnes restants s'assignen com a valors de la mostra
 		\item Les dos ultimes columnes seran l'origen o la data segons la primera fila del fitxer.
 	\end{itemize}
 	\end{itemize}
@@ -651,7 +651,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addfield{Actors:}{Usuari propietari de la predicci\'{o}}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona una predicci\'{o} i una mostra.
-	\item El sistema mostra una vista d'edici\'{o} de la matriu.
+	\item El sistema mostra una vista de edici\'{o} de la matriu.
 	\item L'usuari pot donar un data, un nom i un origen a la mostra i guardar els canvis.
 	\item El sistema guarda les dades.
 }
@@ -685,7 +685,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addfield{Actors:}{Usuari registrat}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
 	\item L'usuari selecciona els resultats d'una predicci\'{o}.
-	\item El sistema li mostra les diferents sortides de l'execuci\'{o}.
+	\item El sistema li mostra les diferents sortides de la execuci\'{o}.
 }
 \end{usecase}
 
@@ -708,7 +708,7 @@ A continuació s'especifica el flux dels casos d'usos i el comportament del sist
 \addfield{Actors:}{Propietari d'una predicció}
 \addscenario{Curs t\'{i}pic d'esdeveniments:}{
    \item L'usuari selecciona una matriu de predicció.
-   \item El sistema mostra una vista per configurar les columnes d'una matriu de predicció.
+   \item El sistema mostra una vista per configurar les columnes de una matriu de predicció.
 	\item L'usuari selecciona una columna i pot:
 	\begin{itemize}
 		\item donar un nom a la columna
@@ -724,7 +724,7 @@ A continuaci\'{o} es descriu el model conceptual resultant dels casos d'usos. Es
 
 \subsection{Diagrama de classes}
 \label{subsec:diagramclasses}
-La figura \ref{fig:datamodel} \'{e}s el diagrama UML on est\`{a} implementat el modelatge de dades.\cite{uml} Especifiquem el diagrama en angl\'{e}s per complir l'estàndard UML.\\
+La figura \ref{fig:datamodel} \'{e}s el diagrama UML\cite{uml} on est\`{a} implementat el modelatge de dades. Especifiquem el diagrama en angl\'{e}s per complir l'estandard UML.
 
 \begin{sidewaysfigure}
   \includegraphics[scale=0.5]{img/specification/ModelClass.png}
@@ -736,50 +736,50 @@ Per la seva comprensió en la següent secció detallem el diagrama.
 
 
 \subsection{Explicaci\'{o} de les classes}
-A continuaci\'{o} es descriuran les classes del model de dades(veg. figura \ref{fig:datamodel}), alguns atributs de les classes i les relacions entre elles.
+A continuaci\'{o} es descriuran les classes del model de dades(figura \ref{fig:datamodel}), alguns atributs de les classes i les relacions entre elles.
 
 \begin{itemize}
 \item \textit{Users}: en aquesta classe es guarda la informaci\'{o} dels usuaris.
 
-\item \textit{Groups}: en aquesta classe es guarda la informaci\'{o} dels grups que pertanyen els usuaris. 
+\item \textit{Groups}: en aquesta classe es guarda la informaci\'{o} dels grups. 
 
 \item \textit{Season}: en aquesta classe es guarda la informaci\'{o} d'un fitxer d'envelliment.
 
 \item \textit{SeasonSet}: en aquesta classe es guarda la informaci\'{o} d'un conjunt de fitxers.
 
-\item \textit{SeasonSetComponent}: aquesta classe associa fitxers als conjunts de fitxers i quina \'{e}s la seva configuració.
+\item \textit{SeasonSetComponent}: aquesta classe associa fitxers als conjunts de fitxers i quina es la seva configuració.
 
 \item \textit{Matrix}: en aquesta classe es guarda la informaci\'{o} b\`{a}sica d'una matriu.
 
-\item \textit{Sample}: en aquesta classe es guarda la informaci\'{o} de cadascuna de les files de la matriu a la qual pertany mitjançant la associaci\'{o} \textit{rows}.
+\item \textit{Sample}: en aquesta classe es guarda la informaci\'{o} de cadascuna de les files de la matriu a la que pertany mitjançant la associaci\'{o} \textit{rows}.
 
 \item \textit{VariableMatrixConfig}: aquesta classe guarda la configuraci\'{o} d'una columna de la matriu i associa la columna amb una variable i amb un conjunt de fitxers d'aquesta variable.
 
 \item \textit{Training}: en aquesta classe es guarda la informaci\'{o} d'un entrenament on:
 \begin{itemize}
-\item \textit{requestId}: identificador del proc\'{e}s en la cua d'execuci\'{o}.
-\item \textit{status}: estat de la predicci\'{o} (veg. secció \ref{sec:status}).
+\item requestId: identificador del proc\'{e}s en la cua d'execuci\'{o}.
+\item status: estat de la predicci\'{o}. Mirar l'apartat \ref{sec:status}.
 \end{itemize}
 
 \item \textit{Column Selected}: aquesta classe associa un entrenament amb quines columnes es volen entrenar.
 
 \item \textit{PredictionMatrix}: en aquesta classe es guarda la informaci\'{o} d'una matriu de predicci\'{o} on:
 \begin{itemize}
-\item \textit{requestId}: identificador del proc\'{e}s en la cua d'execuci\'{o}.
-\item \textit{predictionResult}: collecci\'{o} de resultats de la execuci\'{o} d'una predicci\'{o}.
-\item \textit{status}: estat de la predicci\'{o} (veg. secció \ref{sec:status}).
+\item requestId: identificador del proc\'{e}s en la cua d'execuci\'{o}.
+\item predictionResult: collecci\'{o} de resultats de la execuci\'{o} d'una predicci\'{o}.
+\item status: estat de la predicci\'{o}. Mirar \ref{sec:status}.
 \end{itemize}
 
 \item \textit{PredictionSample}: en aquesta classe es guarda la informaci\'{o} de les mostres(files) d'una matriu de predicci\'{o}.
 
-\item \textit{PredictionColumn}: en aquesta classe es guarda la informaci\'{o} de les columnes d'una matriu de predicci\'{o} i la associaci\'{o} entre les columnes entrenades. La propietat \textit{index} cont\'{e} la posició que ocupa en la matriu.
+\item \textit{PredictionColumn}: en aquesta classe es guarda la informaci\'{o} de les columnes d'una matriu de predicci\'{o} i la associaci\'{o} entre les columnes entrenades. La propietat index cont\'{e} la posició que ocupa en la matriu.
 \end{itemize}
 
 \section{Model d'estats}
 \label{sec:status}
-L'aplicaci\'{o} i el sistema de cues d'execucions s\'{o}n dos components separats. Per mantenir coherència e integritat entre els dos components, \'{e}s necessari definir estats per les execucions dels entrenaments i de les prediccions.\\
+La aplicaci\'{o} i el sistema de cues de execucions son dos components separats. Per mantenir coherència e integritat entre els dos components, ens necessari definir estats per les execucions dels entrenaments i de les prediccions.\\
 
-El principal problema que existeix a la versi\'{o} actual de Ichnaea Software \'{e}s que no retorna estats parcials d'execucions: no ens retorna si ha començat l'execució, quan temps queda o percentatge porta. A continuaci\'{o} s'explica quins estats s'han definit pels entrenaments i per les prediccions.
+El principal problema que existeix en la versi\'{o} actual de Ichnaea Software \'{e}s que no retorna estats parcials d'execucions: no ens retorna si ha començat la execució, quan temps queda o percentatge porta. A continuaci\'{o} s'explica quins estats s'han definit per els entrenaments i per les prediccions.
 
 \subsection{Estats dels entrenaments}
 \begin{figure}[H]
@@ -801,13 +801,13 @@ En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar l'entrename
 \end{figure}
 Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la matriu de predicci\'{o} estar\'{a} en un estat inicial(''nou''). Quan l'usuari confirmi l'enviament, primer es comprova que es pot establir connexi\'{o} amb la cua d'execucions de prediccions. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades. Es queda en aquest estat rebent múltiples respostes fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb els errors.\\
 
-En el cas que estigui pendent, l'usuari podr\'{a} reintentar enviar la predicci\'{o} a la cua despr\'{e}s de comprovar l'error.
+En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar la predicci\'{o} a la cua despr\'{e}s de comprovar l'error.
 
 \section{Model del comportament}
-En aquesta secci\'{o} veurem els diagrames de seqüència de les operacions m\'{e}s complexes dels casos d'\'{u}s tenint en compte els estats definits.
+En aquesta secci\'{o} veurem els diagrames de seqüència de les operacions m\'{e}s complexes dels casos d'us tenint en compte els estats definits.
 
 \subsection*{Crear un conjunt de fitxers d'envelliments per una variable}
-L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Variable003}(mirar la p\`{a}gina \pageref{variable003}).
+L'identificador d'aquest cas d'us \'{e}s \textbf{Variable003}(mirar la p\`{a}gina \pageref{variable003}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceNewSeasonSe.png}
@@ -816,7 +816,7 @@ L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Variable003}(mirar la p\`{a
 \end{figure}
 
 \subsection*{Afegir un nou fitxer a un conjunt de fitxers d'envelliments}
-L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Variable008}(mirar la p\`{a}gina \pageref{variable008}).
+L'identificador d'aquest cas d'us \'{e}s \textbf{Variable008}(mirar la p\`{a}gina \pageref{variable008}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceAddNewFilesToSeasonSet.png}
@@ -825,7 +825,7 @@ L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Variable008}(mirar la p\`{a
 \end{figure}
 
 \subsection*{Crear una matriu des d'un fitxer}
-L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Matriu001}(mirar la p\`{a}gina \pageref{matriu001}).
+L'identificador d'aquest cas d'us \'{e}s \textbf{Matriu001}(mirar la p\`{a}gina \pageref{matriu001}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceCreateMatrix.png}
@@ -834,7 +834,7 @@ L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Matriu001}(mirar la p\`{a}g
 \end{figure}
 
 \subsection*{Crear un entrenament}
-L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Training004}(mirar la p\`{a}gina \pageref{training004}).
+L'identificador d'aquest cas d'us \'{e}s \textbf{Training004}(mirar la p\`{a}gina \pageref{training004}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.5]{img/specification/SequenceCreateTraining.png}
@@ -847,15 +847,15 @@ L'identificador d'aquest cas d'us \'{e}s \textbf{Matriu005}(mirar la p\`{a}gina 
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceConfigureColumn.png}
-  \caption{Diagrama de seqüència \textit{Configurar una columna d'una matriu} }
+  \caption{Diagrama de seqüencia \textit{Configurar una columna d'una matriu} }
   \label{fig:sequenceconfigurecolumn}
 \end{figure}
 
 \subsection*{Actualitzar l'estat d'una predicci\'{o}}
-L'identificador d'aquest cas d'\'{u}s \'{e}s \textbf{Prediction010}(mirar la p\`{a}gina \pageref{prediction010}).
+L'identificador d'aquest cas d'us \'{e}s \textbf{Prediction010}(mirar la p\`{a}gina \pageref{prediction010}).
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.6]{img/specification/SequenceUpdatePrediccio.png}
-  \caption{Diagrama de seqüència \textit{Actualitzar l'estat d'una predicci\'{o}} }
+  \caption{Diagrama de seqüencia \textit{Actualitzar l'estat d'una predicci\'{o}} }
   \label{fig:sequenceupdateprediccio}
 \end{figure}

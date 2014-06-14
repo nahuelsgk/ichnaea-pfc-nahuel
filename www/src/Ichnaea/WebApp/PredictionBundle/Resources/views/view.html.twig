@@ -3,12 +3,9 @@
 {% block page_title %}Prediction matrix {{matrix_name}} {% endblock %}
 
 {% block main_content %}
-
-<div class="container">
-
-<div id="header_prediction_matrix">
-
-<div id="left_prediction_matrix_IU" style="width: 45%; height: 100px; float: left;">
+<div id=menu_info_block>
+ <div class="container">
+  <div id="left_prediction_matrix_IU" style="width: 45%; height: 100px; float: left;">
 	<legend>
 		Prediction matrix
 		<!-- ACTIONS -->
@@ -67,12 +64,23 @@
 	Description: {{ matrix_description }}<br>
 </div>
 
-<div id="left_prediction_matrix_IU" style="width: 45%; height: 100px; float: left;">
+<div id="right_prediction_matrix_IU" style="width: 45%; float: left; padding-bottom: 20px;">
 	<legend>Messaging</legend>
+	<div id="screen _messages" style="height: 100px; overflow-x: hidden;overflow-y: scroll;">
+	<ul>
+	{% if matrix_status == 'sent' %}<li>The prediction has been sent. Please wait until results arrive.</li>{%  endif %}
+	{% if matrix_status == 'sent' %}<li>The prediction has been sent. You can not modify the prediction matrix.</li>{%  endif %}
+	</ul> 
+	</div>
 </div>
 </div>
 </div>
 
+<div>
+{% if matrix_status == 'sent' %}
+{%  include 'MatrixBundle:Matrix:View/matrix_table_configurable.html.twig' with {'configurable_columns': 'prediction_read_only', 'configurable_samples':'disable', 'api': 'disable'} %}
+{% else %}
 {%  include 'MatrixBundle:Matrix:View/matrix_table_configurable.html.twig' with {'configurable_columns': 'prediction', 'configurable_samples':'enable', 'api': 'prediction'} %}
-
+{% endif %}
+</div>
 {% endblock %}

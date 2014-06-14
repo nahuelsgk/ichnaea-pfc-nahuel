@@ -6,12 +6,12 @@ En aquest capítol es descriuen les tecnologies estudiades, escollides i aplicad
 \section{Estudi previ de les tecnologies}
 En aquesta secci\'{o} es far\'{a} una descripci\'{o} de les tecnologies estudiades per la realització d'aquest projecte. S'han avaluat diferents marcs de treballs(\textit{framework}) així com un propi per la implementació del projecte.\\
 
-A continuació fem una anàlisis de cadascuna de elles explicant els avantatges i desavantatges i les decisions presses.
+A continuació fem una anàlisi de cadascuna d'elles explicant els avantatges i desavantatges i les decisions preses.
 
 \subsection{Llenguatge de programació: JAVA vs. PHP}
 S'han avaluat dos llenguatges de programació: JAVA i PHP.\\
 
-En un principi es va avaluar JAVA per el desenvolupament dels servei web amb la llibreria \textit{Jersey}.\cite{jersey} Aquesta tecnologia implementa serveis API de tipus RESTful, molt convenient per entorns distribuits, però t\'{e} l'impediment de tenir d'una corba de desenvolupament molt lenta i una integració entre components externs complexes. Això era un impediment ja que la integració amb el sistema de cues \'{e}s un requeriment. L'altre gran desavantatge era que implicava un canvi de disseny en la capa de presentació. S'hauria d'aplicar el patró MVC(explicat a la secció \ref{mvcFrontController}) als navegadors amb tecnologies mitjançant l'us de \textit{frameworks} que encara estan en etapes de desenvolupament i/o evolució.\\
+En un principi es va avaluar JAVA per el desenvolupament dels serveis web amb la llibreria \textit{Jersey}.\cite{jersey} Aquesta tecnologia implementa serveis API de tipus RESTful, molt convenient per entorns distribuïts, però t\'{e} l'impediment de tenir d'una corba de desenvolupament molt lenta i una integració entre components externs complexos. Això era un impediment, ja que la integració amb el sistema de cues \'{e}s un requeriment. L'altre gran desavantatge era que implicava un canvi de disseny en la capa de presentació. S'hauria d'aplicar el patró MVC(explicat a la secció \ref{mvcFrontController}) als navegadors amb tecnologies mitjançant l'\'{u}s de \textit{frameworks} que encara estan en etapes de desenvolupament i/o evolució.\\
 
 PHP \'{e}s l'altre llenguatge analitzat. PHP \'{e}s un llenguatge orientat objectes enfocat al desenvolupament web que:
 \begin{itemize}
@@ -19,20 +19,20 @@ PHP \'{e}s l'altre llenguatge analitzat. PHP \'{e}s un llenguatge orientat objec
 \item \'{e}s àmpliament reconegut.
 \item t\'{e} una documentació excel·lent.
 \item t\'{e} una comunitat activa i participativa.
-\item les ultimes versions desenvolupades han tingut molt bons resultats en rendiments i en escal.labilitat.
+\item les ultimes versions desenvolupades, han tingut molt bons resultats en rendiments i en escal·labilitat.
 \item \'{e}s de desenvolupament ràpid.
 \end{itemize}
 
 Els avantatges de PHP envers JAVA ha sigut determinants per escollir-lo com a llenguatge de programació.
 
 \subsection{Motor de base de dades: MongoDB vs. MySQL}
-S'han evaluat i testat dos motors de bases de dades: MySQL i MongoDB.\\
+S'han avaluat i testat dos motors de bases de dades: MySQL i MongoDB.\\
 
-MongoDB \'{e}s un motor de base de dades orientat a documents molt escal·lable i d'alt rendiment.\cite{mongodb} \'{E}s un tipus de base de dades "NoSQL"; es a dir no relacional.\cite{nosql} MongoDB gestiona col·leccions de documents en format JSON.\cite{apijson} Una gran avantatge d'aquest motor \'{e}s la llibertat de no definir cap estructura predeterminada pels documents. Una avantatge molt interessant per la gestió de dades de matrius d'aquest projecte.\\
+MongoDB \'{e}s un motor de base de dades orientat a documents molt escal·lable i d'alt rendiment.\cite{mongodb} \'{E}s un tipus de base de dades "NoSQL"; \'{e}s a dir, no relacional.\cite{nosql} MongoDB gestiona col·leccions de documents en format JSON.\cite{apijson} Un gran avantatge d'aquest motor \'{e}s la llibertat de no definir cap estructura predeterminada pels documents. Un avantatge molt interessant per la gestió de dades de matrius d'aquest projecte.\\
 
-Però el gran problema que trobem en MongoDB per aquest projecte \'{e}s la absència del model relacional. \'{E}s molt important el requeriment relacional de dades per gestionar la associació entre conjunts de fitxers, els fitxers i les variables. MongoDB \'{e}s un motor de base de dades no relacional. Per establir relacions s'han de forçar les relacions amb el cost de implementar-les en el codi i amb estructures extraordinàries dintre del motor de base de dades.\\
+Però el gran problema que trobem en MongoDB per aquest projecte \'{e}s justament l'absència del model relacional. \'{E}s molt important el requeriment relacional de dades per gestionar l'associació entre conjunts de fitxers, els fitxers i les variables. MongoDB \'{e}s un motor de base de dades no relacional. Per establir relacions s'han de forçar les relacions amb el cost d'implementar-les en el codi i amb estructures extraordinàries dintre del motor de base de dades.\\
 
-Els requeriments dels projecte recomanen l'us d'una base de dades relacional. MySQL, pel contrari de MongoDB, \'{e}s un motor de base de dades relacionals àmpliament usat en el desenvolupament web. Implementant el disseny del model de bases dades(mirar la seccio \ref{subsec:diagramclasses}) vam veure que tenia un rendiment excel·lent en la creació de matrius i en la gestió de configuracions de matrius.
+Els requeriments del projecte recomanen l'\'{u}s d'una base de dades relacional. MySQL, al contrari de MongoDB, \'{e}s un motor de base de dades relacionals àmpliament usat en el desenvolupament web. Implementant el disseny del model de bases dades(veg. secció \ref{subsec:diagramclasses}) vam veure que tenia un rendiment excel·lent en la creació de matrius i en la gestió de configuracions de matrius.
 
 \subsection{Anàlisis de marcs de treball}
 Una vegada seleccionats el llenguatge de programació i el motor de bases de dades, s'han analitzat diferents marcs de treball per la implementació del projecte.\\
@@ -42,13 +42,13 @@ A continuació analitzem les avantatges i desavantatges de cadascun i les motiva
 \subsubsection{\textit{Framework} a mida}
 En un principi \'{e}s va valorar la possibilitat de desenvolupar tot un nou \textit{framework} per la implementaci\'{o} del projecte.\\
 
-Els principal avantatges \'{e}s el control total de la implantaci\'{o} de tots els processos i tecnologies.\\
+El principal avantatge \'{e}s el control total de la implantaci\'{o} de tots els processos i tecnologies.\\
 
-Pero els principals inconvenients son:
+Però els principals inconvenients s\'{o}n:
 \begin{itemize} 
 \item un desenvolupament extremadament lent. 
-\item re-inventar la roda quan no \'{e}s necessari. Existeixen al mercat marcs de treballs excel·lents i que compleixen les necessitats requerides.
-\item es propens a cometre errors.
+\item reinventar la roda quan no \'{e}s necessari. Existeixen al mercat marcs de treballs excel·lents i que compleixen les necessitats requerides.
+\item m\'{e}s propens a cometre errors.
 \end{itemize} 
 
 Els desavantatges eren molt grans com per continuar el desenvolupament d'un \textit{framework} propi. A m\'{e}s el desenvolupament d'un marc de treball propi implica un projecte sencer per això.
@@ -56,16 +56,16 @@ Els desavantatges eren molt grans com per continuar el desenvolupament d'un \tex
 \subsubsection{\textit{Codeigniter}}
 Es va avaluar el desenvolupament del sistema amb \textit{Codeigniter}. \textit{Codeigniter} \'{e}s un \textit{framework} per a desenvolupament web r\`{a}pid amb PHP.\cite{codeigniter} Implementa el patro MVC(explicat a la secció \ref{subsec:dessignexplanation}) amb un patró de persistència de dades de tipus ''active record' per la gesti\'{o} d'emmagatzematge de dades.\cite{activerecord}\\
 
-Els principals avantatges son:
+Els principals avantatges s\'{o}n:
 \begin{itemize}
 \item corba d'aprenentatge r\`{a}pida.
 \item desenvolupament r\`{a}pid.
 \item implementa el patr\'{o} MVC.
 \end{itemize}
 
-Els principals inconvenients son:
+Els principals inconvenients s\'{o}n:
 \begin{itemize}
-\item no compleix tots el requisits de disseny de patrons especificat.
+\item no compleix tots els requisits de disseny de patrons especificat.
 \item no inclou \textit{templating}
 \item dificultat en segregar la l\`{o}gica de la presentaci\'{o}.
 \end{itemize}
@@ -75,16 +75,16 @@ Els desavantatges de no complir cap dels dissenys especificats, a excepció del 
 \subsubsection{\textit{Symfony2}}
 Finalment es va estudiar les tendències actuals i es va decidir estudiar \textit{Symfony2}.\cite{symfony} \textit{Symfony2} \'{e}s un HTTP \textit{framework} per a PHP. Nativament implementa una variaci\'{o} del Model-Vista-Controlador amb controlador frontal amb injecci\'{o} de dependències a la capa de serveis(disseny explicat a la secció \ref{subsec:dessignexplanation}).\\
 
-Els principals avantatges de \textit{Symfony2} son:
+Els principals avantatges de \textit{Symfony2} s\'{o}n:
 \begin{itemize}
 \item Altament configurable.
-\item Compleix tots els requisits de dissenys de patrons especificat.
+\item Compleix tots els requisits de dissenys de patrons especificats.
 \item Alt rendiment
 \end{itemize}
 
-Els principal inconvenients \'{e}s que t\'{e} una corba d'aprenentatge alta.\\
+El principal inconvenient \'{e}s que t\'{e} una corba d'aprenentatge alta.\\
 
-Els avantatges han fet que es decidís per usar aquesta tecnologia. \textit{Symfony2} utilitza un conjunt de tecnologies que fan que s'implementi correctament la especificació i s'assoleixi tots els requeriments especificats.\\
+Els avantatges han fet que es decidís per usar aquesta tecnologia. \textit{Symfony2} utilitza un conjunt de tecnologies que fan que s'implementi correctament l'especificació i s'assoleixi tots els requeriments especificats.\\
 
 \section{Implementaci\'{o}}
 Després d'haver analitzat les diferents tecnologies, el sistema ha sigut desenvolupat principalment amb el \textit{framework} \textit{Symfony2}.\\
@@ -92,36 +92,36 @@ Després d'haver analitzat les diferents tecnologies, el sistema ha sigut desenv
 A continuació es descriu breument el \textit{framework}, totes tecnologies involucrades i la implementació del projecte.
 
 \subsection{\textit{Symfony2}}
-Arquitectonicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, similar als paquets de JAVA. Els \textit{bundles} son un conjunt de serveis, entitats i recursos independents entre si.\\
+Arquitectònicament, \textit{Symfony2} estructura el codi en \textit{Bundles}, similar als paquets de JAVA. Els \textit{bundles} s\'{o}n un conjunt de serveis, entitats i recursos independents entre si.\\
 
-Per la implementació del projecte, els \textit{bundles} desenvolupats son:
+Per la implementació del projecte, els \textit{bundles} desenvolupats s\'{o}n:
 \begin{itemize}
 \item \textit{Bundle} de usuaris: UserBundle. Paquet de serveis, vistes i recursos per usuaris. S'ha utilitzat el paquet de \textit{Symfony2} FOSUserBundle \cite{fosuserbundle} i s'ha fet una extensi\'{o} del paquet per implementar la gesti\'{o} de rols i grups. 
 \item \textit{Bundle} de matrius: MatrixBundle. Paquet de serveis, vistes i recursos per les matrius.
-\item \textit{Bundle} de trainings: TrainingBundle. Paquet de serveis, vistes i recursos per els entrenaments.
-\item \textit{Bundle} de serveis webs: ApiBundle. Paquet de serveis,vistes i recursos per la API JSON Restful. 
+\item \textit{Bundle} de trainings: TrainingBundle. Paquet de serveis, vistes i recursos pels entrenaments.
+\item \textit{Bundle} de serveis webs: ApiBundle. Paquet de serveis, vistes i recursos per la API JSON Restful. 
 \item \textit{Bundle} de predicci\'{o}: PredictionBundle. Paquet de serveis, vistes i recursos per les matrius de prediccions.
 \end{itemize}
 
 \subsection{Gesti\'{o} de depend\`{e}ncies} 
 \label{subsec:dependencies}
-\textit{Symfony2} utilitza \textit{Composer} per la gesti\'{o} de depend\`{e}ncies.\cite{composer} \textit{Composer} \'{e}s un gestor de dependències a nivell d'aplicaci\'{o}. En els projectes de desenvolupament de \textit{software} \'{e}s molt important automatitzar les dependències que un projecte pugui tenir per tenir sempre el codi actualitzat, segur i sobre tot mantenible.\\
+\textit{Symfony2} utilitza \textit{Composer} per la gesti\'{o} de depend\`{e}ncies.\cite{composer} \textit{Composer} \'{e}s un gestor de dependències a nivell d'aplicaci\'{o}. En els projectes de desenvolupament de \textit{software} \'{e}s molt important automatitzar les dependències que un projecte pugui tenir per tenir sempre el codi actualitzat, segur i sobretot mantenible.\\
 
 Dintre de les dependències per la implementació del projecte existeixen diferents tipus de llibreries i tecnologies. A continuació les detallem:
 \begin{itemize}
-\item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interfícies.\cite{jquery} Simplifica la manera de interaccionar amb els documents HTML\cite{html} i simplifica la manera de manipular l'arbre DOM.\cite{dom}
-\item FOSUserBundle: paquet per a \textit{Symfony} per la gesti\'{o} de usuaris.\cite{fosuserbundle}
+\item Jquery: llibreria Javascript que s'executa en el costat client per enriquir les interfícies.\cite{jquery} Simplifica la manera d'interaccionar amb els documents HTML\cite{html} i simplifica la manera de manipular l'arbre DOM.\cite{dom}
+\item FOSUserBundle: paquet per a \textit{Symfony} per gestionar usuaris.\cite{fosuserbundle}
 \item Bootstrap: \texit{framework} pel \textit{front-end} desenvolupat per Twitter. Implementa nous estàndards com HTML5\cite{html5} i CSS3\cite{css3}. Permet el desenvolupament d'interf\'{i}cies de manera r\`{a}pida i usables suportades per múltiples navegadors.
 \item RestBundle: paquet per Symfony per desenvolupar llibreries API JSON Restful.\cite{apijson}
 \item Symfony FS: paquet per gestionar sistema de fitxers.
 \item Doctrine Fixtures: paquet per gestionar la inserci\'{o} controlada de dades a la base de dades.
 \item TWIG: motor de plantilles per a PHP.\cite{twig}
 \item Doctrine: ORM pel mapatge de dades(explicat a la secció \ref{ormdessign} a la p\`{a}gina \pageref{ormdessign}), usant MySQL.\cite{mysql}
-\item Sistema de cues: projecte desenvolupat per Miguel Ibero conjuntament amb aquest per la execució de Ichnaea.
+\item Sistema de cues: projecte desenvolupat per Miguel Ibero conjuntament amb aquest per l'execució de Ichnaea.
 \end{itemize}
 
 \subsection{Recursos webs: URLs}
-L'estandard HTTP recomana unes URI estructurades i coherents.\cite{rfc3986} La dependència de les nostres entitats requereixen una definició jeràrquica del recursos webs. La estructura de recursos de la aplicaci\'{o} \'{e}s la següent:\\
+L'estandard HTTP recomana unes URI estructurades i coherents.\cite{rfc3986} La dependència de les nostres entitats requereixen una definició jeràrquica dels recursos webs. L'estructura de recursos de la aplicaci\'{o} \'{e}s la següent:\\
 
 \begin{table}[ht]
 \begin{tabular}{| p{5cm} | p{10cm} |}
@@ -138,21 +138,21 @@ Fitxer d'un conjunt de fitxers d'una variable & variable/(id)/seasonset/(id)/sea
 \end{table}
 \\
 
-S'ha emprat aquesta estructura de recursos degut a les dependències entre les diferents entitats:
+S'ha emprat aquesta estructura de recursos a causa de les dependències entre les diferents entitats:
 \begin{itemize}
 \item Un entrenament dep\'{e}n d'una matriu.
 \item Una predicci\'{o} dep\'{e}n d'un entrenament.
-\item Un fitxer pot dependre de ningú per permetre'l una lliure associacions.
-\item Una variable t\'{e} un conjunt de fitxers. Per tant els conjunts dels fitxers son dependents de les variables.
+\item Un fitxer pot dependre de ningú per permetre'l una lliure associació.
+\item Una variable t\'{e} un conjunt de fitxers. Per tant els conjunts dels fitxers s\'{o}n dependents de les variables.
 \item Un fitxer pot ser un component d'un conjunt de fitxers d'una variable.
 \end{itemize}
 
 \section{API: llibreria de serveis web}
 S'ha desenvolupat una llibreria API JSON RESTful per donar resposta a les funcionalitats asíncrones de les interfícies.\cite{apijson} S'ha emprat aquesta tecnologia per la escal.labilitat que aporta i perquè en un futur es pugui aprofitar el desenvolupament d'aquesta amb la integració d'altres tipus client, com poden ser aplicacions mòbils o altres serveis.\\
 
-La arquitectura RESTful aprofita al màxim el protocol HTTP per establir dades i actualment s'usen per donar funcionalitats asincrones a les interficies(explicat a la secció \ref{sec:dessigninterfaces}).
+L'arquitectura RESTful aprofita al màxim el protocol HTTP per establir dades i actualment s'usen per donar funcionalitats asíncrones a les interfícies (explicat a la secció \ref{sec:dessigninterfaces}).
 
-Les operacions, els recursos i el paràmetres implementats son:\\
+Les operacions, els recursos i els paràmetres implementats son:\\
 \begin{figure}[H]
   \includegraphics[scale=0.5]{img/implementation/apirestul.png}
   \caption{Operacions de la API Restful}
@@ -161,10 +161,10 @@ Les operacions, els recursos i el paràmetres implementats son:\\
 On:
 \begin{itemize}
 \item Operació \'{e}s el mètode HTTP.
-\item Recurs \'{e}s el identificador del recurs.
-\item Entrada \'{e}s l'objecte JSON d'entrada de la operació.
-\item Sortida \'{e}s l'objecte JSON de sortida de la operació.
-\item HTTP Codi son els codis HTTP que retornen.\cite{listhttpcodis}
+\item Recurs \'{e}s l'identificador del recurs.
+\item Entrada \'{e}s l'objecte JSON d'entrada de l'operació.
+\item Sortida \'{e}s l'objecte JSON de sortida de l'operació.
+\item HTTP Codi s\'{o}n els codis HTTP que retornen.\cite{listhttpcodis}
 \end{itemize}
 
 Totes les operacions estan securitzades per \textit{cookies}\cite{cookies} i per sessió per identificar i validar a l'usuari.\cite{sessions}
@@ -174,32 +174,32 @@ A continuació descrivim el sistema de cues d'Ichnaea, la seva tecnologia i el d
 
 \subsection{Introducci\'{o} a l'arquitectura de cues: AMQP}
 \label{sec:queue_system_overview}
-L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicació d'un sistema de comunicació. Les característiques que defineixen al protocol AMQP son la orientació a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com,per exemple, la seguretat o les subscripcions.\cite{amqp}\\
+L'est\`{a}ndard AMQP (''Advanced Message Queuing Protocol'') \'{e}s un protocol d'est\`{a}ndard obert en la capa d'aplicació d'un sistema de comunicació. Les característiques que defineixen al protocol AMQP s\'{o}n l'orientació a missatges, encuament(''queuing''), enrutament i exactitud, entre altres com, per exemple, la seguretat o les subscripcions.\cite{amqp}\\
 
 AMQP defineix una s\`{e}rie d'entitats. Des de la perspectiva de la interconnexió les m\'{e}s rellevants son:
 \begin{itemize}
-\item El corredor de missatges: un servidor on els clients AMQP es connecten usant el protocol AMQP. Els corredores de missatges poden executar-se en un entorn distribuït, però aquesta capacitat \'{e}s espec\'{i}fica de la implementació.
+\item El corredor de missatges: un servidor on els clients AMQP es connecten usant el protocol AMQP. Els corredors de missatges poden executar-se en un entorn distribuït, però aquesta capacitat \'{e}s espec\'{i}fica de la implementació.
 \item Usuari: un usuari \'{e}s una entitat amb credencial pot ser autoritzat a connectar-se a un corredor.
 \item Connexió: una connexi\'{o} f\'{i}sica, usant per exemple TCP/IP, entre el corredor i l'usuari.
-\item Clients: productors i consumidors. \'{E}s un model de comunicacio con el productor \'{e}s un proces emissor  i el consumidor \'{e}s un proces receptor.\cite{messaging}
+\item Clients: productors i consumidors. \'{E}s un model de comunicació amb el productor, que \'{e}s un proc\'{es emissor,  i el consumidor, que \'{e}s un proces receptor.\cite{messaging}
 \end{itemize}
 
-En el diagrama \ref{fig:archsoftware} a la p\`{a}gina \pageref{fig:archsoftware} es pot veure una explicació gràfica de les entitats recent explicades.\\
+En el diagrama \ref{fig:archsoftware} a la p\`{a}gina \pageref{fig:archsoftware} es pot veure una explicació gràfica de les entitats anteriorment explicades.\\
 
 \subsubsection{RabbitMQ} 
 RabbitMQ \'{e}s un \textit{software} que implementa aquest protocol. El sistema de cues d'execucions d'Ichnaea est\'{a} implementat com a Projecte de Final de Carrera de Miguel Ibero i ofereix una llibreria per la seva integració.\\
 
-Per la integració del sistema web amb el sistema amb cues s'ha:
+Per la integració del sistema web amb el sistema amb cues s'ha hagut de:
 \begin{itemize}
-\item gestionat la dependència amb el projecte.
-\item desenvolupar el consumidors utilitzant les interfícies d'integració proporcionades pel projecte del sistema de cues.
+\item gestionar la dependència amb el projecte.
+\item desenvolupar els consumidors utilitzant les interfícies d'integració proporcionades pel projecte del sistema de cues.
 \item desenvolupar els enviaments de dades seguint els requeriments del projecte del sistema de cues.
 \end{itemize}
 
 \subsection{Consumidors i gesti\'{o} de resultats}
-Els consumidors en el protocol de missatgeria son els processos receptors de missatges emesos per els productors. En aquest cas, les respostes de les execucions d'Ichnaea(figura \ref{fig:archsoftware}).\\
+Els consumidors en el protocol de missatgeria s\'{o}n els processos receptors de missatges emesos pels productors. En aquest cas, les respostes de les execucions d'Ichnaea(figura \ref{fig:archsoftware}).\\
 
-Els consumidors necessiten ser processos ''stand-alone''(aut\'{o}noms) que escoltin les sortides i consumeixin els resultats de la cua. \textit{Symfony2} permet crear comandes CLI(\textit{command line interface} o interfície de línia de comandes) per crear processos. Utilitzant aquesta propietat s'han desenvolupat uns processos servidors autònoms que escolten les sortides d'Ichnaea(entrenaments i prediccions) e interactuen amb el sistema seguint el diagrama d'estats especificats(seccio \ref{sec:status}).\\
+Els consumidors necessiten ser processos ''stand-alone''(aut\'{o}noms) que escoltin les sortides i consumeixin els resultats de la cua. \textit{Symfony2} permet crear comandes CLI(\textit{command line interface} o interfície de línia d'ordres) per crear processos. Utilitzant aquesta propietat s'han desenvolupat uns processos servidors autònoms que escolten les sortides d'Ichnaea(entrenaments i prediccions) e interactuen amb el sistema seguint el diagrama d'estats especificats(veg. secció \ref{sec:status}).\\
 
 L'esquelet d'una comanda en PHP per aquests consumidors actualment \'{e}s:
 \begin{lstlisting}
@@ -213,10 +213,10 @@ class ConsumerCommand extends ContainerAwareCommand
 		->setDescription('Consumer server');
 	}
 	
-	//Execucio de la comanda
+	//Execuci\'{o} de la comanda
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		//Interficie per integrar el sistema de cues
+		//Interf\'{i}cie per integrar el sistema de cues
 		$amqp = new AmqpConnection('URI_per_fer_la_connexio');
 		$amqp->open();
 		
@@ -224,8 +224,8 @@ class ConsumerCommand extends ContainerAwareCommand
 		$servei = $this->getContainer()->get('nom_de_servei');
 		
 		//Crear el consumidor, amb una 
-		//funcio que es crida quan la 
-		//cua estableix comunicacio amb 
+		//funci\'{o} que es crida quan la 
+		//cua estableix comunicaci\'{o} amb 
 		//un objecte de la resposta esperada 
 		//i li passa el servei 
 		$amqp->listenForBuildModelResponse(function (ObjectResponse $resposta_de_la_cua) use ($servei){
@@ -241,11 +241,11 @@ $end
 \end{lstlisting}
 
 \subsubsection{Consumidor d'entrenaments}
-El consumidor d'entrenaments escolta les respostes del productor d'entrenaments. Es a dir, rep les sortides de les execucions dels entrenaments de matrius.\\
+El consumidor d'entrenaments escolta les respostes del productor d'entrenaments. \'{E}s a dir, rep les sortides de les execucions dels entrenaments de matrius.\\
 
 Ichnaea actualment no retorna cap progres parcial ni estimacions de finalitzaci\'{o}. Solament produeix un resultat al final de la seva execució. El sistema guarda els resultats al sistema de fitxers.\\
 
-A continuació veiem l'esquelet anteriorment descrit en PHP adaptat pel proces consumidor d'entrenaments:
+A continuació veiem l'esquelet anteriorment descrit en PHP adaptat pel proc\'{e}s consumidor d'entrenaments:
 
 \begin{lstlisting}
 $trainingService = $this->getContainer()->get('ichnaea.training_service');
@@ -257,14 +257,14 @@ $amqp->listenForBuildModelResponse(function (BuildModelsResponse $resp) use ($tr
 $amqp->wait();
 \end{lstlisting}
 
-Els missatges produïts son vectors associatius que contenen l'identificador del proces i els binaris retornats. Aquests binaries son un fitxer en format zip en Base64 que cont\'{e} les dades per poder usar-les amb les prediccions.
+Els missatges produïts son vectors associatius que contenen l'identificador del proc\'{e}s i els binaris retornats. Aquests binaries s\'{o}n un fitxer en format zip en Base64 que cont\'{e} les dades per poder usar-les amb les prediccions.
 
 \subsubsection{Consumidor de prediccions}
 El consumidor de prediccions escolta les respostes del productor de prediccions.\\
 
-La execució d'Ichnaea per prediccions treu resposta per cadascuna de les mostres proporcionades. Peró no son totes valides. La resposta s'ha d'avaluar segons la especificació donada per projecte del sistema de cues.\\
+L'execució d'Ichnaea per prediccions treu resposta per cadascuna de les mostres proporcionades. Per\`{o} no s\'{o}n totes valides. La resposta s'ha d'avaluar segons l'especificació donada per projecte del sistema de cues.\\
 
-A continuació veiem l'esquelet anteriorment descrit en PHP adaptat pel proces consumidor de prediccions:
+A continuació veiem l'esquelet anteriorment descrit en PHP adaptat pel proc\'{e}s consumidor de prediccions:
 
 \begin{lstlisting}
 $predictionService = $this->getContainer()->get('ichnaea_web_app_prediction.service');
@@ -284,10 +284,10 @@ $amqp->listenForPredictModelsResponse(function (PredictModelsResponse $resp) use
 		$amqp->wait();
 \end{lstlisting}
 
-Els missatges produïts son vectors associatius que cont\'{e} el identificador del proces i resultats. Els resultats son uns objectes que es guarden contínuament en un vector de resultats.
+Els missatges produïts son vectors associatius que contenen l'identificador del proc\'{e}s i els resultats. Els resultats son uns objectes que es guarden contínuament en un vector de resultats.\\
 
 
 \section{Serveis Web Ichnaea}
-Un cop explicat quins són els llenguatges, les eines desenvolupades i les tecnologies que s’han fet servir en la realització d’aquest projecte, es pot veure el sistema d’informació resultant a l'apendix \ref{cha:userguide}
-i a l'apendix \ref{cha:adminguide}.\\ 
+Un cop explicat quins són els llenguatges, les eines desenvolupades i les tecnologies que s’han fet servir en la realització d’aquest projecte, es pot veure el sistema d’informació resultant a l'ap\`{e}ndix \ref{cha:userguide}
+i a l'ap\`{e}ndix \ref{cha:adminguide}.\\ 
  
