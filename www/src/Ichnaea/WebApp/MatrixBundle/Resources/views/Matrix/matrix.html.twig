@@ -6,7 +6,7 @@
 <div id="menu_info_block">
  <div class="container">
   <div style="width: 50%; float:left;">
-   <form class="form-inline" method="post">
+   <form class="form-inline" method="post" action="{{ path('matrix_ui_edit_submit', {'matrix_id': matrix_id}) }}">
    <legend>Configuration</legend>
    <label for="visible">Visible</label>
    <select name="visible">

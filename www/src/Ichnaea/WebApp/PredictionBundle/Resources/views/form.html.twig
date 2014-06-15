@@ -54,7 +54,6 @@
      {{ c.name }}<br>
   </th>
   {% endfor %}
-  <th style="background-color: white;">&nbsp;</th>
   </tr>
   <tr>
   <th style="background-color: grey">Variable</th>
@@ -63,7 +62,6 @@
   	{% if c.variable is not null %}{{ c.variable.name }}<br>{% endif %}
   </th>
   {% endfor %}
-  <th style="background-color: white;">&nbsp;</th>
   </tr>
   <tr>
   <th style="background-color: grey">
@@ -74,7 +72,6 @@
   	{% if c.seasonSet is not null %}{{ c.seasonSet.name }}<br>{% endif %}
   </th>
   {% endfor %}
-  <th style="background-color: white;">Season(optional)</th>
   </tr>
   </table>
   </div>

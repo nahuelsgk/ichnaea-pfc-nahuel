@@ -98,7 +98,7 @@ class ApiController extends FosRestController{
     	
     	$ichnaeaService = $this->get('ichnaea.data_basic_manager');
     	$ichnaeaService->updateMatrixVariable($matrix_id, $column_id, $new_name, $new_variable, $new_seasonSet);
-    	return $this->view(null, 200); 	
+    	return $this->view(array('status' => 'ok'), 200); 	
     }
     
     /**
@@ -114,7 +114,7 @@ class ApiController extends FosRestController{
     	$new_origin = $request->get('origin'); 
     	$ichnaeaService = $this->get('ichnaea.data_basic_manager');
     	$ichnaeaService->updateSample($matrix_id, $sample_id, $new_name, $new_date, $new_origin);
-    	return $this->view(null, 200);
+    	return $this->view(array('status' => 'ok'), 200);
     }
     
     /**
@@ -130,7 +130,7 @@ class ApiController extends FosRestController{
         $new_origin = $request->get('origin');
         $predictionService = $this->get('ichnaea_web_app_prediction.service');
         $predictionService->updateSample($prediction_id, $sample_id, $new_name, $new_date, $new_origin);
-        return $this->view(null, 200);
+        return $this->view(array('status' => 'ok'), 200);
         	
     }
     
@@ -145,7 +145,7 @@ class ApiController extends FosRestController{
     	$ichnaeaService = $this->get('ichnaea.data_basic_manager');
     	$new_data   = $this->getRequest()->get('data');
     	$ichnaeaService->updateSampleData($matrix_id, $sample_id, $index, $new_data);
-    	return $this->view(null, 200);
+    	return $this->view(array('status' => 'ok'), 200);
     }
     
     /**
@@ -159,7 +159,7 @@ class ApiController extends FosRestController{
     	$predictionService = $this->get('ichnaea_web_app_prediction.service');
     	$new_data   = $this->getRequest()->get('data');
     	$predictionService->updateSamplePredictionData($prediction_id, $sample_id, $index, $new_data);
-    	return $this->view(null, 200);
+    	return $this->view(array('status' => 'ok'), 200);
     }
     
     public function updateColumnPredictionAction($prediction_id, $column_index)
@@ -169,7 +169,7 @@ class ApiController extends FosRestController{
     	$new_name     = $request->get('name');
     	$new_variable = $request->get('variable');
     	$predictionService->updateColumnPrediction($prediction_id, $column_index, $new_name, $new_variable);
-    	return $this->view(null, 200);
+    	return $this->view(array('status' => 'ok'), 200);
     }
 }
 ?>

@@ -688,6 +688,9 @@ class IchnaeaService{
 		 $seasonSet = $seasonSetRepository->find($new_seasonSet);
 		 $column->setSeasonSet($seasonSet);
 		}
+		else{
+			$column->setSeasonSet();
+		}
 		
 		$this->em->persist($column);
 		$this->em->flush();

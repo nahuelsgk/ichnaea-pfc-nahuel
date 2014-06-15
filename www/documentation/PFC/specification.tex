@@ -796,7 +796,7 @@ En el cas que estigui pendent, l'usuari podr\'{a} re-intentar enviar l'entrename
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.4]{img/specification/StatesPrediction.png}
-  \caption{Diagrama d'estats dels entrenaments}
+  \caption{Diagrama d'estats de les prediccions}
   \label{fig:statestraining}
 \end{figure}
 Per crear una predicci\'{o}, primer s'ha de configurar la matriu. Mentre l'usuari estigui configurant la matriu de predicci\'{o} estar\'{a} en un estat inicial(''nou''). Quan l'usuari confirmi l'enviament, primer es comprova que es pot establir connexi\'{o} amb la cua d'execucions de prediccions. Si no \'{e}s pot, l'entrenament queda marcat amb l'estat pendent. En el cas que es pugui establir connexi\'{o}, s'envien les dades. Es queda en aquest estat rebent múltiples respostes fins que li arribi algun esdeveniment de finalitzaci\'{o} amb els resultats o amb els errors.\\

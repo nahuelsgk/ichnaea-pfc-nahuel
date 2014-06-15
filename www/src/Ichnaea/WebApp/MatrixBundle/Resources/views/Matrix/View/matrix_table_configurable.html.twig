@@ -279,7 +279,13 @@ function updateSampleData(sample_id, sample_name, sample_date, sample_origin, sa
 
 function loadSeasonSetIntoSelectListAction(variable_id, idOptionList)
 {
-	sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
+	/*If it is selected none, do not sendEvent*/
+	if(variable_id==0){
+		$('#'+idOptionList).empty();
+	}
+	else{
+		sendEvent('{{path('variable_api')}}'+variable_id+'/seasonSet/', 'GET', {}, function (data){renderListSeasonSets(data, idOptionList)});
+	}
 }
 {% endif %}
 

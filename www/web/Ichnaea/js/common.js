@@ -47,7 +47,8 @@ function sendEvent(uri, method, params, success_callback){
 		data: 		params,
 		timeout: 	150000,
 		success:	function(data){
-			if (data.status != 'undefined' && data.status == 'error'){
+			console.log(data);
+			if (typeof data.status != 'undefined' && data.status == 'error'){
 				displayMessage(data.msg, 'undefined')
 			}
 			else{
